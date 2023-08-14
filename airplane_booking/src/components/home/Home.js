@@ -146,6 +146,7 @@ export default function Home() {
                                     setTicketType(values.flightType)
                                     setAdult(values.adult)
                                     setChildren(values.children)
+                                    console.log(children)
                                     // handleSearchTicket();
                                 }}>
                             <Form>
