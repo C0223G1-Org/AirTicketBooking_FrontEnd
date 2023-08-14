@@ -155,7 +155,7 @@ export default function Home() {
                                     setAdult(values.adult)
                                     setChildren(values.children)
                                     const date= new Date();
-                                    const currentDate =  date.getDate() + '-' + (date.getMonth() + 1) + '-' +date.getFullYear();
+                                    // const currentDate =  date.getDate() + '-' + (date.getMonth() + 1) + '-' +date.getFullYear();
                                     if (values.dateDeparture < date)
                                     console.log(children)
                                     // handleSearchTicket();
