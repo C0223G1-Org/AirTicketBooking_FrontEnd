@@ -1,85 +1,99 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
+
 .form_button_employee {
-  background: #dfa512;
-  color: white;
+    background: #dfa512;
+    color: white;
 }
-.form_exit_employee{
-  background: #555e67;
-  margin-right: 10px;
-  color: white
+
+.form_exit_employee {
+    background: #555e67;
+    margin-right: 10px;
+    color: white
 }
+
 .search_gender_employee {
-  padding-top: 5px;
-  margin-right: 10px;
+    padding-top: 5px;
+    margin-right: 10px;
 }
 
 .search_name_employee {
-  margin-left: 30px;
-  padding-top: 5px;
+    margin-left: 30px;
+    padding-top: 5px;
 }
 
 .search_button_employee {
-  background: #dfa512;
-  color: white;
+    background: #dfa512;
+    color: white;
 
 }
 
 .table_header_employee {
-  background: rgb(6, 133, 170);
-  color: #ffffff;
+    background: rgb(6, 133, 170);
+    color: #ffffff;
 }
-.icon_detail_employee{
-  font-size: 25px;
-  margin-right: 20px;
-  color: #0653aa;
+
+.icon_detail_employee {
+    font-size: 25px;
+    margin-right: 20px;
+    color: #0653aa;
 }
-.icon_edit_employee{
-  font-size: 25px ;
-  margin-right: 20px;
-  color: #0653aa
+
+.icon_edit_employee {
+    font-size: 25px;
+    margin-right: 20px;
+    color: #0653aa
 }
-.icon_delete_employee{
-  font-size: 25px;
-  color: #8f1f34;
+
+.icon_delete_employee {
+    font-size: 25px;
+    color: #8f1f34;
 }
-.error_red_employee{
-  color: red;
+
+.error_red_employee {
+    color: red;
+}
+
+.image_employee {
+    width: 35px;
+    border-radius: 35px;
+    margin-right: 10px;
+
 }
 
