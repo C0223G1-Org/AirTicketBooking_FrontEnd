@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import UpdateTicket from './components/ticket/updateTicket';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import PrintTicket from './components/ticket/printTicket';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+<BrowserRouter>
+<Routes>
+  <Route path='/printTicket' element={<PrintTicket></PrintTicket>}></Route>
+  <Route path='/tickets/updateTicket/:id' element={<UpdateTicket />}></Route>
+</Routes>
+</BrowserRouter>
+   
   </React.StrictMode>
 );
 
