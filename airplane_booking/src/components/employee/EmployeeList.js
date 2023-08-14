@@ -117,7 +117,7 @@ export default function EmployeeList() {
                     <div className="container my-2 flex sm:flex-row flex-col">
                         <div className="flex col-ms col-4">
                             <div className="col-ms col">
-                                <a href="#" className="btn font-semibold form_button_employee "
+                                <a href="src/components/employee#" className="btn font-semibold form_button_employee "
                                    style={{marginLeft: '10px'}}>
                                     <i className="fa-solid fa-plus"/> <span>Thêm mới nhân viên</span></a>
                             </div>
@@ -190,9 +190,9 @@ export default function EmployeeList() {
                                             {/*onClick={()=> getEmployee(e.idEmployee)}>*/}
                                             {/*    <i className="fa-solid fa-circle-info icon_detail_employee" />*/}
                                             {/*</a>*/}
-                                            <a href="#" title="Sửa"><i
+                                            <a href="src/components/employee#" title="Sửa"><i
                                                 className="fa-solid fa-pen-to-square icon_edit_employee"/></a>
-                                            <a href="#" type="button" title="Xóa"
+                                            <a href="src/components/employee#" type="button" title="Xóa"
                                                onClick={() => {
                                                    handleDeleteEmployee(`${e.idEmployee}`, `${e.nameEmployee}`)
                                                }}>

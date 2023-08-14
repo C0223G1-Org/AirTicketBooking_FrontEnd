@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import EmployeeList from './component/employee/EmployeeList';
+import EmployeeList from './components/employee/EmployeeList';
 function App() {
   return (
 <>
