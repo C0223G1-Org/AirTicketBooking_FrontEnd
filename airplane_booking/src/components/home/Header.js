@@ -2,7 +2,7 @@ import React from 'react';
 import "../../css/home/Header.css";
 
 export default function Header() {
-    // localStorage
+    // localStoragevvv
     return (
         <header className="header">
             <nav className="navbar navbar-expand-lg">
