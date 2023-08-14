@@ -20,25 +20,20 @@ const UpdateTicket = () => {
 
      
     }
-    const handldEditTicket = async (values) => {
-     
-        const customer = await findTicketById(values.customer);
+    const handleEditTicket = async (values) =>{
         
-      const  customerobj={
-            ...customer
-        }
-        const data = { ...values, customer: customerobj };
+
+        const data = { ...values };
         console.log("1233"+data)
         await updateListTicket(data).then(() => {
             Swal.fire({
                 icon: 'success',
-                title: 'Success!',
-                text: 'Ticket update successfully.',
+                title: 'Thành công!',
+                text: 'Cập nhật vé thành công.',
             })
         })
     }
 
-    
     return (
 
         <div className="background-image">
@@ -60,7 +55,7 @@ const UpdateTicket = () => {
                         ...values,
                        }
                        console.log(object);
-                        await handldEditTicket(object);
+                        await handleEditTicket(object);
                         // navigate("/")
                     }}
                         initialValues={{
@@ -71,11 +66,11 @@ const UpdateTicket = () => {
                             seat: ticket?.seat.positionSeat,
                             departure: ticket?.seat.route.departure.idDeparture,
                             destination: ticket?.seat.route.destination.idDestination,
-                            customer: ticket?.customer?.emailCustomer,
+                            emailPassenger: ticket?.emailPassenger,
                         }}
                         validationSchema={yup.object({                       
-                            namePassenger: yup.string().required(),
-                            customer: yup.string().required(),
+                            namePassenger: yup.string().required("Tên không được để trống.").min(5,"Tên không được ít hơn 5 kí tự.").max(30,"Tên không được quá 30 kí tự.").matches(/^[a-zA-Z\s']+$/u,"Tên không được chứa kí tự số và kí tự đặc biệt."),
+                            emailPassenger: yup.string().required("Email không được để trống").matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, "Email không đúng định dạng.").max(50,"Không được quá 50 kí tự"),
 
                         })}
                      
@@ -114,9 +109,9 @@ const UpdateTicket = () => {
                              
                             </div>
                             <div className="form-group">
-                                <label htmlFor='customer'>Email thanh toán:</label>
-                                <Field id='customer' type="text" name='customer' className="form-control" />
-                                <ErrorMessage name="customer" className='text-red' />
+                                <label htmlFor='emailPassenger'>Email thanh toán:</label>
+                                <Field id='emailPassenger' type="text" name='emailPassenger' className="form-control" />
+                                <ErrorMessage name="emailPassenger" className='text-area' />
                             </div>
                             <div className="form-buttons">
                                 <button type="submit" className="btn btn-primary">Xác nhận</button>
