@@ -26,6 +26,7 @@ export default function SearchResultPage() {
     if (page < searchTicket.totalPages) {
       setPage(page);
       console.log(page);
+      console.log(page);
       const data = await searchTicketByNameAndIdCardPassengerResult(
         tickets.content[0].namePassenger,
         tickets.content[0].idCardPassenger,
