@@ -6,75 +6,75 @@ body {
     text-transform: capitalize;
 }
 
-.wrapper {
+#info-passenger .wrapper {
     background: rgba(237, 234, 234, 0.422);
     padding: 30px 100px;
 }
 
-.wrap {
+#info-passenger.wrap {
     margin-top: 40px;
     padding-left: 20px;
 }
 
-.title {
+#info-passenger .title {
     background-color: #016984;
     color: #fff;
     padding: 25px 0;
     text-transform: uppercase;
 }
 
-.vietnam-airline {
+#info-passenger .vietnam-airline {
     color: #016984;
 }
 
-.wrap i {
+#info-passenger .wrap i {
     color: #78adb1;
     font-size: 24px;
     padding: 5px;
 }
 
- .wrap .location span {
+#info-passenger .wrap .location span {
     font-weight: bold;
 }
 
- .wrap .money {
+#info-passenger.wrap .money {
     color: #016984;
     font-weight: bold;
 
 }
 
- .wrap .outstanding {
+#info-passenger.wrap .outstanding {
     color: #daa310;
     font-weight: bold;
 }
 
- .wrap p {
+#info-passenger.wrap p {
     font-weight: bold;
 }
 
- .info-second {
+#info-passenger.info-second {
     margin-top: 20px;
 
 }
 
-.info-third {
+#info-passenger.info-third {
     margin-top: 20px;
 }
 
- .logo-image {
+#info-passenger.logo-image {
     display: flex;
 }
 
- .logo-image img {
+#info-passenger.logo-image img {
     padding: 0 5px;
     height: 26px
 }
 
-.btn {
+#info-passenger.btn {
     margin: 20px 0;
 }
 
- .btn button {
+#info-passenger.btn button {
     border: none;
     background-color: #daa310;
     box-shadow: inset;
@@ -84,35 +84,35 @@ body {
     font-size: 20px;
 }
 
- .btn button:first-child {
+#info-passenger.btn button:first-child {
     margin-right: 40px;
 }
 
-.info-customer {
+#info-passenger.info-customer {
     border: 1px solid black;
     padding: 20px 0px;
 }
 
- .info-customer .check-children {
+#info-passenger .info-customer .check-children {
     display: flex;
 }
 
- .info-customer .field {
+#info-passenger.info-customer .field {
     padding: 5px 0;
 }
 
- .info-customer .field label {
+#info-passenger.info-customer .field label {
     width: 45%;
 }
 
- .info-customer .field input,
- .info-customer .field select {
+#info-passenger .info-customer .field input,
+#info-passenger.info-customer .field select {
     height: 24px;
     width: 50%;
 
 }
 
- .check-children input {
+#info-passenger.check-children input {
     margin: 0 5px 12px 5px;
 }
 
@@ -124,69 +124,69 @@ body {
 
     }
 
-    .title p {
+    #info-passenger.title p {
         font-size: 20px;
     }
 
-    .wrapper {
+    #info-passenger.wrapper {
         padding: 20px 0;
         margin: 0px;
     }
 
-     .logo-image img {
+    #info-passenger.logo-image img {
         display: none;
     }
 
-    .info-customer {
+    #info-passenger.info-customer {
         padding: 10px 10px;
         width: 100%;
     }
-    .info-customer .field{
+    #info-passenger.info-customer .field{
         margin-left: 5px;
     }
 
-    .info-customer .field label {
+    #info-passenger.info-customer .field label {
         width: 80px;
     }
 
-     .info-customer .field input {
+    #info-passenger .info-customer .field input {
         width: 100px;
     }
 
-    .info-customer .field select {
+    #info-passenger.info-customer .field select {
         width: 100px;
     }
 
-    .btn button {
+    #info-passenger.btn button {
         margin-bottom: 10px;
     }
 
-     .btn button:last-child {
+    #info-passenger .btn button:last-child {
         margin-left: 0;
     }
 
-   .btn button:first-child {
+    #info-passenger.btn button:first-child {
         margin-left: 40px;
     }
 
 }
 
 @media (max-width: 1000px) {
-    .wrapper {
+    #info-passenger.wrapper {
         padding: 20px 5px;
     }
 
-     .info-customer {
+    #info-passenger.info-customer {
         width: 100%;
     }
 
-     .info-customer .field label {
+    #info-passenger.info-customer .field label {
         display: block;
         width: 100%
     }
 
-     .info-customer .field input,
-     .info-customer .field select {
+    #info-passenger.info-customer .field input,
+    #info-passenger.info-customer .field select {
         width: 70%;
     }
 
