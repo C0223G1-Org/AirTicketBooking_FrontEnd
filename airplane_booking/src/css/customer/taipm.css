@@ -1,0 +1,23 @@
+body{
+    box-sizing: border-box ;
+    font-family:sans-serif;
+}
+#customer .title{
+    color: #fff;
+    background-color: #016984;
+    padding:10px 0px;
+}
+.relative {
+    margin-right: 10px;
+    
+}
+.relative input{
+    border-radius: 5px;
+    height: 40px;
+}
+
+.my-2 button{
+    border-radius: 5px;
+    height: 40px;
+    margin-right: 10px;   
+}
