@@ -1,13 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SearchTicketPage from "./components/SearchTicket";
+import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
 import HomePage from "./components/HomePage";
-import SearchResultPage from "./components/SearchResultPage";
-import { TicketProvider } from "./components/TicketContext";
+import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
+import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
