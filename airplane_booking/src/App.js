@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+
+import ListRouter from "./component_SAngTDN/ListRoute";
+import SearchDemo from "./component_SAngTDN/SearchDemo";
+import {Route, Routes} from "react-router-dom"
+import ChangePassword from "./component_SAngTDN/ChangePassword";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<>
+<Routes>
+ <Route path="/" element={<SearchDemo/>}></Route>
+ <Route path="/list/:data" element={<ListRouter/>}></Route>
+ <Route path="/change-password" element={<ChangePassword/>}></Route>
+</Routes>
+</>
   );
 }
 
