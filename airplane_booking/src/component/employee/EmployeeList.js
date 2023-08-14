@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {getListEmployee, searchEmployee, deleteEmployee, getEmployeeById} from "../../services/EmployeeServices";
+import {getListEmployee, searchEmployee, deleteEmployee} from "../../services/EmployeeServices";
 import Swal from "sweetalert2";
-import {useNavigate} from "react-router-dom";
 
+/**
+ * Create by: HuyHD
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export default function EmployeeList() {
     const [employeeList, setEmployeeList] = useState([]);
     const [employeeDetail, setEmployeeDetail] = useState(null);
@@ -24,18 +28,18 @@ export default function EmployeeList() {
     };
 
 
-    const getEmployee = async (id) => {
-        try {
-            const data = await getEmployeeById(id)
-            console.log(data);
-            setEmployeeDetail(data)
-        } catch {
-            alert("a")
-        }
-    }
+    // const getEmployee = async (id) => {
+    //     try {
+    //         const data = await getEmployeeById(id)
+    //         console.log(data);
+    //         setEmployeeDetail(data)
+    //     } catch {
+    //         alert("a")
+    //     }
+    // }
     const handleSearch = async () => {
         try {
-            const results = await searchEmployee(gender, name, currentPage, 1);
+            const results = await searchEmployee(gender, name, currentPage, 2);
             setEmployeeList(results.content);
             setTotalPages(results.totalPages);
 
@@ -65,7 +69,7 @@ export default function EmployeeList() {
             if (res.isConfirmed) {
                 deleteEmployee(id).then(() => {
                     console.log("10101");
-                    getEmployees(0, 5).then(() => {
+                    getEmployees(0, 2).then(() => {
                         Swal.fire({
                             icon: 'success',
                             title: 'Xoá Thành công!!!!',
@@ -83,11 +87,11 @@ export default function EmployeeList() {
     // Hàm xử lý khi người dùng chuyển trang
     const handlePageChange = async (page) => {
         setCurrentPage(page);
-        await getEmployees(page, 1);
+        await getEmployees(page, 2);
     };
 
     useEffect(() => {
-        getEmployees(currentPage, 1);
+        getEmployees(currentPage, 2);
 
     }, [currentPage,]);
 
@@ -95,6 +99,12 @@ export default function EmployeeList() {
         const pageNumber = parseInt(searchPage, 10);
         if (!isNaN(pageNumber) && pageNumber > 0 && pageNumber <= totalPages) {
             handlePageChange(pageNumber - 1);
+        }
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
         }
     };
     return (
@@ -127,7 +137,9 @@ export default function EmployeeList() {
                                 <label className="col-2 search_name_employee">Họ và tên:</label>
                                 <input className=" form-control me-2" type="search" placeholder="Tìm kiếm"
                                        aria-label="Search" value={name}
-                                       onChange={(e) => setName(e.target.value)}/>
+                                       onChange={(e) => setName(e.target.value)}
+                                       onKeyPress={handleKeyPress}
+                                />
                                 <button className="btn search_button_employee " type="submit" onClick={handleSearch}>
                                     <i className="fa-solid fa-magnifying-glass"/></button>
                             </div>
@@ -164,7 +176,7 @@ export default function EmployeeList() {
                                 <tbody>
                                 {employeeList.map((e, index) => (
                                     <tr key={e.idEmployee}>
-                                        <td class="col px-4 py-3 border-b border-gray-200 bg-white text-sm">{(currentPage) + index + 1}</td>
+                                        <td class="col px-4 py-3 border-b border-gray-200 bg-white text-sm">{(currentPage*2) + index + 1}</td>
                                         <td class="col flex py-3 border-b border-gray-200 bg-white text-sm">
                                             <img class="image_employee"
                                                  src={e.image} alt=""/>
@@ -207,9 +219,10 @@ export default function EmployeeList() {
                                         .slice(0, 3)
                                         .map((page) => (
                                             <button
+
                                                 key={page}
                                                 className={`text-sm font-semibold py-2 px-4 ${
-                                                    page === currentPage ? 'bg-gray-500 text-white' : 'bg-yellow-600 text-black'
+                                                    page === currentPage ? 'bg-gray-500 text-black' : 'bg-yellow-600 text-white'
                                                 } rounded`}
                                                 style={{marginRight: '10px'}}
                                                 onClick={() => handlePageChange(page)}
@@ -228,7 +241,8 @@ export default function EmployeeList() {
                                             height: '20px',
                                             paddingLeft: '20px',
                                             border: '1px solid black',
-                                            marginRight: '5px'
+                                            marginRight: '5px',
+                                            color:'black'
                                         }}
                                                type="text"
                                                value={searchPage}
@@ -263,64 +277,64 @@ export default function EmployeeList() {
                 </div>
 
                 {/*modal detail*/}
-                <div className="modal fade" id="detailModal" tabIndex={-1} aria-labelledby="exampleModalLabel5"
-                     aria-hidden="true">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header table_header_employee">
-                                <h1 className="modal-title fs-5" id="exampleModalLabel">CHI TIẾT NHÂN VIÊN</h1>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
-                            </div>
-                            {employeeDetail && (
-                                <div className="modal-body">
-                                    <div className="d-flex">
-                                        <div className="col-md-4" style={{marginRight: '20px', paddingTop: '10px'}}>
-                                            <img
-                                                src="https://media.istockphoto.com/id/1322346877/vector/user-avatar-profile-icon.jpg?s=170667a&w=0&k=20&c=vsp2DIGo7MXd48Wjqi8cM4BikpzeAIO4oYZfWI_q1pQ="
-                                                className="img-fluid rounded-start" alt="..."/>
-                                        </div>
-                                        <div className="col-md-8">
-                                            <table>
-                                                <tbody>
+                {/*<div className="modal fade" id="detailModal" tabIndex={-1} aria-labelledby="exampleModalLabel5"*/}
+                {/*     aria-hidden="true">*/}
+                {/*    <div className="modal-dialog">*/}
+                {/*        <div className="modal-content">*/}
+                {/*            <div className="modal-header table_header_employee">*/}
+                {/*                <h1 className="modal-title fs-5" id="exampleModalLabel">CHI TIẾT NHÂN VIÊN</h1>*/}
+                {/*                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>*/}
+                {/*            </div>*/}
+                {/*            {employeeDetail && (*/}
+                {/*                <div className="modal-body">*/}
+                {/*                    <div className="d-flex">*/}
+                {/*                        <div className="col-md-4" style={{marginRight: '20px', paddingTop: '10px'}}>*/}
+                {/*                            <img*/}
+                {/*                                src="https://media.istockphoto.com/id/1322346877/vector/user-avatar-profile-icon.jpg?s=170667a&w=0&k=20&c=vsp2DIGo7MXd48Wjqi8cM4BikpzeAIO4oYZfWI_q1pQ="*/}
+                {/*                                className="img-fluid rounded-start" alt="..."/>*/}
+                {/*                        </div>*/}
+                {/*                        <div className="col-md-8">*/}
+                {/*                            <table>*/}
+                {/*                                <tbody>*/}
 
-                                                <tr>
-                                                    <td><p><b>Nhân viên:</b></p></td>
-                                                    <td><p style={{
-                                                        color: '#dfa512',
-                                                        paddingLeft: '10px',
-                                                        fontSize: '20px'
-                                                    }}>{employeeDetail.nameEmployee}</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><p>Giới tính: </p></td>
-                                                    <td style={{paddingLeft: '10px'}}>
-                                                        <p>{employeeDetail.gender ? "Nam" : "Nữ"}</p></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><p>Email: </p></td>
-                                                    <td style={{paddingLeft: '10px'}}>
-                                                        <p>{employeeDetail.emailEmployee}</p></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><p>Ngày sinh: </p></td>
-                                                    <td style={{paddingLeft: '10px'}}>
-                                                        <p>{employeeDetail.dateEmployee}</p></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                            <div className="modal-footer">
-                                <input type="hidden" name="idDetail" id="idDetail"/>
-                                <button type="button" className="btn form_exit_employee" data-bs-dismiss="modal">Thoát
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {/*                                <tr>*/}
+                {/*                                    <td><p><b>Nhân viên:</b></p></td>*/}
+                {/*                                    <td><p style={{*/}
+                {/*                                        color: '#dfa512',*/}
+                {/*                                        paddingLeft: '10px',*/}
+                {/*                                        fontSize: '20px'*/}
+                {/*                                    }}>{employeeDetail.nameEmployee}</p>*/}
+                {/*                                    </td>*/}
+                {/*                                </tr>*/}
+                {/*                                <tr>*/}
+                {/*                                    <td><p>Giới tính: </p></td>*/}
+                {/*                                    <td style={{paddingLeft: '10px'}}>*/}
+                {/*                                        <p>{employeeDetail.gender ? "Nam" : "Nữ"}</p></td>*/}
+                {/*                                </tr>*/}
+                {/*                                <tr>*/}
+                {/*                                    <td><p>Email: </p></td>*/}
+                {/*                                    <td style={{paddingLeft: '10px'}}>*/}
+                {/*                                        <p>{employeeDetail.emailEmployee}</p></td>*/}
+                {/*                                </tr>*/}
+                {/*                                <tr>*/}
+                {/*                                    <td><p>Ngày sinh: </p></td>*/}
+                {/*                                    <td style={{paddingLeft: '10px'}}>*/}
+                {/*                                        <p>{employeeDetail.dateEmployee}</p></td>*/}
+                {/*                                </tr>*/}
+                {/*                                </tbody>*/}
+                {/*                            </table>*/}
+                {/*                        </div>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            )}*/}
+                {/*            <div className="modal-footer">*/}
+                {/*                <input type="hidden" name="idDetail" id="idDetail"/>*/}
+                {/*                <button type="button" className="btn form_exit_employee" data-bs-dismiss="modal">Thoát*/}
+                {/*                </button>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
         </>
     );

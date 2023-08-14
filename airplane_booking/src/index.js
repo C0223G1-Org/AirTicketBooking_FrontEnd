@@ -11,6 +11,7 @@ import GetTop10Cheapest from './components/home/Top10';
 import HeaderCustomer from "./components/home/HeaderCustomer.";
 import HeaderAdmin from "./components/home/HeaderAdmin";
 import HeaderEmployee from "./components/home/HeaderEmployee";
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
                 <Route path='/top10' element={<GetTop10Cheapest/>}></Route>
                 <Route path='/header-customer' element={<HeaderCustomer />} />
                 <Route path='/header-admin' element={<HeaderAdmin />} />
+                <Route path='/header-admin/api/employee/0/2' element={<App />} />
                 <Route path='/header-employee' element={<HeaderEmployee />} />
             </Routes>
         </BrowserRouter>
