@@ -8,6 +8,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import Footer from './components/home/Footer';
 import Home from './components/home/Home';
 import GetTop10Cheapest from './components/home/Top10';
+import HeaderCustomer from "./components/home/HeaderCustomer.";
+import HeaderAdmin from "./components/home/HeaderAdmin";
+import HeaderEmployee from "./components/home/HeaderEmployee";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +20,9 @@ root.render(
             <Routes>
                 <Route path='/home' element={<Home/>}></Route>
                 <Route path='/top10' element={<GetTop10Cheapest/>}></Route>
+                <Route path='/header-customer' element={<HeaderCustomer />} />
+                <Route path='/header-admin' element={<HeaderAdmin />} />
+                <Route path='/header-employee' element={<HeaderEmployee />} />
             </Routes>
         </BrowserRouter>
         <Footer />

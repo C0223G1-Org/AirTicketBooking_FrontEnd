@@ -46,12 +46,11 @@ nav i {
 }
 
 .dropdown-menu li:hover a {
-    background-color: #daa310;
-    color: white;
+    color: #166987;
 }
 
 .dropdown-menu {
-    background-color: #166987;
+    background: #166987;
 }
 
 .dropdown-menu li a {

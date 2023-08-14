@@ -21,10 +21,13 @@ export default function Home() {
     const [children, setChildren] = useState(0);
     const navigate = useNavigate();
     const [selectedDeparture, setSelectedDeparture] = useState('');
+    const [selectedDestination, setSelectedDestination] = useState('');
+
 
     const setTicketTypeFunction = async (data) => {
         setTicketType(data);
         console.log(data);
+
     }
 
     const handleSearchTicket = () => {
@@ -34,11 +37,16 @@ export default function Home() {
     const handleChangeTypeTicket = async (event) => {
         const data = event.target.value;
         await setTicketTypeFunction(data)
-
     }
-    const handleCheckDeparture = async (event) => {
-        await setSelectedDeparture(event.target.value);
-        console.log(event.target.value)
+    const handleCheckDeparture = () => {
+        const data = document.getElementById('selectedDeparture').value;
+        setSelectedDeparture(data);
+        console.log(data);
+    }
+    const handleCheckDestination = () => {
+        const data = document.getElementById('selectedDestination').value;
+        setSelectedDestination(data);
+        console.log(data);
     }
 
     const getAllDepartureApi = async () => {
@@ -125,7 +133,7 @@ export default function Home() {
                     <h2 className="find">Tìm kiếm các chuyến bay</h2>
                     <div className="booking-form">
                         <Formik initialValues={{
-                            flightType: '',
+                            flightType: '0',
                             departure: '',
                             destination: '',
                             dateDeparture: '',
@@ -134,8 +142,8 @@ export default function Home() {
                             children: ''
                         }}
                                 validationSchema={yup.object({
-                                    flightType: yup.number().required("Không được để trống trường này")
-
+                                    flightType: yup.number().required("Không được để trống trường này"),
+                                    dateDeparture: yup.date().required()
                                 })}
                                 onSubmit={(values) => {
                                     console.log(values)
@@ -146,6 +154,9 @@ export default function Home() {
                                     setTicketType(values.flightType)
                                     setAdult(values.adult)
                                     setChildren(values.children)
+                                    const date= new Date();
+                                    const currentDate =  date.getDate() + '-' + (date.getMonth() + 1) + '-' +date.getFullYear();
+                                    if (values.dateDeparture < date)
                                     console.log(children)
                                     // handleSearchTicket();
                                 }}>
@@ -178,11 +189,16 @@ export default function Home() {
                                             <span className="form-label">Điểm khởi hành</span>
                                             <Field as='select' className="form-control"
                                                    name='departure'
-                                                   onChange={(event) => {handleCheckDeparture(event)}}>
+                                                   id='selectedDeparture'
+                                                   onChange={() => {
+                                                       handleCheckDeparture()
+                                                   }}
+                                                   value={selectedDeparture}>
                                                 <option value=''>Sân bay, Thành phố</option>
                                                 {
                                                     departures.map((dp) => {
-                                                        return (
+                                                        if (dp.nameDeparture !== selectedDestination)
+                                                            return (
                                                             <option key={dp.idDeparture} value={dp.nameDeparture}>
                                                                 {dp.nameDeparture}
                                                             </option>
@@ -196,12 +212,20 @@ export default function Home() {
                                         <div className="form-group">
                                             <span className="form-label">Điểm đến</span>
                                             <Field as='select' className="form-control"
-                                                   name='destination'>
+                                                   name='destination'
+                                                   id='selectedDestination'
+                                                   onChange={() => {
+                                                       handleCheckDestination()
+                                                   }}
+                                                   value={selectedDestination}
+                                            >
                                                 <option>Sân bay, Thành phố</option>
                                                 {
                                                     destinations.map((ds) => {
+                                                        if( ds.nameDestination !== selectedDeparture)
                                                         return (
-                                                            <option key={ds.idDestination} value={ds.nameDestination}>
+                                                            <option key={ds.idDestination}
+                                                                    value={ds.nameDestination}>
                                                                 {ds.nameDestination}
                                                             </option>
                                                         )
@@ -218,6 +242,7 @@ export default function Home() {
                                                 <span className="form-label">Ngày đi</span>
                                                 <Field className="form-control" type="date"
                                                        name='dateDeparture'/>
+                                                <ErrorMessage name='dateDeparture' component='div'/>
                                             </div>
                                         </div>
                                         <div className="col-md-6">
@@ -233,6 +258,7 @@ export default function Home() {
                                             <span className="form-label">Ngày đi</span>
                                             <Field className="form-control" type="date"
                                                    name='dateDeparture'/>
+                                            <ErrorMessage name='dateDeparture' component='div'/>
                                         </div>
                                     </div>
                                 }
