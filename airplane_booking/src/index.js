@@ -7,6 +7,8 @@ import UpdateTicket from './components/ticket/updateTicket';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import PrintTicket from './components/ticket/printTicket';
+import TicketBooked from './components/TicketBooked';
+import TicketUnBook from './components/TicketUnBook';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +17,8 @@ root.render(
 <Routes>
   <Route path='/printTicket' element={<PrintTicket></PrintTicket>}></Route>
   <Route path='/tickets/updateTicket/:id' element={<UpdateTicket />}></Route>
+  <Route path="/ticket/booked" element={<TicketBooked/>}/>
+    <Route path="/ticket/unbooked" element={<TicketUnBook/>}/>
 </Routes>
 </BrowserRouter>
    

@@ -306,8 +306,10 @@ th {
 .show-route-ticket-body-input-item{
   display: inline-block;
   margin: 30px 10px;
+}
 body {
    font-family: Roboto, sans-serif;
+}
 .show-route-ticket-body-input-item input{
   border-radius: 5px;
   border: none;
