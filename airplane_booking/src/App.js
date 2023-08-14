@@ -7,11 +7,11 @@ import ChangePassword from "./component_SAngTDN/ChangePassword";
 function App() {
   return (
 <>
-{/*<Routes>*/}
-{/*  <Route path="/" element={<SearchDemo/>}></Route>*/}
-{/*  <Route path="/list/:data" element={<ListRouter/>}></Route>*/}
-{/*  <Route path="/change-password" element={<ChangePassword/>}></Route>*/}
-{/*</Routes>*/}
+<Routes>
+ <Route path="/" element={<SearchDemo/>}></Route>
+ <Route path="/list/:data" element={<ListRouter/>}></Route>
+ <Route path="/change-password" element={<ChangePassword/>}></Route>
+</Routes>
 </>
   );
 }
