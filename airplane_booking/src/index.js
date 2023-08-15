@@ -19,6 +19,8 @@ import CustomerManagement from './component/CustomerManagement';
 import EmployeeCreateCustomer from './component/EmployeeCreateCustomer';
 import EmployeeUpdateCustomer from './component/EmployeeUpdateCustomer';
 import ListRouter from "./component_SAngTDN/ListRoute";
+import CustomerUpdate from "./component/CustomerUpdate";
+import CustomerDetails from "./component/CustomerDetails";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -37,6 +39,8 @@ root.render(
                 <Route path='/customers' element={<CustomerManagement />} />
                 <Route path='/customers/add' element={<EmployeeCreateCustomer />} />
                 <Route path='/customers/edit/:id' element={<EmployeeUpdateCustomer />} />
+                <Route path='/customers/update/:id' element={<CustomerUpdate />} />
+                <Route path='/customers/details/:id' element={<CustomerDetails />} />
                 <Route path='/list/:data' element={<ListRouter />} />
             </Routes>
         </BrowserRouter>
