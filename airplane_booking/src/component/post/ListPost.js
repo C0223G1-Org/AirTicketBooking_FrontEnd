@@ -14,14 +14,21 @@ export default function ListPost() {
     const limit = 3;
     const [listPosts, setListPosts] = useState([]);
     const [news, setNews] = useState([]);
+    const [messages , setMessage] = useState('');
     const detailPost = (post, employee) => {
         setDetail(post);
         setEmployee(employee);
         console.log(employee);
     };
     const getNews = async () => {
+        try{
         const data = await getNewsHot();
-        setNews(data);
+         setNews(data);
+        }catch(error){
+            const message = 'Không có bài viết nào nổi bật. ';
+            setMessage(message);
+        }
+       
     }
     useEffect(() => {
         getNews();
@@ -91,10 +98,10 @@ export default function ListPost() {
                 <div className="row container-fluid">
                     <div className="main col-12 col-lg-8 ">
                         <div className="h-auto justify-content-between d-flex">
-                            <div>
-                                <a className="news-button btn  btn-primary mt-3"> Thêm mới</a>
+                            <div className="add-post">
+                                <a className="news-button btn btn-primary mt-3"> Thêm mới</a>
                             </div>
-                            <div>
+                            <div className="search-post">
                                 <Formik initialValues={{
                                     title: ''
                                 }} validationSchema={yup.object({
@@ -104,10 +111,10 @@ export default function ListPost() {
                                         searchPost(value)
                                     }}
                                 >
-                                    <Form>
-                                        <Field className="news-button me-0 mt-3" type="text" id="title" name="title"
+                                    <Form >
+                                        <Field className="me-0 mt-3" type="text" id="title" name="title"
                                             placeholder="Search Title . . ." />
-                                        <button className="mt-3 ms-0 news-button search" type="submit">Tìm Kiếm
+                                        <button className="search" type="submit">Tìm Kiếm
                                         </button>
                                     </Form>
                                 </Formik>
@@ -129,7 +136,7 @@ export default function ListPost() {
                                             <h2 className="card_title">{post.title.length > quantity ? `${post.title.slice(0, quantity)}...` : post.title}</h2>
                                             <div className="card_text">
                                                 <p>{post.content.length > quantity ? `${post.content.slice(0, quantity)}...` : post.content}
-                                                </p>
+                                                </p>    
                                             </div>
                                         </div>
                                         <div className="news-card-button">
@@ -154,6 +161,9 @@ export default function ListPost() {
                             <h4 className="text-uppercase" style={{ marginBottom: '16px', marginTop: '16px' }}>Tin nổi bật</h4>
                         </div>
                         <ul className="cards_news">
+                            <li className={`text-center w-100 ${messages ? '': 'd-none'}`}>
+                                <p >{messages}</p>
+                            </li>
                             {news.map((newss) => (
                                 <li className="news-hots">
                                     <div className="card">
@@ -193,13 +203,13 @@ export default function ListPost() {
                             <div className="modal-body" style={{ padding: 0 }}>
 
                                 <div>
-                                    <img className="d-flex position-relative" width="100%" height="200"
+                                    <img className="d-flex position-relative" width="100%" height="300"
                                         src={detail.image}
                                         alt="mixed vegetable salad in a mason jar." />
                                     <div className="card_content">
                                         <h2 className="card_title">{detail.title}</h2>
                                         <div className="card_text">
-                                            <strong><span>{employee.nameEmployee}</span> / <span>{moment(`${detail.datePost}`).format('DD-MM-YYYY HH:mm:ss')}</span></strong>
+                                                    <strong><span>{employee.nameEmployee}</span> / <span>{moment(`${detail.datePost}`).format('DD-MM-YYYY HH:mm:ss')}</span></strong>
                                             <p>{detail.content}</p>
                                         </div>
                                     </div>
