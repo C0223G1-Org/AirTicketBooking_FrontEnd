@@ -63,6 +63,7 @@ const UpdateTicket = () => {
                                 // navigate("/")
                             }}
                             initialValues={{
+                       
                                 namePassenger: ticket?.namePassenger,
                                 customer: ticket?.customer.emailCustomer,
                             }}

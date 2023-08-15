@@ -55,3 +55,9 @@ export const searchBookedTicket=async(page,ticketSearch)=>{
     const response=await axios.get(`http://localhost:8080/tickets/search/${page}?${ticket}`)
     return response.data
 }
+export const searchUnBookedTicket=async(page,ticketSearch)=>{
+    const ticket = qs.stringify(ticketSearch);
+    console.log(ticket)
+    const response=await axios.get(`http://localhost:8080/tickets/search-unbooked/${page}?${ticket}`)
+    return response.data
+}

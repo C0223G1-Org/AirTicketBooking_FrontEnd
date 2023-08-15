@@ -44,28 +44,49 @@ function TicketBooked() {
         })
     }
     const deleteTicket = async (id) => {
-        deleteTicketDB(id).then(() => {
-            getListTickets(page).then((data) => {
-                setTickets(data.content)
-            })
-            Swal.fire({
-                icon: 'success',
-                title: 'Delete success fully!!!!',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        })
+        Swal.fire({
+            title: 'Bạn chắc chắn xóa không?',
+            text: "Hành động này không thể khôi phục!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Xóa !'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                deleteTicketDB(id).then(()=>{
+                    getTickets(page)
+                })
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+            }
+          })
     }
     const [inputType, setInputType] = useState('text');
     const [date, setDate] = useState('');
 
-  
+
     const dataSearch = (obj) => {
         console.log(obj)
-        searchBookedTicket(page,obj).then((data)=>{
-            console.log(data.content)
-            setTickets(data.content)
+        searchBookedTicket(page, obj).then((data) => {
+            if (!data.content) {
+
+                getTickets(page)
+            } else {
+                setTickets(data.content)
+            }
+            Swal.fire({
+                icon: "error",
+                title: 'Không tìm thấy!',
+                showConfirmButton: false,
+                timer: 1500
+            })
             setIsSearch(false)
+        }).catch(() => {
+
         })
     }
 
@@ -79,7 +100,7 @@ function TicketBooked() {
                     <ul>
                         <li className="section-ticket-item">
                             <Link to={`/ticket/unbooked`}>
-                                <button className="status-ticket" type="button">Vé Chưa Đặt</button>
+                                <button  type="button">Vé Chưa Đặt</button>
                             </Link>
                         </li>
                     </ul>
@@ -104,13 +125,13 @@ function TicketBooked() {
                         </thead>
                         <tbody>
                             {tickets && tickets.map((ticket, index) => (
-                                <tr>
-                                    <td style={{ textAlign: 'center' }} key={index}>{index}</td>
-                                    <td style={{ textAlign: 'left' }}>{ticket.namePassenger}</td>
-                                    <td style={{ textAlign: 'center' }}>{ticket.nameRoute}</td>
-                                    <td style={{ textAlign: 'center' }}>{ticket.nameDeparture}-{ticket.nameDestination}</td>
-                                    <td style={{ textAlign: 'right' }}>{ticket.timeDeparture}</td>
-                                    <td style={{ textAlign: 'right' }}>{ticket.priceTicket}</td>
+                                <tr key={index}>
+                                    <td  key={index}>{index}</td>
+                                    <td >{ticket.namePassenger}</td>
+                                    <td >{ticket.nameRoute}</td>
+                                    <td >{ticket.nameDeparture}-{ticket.nameDestination}</td>
+                                    <td >{ticket.timeDeparture}</td>
+                                    <td >{ticket.priceTicket}</td>
                                     <td className="icon-ticket">
                                         <ul>
                                             <li className="icon-ticket-item">
@@ -118,7 +139,9 @@ function TicketBooked() {
 
                                             </li>
                                             <li className="icon-ticket-item">
-                                                <ModalDeleteTicket ticket={ticket} delete={() => deleteTicket(ticket.id)} icon={"fa-solid fa-trash mx-2"} />
+                                              
+                                                    <i onClick={()=>deleteTicket(ticket.id)} className="fa-solid fa-trash mx-2" style={{ color: '#eb0f1a' }}></i>
+                                                {/* <ModalDeleteTicket ticket={ticket} delete={() => deleteTicket(ticket.id)} icon={"fa-solid fa-trash mx-2"} /> */}
                                             </li>
                                             <li className="icon-ticket-item">
                                                 <i className="fa-sharp fa-solid fa-file-pdf mx-2" style={{ color: '#8c2626' }} />
@@ -159,7 +182,7 @@ function TicketBooked() {
                                                 departureDate: "",
                                                 destinationDate: "",
                                                 passenger: "",
-                                                idSearch:1
+                                                idSearch: 1
                                             }}
 
                                             onSubmit={(value) => {
@@ -167,10 +190,10 @@ function TicketBooked() {
                                                 let newValue;
                                                 console.log(statusTicket)
                                                 if (statusTicket) {
-                                                    newValue = {...value ,typeTicket: 1 }
+                                                    newValue = { ...value, typeTicket: 1 }
                                                 } else {
                                                     alert("nhan")
-                                                    newValue = {  ...value,typeTicket: 2 }
+                                                    newValue = { ...value, typeTicket: 2 }
                                                     console.log(newValue)
                                                 }
                                                 console.log(newValue)
@@ -237,7 +260,7 @@ function TicketBooked() {
                                                                 <button onClick={showSearch} type="button">Đóng</button>
                                                             </li>
                                                             <li className="show-search-ticket-body-input-passenger" style={{ marginLeft: '10px' }}>
-                                                                <button  type="submit">Tìm Kiếm</button>
+                                                                <button type="submit">Tìm Kiếm</button>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -252,7 +275,7 @@ function TicketBooked() {
                                             initialValues={{
                                                 passenger: "",
                                                 chairCode: "",
-                                                idSearch:2
+                                                idSearch: 2
                                             }}
                                             onSubmit={(value) => {
                                                 dataSearch(value);
@@ -287,7 +310,7 @@ function TicketBooked() {
                                                 departure: "",
                                                 departureDate: "",
                                                 routeCode: "",
-                                                idSearch:3
+                                                idSearch: 3
                                             }}
                                             onSubmit={(value) => {
                                                 dataSearch(value);
@@ -297,7 +320,7 @@ function TicketBooked() {
                                                     <div className="show-route-ticket-body-input">
                                                         <ul>
                                                             <li className="show-route-ticket-body-input-item">
-                                                                <Field type="text" name="routeCode" placeHolder="Mã Chuyễn Bay" />
+                                                                <Field type="text" name="routeCode" placeHolder="Mã Chuyến Bay" />
                                                             </li>
                                                             <li className="show-route-ticket-body-input-item">
                                                                 <Field type="text" placeholder="Ngày khởi hành" name="departureDate"
@@ -305,7 +328,7 @@ function TicketBooked() {
                                                                 />
                                                             </li>
                                                             <li className="show-route-ticket-body-input-item">
-                                                                <button  type="submit">Tìm Kiếm</button>
+                                                                <button type="submit">Tìm Kiếm</button>
                                                             </li>
                                                             <li className="show-route-ticket-body-input-item">
                                                                 <button onClick={showSearch} type="button">Đóng</button>

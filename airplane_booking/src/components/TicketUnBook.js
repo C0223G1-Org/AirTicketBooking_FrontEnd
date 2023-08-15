@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { getListUnBookTicket } from "../services/TicketService";
+import { getListUnBookTicket, searchUnBookedTicket } from "../services/TicketService";
 import { Link } from "react-router-dom";
-import { Formik } from "formik";
+import { Field, Form, Formik } from "formik";
+import Swal from "sweetalert2";
 
 function TicketUnBook() {
     const [unTickets, setUnTickets] = useState([])
@@ -12,6 +13,22 @@ function TicketUnBook() {
     const showUnBookTickets = () => {
         getListUnBookTicket(page).then((data) => {
             setUnTickets(data.content)
+        })
+    }
+    const findUnbooked=(value)=>{
+        searchUnBookedTicket(page,value).then((data)=>{
+            if (!data.content) {
+                Swal.fire({
+                    icon: "error",
+                    title: 'Không tìm thấy!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                showUnBookTickets(page)
+            } else {
+                setUnTickets(data.content)
+            }
+           
         })
     }
     return (
@@ -28,17 +45,26 @@ function TicketUnBook() {
                     </li>
                 </ul>
                 <ul>
-                    <li className="section-unBook-ticket-item">
-                        <input type="text" placeholder="Mã Chuyến Bay" />
-                    </li>
-
-                    <li className="section-unBook-ticket-item">
-                        <input type="text" placeholder="Mã Ghế" />
-                    </li>
-                    <li className="section-unBook-ticket-item">
-                        <button type="button">Search</button>
-                    </li>
-
+                    <Formik
+                        initialValues={{
+                            routeCode: "",
+                            chairCode: ""
+                        }}
+                        onSubmit={(value)=>{
+                            findUnbooked(value)
+                        }}>
+                        <Form>
+                            <li className="section-unBook-ticket-item">
+                                <Field type="text" name="routeCode" placeholder="Mã Chuyến Bay" />
+                            </li>
+                            <li className="section-unBook-ticket-item">
+                                <Field type="text" name="chairCode" placeholder="Mã Ghế" />
+                            </li>
+                            <li className="section-unBook-ticket-item">
+                                <button type="submit">Tìm Kiếm</button>
+                            </li>
+                        </Form>
+                    </Formik>
                 </ul>
             </div>
             <div className="table-ticket">
@@ -56,13 +82,13 @@ function TicketUnBook() {
                     </thead>
                     <tbody>
                         {unTickets.map((ticket, index) => (
-                            <tr>
-                                <td style={{ textAlign: 'center' }} key={index}>{index}</td>
-                                <td style={{ textAlign: 'left' }}>{ticket.positionSeat}</td>
-                                <td style={{ textAlign: 'center' }}>{ticket.nameRoute}</td>
-                                <td style={{ textAlign: 'center' }}>{ticket.nameDeparture}-{ticket.nameDestination}</td>
-                                <td style={{ textAlign: 'right' }}>{ticket.timeDeparture}</td>
-                                <td style={{ textAlign: 'center' }}>{ticket.typeSeat}</td>
+                            <tr key={index}>
+                                <td  >{index}</td>
+                                <td >{ticket.positionSeat}</td>
+                                <td >{ticket.nameRoute}</td>
+                                <td >{ticket.nameDeparture}-{ticket.nameDestination}</td>
+                                <td >{ticket.timeDeparture}</td>
+                                <td >{ticket.typeSeat}</td>
                             </tr>
                         ))}
                     </tbody>
