@@ -1,0 +1,36 @@
+body {
+    font-family: "Diavlo", "sans-seriff";
+}
+.m-3 .col-12 .card img {
+    width: 100%;
+    height: 150px;
+}
+.m-3 .col-12 .card {
+    height: 330px;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+.card-body {
+    color: #166987;
+}
+.cheap {
+    color: #166987;
+
+}
+.buy {
+    background:  #daa310;
+    color: white ;
+    border: 1px solid #daa310;
+}
+.m-3 .col-12 .row .col {
+    padding-top: 20px;
+}
+.btn:hover {
+    background: white;
+    color: #daa310;
+    border: 1px solid #daa310;
+}
+.card-body h6 {
+    height: 30px;
+}
