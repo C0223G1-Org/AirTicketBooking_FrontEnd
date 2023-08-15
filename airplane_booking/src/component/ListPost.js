@@ -1,14 +1,11 @@
 import { Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import '../css/post/card2.css';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from 'sweetalert2'
 import { deletePost, getListPost, getNewsHot, searchPosts } from "../services/PostServices";
 import moment from'moment';
-import vinhHaLong from '../img/vinh-ha-long-01.jpg';
-import phoCo from '../img/pho-co.jpg';
-import sapa from '../img/sapa.jpg';
-import daiNoiHue from '../img/21-dai-noi-hue.jpg'
+import {NavLink} from "react-router-dom";
 
 export default function ListPost() {
     const [detail, setDetail] = useState([]);
@@ -206,7 +203,7 @@ export default function ListPost() {
                     <div className="main col-12 col-lg-8 ">
                         <div className="h-auto justify-content-between d-flex">
                             <div>
-                                <a className="news-button btn  btn-primary mt-3"> Thêm mới</a>
+                                <NavLink to="/createPost" className="news-button btn  btn-primary mt-3"> Thêm mới</NavLink>
                             </div>
                             <div>
                                 <Formik initialValues={{
@@ -248,8 +245,8 @@ export default function ListPost() {
                                             </div>
                                         </div>
                                         <div className="news-card-button">
-                                            <a className="news-button btn btn-warning">Sửa</a>
-                                            <a className="news-button btn btn-danger" onClick={() => { checkDelete(`${post.id}`, `${post.title}`) }} >Xoá</a>
+                                            <NavLink to={"/updatePost/"+post.id} className="news-button btn btn-warning">Sửa</NavLink>
+                                            <button className="news-button btn btn-danger" onClick={() => { checkDelete(`${post.id}`, `${post.title}`) }} >Xoá</button>
                                             {/* <button className="news-button btn btn-danger" onClick={() => { setShowModal(true) }} >Xoá</button> */}
                                         </div>
                                     </div>
@@ -286,8 +283,8 @@ export default function ListPost() {
                                         </div>
                                     </div>
                                     <div className="news-card-button">
-                                        <a className="news-button btn btn-warning">Sửa</a>
-                                        <a className="news-button btn btn-danger" onClick={()=>{checkDelete(`${newss.id}`,`${newss.title}`)}}>Xoá</a>
+                                        <NavLink to={"/updatePost/"+newss.id} className="news-button btn btn-warning">Sửa</NavLink>
+                                        <button className="news-button btn btn-danger" onClick={()=>{checkDelete(`${newss.id}`,`${newss.title}`)}}>Xoá</button>
                                     </div>
                                 </div>
                             </li>

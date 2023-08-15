@@ -1,28 +1,39 @@
 import axios from "axios";
 
+
+axios.defaults.baseURL = "http://localhost:8080"
 export const createPost=async (post)=>{
     try{
-        await axios.post("http://localhost:8080/api/post",post)
+        await axios.post("/api/post",post)
     }catch (err) {
         console.log(err)
     }
 }
 export const getAllEmployee=async ()=>{
     try {
-        const result=await axios.get("http://localhost:8080/api/post/listEmployee")
+        const result=await axios.get("/api/employee")
         return result.data
     }catch (err) {
         console.log(err)
     }
 }
-import axios from 'axios'
-axios.defaults.baseURL = "http://localhost:8080"
+export const updatePost=async (post)=>{
+try {
+    await axios.patch(`api/post/updatePost`,post)
+}catch (e) {
+    console.log(e)
+}
+}
+
+
+
+
 export async function getListPost(page, limit) {
     const res = await axios.get('/api/post/' + page + '/' + limit);
     return res.data;
 }
 export async function findPostById(id){
-    const res = await axios.get('/api/post/findPost/{id}'+id);
+    const res = await axios.get('/api/post/findPost/'+id);
     return res.data;
 }
 export async function deletePost(id){
