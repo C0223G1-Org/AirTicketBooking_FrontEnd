@@ -7,8 +7,15 @@ import {getTypeTicketById} from "../../services/TypeTicket";
 import numeral from "numeral";
 import moment from "moment/moment";
 import {getAllLuggage} from "../../services/LugguageServices";
-
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import * as yup from "yup";
+let passengers=[]
 export default function InfoPassenger() {
+    //onClick
+
+    const [size,setSize]=useState(0)
+
+
     const  [luggages,setLuggages]= useState([]);
     const [route, setRoute] = useState([]);
     const [routeDestination, setRouteDestination] = useState([]);
@@ -73,24 +80,15 @@ export default function InfoPassenger() {
     const formattedTotalPrice1 = numeral(totalPrice1).format('0,0 đ');
  // format tiền hành lý
     //onSubmit
-    const handleSubmitOneWay = () => {
-        navigate(`/info-passenger/${1},${arr[1]},${arr[2]},${arr[3]},${arr[4]},${arr[5]}`);
-        //1.loại vé, 2.id tuyến bay,3. loại ghế ,4. giá 1 vé,  5. người lớn 6.trẻ em
-    }
-    const handleSubmitTwoWay = () => {
-        navigate(`/info-passenger/${2},${arr[1]},${arr[2]},${arr[3]},${arr[4]},${arr[5]},${arr[6]},${arr[7]},${arr[8]}`);
-        //1.loại vé, 2.id tuyến đi,3. idtuyến vế ,4. loại ghế đi, 5.loại ghế về , 6. giá đi. 7.giá về
-    }
+    function handleSubmit() {
 
-    function handleSubmitCancel() {
-        navigate();
     }
 
     // lặp hành khách
     const arrPas= ()=>{
         let array = [];
         if (arr[0]==1){
-            for (let i = 0; i < arr[4]; i++) {
+            for (let i = 0; i < arr[5]; i++) {
                 array.push("c")
             }
         }else {
@@ -105,7 +103,7 @@ export default function InfoPassenger() {
     const arrBaby= ()=>{
         let array = [];
         if (arr[0]==1){
-            for (let i = 0; i < arr[5]; i++) {
+            for (let i = 0; i < arr[6]; i++) {
                 array.push("c")
             }
         }else {
@@ -116,8 +114,7 @@ export default function InfoPassenger() {
         return array
     }
     const  numberChildren =arrBaby();
-
-
+    console.log(size)
     return (
         <>
             <head>
@@ -131,9 +128,69 @@ export default function InfoPassenger() {
                         <p className="h1">Thông tin hành khách</p>
                     </div>
                     {arr[0] == 2 ?
-                        <>
+                        <Formik
+                            initialValues={{
+                            priceTicket:"",
+                            flagTicket:false,
+                            namePassenger:"",
+                            genderPassenger:"",
+                            emailPassenger:"",
+                            telPassenger :"",
+                            idCardPassenger:"",
+                            dateBooking:"",
+                            typeTicket:{},
+                            luggage:{},
+                            typePassenger:{},
+                            seat:{},
+                            customer:{},
+                        }}
 
-                    <div className="wrapper">
+                        validationSchema= {yup.object({
+                            namePassenger:yup.string().required("Không được để trống")
+                                .min(3,"tối thiểu 3 kí tự")
+                                .max(50,"tối đa 50 kí tự")
+                                .matches(/^[A-Z]{1}[a-z]*(\s[A-Z]{1}[a-z]*)*$/,"Tên phải đúng định dạng"),
+                            genderPassenger:yup.boolean().required("Không được để trống"),
+                            emailPassenger:yup.string()
+                            .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
+                            .min(12, "Email tối thiểu 12 ký tự và tối đa 50 ký tự")
+                            .max(50, "Email tối thiểu 12 ký tự và tối đa 50 ký tự"),
+                            telPassenger: yup.string()
+                                .matches(/^(\+84|0)[1-9][0-9]{8}$/, "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số"),
+                            idCardPassenger: yup.string()
+                                .required("Không được để trống trường này")
+                                .min(6, "CCCD/Passport tối thiểu 6 ký tự và tối đa 12 ký tự")
+                                .max(12, "CCCD/Passport tối thiểu 6 ký tự và tối đa 12 ký tự")
+                                .matches(/^([A-Z]|[0-9])+$/, "Nhập vào chữ viết hoa và ký tự"),
+                        })
+                        }
+                            onSubmit={(values,{resetForm})=>{
+
+                                const passeger={
+                                    ...values
+                                }
+                                if(size<numberPassenger.length) {
+                                    // setPassenger({
+                                    //     ...values,values
+                                    // })
+                                    passengers.push(passeger)
+                                    console.log(passeger);
+                                    console.log(passengers)
+                                    setSize(size + 1)
+                                    resetForm()
+                                    // document.getElementById("name").value=""
+
+                                }else{
+                                    console.log(passengers)
+                                }
+                                // const object={
+                                //     ...values,
+                                // }
+                            }
+                            }
+                        >
+
+                    <Form className="wrapper">
                         <div className="row wrap">
                             <div className="route">
                                 <i className="fa-solid fa-plane"></i>
@@ -211,47 +268,48 @@ export default function InfoPassenger() {
                                 </p>
 
                                 <div className="row info-customer">
-                                    {numberPassenger.map((passenger,index)=>{
-                                        return(
-                                            <div className="row">
+                                    {/*{numberPassenger.map((passenger,index)=>{*/}
+                                    {/* return(*/}
+                                    { numberPassenger[size] &&
+                                            <div className="row" id={"form"}>
                                                 <div className="check-children">
-                                                    <p>Hành khách số {index+1} (Người lớn) :</p>
-                                                    {/*<input type="checkbox" defaultChecked=""/> Có kèm em bé (nhỏ hơn*/}
-                                                    {/*2 tuổi)*/}
+                                                    <p>Hành khách số (Người lớn) :</p>
+
                                                 </div>
                                                 <div className="col-6">
                                                     <div className="field">
-                                                        <label htmlFor="fullname">Họ và tên (*):</label>
-                                                        <input
+                                                        <label htmlFor={`namePassenger`}>Họ và tên (*):</label>
+                                                        <Field
                                                             type="text"
-                                                            name="fullname"
-                                                            id="fullname"
+                                                            name="namePassenger"
+                                                            id="name"
                                                             defaultValue=""
                                                         />
+                                                        <ErrorMessage name="namePassenger" component="div" className="text-red"></ErrorMessage>
                                                     </div>
                                                     <div className="field">
-                                                        <label htmlFor="gender">Giới tính (*) :</label>
-                                                        <select name="gender" id="gender">
-                                                            <option value="">Chọn giới tính</option>
+                                                        <label htmlFor={`genderPassenger`}>Giới tính (*) :</label>
+                                                        <Field as="select" name="genderPassenger" id={`genderPassenger`}>
+                                                            <option value={""}>Chọn giới tính</option>
                                                             <option value={false}>Nữ</option>
                                                             <option value={true}>Nam</option>
-
-                                                        </select>
+                                                        </Field>
+                                                        <ErrorMessage name="genderPassenger" component="div" className="text-red"></ErrorMessage>
                                                     </div>
                                                     <div className="field">
-                                                        <label htmlFor="phone-number">Số điện thoại :</label>
-                                                        <input
-                                                            type="text"
-                                                            name="phone-number"
-                                                            id="phone-number"
+                                                        <label htmlFor={`telPassenger`}>Số điện thoại :</label>
+                                                        <Field type="text"
+                                                            name="telPassenger"
+                                                            id={`telPassenger`}
                                                             defaultValue=""
                                                         />
+                                                        <ErrorMessage name="telPassenger" component="div" className="text-red"></ErrorMessage>
                                                     </div>
                                                 </div>
                                                 <div className="col-6">
                                                     <div className="field">
                                                         <label htmlFor="luggage">Hành lý kí gửi :</label>
-                                                        <select name="luggage" id="luggage">
+                                                        <Field as="select" name="luggage" id="luggage">
                                                             <option value={0}>Chọn trọng lượng mua thêm</option>
                                                             {luggages.map((luggage)=>{
                                                                 const price= numeral(luggage.priceLuggage).format('0,0 đ');
@@ -261,88 +319,84 @@ export default function InfoPassenger() {
                                                                 )
                                                             })}
 
-                                                        </select>
+                                                        </Field>
                                                     </div>
                                                     <div className="field">
-                                                        <label htmlFor="email">Email :</label>
-                                                        <input
+                                                        <label htmlFor={`emailPassenger`}>Email :</label>
+                                                        <Field
                                                             type="text"
-                                                            name="email"
-                                                            id="email"
+                                                            name="emailPassenger"
+                                                            id={`emailPassenger`}
                                                             defaultValue=""
                                                         />
+                                                        <ErrorMessage name="emailPassenger" component="div" className="text-red"></ErrorMessage>
+
                                                     </div>
                                                     <div className="field" id="id-card-1">
-                                                        <label htmlFor="id-card">CMND- Passport (*) :</label>
-                                                        <input
+                                                        <label htmlFor={`idCardPassenger`}>CCCD- Passport (*) :</label>
+                                                        <Field
                                                             type="text"
-                                                            name="id-card"
-                                                            id="id-card"
+                                                            name="idCardPassenger"
+                                                            id={`idCardPassenger`}
                                                             defaultValue=""
                                                         />
+                                                        <ErrorMessage name="idCardPassenger" component="div" className="text-red"></ErrorMessage>
                                                     </div>
                                                 </div>
+                                                <button >Tiếp</button>
                                             </div>
-                                        )
-                                    })
                                     }
-                                    {numberChildren.map((children,index)=>{
-                                    return(
-                                        <div className="row">
-                                            <div className="check-children">
-                                                <p>Hành khách số {arr[7]*1+index+1} (Trẻ em) :</p>
+                                    {/*})*/}
+                                    {/*}*/}
+                                    {/*{numberChildren.map((children,index)=>{*/}
+                                    {/*return(*/}
+                                    {/*    <div className="row">*/}
+                                    {/*        <div className="check-children">*/}
+                                    {/*            <p>Hành khách số {arr[7]*1+index+1} (Trẻ em) :</p>*/}
 
-                                            </div>
-                                            <div className="col-6">
-                                                <div className="field">
-                                                    <label htmlFor="fullname">Họ và tên (*):</label>
-                                                    <input
-                                                        type="text"
-                                                        name="fullname"
-                                                        id="fullname"
-                                                        defaultValue=""
-                                                    />
-                                                    {/*<div className="text-red"> Tên không đúng định dạng</div>*/}
-                                                </div>
-                                                <div className="field">
-                                                    <label htmlFor="gender">Giới tính (*):</label>
-                                                    <select name="gender" id="gender">
-                                                        <option value="">Chọn giới tính</option>
-                                                        <option value={false}>Nữ</option>
-                                                        <option value={true} >Nam</option>
-                                                    </select>
-                                                    {/*<div className="text-red">Vui lòng chọn giới tính</div>*/}
-                                                </div>
+                                    {/*        </div>*/}
+                                    {/*        <div className="col-6">*/}
+                                    {/*            <div className="field">*/}
+                                    {/*                <label htmlFor={`namePassenger${arr[7]}`}>Họ và tên (*):</label>*/}
+                                    {/*                <Field*/}
+                                    {/*                    type="text"*/}
+                                    {/*                    name="namePassenger"*/}
+                                    {/*                    id={`namePassenger${arr[7]}`}*/}
+                                    {/*                    defaultValue=""*/}
+                                    {/*                />*/}
+                                    {/*                <ErrorMessage name="namePassenger" component="div" className="text-red"></ErrorMessage>*/}
+                                    {/*            </div>*/}
+                                    {/*            <div className="field">*/}
+                                    {/*                <label htmlFor={`genderPassenger${arr[7]}`}>Giới tính (*):</label>*/}
+                                    {/*                <Field as ="select" name="genderPassenger" id={`genderPassenger${arr[7]}`}>*/}
+                                    {/*                    <option value={""}>Chọn giới tính</option>*/}
+                                    {/*                    <option value={false}>Nữ</option>*/}
+                                    {/*                    <option value={true} >Nam</option>*/}
+                                    {/*                </Field>*/}
+                                    {/*                <ErrorMessage name="genderPassenger" component="div" className="text-red"></ErrorMessage>*/}
+                                    {/*            </div>*/}
 
-                                            </div>
-                                            <div className="col-6">
-                                                <div className="field">
-                                                    <label htmlFor="luggage">Hành lý kí gửi :</label>
-                                                    <select name="luggage" id="luggage">
-                                                        <option value={0}>Chọn trọng lượng mua thêm</option>
-                                                        {luggages.map((luggage)=>{
-                                                            const price= numeral(luggage.priceLuggage).format('0,0 đ');
-                                                            return(
+                                    {/*        </div>*/}
+                                    {/*        <div className="col-6">*/}
+                                    {/*            <div className="field">*/}
+                                    {/*                <label htmlFor="luggage">Hành lý kí gửi :</label>*/}
+                                    {/*                <select name="luggage" id="luggage">*/}
+                                    {/*                    <option value={0}>Chọn trọng lượng mua thêm</option>*/}
+                                    {/*                    {luggages.map((luggage)=>{*/}
+                                    {/*                        const price= numeral(luggage.priceLuggage).format('0,0 đ');*/}
+                                    {/*                        return(*/}
 
-                                                                <option key={luggage.id} value={luggage.id}>{luggage.nameLuggage} - {price} VND</option>
-                                                            )
-                                                        })}
-                                                    </select>
-                                                </div>
-                                                <div className="field">
-                                                    <label htmlFor="id-card">Ngày sinh (*):</label>
-                                                    <input
-                                                        type="date"
-                                                        name="id-card"
-                                                        id="id-card"
-                                                        placeholder="DD/MM/YYYY"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                    })
-                                    }
+                                    {/*                            <option key={luggage.id} value={luggage.id}>{luggage.nameLuggage} - {price} VND</option>*/}
+                                    {/*                        )*/}
+                                    {/*                    })}*/}
+                                    {/*                </select>*/}
+                                    {/*            </div>*/}
+
+                                    {/*        </div>*/}
+                                    {/*    </div>*/}
+                                    {/*)*/}
+                                    {/*})*/}
+                                    {/*}*/}
                                 </div>
                             </div>
                         </div>
@@ -428,13 +482,12 @@ export default function InfoPassenger() {
                                             <div className="row">
                                                 <div className="check-children">
                                                     <p>Hành khách số {index+1} (Người lớn) :</p>
-                                                    {/*<input type="checkbox" defaultChecked=""/> Có kèm em bé (nhỏ hơn*/}
-                                                    {/*2 tuổi)*/}
+
                                                 </div>
                                                 <div className="col-6">
                                                     <div className="field">
                                                         <label htmlFor="fullname">Họ và tên (*):</label>
-                                                        <input
+                                                        <Field
                                                             type="text"
                                                             name="fullname"
                                                             id="fullname"
@@ -452,7 +505,7 @@ export default function InfoPassenger() {
                                                     </div>
                                                     <div className="field">
                                                         <label htmlFor="phone-number">Số điện thoại :</label>
-                                                        <input
+                                                        <Field
                                                             type="text"
                                                             name="phone-number"
                                                             id="phone-number"
@@ -477,7 +530,7 @@ export default function InfoPassenger() {
                                                     </div>
                                                     <div className="field">
                                                         <label htmlFor="email">Email :</label>
-                                                        <input
+                                                        <Field
                                                             type="text"
                                                             name="email"
                                                             id="email"
@@ -486,7 +539,7 @@ export default function InfoPassenger() {
                                                     </div>
                                                     <div className="field" id="id-card-1">
                                                         <label htmlFor="id-card">CMND- Passport (*) :</label>
-                                                        <input
+                                                        <Field
                                                             type="text"
                                                             name="id-card"
                                                             id="id-card"
@@ -508,7 +561,7 @@ export default function InfoPassenger() {
                                                 <div className="col-6">
                                                     <div className="field">
                                                         <label htmlFor="fullname">Họ và tên (*):</label>
-                                                        <input
+                                                        <Field
                                                             type="text"
                                                             name="fullname"
                                                             id="fullname"
@@ -543,7 +596,7 @@ export default function InfoPassenger() {
                                                     </div>
                                                     <div className="field">
                                                         <label htmlFor="id-card">Ngày sinh (*):</label>
-                                                        <input
+                                                        <Field
                                                             type="date"
                                                             name="id-card"
                                                             id="id-card"
@@ -559,14 +612,58 @@ export default function InfoPassenger() {
                             </div>
                         </div>
                         <div className=" btn">
-                            <button>Chọn lại chuyến bay</button>
-                            <button>Đặt vé</button>
+                            {/*<button>Chọn lại chuyến bay</button>*/}
+                            {/*<button type="submit">Đặt vé</button>*/}
                         </div>
-                    </div>
-                        </>
+                    </Form>
+                        </Formik>
                         :
                         <>
-                            <div className="wrapper">
+                            <Formik
+                                initialValues={{
+                                    priceTicket:"",
+                                    flagTicket:false,
+                                    namePassenger:"",
+                                    genderPassenger:"",
+                                    emailPassenger:"",
+                                    telPassenger :"",
+                                    idCardPassenger:"",
+                                    dateBooking:"",
+                                    typeTicket:{},
+                                    luggage:{},
+                                    typePassenger:{},
+                                    seat:{},
+                                    customer:{},
+                                }}
+
+                                validationSchema= {yup.object({
+                                    namePassenger:yup.string().required("Không được để trống")
+                                        .min(3,"tối thiểu 3 kí tự")
+                                        .max(50,"tối đa 50 kí tự")
+                                        .matches(/^[A-Z]{1}[a-z]*(\s[A-Z]{1}[a-z]*)*$/,"Tên phải đúng định dạng"),
+                                    genderPassenger:yup.boolean().required("Không được để trống"),
+                                    emailPassenger:yup.string()
+                                        .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
+                                        .min(12, "Email tối thiểu 12 ký tự và tối đa 50 ký tự")
+                                        .max(50, "Email tối thiểu 12 ký tự và tối đa 50 ký tự"),
+                                    telPassenger: yup.string()
+                                        .matches(/^(\+84|0)[1-9][0-9]{8}$/, "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số"),
+                                    idCardPassenger: yup.string()
+                                        .required("Không được để trống trường này")
+                                        .min(6, "CCCD/Passport tối thiểu 6 ký tự và tối đa 12 ký tự")
+                                        .max(12, "CCCD/Passport tối thiểu 6 ký tự và tối đa 12 ký tự")
+                                        .matches(/^([A-Z]|[0-9])+$/, "Nhập vào chữ viết hoa và ký tự"),
+                                })
+                                }
+                                onSubmit={(values)=>{
+                                    console.log(values);
+                                    const object={
+                                        ...values,
+                                    }
+                                }
+                                }
+                            >
+                            <Form className="wrapper">
                             <div className="row wrap">
                                 <div className="row">
                                     <div className="col-4 info-fight">
@@ -644,42 +741,42 @@ export default function InfoPassenger() {
                                                 <div className="row">
                                                     <div className="check-children">
                                                         <p>Hành khách số {index+1} (Người lớn) :</p>
-                                                        {/*<input type="checkbox" defaultChecked=""/> Có kèm em bé (nhỏ hơn*/}
-                                                        {/*2 tuổi)*/}
+
                                                     </div>
                                                     <div className="col-6">
                                                         <div className="field">
-                                                            <label htmlFor="fullname">Họ và tên (*):</label>
-                                                            <input
+                                                            <label htmlFor={`namePassenger+`}>Họ và tên (*):</label>
+                                                            <Field
                                                                 type="text"
-                                                                name="fullname"
-                                                                id="fullname"
+                                                                name="namePassenger"
+                                                                id={`namePassenger+`}
                                                                 defaultValue=""
                                                             />
+                                                            <ErrorMessage name="namePassenger" component="div" className="text-red"></ErrorMessage>
                                                         </div>
                                                         <div className="field">
-                                                            <label htmlFor="gender">Giới tính (*) :</label>
-                                                            <select name="gender" id="gender">
-                                                                <option value="">Chọn giới tính</option>
+                                                            <label htmlFor={`genderPassenger`}>Giới tính (*) :</label>
+                                                            <Field as="select" name="genderPassenger" id={`genderPassenger`}>
+                                                                <option value={""}>Chọn giới tính</option>
                                                                 <option value={false}>Nữ</option>
                                                                 <option value={true}>Nam</option>
-
-                                                            </select>
+                                                            </Field>
+                                                            <ErrorMessage name="genderPassenger" component="div" className="text-red"></ErrorMessage>
                                                         </div>
                                                         <div className="field">
-                                                            <label htmlFor="phone-number">Số điện thoại :</label>
-                                                            <input
-                                                                type="text"
-                                                                name="phone-number"
-                                                                id="phone-number"
-                                                                defaultValue=""
+                                                            <label htmlFor={`telPassenger`}>Số điện thoại :</label>
+                                                            <Field type="text"
+                                                                   name="telPassenger"
+                                                                   id={`telPassenger`}
+                                                                   defaultValue=""
                                                             />
+                                                            <ErrorMessage name="telPassenger" component="div" className="text-red"></ErrorMessage>
                                                         </div>
                                                     </div>
                                                     <div className="col-6">
                                                         <div className="field">
                                                             <label htmlFor="luggage">Hành lý kí gửi :</label>
-                                                            <select name="luggage" id="luggage">
+                                                            <Field as="select" name="luggage" id="luggage">
                                                                 <option value={0}>Chọn trọng lượng mua thêm</option>
                                                                 {luggages.map((luggage)=>{
                                                                     const price= numeral(luggage.priceLuggage).format('0,0 đ');
@@ -689,25 +786,28 @@ export default function InfoPassenger() {
                                                                     )
                                                                 })}
 
-                                                            </select>
+                                                            </Field>
                                                         </div>
                                                         <div className="field">
-                                                            <label htmlFor="email">Email :</label>
-                                                            <input
+                                                            <label htmlFor={`emailPassenger`}>Email :</label>
+                                                            <Field
                                                                 type="text"
-                                                                name="email"
-                                                                id="email"
+                                                                name="emailPassenger"
+                                                                id={`emailPassenger`}
                                                                 defaultValue=""
                                                             />
+                                                            <ErrorMessage name="emailPassenger" component="div" className="text-red"></ErrorMessage>
+
                                                         </div>
                                                         <div className="field" id="id-card-1">
-                                                            <label htmlFor="id-card">CMND- Passport (*) :</label>
-                                                            <input
+                                                            <label htmlFor={`idCardPassenger`}>CCCD- Passport (*) :</label>
+                                                            <Field
                                                                 type="text"
-                                                                name="id-card"
-                                                                id="id-card"
+                                                                name="idCardPassenger"
+                                                                id={`idCardPassenger`}
                                                                 defaultValue=""
                                                             />
+                                                            <ErrorMessage name="idCardPassenger" component="div" className="text-red"></ErrorMessage>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -718,35 +818,35 @@ export default function InfoPassenger() {
                                             return(
                                                 <div className="row">
                                                     <div className="check-children">
-                                                        <p>Hành khách số {arr[7]*1+index+1} (Trẻ em) :</p>
+                                                        <p>Hành khách số {arr[5]*1+index+1} (Trẻ em) :</p>
 
                                                     </div>
                                                     <div className="col-6">
                                                         <div className="field">
-                                                            <label htmlFor="fullname">Họ và tên (*):</label>
-                                                            <input
+                                                            <label htmlFor={`namePassenger${arr[5]}`}>Họ và tên (*):</label>
+                                                            <Field
                                                                 type="text"
-                                                                name="fullname"
-                                                                id="fullname"
+                                                                name="namePassenger"
+                                                                id={`namePassenger${arr[5]}`}
                                                                 defaultValue=""
                                                             />
-                                                            {/*<div className="text-red"> Tên không đúng định dạng</div>*/}
+                                                            <ErrorMessage name="namePassenger" component="div" className="text-red"></ErrorMessage>
                                                         </div>
                                                         <div className="field">
-                                                            <label htmlFor="gender">Giới tính (*):</label>
-                                                            <select name="gender" id="gender">
-                                                                <option value="">Chọn giới tính</option>
+                                                            <label htmlFor={`genderPassenger${arr[5]}`}>Giới tính (*):</label>
+                                                            <Field as ="select" name="genderPassenger" id={`genderPassenger${arr[5]}`}>
+                                                                <option value={""}>Chọn giới tính</option>
                                                                 <option value={false}>Nữ</option>
                                                                 <option value={true} >Nam</option>
-                                                            </select>
-                                                            {/*<div className="text-red">Vui lòng chọn giới tính</div>*/}
+                                                            </Field>
+                                                            <ErrorMessage name="genderPassenger" component="div" className="text-red"></ErrorMessage>
                                                         </div>
 
                                                     </div>
                                                     <div className="col-6">
                                                         <div className="field">
                                                             <label htmlFor="luggage">Hành lý kí gửi :</label>
-                                                            <select name="luggage" id="luggage">
+                                                            <Field as ="select" name="luggage" id="luggage">
                                                                 <option value={0}>Chọn trọng lượng mua thêm</option>
                                                                 {luggages.map((luggage)=>{
                                                                     const price= numeral(luggage.priceLuggage).format('0,0 đ');
@@ -755,17 +855,9 @@ export default function InfoPassenger() {
                                                                         <option key={luggage.id} value={luggage.id}>{luggage.nameLuggage} - {price} VND</option>
                                                                     )
                                                                 })}
-                                                            </select>
+                                                            </Field>
                                                         </div>
-                                                        <div className="field">
-                                                            <label htmlFor="id-card">Ngày sinh (*):</label>
-                                                            <input
-                                                                type="date"
-                                                                name="id-card"
-                                                                id="id-card"
-                                                                placeholder="DD/MM/YYYY"
-                                                            />
-                                                        </div>
+
                                                     </div>
                                                 </div>
                                             )
@@ -774,11 +866,12 @@ export default function InfoPassenger() {
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                            <div className=" btn">
-                                <button>Chọn lại chuyến bay</button>
-                                <button>Đặt vé</button>
-                            </div>
+                                <div className=" btn">
+                                    <button>Chọn lại chuyến bay</button>
+                                    <button type="submit">Đặt vé</button>
+                                </div>
+                            </Form>
+                            </Formik>
                         </>
                     }
                 </div>
