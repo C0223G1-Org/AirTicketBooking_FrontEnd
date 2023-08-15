@@ -185,5 +185,6 @@
     background-color: #ffffff;
 }
 .search:hover{
-    background-color: #0685aa;
+    color: #7e7e7e;
+    background-color: #ffcc29;
 }
