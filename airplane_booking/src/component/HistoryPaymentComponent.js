@@ -237,8 +237,6 @@ function HistoryPaymentComponent() {
                             timer: 1500
                           })
                         }
-
-
                       }}
                       style={{ border: 'none', color: 'white', marginLeft: '7px' }}>Tìm</button>
                   </div>
