@@ -1,22 +1,22 @@
 body {
     box-sizing: border-box;
     padding: 0;
+    margin: 0;
     font-family: "Diavlo", "sans-seriff";
-    margin: 40px 0px 30px 30px;
     text-transform: capitalize;
 }
 
 #detail-ticket .wrapper {
     align-items: center;
     background: rgba(237, 234, 234, 0.422);
-    padding: 30px 100px;
+    padding: 10px 100px;
 
 }
 
 #detail-ticket .title {
     background-color: #016984;
     color: #fff;
-    padding: 25px 0;
+    padding: 20px 0;
     text-transform: uppercase;
 }
 
@@ -38,6 +38,9 @@ body {
 
 #detail-ticket .wrap .location span {
     font-weight: bold;
+}
+#detail-ticket .passenger{
+    color: #daa310;
 }
 
 .wrap .money {
@@ -91,34 +94,34 @@ body {
     margin-right: 40px;
 }
 
-#detail-ticket .info-customer {
-    border: 1px solid black;
-    padding: 20px 0px;
-    width: 80%;
-}
+/*#detail-ticket .info-customer {*/
+/*    border: 1px solid black;*/
+/*    padding: 20px 0px;*/
+/*    width: 80%;*/
+/*}*/
 
-#detail-ticket .info-customer .check-children {
-    display: flex;
-}
+/*#detail-ticket .info-customer .check-children {*/
+/*    display: flex;*/
+/*}*/
 
-#detail-ticket.info-customer .field {
-    padding: 5px 0;
-}
+/*#detail-ticket.info-customer .field {*/
+/*    padding: 5px 0;*/
+/*}*/
 
-#detail-ticket.info-customer .field label {
-    width: 30%;
-}
+/*#detail-ticket.info-customer .field label {*/
+/*    width: 30%;*/
+/*}*/
 
-#detail-ticket.info-customer .field input,
-#detail-ticket.info-customer .field select {
-    height: 24px;
-    width: 40%;
+/*#detail-ticket.info-customer .field input,*/
+/*#detail-ticket.info-customer .field select {*/
+/*    height: 24px;*/
+/*    width: 40%;*/
 
-}
+/*}*/
 
-#detail-ticket.check-children input {
-    margin: 0 5px 12px 5px;
-}
+/*#detail-ticket.check-children input {*/
+/*    margin: 0 5px 12px 5px;*/
+/*}*/
 
 @media (max-width: 768px) {
     body{
