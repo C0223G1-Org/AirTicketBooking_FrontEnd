@@ -1,32 +1,36 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Footer from './components/home/Footer';
-import Header from './components/home/Header';
+import Footer from "./components/home/Footer";
+import Header from "./components/home/Header";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
-import HomePage from "./components/HomePage";
 import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
 import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
-import GetTop10Cheapest from './components/home/Top10';
-import Home from './components/home/Home';
+import GetTop10Cheapest from "./components/home/Top10";
+import Home from "./components/home/Home";
+import AdminPage from "./components/chat_messenger/AdminChat";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <TicketProvider>
-        <Header />
-      <BrowserRouter>
+    <BrowserRouter>
+      <Header />
+      <TicketProvider>
         <Routes>
-            <Route path='/home' element={<Home/>}></Route>
-            <Route path='/top10' element={<GetTop10Cheapest/>}></Route>
-          <Route path="/tickets" element={<HomePage />}></Route>
-          <Route path="/tickets/search-ticket" element={<SearchTicketPage />}></Route>
-          <Route path="/tickets/search-ticket-results" element={<SearchResultPage />}></Route>
+          <Route path="/home" element={<Home />} />
+          <Route path="/top10" element={<GetTop10Cheapest />} />
+          <Route path="/tickets/search-ticket" element={<SearchTicketPage />} />
+          <Route
+            path="/tickets/search-ticket-results"
+            element={<SearchResultPage />}
+          />
+          <Route path="/admin/messages" element={<AdminPage/>}></Route>
         </Routes>
-      </BrowserRouter>
-        <Footer />
-    </TicketProvider>
+      </TicketProvider>
+      <Footer />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
