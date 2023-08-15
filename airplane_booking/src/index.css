@@ -52,7 +52,7 @@ h1 {
 
 .table-ticket {
   margin: 0 5%;
-  position: relative;
+  /* position: relative; */
 }
 
 .table-ticket table {
@@ -113,19 +113,30 @@ th {
   display: inline-block;
   margin: 0 5px;
 }
+.modal-search{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left:0;
+  display: flex;
 
+}
 .show-search-ticket {
   position: absolute;
-  top:0;
-  left: 70px;
-  width: 650px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 70px;
   /* display: none; */
 
   /*background-color: #d3d3b7;*/
 }
 .show-search-ticket ul{
+  margin: auto;
   background-color: #b3d3d7;
   border-radius: 10px;
+  width: 650px;
 }
 .show-search-ticket li{
   list-style: none;
@@ -198,6 +209,7 @@ th {
   margin-right: 5px;
 }
 .show-search-ticket-body-sale-selection {
+  display: flex;
   justify-content: start;
 }
 .show-search-ticket-body-sale-selection-item{
@@ -205,8 +217,9 @@ th {
   display: inline-block;
 }
 .show-search-ticket-sale-body{
-  margin: 10px 30px; ;
+  margin: 10px 30px; 
 }
+
 .show-search-ticket-body-sale-selection-item button{
   margin-top: 15px;
   border-radius: 10px;
@@ -264,6 +277,7 @@ th {
   min-width: 30%;
   max-width: 120px;
   border-color: #e3e3d5;
+  margin-bottom: 20px;
 }
 .show-search-ticket-body-input-passenger button{
   border-radius: 10px;
@@ -313,7 +327,7 @@ body {
 .show-route-ticket-body-input-item input{
   border-radius: 5px;
   border: none;
-  min-width: 100px;
+  width: 150px;
 }
 .show-route-ticket-body-input-item button{
   border-radius: 5px;
@@ -324,5 +338,34 @@ body {
   border-color: var(--airLine--);
 }
 
+.section-unBook-ticket{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 40px;
+}
+.section-unBook-ticket-item{
+  list-style: none;
+  display: inline-block;
+  margin: 30px 10px;
+}
+
+.section-unBook-ticket-item input{
+  max-width: 150px;
+  border-radius: 5px ;
+  cursor: pointer;
+  border-color: var(--airLine--);
+}
+.section-unBook-ticket-item button{
+  border-radius: 5px ;
+  cursor: pointer;
+  border-color: var(--buttonAirLine--);
+  background-color: white;
+  min-width: 100px;
+  color: var(--buttonAirLine--);
+}
+.section-unBook-ticket-item button:hover{
+  background-color:var(--buttonAirLine--);
+  color: white;
+}
 
 

@@ -19,32 +19,26 @@ function TicketUnBook() {
             <h1>
                 Quản Lý Bán Vé
             </h1>
-            <div className="section-ticket">
+            <div className="section-unBook-ticket">
                 <ul>
-                    <li className="section-ticket-item">
+                    <li className="section-unBook-ticket-item">
                         <Link to={`/ticket/booked`}>
                             <button className="status-ticket" type="button">Vé Đã Đặt</button>
                         </Link>
                     </li>
                 </ul>
                 <ul>
-                    
-                        <li className="section-ticket-item">
-                            <input type="text" placeholder="Mã Ghế" />
-                        </li>
-                        <li className="section-ticket-item">
-                            <input type="text" placeholder="Mã Ghế" />
-                        </li>
-                        <li className="section-ticket-item">
-                            <input placeholder="Ngày bay" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" />
-                        </li>
-                        <li className="section-ticket-item">
-                            <input type="text" placeholder="tìm kiếm" />
-                        </li>
-                        <li className="section-ticket-item">
-                            <button type="button">Search</button>
-                        </li>
-               
+                    <li className="section-unBook-ticket-item">
+                        <input type="text" placeholder="Mã Chuyến Bay" />
+                    </li>
+
+                    <li className="section-unBook-ticket-item">
+                        <input type="text" placeholder="Mã Ghế" />
+                    </li>
+                    <li className="section-unBook-ticket-item">
+                        <button type="button">Search</button>
+                    </li>
+
                 </ul>
             </div>
             <div className="table-ticket">
