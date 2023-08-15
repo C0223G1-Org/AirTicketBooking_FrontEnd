@@ -1,5 +1,6 @@
 import React from "react";
 import "../../css/home/Header.css";
+import {Link} from "react-router-dom";
 
 export default function HeaderEmployee() {
     return (
@@ -32,10 +33,10 @@ export default function HeaderEmployee() {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" href="#">
+                            <Link className="nav-link active" to={`/listPost`}>
                                 <i className="fa-regular fa-newspaper"/>
                                 Tin tức
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link active" href="#">
@@ -50,8 +51,9 @@ export default function HeaderEmployee() {
                                 Quản lý
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#">Quản lý khách hàng</a></li>
+                                <li><Link to={`/customers`} className="dropdown-item" >Quản lý khách hàng</Link></li>
                                 <li><a className="dropdown-item" href="#">Quản lý kinh doanh</a></li>
+                                <li><Link to={`/ticket/booked`} className="dropdown-item">Quản lý vé</Link></li>
                                 <li>
                                     <hr className="dropdown-divider"/>
                                 </li>

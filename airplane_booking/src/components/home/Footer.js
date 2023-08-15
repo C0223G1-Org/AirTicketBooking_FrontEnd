@@ -76,7 +76,7 @@ export default function Footer() {
                             <i className="fa-solid fa-phone-flip" />
                             Trung tâm chăm sóc khách hàng(24/7): 1900 0000
                         </div>
-                        <div>
+                        <div style={{textTransform:"initial"}}>
                             <i className="fa-solid fa-envelope" />
                             Email: c0223g1@codegym.vn
                         </div>

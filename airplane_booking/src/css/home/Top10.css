@@ -6,7 +6,7 @@ body {
     height: 150px;
 }
 .m-3 .col-12 .card {
-    height: 330px;
+    height: 380px;
 }
 .card:hover {
     transform: scale(1.05);
@@ -32,5 +32,11 @@ body {
     border: 1px solid #daa310;
 }
 .card-body h6 {
-    height: 30px;
+    height: 20px;
+}
+.card-body .price-ticket {
+    font-size: 13px;
+}
+.card-body {
+    /*background-color: #246c81;*/
 }
