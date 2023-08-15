@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCustomerById } from "../services/CustomerServices";
 import { Link, useParams } from "react-router-dom";
+import moment from 'moment';
 
 
 
@@ -15,6 +16,7 @@ export default function CustomerDetails() {
     const data = await getCustomerById(id)
     setCustomer(data)
   }
+  const formattedDate = moment(customer.dateCustomer).format('DD/MM/YYYY');
 
   useEffect(() => {
     getCustomer(param.id)
@@ -35,7 +37,7 @@ export default function CustomerDetails() {
             <div className="col-12 col-sm-12 col-md-8 col-lg-8">
               <div className="booking-form">
                 <div>
-                  <p> Thông Tin</p>
+                  <p style={{fontWeight:"500",textAlign:"center"}}> THÔNG TIN CÁ NHÂN</p>
                 </div>
                 <form className="booking-form-padding">
                   <div className="row">
@@ -72,15 +74,17 @@ export default function CustomerDetails() {
                     <div className="col-md-4">
                       <div className="form-group">
                         <span className="form-label">Ngày sinh</span>
-                        <p className="form-control">{customer.dateCustomer}</p>
+                        <p className="form-control">{formattedDate}</p>
 
                       </div>
                     </div>
                   </div>
                   <div className="row">
+                  <div className="col-md-12">
                     <div className="form-group">
                       <span className="form-label">Địa chỉ</span>
                       <p className="form-control">{customer.addressCustomer}</p>
+                    </div>
                     </div>
                   </div>
                   <div className="row">

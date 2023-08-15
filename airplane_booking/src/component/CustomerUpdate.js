@@ -17,11 +17,14 @@ import { storage } from '../firebase';
 
 
 export default function CustomerUpdate() {
+    const today = new Date();
+    const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+    const minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
     const [customer, setCustomer] = useState({})
     const param = useParams()
     const [imageUpload, setImageUpload] = useState(null);
-    const [imageUrl, setImageUrl] = useState("");
-    const imagesListRef = ref(storage, "images/");
+    // const imagesListRef = ref(storage, "images/");
+    const [status, setStatus] = useState(true)
     const navigate = useNavigate()
     const getCustomer = async (id) => {
         const customer = await getCustomerById(id)
@@ -29,22 +32,45 @@ export default function CustomerUpdate() {
     }
 
     const updateCus = (async (update) => {
-
+        console.log(status);
+        // setStatus(false)
+        // console.log(status);
         if (imageUpload == null) {
-            await updateCustomer({ ...update, imgCustomer: "" })
+            await updateCustomer({ ...update, imgCustomer: customer.imgCustomer }).then(
+                navigate(`/customer_details/${customer.idCustomer}`),
+                // getCustomer()
+            ).then(
+                () => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Chỉnh sửa thành công !',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                });
         }
         else {
             const fileName = `images/${imageUpload.name + v4()}`
             const imageRef = ref(storage, fileName);
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then(async (url) => {
-                    await updateCustomer({ ...update, imgCustomer: url })
+                    await updateCustomer({ ...update, imgCustomer: url }).then(
+                        navigate(`/customer_details/${customer.idCustomer}`),
+                        // getCustomer()
+                    );
                     console.log(url);
                 })
-            })
+            }).then(
+                () => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Chỉnh sửa thành công !',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                })
         }
     })
-
 
     useEffect(() => {
         getCustomer(param.id)
@@ -55,6 +81,15 @@ export default function CustomerUpdate() {
 
     const handleInputChange = (event) => {
         const file = event.target.files[0];
+        if (file.size > 3000000) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Dung lượng ảnh tối đa 3MB',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
         setImageUpload(file)
         const reader = new FileReader();
         reader.addEventListener("load", function () {
@@ -88,20 +123,15 @@ export default function CustomerUpdate() {
                                 addressCustomer: yup.string().min(10, "Địa chỉ tối thiểu 10 kí tự.").max(100, "Địa chỉ tối đa chỉ 100 kí tự.").required("Vui lòng nhập địa chỉ."),
                                 nationalityCustomer: yup.string().required("Vui lòng chọn quốc tịch của bạn."),
                                 idCardCustomer: yup.string().min(6, "CCCD/Pasport tối thiểu 6 kí tự và tối đa 12 kí tự.").max(12, "CCCD/Pasport tối thiểu 6 kí tự và tối đa 12 kí tự.").matches(/^([A-Z][0-9]{6,12})|([0-9]{12})$/, "CCCD/Password tối đa 12 kí tự và không chứa kí tự đặc biệt.").required("Vui lòng nhập CCCD/Passport."),
-                                dateCustomer: yup.string().required("Vui lòng nhập ngày tháng năm sinh.")
+                                dateCustomer: yup.date().max(maxDate, 'Khách hàng phải trên 18 tuổi.')
+                                .min(minDate, 'Khách hàng phải trên 18 tuổi và dưới 100 tuổi.')
+                                .required("Vui lòng nhập ngày tháng năm sinh.")
                             })}
 
                             onSubmit={(values) => {
                                 console.log(values);
-                                updateCus(values).then(
-                                    () => {
-                                        Swal.fire({
-                                            icon: 'success',
-                                            title: 'Edit success fully!!!!',
-                                            showConfirmButton: false,
-                                            timer: 1500
-                                        })
-                                    }).then(navigate(`/customer_details/${customer.idCustomer}`));
+                                setStatus(false)
+                                updateCus(values)
                             }}
                         >
                             <div className="container">
@@ -115,7 +145,7 @@ export default function CustomerUpdate() {
                                     <div className="col-12 col-sm-12 col-md-8 col-lg-8">
                                         <div className="booking-form">
                                             <div>
-                                                <p>Chỉnh Sửa Thông Tin</p>
+                                                <p style={{ fontWeight: "500", textAlign: "center" }}>CHỈNH SỬA THÔNG TIN</p>
                                             </div>
                                             <Form className="booking-form-padding">
                                                 <Field type='hidden' name='idCustomer' />
@@ -202,6 +232,7 @@ export default function CustomerUpdate() {
                                                     </div>
                                                 </div>
                                                 <div className="row">
+                                                <div className="col-md-12">
                                                     <div className="form-group">
                                                         <span className="form-label">Địa chỉ
                                                             (<sup style={{ fontSize: '8px' }}>
@@ -213,6 +244,7 @@ export default function CustomerUpdate() {
                                                         </span>
                                                         <Field className="form-control" type="text" name='addressCustomer' />
                                                         <ErrorMessage component='div' id='error' name='addressCustomer' />
+                                                    </div>
                                                     </div>
                                                 </div>
                                                 {/* <div className="row">
@@ -233,7 +265,7 @@ export default function CustomerUpdate() {
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <span className="form-label" style={{ marginBottom: '20px' }}>Ảnh</span>
-                                                            <Field className="form-control" style={{ paddingTop: '35px' }} accept="image/png, image/gif, image/jpeg" type="file" id="input-file" ref={inputFileRef} onChange={handleInputChange} name='imgCustomer' />
+                                                            <Field className="custom-file-input" style={{ paddingTop: '35px' }} accept="image/png, image/gif, image/jpeg" type="file" id="input-file" ref={inputFileRef} onChange={handleInputChange} name='imgCustomer' />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
@@ -258,7 +290,7 @@ export default function CustomerUpdate() {
                                                     </div>
                                                 </div>
                                                 <div className="form-btn" style={{ display: 'flex', justifyContent: 'right' }}>
-                                                    <button type='submit' className="submit-btn" style={{ marginRight: '10px' }}>Lưu</button>
+                                                    <button type='submit' disabled={status == false} className="submit-btn" style={{ marginRight: '10px' }}>Lưu</button>
                                                     <button type='button' className="submit-btn" onClick={() => { navigate(`/customer_details/${customer.idCustomer}`) }}>Hủy</button>
                                                 </div>
                                             </Form>
