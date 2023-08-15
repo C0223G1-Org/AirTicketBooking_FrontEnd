@@ -6,16 +6,23 @@ import { findTicketById } from '../../services/TicketService';
 import { useParams } from 'react-router-dom';
 
 
-function App() {
-  
-  
+/**
+ * create by: VuDT
+ * date: 15/08/2023
+ * @function: Print Ticket
+ * @param: idTicket
+ */
+
+
+function PrintTicket() {
+
   useEffect(() => {
     getTicket();
   }, []);
 
   const [ticket, setTicket] = useState(null);
 
-  const param= useParams();
+  const param = useParams();
   const getTicket = async () => {
     const data = await findTicketById(param.idTicket);
     setTicket(data);
@@ -57,11 +64,11 @@ function App() {
               <div className="row">
                 <div className="col-3">
                   <p className="label">Nơi đi:</p>
-                  <p className="value">{ ticket?.seat?.route?.departure?.nameDeparture}</p>
+                  <p className="value">{ticket?.seat?.route?.departure?.nameDeparture}</p>
                 </div>
                 <div className="col-3">
                   <p className="label">Nơi đến:</p>
-                  <p className="value">{ ticket?.seat?.route?.destination?.nameDestination}</p>
+                  <p className="value">{ticket?.seat?.route?.destination?.nameDestination}</p>
                 </div>
                 <div className="col-2">
                   <p className="label">Seat:</p>
@@ -74,7 +81,6 @@ function App() {
               </div>
 
               <div className="row">
-             
                 <div className="col-4">
                   <p className="label">Khởi hành:</p>
                   <p className="value">{ticket?.seat?.route?.timeDeparture}</p>
@@ -101,7 +107,7 @@ function App() {
             <p className="thank-you">Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!</p>
           </div>
           <div className='button-area'>
-            <button  primary={true} onClick={handleExportWithComponent}>In Vé  </button>
+            <button primary={true} onClick={handleExportWithComponent}>In Vé  </button>
             {/* <button onClick={handleExportWithMethod}>In vé </button> */}
           </div>
         </div>
@@ -110,4 +116,4 @@ function App() {
   );
 }
 
-export default App;
+export default PrintTicket;
