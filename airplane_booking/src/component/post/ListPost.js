@@ -171,6 +171,7 @@ export default function ListPost() {
                     >Xem Thêm
                     </button>
                 </div>
+
                 <div className="vertical_news col-12 col-lg-3">
                     <div>
                         <h4 className="text-uppercase" style={{marginBottom: '16px', marginTop: '16px'}}>Tin nổi
