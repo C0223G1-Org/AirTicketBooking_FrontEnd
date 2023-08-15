@@ -35,9 +35,19 @@ export default function ListPost() {
         getNews();
     }, [])
     const getPost = async () => {
-        const data = await getListPost(page, limit);
-        setListPosts([...listPosts, ...data.content]);
-        setTotal(data.totalPages);
+        try {
+            const data = await getListPost(page, limit);
+            setListPosts([...listPosts, ...data.content]);
+            setTotal(data.totalPages);
+        }catch (error){
+            Swal.fire({
+                title: 'Không có dữ liệu.',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 3000
+            })
+        }
+
     };
     useEffect(() => {
         getPost();
@@ -54,7 +64,7 @@ export default function ListPost() {
             setPage(total - 1);
         } catch (error) {
             Swal.fire({
-                title: 'Không có tên bài viết nào như vậy trong dữ liệu.',
+                title: 'Không có tên bài viết nào mà bạn cần.',
                 icon: 'error',
                 showConfirmButton: false,
                 timer: 3000
@@ -152,7 +162,7 @@ export default function ListPost() {
                         ))}
                     </ul>
                     <button
-                        className={`btn btn-light btn-outline-secondary  border-0 w-100 ${page === total - 1 ? 'd-none' : ''}`}
+                        className={`btn btn-light btn-outline-secondary  border-0 w-100 ${page === total - 1 ? 'd-none' : ''} ${listPosts.length === 0 ? 'd-none' : ''}`}
                         onClick={() => {
                             if (page < total - 1) {
                                 setPage((prev) => prev + 1)
