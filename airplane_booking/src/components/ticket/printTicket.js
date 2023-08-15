@@ -101,8 +101,8 @@ function App() {
             <p className="thank-you">Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!</p>
           </div>
           <div className='button-area'>
-            <button primary={true} onClick={handleExportWithComponent}>In Vé  </button>
-            <button onClick={handleExportWithMethod}>In vé </button>
+            <button  primary={true} onClick={handleExportWithComponent}>In Vé  </button>
+            {/* <button onClick={handleExportWithMethod}>In vé </button> */}
           </div>
         </div>
       </PDFExport>

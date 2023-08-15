@@ -18,14 +18,11 @@ const UpdateTicket = () => {
         const data = await findTicketById(param.id);
         setTicket(data);
 
-     
-    }
-    const handleEditTicket = async (values) =>{
-        
 
-        const data = { ...values };
-        console.log("1233"+data)
-        await updateListTicket(data).then(() => {
+    }
+    const handleEditTicket = async (values) => {
+
+        await updateListTicket(values).then(() => {
             Swal.fire({
                 icon: 'success',
                 title: 'Thành công!',
@@ -34,53 +31,54 @@ const UpdateTicket = () => {
         })
     }
 
-    return (
+    console.log(ticket);
 
+    return (
+    <div className="img">
         <div className="background-image">
             <div className="table-title">
-                <div className="row">
-                    <div className="col-sm-6">
-                        <h2>CHỈNH SỬA <b>VÉ</b></h2>
+                <div className="title">
+                    <div className="col">
+                        <h2>CHỈNH SỬA VÉ</h2>
                     </div>
                 </div>
             </div>
 
-            <div>
+            <div className="container">
                 {ticket.idTicket && (
                     <Formik
-                    onSubmit={async (values) => {
-                        console.log("SSSSSSSSSSSSS");
+                        onSubmit={async (values) => {
+                            const object = {
+                                ...ticket,
+                                namePassenger: values.namePassenger,
+                                customer: {
+                                    ...ticket.customer,
+                                    emailCustomer: values.customer
+                                }
+                            }
 
-                       const object={
-                        ...values,
-                       }
-                       console.log(object);
-                        await handleEditTicket(object);
-                        // navigate("/")
-                    }}
-                        initialValues={{
-                            idTicket:ticket?.idTicket,
-                            priceTicket: ticket?.priceTicket,
-                            namePassenger: ticket?.namePassenger,
-                            dateBooking: ticket?.dateBooking,
-                            seat: ticket?.seat.positionSeat,
-                            departure: ticket?.seat.route.departure.idDeparture,
-                            destination: ticket?.seat.route.destination.idDestination,
-                            emailPassenger: ticket?.emailPassenger,
+                            await handleEditTicket(object);
+                            // navigate("/")
                         }}
-                        validationSchema={yup.object({                       
-                            namePassenger: yup.string().required("Tên không được để trống.").min(5,"Tên không được ít hơn 5 kí tự.").max(30,"Tên không được quá 30 kí tự.").matches(/^[a-zA-Z\s']+$/u,"Tên không được chứa kí tự số và kí tự đặc biệt."),
-                            emailPassenger: yup.string().required("Email không được để trống").matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, "Email không đúng định dạng.").max(50,"Không được quá 50 kí tự"),
+                        initialValues={{
+                            namePassenger: ticket?.namePassenger,
+                            customer: ticket?.customer.emailCustomer,
+                        }}
+                        validationSchema={yup.object({
+                            namePassenger: yup.string().required("Tên không được để trống.").min(5, "Tên không được ít hơn 5 kí tự.").max(30, "Tên không được quá 30 kí tự.").matches(/^(?:[A-Z][a-z]*\s)*[A-Z][a-zA-Z]*$/u, "Tên viết hoa sau mỗi dấu cách, không được chứa kí tự số và kí tự đặc biệt."),
+                            customer: yup.string().required("Email không được để trống").matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, "Email không đúng định dạng.").max(50, "Không được quá 50 kí tự"),
 
                         })}
-                     
+
                     >
                         <Form>
+                            <p>
                             <div className="form-group">
-                                <p >Mã đặt chỗ:</p>
-                                <p name='seat'  className="form-control" >{ticket?.seat?.positionSeat}</p>
+                                <p>Mã đặt chỗ:</p>
+                                <p name='seat' className="form-control">{ticket?.seat?.positionSeat}</p>
                             
                             </div>
+                            </p>
                             <div className="form-group">
                                 <label htmlFor='namePassenger'>Tên người đi:</label>
                                 <Field id='namePassenger' type="text" name='namePassenger' className="form-control" />
@@ -88,41 +86,39 @@ const UpdateTicket = () => {
                             </div>
                             <div className="form-group">
                                 <p>Chuyến bay:</p>
-                                <p name="route"
-                                    className="form-control">
-                                          {`${ticket?.seat?.route?.departure?.nameDeparture} - ${ticket?.seat?.route?.destination?.nameDestination}`}
-                                        </p>
-                            
+                                <p name="route" className="form-control">
+                                    {`${ticket?.seat?.route?.departure?.nameDeparture} - ${ticket?.seat?.route?.destination?.nameDestination}`}
+                                </p>
                             </div>
                             <div className="form-group">
-                                <p >Ngày:</p>
-                                <p type="text"className="form-control" >
+                                <p>Ngày:</p>
+                                <p type="text" className="form-control">
                                     {ticket?.dateBooking}
                                 </p>
-                              
                             </div>
                             <div className="form-group">
                                 <p>Giá: </p>
-                                <p className="form-control" >
+                                <p className="form-control">
                                     {ticket?.priceTicket}
-                                    </p>
-                             
+                                </p>
                             </div>
                             <div className="form-group">
-                                <label htmlFor='emailPassenger'>Email thanh toán:</label>
-                                <Field id='emailPassenger' type="text" name='emailPassenger' className="form-control" />
-                                <ErrorMessage name="emailPassenger" className='text-area' />
+                                <label htmlFor='customer'>Email thanh toán:</label>
+                                <Field id='customer' type="text" name='customer' className="form-control" />
+                                <ErrorMessage name="customer" className='text-area' />
                             </div>
                             <div className="form-buttons">
                                 <button type="submit" className="btn btn-primary">Xác nhận</button>
-                               <button type="button" className="btn btn-secondary">Huỷ</button>.
+                                <button type="button" className="btn btn-secondary">Huỷ</button>.
                             </div>
                         </Form>
                     </Formik>
                 )}
-            </div >
+            </div>
+        </div>
         </div>
     )
 }
 
 export default UpdateTicket;
+
