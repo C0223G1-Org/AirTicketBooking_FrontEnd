@@ -21,15 +21,15 @@ import EmployeeUpdateCustomer from './component/EmployeeUpdateCustomer';
 import ListRouter from "./component_SAngTDN/ListRoute";
 import CustomerUpdate from "./component/CustomerUpdate";
 import CustomerDetails from "./component/CustomerDetails";
-import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
-import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
-import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
+// import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
+// import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
+// import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Header />
-            <TicketProvider>
+            {/* <TicketProvider> */}
             <Routes>
                 <Route path='/home' element={<Home/>}></Route>
                 <Route path='/top10' element={<GetTop10Cheapest/>}></Route>
@@ -46,14 +46,14 @@ root.render(
                 <Route path='/customers/update/:id' element={<CustomerUpdate />} />
                 <Route path='/customers/details/:id' element={<CustomerDetails />} />
                 <Route path='/list/:data' element={<ListRouter />} />
-                <Route path="/tickets/search-ticket" element={<SearchTicketPage />} />
+                {/* <Route path="/tickets/search-ticket" element={<SearchTicketPage />} />
                 <Route
                     path="/tickets/search-ticket-results"
                     element={<SearchResultPage />}
                 />
-                <Route path="/admin/messages" element={<AdminPage/>}></Route>
+                <Route path="/admin/messages" element={<AdminPage/>}></Route> */}
             </Routes>
-            </TicketProvider>
+            {/* </TicketProvider> */}
             <Footer />
         </BrowserRouter>
 
