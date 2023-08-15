@@ -23,7 +23,7 @@ export async function searchEmployee(gender, name, page, size) {
   }
 
   export async function deleteEmployee(id){
-    const response = await axios.delete(`http://localhost:8080/api/employee/${id}`)
+    const response = await axios.delete(`http://localhost:8080/api/employee/delete/${id}`)
     return response.data;
   }
 
