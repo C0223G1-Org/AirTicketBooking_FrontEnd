@@ -52,7 +52,7 @@ h1 {
 
 .table-ticket {
   margin: 0 5%;
-  
+
   /* position: relative; */
 }
 
@@ -223,7 +223,7 @@ h1 {
   display: inline-block;
 }
 .show-search-ticket-sale-body{
-  margin: 10px 30px; 
+  margin: 10px 30px;
 }
 
 .show-search-ticket-body-sale-selection-item button{
@@ -352,7 +352,7 @@ body {
 .section-unBook-ticket-item{
   list-style: none;
   display: inline-block;
-  
+
 }
 .section-unBook-ticket ul{
   padding: 0 !important;
@@ -381,3 +381,6 @@ body {
 }
 
 
+.err-mess{
+  color: red;
+}
