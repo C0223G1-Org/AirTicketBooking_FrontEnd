@@ -7,16 +7,17 @@ body{
     background-color: #016984;
     padding:10px 0px;
 }
-.relative {
+#customer .relative {
     margin-right: 10px;
     
 }
-.relative input{
+#customer .relative input{
     border-radius: 5px;
     height: 40px;
 }
 
-.my-2 button{
+#customer .my-2 button{
+    width: auto;
     border-radius: 5px;
     height: 40px;
     margin-right: 10px;   
