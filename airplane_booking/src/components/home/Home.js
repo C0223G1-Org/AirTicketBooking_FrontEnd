@@ -1,11 +1,17 @@
 import {React, useEffect, useState} from 'react';
+import {ErrorMessage, Field, Form, Formik} from 'formik';
+import * as yup from 'yup';
 import {getAllDeparture} from '../../services/DepartureServices';
 import {getAllDestination} from '../../services/DestinationServices';
+
 import '../../css/home/Home.css';
 import {useNavigate} from 'react-router-dom';
 import {Carousel} from 'bootstrap';
 import GetTop10Cheapest from "./Top10";
 import Swal from "sweetalert2";
+import Popup from "./ChatPopup";
+import "../../css/search_ticket/style2.css";
+
 
 export default function Home() {
     const [departures, setDepartures] = useState([]);
@@ -449,6 +455,11 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
+
+            </div>
+            <div>
+                <Popup />
+
             </div>
             <GetTop10Cheapest/>
         </div>
