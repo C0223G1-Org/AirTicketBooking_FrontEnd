@@ -129,7 +129,7 @@ export default function EmployeeList() {
                     <div className="container my-2 flex sm:flex-row flex-col">
                         <div className="flex col-ms col-4">
                             <div className="col-ms col">
-                                <Link to="src/create/employee" className="btn font-semibold form_button_employee "
+                                <Link to="/employee/create" className="btn font-semibold form_button_employee "
                                    style={{marginLeft: '10px'}}>
                                     <i className="fa-solid fa-plus"/> <span>Thêm mới nhân viên</span></Link>
                             </div>

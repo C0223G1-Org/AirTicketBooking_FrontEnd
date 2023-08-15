@@ -3,13 +3,14 @@ body {
     padding: 0;
     margin: 0;
     font-family: "Diavlo", "sans-seriff";
-    text-transform: capitalize;
+
 }
 
 #detail-ticket .wrapper {
     align-items: center;
     background: rgba(237, 234, 234, 0.422);
     padding: 10px 100px;
+    text-transform: capitalize;
 
 }
 

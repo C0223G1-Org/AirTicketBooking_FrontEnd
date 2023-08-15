@@ -7,7 +7,7 @@ import * as AccountService from "../../services/AccountServices";
 import * as RoleService from "../../services/RoleServices";
 import {Link, useNavigate} from "react-router-dom";
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
-import {storage} from "./firebare";
+import {storage} from "../../firebase";
 
 function CreateEmployee() {
     let navigate = useNavigate();
@@ -344,7 +344,8 @@ function CreateEmployee() {
                     </div>
                 </div>
             </div>
-        </>);
+        </>
+    );
 }
 
 export default CreateEmployee;
