@@ -43,6 +43,7 @@ export default function Home() {
                                             title: 'Bạn chọn ngày đi không đúng!',
                                             showConfirmButton: false,
                                             timer: 1500
+                                        
                                         })
                                     } else if (dateDP >= currentDate && dateDS < dateDP) {
                                         Swal.fire({
@@ -50,8 +51,6 @@ export default function Home() {
                                             title: 'Bạn chọn sai ngày về',
                                             showConfirmButton: false,
                                             timer: 1500
-                                        }).then(() => {
-                                            navigate("/home");
                                         })
                                     } else {
                                         navigate(`/list/${selectedDeparture},${selectedDestination},${dateDeparture},${dateDestination},${ticketType},${adult},${children}`);
@@ -247,7 +246,7 @@ export default function Home() {
                 <div className="col-md-6 col-md-offset-1">
                     <h2 className="find">Tìm kiếm các chuyến bay</h2>
                     <div className="booking-form-home">
-                        <form>
+                        {/* <form> */}
                             <div className="form-group">
                                 <div className="form-checkbox">
                                     <label htmlFor="roundtrip">
@@ -395,7 +394,7 @@ export default function Home() {
                                 <button className="submit-btn home-btn" onClick={() => handleSearchTicket()}>Tìm vé
                                 </button>
                             </div>
-                        </form>
+                        {/* </form> */}
                     </div>
                 </div>
                 <div className="col-md-6 col-md-offset-1 bonus">
