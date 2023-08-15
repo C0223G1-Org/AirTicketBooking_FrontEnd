@@ -58,6 +58,7 @@ const UpdateTicket = () => {
                                         emailCustomer: values.customer
                                     }
                                 }
+                                console.log(object);
                                 await handleEditTicket(object);
                                 // navigate("/")
                             }}
@@ -77,9 +78,9 @@ const UpdateTicket = () => {
                                     <b>Mã đặt chỗ:</b>
                                     <p name='seat' className="form-control">{ticket?.seat?.positionSeat}</p>
                                 </div>
-
+                            
                                 <div className="form-group">
-                                    <label htmlFor='namePassenger'><b>Tên người đi:</b></label>
+                                    <label htmlFor='namePassenger'><b>Tên người đi<span style={{color:"red"}}>(*)</span>:</b></label>
                                     <Field id='namePassenger' type="text" name='namePassenger' className="form-control" />
                                     <ErrorMessage name="namePassenger" className='text-area' />
                                 </div>
@@ -106,7 +107,7 @@ const UpdateTicket = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor='customer'><b>Email thanh toán:</b></label>
+                                    <label htmlFor='customer'><b>Email thanh toán<span style={{color:"red"}}>(*)</span>:</b></label>
                                     <Field id='customer' type="text" name='customer' className="form-control" />
                                     <ErrorMessage name="customer" className='text-area' />
                                 </div>
