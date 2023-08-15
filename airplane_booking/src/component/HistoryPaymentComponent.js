@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 function HistoryPaymentComponent() {
   const [payments, setPayments] = useState([]);
   let [page, setPage] = useState(0)
+  let [nameDeparture, setNameDeparture] = useState("")
+  let [nameDestination, setNameDestination] = useState("")
 
   // const  param = useParams();
   // const [customer, setCustomer] = useState({})
@@ -20,33 +22,53 @@ function HistoryPaymentComponent() {
   //     console.error('Error occurred while getting customer data:', error);
   //   }
   // };
-  console.log(payments);
 
-  const showList = async (pageable) => {
+
+  const showList = async (pageable, nameDeparture, nameDestination) => {
     try {
-      const paymentData = await getListHistoryByCustomerId(pageable);
+      const paymentData = await getListHistoryByCustomerId(pageable, nameDeparture, nameDestination);
       setPayments(paymentData);
 
     } catch (error) {
       console.error('Error occurred while getting payment data:', error)
     }
   };
-
-
   useEffect(() => {
-    showList()
+    showList(page,nameDeparture,nameDestination)
   }, []);
   const setPageFunction = async (pageAfter) => {
     setPage(pageAfter)
   }
+  const setDepartureFunction = async (departure) => {
+    setNameDeparture(departure)
+  }
+  const setDestinationFunction = async (destination) => {
+    setNameDestination(destination)
+  }
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Ngăn chặn hành vi mặc định của phím Enter
+      performSearch();
+    }
+  }
+  
+  function handleButtonClick() {
+    performSearch();
+  }
+  
+  const performSearch = async () => {
+    const departureSearch = document.getElementById("departure").value;
+    const destinationSearch = document.getElementById("destination").value;
+    await setDepartureFunction(departureSearch)
+      .then( await setDestinationFunction(destinationSearch))
+      .then( await setPageFunction(0))
+      .then(showList(0, departureSearch, destinationSearch));
+  }
+   
+  useEffect( () => {
+    document.title = 'Lịch sử thanh toán'
+    })
 
-  // const paginationList = () => {
-  //   const startIndex = (page - 1) * limit;
-  //   const endIndex = startIndex + limit;
-  //   return payments.slice(startIndex, endIndex);
-  // };
-
-  // const paginatedList = paginationList();
 
   return (
     <div>
@@ -56,6 +78,13 @@ function HistoryPaymentComponent() {
             <div>
               <h2 className="text-2xl font-semibold leading-tight" style={{ textAlign: 'center' }}>LỊCH SỬ GIAO DỊCH</h2>
             </div>
+            <div class="input-group" style={{ position: 'relative', width: '500px' }}>
+              <input type="search" onKeyPress={handleKeyPress} class="form-control rounded" id="departure" defaultValue={""} placeholder="Tìm kiếm theo nơi đi" aria-label="Search" aria-describedby="search-addon" />
+              <input type="search" onKeyPress={handleKeyPress} class="form-control rounded" id="destination" defaultValue={""} placeholder="Tìm kiếm theo nơi đến" aria-label="Search" aria-describedby="search-addon" />
+              <button type="submit"
+                 onClick={handleButtonClick}
+                class="btn btn-outline" style={{ backgroundColor: '#dfa512', color: 'white' }}>Tìm kiếm</button>
+            </div>
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
               <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
                 <table className="min-w-full leading-normal">
@@ -63,6 +92,9 @@ function HistoryPaymentComponent() {
                     <tr style={{ background: 'rgb(6, 133, 170)', color: '#ffffff' }}>
                       <th className="px-4 py-2 border-b-2   text-left text-xs   uppercase tracking-wider">
                         Mã vé
+                      </th>
+                      <th className="px-4 py-2 border-b-2   text-left text-xs   uppercase tracking-wider">
+                        Tên khách hàng
                       </th>
                       <th className="px-3 py-3 border-b-2   text-left text-xs   uppercase tracking-wider">
                         Nơi đi
@@ -105,7 +137,7 @@ function HistoryPaymentComponent() {
                           </td>
                           <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
                             <p className="text-gray-900 whitespace-no-wrap">
-                              {item.seat.route.destination.nameDestination}
+                              {item.customer.nameCustomer}
                             </p>
                           </td>
                           <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
@@ -115,22 +147,30 @@ function HistoryPaymentComponent() {
                           </td>
                           <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
                             <p className="text-gray-900 whitespace-no-wrap">
-                              {item.seat.route.dateArrival}
+                              {item.seat.route.destination.nameDestination}
                             </p>
                           </td>
                           <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
                             <p className="text-gray-900 whitespace-no-wrap">
+
                               {item.seat.route.dateDeparture}
                             </p>
                           </td>
                           <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
                             <p className="text-gray-900 whitespace-no-wrap">
-                              {item.seat.route.timeArrival}
+                              {item.seat.route.dateArrival}
                             </p>
                           </td>
                           <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
                             <p className="text-gray-900 whitespace-no-wrap">
                               {item.seat.route.timeDeparture}
+
+                            </p>
+                          </td>
+                          <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">
+                              {item.seat.route.timeArrival}
+
                             </p>
                           </td>
                           <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
@@ -158,49 +198,49 @@ function HistoryPaymentComponent() {
                         if (page >= 1) {
                           page -= 1
                         }
-                        await setPageFunction(page).then(await showList(page))
+                        await setPageFunction(page).then( (await showList(page,nameDeparture,nameDestination)))
                       }} style={{ background: 'rgb(223, 165, 18)', color: '#ffffff' }}>
                       &lt; Trước
                     </button>
                     <button className="text-sm font-semibold py-2 px-4" style={{ background: 'rgb(223, 165, 18)', color: '#ffffff', marginLeft: '5px' }}>
                       {page + 1}/{payments.totalPages}
                     </button>
-                    <div className="text-sm  font-semibold py-2 px-4 " style={{ background: 'rgb(223, 165, 18)', color: 'black', marginLeft: '5px' }}>
-                      <input id="numberPage" type="number" style={{ width: '50px', border: 'none', borderRadius: '5px', width: '40px' }} pattern="^[0-9]{4}$" />
-                      <button
-                        onClick={async () => {
 
-                          let numberPage = document.getElementById("numberPage").value * 1;
-                          numberPage -= 1;
-                          if (numberPage <= payments.totalPages && numberPage >= 1) {
-                            page = numberPage
-                            await setPageFunction(numberPage).then(await showList(page))
-                           
-                          } else {
-                            
-                            Swal.fire({
-                              icon: 'warning',
-                              title: 'Không tìm thấy!',
-                              showConfirmButton: false,
-                              timer: 1500
-                            })
-                          }
-
-
-                        }}
-                        style={{ border: 'none', color: 'white', marginLeft: '7px' }}>Tìm</button>
-                    </div>
                     <button className="text-sm  font-semibold py-2 px-4 rounded-r" disabled={page === payments.totalPages}
                       onClick={async () => {
                         page += 1;
                         if (page < payments.totalPages) {
-                          await setPageFunction(page).then(await showList(page))
+                          await setPageFunction(page).then( (await showList(page,nameDeparture,nameDestination)))
                         } else {
                           page -= 1
                         }
                       }} style={{ background: 'rgb(223, 165, 18)', color: '#ffffff', marginLeft: '5px' }}>
                       Sau &gt;
                     </button>
+                  </div>
+                  <br></br>
+                  <div className="text-sm  font-semibold py-2 px-4 " style={{ background: 'rgb(223, 165, 18)', color: 'black', marginLeft: '5px', marginTop: '-15px' }}>
+                    <input id="numberPage" type="number" style={{ width: '50px', border: 'none', borderRadius: '5px', width: '40px' }} pattern="^[0-9]{4}$" />
+                    <button
+                      onClick={async () => {
+
+                        let numberPage = document.getElementById("numberPage").value * 1;
+                        numberPage -= 1;
+                        if (numberPage <= payments.totalPages && numberPage >= 1) {
+                          page = numberPage
+                          await setPageFunction(numberPage).then(setPayments (await showList(page)))
+                        } else {
+                          Swal.fire({
+                            icon: 'warning',
+                            title: 'Không tìm thấy!',
+                            showConfirmButton: false,
+                            timer: 1500
+                          })
+                        }
+
+
+                      }}
+                      style={{ border: 'none', color: 'white', marginLeft: '7px' }}>Tìm</button>
                   </div>
                 </div>
               </div>
