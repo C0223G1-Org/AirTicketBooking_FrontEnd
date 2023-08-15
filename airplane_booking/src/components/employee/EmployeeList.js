@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import '../../css/employee/Employee.css';
 
 
-
 /**
  * Create by: HuyHD
  * @returns {JSX.Element}
@@ -14,6 +13,7 @@ export default function EmployeeList() {
     const [employeeList, setEmployeeList] = useState([]);
     const [gender, setGender] = useState(null);
     const [name, setName] = useState('');
+    const [flag, setFlag] = useState(true)
 
 
     const [searchPage, setSearchPage] = useState('');
@@ -38,19 +38,25 @@ export default function EmployeeList() {
     //         alert("a")
     //     }
     // }
-    const handleSearch = async () => {
-        try {
-            const results = await searchEmployee(gender, name, currentPage, 2);
-            setEmployeeList(results.content);
-            setTotalPages(results.totalPages);
 
-        } catch (error) {
+    const handleSearch = async () => {
+        const results = await searchEmployee(gender, name, currentPage, 2);
+        if (results.content == undefined) {
             await Swal.fire({
                 text: 'Không tìm thấy nhân viên với thông tin này!',
                 confirmButtonText: 'Xác nhận',
                 reverseButtons: true
             });
+             setName("");
+             setGender("");
+            return
         }
+        setFlag(false);
+         setEmployeeList(results.content);
+         setTotalPages(results.totalPages);
+
+       setName("");
+         setGender("");
     };
 
     const handleDeleteEmployee = async (id, name) => {
@@ -101,7 +107,7 @@ export default function EmployeeList() {
         if (!isNaN(pageNumber) && pageNumber > 0 && pageNumber <= totalPages) {
             handlePageChange(pageNumber - 1);
             setSearchPage('');
-        }else {
+        } else {
             Swal.fire({
                     text: 'Trang không tồn tại!',
                     confirmButtonText: 'Xác nhận',
@@ -110,6 +116,8 @@ export default function EmployeeList() {
             )
         }
     };
+
+    console.log(employeeList)
 
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
@@ -121,6 +129,7 @@ export default function EmployeeList() {
             handleSearchPage();
         }
     };
+
     return (
         <>
             <div>
@@ -161,6 +170,8 @@ export default function EmployeeList() {
                     </div>
                     <div className="container  sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                         <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+
+
                             <table className="min-w-full leading-normal">
                                 <thead>
                                 <tr className="table_header_employee">
@@ -190,23 +201,23 @@ export default function EmployeeList() {
                                 <tbody>
                                 {employeeList.map((e, index) => (
                                     <tr key={e.idEmployee}>
-                                        <td class="col px-4 py-3 border-b border-gray-200 bg-white text-sm">{(currentPage * 2) + index + 1}</td>
-                                        <td class="col flex py-3 border-b border-gray-200 bg-white text-sm">
-                                            <img class="image_employee"
+                                        <td className="col px-4 py-3 border-b border-gray-200 bg-white text-sm">{(currentPage * 2) + index + 1}</td>
+                                        <td className="col flex py-3 border-b border-gray-200 bg-white text-sm">
+                                            <img className="image_employee"
                                                  src={e.image} alt=""/>
-                                            <span class="py-3">{e.nameEmployee}</span></td>
-                                        <td class="col py-3 border-b border-gray-200 bg-white text-sm">{e.gender ? "Nam" : "Nữ"}</td>
-                                        <td class="col py-3 border-b border-gray-200 bg-white text-sm">{e.emailEmployee}</td>
-                                        <td class="col py-3 border-b border-gray-200 bg-white text-sm">{e.dateEmployee}</td>
-                                        <td class="col py-3 border-b border-gray-200 bg-white text-sm">{e.telEmployee}</td>
-                                        <td class="col py-3 border-b border-gray-200 bg-white text-sm">
+                                            <span className="py-3">{e.nameEmployee}</span></td>
+                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.gender ? "Nam" : "Nữ"}</td>
+                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.emailEmployee}</td>
+                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.dateEmployee}</td>
+                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.telEmployee}</td>
+                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">
                                             {/*<a href="#" type="button" data-bs-toggle="modal" data-bs-target="#detailModal" title="Chi tiết"*/}
                                             {/*onClick={()=> getEmployee(e.idEmployee)}>*/}
                                             {/*    <i className="fa-solid fa-circle-info icon_detail_employee" />*/}
                                             {/*</a>*/}
                                             <a href="#" title="Sửa"><i
                                                 className="fa-solid fa-pen-to-square icon_edit_employee"/></a>
-                                            <a  type="button" title="Xóa"
+                                            <a type="button" title="Xóa"
                                                onClick={() => {
                                                    handleDeleteEmployee(`${e.idEmployee}`, `${e.nameEmployee}`)
                                                }}>
@@ -217,6 +228,8 @@ export default function EmployeeList() {
                                 ))}
                                 </tbody>
                             </table>
+
+
                             <div
                                 className="px-5 py-3 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
                                 <div className="inline-flex mt-2 xs:mt-0">
