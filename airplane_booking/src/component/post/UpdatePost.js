@@ -1,6 +1,6 @@
 import {useNavigate, useParams} from "react-router";
 import React, {useEffect, useState} from "react";
-import * as postService from "../services/PostServices"
+import * as postService from "../../services/PostServices"
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {getDownloadURL, ref, uploadBytesResumable} from "@firebase/storage";
