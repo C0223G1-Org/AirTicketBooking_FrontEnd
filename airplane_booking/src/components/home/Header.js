@@ -1,5 +1,6 @@
 import React from 'react';
 import "../../css/home/Header.css";
+import { Link,NavLink } from 'react-router-dom';
 
 export default function Header() {
     // localStoragevvvvvvvv
@@ -37,10 +38,16 @@ export default function Header() {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" href="#">
+                            <NavLink to="/tickets/search-ticket" className="nav-link active">
                                 <i className="fa-solid fa-circle-info" />
                                 Thông tin hành trình
-                            </a>
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to="/admin/messages" className="nav-link active">
+                                <i className="fa-solid fa-circle-info" />
+                                Chat
+                            </NavLink>
                         </li>
                     </ul>
                     <ul className="navbar-nav login">
