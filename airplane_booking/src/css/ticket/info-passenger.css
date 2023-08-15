@@ -3,12 +3,13 @@ body {
     padding: 0;
     font-family: "Diavlo", "sans-seriff";
     margin: 40px 0px 30px 30px;
-    text-transform: capitalize;
+
 }
 
 #info-passenger .wrapper {
     background: rgba(237, 234, 234, 0.422);
     padding: 30px 100px;
+    text-transform: capitalize;
 }
 
 #info-passenger.wrap {

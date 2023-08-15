@@ -76,7 +76,7 @@ export default function DetailTicket() {
     }
 
     function handleSubmitCancel() {
-        navigate();
+        navigate("/list");
     }
 
     return (
