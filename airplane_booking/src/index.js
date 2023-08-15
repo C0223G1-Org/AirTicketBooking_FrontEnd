@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+// import './index.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import Header from './components/home/Header';
@@ -18,6 +18,7 @@ import TicketUnBook from './components/TicketUnBook';
 import CustomerManagement from './component/CustomerManagement';
 import EmployeeCreateCustomer from './component/EmployeeCreateCustomer';
 import EmployeeUpdateCustomer from './component/EmployeeUpdateCustomer';
+import ListRouter from "./component_SAngTDN/ListRoute";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -36,6 +37,7 @@ root.render(
                 <Route path='/customers' element={<CustomerManagement />} />
                 <Route path='/customers/add' element={<EmployeeCreateCustomer />} />
                 <Route path='/customers/edit/:id' element={<EmployeeUpdateCustomer />} />
+                <Route path='/list/:data' element={<ListRouter />} />
             </Routes>
         </BrowserRouter>
         <Footer />

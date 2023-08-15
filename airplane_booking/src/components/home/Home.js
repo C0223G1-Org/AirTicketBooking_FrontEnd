@@ -1,19 +1,15 @@
 import {React, useEffect, useState} from 'react';
-import {ErrorMessage, Field, Form, Formik} from 'formik';
-import * as yup from 'yup';
 import {getAllDeparture} from '../../services/DepartureServices';
 import {getAllDestination} from '../../services/DestinationServices';
-import {getAllTypeSeat} from '../../services/TypeSeatServices';
 import '../../css/home/Home.css';
 import {useNavigate} from 'react-router-dom';
 import {Carousel} from 'bootstrap';
 import GetTop10Cheapest from "./Top10";
+import Swal from "sweetalert2";
 
 export default function Home() {
     const [departures, setDepartures] = useState([]);
     const [destinations, setDestinations] = useState([]);
-    const [departure, setDeparture] = useState("");
-    const [destination, setDestination] = useState("");
     const [dateDeparture, setDateDeparture] = useState("");
     const [dateDestination, setDateDestination] = useState("");
     const [ticketType, setTicketType] = useState(0);
@@ -24,29 +20,151 @@ export default function Home() {
     const [selectedDestination, setSelectedDestination] = useState('');
 
 
-    const setTicketTypeFunction = async (data) => {
-        setTicketType(data);
-        console.log(data);
 
-    }
 
     const handleSearchTicket = () => {
-        navigate(`/list/${departure}, ${destination}, ${dateDeparture}, ${dateDestination}, ${ticketType}, ${adult}, ${children}`);
+        console.log(ticketType)
+        if (ticketType != null) {
+            if (ticketType == 1) {
+                if (selectedDeparture != '') {
+                    if (selectedDestination != '') {
+                        if(dateDeparture != '') {
+                            if (dateDestination != '') {
+                                if (adult != '') {
+                                    const dateDP = new Date(dateDeparture);
+                                    const dateDS = new Date(dateDestination);
+                                    const currentDate = new Date();
+                                    dateDP.setHours(0, 0, 0, 0);
+                                    currentDate.setHours(0, 0, 0, 0);
+                                    dateDS.setHours(0, 0, 0, 0);
+                                    if (dateDP < currentDate) {
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            title: 'Bạn chọn ngày đi không đúng!',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                    } else if (dateDP >= currentDate && dateDS < dateDP) {
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            title: 'Bạn chọn sai ngày về',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        }).then(() => {
+                                            navigate("/home");
+                                        })
+                                    } else {
+                                        navigate(`/list/${selectedDeparture},${selectedDestination},${dateDeparture},${dateDestination},${ticketType},${adult},${children}`);
+                                    }
+                                } else {
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Vui lòng chọn điền vào trường người lớn!!!!',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            } else  {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Vui lòng chọn ngày đến!!!!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        } else {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Vui lòng chọn ngày đi!!!!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Vui lòng chọn điểm đến!!!!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                } else {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Vui lòng chọn điểm khởi hành!!!!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            } else if (ticketType == 0) {
+                if (selectedDeparture != '') {
+                    if (selectedDestination != '') {
+                        if(dateDeparture !='') {
+                            if (adult != '') {
+                                const dateDP = new Date(dateDeparture);
+                                const currentDate = new Date();
+                                dateDP.setHours(0, 0, 0, 0);
+                                currentDate.setHours(0, 0, 0, 0);
+                                if (dateDP < currentDate) {
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Bạn chọn ngày đi không đúng!',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                } else {
+                                    navigate(`/list/${selectedDeparture},${selectedDestination},${dateDeparture},${dateDestination},${ticketType},${adult},${children}`);
+                                }
+                            } else  {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Vui lòng chọn số người đi!!!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        } else  {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Vui lòng chọn ngày đi!!!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Vui lòng chọn điểm đến!!!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                } else  {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Vui lòng chọn điểm khởi hành!!!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+
+            }
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Vui lòng chọn loại vé!!!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    }
+    const setTicketTypeFunction = async (data) => {
+        setTicketType(data);
     }
 
     const handleChangeTypeTicket = async (event) => {
         const data = event.target.value;
-        await setTicketTypeFunction(data)
-    }
-    const handleCheckDeparture = () => {
-        const data = document.getElementById('selectedDeparture').value;
-        setSelectedDeparture(data);
-        console.log(data);
-    }
-    const handleCheckDestination = () => {
-        const data = document.getElementById('selectedDestination').value;
-        setSelectedDestination(data);
-        console.log(data);
+        await setTicketTypeFunction(data);
     }
 
     const getAllDepartureApi = async () => {
@@ -59,14 +177,11 @@ export default function Home() {
         setDestinations(data);
     }
 
-    const getAllTypeSeatApi = async () => {
-        const data = await getAllTypeSeat();
-    }
-
+    console.log(selectedDestination)
+    console.log(selectedDeparture)
     useEffect(() => {
         getAllDepartureApi();
         getAllDestinationApi();
-        getAllTypeSeatApi()
     }, [ticketType]);
     return (
         <div>
@@ -128,171 +243,159 @@ export default function Home() {
                 </div>
                 <div className="col-2"/>
             </div>
-            <div className="row ">
+            <div className="row form-search">
                 <div className="col-md-6 col-md-offset-1">
                     <h2 className="find">Tìm kiếm các chuyến bay</h2>
-                    <div className="booking-form">
-                        <Formik initialValues={{
-                            flightType: '0',
-                            departure: '',
-                            destination: '',
-                            dateDeparture: '',
-                            dateDestination: '',
-                            adult: '',
-                            children: ''
-                        }}
-                                validationSchema={yup.object({
-                                    flightType: yup.number().required("Không được để trống trường này"),
-                                    dateDeparture: yup.date().required()
-                                })}
-                                onSubmit={(values) => {
-                                    console.log(values)
-                                    setDeparture(values.departure)
-                                    setDestination(values.destination)
-                                    setDateDeparture(values.dateDeparture)
-                                    setDateDestination(values.dateDestination)
-                                    setTicketType(values.flightType)
-                                    setAdult(values.adult)
-                                    setChildren(values.children)
-                                    const date= new Date();
-                                    // const currentDate =  date.getDate() + '-' + (date.getMonth() + 1) + '-' +date.getFullYear();
-                                    if (values.dateDeparture < date)
-                                    console.log(children)
-                                    // handleSearchTicket();
-                                }}>
-                            <Form>
-                                <div className="form-group">
-                                    <div className="form-checkbox">
-                                        <label htmlFor="roundtrip">
-                                            <Field type="radio" value='1'
-                                                   id="roundtrip" name="flightType"
-                                                   onClick={(event) => {
-                                                       handleChangeTypeTicket(event);
-                                                   }}
-                                            />
-                                            <span/>Khứ hồi
-                                        </label>
-                                        <label htmlFor="one-way">
-                                            <Field type="radio" value="0" id="one-way" name="flightType"
-                                                   onClick={(event) => {
-                                                       handleChangeTypeTicket(event);
-                                                   }}
-                                            />
-                                            <span/>Một chiều
-                                        </label>
-                                        <ErrorMessage name='flightType' component='div' className='error'/>
-                                    </div>
+                    <div className="booking-form-home">
+                        <form>
+                            <div className="form-group">
+                                <div className="form-checkbox">
+                                    <label htmlFor="roundtrip">
+                                        <input type="radio" id="roundtrip" name="flight-type"
+                                               value='1'
+                                               onClick={(event) => {
+                                                   handleChangeTypeTicket(event);
+                                               }
+                                               }
+                                               required
+                                        />
+                                        <span/>Khứ hồi
+                                    </label>
+                                    <label htmlFor="one-way">
+                                        <input type="radio" id="one-way" name="flight-type"
+                                               value='0'
+                                               onClick={(event) => {
+                                                   handleChangeTypeTicket(event)
+                                               }}
+                                               required
+                                        />
+                                        <span/>Một chiều
+                                    </label>
                                 </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <span className="form-label">Điểm khởi hành</span>
-                                            <Field as='select' className="form-control"
-                                                   name='departure'
-                                                   id='selectedDeparture'
-                                                   onChange={() => {
-                                                       handleCheckDeparture()
-                                                   }}
-                                                   value={selectedDeparture}>
-                                                <option value=''>Sân bay, Thành phố</option>
-                                                {
-                                                    departures.map((dp) => {
-                                                        if (dp.nameDeparture !== selectedDestination)
-                                                            return (
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <span className="form-label">Điểm khởi hành</span>
+                                        <select className='form-control'
+                                                onChange={(e) => {
+                                                    setSelectedDeparture(e.target.value)
+                                                }}
+                                                required
+                                        >
+                                            <option value=''>Sân bay, Thành phố</option>
+                                            {
+                                                departures.map((dp) => {
+                                                    if (dp.nameDeparture !== selectedDestination)
+                                                        return (
                                                             <option key={dp.idDeparture} value={dp.nameDeparture}>
                                                                 {dp.nameDeparture}
                                                             </option>
                                                         )
-                                                    })
-                                                }
-                                            </Field>
-                                        </div>
+                                                })
+                                            }
+                                        </select>
                                     </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <span className="form-label">Điểm đến</span>
-                                            <Field as='select' className="form-control"
-                                                   name='destination'
-                                                   id='selectedDestination'
-                                                   onChange={() => {
-                                                       handleCheckDestination()
-                                                   }}
-                                                   value={selectedDestination}
-                                            >
-                                                <option>Sân bay, Thành phố</option>
-                                                {
-                                                    destinations.map((ds) => {
-                                                        if( ds.nameDestination !== selectedDeparture)
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <span className="form-label">Điểm đến</span>
+                                        <select className='form-control'
+                                                onChange={(e) => {
+                                                    setSelectedDestination(e.target.value)
+                                                }}
+                                                required
+                                        >
+                                            <option value=''>Sân bay, Thành phố</option>
+                                            {
+                                                destinations.map((ds) => {
+                                                    if (ds.nameDestination !== selectedDeparture)
                                                         return (
                                                             <option key={ds.idDestination}
                                                                     value={ds.nameDestination}>
                                                                 {ds.nameDestination}
                                                             </option>
                                                         )
-                                                    })
-                                                }
-                                            </Field>
-                                        </div>
+                                                })
+                                            }
+                                        </select>
                                     </div>
                                 </div>
-                                {ticketType == 1 ?
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <span className="form-label">Ngày đi</span>
-                                                <Field className="form-control" type="date"
-                                                       name='dateDeparture'/>
-                                                <ErrorMessage name='dateDeparture' component='div'/>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <span className="form-label">Ngày về</span>
-                                                <Field className="form-control" type="date"
-                                                       name='dateDestination'/>
-                                            </div>
-                                        </div>
-                                    </div> :
-                                    <div className="col-md-12">
-                                        <div className="form-group">
-                                            <span className="form-label">Ngày đi</span>
-                                            <Field className="form-control" type="date"
-                                                   name='dateDeparture'/>
-                                            <ErrorMessage name='dateDeparture' component='div'/>
-                                        </div>
-                                    </div>
-                                }
+                            </div>
+
+                            {ticketType == 1 ?
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <span className="form-label">Người lớn</span>
-                                            <Field as='select' className="form-control" name='adult'>
-                                                <option value=''>Chọn</option>
-                                                <option value='1'>1</option>
-                                                <option value='2'>2</option>
-                                                <option value='3'>3</option>
-                                            </Field>
-                                            <span className="select-arrow"/>
+                                            <span className="form-label">Ngày đi</span>
+                                            <input className="form-control" type="date"
+                                                   onChange={(e) => {
+                                                       setDateDeparture(e.target.value)
+                                                   }}
+                                                   required/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <span className="form-label">Trẻ em (0-12 tuổi)</span>
-                                            <Field as='select' className="form-control" name='children'>
-                                                <option value=''>Chọn</option>
-                                                <option value='0'>0</option>
-                                                <option value='1'>1</option>
-                                                <option value='2'>2</option>
-                                            </Field>
-                                            <span className="select-arrow"/>
+                                            <span className="form-label">Ngày về</span>
+                                            <input className="form-control" type="date"
+                                                   onChange={(e) => {
+                                                       setDateDestination(e.target.value)
+                                                   }}
+                                                   required/>
+                                        </div>
+                                    </div>
+                                </div> :
+                                <div>
+                                    <div className="col-md-12">
+                                        <div className="form-group">
+                                            <span className="form-label">Ngày đi</span>
+                                            <input className="form-control" type="date"
+                                                   onChange={(e) => {
+                                                       setDateDeparture(e.target.value)
+                                                   }}
+                                                   required/>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="form-btn">
-                                    <button type='submit' className="submit-btn">Tìm vé</button>
+                            }
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <span className="form-label">Người lớn</span>
+                                        <select className="form-control"
+                                                onChange={(e) => {
+                                                    setAdult(e.target.value)
+                                                }}
+                                                required
+                                        >
+                                            <option value=''>Chọn</option>
+                                            <option value='1'>1</option>
+                                            <option value='2'>2</option>
+                                            <option value='3'>3</option>
+                                        </select>
+                                        <span className="select-arrow"/>
+                                    </div>
                                 </div>
-                            </Form>
-                        </Formik>
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <span className="form-label">Trẻ em (0-12 tuổi)</span>
+                                        <select className="form-control" onChange={(e) => {
+                                            setChildren(e.target.value)
+                                        }}>
+                                            <option value='0'>0</option>
+                                            <option value='1'>1</option>
+                                            <option value='2'>2</option>
+                                        </select>
+                                        <span className="select-arrow"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-btn">
+                                <button className="submit-btn home-btn" onClick={() => handleSearchTicket()}>Tìm vé
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div className="col-md-6 col-md-offset-1 bonus">
