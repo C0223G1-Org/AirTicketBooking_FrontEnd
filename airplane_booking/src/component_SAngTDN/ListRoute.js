@@ -152,7 +152,7 @@ function ListRouter() {
       const departureTimeCheck = updateTimes(departureDay,timeDeparture)
       if((arrivalTime-departureTimeCheck<3 * 3600 * 1000)){
         Swal.fire(
-          "chyến về phải sau chuyến đi ít nhất 3 tiếng",
+          "chyến về phải sau chuyến đi nhất 3 tiếng",
           '',
           'warning'
         )
@@ -170,7 +170,7 @@ function ListRouter() {
       const arrivalTimeCheck = updateTimes(departureDay,timeDeparture)
       if((arrivalTimeCheck-departureTime<3 * 3600 * 1000)){
         Swal.fire(
-          "chyến về phải sau chuyến đi ít nhất 3 tiếng",
+          "chyến về phải sau chuyến đi nhất 3 tiếng",
           '',
           'warning'
         )
@@ -328,10 +328,16 @@ const handleOnClickDeparture = ()=>{
   }
  }
 
+ useEffect(() => {
+  
+}, []);
+
 
   return (
     <>
-      <div className="container">
+    <div style={{background :"white", minHeight : "50rem"}}>
+      {document.title = 'danh sách chuyến bay'}
+      <div className="container" >
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>List Route</title>
@@ -353,7 +359,7 @@ const handleOnClickDeparture = ()=>{
           {/* Sidebar Start */}
           <aside className="left-sidebar" style={{ padding: "0px" }}>
             {/* Sidebar scroll*/}
-            <div>
+            <div style={{maxHeight: "100%"}}>
               <div className="brand-logo d-flex align-items-center justify-content-between">
                 <a href="/#" className="text-nowrap logo-img">
                   <img
@@ -901,6 +907,7 @@ const handleOnClickDeparture = ()=>{
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );
