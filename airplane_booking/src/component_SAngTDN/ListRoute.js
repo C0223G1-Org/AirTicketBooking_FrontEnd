@@ -1,6 +1,7 @@
 import { Await, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getListRouter } from "../services/RouteServices";
+import Swal from "sweetalert2";
 
 function ListRouter() {
   const { data } = useParams();
@@ -13,14 +14,16 @@ function ListRouter() {
   const [departureTimeArrival, setDepartureTimeArrival] = useState("");
   const [departureNameRoute, setDepartureNameRoute] = useState("");
   const [departureTypeSeat, setDeparturetypeSeat] = useState("");
-  const [selecTicketDeparture, setSelecTicketDeparture] = useState("")
+  const [selecTicketDeparture, setSelecTicketDeparture] = useState("");
+  const [departureTime,setDepartureTime] = useState();
 
   const [arrivalPriceTicket, setArrivalPriceTicket] = useState(0);
   const [arrivalTimeDeparture, setArrivalTimeDeparture] = useState("");
   const [arrivalTimeArrival, setArrivalTimeArrival] = useState("");
   const [arrivalNameRoute, setArrivalNameRoute] = useState("");
   const [arrivalTypeSeat, setArrivalTypeSeat] = useState("");
-  const [selecTicketArrival, setSelecTicketArrival] = useState("")
+  const [selecTicketArrival, setSelecTicketArrival] = useState("");
+  const [arrivalTime,setArrivalTime] = useState();
 
   const totalPrice = (departurePriceTicket*1+arrivalPriceTicket*1)*1.6
 
@@ -60,6 +63,18 @@ function ListRouter() {
     date.setDate(date.getDate() - 1);
     return date;
   };
+
+  const partsDate = () => {
+    let dateParts = array[2].split("-");
+    let year = parseInt(dateParts[0]);
+    let month = parseInt(dateParts[1]) - 1;
+    let day = parseInt(dateParts[2]);
+    let date = new Date(year, month, day);
+    date.setDate(date.getDate());
+    return date;
+  };
+
+  const dateRoot = partsDate();
 
   const partsDate3 = () => {
     let dateParts
@@ -122,25 +137,59 @@ function ListRouter() {
   const [departureDayOfTicket, setdepartureDayOfTicket] = useState();
   const [arrivalDayOfTicket, setArrivalDayOfTicket] = useState();
 
+  const updateTimes = (day,time)=>{
+    let originalDate = new Date(day);
+    let newTime = time;
+    let [newHours, newMinutes, newSeconds] = newTime.split(":").map(Number);
+    originalDate.setHours(newHours);
+    originalDate.setMinutes(newMinutes);
+    originalDate.setSeconds(newSeconds);
+    return originalDate;
+  }
+
   const handleOnChangeBuyTicket = (e,price,timeDeparture, timeArrival,nameRoute,typeSeat)=>{
     if(flag){
-      setSelecTicketDeparture(e.target.value)
+      const departureTimeCheck = updateTimes(departureDay,timeDeparture)
+      if((arrivalTime-departureTimeCheck<3 * 3600 * 1000)){
+        Swal.fire(
+          "chyến về phải sau chuyến đi ít nhất 3 tiếng",
+          '',
+          'warning'
+        )
+      }else{
+      setSelecTicketDeparture(e.target.value);
       setDeparturePriceTicket(price);
     setDepartureTimeDeparture(timeDeparture);
     setDepartureTimeArrival(timeArrival);
     setDepartureNameRoute(nameRoute);
     setDeparturetypeSeat(typeSeat);
     setdepartureDayOfTicket(departureDay);
+    setDepartureTime(departureTimeCheck)
+      }
     }else{
-      setSelecTicketArrival(e.target.value)
+      const arrivalTimeCheck = updateTimes(departureDay,timeDeparture)
+      if((arrivalTimeCheck-departureTime<3 * 3600 * 1000)){
+        Swal.fire(
+          "chyến về phải sau chuyến đi ít nhất 3 tiếng",
+          '',
+          'warning'
+        )
+      }else{
+      setArrivalTime(arrivalTimeCheck)
+      setSelecTicketArrival(e.target.value);
       setArrivalPriceTicket(price);
       setArrivalTimeDeparture(timeDeparture);
       setArrivalTimeArrival(timeArrival);
       setArrivalNameRoute(nameRoute);
       setArrivalTypeSeat(typeSeat);
       setArrivalDayOfTicket(departureDay);
+      }
     }
   }
+  
+  console.log("aa"+departureTime);
+  console.log("bb"+arrivalTime);
+ 
 
   const tabsTime = [date1, date2, date3, date4, date5];
 
@@ -267,15 +316,18 @@ const handleOnClickDeparture = ()=>{
  },[flag])
 
  const handleOnClickArrival = async()=>{
- await changeFlagFalse(false)
- await showListRouteArrival();
+  if(departurePriceTicket==0){
+    Swal.fire(
+      'Bạn chưa chọn vé chuyến đi',
+      '',
+      'warning'
+    )
+  }else{
+    await changeFlagFalse(false)
+    await showListRouteArrival();
+  }
  }
 
-
- 
- console.log("hope:==="+departureDay);
- console.log("day:===="+partsDate3());
- console.log(flag);
 
   return (
     <>
@@ -366,6 +418,7 @@ const handleOnClickDeparture = ()=>{
                   </div>
                 </div>
               </div> */}
+              
               <div>
                 <h6 style={{ marginTop: "20px" }}>THÔNG TIN ĐẶT CHỖ</h6>
                 <div style={{ border: "solid 1px" }}>
@@ -393,7 +446,7 @@ const handleOnClickDeparture = ()=>{
                     >
                       Giá vé{" "}
                       <span style={{ float: "right" }}>
-                      {departurePriceTicket==0?<p>----------</p>:<b style={{color: "rgb(85, 85, 85)"}}>{new Intl.NumberFormat("de-DE").format((departurePriceTicket))} VND</b>}
+                      {departurePriceTicket==0?<p>----------</p>:<b style={{color: "rgb(85, 85, 85)"}}>{new Intl.NumberFormat("de-DE").format((departurePriceTicket*(array[5]*1+array[6]*1)))} VND</b>}
                       </span>
                     </p>
                     <p
@@ -406,7 +459,7 @@ const handleOnClickDeparture = ()=>{
                       Thuế, phí{" "}
                       <span style={{ float: "right" }}>
                       
-                        {departurePriceTicket==0?<p>----------</p>:<b style={{color: "rgb(85, 85, 85)"}}>{new Intl.NumberFormat("de-DE").format((departurePriceTicket * 0.6))} VND</b>}
+                        {departurePriceTicket==0?<p>----------</p>:<b style={{color: "rgb(85, 85, 85)"}}>{new Intl.NumberFormat("de-DE").format((departurePriceTicket * 0.6*(array[5]*1+array[6]*1)))} VND</b>}
                       </span>
                     </p>
                   </div>
@@ -436,7 +489,7 @@ const handleOnClickDeparture = ()=>{
                     >
                       Giá vé{" "}
                       <span style={{ float: "right" }}>
-                      {arrivalPriceTicket==0?<p>----------</p>:<b style={{color: "rgb(85, 85, 85)"}}>{new Intl.NumberFormat("de-DE").format((arrivalPriceTicket))} VND</b>}
+                      {arrivalPriceTicket==0?<p>----------</p>:<b style={{color: "rgb(85, 85, 85)"}}>{new Intl.NumberFormat("de-DE").format((arrivalPriceTicket*(array[5]*1+array[6]*1)))} VND</b>}
                       </span>
                     </p>
                     <p
@@ -449,7 +502,7 @@ const handleOnClickDeparture = ()=>{
                       Thuế, phí{" "}
                       <span style={{ float: "right" }}>
                       
-                        {arrivalPriceTicket==0?<p>----------</p>:<b style={{color: "rgb(85, 85, 85)"}}>{new Intl.NumberFormat("de-DE").format((arrivalPriceTicket * 0.6))} VND</b>}
+                        {arrivalPriceTicket==0?<p>----------</p>:<b style={{color: "rgb(85, 85, 85)"}}>{new Intl.NumberFormat("de-DE").format((arrivalPriceTicket * 0.6*(array[5]*1+array[6]*1)))} VND</b>}
                       </span>
                     </p>
                   </div>
@@ -466,7 +519,7 @@ const handleOnClickDeparture = ()=>{
                   </b>
                 </p>
               </div>
-              {array[4]==0?
+              {(array[4]==0&&departurePriceTicket!==0)?
               <div style={{ float: "right" }}>
               <button
                 type="button"
@@ -479,7 +532,7 @@ const handleOnClickDeparture = ()=>{
               >
                 <b>Xác nhận</b>
               </button>
-            </div>:(array[4]!=0 && flag==false)?
+            </div>:(array[4]!=0 && flag==false &&departurePriceTicket!==0&& arrivalPriceTicket!==0)?
              <div style={{ float: "right" }}>
              <button
                type="button"
@@ -529,7 +582,7 @@ const handleOnClickDeparture = ()=>{
                   style={flag===false?{background: "rgb(223, 165, 18)", color: "white"}: {background: "rgb(6, 133, 170)", color: "white", marginRight: "10px" }}
                   onClick={handleOnClickArrival}
                 >
-                  Chọn vé Chuyến về
+                  Chọn vé chuyến về
                 </button>
                 </>
               )}
@@ -644,7 +697,7 @@ const handleOnClickDeparture = ()=>{
                               style={{
                                 fontSize: "25px",
                                 color: "rgb(6, 133, 170)",
-                                paddingRight : "10px"
+                                paddingRight : "5px"
                               }}
                               className="fa-solid fa-plane"
                             />
@@ -652,7 +705,7 @@ const handleOnClickDeparture = ()=>{
                               style={{
                                 fontSize: "25px",
                                 color: "rgb(223, 165, 18) ",
-                                paddingRight : "10px"
+                                paddingRight : "5px"
                               }}
                               className="fa-solid fa-earth-americas"
                             />
@@ -705,7 +758,7 @@ const handleOnClickDeparture = ()=>{
                         {flights.map((f) => {
                           return (
                             <>
-                              <tr key={f.idRoute}>
+                             <tr key={f.idRoute}>
                                 <td style={{ background: "rgb(211,177,88)" }}>
                                   <div
                                     style={{
@@ -841,7 +894,7 @@ const handleOnClickDeparture = ()=>{
                         })}
                       </tbody>
                     </table>
-                    :<p><b>----Không có Chuyến bay nào----</b></p>}
+                    :<p><b>----Không có chuyến bay nào----</b></p>}
                   </div>
                 </div>
               </div>
