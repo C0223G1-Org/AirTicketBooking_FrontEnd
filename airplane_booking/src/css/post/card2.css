@@ -22,8 +22,6 @@
     padding: 0;
 }
 
-
-
 .card_image_news {
     overflow: hidden;
     position: relative;
@@ -161,7 +159,7 @@
 .news-button{
     /*font-size: 25px;*/
     margin: 0.5em;
-    border-radius: 25px;
+    border-radius: 10px;
 }
 .news-hots{
     /*margin-bottom: 10px;*/
@@ -183,7 +181,22 @@
 }
 .search{
     background-color: #ffffff;
+    margin-left: 0.5rem;
+    border-radius: 10px;
 }
 .search:hover{
-    background-color: #0685aa;
+    color: #7e7e7e;
+    background-color: #ffcc29;
+}
+
+@media screen and (max-width: 509px) {
+    .search-post{
+        display: none;
+    }
+    .add-post{
+        width: 93%;
+    }
+    .news-button{
+        width: 100%;
+    }
 }
