@@ -189,8 +189,8 @@ function EmployeeCreateCustomer() {
                             <Field className="form-control" as="select" name="genderCustomer">
                               <option value="">Chọn giới tính</option>
 
-                              <option value={true}>Nam</option>
-                              <option value={false}>Nữ</option>
+                              <option value="true">Nam</option>
+                              <option value="false">Nữ</option>
 
                             </Field>
                             <ErrorMessage className='error' name='genderCustomer' component={"div"} />

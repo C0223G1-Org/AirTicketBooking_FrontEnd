@@ -293,7 +293,7 @@ export default function CustomerManagement() {
                                                         </td>
                                                         <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                                             <p className="text-gray-900 whitespace-no-wrap">
-                                                                <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                <a
                                                                    onClick={async () => {
 
                                                                        await deleteCustomer(item)
@@ -366,23 +366,24 @@ export default function CustomerManagement() {
                                                     Sau
                                                 </button>
                                                 : ""}
-                                            <div className="text-sm  font-semibold py-2 px-4 " style={{
+                                            <div className="  font-semibold py-2 px-4 " style={{
                                                 background: 'rgb(223, 165, 18)',
                                                 color: 'black',
-                                                marginLeft: '5px'
+                                                marginLeft: '5px',
+                                                borderRadius:'5px'
                                             }}>
                                                 <input id="numberPage" type="number"
-                                                       style={{width: '60px', border: '1px solid'}} pattern="^[0-9]{4}$"
+                                                       style={{width: '50px', border: '1px solid',borderRadius:'5px'}}
                                                        onKeyDown={async (event) => {
                                                            if (event.keyCode == 13) {
                                                                await searchPage()
                                                            }
                                                        }}/>
-                                                <button className="text-sm  font-semibold py-2 px-4 rounded-r"
+                                                <button className=""
                                                         onClick={async () => {
                                                             await searchPage()
                                                         }}
-                                                        style={{border: '1px solid', marginLeft: '10px'}}>
+                                                        style={{ marginLeft: '10px',bodeRadius:'5px',color:'white'}}>
                                                     <i
                                                         className="fa-solid fa-magnifying-glass"></i></button>
                                             </div>
