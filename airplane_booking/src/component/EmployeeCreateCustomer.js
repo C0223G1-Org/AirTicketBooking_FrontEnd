@@ -6,9 +6,9 @@ import { CreateCustomer } from '../services/CustomerServices';
 import "../employeeCreateCustomer.css"
 import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from './firebase';
+import { storage } from '../firebase';
 import { v4 } from "uuid";
-import { ClipLoader } from 'react-spinners';
+
 function EmployeeCreateCustomer() {
 
   const imgPreviewRef = useRef(null)
@@ -130,7 +130,7 @@ function EmployeeCreateCustomer() {
 
 
           console.log(customer)
-          setFlag(!flag)
+
           await CreateCustomer(customer)
           navigave("/customers")
           Swal.fire({

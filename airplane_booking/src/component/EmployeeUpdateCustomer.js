@@ -6,8 +6,9 @@ import { GetCustomerById, UpdateCustomer } from '../services/CustomerServices';
 import "../employeeCreateCustomer.css"
 import { useNavigate, useParams } from 'react-router-dom';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from './firebase';
+import { storage } from '../firebase';
 import { v4 } from "uuid";
+
 
 function EmployeeUpdateCustomer() {
     const [fileUpload, setFileUpload] = useState(null)

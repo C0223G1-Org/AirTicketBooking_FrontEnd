@@ -10,18 +10,23 @@ export default function CustomerDetails() {
 
   const [customer, setCustomer] = useState({})
   const param = useParams()
-
+  const [id,setId]=useState(0)
 
   const getCustomer = async (id) => {
     const data = await getCustomerById(id)
     setCustomer(data)
+
   }
+  console.log(customer.imgCustomer)
   const formattedDate = moment(customer.dateCustomer).format('DD/MM/YYYY');
 
   useEffect(() => {
     getCustomer(param.id)
-  }, [param.id])
-  
+  }, [id])
+
+  useEffect(()=>{
+    setId(param.id)
+  },[])
 
   return (
 
@@ -102,7 +107,7 @@ export default function CustomerDetails() {
                     </div>
                   </div>
                   <div className="form-btn" style={{ display: 'flex', justifyContent: 'right' }}>
-                    <Link to={`/update_customer/${customer.idCustomer}`} className="submit-btn" style={{ textAlign: 'center', marginRight: '10px', 'paddingTop': '5px' }}>Chỉnh sửa</Link>
+                    <Link to={`/customers/update/${customer.idCustomer}`} className="submit-btn" style={{ textAlign: 'center', marginRight: '10px', 'paddingTop': '5px' }}>Chỉnh sửa</Link>
                   </div>
                 </form>
               </div>
