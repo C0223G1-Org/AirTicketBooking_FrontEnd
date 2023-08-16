@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { getListUnBookTicket } from "../services/TicketService";
+import { getListUnBookTicket, searchUnBookedTicket } from "../services/TicketService";
 import { Link } from "react-router-dom";
-import { Formik } from "formik";
+import { Field, Form, Formik } from "formik";
+import Swal from "sweetalert2";
 
 function TicketUnBook() {
     const [unTickets, setUnTickets] = useState([])
@@ -14,37 +15,56 @@ function TicketUnBook() {
             setUnTickets(data.content)
         })
     }
+    const findUnbooked=(value)=>{
+        searchUnBookedTicket(page,value).then((data)=>{
+            if (!data.content) {
+                Swal.fire({
+                    icon: "error",
+                    title: 'Không tìm thấy!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                showUnBookTickets(page)
+            } else {
+                setUnTickets(data.content)
+            }
+           
+        })
+    }
     return (
         <div>
             <h1>
                 Quản Lý Bán Vé
             </h1>
-            <div className="section-ticket">
+            <div className="section-unBook-ticket">
                 <ul>
-                    <li className="section-ticket-item">
+                    <li className="section-unBook-ticket-item">
                         <Link to={`/ticket/booked`}>
                             <button className="status-ticket" type="button">Vé Đã Đặt</button>
                         </Link>
                     </li>
                 </ul>
                 <ul>
-                    
-                        <li className="section-ticket-item">
-                            <input type="text" placeholder="Mã Ghế" />
-                        </li>
-                        <li className="section-ticket-item">
-                            <input type="text" placeholder="Mã Ghế" />
-                        </li>
-                        <li className="section-ticket-item">
-                            <input placeholder="Ngày bay" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" />
-                        </li>
-                        <li className="section-ticket-item">
-                            <input type="text" placeholder="tìm kiếm" />
-                        </li>
-                        <li className="section-ticket-item">
-                            <button type="button">Search</button>
-                        </li>
-               
+                    <Formik
+                        initialValues={{
+                            routeCode: "",
+                            chairCode: ""
+                        }}
+                        onSubmit={(value)=>{
+                            findUnbooked(value)
+                        }}>
+                        <Form>
+                            <li className="section-unBook-ticket-item">
+                                <Field type="text" name="routeCode" placeholder="Mã Chuyến Bay" />
+                            </li>
+                            <li className="section-unBook-ticket-item">
+                                <Field type="text" name="chairCode" placeholder="Mã Ghế" />
+                            </li>
+                            <li className="section-unBook-ticket-item">
+                                <button type="submit">Tìm Kiếm</button>
+                            </li>
+                        </Form>
+                    </Formik>
                 </ul>
             </div>
             <div className="table-ticket">
@@ -62,13 +82,13 @@ function TicketUnBook() {
                     </thead>
                     <tbody>
                         {unTickets.map((ticket, index) => (
-                            <tr>
-                                <td style={{ textAlign: 'center' }} key={index}>{index}</td>
-                                <td style={{ textAlign: 'left' }}>{ticket.positionSeat}</td>
-                                <td style={{ textAlign: 'center' }}>{ticket.nameRoute}</td>
-                                <td style={{ textAlign: 'center' }}>{ticket.nameDeparture}-{ticket.nameDestination}</td>
-                                <td style={{ textAlign: 'right' }}>{ticket.timeDeparture}</td>
-                                <td style={{ textAlign: 'center' }}>{ticket.typeSeat}</td>
+                            <tr key={index}>
+                                <td  >{index}</td>
+                                <td >{ticket.positionSeat}</td>
+                                <td >{ticket.nameRoute}</td>
+                                <td >{ticket.nameDeparture}-{ticket.nameDestination}</td>
+                                <td >{ticket.timeDeparture}</td>
+                                <td >{ticket.typeSeat}</td>
                             </tr>
                         ))}
                     </tbody>
