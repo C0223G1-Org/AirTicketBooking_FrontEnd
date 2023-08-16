@@ -1,6 +1,4 @@
 import {React, useEffect, useState} from 'react';
-import {ErrorMessage, Field, Form, Formik} from 'formik';
-import * as yup from 'yup';
 import {getAllDeparture} from '../../services/DepartureServices';
 import {getAllDestination} from '../../services/DestinationServices';
 
@@ -129,7 +127,7 @@ export default function Home() {
                                             timer: 1500
                                         })
                                     } else {
-                                        navigate(`/list/${selectedDeparture},${selectedDestination},${dateDeparture},${ticketType},${adult},${children}`);
+                                        navigate(`/list/${selectedDeparture},${selectedDestination},${dateDeparture},${dateDestination},${ticketType},${adult},${children}`);
                                     }
                                 } else if (sumPeople > 5) {
                                     Swal.fire({
@@ -242,30 +240,6 @@ export default function Home() {
                     <span className="carousel-control-next-icon" aria-hidden="true"/>
                     <span className="visually-hidden">Next</span>
                 </button>
-            </div>
-            <div className="row banner">
-                <div className="col-2"/>
-                <div className="col-2">
-                    <img className="rounded-circle"
-                         src="https://elmistibota.com/wp-content/uploads/2020/11/lam-passport-online-top.jpg"/>
-                    <h6>Quy định chung</h6>
-                </div>
-                <div className="col-2">
-                    <img className="rounded-circle"
-                         src="https://i.pinimg.com/736x/2f/41/50/2f4150bb3504111adb674612ac8b1b89.jpg"/>
-                    <h6>Ưu đãi cực đã</h6>
-                </div>
-                <div className="col-2">
-                    <img className="rounded-circle"
-                         src="https://i.pinimg.com/564x/d6/19/08/d61908e1da389de3fc4d9a87ec3f8787.jpg"/>
-                    <h6>Tin tức phổ biến</h6>
-                </div>
-                <div className="col-2">
-                    <img className="rounded-circle"
-                         src="https://i.pinimg.com/564x/8e/59/5f/8e595f4bcfe87564134654f680be45e8.jpg"/>
-                    <h6>Mua thêm hành lý</h6>
-                </div>
-                <div className="col-2"/>
             </div>
             <div className="row form-search">
                 <div className="col-md-6 col-md-offset-1">
@@ -398,19 +372,22 @@ export default function Home() {
                                         <option value='2'>2</option>
                                         <option value='3'>3</option>
                                         <option value='4'>4</option>
+                                        <option value='5'>5</option>
                                     </select>
                                     <span className="select-arrow"/>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <span className="form-label">Trẻ em (0-12 tuổi)</span>
+                                    <span className="form-label">Trẻ em (0-15 tuổi)</span>
                                     <select className="form-control" onChange={(e) => {
                                         setChildren(e.target.value)
                                     }}>
                                         <option value='0'>0</option>
                                         <option value='1'>1</option>
                                         <option value='2'>2</option>
+                                        <option value='3'>3</option>
+                                        <option value='4'>4</option>
                                     </select>
                                     <span className="select-arrow"/>
                                 </div>
@@ -423,59 +400,91 @@ export default function Home() {
                         {/* </form> */}
                     </div>
                 </div>
-                <div className="col-md-6 col-md-offset-1 bonus">
+                <div className="col-md-6 col-md-offset-2 bonus">
                     <h2 className="title">Khám phá những điểm đến thú vị</h2>
                     <div className="row">
                         <div className="col-6 row-cols-md-1 g-4 first-card">
-                            <div className="col">
-                                <div className="card text-white travel">
-                                    <img
-                                        src="https://dulichchat.com/wp-content/uploads/2021/01/du-lich-phu-quoc-dulichchat-25-1.jpg"
-                                        className="card-img" alt="..."/>
-                                    <div className="card-img-overlay">
-                                        <h4 className="card-title">Phú Quốc - Hòn ngọc quý</h4>
-                                        <button>Khám phá</button>
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="card text-white travel">
+                                        <img
+                                            src="https://dulichchat.com/wp-content/uploads/2021/01/du-lich-phu-quoc-dulichchat-25-1.jpg"
+                                            className="card-img" alt="..."/>
+                                        <div className="card-img-overlay">
+                                            <h4 className="card-title">Phú Quốc - Hòn ngọc quý</h4>
+                                            <button>Khám phá</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col img-down">
-                                <div className="card text-white travel">
-                                    <img src="https://media.travel.com.vn/destination/tf_220726033156_024216.jpg"
-                                         className="card-img" alt="..."/>
-                                    <div className="card-img-overlay">
-                                        <h4 className="card-title">Đà Lạt - Mộng mơ</h4>
-                                        <button>Khám phá</button>
+                            <div className="row">
+                                <div className="col-12 img-down">
+                                    <div className="card text-white travel">
+                                        <img src="https://media.travel.com.vn/destination/tf_220726033156_024216.jpg"
+                                             className="card-img" alt="..."/>
+                                        <div className="card-img-overlay">
+                                            <h4 className="card-title">Đà Lạt - Mộng mơ</h4>
+                                            <button>Khám phá</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-6 row-cols-md-1 g-4 second-card">
-                            <div className="col">
-                                <div className="card text-white travel">
-                                    <img
-                                        src="https://www.quangbinhtravel.vn/wp-content/uploads/2013/05/ca-chep-rong.jpg"
-                                        className="card-img" alt="..."/>
-                                    <div className="card-img-overlay">
-                                        <h4 className="card-title">Đà Nẵng - Năng động</h4>
-                                        <button>Khám phá</button>
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="card text-white travel">
+                                        <img
+                                            src="https://www.quangbinhtravel.vn/wp-content/uploads/2013/05/ca-chep-rong.jpg"
+                                            className="card-img" alt="..."/>
+                                        <div className="card-img-overlay">
+                                            <h4 className="card-title">Đà Nẵng - Năng động</h4>
+                                            <button>Khám phá</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col img-down">
-                                <div className="card text-white travel">
-                                    <img
-                                        src="https://static-images.vnncdn.net/files/publish/2022/7/27/ha-long-bay-1-852.jpg"
-                                        className="card-img" alt="..."/>
-                                    <div className="card-img-overlay">
-                                        <h4 className="card-title">Hạ Long - Hùng vĩ</h4>
-                                        <button>Khám phá</button>
+                            <div className="row">
+                                <div className="col-12 img-down">
+                                    <div className="card text-white travel">
+                                        <img
+                                            src="https://static-images.vnncdn.net/files/publish/2022/7/27/ha-long-bay-1-852.jpg"
+                                            className="card-img" alt="..."/>
+                                        <div className="card-img-overlay">
+                                            <h4 className="card-title">Hạ Long - Hùng vĩ</h4>
+                                            <button>Khám phá</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div className="row banner">
+                <div className="col-2"/>
+                <div className="col-2">
+                    <img className="rounded-circle"
+                         src="https://elmistibota.com/wp-content/uploads/2020/11/lam-passport-online-top.jpg"/>
+                    <h6>Quy định chung</h6>
+                </div>
+                <div className="col-2">
+                    <img className="rounded-circle"
+                         src="https://i.pinimg.com/736x/2f/41/50/2f4150bb3504111adb674612ac8b1b89.jpg"/>
+                    <h6>Ưu đãi cực đã</h6>
+                </div>
+                <div className="col-2">
+                    <img className="rounded-circle"
+                         src="https://i.pinimg.com/564x/d6/19/08/d61908e1da389de3fc4d9a87ec3f8787.jpg"/>
+                    <h6>Tin tức phổ biến</h6>
+                </div>
+                <div className="col-2">
+                    <img className="rounded-circle"
+                         src="https://i.pinimg.com/564x/8e/59/5f/8e595f4bcfe87564134654f680be45e8.jpg"/>
+                    <h6>Mua thêm hành lý</h6>
+                </div>
+                <div className="col-2"/>
             </div>
             <div>
             <Popup />
