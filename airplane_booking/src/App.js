@@ -4,6 +4,9 @@ import SearchDemo from "./component_SAngTDN/SearchDemo";import ChangePassword fr
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import TicketBooked from "./components/TicketBooked";
 import TicketUnBook from "./components/TicketUnBook";
+import ListPost from "./component/post/ListPost";
+import {CreatePost} from "./component/post/CreatePost";
+import {UpdatePost} from "./component/post/UpdatePost";
 
 
 
@@ -17,6 +20,9 @@ function App() {
  <Route path="/change-password" element={<ChangePassword/>}></Route>
   <Route path="/ticket/booked" element={<TicketBooked/>}/>
   <Route path="/ticket/unbooked" element={<TicketUnBook/>}/>
+  <Route path="/listPost" element={<ListPost/>}/>
+  <Route path="/createPost" element={<CreatePost/>}/>
+  <Route path="/updatePost/:id" element={<UpdatePost/>}/>
 </Routes>
   </BrowserRouter>
 

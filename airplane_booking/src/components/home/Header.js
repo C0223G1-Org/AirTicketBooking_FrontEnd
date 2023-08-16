@@ -1,5 +1,6 @@
 import React from 'react';
 import "../../css/home/Header.css";
+import NavLink from "react-bootstrap/NavLink";
 
 export default function Header() {
     // localStoragevvvvvvvv
@@ -31,10 +32,10 @@ export default function Header() {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" href="#">
+                            <NavLink to="/listPost" className="nav-link active" href="#">
                                 <i className="fa-regular fa-newspaper" />
                                 Tin tức
-                            </a>
+                            </NavLink>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link active" href="#">
