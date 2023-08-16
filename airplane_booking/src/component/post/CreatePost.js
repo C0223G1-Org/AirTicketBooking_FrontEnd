@@ -57,9 +57,9 @@ export function CreatePost() {
 
 
 
-    const formatDateTime = (datePost) => {
-        return moment(datePost).format("DD/MM/YYYY HH:mm:ss");
-    };
+    // const formatDateTime = (datePost) => {
+    //     return moment(datePost).format("DD/MM/YYYY HH:mm:ss");
+    // };
 
 
 
