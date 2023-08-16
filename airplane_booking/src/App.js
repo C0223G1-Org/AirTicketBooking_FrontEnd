@@ -20,9 +20,7 @@ function App() {
  <Route path="/change-password" element={<ChangePassword/>}></Route>
   <Route path="/ticket/booked" element={<TicketBooked/>}/>
   <Route path="/ticket/unbooked" element={<TicketUnBook/>}/>
-  <Route path="/listPost" element={<ListPost/>}/>
-  <Route path="/createPost" element={<CreatePost/>}/>
-  <Route path="/updatePost/:id" element={<UpdatePost/>}/>
+
 </Routes>
   </BrowserRouter>
 
