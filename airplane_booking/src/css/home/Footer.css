@@ -20,9 +20,11 @@
     color: #deaa39;
 }
 #footer .footer-social .col-4 .row .sky-img img {
+    margin-left: 25%;
     width: 150px;
 }
 #footer .footer-social .col-4 .row .codegym-img img{
+    margin-left: 25%;
     width: 200px;
 }
 #footer .footer-social .col-4 .row .d-flex a .fa-brands  {
@@ -67,4 +69,6 @@
     font-size: 30px;
     padding: 10px;
 }
+
+
 

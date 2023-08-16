@@ -130,7 +130,7 @@ export default function DetailTicket() {
                                             </p>
                                             <p>
                                                 Loại ghế :
-                                                <span className="outstanding"> {arr[3]}</span>
+                                                <span className="outstanding"> {arr[2]}</span>
                                             </p>
                                         </div>
                                     </div>

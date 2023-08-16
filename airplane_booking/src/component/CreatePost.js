@@ -1,13 +1,13 @@
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {useNavigate} from "react-router";
+import {useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import * as postService from "../services/PostServices";
 import "../css/post.css";
 import * as Yup from "yup"
 import moment from "moment";
 import Swal from "sweetalert2";
-import {storage} from "./firebase";
-import {getDownloadURL, ref, uploadBytesResumable} from "@firebase/storage";
+import {storage} from "../firebase";
+import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
 
 export function CreatePost() {
     const [employees, setEmployee] = useState([]);

@@ -21,15 +21,22 @@ import EmployeeUpdateCustomer from './component/EmployeeUpdateCustomer';
 import ListRouter from "./component_SAngTDN/ListRoute";
 import CustomerUpdate from "./component/CustomerUpdate";
 import CustomerDetails from "./component/CustomerDetails";
-import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
-import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
-import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
+import DetailTicket from "./component/ticket/DetailTicket";
+import InfoPassenger from "./component/ticket/InfoPassenger";
+import EmployeeList from "./component/Employee/EmployeeList";
+// import CreateEmployee from "./component/Employee/CreateEmployee";
+// import EditEmployee from "./component/Employee/EditEmployee";
+import ListPost from "./component/post/ListPost";
+
+// import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
+// import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
+// import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Header />
-            <TicketProvider>
+            {/*<TicketProvider>*/}
             <Routes>
                 <Route path='/home' element={<Home/>}></Route>
                 <Route path='/top10' element={<GetTop10Cheapest/>}></Route>
@@ -46,14 +53,21 @@ root.render(
                 <Route path='/customers/update/:id' element={<CustomerUpdate />} />
                 <Route path='/customers/details/:id' element={<CustomerDetails />} />
                 <Route path='/list/:data' element={<ListRouter />} />
-                <Route path="/tickets/search-ticket" element={<SearchTicketPage />} />
-                <Route
-                    path="/tickets/search-ticket-results"
-                    element={<SearchResultPage />}
-                />
-                <Route path="/admin/messages" element={<AdminPage/>}></Route>
+                <Route path="/detail-ticket/:data" element={<DetailTicket />} />
+                <Route path="/info-passenger/:data" element={<InfoPassenger/>} />
+                <Route path="/employee" element={<EmployeeList/>} />
+                {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
+                {/*<Route path='/employee/update/:id' element={<EditEmployee />} />*/}
+                <Route path='/listPost' element={<ListPost />} />
+
+                {/*<Route path="/tickets/search-ticket" element={<SearchTicketPage />} />*/}
+                {/*<Route*/}
+                {/*    path="/tickets/search-ticket-results"*/}
+                {/*    element={<SearchResultPage />}*/}
+                {/*/>*/}
+                {/*<Route path="/admin/messages" element={<AdminPage/>}></Route>*/}
             </Routes>
-            </TicketProvider>
+            {/*</TicketProvider>*/}
             <Footer />
         </BrowserRouter>
 
