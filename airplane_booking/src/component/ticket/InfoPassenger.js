@@ -65,7 +65,7 @@ export default function InfoPassenger() {
     const formattedTotalPrice2 = numeral(totalPrice2).format('0,0 đ');
 
     //format tiền tệ vnd one-way
-    const priceTicket1 = arr[4] * 1;
+    const priceTicket1 = arr[3] * 1;
     const priceTax1 = priceTicket1 * 0.6;
     const totalPrice1 = priceTicket1 + priceTax1;
     const formattedPriceRouter1 = numeral(priceTicket1).format('0,0 đ');
@@ -596,15 +596,15 @@ export default function InfoPassenger() {
                                         </p>
                                         <p>
                                             Loại ghế :
-                                            <span className="outstanding"> {arr[3]}</span>
+                                            <span className="outstanding"> {arr[2]}</span>
                                         </p>
                                     </div>
                                 </div>
                                 <div className="row info-second">
                                     <div className="col-2">
                                         <p>số lượng hành khách</p>
-                                        <p>người lớn : <span className="passenger">{arr[5]}</span></p>
-                                        <p>trẻ em : <span className="passenger">{arr[6]}</span></p>
+                                        <p>người lớn : <span className="passenger">{arr[4]}</span></p>
+                                        <p>trẻ em : <span className="passenger">{arr[5]}</span></p>
                                     </div>
                                     <div className="col-2">
                                         <p>Loại vé</p>
