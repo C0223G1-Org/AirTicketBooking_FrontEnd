@@ -137,7 +137,7 @@ export default function CreateReport() {
                                                             <Field as="select" className="form-control"
                                                                    name="timeCurrent"
                                                                    disabled={values.travelType === "multi-city"}>
-                                                                <option value="">--Chọn thời gian--</option>
+                                                                <option value="">--Vui lòng chọn thời gian--</option>
                                                                 <option value="week">Tuần này - Tuần Trước</option>
                                                                 <option value="month">Tháng này - Tháng trước</option>
                                                                 <option value="quarter">Quý này - Quý trước</option>
@@ -151,8 +151,8 @@ export default function CreateReport() {
                                                             <Field type="radio" id="multi-city" name="travelType"
                                                                    value="multi-city" onChange={() => {
                                                                 setFieldValue("travelType", "multi-city");
-                                                                setFieldValue("timeCurrent", "");
-                                                                setFieldValue("timePrevious", "");
+                                                                setFieldValue("timeCurrent", );
+                                                                setFieldValue("timePrevious", );
                                                             }}
                                                                    checked={values.travelType === "multi-city"}/>
                                                         </label>

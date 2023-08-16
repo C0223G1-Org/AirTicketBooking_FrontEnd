@@ -95,7 +95,7 @@ export const ChartComponent = ({dataTimeCurrent, dataTimePrevious, dataTimeAbout
             scales: {
                 x: {
                     type: 'category', // Use 'category' scale for the x-axis
-                    labels: ["Tuần 1", "Tuần 2", "Tuần 3", "Tuần 4", "Tuần 5", "Tuần 6", "Tuần 7", "Tuần 8", "Tuần 9", "Tuần 10", "Tuần 11", "Tuần 12"],
+                    labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
                     title: {
                         display: true,
                         text: 'Khoảng thời gian',
@@ -118,7 +118,7 @@ export const ChartComponent = ({dataTimeCurrent, dataTimePrevious, dataTimeAbout
             plugins: {
                 title: {
                     display: true,
-                    text: 'Thống kê doanh thu',
+                    text: 'Thống kê doanh thu theo tháng',
                     font: {
                         size: 50,
                     },
