@@ -9,8 +9,8 @@ import {useNavigate} from 'react-router-dom';
 import {Carousel} from 'bootstrap';
 import GetTop10Cheapest from "./Top10";
 import Swal from "sweetalert2";
-// import Popup from "./ChatPopup";
-// import "../../css/search_ticket/style2.css";
+import Popup from "./ChatPopup";
+import "../../css/search_ticket/style-popup.css";
 
 
 export default function Home() {
@@ -477,10 +477,10 @@ export default function Home() {
                 </div>
 
             </div>
-            {/*<div>*/}
-            {/*    <Popup />*/}
+            <div>
+            <Popup />
 
-            {/*</div>*/}
+            </div>
             <GetTop10Cheapest/>
         </div>
     )

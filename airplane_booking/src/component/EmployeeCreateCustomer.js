@@ -6,7 +6,7 @@ import { CreateCustomer } from '../services/CustomerServices';
 import "../employeeCreateCustomer.css"
 import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from '../firebase';
+import { storage } from '../firebase-chat';
 import { v4 } from "uuid";
 
 function EmployeeCreateCustomer() {
