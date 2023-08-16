@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/C0223G1-Org.github.io/AirTicketBooking_FrontEnd/static/css/main.da65cf05.css",
-    "main.js": "/C0223G1-Org.github.io/AirTicketBooking_FrontEnd/static/js/main.823356bb.js",
-    "static/js/787.2fd7200d.chunk.js": "/C0223G1-Org.github.io/AirTicketBooking_FrontEnd/static/js/787.2fd7200d.chunk.js",
-    "static/media/background.jpg": "/C0223G1-Org.github.io/AirTicketBooking_FrontEnd/static/media/background.852b117ae507d71bc103.jpg",
-    "index.html": "/C0223G1-Org.github.io/AirTicketBooking_FrontEnd/index.html",
-    "main.da65cf05.css.map": "/C0223G1-Org.github.io/AirTicketBooking_FrontEnd/static/css/main.da65cf05.css.map",
-    "main.823356bb.js.map": "/C0223G1-Org.github.io/AirTicketBooking_FrontEnd/static/js/main.823356bb.js.map",
-    "787.2fd7200d.chunk.js.map": "/C0223G1-Org.github.io/AirTicketBooking_FrontEnd/static/js/787.2fd7200d.chunk.js.map"
+    "main.css": "/AirTicketBooking_FrontEnd/static/css/main.65f531a4.css",
+    "main.js": "/AirTicketBooking_FrontEnd/static/js/main.83308d99.js",
+    "static/js/787.2fd7200d.chunk.js": "/AirTicketBooking_FrontEnd/static/js/787.2fd7200d.chunk.js",
+    "static/media/background.jpg": "/AirTicketBooking_FrontEnd/static/media/background.852b117ae507d71bc103.jpg",
+    "static/media/logo_5.png": "/AirTicketBooking_FrontEnd/static/media/logo_5.75e09d30fc964b94cb95.png",
+    "index.html": "/AirTicketBooking_FrontEnd/index.html",
+    "main.65f531a4.css.map": "/AirTicketBooking_FrontEnd/static/css/main.65f531a4.css.map",
+    "main.83308d99.js.map": "/AirTicketBooking_FrontEnd/static/js/main.83308d99.js.map",
+    "787.2fd7200d.chunk.js.map": "/AirTicketBooking_FrontEnd/static/js/787.2fd7200d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.da65cf05.css",
-    "static/js/main.823356bb.js"
+    "static/css/main.65f531a4.css",
+    "static/js/main.83308d99.js"
   ]
 }
