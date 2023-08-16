@@ -1,4 +1,4 @@
-import { Await, useParams } from "react-router-dom";
+import { Await, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getListRouter } from "../services/RouteServices";
 import Swal from "sweetalert2";
@@ -8,6 +8,7 @@ function ListRouter() {
   const [info, setInfor] = useState({});
   const [flights, setFlights] = useState([]);
   const [flag,setFlag] = useState(true);
+  const navigate = useNavigate();
 
   const [departurePriceTicket, setDeparturePriceTicket] = useState(0);
   const [departureTimeDeparture, setDepartureTimeDeparture] = useState("");
@@ -16,6 +17,7 @@ function ListRouter() {
   const [departureTypeSeat, setDeparturetypeSeat] = useState("");
   const [selecTicketDeparture, setSelecTicketDeparture] = useState("");
   const [departureTime,setDepartureTime] = useState();
+  const [idRouteDeparture,setIdRouteDeparture] = useState(0)
 
   const [arrivalPriceTicket, setArrivalPriceTicket] = useState(0);
   const [arrivalTimeDeparture, setArrivalTimeDeparture] = useState("");
@@ -24,6 +26,7 @@ function ListRouter() {
   const [arrivalTypeSeat, setArrivalTypeSeat] = useState("");
   const [selecTicketArrival, setSelecTicketArrival] = useState("");
   const [arrivalTime,setArrivalTime] = useState();
+  const [idRouteArrival,setIdRouteArrival] = useState(0)
 
   const totalPrice = (departurePriceTicket*1+arrivalPriceTicket*1)*1.6
 
@@ -147,7 +150,7 @@ function ListRouter() {
     return originalDate;
   }
 
-  const handleOnChangeBuyTicket = (e,price,timeDeparture, timeArrival,nameRoute,typeSeat)=>{
+  const handleOnChangeBuyTicket = (e,price,timeDeparture, timeArrival,nameRoute,typeSeat,idRoute)=>{
     if(flag){
       const departureTimeCheck = updateTimes(departureDay,timeDeparture)
       if((arrivalTime-departureTimeCheck<3 * 3600 * 1000)){
@@ -165,6 +168,7 @@ function ListRouter() {
     setDeparturetypeSeat(typeSeat);
     setdepartureDayOfTicket(departureDay);
     setDepartureTime(departureTimeCheck)
+    setIdRouteDeparture(idRoute)
       }
     }else{
       const arrivalTimeCheck = updateTimes(departureDay,timeDeparture)
@@ -183,6 +187,7 @@ function ListRouter() {
       setArrivalNameRoute(nameRoute);
       setArrivalTypeSeat(typeSeat);
       setArrivalDayOfTicket(departureDay);
+      setIdRouteArrival(idRoute);
       }
     }
   }
@@ -332,6 +337,23 @@ const handleOnClickDeparture = ()=>{
   
 }, []);
 
+  const handleSubmitOneWay= ()=>{
+    navigate(`/detail-ticket/${1},${idRouteDeparture},${departureTypeSeat},${departurePriceTicket},${array[5]},${array[6]}`);
+    //1.loại vé, 2.id tuyến bay,3. loại ghế ,4. giá 1 vé 5. người lớn 6.trẻ em
+
+    // diemDi: arr[0],
+    // diemDen: arr[1],
+    // ngayDi: arr[2],
+    // ngayDen: arr[3],
+    // loaiVe: arr[4],
+    // nguoiLon: arr[5],
+    // treEm: arr[6],
+    // emBe: arr[7],
+  }
+  const handleSubmitTwoWay=()=>{
+    navigate(`/detail-ticket/${2},${idRouteArrival},${departureTypeSeat},${arrivalTypeSeat},${departurePriceTicket},${departurePriceTicket},${array[5]},${array[6]}`);
+    //1.loại vé, 2.id tuyến đi,3. idtuyến vế ,4. loại ghế đi 5, loại ghế về , 6. giá đi. 7.giá về
+  }
 
   return (
     <>
@@ -521,7 +543,7 @@ const handleOnClickDeparture = ()=>{
                 <p style={{ margin: "10px", fontSize: "1.1rem" }}>
                   <b>
                     TỔNG TIỀN{" "}
-                    <span style={{ float: "right" }}>{new Intl.NumberFormat("de-DE").format((totalPrice))} VND</span>
+                    <span style={{ float: "right" }}>{new Intl.NumberFormat("de-DE").format((totalPrice*(array[5]*1+array[6]*1)))} VND</span>
                   </b>
                 </p>
               </div>
@@ -535,6 +557,7 @@ const handleOnClickDeparture = ()=>{
                   color: "white",
                   fontSize: "1.2rem",
                 }}
+                onClick={handleSubmitOneWay}
               >
                 <b>Xác nhận</b>
               </button>
@@ -548,6 +571,7 @@ const handleOnClickDeparture = ()=>{
                  color: "white",
                  fontSize: "1.2rem",
                }}
+               onClick={handleSubmitTwoWay}
              >
                <b>Xác nhận</b>
              </button>
@@ -801,7 +825,7 @@ const handleOnClickDeparture = ()=>{
                                   <div className="row">
                                     <div className="col-6">
                                       <label>Đặt vé &nbsp;</label>
-                                      <input type="radio" checked={(selecTicketDeparture === f.idRoute+"-a")||(selecTicketArrival === f.idRoute+"-a")} value={f.idRoute+"-a"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraBussiness,f.timeDeparture, f.timeArrival,f.nameRoute,"Bussiness")} name="ticket" />
+                                      <input type="radio" checked={(selecTicketDeparture === f.idRoute+"-a")||(selecTicketArrival === f.idRoute+"-a")} value={f.idRoute+"-a"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraBussiness,f.timeDeparture, f.timeArrival,f.nameRoute,"Bussiness",f.idRoute)} name="ticket" />
                                     </div>
                                     <div
                                       className="col-6"
@@ -827,7 +851,7 @@ const handleOnClickDeparture = ()=>{
                                   <div className="row">
                                     <div className="col-6">
                                       <label>Đặt vé &nbsp;</label>
-                                      <input type="radio" name="ticket" checked={(selecTicketDeparture === f.idRoute+"-b")||(selecTicketArrival === f.idRoute+"-b")} value={f.idRoute+"-b"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraSkyboss,f.timeDeparture, f.timeArrival,f.nameRoute,"Skyboss")} />
+                                      <input type="radio" name="ticket" checked={(selecTicketDeparture === f.idRoute+"-b")||(selecTicketArrival === f.idRoute+"-b")} value={f.idRoute+"-b"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraSkyboss,f.timeDeparture, f.timeArrival,f.nameRoute,"Skyboss",f.idRoute)} />
                                     </div>
                                     <div
                                       className="col-6"
@@ -852,7 +876,7 @@ const handleOnClickDeparture = ()=>{
                                   <div className="row">
                                     <div className="col-6">
                                       <label>Đặt vé &nbsp;</label>
-                                      <input type="radio" name="ticket" checked={(selecTicketDeparture === f.idRoute+"-c")||(selecTicketArrival === f.idRoute+"-c")} value={f.idRoute+"-c"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraVeluxe,f.timeDeparture, f.timeArrival,f.nameRoute,"Veluxe")} />
+                                      <input type="radio" name="ticket" checked={(selecTicketDeparture === f.idRoute+"-c")||(selecTicketArrival === f.idRoute+"-c")} value={f.idRoute+"-c"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraVeluxe,f.timeDeparture, f.timeArrival,f.nameRoute,"Veluxe",f.idRoute)} />
                                     </div>
                                     <div
                                       className="col-6"
@@ -877,7 +901,7 @@ const handleOnClickDeparture = ()=>{
                                   <div className="row">
                                     <div className="col-6">
                                       <label>Đặt vé &nbsp;</label>
-                                      <input type="radio" name="ticket" checked={(selecTicketDeparture === f.idRoute+"-d")||(selecTicketArrival === f.idRoute+"-d")} value={f.idRoute+"-d"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraEco,f.timeDeparture, f.timeArrival,f.nameRoute,"Eco")} />
+                                      <input type="radio" name="ticket" checked={(selecTicketDeparture === f.idRoute+"-d")||(selecTicketArrival === f.idRoute+"-d")} value={f.idRoute+"-d"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraEco,f.timeDeparture, f.timeArrival,f.nameRoute,"Eco",f.idRoute)} />
                                     </div>
                                     <div
                                       className="col-6"
