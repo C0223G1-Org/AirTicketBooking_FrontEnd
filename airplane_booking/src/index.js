@@ -18,6 +18,10 @@ import TicketUnBook from './components/TicketUnBook';
 import CustomerManagement from './component/CustomerManagement';
 import EmployeeCreateCustomer from './component/EmployeeCreateCustomer';
 import EmployeeUpdateCustomer from './component/EmployeeUpdateCustomer';
+import ListPost from "./component/post/ListPost";
+import {CreatePost} from "./component/post/CreatePost";
+import {UpdatePost} from "./component/post/UpdatePost";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -36,6 +40,9 @@ root.render(
                 <Route path='/customers' element={<CustomerManagement />} />
                 <Route path='/customers/add' element={<EmployeeCreateCustomer />} />
                 <Route path='/customers/edit/:id' element={<EmployeeUpdateCustomer />} />
+                <Route path="/listPost" element={<ListPost/>}/>
+                <Route path="/createPost" element={<CreatePost/>}/>
+                <Route path="/updatePost/:id" element={<UpdatePost/>}/>
             </Routes>
         </BrowserRouter>
         <Footer />

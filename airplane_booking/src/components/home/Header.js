@@ -32,7 +32,7 @@ export default function Header() {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/listPost" className="nav-link active" href="#">
+                            <NavLink to={"/listPost"} className="nav-link active">
                                 <i className="fa-regular fa-newspaper" />
                                 Tin tức
                             </NavLink>

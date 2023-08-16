@@ -14,24 +14,14 @@ import {createPost} from "../../services/PostServices";
 
 
 export function CreatePost() {
+    const navigate = useNavigate();
     const [employees, setEmployee] = useState([]);
     const imgPreviewRef = useRef(null)
     const inputFileRef = useRef(null);
     const [imageUpload, setImageUpload] = useState(null);
-
-    const navigate = useNavigate();
-    const [fileUpload, setFileUpload] = useState(null)
-    // const onChange = (file) => {
-    //     setFileUpload(file)
-    //     const reader = new FileReader();
-    //     reader.addEventListener("load", function () {
-    //         imgPreviewRef.current.src = reader.result;
-    //         imgPreviewRef.current.style.display = "block";
-    //     });
-    //     if (file) {
-    //         reader.readAsDataURL(file);
-    //     }
-    // }
+    const formatDateTime = (dateTime) => {
+        return moment(dateTime).format("DD/MM/YYYY HH:mm");
+    };
 
 
     const savePost = (async (post) => {
@@ -40,14 +30,20 @@ export function CreatePost() {
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then(async (url) => {
 
-                await createPost({...post, image: url,employee:employees.find(es=>es.idEmployee==post.employee)})
+                await createPost({
+                    ...post,
+                    image: url,
+                    employee: employees.find(es => es.idEmployee == post.employee)
+                }).then(
+                    navigate("/listPost")
+                )
                 console.log(url);
             })
         }).then(
             () => {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Chỉnh sửa thành công !',
+                    title: 'Tạo mới thành công !',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -56,12 +52,9 @@ export function CreatePost() {
     })
 
 
-
     // const formatDateTime = (datePost) => {
     //     return moment(datePost).format("DD/MM/YYYY HH:mm:ss");
     // };
-
-
 
 
     useEffect(() => {
@@ -144,14 +137,14 @@ export function CreatePost() {
                                 {
                                     marginTop: "4rem",
                                     marginBottom:
-                                "4rem",
-                                paddingLeft:
-                                "0px",
-                                paddingTop:
-                                "0px",
-                                paddingRight:
-                                "0px"
-                            }
+                                        "4rem",
+                                    paddingLeft:
+                                        "0px",
+                                    paddingTop:
+                                        "0px",
+                                    paddingRight:
+                                        "0px"
+                                }
                             }
                         >
                             <
@@ -160,14 +153,14 @@ export function CreatePost() {
                                     {
                                         borderRadius: "4px",
                                         textAlign:
-                                    "center",
-                                    backgroundColor:
-                                    "#4FA3E3",
-                                    height:
-                                    "57px",
-                                    color:
-                                    "white"
-                                }
+                                            "center",
+                                        backgroundColor:
+                                            "#4FA3E3",
+                                        height:
+                                            "57px",
+                                        color:
+                                            "white"
+                                    }
                                 }
                             >
                                 <h2
@@ -196,70 +189,52 @@ Tiêu đề <span style={{color: "red"}}>*</span>
 
                                 </div>
                                 <div className="mt-2 inputs">
-                                    <span>
-                                      Nhân viên <span style={{ color: "red" }}>*</span>
-                                    </span>
-                                                      <Field
-                                                          type="number"
-                                                          value="1"
-                                                          className="form-control"
-                                                          id="employee"
-                                                          name="employee"
-                                                          readOnly
-                                                      />
-                                                  </div>
-                                    <div className="mt-2 inputs">
 <span>
-Ngày tạo <span style={{color: "red"}}>*</span>
+Ngày tạo <span style={{color: "red"}}>*</span>{formatDateTime(new Date())}
 </span>
 
-                                        <Field
-                                            type="localDate"
-                                            className="form-control"
-                                            name="datePost"
-                                        />
-                                    </div>
-                                    <div className="mt-2 inputs">
+
+                                </div>
+                                <div className="mt-2 inputs">
 <span>
 Upload hình ảnh <span style={{color: "red"}}>*</span>
 </span>
-                                        <Field className="custom-file-input" style={{paddingTop: '35px'}}
-                                               accept="image/png, image/gif, image/jpeg" type="file" id="input-file"
-                                               ref={inputFileRef} onChange={handleInputChange} name='imgCustomer'/>
-                                        <img style={{marginTop: 50}} name='image'
-                                             src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"
-                                             id="img-preview" ref={imgPreviewRef} alt="Preview"/>
-                                    </div>
+                                    <Field className="custom-file-input"
+                                           accept="image/png, image/gif, image/jpeg" type="file" id="input-file"
+                                           ref={inputFileRef} onChange={handleInputChange} name='image'/>
+                                    <img style={{marginTop: 50}} name='image'
+                                         id="img-preview" ref={imgPreviewRef} alt="Preview"/>
+                                </div>
 
-                                    <div className="mt-4 inputs">
+                                <div className="mt-4 inputs">
 <span>
 Nội dung <span style={{color: "red"}}>*</span>
 </span>
-                                        <Field
-                                            name="content"
-                                            component={CKEditorComponent}
-                                        />
+                                    <Field
+                                        name="content"
+                                        component={CKEditorComponent}
+                                    />
+                                </div>
+                                <div className="mt-4 btn-group">
+                                    <div className="text-center m-auto">
+                                        <button
+                                            type="button"
+                                            className="btn btn-secondary"
+                                            style={{width: "100px"}}
+                                        >
+                                            <b className="text-center">Quay lại</b>
+                                        </button>
                                     </div>
-                                    <div className="mt-4 btn-group">
-                                        <div className="text-center m-auto">
-                                            <button
-                                                type="button"
-                                                className="btn btn-secondary"
-                                                style={{width: "100px"}}
-                                            >
-                                                <b className="text-center">Quay lại</b>
-                                            </button>
-                                        </div>
-                                        <div className="text-center m-auto">
-                                            <button
-                                                type="submit"
-                                                className="btn btn-warning "
-                                                data-mdb-toggle="modal"
-                                                data-mdb-target="#exampleModalToggle1"
-                                            >
-                                                <b className="text-center">Thêm mới</b>
-                                            </button>
-                                        </div>
+                                    <div className="text-center m-auto">
+                                        <button
+                                            type="submit"
+                                            className="btn btn-warning "
+                                            data-mdb-toggle="modal"
+                                            data-mdb-target="#exampleModalToggle1"
+                                        >
+                                            <b className="text-center">Thêm mới</b>
+                                        </button>
+                                    </div>
                                 </div>
                             </Form>
                         </div>
@@ -267,5 +242,5 @@ Nội dung <span style={{color: "red"}}>*</span>
                 </div>
             </div>
         </Formik>
-);
+    );
 }
