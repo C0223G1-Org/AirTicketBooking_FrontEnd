@@ -1,5 +1,16 @@
 import axios from "axios";
 import { date } from "yup";
+import qs from 'qs';
+
+export async function searchTicketByNameAndIdCardPassenger(name,idCard,page) {
+    const res = await axios.get('http://localhost:8080/tickets/search-ticket/'+ name +'/' + idCard + '?page=' + page)
+    return res.data;
+}
+export async function   searchTicketByNameAndIdCardPassengerResult(name,idCard,page) {
+    const res = await axios.get('http://localhost:8080/tickets/search-ticket-result/'+ name +'/' + idCard + '?page=' + page)
+    return res.data;
+}
+
 
 export async function updateListTicket(ticket){
         await axios.patch(`http://localhost:8080/tickets/updateTicket/`+ticket.idTicket,ticket);
@@ -12,7 +23,7 @@ export async function findTicketById(){
 export async function getListCustomer(){
     const res= await axios.get('http://localhost:8080/customers/list?page=0');
     return res.data;
-   
+
 }
 
 export async function getListSeat(){
@@ -35,4 +46,28 @@ export async function findByIdPassenger(idPassengers){
 export async function getListTicket(){
     const res= await axios.get('http://localhost:8080/tickets');
     return res.data;
+}
+export const getListTickets=async(page)=>{
+    const response = await axios.get("http://localhost:8080/tickets/booked/"+page)
+    return response.data;
+}
+export const getListUnBookTicket=async(page)=>{
+    const response = await axios.get("http://localhost:8080/tickets/unbooked/"+page)
+    return response.data;
+}
+export const deleteTicketDB=async(id)=>{
+    const response=await axios.delete("http://localhost:8080/tickets/"+id)
+    return response.data;
+}
+export const searchBookedTicket=async(page,ticketSearch)=>{
+    const ticket = qs.stringify(ticketSearch);
+    console.log(ticket)
+    const response=await axios.get(`http://localhost:8080/tickets/search/${page}?${ticket}`)
+    return response.data
+}
+export const searchUnBookedTicket=async(page,ticketSearch)=>{
+    const ticket = qs.stringify(ticketSearch);
+    console.log(ticket)
+    const response=await axios.get(`http://localhost:8080/tickets/search-unbooked/${page}?${ticket}`)
+    return response.data
 }

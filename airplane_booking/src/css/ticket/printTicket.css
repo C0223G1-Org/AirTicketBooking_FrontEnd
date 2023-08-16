@@ -15,7 +15,6 @@ body {
 .ticket {
   width: 70%;
   margin: 10px auto;
-
   background-color: white;
   border: 5px solid rgb(6, 133, 170);
   border-radius: 10px;
@@ -27,16 +26,19 @@ body {
 }
 
 .codeGym {
-  padding-left: 200px;
+ text-align: center;
   color: white;
+ 
 }
 
 .print {
-  text-align: center;
+  
   font-size: 14px;
   margin-bottom: 30px;
   color: #0055a3;
   background-color: rgb(6, 133, 170);
+  padding-left: 10px;
+  margin-left: 0px;
 }
 
 .label {

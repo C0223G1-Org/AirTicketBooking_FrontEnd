@@ -42,7 +42,7 @@ const UpdateTicket = () => {
           <div className="table-title">
             <div className="title">
               <div className="update">
-                <h2>CHỈNH SỬA VÉ</h2>
+                <h1>CHỈNH SỬA VÉ</h1>
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@ const UpdateTicket = () => {
                   <div className="row">
                     <div className="form-group col-sm-6 passenger">
                       <label htmlFor="namePassenger">
-                        <b>Tên người đi:</b>
+                        <b>Tên người đi<span className="star">(*)</span>:</b>
                       </label>
                       <br></br>
                       <Field
@@ -132,7 +132,7 @@ const UpdateTicket = () => {
                     </div>
                     <div className="class form-group col-sm-6">
                       <label htmlFor="customer">
-                        <b>Email thanh toán:</b>
+                        <b>Email thanh toán<span className="star">(*)</span>:</b>
                       </label>
                       <br></br>
                       <Field
