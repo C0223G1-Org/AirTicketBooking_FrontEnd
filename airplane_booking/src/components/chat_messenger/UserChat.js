@@ -65,11 +65,11 @@ const UserChat = () => {
         id="_livechat_container"
         style={{
           width: "600px",
-          border: "1px",
+          border: "1px solid black",
           display: chatStarted ? "block" : "none",
         }}
       >
-        <div className="container" style={{ width: "600px", border: "1px" }}>
+        <div style={{ width: "600px", border: "1px" }}>
           <div
             id="fpt_ai_livechat_container_header"
             style={{
@@ -87,12 +87,11 @@ const UserChat = () => {
 
           <div className="row clearfix">
             <div className="col-lg-12">
-              <div>
-                <div className="chat_messenger">
-                  <div className="chat-history">
-                    <ul className="m-b-0">
-                      {messages.map((message, index) => (
-                        <li
+              <div className="chat_messenger_user">
+                <div className="chat-history">
+                  <ul className="m-b-0">
+                    {messages.map((message, index) => (
+                      <li
                         key={index}
                         className={`clearfix ${
                           message.sender === "admin"
@@ -102,56 +101,55 @@ const UserChat = () => {
                       >
                         <div className="message">{message.content}</div>
                       </li>
-                      ))}
-                      {adminMessages.map((msg, index) => (
-                        <li key={index} className="clearfix">
-                          <div className="message other-message">
-                            {msg.content}
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+                    ))}
+                    {adminMessages.map((msg, index) => (
+                      <li key={index} className="clearfix">
+                        <div className="message other-message">
+                          {msg.content}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="row reply">
+                  <div className="col-sm-1 col-xs-1 reply-emojis">
+                    <i className="fa fa-smile-o fa-2x"></i>
                   </div>
-                  <div className="row reply">
-                    <div className="col-sm-1 col-xs-1 reply-emojis">
-                      <i className="fa fa-smile-o fa-2x"></i>
-                    </div>
-                    <div className="col-sm-1 col-xs-1 reply-recording">
-                      <i
-                        className="fa fa-microphone fa-2x"
-                        aria-hidden="true"
-                      ></i>
-                    </div>
-                    <div className="col-sm-9 col-xs-9 reply-main">
-                      <input
-                        className="form-control"
-                        rows="1"
-                        id="comment"
-                        placeholder="Nhập câu hỏi của quý khách tại đây"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                      ></input>
-                    </div>
-                    <div className="col-sm-1 col-xs-1 reply-send">
-                      <button
-                        className="fa fa-send fa-2x"
-                        aria-hidden="true"
-                        onClick={handleSendMessage}
-                      >
-                        {" "}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="35"
-                          height="35"
-                          fill="currentColor"
-                          class="bi bi-send"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
-                        </svg>
-                      </button>
-                    </div>
+                  <div className="col-sm-1 col-xs-1 reply-recording">
+                    <i
+                      className="fa fa-microphone fa-2x"
+                      aria-hidden="true"
+                    ></i>
                   </div>
+                  <div className="col-sm-9 col-xs-9 reply-main">
+                    <input
+                      className="form-control"
+                      rows="1"
+                      id="comment"
+                      placeholder="Nhập câu hỏi của quý khách tại đây"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    ></input>
+                  </div>
+                </div>
+                <div className="col-sm-1 col-xs-1 reply-send">
+                  <button
+                    className="fa fa-send fa-2x"
+                    aria-hidden="true"
+                    onClick={handleSendMessage}
+                  >
+                    {" "}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="35"
+                      height="35"
+                      fill="currentColor"
+                      class="bi bi-send"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
