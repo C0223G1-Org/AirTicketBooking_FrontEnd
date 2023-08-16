@@ -13,6 +13,7 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
     "firebase": "^10.1.0",
+    "ckeditor4-react": "^4.3.0",
     "formik": "^2.4.3",
     "json-server": "^0.17.3",
     "moment": "^2.29.4",
@@ -53,5 +54,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prop-types": "^15.8.1",
+    "uuid": "^9.0.0"
   }
 }
