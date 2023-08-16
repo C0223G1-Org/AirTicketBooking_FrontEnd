@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {getListEmployee, searchEmployee, deleteEmployee} from "../../services/EmployeeServices";
 import Swal from "sweetalert2";
-import '../../css/employee/Employee.css';
+import '../../component/Employee/employeeEdit.css';
+import {Link} from "react-router-dom";
 
 
 /**
@@ -9,7 +10,7 @@ import '../../css/employee/Employee.css';
  * @returns {JSX.Element}
  * @constructor
  */
-export default function EmployeeList() {
+ function EmployeeList() {
     const [employeeList, setEmployeeList] = useState([]);
     const [gender, setGender] = useState(null);
     const [name, setName] = useState('');
@@ -40,7 +41,7 @@ export default function EmployeeList() {
     // }
 
     const handleSearch = async () => {
-        const results = await searchEmployee(gender, name, currentPage, 2);
+        const results = await searchEmployee(gender, name, currentPage, 5);
         if (results.content == undefined) {
             await Swal.fire({
                 text: 'Không tìm thấy nhân viên với thông tin này!',
@@ -75,7 +76,7 @@ export default function EmployeeList() {
             if (res.isConfirmed) {
                 deleteEmployee(id).then(() => {
                     console.log("10101");
-                    getEmployees(0, 2).then(() => {
+                    getEmployees(0, 5).then(() => {
                         Swal.fire({
                             icon: 'success',
                             title: 'Xoá Thành công!!!!',
@@ -93,11 +94,11 @@ export default function EmployeeList() {
     // Hàm xử lý khi người dùng chuyển trang
     const handlePageChange = async (page) => {
         setCurrentPage(page);
-        await getEmployees(page, 2);
+        await getEmployees(page, 5);
     };
 
     useEffect(() => {
-        getEmployees(currentPage, 2);
+        getEmployees(currentPage, 5);
 
     }, [currentPage]);
 
@@ -140,9 +141,9 @@ export default function EmployeeList() {
                     <div className="container my-2 flex sm:flex-row flex-col">
                         <div className="flex col-ms col-4">
                             <div className="col-ms col">
-                                <a href="src/components/employee#" className="btn font-semibold form_button_employee "
-                                   style={{marginLeft: '10px'}}>
-                                    <i className="fa-solid fa-plus"/> <span>Thêm mới nhân viên</span></a>
+                                <Link to="/employee/create" className="btn font-semibold form_button_employee "
+                                   style={{marginLeft: '100px'}}>
+                                    <i className="fa-solid fa-plus"/> <span>Thêm mới nhân viên</span></Link>
                             </div>
                         </div>
                         <div className="d-flex col-ms col-8">
@@ -208,15 +209,15 @@ export default function EmployeeList() {
                                             <span className="py-3">{e.nameEmployee}</span></td>
                                         <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.gender ? "Nam" : "Nữ"}</td>
                                         <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.emailEmployee}</td>
-                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.dateEmployee}</td>
+                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">{new Date(e.dateEmployee).toLocaleDateString("en-GB")}</td>
                                         <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.telEmployee}</td>
                                         <td className="col py-3 border-b border-gray-200 bg-white text-sm">
                                             {/*<a href="#" type="button" data-bs-toggle="modal" data-bs-target="#detailModal" title="Chi tiết"*/}
                                             {/*onClick={()=> getEmployee(e.idEmployee)}>*/}
                                             {/*    <i className="fa-solid fa-circle-info icon_detail_employee" />*/}
                                             {/*</a>*/}
-                                            <a href="#" title="Sửa"><i
-                                                className="fa-solid fa-pen-to-square icon_edit_employee"/></a>
+                                            <Link  to={`/employee/update/${e.idEmployee}`} title="Sửa"><i
+                                                className="fa-solid fa-pen-to-square icon_edit_employee"/></Link>
                                             <a type="button" title="Xóa"
                                                onClick={() => {
                                                    handleDeleteEmployee(`${e.idEmployee}`, `${e.nameEmployee}`)
@@ -296,3 +297,4 @@ export default function EmployeeList() {
         </>
     );
 }
+export default EmployeeList;
