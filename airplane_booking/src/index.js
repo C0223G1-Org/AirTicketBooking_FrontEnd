@@ -24,9 +24,11 @@ import CustomerDetails from "./component/CustomerDetails";
 import DetailTicket from "./component/ticket/DetailTicket";
 import InfoPassenger from "./component/ticket/InfoPassenger";
 import EmployeeList from "./component/Employee/EmployeeList";
-import CreateEmployee from "./component/Employee/CreateEmployee";
+// import CreateEmployee from "./component/Employee/CreateEmployee";
+// import EditEmployee from "./component/Employee/EditEmployee";
 import ListPost from "./component/post/ListPost";
 import PaymentComponent from "./component/PaymentComponent";
+
 // import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
 // import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
 // import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
@@ -54,8 +56,9 @@ root.render(
                 <Route path='/list/:data' element={<ListRouter />} />
                 <Route path="/detail-ticket/:data" element={<DetailTicket />} />
                 <Route path="/info-passenger/:data" element={<InfoPassenger/>} />
-                {/*<Route path="/employee" element={<EmployeeList/>} />*/}
+                <Route path="/employee" element={<EmployeeList/>} />
                 {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
+                {/*<Route path='/employee/update/:id' element={<EditEmployee />} />*/}
                 <Route path='/listPost' element={<ListPost />} />
                 <Route path='/payment/:id' element={<PaymentComponent />} />
 
