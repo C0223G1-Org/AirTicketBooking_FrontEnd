@@ -8,6 +8,7 @@ import axios from "axios";
 // import {ToastContainer, toast} from "react-toastify";
 import {max} from "moment";
 import Swal from "sweetalert2";
+
 // import CheckCode from './CheckCode';
 
 export function SignUp() {
@@ -47,8 +48,8 @@ export function SignUp() {
                     telCustomer: yup.string().required('Không được để trống trường này.')
                         .matches(/^(\+84|0)[1-9][0-9]{8}$/, "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số."),
                     nationalityCustomer: yup.string().required('Không được để trống trường này.')
-                       , // .min(1, 'Không được để trống trường này!')
-                        // .max(10, 'Không được để trống trường này!'),
+                    , // .min(1, 'Không được để trống trường này!')
+                    // .max(10, 'Không được để trống trường này!'),
                     idCardCustomer: yup.string().required('Không được để trống tường này.')
                         .matches(/^([A-Z][0-9]{6,12})|([0-9]{12})$/, "Nhập theo định dạng (7 ký tự đối với hộ chiếu và 12 ký tự đối với CCCD)."),
                     dateCustomer: yup.date().required('Không được để trống trường này.')
@@ -65,7 +66,7 @@ export function SignUp() {
                     // setSubmitting(false);
                     console.log(values);
                     values = {
-                    ...values,
+                        ...values,
                         genderCustomer: +values.genderCustomer
                     }
                     console.log(values);
@@ -73,11 +74,10 @@ export function SignUp() {
                     try {
                         // Gửi yêu cầu đăng ký
                         const response = await axios.post(
-                            "http://localhost:8080/api/account/signup",{
+                            "http://localhost:8080/api/account/signup", {
                                 ...values,
                                 genderCustomer: +values.genderCustomer
                             }
-
                         );
                         // Kiểm tra response
                         if (response.username != null) {
@@ -126,17 +126,10 @@ export function SignUp() {
                                          }}
                                     >
                                         {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
-                                        <span>
-                    Email
-                    <sup style={{fontSize: 8}}>
-                    <sup>
-                    <i
-                        className="fa-solid fa-star-of-life"
-                        style={{color: "#ff0019"}}
-                    />
-                    </sup>
-                    </sup>
-                    </span>
+                                        <span>Email(<sup style={{fontSize: 8}}><sup><i
+                                            className="fa-solid fa-star-of-life"
+                                            style={{color: "#ff0019"}}/></sup></sup>
+                                            )</span>
                                         {/*                    <p style="color: red">Chưa nhập email</p>*/}
                                     </div>
                                     <div className="col-md-8">

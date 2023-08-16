@@ -232,7 +232,7 @@ input#firstname, input#email, input#password1, input#password2, select#email {
     font-weight: 200;
     background-color: transparent;
     /*-- w3layouts --*/
-    border-bottom: 5px solid #fff;
+    border-bottom: 1px solid rgb(6, 133, 170);
     border-top-color: transparent;
     border-left-color: transparent;
     border-right-color: transparent;
