@@ -145,8 +145,8 @@ export default function ListPost() {
                                     <div className="card_content">
                                         <h5 className="card_title">{post.title.length > quantity ? `${post.title.slice(0, quantity)}...` : post.title}</h5>
                                         <div className="card_text">
-                                            <p>{post.content.length > quantity ? `${post.content.slice(0, quantity)}...` : post.content}
-                                            </p>
+                                            <div dangerouslySetInnerHTML={{ __html: post.content.length > quantity ? `${post.content.slice(0, quantity)}...` : post.content}}>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="news-card-button">
@@ -195,8 +195,8 @@ export default function ListPost() {
                                     <div className="card_content">
                                         <h2 className="card_title">{newss.title.length > quantity ? `${newss.title.slice(0, quantity)}...` : newss.title}</h2>
                                         <div className="card_text">
-                                            <p>{newss.content.length > quantity ? `${newss.content.slice(0, quantity)}...` : newss.content}
-                                            </p>
+                                            <div dangerouslySetInnerHTML={{ __html: newss.content.length > quantity ? `${newss.content.slice(0, quantity)}...` : newss.content}}>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="news-card-button">
@@ -238,7 +238,7 @@ export default function ListPost() {
                             </div>
                             <div className="row card_text mt-3 container-fluid text-justify">
                                <div className="col-12">
-                                   <p>{detail.content}</p>
+                                   <div dangerouslySetInnerHTML={{ __html: detail.content}}></div>
                                </div>
                             </div>
 
