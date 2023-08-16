@@ -129,7 +129,7 @@ export default function Home() {
                                             timer: 1500
                                         })
                                     } else {
-                                        navigate(`/list/${selectedDeparture},${selectedDestination},${dateDeparture},${dateDestination},${ticketType},${adult},${children}`);
+                                        navigate(`/list/${selectedDeparture},${selectedDestination},${dateDeparture},${ticketType},${adult},${children}`);
                                     }
                                 } else if (sumPeople > 5) {
                                     Swal.fire({
@@ -482,6 +482,7 @@ export default function Home() {
 
             </div>
             <GetTop10Cheapest/>
+
         </div>
     )
 }

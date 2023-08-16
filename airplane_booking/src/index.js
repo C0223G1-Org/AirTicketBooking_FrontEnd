@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 // import './index.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
@@ -71,7 +71,7 @@ root.render(
             path="/tickets/search-ticket-results"
             element={<SearchResultPage />}
           />
-           <Route path="/admin/messages" element={<AdminPage />}></Route> 
+           <Route path="/admin/messages" element={<AdminPage />}></Route>
         </Routes>
 
         <Footer />
