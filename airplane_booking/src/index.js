@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import './index.css';
+import './index.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import Header from './components/home/Header';
@@ -26,6 +26,7 @@ import InfoPassenger from "./component/ticket/InfoPassenger";
 import EmployeeList from "./component/Employee/EmployeeList";
 import CreateEmployee from "./component/Employee/CreateEmployee";
 import ListPost from "./component/post/ListPost";
+import PaymentComponent from "./component/PaymentComponent";
 // import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
 // import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
 // import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
@@ -56,6 +57,7 @@ root.render(
                 {/*<Route path="/employee" element={<EmployeeList/>} />*/}
                 {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
                 <Route path='/listPost' element={<ListPost />} />
+                <Route path='/payment/:id' element={<PaymentComponent />} />
 
                 {/*<Route path="/tickets/search-ticket" element={<SearchTicketPage />} />*/}
                 {/*<Route*/}
