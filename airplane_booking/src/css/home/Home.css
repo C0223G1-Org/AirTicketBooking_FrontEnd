@@ -1,0 +1,267 @@
+body {
+    font-family: "Diavlo", "sans-seriff";
+}
+
+#booking {
+    font-family: 'Lato', sans-serif;
+    background-size: cover;
+    background-position: center;
+    color: #191a1e;
+}
+
+.booking-form-home {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    height: 400px;
+    margin: auto;
+    padding: 45px 25px 25px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+.booking-form-home .form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.booking-form-home h2 {
+    color: #166987;
+}
+
+.booking-form-home .form-control {
+    background-color: #fff;
+    height: 50px;
+    padding: 0px 15px;
+    padding-top: 24px;
+    color: #191a1e;
+    border: 2px solid #dfe5e9;
+    font-size: 16px;
+    font-weight: 700;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 4px;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+.booking-form-home .form-control::-webkit-input-placeholder {
+    color: #dfe5e9;
+}
+
+.booking-form-home .form-control:-ms-input-placeholder {
+    color: #dfe5e9;
+}
+
+.booking-form-home .form-control::placeholder {
+    color: #dfe5e9;
+}
+
+.booking-form-home .form-control:focus {
+    background: #f9fafb;
+}
+
+.booking-form-home input[type="date"].form-control:invalid {
+    color: #dfe5e9;
+}
+
+.booking-form-home select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.booking-form-home select.form-control + .select-arrow {
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    width: 32px;
+    line-height: 32px;
+    height: 32px;
+    text-align: center;
+    pointer-events: none;
+    color: #dfe5e9;
+    font-size: 14px;
+}
+
+.booking-form-home select.form-control + .select-arrow:after {
+    content: '\279C';
+    display: block;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.booking-form-home .form-label {
+    position: absolute;
+    top: 6px;
+    left: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 24px;
+    height: 24px;
+    font-size: 12px;
+    color: #166987;
+}
+
+.booking-form-home .form-checkbox input {
+    position: absolute !important;
+    margin-left: -9999px !important;
+    visibility: hidden !important;
+}
+
+.booking-form-home .form-checkbox label {
+    position: relative;
+    padding-top: 4px;
+    padding-left: 30px;
+    font-weight: 700;
+    color: #166987;
+}
+
+.booking-form-home .form-checkbox label + label {
+    margin-left: 15px;
+}
+
+.booking-form-home .form-checkbox input + span {
+    position: absolute;
+    left: 2px;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid #dfe5e9;
+    border-radius: 50%;
+}
+
+.booking-form-home .form-checkbox input + span:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    background-color: #4fa3e3;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+.booking-form-home .form-checkbox input:not(:checked) + span:after {
+    opacity: 0;
+}
+
+.booking-form-home .form-checkbox input:checked + span:after {
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+}
+
+.booking-form-home .form-btn .home-btn {
+    color: #fff;
+    background-color: #daa310;
+    font-weight: 400;
+    height: 50px;
+    font-size: 18px;
+    border: none;
+    width: 100%;
+    border-radius: 4px;
+    text-transform: uppercase
+}
+
+.booking-cta h1 {
+    font-size: 52px;
+    text-transform: uppercase;
+    color: #4fa3e3;
+    font-weight: 400;
+}
+
+.booking-cta p {
+    font-size: 22px;
+    color: #191a1e;
+}
+
+.carousel-inner .carousel-item img {
+    width: 100%;
+    max-height: 365px;
+}
+
+.banner {
+    margin: 30px 0;
+    padding: 20px 0;
+}
+
+.banner .col-2 img {
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    border: #018aa5 4px solid;
+    align-items: center;
+}
+
+.banner .col-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.banner .col-2 h6 {
+    padding: 10px 0;
+    color: #166987;
+}
+
+.travel button {
+    background: #daa310;
+    border-radius: 5px;
+    border: #daa310 2px solid;
+    outline: none;
+    cursor: pointer;
+    opacity: 1;
+    color: white;
+}
+
+.travel button:hover {
+    transform: scale(1.1);
+    background-color: #daa310;
+    color: white;
+    border: #daa310 1px solid;
+
+}
+
+.find {
+    padding-bottom: 35px;
+    color: #166987;
+    text-align: center;
+}
+
+.bonus {
+    height: 400px;
+}
+
+.first-card img {
+    height: 200px;
+}
+
+.second-card img {
+    height: 200px;
+}
+
+.img-down {
+    margin-top: 20px;
+}
+
+.title {
+    color: #166987;
+    text-align: center;
+}
+
+.form-search {
+    padding: 30px 0;
+}
+
+
+
+
