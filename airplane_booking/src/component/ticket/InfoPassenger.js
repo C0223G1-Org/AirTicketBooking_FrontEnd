@@ -373,12 +373,10 @@ export default function InfoPassenger() {
                                                                             {luggages.map((luggage) => {
                                                                                 const price = numeral(luggage.priceLuggage).format('0,0 đ');
                                                                                 return (
-
                                                                                     <option key={luggage.idLuggage}
                                                                                             value={luggage.idLuggage}>{luggage.nameLuggage} - {price} VND</option>
                                                                                 )
                                                                             })}
-
                                                                         </Field>
                                                                     </div>
                                                                     <div className="field">
