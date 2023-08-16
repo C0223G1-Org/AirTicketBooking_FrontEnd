@@ -17,6 +17,12 @@ export function SignUp() {
     const today = new Date();
     const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
     const minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+    // const [jr, setJs] = useState(localStorage.getItem("role"));
+    // useEffect(() => {
+    //     if(jr != "ROLE_ADMIN"){
+    //         return null;
+    //     }
+    // }, []);
     return (
         <>
             <Formik

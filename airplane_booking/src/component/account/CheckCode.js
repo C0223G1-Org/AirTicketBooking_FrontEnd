@@ -7,6 +7,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 export function CheckCode() {
+    const [count,setCount] = useState(0);
     const navigate = useNavigate();
     const param = useParams();
     const [userName, setUserName] = useState();
@@ -45,36 +46,46 @@ export function CheckCode() {
                                     verificationCode: +values.verificationCode,
                                 }
                                 console.log(values);
-                                try {
-                                    values = {
-                                        username: userName,
-                                        verificationCode: +values.verificationCode,
-                                    }
-                                    const response = await axios.post('http://localhost:8080/api/account/checkCode', values)
-                                    console.log(response);
-                                    console.log(response.data.username);
-                                    if (response.data.username === userName) {
+                                if(count<3){
+                                    try {
+                                        values = {
+                                            username: userName,
+                                            verificationCode: +values.verificationCode,
+                                        }
+                                        const response = await axios.post('http://localhost:8080/api/account/checkCode', values)
+                                        console.log(response);
+                                        console.log(response.data.username);
+                                        if (response.data.username === userName) {
+                                            await Swal.fire({
+                                                title: "Đăng ký thành công",
+                                                icon: "success",
+                                                timer: 2000
+                                            })
+                                            resetForm();
+                                            navigate(`/`);
+                                        }
+                                        // navigate("/login/newPassword", {state: {data: response.data}})
+                                    } catch (error) {
+                                        console.log(error)
+                                        // toast.error(error.response.data.error);
                                         await Swal.fire({
-                                            title: "Đăng ký thành công",
-                                            icon: "success",
+                                            title: error.response.data,
+                                            text: 'Sai mã xác nhận.',
+                                            icon: "warning",
                                             timer: 2000
-                                        })
-                                        resetForm();
-                                        navigate(`/`);
+                                        });
+                                        setCount(count+1);
+                                    } finally {
+                                        setSubmitting(false);
                                     }
-                                    // navigate("/login/newPassword", {state: {data: response.data}})
-                                } catch (error) {
-                                    console.log(error)
-                                    // toast.error(error.response.data.error);
-                                    await Swal.fire({
-                                        title: error.response.data,
-                                        text: 'Sai mã xác nhận.',
-                                        icon: "warning",
-                                        timer: 2000
-                                    })
-                                } finally {
-                                    setSubmitting(false);
                                 }
+                                navigate('/signup');
+                                await Swal.fire({
+                                    title: "Đã nhập sai quá 3 lần, mã sẽ bị hủy",
+                                    icon: "warning",
+                                    timer: 2000
+                                });
+
                             }}
                         >
                             <Form>
