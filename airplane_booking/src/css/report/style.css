@@ -26,13 +26,14 @@
 	transform: translateY(-50%);
 }
 
-/*#booking {*/
-/*	font-family: 'Lato', sans-serif;*/
-/*	background-image: url('background.jpg');*/
-/*	background-size: cover;*/
-/*	background-position: center;*/
-/*	color: #191a1e;*/
-/*}*/
+#booking {
+	font-family: 'Lato', sans-serif;
+	background-image: none;
+	background-size: cover;
+	background-position: center;
+	background-color: white;
+	color: #191a1e;
+}
 
 .booking-form {
 	position: relative;

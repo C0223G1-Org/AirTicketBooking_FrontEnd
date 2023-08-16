@@ -27,6 +27,7 @@ import EmployeeList from "./component/Employee/EmployeeList";
 // import CreateEmployee from "./component/Employee/CreateEmployee";
 // import EditEmployee from "./component/Employee/EditEmployee";
 import ListPost from "./component/post/ListPost";
+import CreateReport from "./component/report/CreateReport";
 
 // import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
 // import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
@@ -59,6 +60,7 @@ root.render(
                 {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
                 {/*<Route path='/employee/update/:id' element={<EditEmployee />} />*/}
                 <Route path='/listPost' element={<ListPost />} />
+                <Route path='/report' element={<CreateReport />} />
 
                 {/*<Route path="/tickets/search-ticket" element={<SearchTicketPage />} />*/}
                 {/*<Route*/}
