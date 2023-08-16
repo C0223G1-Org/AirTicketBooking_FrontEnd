@@ -257,10 +257,10 @@ body {
 
 }
 
-.modal_inner .title {
+.modal_inner .title-bonus {
     text-align: center;
     background: #166987;
     color: white;
-    vertical-align: center;
     padding: 10px 0;
+    vertical-align: center;
 }
