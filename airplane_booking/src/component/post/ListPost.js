@@ -15,6 +15,9 @@ export default function ListPost() {
     const [listPosts, setListPosts] = useState([]);
     const [news, setNews] = useState([]);
     const [messages, setMessage] = useState('');
+    const formatDateTime = (dateTime) => {
+        return moment(dateTime).format("DD/MM/YYYY HH:mm:ss");
+    };
     const detailPost = (post, employee) => {
         setDetail(post);
         setEmployee(employee);
@@ -25,6 +28,7 @@ export default function ListPost() {
             const data = await getNewsHot();
             setNews(data);
         } catch (error) {
+            setNews([]);
             const message = 'Không có bài viết nào nổi bật. ';
             setMessage(message);
         }
@@ -51,11 +55,25 @@ export default function ListPost() {
     useEffect(() => {
         getPost();
     }, [page]);
+
+
     const getList = async () => {
-        const data = await getListPost(page, limit);
-        setListPosts(data.content);
-        setTotal(data.totalPages);
+        try {
+            setPage(0);
+            const data = await getListPost(page, limit);
+            setListPosts(data.content);
+            setTotal(data.totalPages);
+        } catch (error) {
+            setListPosts([]);
+            Swal.fire({
+                title: 'Không có dữ liệu.',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 3000
+            })
+        }
     };
+
     const searchPost = async (value) => {
         try {
             const data = await searchPosts(value.title);
@@ -72,7 +90,6 @@ export default function ListPost() {
 
     };
 
-
     const quantity = 30;
     const checkDelete = async (id, title) => {
         Swal.fire({
@@ -87,13 +104,15 @@ export default function ListPost() {
         ).then((res) => {
             if (res.isConfirmed) {
                 deletePost(id).then(() => {
-                    console.log("10101");
                     getList().then(() => {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Xoá Thành công!!!!',
-                            showConfirmButton: false,
-                            timer: 1500
+                        getNews().then(() =>{
+                            console.log("10101");
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Xoá Thành công!!!!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                         })
                     })
                 });
@@ -223,14 +242,14 @@ export default function ListPost() {
                         </div>
                         <div className="modal-body" style={{padding: 0}}>
                             <div className="row container-fluid mt-1 mb-5 d-inline-flex">
-                                <div className="col-4">
+                                <div className="col-4" style={{height:'300px',maxHeight:'100px'}}>
                                     <img className="d-flex position-relative" width="90%"
                                          src={detail.image} alt="mixed vegetable salad in a mason jar."/>
                                 </div>
                                 <div className="col-8 card_content ">
                                     <div className="note-detail">
                                         <p className="m-0">Người đăng: {employee.nameEmployee}</p>
-                                        <p>Thời gian: {moment(`${detail.datePost}`).format('DD-MM-YYYY HH:mm:ss')}</p>
+                                        <p>Thời gian: {formatDateTime(detail.datePost)}</p>
                                         <h1 className="card_title_detail">{detail.title}</h1>
                                     </div>
                                 </div>

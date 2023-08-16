@@ -26,8 +26,6 @@ try {
 }
 
 
-
-
 export async function getListPost(page, limit) {
     const res = await axios.get('/api/post/' + page + '/' + limit);
     return res.data;

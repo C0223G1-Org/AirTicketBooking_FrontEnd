@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/post/CreatePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/CreatePost.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/post/ListPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/ListPost.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/post/UpdatePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/UpdatePost.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/post/firebase.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/post/card2.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/post/card2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/PostServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/PostServices.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +57,14 @@
       <workItem from="1692013374244" duration="33000" />
       <workItem from="1692100149710" duration="6984000" />
     </task>
+    <task id="LOCAL-00001" summary="thanh son commit frontend ngày 16-08-2023">
+      <created>1692174627312</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1692174627312</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -68,6 +72,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="thanh" />
-    <option name="LAST_COMMIT_MESSAGE" value="thanh" />
+    <MESSAGE value="thanh son commit frontend ngày 16-08-2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="thanh son commit frontend ngày 16-08-2023" />
   </component>
 </project>
