@@ -24,7 +24,7 @@ import CustomerDetails from "./component/CustomerDetails";
 import DetailTicket from "./component/ticket/DetailTicket";
 import InfoPassenger from "./component/ticket/InfoPassenger";
 import EmployeeList from "./component/Employee/EmployeeList";
-// import CreateEmployee from "./component/Employee/CreateEmployee";
+import CreateEmployee from "./component/Employee/CreateEmployee";
 // import EditEmployee from "./component/Employee/EditEmployee";
 import ListPost from "./component/post/ListPost";
 
@@ -56,7 +56,7 @@ root.render(
                 <Route path="/detail-ticket/:data" element={<DetailTicket />} />
                 <Route path="/info-passenger/:data" element={<InfoPassenger/>} />
                 <Route path="/employee" element={<EmployeeList/>} />
-                {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
+                <Route path='/employee/create' element={<CreateEmployee />} />
                 {/*<Route path='/employee/update/:id' element={<EditEmployee />} />*/}
                 <Route path='/listPost' element={<ListPost />} />
 

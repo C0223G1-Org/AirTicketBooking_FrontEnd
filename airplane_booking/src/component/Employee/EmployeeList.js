@@ -10,11 +10,13 @@ import {Link} from "react-router-dom";
  * @returns {JSX.Element}
  * @constructor
  */
- function EmployeeList() {
+function EmployeeList() {
     const [employeeList, setEmployeeList] = useState([]);
     const [gender, setGender] = useState(null);
     const [name, setName] = useState('');
-    const [flag, setFlag] = useState(true)
+    const [flag, setFlag] = useState(true);
+    const [allSearchResults, setAllSearchResults] = useState([]);
+    const [currentSearchPage, setCurrentSearchPage] = useState(0);
 
 
     const [searchPage, setSearchPage] = useState('');
@@ -22,11 +24,23 @@ import {Link} from "react-router-dom";
     const [totalPages, setTotalPages] = useState(0);
     const [showLastPageButton, setShowLastPageButton] = useState(false);
 
+
     const getEmployees = async (page, pageSize) => {
-        const data = await getListEmployee(page, pageSize);
-        setEmployeeList(data.content);
-        setTotalPages(data.totalPages);
-        setShowLastPageButton(page < data.totalPages - 1);
+        if (allSearchResults.length > 0 && page === currentSearchPage) {
+            const startIndex = page * pageSize;
+            const endIndex = startIndex + pageSize;
+            const currentPageResults = allSearchResults.slice(startIndex, endIndex);
+
+            setEmployeeList(currentPageResults);
+            setShowLastPageButton(page < totalPages - 1);
+            setCurrentPage(page);
+        } else {
+            const data = await getListEmployee(page, pageSize);
+            setEmployeeList(data.content);
+            setTotalPages(data.totalPages);
+            setShowLastPageButton(page < data.totalPages - 1);
+            setCurrentPage(page);
+        }
     };
 
 
@@ -52,10 +66,11 @@ import {Link} from "react-router-dom";
             setGender("");
             return
         }
-        setFlag(false);
-        setEmployeeList(results.content);
+        setEmployeeList(results.content)
+         // Lưu trữ kết quả tìm kiếm
+        setAllSearchResults((prevResults) => [...prevResults, ...results.content]);
         setTotalPages(results.totalPages);
-
+        setCurrentPage(0);
         setName("");
         setGender("");
     };
@@ -93,8 +108,13 @@ import {Link} from "react-router-dom";
 
     // Hàm xử lý khi người dùng chuyển trang
     const handlePageChange = async (page) => {
-        setCurrentPage(page);
-        await getEmployees(page, 5);
+        if (allSearchResults.length > 0 && page === currentSearchPage) {
+            setShowLastPageButton(page < totalPages - 1);
+            setCurrentPage(page);
+        } else {
+            setCurrentSearchPage(page);
+            await getEmployees(page, 5);
+        }
     };
 
     useEffect(() => {
@@ -107,7 +127,7 @@ import {Link} from "react-router-dom";
         const pageNumber = parseInt(searchPage, 10);
         if (!isNaN(pageNumber) && pageNumber > 0 && pageNumber <= totalPages) {
             handlePageChange(pageNumber - 1);
-            setSearchPage('');
+
         } else {
             Swal.fire({
                     text: 'Trang không tồn tại!',
@@ -116,6 +136,7 @@ import {Link} from "react-router-dom";
                 }
             )
         }
+        setSearchPage('');
     };
 
     console.log(employeeList)
@@ -142,7 +163,7 @@ import {Link} from "react-router-dom";
                         <div className="flex col-ms col-4">
                             <div className="col-ms col">
                                 <Link to="/employee/create" className="btn font-semibold form_button_employee "
-                                   style={{marginLeft: '100px'}}>
+                                      style={{marginLeft: '100px'}}>
                                     <i className="fa-solid fa-plus"/> <span>Thêm mới nhân viên</span></Link>
                             </div>
                         </div>
@@ -202,7 +223,7 @@ import {Link} from "react-router-dom";
                                 <tbody>
                                 {employeeList.map((e, index) => (
                                     <tr key={e.idEmployee}>
-                                        <td className="col px-4 py-3 border-b border-gray-200 bg-white text-sm">{(currentPage * 2) + index + 1}</td>
+                                        <td className="col px-4 py-3 border-b border-gray-200 bg-white text-sm">{(currentPage * 5) + index + 1}</td>
                                         <td className="col flex py-3 border-b border-gray-200 bg-white text-sm">
                                             <img className="image_employee"
                                                  src={e.image} alt=""/>
@@ -216,7 +237,7 @@ import {Link} from "react-router-dom";
                                             {/*onClick={()=> getEmployee(e.idEmployee)}>*/}
                                             {/*    <i className="fa-solid fa-circle-info icon_detail_employee" />*/}
                                             {/*</a>*/}
-                                            <Link  to={`/employee/update/${e.idEmployee}`} title="Sửa"><i
+                                            <Link to={`/employee/update/${e.idEmployee}`} title="Sửa"><i
                                                 className="fa-solid fa-pen-to-square icon_edit_employee"/></Link>
                                             <a type="button" title="Xóa"
                                                onClick={() => {
@@ -229,14 +250,11 @@ import {Link} from "react-router-dom";
                                 ))}
                                 </tbody>
                             </table>
-
-
                             <div
                                 className="px-5 py-3 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
                                 <div className="inline-flex mt-2 xs:mt-0">
                                     <button
-
-                                        className=" style_button_page text-sm font-semibold py-2 px-4 rounded-l"
+                                        className="style_button_page text-sm font-semibold py-2 px-4 rounded-l"
                                         disabled={currentPage === 0}
                                         onClick={() => handlePageChange(currentPage - 1)}
                                     >
@@ -247,7 +265,6 @@ import {Link} from "react-router-dom";
                                         .slice(0, 3)
                                         .map((page) => (
                                             <button
-
                                                 key={page}
                                                 className={`text-sm font-semibold py-2 px-4 ${
                                                     page === currentPage ? 'bg-gray-500 text-black' : 'bg-yellow-600 text-white'
@@ -258,26 +275,37 @@ import {Link} from "react-router-dom";
                                                 {page + 1}
                                             </button>
                                         ))}
-                                    <div className="style_button_page text-sm font-semibold py-2 px-2 rounded"
-                                    >
-                                        <input class="style_button_search_page"
-                                               type="number"
-                                               value={searchPage}
-                                               onChange={(e) => setSearchPage(e.target.value)}
-                                               onKeyPress={handleKeyEnterPage}
-                                        />
 
-                                        <button onClick={handleSearchPage}><i className="fa-solid fa-magnifying-glass"/>
+                                    {totalPages > 3 && (
+                                        <div className="style_button_page text-sm font-semibold py-2 px-2 rounded">
+                                            <input
+                                                className="style_button_search_page"
+                                                type="number"
+                                                value={searchPage}
+                                                onChange={(e) => setSearchPage(e.target.value)}
+                                                onKeyPress={handleKeyEnterPage}
+                                            />
+                                            <button onClick={handleSearchPage}>
+                                                <i className="fa-solid fa-magnifying-glass"/>
+                                            </button>
+                                        </div>
+                                    )}
+
+                                    {currentPage !== totalPages - 1 && (
+                                        <button
+                                            className="text-sm font-semibold py-2 px-4 rounded-r"
+                                            style={{
+                                                background: 'rgb(223, 165, 18)',
+                                                color: '#ffffff',
+                                                marginRight: '10px'
+                                            }}
+                                            disabled={currentPage === totalPages - 1}
+                                            onClick={() => handlePageChange(currentPage + 1)}
+                                        >
+                                            Sau
                                         </button>
-                                    </div>
-                                    <button
-                                        className="text-sm font-semibold py-2 px-4 rounded-r"
-                                        style={{background: 'rgb(223, 165, 18)', color: '#ffffff', marginRight: '10px'}}
-                                        disabled={currentPage === totalPages - 1}
-                                        onClick={() => handlePageChange(currentPage + 1)}
-                                    >
-                                        Sau
-                                    </button>
+                                    )}
+
                                     {showLastPageButton && (
                                         <button
                                             className="text-sm font-semibold py-2 px-4 rounded"
@@ -297,4 +325,5 @@ import {Link} from "react-router-dom";
         </>
     );
 }
+
 export default EmployeeList;
