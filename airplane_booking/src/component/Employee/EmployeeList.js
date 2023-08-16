@@ -67,7 +67,7 @@ function EmployeeList() {
             return
         }
         setEmployeeList(results.content)
-         // Lưu trữ kết quả tìm kiếm
+        // Lưu trữ kết quả tìm kiếm
         setAllSearchResults((prevResults) => [...prevResults, ...results.content]);
         setTotalPages(results.totalPages);
         setCurrentPage(0);
@@ -155,11 +155,11 @@ function EmployeeList() {
     return (
         <>
             <div>
-                <div className="container mx-auto px-4 sm:px-8">
+                <div className="container mx-auto  sm:px-8">
                     <div style={{textAlign: 'center', marginBottom: '20px'}}>
                         <h1 className="text-7xl col leading-tight ">DANH SÁCH NHÂN VIÊN</h1>
                     </div>
-                    <div className="container my-2 flex sm:flex-row flex-col">
+                    <div className="d-flex sm:flex-row flex-col ">
                         <div className="flex col-ms col-4">
                             <div className="col-ms col">
                                 <Link to="/employee/create" className="btn font-semibold form_button_employee "
@@ -190,13 +190,12 @@ function EmployeeList() {
                             </div>
                         </div>
                     </div>
-                    <div className="container  sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                        <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                    <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                        <div className="inline-block min-w-full shadow rounded-lg ">
 
-
-                            <table className="min-w-full leading-normal">
-                                <thead>
-                                <tr className="table_header_employee">
+                            <table className="container">
+                                <thead >
+                                <tr className=" table_header_employee">
                                     <th className="col px-4 border-b-2  text-left text-xs   uppercase tracking-wider">
                                         STT
                                     </th>
@@ -250,74 +249,75 @@ function EmployeeList() {
                                 ))}
                                 </tbody>
                             </table>
-                            <div
-                                className="px-5 py-3 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
-                                <div className="inline-flex mt-2 xs:mt-0">
-                                    <button
-                                        className="style_button_page text-sm font-semibold py-2 px-4 rounded-l"
-                                        disabled={currentPage === 0}
-                                        onClick={() => handlePageChange(currentPage - 1)}
-                                    >
-                                        Trước
-                                    </button>
 
-                                    {Array.from(Array(totalPages).keys())
-                                        .slice(0, 3)
-                                        .map((page) => (
+                                <div className="container_employee_page">
+                                    <div className=" inline-block mt-2 xs:mt-0">
+                                        <button
+                                            className="style_button_page text-sm font-semibold py-2 px-4 rounded-l"
+                                            disabled={currentPage === 0}
+                                            onClick={() => handlePageChange(currentPage - 1)}
+                                        >
+                                            Trước
+                                        </button>
+
+                                        {Array.from(Array(totalPages).keys())
+                                            .slice(0, 3)
+                                            .map((page) => (
+                                                <button
+                                                    key={page}
+                                                    className={`text-sm font-semibold py-2 px-4 ${
+                                                        page === currentPage ? 'bg-gray-500 text-black' : 'bg-yellow-600 text-white'
+                                                    } rounded`}
+                                                    style={{marginRight: '10px'}}
+                                                    onClick={() => handlePageChange(page)}
+                                                >
+                                                    {page + 1}
+                                                </button>
+                                            ))}
+
+                                        {totalPages > 3 && (
+                                            <div className="style_button_page text-sm font-semibold py-2 px-2 rounded">
+                                                <input
+                                                    className="style_button_search_page"
+                                                    type="number"
+                                                    value={searchPage}
+                                                    onChange={(e) => setSearchPage(e.target.value)}
+                                                    onKeyPress={handleKeyEnterPage}
+                                                />
+                                                <button onClick={handleSearchPage}>
+                                                    <i className="fa-solid fa-magnifying-glass"/>
+                                                </button>
+                                            </div>
+                                        )}
+
+                                        {currentPage !== totalPages - 1 && (
                                             <button
-                                                key={page}
-                                                className={`text-sm font-semibold py-2 px-4 ${
-                                                    page === currentPage ? 'bg-gray-500 text-black' : 'bg-yellow-600 text-white'
-                                                } rounded`}
-                                                style={{marginRight: '10px'}}
-                                                onClick={() => handlePageChange(page)}
+                                                className="text-sm font-semibold py-2 px-4 rounded-r"
+                                                style={{
+                                                    background: 'rgb(223, 165, 18)',
+                                                    color: '#ffffff',
+                                                    marginRight: '10px'
+                                                }}
+                                                disabled={currentPage === totalPages - 1}
+                                                onClick={() => handlePageChange(currentPage + 1)}
                                             >
-                                                {page + 1}
+                                                Sau
                                             </button>
-                                        ))}
+                                        )}
 
-                                    {totalPages > 3 && (
-                                        <div className="style_button_page text-sm font-semibold py-2 px-2 rounded">
-                                            <input
-                                                className="style_button_search_page"
-                                                type="number"
-                                                value={searchPage}
-                                                onChange={(e) => setSearchPage(e.target.value)}
-                                                onKeyPress={handleKeyEnterPage}
-                                            />
-                                            <button onClick={handleSearchPage}>
-                                                <i className="fa-solid fa-magnifying-glass"/>
+                                        {showLastPageButton && (
+                                            <button
+                                                className="text-sm font-semibold py-2 px-4 rounded"
+                                                style={{background: 'rgb(223, 165, 18)', color: '#ffffff'}}
+                                                onClick={() => handlePageChange(totalPages - 1)}
+                                            >
+                                                Trang cuối
                                             </button>
-                                        </div>
-                                    )}
+                                        )}
+                                    </div>
 
-                                    {currentPage !== totalPages - 1 && (
-                                        <button
-                                            className="text-sm font-semibold py-2 px-4 rounded-r"
-                                            style={{
-                                                background: 'rgb(223, 165, 18)',
-                                                color: '#ffffff',
-                                                marginRight: '10px'
-                                            }}
-                                            disabled={currentPage === totalPages - 1}
-                                            onClick={() => handlePageChange(currentPage + 1)}
-                                        >
-                                            Sau
-                                        </button>
-                                    )}
-
-                                    {showLastPageButton && (
-                                        <button
-                                            className="text-sm font-semibold py-2 px-4 rounded"
-                                            style={{background: 'rgb(223, 165, 18)', color: '#ffffff'}}
-                                            onClick={() => handlePageChange(totalPages - 1)}
-                                        >
-                                            Trang cuối
-                                        </button>
-                                    )}
                                 </div>
 
-                            </div>
                         </div>
                     </div>
                 </div>
