@@ -14,14 +14,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <BrowserRouter>
-          <Routes>
-              <Route path="/" element={<SearchDemo/>}></Route>
-              <Route path="/list/:data" element={<ListRouter/>}></Route>
-              <Route path="/change-password" element={<ChangePassword/>}></Route>
-              <Route path="/detail-ticket/:data" element={<DetailTicket />} />
-              <Route path="/info-passenger/:data" element={<InfoPassenger/>} />
-              
-          </Routes>
+          {/*<Routes>*/}
+          {/*    <Route path="/" element={<SearchDemo/>}></Route>*/}
+          {/*    <Route path="/list/:data" element={<ListRouter/>}></Route>*/}
+          {/*    <Route path="/change-password" element={<ChangePassword/>}></Route>*/}
+          {/*    <Route path="/detail-ticket/:data" element={<DetailTicket />} />*/}
+          {/*    <Route path="/info-passenger/:data" element={<InfoPassenger/>} />*/}
+          {/*    */}
+          {/*</Routes>*/}
+          <App/>
       </BrowserRouter>
   </React.StrictMode>
 );
