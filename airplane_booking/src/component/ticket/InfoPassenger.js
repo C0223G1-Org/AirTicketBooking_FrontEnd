@@ -1,4 +1,4 @@
-// import "../../js/info-passenger"
+
 import "../../css/ticket/info-passenger.css"
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";

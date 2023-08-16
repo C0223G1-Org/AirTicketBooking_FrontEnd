@@ -166,9 +166,9 @@ export default function CustomerManagement() {
                                             id="nationality" defaultValue={""}
                                             className="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                                         <option value={""}>Quốc tịch</option>
-                                        <option value={"Lào"}>Lào</option>
+                                        <option value={"Nhật Bản"}>Nhật Bản</option>
                                         <option value={"Việt Nam"}>Việt Nam</option>
-                                        <option value={"Hàn Quốc"}>Hàn Quốc</option>
+                                        <option value={"Lào"}>Lào</option>
                                     </select>
 
                                 </div>
