@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/TicketService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/TicketService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/employee/EmployeeList.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,8 +74,16 @@
       <updated>1692013370002</updated>
       <workItem from="1692013374244" duration="33000" />
       <workItem from="1692100149710" duration="6984000" />
-      <workItem from="1692148405472" duration="998000" />
+      <workItem from="1692148405472" duration="2830000" />
     </task>
+    <task id="LOCAL-00001" summary="huy merge lan 5">
+      <created>1692149962768</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1692149962768</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,6 +91,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="huy merge lan 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="huy merge lan 4" />
+    <MESSAGE value="huy merge lan 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="huy merge lan 5" />
   </component>
 </project>
