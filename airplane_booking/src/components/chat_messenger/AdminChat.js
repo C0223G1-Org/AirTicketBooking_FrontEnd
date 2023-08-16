@@ -15,6 +15,7 @@ const AdminPage = () => {
       const data = snapshot.val();
       const chatList = data ? Object.keys(data) : [];
       setChats(chatList);
+      console.log(chatList);
     });
 
     // Reset các tin nhắn khi không có cuộc trò chuyện được chọn
