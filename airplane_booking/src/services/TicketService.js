@@ -20,9 +20,13 @@ export async function findTicketById(){
     const res= await axios.get(`http://localhost:8080/tickets/${1}`)
     return res.data;
 }
-export async function getListCustomer(){
-    const res= await axios.get('http://localhost:8080/customers/list?page=0');
+export async function getListCustomer() {
+    const res = await axios.get('http://localhost:8080/customers/list?page=0');
     return res.data;
+}
+export  async function createNewTicket(ticket) {
+    await axios.post("http://localhost:8080/tickets", ticket)
+
 
 }
 
