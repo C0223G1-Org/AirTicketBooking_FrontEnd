@@ -1,16 +1,19 @@
 
+
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import {getStorage} from "@firebase/storage";
-// TODO: Add SDKs for Firebase products that you want to use
+
+
 const firebaseConfig = {
-    apiKey: "AIzaSyA-czwPu_yHDbzWRTO4Cqi9uCUtMQaATgQ",
-    authDomain: "air-plan-71182.firebaseapp.com",
-    projectId: "air-plan-71182",
-    storageBucket: "air-plan-71182.appspot.com",
-    messagingSenderId: "477559743083",
-    appId: "1:477559743083:web:78b66edc86932b63d2872e"
+    apiKey: "AIzaSyDe_vwUnM0kqZEzKswGqtOLx_PFFUKarbI",
+    authDomain: "airplan-97803.firebaseapp.com",
+    projectId: "airplan-97803",
+    storageBucket: "airplan-97803.appspot.com",
+    messagingSenderId: "280855375751",
+    appId: "1:280855375751:web:6654bf3cf51dd3fd19ad22",
+    measurementId: "G-703T412JXQ"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app)
