@@ -4,6 +4,7 @@ import '../../css/home/Top10.css';
 import { useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import CurrencyFormat from "../format-currency/CurrencyFormat";
+import moment from "moment";
 
 export default function GetTop10Cheapest() {
     const [top10s, setTop10s] = useState([]);
@@ -83,7 +84,7 @@ export default function GetTop10Cheapest() {
                         </div>
                         <div className="modal_body">
                             <div className="modal_inner">
-                                <div className='title'>
+                                <div className='title-bonus'>
                                     <h3>Đặt vé chuyến bay {route.nameRoute}</h3>
                                 </div>
                                 <div className="row">
@@ -133,7 +134,7 @@ export default function GetTop10Cheapest() {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <span className="form-label">Trẻ em (0-12 tuổi)</span>
+                                            <span className="form-label">Trẻ em (0-15 tuổi)</span>
                                             <select className="form-control"
                                                     onChange={(e) => {setChildren(e.target.value)}}
                                                     required>
@@ -178,12 +179,12 @@ export default function GetTop10Cheapest() {
                                                     style={{color: "#daa310"}}>{route.timeDeparture} - {route.timeArrival}</h6>
                                                 </div>
                                                 <div className="row"><h6
-                                                    style={{color: "#daa310"}}>{route.dateDeparture}</h6></div>
+                                                    style={{color: "#daa310"}}>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </h6></div>
                                                 <div className="row"><h6>{route.nameDeparture} đến</h6></div>
                                                 <div className="row"><h6> {route.nameDestination}</h6></div>
                                                 <div className="row"><h6 className='price-ticket'
                                                                          style={{color: "#daa310"}}>
-                                                    Từ {<CurrencyFormat value={route.priceRoute} />} (Một chiều/Phổ thông)</h6></div>
+                                                    Từ {<CurrencyFormat value={route.priceRoute} />} VNĐ (Một chiều)</h6></div>
                                                 <div className="row"><button className="btn buy" onClick={() => {
                                                     getRouteFindById(route.idRoute)
                                                 }}>Đến mua ngay</button></div>
