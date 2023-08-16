@@ -344,7 +344,15 @@ export default function CustomerManagement() {
                                                 className="text-sm  font-semibold py-2 px-4 rounded-l"
                                                 style={{background: 'rgb(223, 165, 18)', color: '#ffffff'}}>
                                                 Trước
-                                            </button> : ""}
+                                            </button> : <button
+                                                onClick={async () => {
+
+                                                    await previousPage()
+                                                }}
+                                                className="text-sm  font-semibold py-2 px-4 rounded-l"
+                                                style={{background: 'rgb(223, 165, 18)', color: '#ffffff',opacity:'0,6', cursor: 'not-allowed'}}>
+                                                Trước
+                                            </button>}
 
                                             <button className="text-sm  font-semibold py-2 px-4 rounded-r" style={{
                                                 background: 'rgb(223, 165, 18)',
@@ -365,7 +373,16 @@ export default function CustomerManagement() {
                                                 }}>
                                                     Sau
                                                 </button>
-                                                : ""}
+                                                : <button onClick={async () => {
+
+                                                    await nextPage();
+                                                }} className="text-sm  font-semibold py-2 px-4 rounded-r" style={{
+                                                    background: 'rgb(223, 165, 18)',
+                                                    color: '#ffffff',
+                                                    marginLeft: '5px',opacity:'0,6', cursor: 'not-allowed'
+                                                }}>
+                                                    Sau
+                                                </button>}
                                             <div className="  font-semibold py-2 px-4 " style={{
                                                 background: 'rgb(223, 165, 18)',
                                                 color: 'black',
@@ -373,7 +390,7 @@ export default function CustomerManagement() {
                                                 borderRadius:'5px'
                                             }}>
                                                 <input id="numberPage" type="number"
-                                                       style={{width: '50px', border: '1px solid',borderRadius:'5px'}}
+                                                       style={{width: '50px',borderRadius:'5px'}}
                                                        onKeyDown={async (event) => {
                                                            if (event.keyCode == 13) {
                                                                await searchPage()

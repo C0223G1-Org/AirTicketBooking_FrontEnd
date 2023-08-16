@@ -85,8 +85,8 @@ function EmployeeCreateCustomer() {
         })}
         onSubmit={async (values) => {
           const role = {
-            idRole: 1,
-            nameRole: "customer"
+            idRole: 3,
+            nameRole: "ROLE_CUSTOMER"
           }
           const account = {
             username: values.emailCustomer,
