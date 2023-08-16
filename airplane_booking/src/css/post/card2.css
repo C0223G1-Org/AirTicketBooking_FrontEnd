@@ -1,4 +1,4 @@
-.list-news body {
+.list-news {
     font-family: "Oxygen", sans-serif;
     color: #050505;
     /*background-color: white;*/
@@ -10,7 +10,7 @@
     box-sizing: border-box;
 }
 
-.main {
+.main-son {
     max-width: 1200px;
     margin: 0;
 }
@@ -40,26 +40,25 @@
     transform: scale(1.3);
 }
 
-/* .card_price {
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 0.25rem;
-    background-color: #166987;
-    font-size: 18px;
-    font-weight: 700;
-}
+/* .card_price {*/
+/*    position: absolute;*/
+/*    bottom: 8px;*/
+/*    right: 8px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    width: 45px;*/
+/*    height: 45px;*/
+/*    border-radius: 0.25rem;*/
+/*    background-color: #166987;*/
+/*    font-size: 18px;*/
+/*    font-weight: 700;*/
+/*}*/
 
-.card_price span {
-    font-size: 12px;
-    margin-top: -2px;
-} */
-
+/*.card_price span {*/
+/*    font-size: 12px;*/
+/*    margin-top: -2px;*/
+/*} */
 .note {
     position: absolute;
     top: 8px;

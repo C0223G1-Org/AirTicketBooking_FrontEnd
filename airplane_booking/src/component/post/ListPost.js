@@ -1,5 +1,4 @@
 import {Field, Form, Formik} from "formik";
-import * as yup from "yup";
 import '../../css/post/card2.css';
 import {useEffect, useState} from "react";
 import Swal from 'sweetalert2'
@@ -241,7 +240,6 @@ export default function ListPost() {
                                    <div dangerouslySetInnerHTML={{ __html: detail.content}}></div>
                                </div>
                             </div>
-
                         </div>
                         <div className="modal-footer" style={{maxHeight: '70px'}}>
                             <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Thoát</button>

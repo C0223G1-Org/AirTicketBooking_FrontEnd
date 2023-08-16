@@ -3,8 +3,7 @@ import React, {useEffect, useState} from "react";
 import * as postService from "../../services/PostServices"
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
-import {getDownloadURL, ref, uploadBytesResumable} from "@firebase/storage";
-import {storage} from "./firebase";
+import {storage} from "../../firebase";
 
 export function UpdatePost() {
     const param = useParams();
@@ -44,7 +43,7 @@ export function UpdatePost() {
         }
         fetchEmployee()
     }, [])
-    if (!post){
+    if (!post) {
         return null
     }
     //
@@ -78,18 +77,12 @@ export function UpdatePost() {
     //     });
     // };
 
-    return (
-        <Formik
+    return (<Formik
             initialValues={{
-                title: post?.title,
-                employee: 1,
-                datePost: new Date(),
-                image: post?.image,
-                content: post?.content
+                title: post?.title, employee: 1, datePost: new Date(), image: post?.image, content: post?.content
             }}
             validationSchema={Yup.object({
-                title: Yup.string().required("Không được để trống"),
-                // image: Yup.string().required("Không được để trống"),
+                title: Yup.string().required("Không được để trống"), // image: Yup.string().required("Không được để trống"),
                 content: Yup.string().required("Không được để trống")
             })}
             onSubmit={(values, {resetForm}) => {
@@ -98,8 +91,7 @@ export function UpdatePost() {
                     // const imageUrl = await handleSubmitAsync();
 
                     const newValue = {
-                        ...values,
-                        // image: imageUrl,
+                        ...values, // image: imageUrl,
                         employee: getIdEmployee(+values.employee)
                     };
 
@@ -203,7 +195,7 @@ export function UpdatePost() {
                                             name="content"
                                         />
                                     </div>
-                                    <div className="mt-4 btn-group">
+                                    <div className="mt-4 btn-group justify-content-between d-flex">
                                         <div className="text-center m-auto">
                                             <button
                                                 type="button"
@@ -230,6 +222,5 @@ export function UpdatePost() {
                     </div>
                 </div>
             </div>
-        </Formik>
-    )
+        </Formik>)
 }

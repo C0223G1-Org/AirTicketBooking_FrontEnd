@@ -6,7 +6,7 @@ import "../../css/post.css";
 import * as Yup from "yup"
 import moment from "moment";
 import Swal from "sweetalert2";
-import {storage} from "../firebase";
+import {storage} from "../../firebase";
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
 
 export function CreatePost() {
@@ -120,126 +120,126 @@ export function CreatePost() {
                 };
                 create();
             }}
-                >
-                <div className="container " style={{marginBottom: "5rem"}}>
+        >
+            <div className="container " style={{marginBottom: "5rem"}}>
                 <div className="row height d-flex justify-content-center align-items-center">
-                <div className="col-md-6" style={{borderRadius: "4px"}}>
-                <div
-                className="card"
-                style={{
-                marginTop: "4rem",
-                marginBottom: "4rem",
-                paddingLeft: "0px",
-                paddingTop: "0px",
-                paddingRight: "0px"
-            }}
-                >
-                <div
-                style={{
-                borderRadius: "4px",
-                textAlign: "center",
-                backgroundColor: "#4FA3E3",
-                height: "57px",
-                color: "white"
-            }}
-                >
-                <h2 style={{marginTop: "9px"}}>THÊM MỚI THÔNG TIN</h2>
-                </div>
-                <Form style={{marginLeft: "40px", marginRight: "40px"}}>
-                <div className="mt-4 inputs">
+                    <div className="col-md-6" style={{borderRadius: "4px"}}>
+                        <div
+                            className="card"
+                            style={{
+                                marginTop: "4rem",
+                                marginBottom: "4rem",
+                                paddingLeft: "0px",
+                                paddingTop: "0px",
+                                paddingRight: "0px"
+                            }}
+                        >
+                            <div
+                                style={{
+                                    borderRadius: "4px",
+                                    textAlign: "center",
+                                    backgroundColor: "#4FA3E3",
+                                    height: "57px",
+                                    color: "white"
+                                }}
+                            >
+                                <h2 style={{marginTop: "9px"}}>THÊM MỚI THÔNG TIN</h2>
+                            </div>
+                            <Form style={{marginLeft: "40px", marginRight: "40px"}}>
+                                <div className="mt-4 inputs">
                 <span>
                 Tiêu đề <span style={{color: "red"}}>*</span>
                 </span>
-                <Field
-                type="text"
-                className="form-control"
-                id="title"
-                name="title"
-                />
+                                    <Field
+                                        type="text"
+                                        className="form-control"
+                                        id="title"
+                                        name="title"
+                                    />
 
 
-                </div>
-                <div className="mt-2 inputs">
-                {/*<span>*/}
-                {/*  Nhân viên <span style={{ color: "red" }}>*</span>*/}
-                {/*</span>*/}
-                {/*                  <Field*/}
-                {/*                      type="number"*/}
-                {/*                      value="1"*/}
-                {/*                      className="form-control"*/}
-                {/*                      id="employee"*/}
-                {/*                      name="employee"*/}
-                {/*                      readOnly*/}
-                {/*                  />*/}
-                {/*              </div>*/}
-                <div className="mt-2 inputs">
+                                </div>
+                                <div className="mt-2 inputs">
+                                    {/*<span>*/}
+                                    {/*  Nhân viên <span style={{ color: "red" }}>*</span>*/}
+                                    {/*</span>*/}
+                                    {/*                  <Field*/}
+                                    {/*                      type="number"*/}
+                                    {/*                      value="1"*/}
+                                    {/*                      className="form-control"*/}
+                                    {/*                      id="employee"*/}
+                                    {/*                      name="employee"*/}
+                                    {/*                      readOnly*/}
+                                    {/*                  />*/}
+                                    {/*              </div>*/}
+                                    <div className="mt-2 inputs">
                 <span>
                 Ngày tạo <span style={{color: "red"}}>*</span>
                 </span>
-                <Field
-                type="text"
-                className="form-control"
-                name="datePost"
-                />
-                </div>
-                <div className="mt-2 inputs">
+                                        <Field
+                                            type="text"
+                                            className="form-control"
+                                            name="datePost"
+                                        />
+                                    </div>
+                                    <div className="mt-2 inputs">
                 <span>
                 Upload hình ảnh <span style={{color: "red"}}>*</span>
                 </span>
-                <Field
-                type="file"
-                onChange={(e) => handleFileSelect(e)}
-                id="image"
-                name={"image"}
-                />
-                </div>
-                {selectedFile && (
-                <img
-                className={"mt-2"}
-                src={URL.createObjectURL(selectedFile)}
-                style={{width: "100%"}}
-                alt=""/>
-                )}
+                                        <Field
+                                            type="file"
+                                            onChange={(e) => handleFileSelect(e)}
+                                            id="image"
+                                            name={"image"}
+                                        />
+                                    </div>
+                                    {selectedFile && (
+                                        <img
+                                            className={"mt-2"}
+                                            src={URL.createObjectURL(selectedFile)}
+                                            style={{width: "100%"}}
+                                            alt=""/>
+                                    )}
 
-                <div className="mt-4 inputs">
+                                    <div className="mt-4 inputs">
                 <span>
                 Nội dung <span style={{color: "red"}}>*</span>
                 </span>
-                <Field
-                as="textarea"
-                type="text"
-                className="form-control"
-                id="content"
-                name="content"
-                />
+                                        <Field
+                                            as="textarea"
+                                            type="text"
+                                            className="form-control"
+                                            id="content"
+                                            name="content"
+                                        />
+                                    </div>
+                                    <div className="mt-4 btn-group">
+                                        <div className="text-center m-auto">
+                                            <button
+                                                type="button"
+                                                className="btn btn-secondary"
+                                                style={{width: "100px"}}
+                                            >
+                                                <b className="text-center">Quay lại</b>
+                                            </button>
+                                        </div>
+                                        <div className="text-center m-auto">
+                                            <button
+                                                type="submit"
+                                                className="btn btn-warning "
+                                                data-mdb-toggle="modal"
+                                                data-mdb-target="#exampleModalToggle1"
+                                            >
+                                                <b className="text-center">Thêm mới</b>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
                 </div>
-                <div className="mt-4 btn-group">
-                <div className="text-center m-auto">
-                <button
-                type="button"
-                className="btn btn-secondary"
-                style={{width: "100px"}}
-                >
-                <b className="text-center">Quay lại</b>
-                </button>
-                </div>
-                <div className="text-center m-auto">
-                <button
-                type="submit"
-                className="btn btn-warning "
-                data-mdb-toggle="modal"
-                data-mdb-target="#exampleModalToggle1"
-                >
-                <b className="text-center">Thêm mới</b>
-                </button>
-                </div>
-                </div>
-                </div>
-                </Form>
-                </div>
-                </div>
-                </div>
-                </div>
-                </Formik>
-                );
-                }
+            </div>
+        </Formik>
+    );
+}

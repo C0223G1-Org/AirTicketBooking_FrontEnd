@@ -26,6 +26,8 @@ import InfoPassenger from "./component/ticket/InfoPassenger";
 import EmployeeList from "./component/Employee/EmployeeList";
 import CreateEmployee from "./component/Employee/CreateEmployee";
 import ListPost from "./component/post/ListPost";
+import {UpdatePost} from "./component/post/UpdatePost";
+import {CreatePost} from "./component/post/CreatePost";
 // import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
 // import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
 // import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
@@ -56,6 +58,8 @@ root.render(
                 {/*<Route path="/employee" element={<EmployeeList/>} />*/}
                 {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
                 <Route path='/listPost' element={<ListPost />} />
+                <Route path='/updatePost/:id' element={<UpdatePost />} />
+                <Route path='/createPost' element={<CreatePost />} />
 
                 {/*<Route path="/tickets/search-ticket" element={<SearchTicketPage />} />*/}
                 {/*<Route*/}
