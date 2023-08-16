@@ -7,7 +7,7 @@ import * as Yup from "yup"
 import moment from "moment";
 import Swal from "sweetalert2";
 import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
-import {storage} from './firebase';
+import {storage} from '../../firebase';
 import {v4} from "uuid";
 import CKEditorComponent from "./CKEditorComponent";
 import {createPost} from "../../services/PostServices";
