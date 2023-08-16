@@ -39,7 +39,7 @@ export default function ListPost() {
             const data = await getListPost(page, limit);
             setListPosts([...listPosts, ...data.content]);
             setTotal(data.totalPages);
-        }catch (error){
+        } catch (error) {
             Swal.fire({
                 title: 'Không có dữ liệu.',
                 icon: 'error',
@@ -223,24 +223,27 @@ export default function ListPost() {
                                     aria-label="Close"></button>
                         </div>
                         <div className="modal-body" style={{padding: 0}}>
-                            <div className="row container-fluid mt-1">
+                            <div className="row container-fluid mt-1 mb-5 d-inline-flex">
                                 <div className="col-4">
-                                    <img className="d-flex position-relative" width="90%" height="250"
+                                    <img className="d-flex position-relative" width="90%"
                                          src={detail.image} alt="mixed vegetable salad in a mason jar."/>
                                 </div>
-                                <div className="col-8 card_content">
-                                    <div className="note-detail"><p className="m-0">Người
-                                        đăng: {employee.nameEmployee}</p>  <p>Thời
-                                        gian: {moment(`${detail.datePost}`).format('DD-MM-YYYY HH:mm:ss')}</p></div>
-                                    <h1 className="card_title_detail">{detail.title}</h1>
-                                </div>
-                                    <div className="card_text mt-3">
-                                        <p>{detail.content}</p>
+                                <div className="col-8 card_content ">
+                                    <div className="note-detail">
+                                        <p className="m-0">Người đăng: {employee.nameEmployee}</p>
+                                        <p>Thời gian: {moment(`${detail.datePost}`).format('DD-MM-YYYY HH:mm:ss')}</p>
+                                        <h1 className="card_title_detail">{detail.title}</h1>
                                     </div>
+                                </div>
+                            </div>
+                            <div className="row card_text mt-3 container-fluid text-justify">
+                               <div className="col-12">
+                                   <p>{detail.content}</p>
+                               </div>
                             </div>
 
                         </div>
-                        <div className="modal-footer" style={{maxHeight:'70px'}}>
+                        <div className="modal-footer" style={{maxHeight: '70px'}}>
                             <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Thoát</button>
                         </div>
                     </div>
