@@ -110,9 +110,9 @@ export default function ListPost() {
                 <div className="main col-12 col-lg-9 ">
                     <div className=" justify-content-between d-flex mb-2 ">
                         <div className="add-post">
-                            <NavLink to="/createPost" className="btn search mt-3"> Thêm mới</NavLink>
+                            <NavLink to="/createPost" className="btn search mt-2"> Thêm mới</NavLink>
                         </div>
-                        <div className="search-post">
+                        <div className="search-post" style={{marginBottom: '1rem'}}>
                             <Formik initialValues={{
                                 title: ''
                             }}
@@ -122,7 +122,7 @@ export default function ListPost() {
                             >
                                 <Form>
                                     <Field className="me-0 mt-3" type="text" id="title" name="title"
-                                           placeholder="Search Title . . ."/>
+                                           placeholder="Nhập tên bài viết . . ."/>
                                     <button className="search" type="submit">Tìm Kiếm
                                     </button>
                                 </Form>
@@ -217,30 +217,30 @@ export default function ListPost() {
                  aria-hidden="true">
                 <div className="modal-dialog modal-fullscreen modal-dialog-scrollable">
                     <div className="modal-content">
-                        <div className="modal-header bg-info">
+                        <div className="modal-header bg-info h-10">
                             <h5 className="modal-title" id="exampleModalLabel1">Chi tiết bài viết</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                         </div>
                         <div className="modal-body" style={{padding: 0}}>
-                            <div className="row">
+                            <div className="row container-fluid mt-1">
                                 <div className="col-4">
-                                    <img className="d-flex position-relative" width="100%" height="300"
+                                    <img className="d-flex position-relative" width="90%" height="250"
                                          src={detail.image} alt="mixed vegetable salad in a mason jar."/>
                                 </div>
                                 <div className="col-8 card_content">
                                     <div className="note-detail"><p className="m-0">Người
                                         đăng: {employee.nameEmployee}</p>  <p>Thời
                                         gian: {moment(`${detail.datePost}`).format('DD-MM-YYYY HH:mm:ss')}</p></div>
-                                    <h1 className="card_title">{detail.title}</h1>
-                                    <div className="card_text">
+                                    <h1 className="card_title_detail">{detail.title}</h1>
+                                </div>
+                                    <div className="card_text mt-3">
                                         <p>{detail.content}</p>
                                     </div>
-                                </div>
                             </div>
 
                         </div>
-                        <div className="modal-footer">
+                        <div className="modal-footer" style={{maxHeight:'70px'}}>
                             <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Thoát</button>
                         </div>
                     </div>
