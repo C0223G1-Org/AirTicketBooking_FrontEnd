@@ -1,4 +1,6 @@
 import axios from "axios";
+import { date } from "yup";
+import qs from 'qs';
 
 export async function searchTicketByNameAndIdCardPassenger(name,idCard,page) {
     const res = await axios.get('http://localhost:8080/tickets/search-ticket/'+ name +'/' + idCard + '?page=' + page)
@@ -9,6 +11,7 @@ export async function   searchTicketByNameAndIdCardPassengerResult(name,idCard,p
     return res.data;
 }
 
+
 export async function updateListTicket(ticket){
         await axios.patch(`http://localhost:8080/tickets/updateTicket/`+ticket.idTicket,ticket);
 }
@@ -17,9 +20,13 @@ export async function findTicketById(){
     const res= await axios.get(`http://localhost:8080/tickets/${1}`)
     return res.data;
 }
-export async function getListCustomer(){
-    const res= await axios.get('http://localhost:8080/customers/list?page=0');
+export async function getListCustomer() {
+    const res = await axios.get('http://localhost:8080/customers/list?page=0');
     return res.data;
+}
+export  async function createNewTicket(ticket) {
+    await axios.post("http://localhost:8080/tickets", ticket)
+
 
 }
 
@@ -55,4 +62,16 @@ export const getListUnBookTicket=async(page)=>{
 export const deleteTicketDB=async(id)=>{
     const response=await axios.delete("http://localhost:8080/tickets/"+id)
     return response.data;
+}
+export const searchBookedTicket=async(page,ticketSearch)=>{
+    const ticket = qs.stringify(ticketSearch);
+    console.log(ticket)
+    const response=await axios.get(`http://localhost:8080/tickets/search/${page}?${ticket}`)
+    return response.data
+}
+export const searchUnBookedTicket=async(page,ticketSearch)=>{
+    const ticket = qs.stringify(ticketSearch);
+    console.log(ticket)
+    const response=await axios.get(`http://localhost:8080/tickets/search-unbooked/${page}?${ticket}`)
+    return response.data
 }

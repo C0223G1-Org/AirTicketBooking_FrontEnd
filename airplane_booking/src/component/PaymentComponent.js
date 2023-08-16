@@ -1,31 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import '../css/payment/Payment.css';
-import { getTicketByTicketId } from '../services/PaymentService';
+import { getTicketByTicketId, updateTicketByIdTicket } from '../services/PaymentService';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import axios from 'axios';
+import { HttpStatusCode } from 'axios';
 
-const PaymentComponent = () => {
+const   PaymentComponent = () => {
     const [payment, setPayment] = useState([])
-    // const { id } = useParams();
-    // const negative = useNavigate();
+    const { id } = useParams();
+    const negative = useNavigate();
     const getTicket = () => {
         const getTicketById = async () => {
             try {
-                const paymentData = await getTicketByTicketId();
+                console.log(id)
+                const paymentData = await getTicketByTicketId(id);
                 setPayment(paymentData);
-
+                console.log(payment);
             } catch (error) {
                 console.error('Error occurred while getting payment data:', error)
             }
         };
         getTicketById();
     }
-    useEffect(getTicket, []);
+    useEffect(() => {
+        console.log("aaaaa");
+        getTicket()
+    }, []);
+    useEffect( () => {
+        document.title = 'Thanh toán'
+        })
+
     let typeTicket = payment?.typeTicket?.nameTypeTicket;
     let stateTicket = 0;
     if (typeTicket === 'Khứ hồi') {
-         stateTicket = 1;
+        stateTicket = 1;
     }
 
     let stateButton = 0;
@@ -65,33 +73,31 @@ const PaymentComponent = () => {
                 },
                 createOrder: createOrder,
                 onApprove: async (data, actions) => {
+                
                     const order = await actions.order.capture();
-                    console.log(order);
-                    //Gửi thông tin trạng thái thanh toán tới Spring Boot
-                    const response = await axios(`/payment/callback/1`, {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(order.status)
-                    });
-                    const responseBody = await response.text();
-                    if (responseBody === 'COMPLETED') {
+                  
+                    // Gửi thông tin trạng thái thanh toán tới Spring Boot
+                    await updateTicketByIdTicket(1, order.status)
+                    console.log(order.status)
+                    if (order.status === 'COMPLETED' || order.status === 200 || order.status === HttpStatusCode.Ok
+                        || order.status === 'thành công') {                   
                         Swal.fire({
                             icon: 'success',
                             title: 'Thanh toán thành công',
                             timer: 2000
                         }).then(() => {
-                            // negative("/")
-                        })
-                    } else if (responseBody === 'CANCELLED') {
+                            negative('/home')
+                        });
+                    } else if (order.status === 422 || order.status === 404 || order.status === 'CANCELLED' ||
+                    order.status === 'DECLINED'||  order.status === 'FAILED' ||  order.status === 'EXPIRED' ||
+                    order.status === 'PENDING') {
                         Swal.fire({
                             icon: 'error',
                             title: 'Thanh toán thất bại',
                             timer: 2000
                         }).then(() => {
-                            // negative("/")
-                        })
+                            negative('/failed')
+                        });
                     }
                 },
             }).render('#paypal-button-container');
@@ -222,7 +228,8 @@ const PaymentComponent = () => {
             </div>
             <p className="thank-you">Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!</p>
         </div>
-    );
+
+    )
 };
 
 export default PaymentComponent;

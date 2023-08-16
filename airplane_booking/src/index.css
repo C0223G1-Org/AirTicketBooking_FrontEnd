@@ -33,8 +33,8 @@ h1 {
   border-color: var(--buttonAirLine--);
   color: var(--buttonAirLine--);
   border-radius: 5px;
-  min-width: 100px;
-  min-height: 33px;
+  min-width: 150px;
+  min-height: 40px;
 }
 
 .section-ticket-item button:hover {
@@ -52,31 +52,37 @@ h1 {
 
 .table-ticket {
   margin: 0 5%;
-  position: relative;
+
+  /* position: relative; */
 }
 
 .table-ticket table {
   min-width: 100%;
   border-spacing: 0;
   border-collapse: separate;
+  position: relative;
 }
 
 .table-ticket table td {
   padding: 10px 0;
   border-bottom: 1px solid #e3e3d5;
+  text-align: center;
 }
 
 .table-ticket table thead {
   background-color: var(--airLine--);
 }
 
-th {
+.table-ticket table th {
   height: 35px;
   color: white;
   text-align: center;
 }
 
 .pagination-ticket {
+  position: absolute;
+  top: 410px;
+  right: 0;
   display: flex;
   justify-content: flex-end;
   margin: 10px 5%;
@@ -85,7 +91,7 @@ th {
 .pagination-ticket .pagination-ticket-item {
   list-style: none;
   display: inline-block;
-
+  margin: 0 5px;
 }
 
 .pagination-ticket .pagination-ticket-item button {
@@ -93,7 +99,7 @@ th {
   border: none;
   font-size: small;
   width: 45px;
-  height: 28px;
+  height: 30px;
 }
 
 .pagination-ticket .pagination-ticket-item button:hover {
@@ -113,19 +119,30 @@ th {
   display: inline-block;
   margin: 0 5px;
 }
+.modal-search{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left:0;
+  display: flex;
 
+}
 .show-search-ticket {
   position: absolute;
-  top:0;
-  left: 70px;
-  width: 650px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 70px;
   /* display: none; */
 
   /*background-color: #d3d3b7;*/
 }
 .show-search-ticket ul{
+  margin: auto;
   background-color: #b3d3d7;
   border-radius: 10px;
+  width: 650px;
 }
 .show-search-ticket li{
   list-style: none;
@@ -198,6 +215,7 @@ th {
   margin-right: 5px;
 }
 .show-search-ticket-body-sale-selection {
+  display: flex;
   justify-content: start;
 }
 .show-search-ticket-body-sale-selection-item{
@@ -205,8 +223,9 @@ th {
   display: inline-block;
 }
 .show-search-ticket-sale-body{
-  margin: 10px 30px; ;
+  margin: 10px 30px;
 }
+
 .show-search-ticket-body-sale-selection-item button{
   margin-top: 15px;
   border-radius: 10px;
@@ -264,6 +283,7 @@ th {
   min-width: 30%;
   max-width: 120px;
   border-color: #e3e3d5;
+  margin-bottom: 20px;
 }
 .show-search-ticket-body-input-passenger button{
   border-radius: 10px;
@@ -313,7 +333,7 @@ body {
 .show-route-ticket-body-input-item input{
   border-radius: 5px;
   border: none;
-  min-width: 100px;
+  width: 150px;
 }
 .show-route-ticket-body-input-item button{
   border-radius: 5px;
@@ -323,6 +343,44 @@ body {
   background-color: var(--buttonAirLine--);
   border-color: var(--airLine--);
 }
+
+.section-unBook-ticket{
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 5%;
+}
+.section-unBook-ticket-item{
+  list-style: none;
+  display: inline-block;
+
+}
+.section-unBook-ticket ul{
+  padding: 0 !important;
+}
+
+.section-unBook-ticket-item input{
+  margin:0 10px;
+  max-width: 150px;
+  border-radius: 5px ;
+  min-height: 40px;
+  cursor: pointer;
+  border-color: var(--airLine--);
+}
+.section-unBook-ticket-item button{
+  border-radius: 5px ;
+  cursor: pointer;
+  border-color: var(--buttonAirLine--);
+  background-color: white;
+  min-width: 150px;
+  min-height: 40px;
+  color: var(--buttonAirLine--);
+}
+.section-unBook-ticket-item button:hover{
+  background-color:var(--buttonAirLine--);
+  color: white;
+}
+
+
 .err-mess{
   color: red;
 }
