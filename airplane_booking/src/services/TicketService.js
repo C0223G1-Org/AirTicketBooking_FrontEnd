@@ -26,8 +26,6 @@ export async function getListCustomer() {
 }
 export  async function createNewTicket(ticket) {
     await axios.post("http://localhost:8080/tickets", ticket)
-
-
 }
 
 export async function getListSeat(){
