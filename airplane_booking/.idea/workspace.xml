@@ -22,14 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="">
+    <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="thanh son update code ngay 17-08">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Employee/CreateEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/CreateEmployee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Employee/EditEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/EditEmployee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase-chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase-chat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ticket/printTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket/printTicket.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,11 +41,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
   <component name="GithubProjectSettings">
     <option name="branchProtectionPatterns">
       <list>
         <option value="main" />
       </list>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="247ea1c3-e3fb-4a63-878e-4a256b9f25cd" />
+        <option name="url" value="https://github.com/C0223G1-Org/AirTicketBooking_FrontEnd.git" />
+      </UrlAndAccount>
     </option>
   </component>
   <component name="MarkdownSettingsMigration">

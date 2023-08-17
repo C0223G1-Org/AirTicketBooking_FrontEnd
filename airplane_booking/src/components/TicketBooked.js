@@ -139,7 +139,7 @@ function TicketBooked() {
                                                 <i className="fa-solid fa-pen-to-square" />
 
                                             </li>
-                                            </Link>
+                                                </Link>
                                             <li className="icon-ticket-item">
                                               
                                                     <i onClick={()=>deleteTicket(ticket.id)} className="fa-solid fa-trash mx-2" style={{ color: '#eb0f1a' }}></i>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import './index.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import Header from "./components/home/Header";
 import "bootstrap/dist/css/bootstrap.css";
@@ -74,7 +74,7 @@ root.render(
                     <Route path="/info-passenger/:data" element={<InfoPassenger/>}/>
                     <Route path="/employee" element={<EmployeeList/>} />
                     <Route path='/employee/create' element={<CreateEmployee />} />
-                    <Route path='/employee/update/:id' element={<EditEmployee/>} />
+                    <Route path='/employee/update/:id' element={<EditEmployee />} />
                     <Route path='/listPost' element={<ListPost/>}/>
                     <Route path='/updatePost/:id' element={<UpdatePost/>}/>
                     <Route path='/createPost' element={<CreatePost/>}/>
