@@ -224,7 +224,7 @@ export default function ListPost() {
                                     </div>
                                     <div className="news-card-button">
                                         <NavLink to={"/updatePost/" + newss.id}
-                                                 className="news-button search btn1 btn-warning ">Sửa</NavLink>
+                                                 className="news-button search btn1  btn-warning ">Sửa</NavLink>
                                         <a className="news-button search btn1 btn-warning " onClick={() => {
                                             checkDelete(`${newss.id}`, `${newss.title}`)
                                         }}>Xoá</a>

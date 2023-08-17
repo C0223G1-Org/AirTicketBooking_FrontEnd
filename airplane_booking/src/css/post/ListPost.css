@@ -254,7 +254,7 @@
     display: inline-block;
     padding: 6px 12px;
     margin-bottom: 7px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.42857143;
     text-align: center;
@@ -269,5 +269,10 @@
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
-    border-radius: 4px
+    border-radius: 10px
+}
+.btn1:hover{
+    background-color: white;
+    border-color: #d7a60c;
+    border-width: 1px;
 }
