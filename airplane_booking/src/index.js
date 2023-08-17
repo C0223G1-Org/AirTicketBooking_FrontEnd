@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import './index.css';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import Header from "./components/home/Header";
 import "bootstrap/dist/css/bootstrap.css";
@@ -26,58 +26,66 @@ import InfoPassenger from "./component/ticket/InfoPassenger";
 import EmployeeList from "./component/Employee/EmployeeList";
 import CreateEmployee from "./component/Employee/CreateEmployee";
 import ListPost from "./component/post/ListPost";
+import {UpdatePost} from "./component/post/UpdatePost";
+import {CreatePost} from "./component/post/CreatePost";
+// import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
+// import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
+// import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
 import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
 import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
-import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
+import {TicketProvider} from "./components/searchTickets_KietNT/TicketContext";
 import AdminPage from "./components/chat_messenger/AdminChat";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <TicketProvider>
-        <Header />
-        <Routes>
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/top10" element={<GetTop10Cheapest />}></Route>
-          <Route path="/header-customer" element={<HeaderCustomer />} />
-          <Route path="/header-admin" element={<HeaderAdmin />} />
-          <Route path="/header-employee" element={<HeaderEmployee />} />
-          <Route
-            path="/printTicket"
-            element={<PrintTicket></PrintTicket>}
-          ></Route>
-          <Route
-            path="/tickets/updateTicket/:id"
-            element={<UpdateTicket />}
-          ></Route>
-          <Route path="/ticket/booked" element={<TicketBooked />} />
-          <Route path="/ticket/unbooked" element={<TicketUnBook />} />
-          <Route path="/customers" element={<CustomerManagement />} />
-          <Route path="/customers/add" element={<EmployeeCreateCustomer />} />
-          <Route
-            path="/customers/edit/:id"
-            element={<EmployeeUpdateCustomer />}
-          />
-          <Route path="/customers/update/:id" element={<CustomerUpdate />} />
-          <Route path="/customers/details/:id" element={<CustomerDetails />} />
-          <Route path="/list/:data" element={<ListRouter />} />
-          <Route path="/detail-ticket/:data" element={<DetailTicket />} />
-          <Route path="/info-passenger/:data" element={<InfoPassenger />} />
-          {/*<Route path="/employee" element={<EmployeeList/>} />*/}
-          {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
-          <Route path="/listPost" element={<ListPost />} />
-          <Route path="/tickets/search-ticket" element={<SearchTicketPage />} />
-          <Route
-            path="/tickets/search-ticket-results"
-            element={<SearchResultPage />}
-          />
-           <Route path="/admin/messages" element={<AdminPage />}></Route>
-        </Routes>
+    <React.StrictMode>
+        <BrowserRouter>
+            <TicketProvider>
+                <Header/>
+                <Routes>
+                    <Route path="/home" element={<Home/>}></Route>
+                    <Route path="/top10" element={<GetTop10Cheapest/>}></Route>
+                    <Route path="/header-customer" element={<HeaderCustomer/>}/>
+                    <Route path="/header-admin" element={<HeaderAdmin/>}/>
+                    <Route path="/header-employee" element={<HeaderEmployee/>}/>
+                    <Route
+                        path="/printTicket"
+                        element={<PrintTicket></PrintTicket>}
+                    ></Route>
+                    <Route
+                        path="/tickets/updateTicket/:id"
+                        element={<UpdateTicket/>}
+                    ></Route>
+                    <Route path="/ticket/booked" element={<TicketBooked/>}/>
+                    <Route path="/ticket/unbooked" element={<TicketUnBook/>}/>
+                    <Route path="/customers" element={<CustomerManagement/>}/>
+                    <Route path="/customers/add" element={<EmployeeCreateCustomer/>}/>
+                    <Route
+                        path="/customers/edit/:id"
+                        element={<EmployeeUpdateCustomer/>}
+                    />
+                    <Route path="/customers/update/:id" element={<CustomerUpdate/>}/>
+                    <Route path="/customers/details/:id" element={<CustomerDetails/>}/>
+                    <Route path="/list/:data" element={<ListRouter/>}/>
+                    <Route path="/detail-ticket/:data" element={<DetailTicket/>}/>
+                    <Route path="/info-passenger/:data" element={<InfoPassenger/>}/>
+                    {/*<Route path="/employee" element={<EmployeeList/>} />*/}
+                    {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
+                    <Route path='/listPost' element={<ListPost/>}/>
+                    <Route path='/updatePost/:id' element={<UpdatePost/>}/>
+                    <Route path='/createPost' element={<CreatePost/>}/>
+                    <Route path="/tickets/search-ticket" element={<SearchTicketPage/>}/>
+                    <Route
+                        path="/tickets/search-ticket-results"
+                        element={<SearchResultPage/>}
+                    />
+                    <Route path="/admin/messages" element={<AdminPage/>}></Route>
+                </Routes>
 
-        <Footer />
-      </TicketProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+                <Footer/>
+            </TicketProvider>
+        </BrowserRouter>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
