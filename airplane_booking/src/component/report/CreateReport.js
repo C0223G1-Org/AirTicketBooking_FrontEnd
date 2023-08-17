@@ -75,6 +75,7 @@ export default function CreateReport() {
         }
     }
 
+
     return (
         <>
             <div className="row" style={{backgroundColor: "white"}}>
@@ -92,7 +93,7 @@ export default function CreateReport() {
                                         timePrevious: "",
                                         startDate: "",
                                         endDate: "",
-                                        startDate1: "",
+                                        starDate1: "",
                                         endDate1: "",
                                     }}
 
@@ -118,14 +119,14 @@ export default function CreateReport() {
                                                             <Field type="radio" id="one-way" name="travelType"
                                                                    value="one-way"
                                                                    onClick={() => resetFieldName(resetForm)}/>
+                                                            <b style={{fontSize: "25px"}}> So sánh nhanh</b>
                                                         </label>
                                                         <div className="form-group">
-                                                    <span className="form-label">So sánh nhanh <span
+                                                    <span className="form-label">Thời gian <span
                                                         style={{color: "red"}}>*</span></span>
                                                             <Field as="select" className="form-control"
                                                                    name="timeCurrent"
-                                                                   disabled={values.travelType === "multi-city" }
-                                                                   required={values.travelType === 'one-way'}
+                                                                   disabled={values.travelType === "multi-city"}
                                                             >
                                                                 <option value="">--Vui lòng chọn thời gian--</option>
                                                                 <option value="week">Tuần này - Tuần Trước</option>
@@ -143,6 +144,7 @@ export default function CreateReport() {
                                                             <Field type="radio" id="multi-city" name="travelType"
                                                                    value="multi-city"
                                                                    onClick={() => resetFieldName(resetForm)}/>
+                                                            <b style={{fontSize: "25px"}}> So sánh theo tháng</b>
                                                         </label>
                                                         <div className="row">
                                                             <div className="col-md-6">
@@ -152,7 +154,8 @@ export default function CreateReport() {
                                                                     <Field className="form-control" type="date"
                                                                            name="startDate"
                                                                            disabled={values.travelType === "one-way"}
-                                                                           required={values.travelType === 'multi-city'}/>
+                                                                           max={new Date().toISOString().split('T')[0]}
+                                                                    />
                                                                     <ErrorMessage name="timeCurrent" component="span"
                                                                                   style={{color: "red"}}/>
                                                                 </div>
@@ -164,7 +167,8 @@ export default function CreateReport() {
                                                                     <Field className="form-control" type="date"
                                                                            name="endDate"
                                                                            disabled={values.travelType === "one-way"}
-                                                                           required={values.travelType === 'multi-city'}/>
+                                                                           max={new Date().toISOString().split('T')[0]}
+                                                                    />
                                                                     <ErrorMessage name="timeCurrent" component="span"
                                                                                   style={{color: "red"}}/>
                                                                 </div>
@@ -172,31 +176,32 @@ export default function CreateReport() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h4><b>So sánh với:</b></h4>
-                                                <div className="row">
-                                                    <div className="col-md-12">
-                                                        <div className="form-group">
-
-
-                                                        </div>
-                                                    </div>
+                                                <h4 style={{marginTop:"-1.5vh"}}>So sánh với:</h4>
+                                                <div className="row" style={{marginTop: "2vh"}}>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
-                                                            <span className="form-label">Từ </span>
-                                                            <Field className="form-control" type="date" name="starDate1"
-                                                                   disabled={values.travelType === "one-way"}/>
+                                                            <span className="form-label">Đến</span>
+                                                            <Field className="form-control" type="date"
+                                                                   name="startDate1"
+                                                                   disabled={values.travelType === "one-way"}
+                                                                   max={new Date().toISOString().split('T')[0]}/>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <span className="form-label">Đến</span>
                                                             <Field className="form-control" type="date" name="endDate1"
-                                                                   disabled={values.travelType === "one-way"}/>
+                                                                   disabled={values.travelType === "one-way"}
+                                                                   max={new Date().toISOString().split('T')[0]}/>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div style={{textAlign: "center"}}>
-                                                    <button className="btn" style={{background: "#daa32a"}}>Xem</button>
+                                                    <button className="btn" style={{
+                                                        background: "#daa32a", width: "85px",
+                                                        fontSize: "15px"
+                                                    }}>Xem
+                                                    </button>
                                                 </div>
                                             </Form>
                                         )}
@@ -220,11 +225,14 @@ export default function CreateReport() {
                                                 dataTimeAbout={[]}
                                                 dataTimeAbout1={[]}/>
                             }
-                            <div style={{textAlign: "center"}}>
-                                <button className="btn" style={{background: "#daa32a"}}
-                                        onClick={() => handleOnclickExport()}>In báo cáo
-                                </button>
-                            </div>
+                            {/*<div style={{textAlign: "center"}}>*/}
+                            {/*    <button className="btn" style={{*/}
+                            {/*        background: "#daa32a", width: "85px",height:"35px",*/}
+                            {/*        fontSize: "15px", marginLeft: "3.5vw", marginTop: "1vh"*/}
+                            {/*    }}*/}
+                            {/*            onClick={() => handleOnclickExport()}>In báo cáo*/}
+                            {/*    </button>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>
