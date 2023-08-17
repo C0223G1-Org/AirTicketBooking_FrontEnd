@@ -69,6 +69,7 @@ export default function InfoPassenger() {
         }, []);
     }
 
+
         const getTypeSeat = async () => {
             const data = await getTypeSeatByName(arr[2])
             console.log(data)
