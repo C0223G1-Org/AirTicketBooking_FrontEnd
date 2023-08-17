@@ -188,7 +188,7 @@ function TicketBooked() {
                                     <td >{ticket.priceTicket}</td>
                                     <td className="icon-ticket">
                                         <ul>
-                                            <Link to={`/ticket/updateTicket/${ticket.id}`}>
+                                            <Link to={`/tickets/updateTicket/${ticket.id}`}>
                                                 <li className="icon-ticket-item">
                                                     <i className="fa-solid fa-pen-to-square" />
                                                     </li>
