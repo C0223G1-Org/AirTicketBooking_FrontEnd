@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="kiet update code ngay 15-08">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Employee/EditEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/EditEmployee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Employee/firebare.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/post/CreatePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/CreatePost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/post/ListPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/ListPost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/post/UpdatePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/UpdatePost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ticket/printTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket/printTicket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/home/Top10.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/home/Top10.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/post.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/post.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/post/card2.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/post/card2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase-chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase-chat.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,15 +51,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -59,7 +71,9 @@
       <updated>1692013370002</updated>
       <workItem from="1692013374244" duration="33000" />
       <workItem from="1692100149710" duration="6984000" />
-      <workItem from="1692184955497" duration="608000" />
+      <workItem from="1692184955497" duration="4779000" />
+      <workItem from="1692225872804" duration="2804000" />
+      <workItem from="1692233451322" duration="2582000" />
     </task>
     <task id="LOCAL-00001" summary="thanh son commit frontend ngày 16-08-2023">
       <created>1692174627312</created>
@@ -89,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692181209999</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="thanh son commit frontend ngày 16-08-2023">
+      <created>1692186583742</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692186583742</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

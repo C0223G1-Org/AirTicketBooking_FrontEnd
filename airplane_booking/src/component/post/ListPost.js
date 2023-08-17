@@ -127,8 +127,8 @@ export default function ListPost() {
         <>
             <body className="list-news">
             <div className="row container-fluid">
-                <div className="main col-12 col-lg-9 ">
-                    <div className=" justify-content-between d-flex mb-2 ">
+                <div className="main-son col-12 col-lg-9 ">
+                    <div className="justify-content-between" style={{display: 'flex'}}>
                         <div className="add-post">
                             <NavLink to="/createPost" className="btn search mt-2"> Thêm mới</NavLink>
                         </div>
@@ -153,7 +153,7 @@ export default function ListPost() {
                     <ul className="cards_news">
                         {listPosts.map((post) => (
                             <li className="card_item_news" key={post.id}>
-                                <div className="card">
+                                <div className="card card-son ">
                                     <a className="btn p-0" onClick={() => {
                                         detailPost(post, post.employee)
                                     }} data-bs-toggle="modal" data-bs-target="#exampleModalDetail">
@@ -194,7 +194,7 @@ export default function ListPost() {
 
                 <div className="vertical_news col-12 col-lg-3">
                     <div>
-                        <h4 className="text-uppercase" style={{marginBottom: '16px', marginTop: '16px'}}>Tin nổi
+                        <h4 className="text-uppercase h2" style={{marginBottom: '16px', marginTop: '16px'}}>Tin nổi
                             bật</h4>
                     </div>
                     <ul className="cards_news">
@@ -203,7 +203,7 @@ export default function ListPost() {
                         </li>
                         {news.map((newss) => (
                             <li className="news-hots">
-                                <div className="card">
+                                <div className="card     card-son">
                                     <button className="btn p-0" onClick={() => {
                                         detailPost(newss, newss.employee)
                                     }} data-bs-toggle="modal" data-bs-target="#exampleModalDetail">
@@ -213,7 +213,7 @@ export default function ListPost() {
                                         </div>
                                     </button>
                                     <div className="card_content">
-                                        <h2 className="card_title">{newss.title.length > quantity ? `${newss.title.slice(0, quantity)}...` : newss.title}</h2>
+                                        <h5 className="card_title ">{newss.title.length > quantity ? `${newss.title.slice(0, quantity)}...` : newss.title}</h5>
                                         <div className="card_text">
                                             <div dangerouslySetInnerHTML={{ __html: newss.content.length > quantity ? `${newss.content.slice(0, quantity)}...` : newss.content}}>
                                             </div>

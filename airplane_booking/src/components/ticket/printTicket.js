@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import '../../css/ticket/printTicket.css';
-import '@progress/kendo-theme-default/dist/all.css';
+// import '@progress/kendo-theme-default/dist/all.css';
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 import { findTicketById } from '../../services/TicketService';
 import { useParams } from 'react-router-dom';

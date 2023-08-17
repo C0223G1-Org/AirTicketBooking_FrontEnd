@@ -109,107 +109,51 @@ export function CreatePost() {
             })}
             onSubmit={(values) => {
                 savePost(values)
-            }}
-        >
+            }}>
 
-            <
-                div
-                className="container "
-                style={
-                    {
-                        marginBottom: "5rem"
-                    }
-                }>
-                <
-                    div
-                    className="row height d-flex justify-content-center align-items-center">
-                    < div
-                        className="col-md-6"
-                        style={
-                            {
-                                borderRadius: "4px"
-                            }
-                        }>
-                        <
-                            div
-                            className="card"
-                            style={
-                                {
-                                    marginTop: "4rem",
-                                    marginBottom:
-                                        "4rem",
-                                    paddingLeft:
-                                        "0px",
-                                    paddingTop:
-                                        "0px",
-                                    paddingRight:
-                                        "0px"
-                                }
-                            }
-                        >
-                            <
-                                div
-                                style={
-                                    {
-                                        borderRadius: "4px",
-                                        textAlign:
-                                            "center",
-                                        backgroundColor:
-                                            "#4FA3E3",
-                                        height:
-                                            "57px",
-                                        color:
-                                            "white"
-                                    }
-                                }
-                            >
-                                <h2
-                                    style={
-                                        {
-                                            marginTop: "9px"
-                                        }
-                                    }>
-                                    THÊM
-                                    MỚI
-                                    THÔNG
-                                    TIN </h2>
+            <div className="container " style={{marginBottom: "5rem"}}>
+                <div className="row justify-content-center align-items-center" style={{display:"flex"}}>
+                    < div className="col-md-6" style={{borderRadius: "4px"}}>
+                        <div className="card-update-post" style={{
+                            marginTop: "4rem",
+                            marginBottom: "4rem",
+                            paddingLeft: "0px",
+                            paddingTop: "0px",
+                            paddingRight: "0px"
+                        }}>
+                            <div style={{
+                                borderRadius: "4px",
+                                textAlign: "center",
+                                backgroundColor: "#4FA3E3",
+                                height: "57px",
+                                color: "white"
+                            }}>
+                                <h2 style={{paddingTop: "15px"}}>THÊM MỚI THÔNG TIN </h2>
                             </div>
                             <Form style={{marginLeft: "40px", marginRight: "40px"}}>
-                                <div className="mt-4 inputs">
-<span>
-Tiêu đề <span style={{color: "red"}}>*</span>
-</span>
+                                <div className="mt-4 inputs"><span>Tiêu đề <span style={{color: "red"}}>*</span></span>
                                     <Field
                                         type="text"
                                         className="form-control"
                                         id="title"
                                         name="title"
                                     />
-
-
                                 </div>
                                 <div className="mt-2 inputs">
-<span>
-Ngày tạo <span style={{color: "red"}}>*</span>{formatDateTime(new Date())}
-</span>
-
-
+                                    <span>Ngày tạo <span
+                                        style={{color: "red"}}>*</span>{formatDateTime(new Date())}</span>
                                 </div>
                                 <div className="mt-2 inputs">
-<span>
-Upload hình ảnh <span style={{color: "red"}}>*</span>
-</span>
+                                    <span>Upload hình ảnh <span style={{color: "red"}}>*</span></span>
                                     <Field className="custom-file-input"
                                            accept="image/png, image/gif, image/jpeg" type="file" id="input-file"
                                            ref={inputFileRef} onChange={handleInputChange} name='image'/>
-                                    <img style={{marginTop: 50}} name='image'
+                                    <img style={{borderRadius:"20px"}} name='image'
                                          id="img-preview" ref={imgPreviewRef} alt="Preview"/>
                                 </div>
 
                                 <div className="mt-4 inputs">
-<span>
-Nội dung <span style={{color: "red"}}>*</span>
-</span>
+                                    <span>Nội dung <span style={{color: "red"}}>*</span></span>
                                     <Field
                                         name="content"
                                         component={CKEditorComponent}
@@ -217,21 +161,16 @@ Nội dung <span style={{color: "red"}}>*</span>
                                 </div>
                                 <div className="mt-4 btn-group">
                                     <div className="text-center m-auto">
-                                        <button
-                                            type="button"
-                                            className="btn btn-secondary"
-                                            style={{width: "100px"}}
-                                        >
+                                        <button type="button" className="btn btn-warning"
+                                            style={{}}>
                                             <b className="text-center">Quay lại</b>
                                         </button>
                                     </div>
                                     <div className="text-center m-auto">
-                                        <button
-                                            type="submit"
+                                        <button type="submit"
                                             className="btn btn-warning "
                                             data-mdb-toggle="modal"
-                                            data-mdb-target="#exampleModalToggle1"
-                                        >
+                                            data-mdb-target="#exampleModalToggle1">
                                             <b className="text-center">Thêm mới</b>
                                         </button>
                                     </div>

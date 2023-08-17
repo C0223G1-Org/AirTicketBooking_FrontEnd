@@ -34,7 +34,7 @@ body {
     height: 100vh
 }
 
-.card {
+.card-update-post {
     border: none;
     padding: 20px;
     position: relative;
