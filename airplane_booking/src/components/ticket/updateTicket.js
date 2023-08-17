@@ -38,7 +38,7 @@ const UpdateTicket = () => {
     }
     return (
         <div className="img">
-
+        <div className="background-image">
           <div className="table-title">
             <div className="title">
               <div className="update">
@@ -59,6 +59,7 @@ const UpdateTicket = () => {
                   },
                 };
                 await handleEditTicket(object);
+                  console.log("2132131231")
                 // navigate("/")
               }}
               initialValues={{
@@ -163,7 +164,7 @@ const UpdateTicket = () => {
               </Form>
             </Formik>
           )}
-
+        </div>
       </div>
     )
 }

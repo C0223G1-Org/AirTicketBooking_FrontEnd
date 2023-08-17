@@ -13,6 +13,7 @@ export default function CustomerManagement() {
     let [nationality, setNationality] = useState([])
     const [customers, setCustomers] = useState([])
     const [customer, setCustomer] = useState({})
+
     const getListCustomer = async (page, name, email, nationality) => {
         console.log(name);
 
@@ -29,6 +30,7 @@ export default function CustomerManagement() {
             })
         })
     }
+
     const detailCustomer=async (customer)=>{
         setCustomer(customer)
     }
@@ -304,8 +306,8 @@ export default function CustomerManagement() {
                                                                     }}
                                                                     style={{
                                                                     fontSize: '20px',
-                                                                    marginRight: '10px',
-                                                                    color: 'red'
+                                                                    marginRight: '5px'
+
                                                                 }} data-bs-toggle="modal"
                                                                       data-bs-target="#exampleModalDetail">
                                                                 <i className="fa-solid fa-circle-info"></i> </span>
@@ -320,7 +322,7 @@ export default function CustomerManagement() {
                                                                         fontSize: '20px',
                                                                         marginRight: '10px',
                                                                         color: 'red'
-                                                                    }}><i className="fa-solid fa-trash"/></span>
+                                                                    }}><i className="fa-solid fa-trash-can "/></span>
                                                                 </a>
                                                                 <Link to={`/customers/edit/${item.idCustomer}`}>
                                                                     <span
@@ -437,7 +439,7 @@ export default function CustomerManagement() {
                 </div>
             </div>
 
-            <div  className="modal fade" id="exampleModalDetail" tabIndex={-1} aria-labelledby="exampleModalLabel1"
+            <div style={{marginTop:"150px"}}  className="modal fade" id="exampleModalDetail" tabIndex={-1} aria-labelledby="exampleModalLabel1"
                  aria-hidden="true">
                 <div  className="modal-dialog modal-fullscreen-md-down ">
                     <div  style={{height:"300px"}} className="modal-content">
@@ -456,7 +458,7 @@ export default function CustomerManagement() {
                                         <p>Giới tính: {customer.genderCustomer}</p>
                                         <p>Quốc gia: {customer.nationalityCustomer}</p>
                                         <p>Email: {customer.emailCustomer}</p>
-                                        <p>Số điện thoại: {customer.telCustomer}</p>
+                                        <p>Số điện thoại:  {customer.telEmployee}</p>
                                         <p>Địa chỉ: {customer.addressCustomer}</p>
                                         <p>CCCD/Passport: {customer.idCardCustomer}</p>
                                     </div>
