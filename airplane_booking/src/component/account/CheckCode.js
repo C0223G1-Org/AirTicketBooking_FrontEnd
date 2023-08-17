@@ -7,12 +7,17 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 export function CheckCode() {
-    const [count,setCount] = useState(0);
+    const [count, setCount] = useState(1);
     const navigate = useNavigate();
     const param = useParams();
-    const [userName, setUserName] = useState();
+    const [userName, setUserName] = useState(param.data);
     const getUserName = async (data) => {
         setUserName(data);
+        console.log("userName: " + userName);
+        console.log("count0: " + count);
+    }
+    const setCount1 = () => {
+        setCount(prevState => count + 1);
     }
     useEffect(() => {
         getUserName(param.data).then(r => null);
@@ -39,18 +44,22 @@ export function CheckCode() {
                                 verificationCode: yup.number()
                                     .required('Chưa nhập mã xác nhận'),
                             })}
-                            onSubmit={async (values, {setSubmitting,resetForm}) => {
+                            onSubmit={async (values, {setSubmitting, resetForm}) => {
                                 console.log(values);
                                 values = {
                                     username: userName,
                                     verificationCode: +values.verificationCode,
+                                    count: count,
                                 }
                                 console.log(values);
-                                if(count<3){
+                                console.log("count1: " + count);
+                                if (count < 4) {
+                                    console.log("count2: " + count);
                                     try {
                                         values = {
                                             username: userName,
                                             verificationCode: +values.verificationCode,
+                                            count: count,
                                         }
                                         const response = await axios.post('http://localhost:8080/api/account/checkCode', values)
                                         console.log(response);
@@ -66,26 +75,27 @@ export function CheckCode() {
                                         }
                                         // navigate("/login/newPassword", {state: {data: response.data}})
                                     } catch (error) {
-                                        console.log(error)
+                                        console.log(error);
+                                        setCount1();
                                         // toast.error(error.response.data.error);
                                         await Swal.fire({
-                                            title: error.response.data,
-                                            text: 'Sai mã xác nhận.',
+                                            title: 'Sai mã xác nhận lần ' + count  + '.',
+                                            text: '(Lưu ý: sai quá 3 lần mã xác nhận và tài khoản sẽ bị hủy)',
                                             icon: "warning",
                                             timer: 2000
                                         });
-                                        setCount(count+1);
+                                        console.log("count3: " + count);
                                     } finally {
                                         setSubmitting(false);
                                     }
+                                } else {
+                                    await Swal.fire({
+                                        title: "Đã nhập sai quá 3 lần, mã sẽ bị hủy",
+                                        icon: "warning",
+                                        timer: 2000
+                                    });
+                                    navigate('/signup');
                                 }
-                                navigate('/signup');
-                                await Swal.fire({
-                                    title: "Đã nhập sai quá 3 lần, mã sẽ bị hủy",
-                                    icon: "warning",
-                                    timer: 2000
-                                });
-
                             }}
                         >
                             <Form>

@@ -111,17 +111,17 @@ img {
 
 /*--- end reset code ---*/
 
-body {
-    background: url(../../css/account/img/background.jpg) no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 300;
-}
+/*body {*/
+/*    background: url(../../css/account/img/background.jpg) no-repeat;*/
+/*    background-attachment: fixed;*/
+/*    background-position: center;*/
+/*    background-size: cover;*/
+/*    -webkit-background-size: cover;*/
+/*    -moz-background-size: cover;*/
+/*    -o-background-size: cover;*/
+/*    font-family: 'Raleway', sans-serif;*/
+/*    font-weight: 300;*/
+/*}*/
 /* Ẩn checkbox gốc */
 input[type="checkbox"] {
     display: none;
@@ -227,7 +227,7 @@ input#firstname, input#email, input#password1, input#password2, select#email {
     width: 350px;
     height: 50px;
     /*padding: 0 5px;*/
-    color: rgb(6, 133, 170);
+    /*color: rgb(6, 133, 170);*/
     font-size: 17px;
     font-weight: 200;
     background-color: transparent;
@@ -244,7 +244,7 @@ input#firstname, input#email, input#password1, input#password2, select#email {
 
 .col-md-4 {
     margin-top: 2%;
-    padding-left: 8%;
+    padding-left: 6%;
     color: rgb(6, 133, 170);
     font-weight: bold;
 }

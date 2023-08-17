@@ -223,14 +223,14 @@ export function Login() {
                                 </button>
                             </div>
                             <div className="text-center">
-                                <button type="button" className="btn btn-primary" style={{margin: "1%"}}>
-                                    <i className="fab fa-facebook"/>
-                                </button>
-                                <button type="button" className="btn btn-danger">
-                                    <i className="fab fa-google"/>
-                                </button>
-                                <br/>
-                                <Link to='/signup' className="btn">Đăng ký</Link>
+                                {/*<button type="button" className="btn btn-primary" style={{margin: "1%"}}>*/}
+                                {/*    <i className="fab fa-facebook"/>*/}
+                                {/*</button>*/}
+                                {/*<button type="button" className="btn btn-danger">*/}
+                                {/*    <i className="fab fa-google"/>*/}
+                                {/*</button>*/}
+                                {/*<br/>*/}
+                                <Link to='/signup' style={{textDecoration: "underline", fontSize:"18px"}}>Đăng ký</Link>
                             </div>
                         </div>
                         {/*<div className="clear"/>*/}

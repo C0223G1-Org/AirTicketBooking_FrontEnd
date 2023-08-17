@@ -57,7 +57,7 @@ export function SignUp() {
                     , // .min(1, 'Không được để trống trường này!')
                     // .max(10, 'Không được để trống trường này!'),
                     idCardCustomer: yup.string().required('Không được để trống tường này.')
-                        .matches(/^([A-Z][0-9]{6,12})|([0-9]{12})$/, "Nhập theo định dạng (7 ký tự đối với hộ chiếu và 12 ký tự đối với CCCD)."),
+                        .matches(/^([A-Z][0-9]{5,12})|([0-9]{12})$/, "Nhập theo định dạng (7 ký tự đối với hộ chiếu và 12 ký tự đối với CCCD)."),
                     dateCustomer: yup.date().required('Không được để trống trường này.')
                         .max(maxDate, 'Khách hàng phải trên 18 tuổi.')
                         .min(minDate, 'Khách hàng phải trên 18 tuổi và dưới 100 tuổi.'),
@@ -85,11 +85,14 @@ export function SignUp() {
                                 genderCustomer: +values.genderCustomer
                             }
                         );
+                        console.log(response.data.username)
+                        console.log(userName);
                         // Kiểm tra response
-                        if (response.username != null) {
-                            setUserName(response.data);
+                        if (response.data.username != null) {
+                            setUserName(response.data.username.toString());
                         }
-                        resetForm();
+                        console.log(userName);
+                        // resetForm();
                         // Đăng ký thành công, chuyển hướng hoặc thực hiện hành động khác
                         // navigate(`/checkCode/${userName}`);
                         navigate(`/checkCode/${userName}`);
@@ -126,7 +129,7 @@ export function SignUp() {
                                     <div className="col-md-4"
                                          style={{
                                              marginTop: "2%",
-                                             paddingLeft: "8%",
+                                             paddingLeft: "7%",
                                              color: "rgb(6, 133, 170)",
                                              fontWeight: "bold"
                                          }}
@@ -160,14 +163,14 @@ export function SignUp() {
                                     <div className="col-md-4"
                                          style={{
                                              marginTop: "2%",
-                                             paddingLeft: "8%",
+                                             paddingLeft: "7%",
                                              color: "rgb(6, 133, 170)",
                                              fontWeight: "bold"
                                          }}
                                     >
                                         {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
                                         <span>
-                    Mật khẩu
+                    Mật khẩu(
                     <sup style={{fontSize: 8}}>
                     <sup>
                     <i
@@ -175,7 +178,7 @@ export function SignUp() {
                         style={{color: "#ff0019"}}
                     />
                     </sup>
-                    </sup>
+                    </sup>)
                     </span>
                                     </div>
                                     <div className="col-md-8">
@@ -201,14 +204,14 @@ export function SignUp() {
                                     <div className="col-md-4"
                                          style={{
                                              marginTop: "2%",
-                                             paddingLeft: "8%",
+                                             paddingLeft: "7%",
                                              color: "rgb(6, 133, 170)",
                                              fontWeight: "bold"
                                          }}
                                     >
                                         {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
                                         <span>
-                    Nhập lại mật khẩu
+                    Nhập lại mật khẩu(
                     <sup style={{fontSize: 8}}>
                     <sup>
                     <i
@@ -216,7 +219,7 @@ export function SignUp() {
                         style={{color: "#ff0019"}}
                     />
                     </sup>
-                    </sup>
+                    </sup>)
                     </span>
                                     </div>
                                     <div className="col-md-8">
@@ -242,14 +245,14 @@ export function SignUp() {
                                     <div className="col-md-4"
                                          style={{
                                              marginTop: "2%",
-                                             paddingLeft: "8%",
+                                             paddingLeft: "7%",
                                              color: "rgb(6, 133, 170)",
                                              fontWeight: "bold"
                                          }}
                                     >
                                         {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
                                         <span>
-                    Điện thoại
+                    Điện thoại(
                     <sup style={{fontSize: 8}}>
                     <sup>
                     <i
@@ -257,7 +260,7 @@ export function SignUp() {
                         style={{color: "#ff0019"}}
                     />
                     </sup>
-                    </sup>
+                    </sup>)
                     </span>
                                     </div>
                                     <div className="col-md-8">
@@ -283,14 +286,14 @@ export function SignUp() {
                                     <div className="col-md-4"
                                          style={{
                                              marginTop: "2%",
-                                             paddingLeft: "8%",
+                                             paddingLeft: "7%",
                                              color: "rgb(6, 133, 170)",
                                              fontWeight: "bold"
                                          }}
                                     >
                                         {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
                                         <span>
-                    Họ và tên
+                    Họ và tên(
                     <sup style={{fontSize: 8}}>
                     <sup>
                     <i
@@ -298,7 +301,7 @@ export function SignUp() {
                         style={{color: "#ff0019"}}
                     />
                     </sup>
-                    </sup>
+                    </sup>)
                     </span>
                                     </div>
                                     <div className="col-md-8">
@@ -326,14 +329,14 @@ export function SignUp() {
                                     <div className="col-md-4"
                                          style={{
                                              marginTop: "2%",
-                                             paddingLeft: "8%",
+                                             paddingLeft: "7%",
                                              color: "rgb(6, 133, 170)",
                                              fontWeight: "bold"
                                          }}
                                     >
                                         {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
                                         <span>
-                    Ngày sinh
+                    Ngày sinh(
                     <sup style={{fontSize: 8}}>
                     <sup>
                     <i
@@ -341,7 +344,7 @@ export function SignUp() {
                         style={{color: "#ff0019"}}
                     />
                     </sup>
-                    </sup>
+                    </sup>)
                     </span>
                                     </div>
                                     <div className="col-md-8">
@@ -368,14 +371,14 @@ export function SignUp() {
                                     <div className="col-md-4"
                                          style={{
                                              marginTop: "2%",
-                                             paddingLeft: "8%",
+                                             paddingLeft: "7%",
                                              color: "rgb(6, 133, 170)",
                                              fontWeight: "bold"
                                          }}
                                     >
                                         {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
                                         <span>
-                    Giới tính
+                    Giới tính(
                     <sup style={{fontSize: 8}}>
                     <sup>
                     <i
@@ -383,7 +386,7 @@ export function SignUp() {
                         style={{color: "#ff0019"}}
                     />
                     </sup>
-                    </sup>
+                    </sup>)
                     </span>
                                     </div>
                                     <div className="col-md-8">
@@ -413,14 +416,14 @@ export function SignUp() {
                                     <div className="col-md-4"
                                          style={{
                                              marginTop: "2%",
-                                             paddingLeft: "8%",
+                                             paddingLeft: "7%",
                                              color: "rgb(6, 133, 170)",
                                              fontWeight: "bold"
                                          }}
                                     >
                                         {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
                                         <span>
-                    Hộ chiếu/CCCD
+                    Hộ chiếu/CCCD(
                     <sup style={{fontSize: 8}}>
                     <sup>
                     <i
@@ -428,7 +431,7 @@ export function SignUp() {
                         style={{color: "#ff0019"}}
                     />
                     </sup>
-                    </sup>
+                    </sup>)
                     </span>
                                     </div>
                                     <div className="col-md-8">
@@ -454,21 +457,21 @@ export function SignUp() {
                                     <div className="col-md-4"
                                          style={{
                                              marginTop: "2%",
-                                             paddingLeft: "8%",
+                                             paddingLeft: "7%",
                                              color: "rgb(6, 133, 170)",
                                              fontWeight: "bold"
                                          }}
                                     >
                                         {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
                                         <span>
-                    Quốc tịch
+                    Quốc tịch(
                     <sup style={{fontSize: 8}}>
                     <sup>
                     <i className="fa-solid fa-star-of-life"
                        style={{color: "#ff0019"}}
                     />
                     </sup>
-                    </sup>
+                    </sup>)
                     </span>
                                     </div>
                                     <div className="col-md-8">
@@ -497,7 +500,7 @@ export function SignUp() {
                                     <div className="col-md-4"
                                          style={{
                                              marginTop: "2%",
-                                             paddingLeft: "8%",
+                                             paddingLeft: "7%",
                                              color: "rgb(6, 133, 170)",
                                              fontWeight: "bold"
                                          }}
@@ -537,14 +540,14 @@ export function SignUp() {
                                     </button>
                                 </div>
                             </Form>
-                            <div className="text-center">
-                                <button type="button" className="btn btn-primary" style={{margin: "1%"}}>
-                                    <i className="fab fa-facebook"/>
-                                </button>
-                                <button type="button" className="btn btn-danger">
-                                    <i className="fab fa-google"/>
-                                </button>
-                            </div>
+                            {/*<div className="text-center">*/}
+                            {/*    <button type="button" className="btn btn-primary" style={{margin: "1%"}}>*/}
+                            {/*        <i className="fab fa-facebook"/>*/}
+                            {/*    </button>*/}
+                            {/*    <button type="button" className="btn btn-danger">*/}
+                            {/*        <i className="fab fa-google"/>*/}
+                            {/*    </button>*/}
+                            {/*</div>*/}
                         </div>
                         {/*<div className="clear"/>*/}
                     </div>
