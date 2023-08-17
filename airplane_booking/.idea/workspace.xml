@@ -22,9 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0a101e2-9ef3-4e9f-bab5-7a56a6f885e3" name="Changes" comment="VuDT update css cho update ticket và print ticket">
+    <list default="true" id="d0a101e2-9ef3-4e9f-bab5-7a56a6f885e3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/post/ListPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/ListPost.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +92,7 @@
       <workItem from="1692184955497" duration="4779000" />
       <workItem from="1692225872804" duration="2804000" />
       <workItem from="1692233451322" duration="17359000" />
-      <workItem from="1692270652212" duration="10925000" />
+      <workItem from="1692270652212" duration="11833000" />
     </task>
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
@@ -187,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692282067454</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="VuDT update css cho update ticket và print ticket">
+      <created>1692283812776</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1692283812776</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +218,7 @@
     <MESSAGE value="kiet update code ngay 15-08" />
     <MESSAGE value="thanh son update code ngay 17-08" />
     <MESSAGE value="Thanh son update ngay 17-08-2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="Thanh son update ngay 17-08-2023" />
+    <MESSAGE value="VuDT update css cho update ticket và print ticket" />
+    <option name="LAST_COMMIT_MESSAGE" value="VuDT update css cho update ticket và print ticket" />
   </component>
 </project>

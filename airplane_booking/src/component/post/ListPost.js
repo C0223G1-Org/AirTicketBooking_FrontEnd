@@ -9,10 +9,15 @@ import BackToTop from "../../img/mui_ten_len.png"
 
 export default function ListPost() {
     const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        });
+        const scrollStep = window.scrollY / (2000 / 15); // Tốc độ cuộn, có thể điều chỉnh
+        const scrollInterval = setInterval(() => {
+            if (window.scrollY !== 0) {
+                window.scrollBy(0, -scrollStep);
+            } else {
+                clearInterval(scrollInterval);
+            }
+        }, 15);
+
     };
 
     const [showButton, setShowButton] = useState(false);
@@ -20,7 +25,7 @@ export default function ListPost() {
     const [employee, setEmployee] = useState([]);
     const [page, setPage] = useState(0);
     const [total, setTotal] = useState(0);
-    const limit = 4;
+    const limit = 12;
     const [listPosts, setListPosts] = useState([]);
     const [news, setNews] = useState([]);
     const [messages, setMessages] = useState('');
