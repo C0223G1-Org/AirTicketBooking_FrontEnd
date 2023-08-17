@@ -22,18 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9940190e-4050-4e32-b542-a40edc64470e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/post/CreatePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/CreatePost.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/post/ListPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/ListPost.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/post/UpdatePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/UpdatePost.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/post.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/post.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/post/ListPost.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/post/ListPost.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="d0a101e2-9ef3-4e9f-bab5-7a56a6f885e3" name="Changes" comment="VuDT update css cho update ticket và print ticket" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,6 +91,7 @@
       <workItem from="1692233451322" duration="17359000" />
       <workItem from="1692270652212" duration="9664000" />
     </task>
+
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
       <created>1692107583066</created>

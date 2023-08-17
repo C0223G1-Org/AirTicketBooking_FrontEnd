@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="926a5953-2756-4ebd-a047-72cd1e75119d" name="Changes" comment="" />
+    <list default="true" id="926a5953-2756-4ebd-a047-72cd1e75119d" name="Changes" comment="TaiMP FE ngay 17/8/2023">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/component/CustomerManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/component/CustomerManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/home/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/home/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/ticket/printTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/ticket/printTicket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/ticket/updateTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/ticket/updateTicket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/firebase.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/services/TicketService.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/services/TicketService.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +23,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -20,10 +41,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/airplane_booking" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -36,10 +61,46 @@
       <option name="presentableId" value="Default" />
       <updated>1692109823811</updated>
       <workItem from="1692109827781" duration="251000" />
+      <workItem from="1692256597415" duration="2424000" />
+      <workItem from="1692259161452" duration="4646000" />
+      <workItem from="1692266408402" duration="1072000" />
+      <workItem from="1692270841706" duration="219000" />
+      <workItem from="1692271261794" duration="5996000" />
     </task>
+    <task id="LOCAL-00001" summary="TaiMP FE ngay 17/8/2023">
+      <created>1692258690516</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1692258690516</updated>
+    </task>
+    <task id="LOCAL-00002" summary="TaiMP FE ngay 17/8/2023">
+      <created>1692260202413</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1692260202413</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="TaiMP FE ngay 17/8/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="TaiMP FE ngay 17/8/2023" />
   </component>
 </project>
