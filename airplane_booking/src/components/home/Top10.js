@@ -72,14 +72,14 @@ export default function GetTop10Cheapest() {
     }, [])
 
     return (
-        <div>
+        <div id="top_10">
             <div className="row m-3">
                 <div className="cheap">
                     <h3>Cùng khám phá những chuyến bay với giá cực hấp dẫn của chúng tôi</h3>
                 </div>
                 {
                     (route.idRoute && isOpen) &&
-                    <div className="modal">
+                    <div className="modal select-top10">
                         <div className="modal_overlay">
                         </div>
                         <div className="modal_body">

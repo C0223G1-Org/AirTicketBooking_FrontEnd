@@ -52,10 +52,10 @@ export default function Header() {
                     </ul>
                     <ul className="navbar-nav login">
                         <li className="nav-item">
-                            <a className="nav-link active" href="#">
+                            <Link to={`/login`} className="nav-link active">
                                 <i className="fa-solid fa-circle-user" />
                                 Đăng nhập
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link active" href="#">
