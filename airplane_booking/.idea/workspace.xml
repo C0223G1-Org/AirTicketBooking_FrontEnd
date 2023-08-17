@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a22c4e3d-69c9-4531-b057-73ef87a7ab83" name="Changes" comment="Nhan update  17/8 18:30">
+    <list default="true" id="a22c4e3d-69c9-4531-b057-73ef87a7ab83" name="Changes" comment="Nhan update  18/08 00.10">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TicketBooked.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBooked.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TicketUnBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketUnBook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/PaymentComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/PaymentComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +39,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Codegym/module-6-airline/AirTicketBooking_FrontEnd/airplane_booking&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -64,6 +64,8 @@
       <workItem from="1692271476124" duration="38000" />
       <workItem from="1692271772930" duration="2079000" />
       <workItem from="1692287368009" duration="22000" />
+      <workItem from="1692289676966" duration="436000" />
+      <workItem from="1692292197291" duration="1193000" />
     </task>
     <task id="LOCAL-00001" summary="Nhan update  17/8 15:00">
       <created>1692259144780</created>
@@ -86,7 +88,21 @@
       <option name="project" value="LOCAL" />
       <updated>1692271803903</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Nhan update  17/8 23:30">
+      <created>1692289702781</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692289702781</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Nhan update  18/08 00.10">
+      <created>1692292264933</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692292264933</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,6 +110,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Nhan update  17/8 15:00" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nhan update  17/8 15:00" />
+    <MESSAGE value="Nhan update  17/8 23:30" />
+    <MESSAGE value="Nhan update  18/08 00.10" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nhan update  18/08 00.10" />
   </component>
 </project>

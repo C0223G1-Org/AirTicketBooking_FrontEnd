@@ -81,8 +81,7 @@ const PaymentComponent = () => {
 
         };
 
-        window.paypal
-            .Buttons({
+        window.paypal.Buttons({
                 style: {
                     color: 'gold',
                     layout: 'vertical',

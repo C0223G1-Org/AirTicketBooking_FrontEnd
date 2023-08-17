@@ -44,7 +44,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <TicketProvider>
+            {/* <TicketProvider>
                 <Header/>
                 <Routes>
                     <Route path="/home" element={<Home/>}></Route>
@@ -74,10 +74,10 @@ root.render(
                     <Route path="/list/:data" element={<ListRouter/>}/>
                     <Route path="/detail-ticket/:data" element={<DetailTicket/>}/>
                     <Route path="/info-passenger/:data" element={<InfoPassenger/>}/>
-                    {/* <Route path="/payment/:id" element={<PaymentComponent/>}/> */}
+                    <Route path="/payment/:id" element={<PaymentComponent/>}/> 
 
-                    {/*<Route path="/employee" element={<EmployeeList/>} />*/}
-                    {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
+                    <Route path="/employee" element={<EmployeeList/>} />
+                    <Route path='/employee/create' element={<CreateEmployee />} />
                     <Route path='/listPost' element={<ListPost/>}/>
                     <Route path='/updatePost/:id' element={<UpdatePost/>}/>
                     <Route path='/createPost' element={<CreatePost/>}/>
@@ -87,13 +87,12 @@ root.render(
                         element={<SearchResultPage/>}
                     />
                     <Route path="/admin/messages" element={<AdminPage/>}></Route>
-                    {/* <Route path="/login" element={<Login/>}></Route> */}
+                    <Route path="/login" element={<Login/>}></Route>
                 </Routes>
-
                 <Footer/>
-            </TicketProvider>
+            </TicketProvider> */}
             <Header />
-            {/*<TicketProvider>*/}
+            <TicketProvider>
             <Routes>
                 <Route path='/home' element={<Home/>}></Route>
                 <Route path='/top10' element={<GetTop10Cheapest/>}></Route>
@@ -125,7 +124,7 @@ root.render(
                 {/*/>*/}
                 {/*<Route path="/admin/messages" element={<AdminPage/>}></Route>*/}
             </Routes>
-            {/*</TicketProvider>*/}
+            </TicketProvider>
             <Footer />
         </BrowserRouter>
 
