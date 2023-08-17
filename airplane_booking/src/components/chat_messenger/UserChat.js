@@ -11,13 +11,14 @@ const UserChat = () => {
   const [messages, setMessages] = useState([]);
   const [adminMessages, setAdminMessages] = useState([]);
 
+  const [hasSentStartMessage, setHasSentStartMessage] = useState(false);
+
   useEffect(() => {
     if (chatId) {
       const messagesRef = ref(database, `chats/${chatId}/messages`);
       onValue(messagesRef, (snapshot) => {
         const data = snapshot.val();
         const messages = data ? Object.values(data) : [];
-
         setMessages(messages);
       });
     }
@@ -31,14 +32,26 @@ const UserChat = () => {
   }, [chatId]);
 
   const handleStartChat = async () => {
+    if (username.trim() === "") return;
     // Tạo room chat riêng cho người dùng
     const chatRef = push(ref(database, "chats"));
-
+    const currentTime = new Date();
     const newChatId = chatRef.key;
 
     // Lưu tên người dùng và chat ID vào database
     push(ref(database, `chats/${newChatId}/user`), newChatId);
     push(ref(database, `users/${username}`), newChatId);
+
+    const startMessage = {
+      sender: "admin",
+      content: `Chào ${username}, Chúc bạn một ngày tốt lành. Tôi là trợ lý ảo của Codegym Airline, Bạn cần chúng tôi trợ giúp điều gì ?`,
+      timestamp: currentTime.toLocaleTimeString("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    };
+
+    push(ref(database, `chats/${username}/messages`), startMessage);
 
     setChatId(username);
     setChatStarted(true);
@@ -46,16 +59,32 @@ const UserChat = () => {
 
   const handleSendMessage = () => {
     if (message.trim() === "") return;
-
+    const currentTime = new Date();
     const newMessage = {
       sender: username,
       content: message,
-      timestamp: Date.now(),
+      timestamp: currentTime.toLocaleTimeString("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
     };
 
     // Gửi tin nhắn mới lên database
     push(ref(database, `chats/${chatId}/messages`), newMessage);
 
+    if (!hasSentStartMessage) {
+      const startMessage = {
+        sender: "admin",
+        content: `Cảm ơn bạn đã liên hệ với chúng tôi, Tư vấn viên của Codegym Airline sẽ phản hồi bạn trong thời gian sớm nhất!`,
+        timestamp: currentTime.toLocaleTimeString("vi-VN", {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      };
+
+      push(ref(database, `chats/${username}/messages`), startMessage);
+      setHasSentStartMessage(true);
+    }
     setMessage("");
   };
 
@@ -103,7 +132,10 @@ const UserChat = () => {
                             : "other-message-admin"
                         }`}
                       >
-                        <div className="message">{message.content}</div>
+                        <div className="message">
+                          {message.content} <br />
+                          {message.timestamp}
+                        </div>
                       </li>
                     ))}
                     {adminMessages.map((msg, index) => (
@@ -166,7 +198,7 @@ const UserChat = () => {
         </div>
       </div>
       <div style={{ display: chatStarted ? "none" : "block" }}>
-        <h2>Nhập tên của bạn và bắt đầu trò chuyện</h2>
+        <h2>Vui Lòng tên của bạn </h2>
         <input
           onKeyDown={(event) => {
             if (event.keyCode == 13) {

@@ -16,9 +16,7 @@ const AdminPage = () => {
       const data = snapshot.val();
       const chatList = data ? Object.keys(data) : [];
       setChats(chatList);
-      console.log(chatList);
     });
-
     // Reset các tin nhắn khi không có cuộc trò chuyện được chọn
     if (!selectedChatId) {
       setChatMessages([]);
@@ -66,16 +64,19 @@ const AdminPage = () => {
 
   const handleSelectChat = (chatId) => {
     setSelectedChatId(chatId);
-    console.log(chatId);
   };
 
   const handleSendMessage = () => {
     if (adminMessage.trim() === "") return;
+    const currentTime = new Date();
 
     const newAdminMessage = {
       sender: "admin",
       content: adminMessage,
-      timestamp: Date.now(),
+      timestamp: currentTime.toLocaleTimeString("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
     };
 
     // Gửi tin nhắn từ admin tới cuộc trò chuyện được chọn
@@ -104,27 +105,31 @@ const AdminPage = () => {
         </div>
 
         <div className=" clearfix">
-          {/* <div className="col-lg-12"> */}
           <div className="card-admin-chat chat-app ">
             <div className="row">
               <div id="plist" className="people-list col-3">
                 <ul className="list-unstyled chat-list mt-2 mb-0">
                   {chats.map((chatId) => (
                     <li
-                      className="clearfix"
+                      className={`clearfix ${
+                        selectedChatId === chatId ? "selected-user" : ""
+                      }`}
                       key={chatId}
                       onClick={() => handleSelectChat(chatId)}
                     >
                       <div className="about">
-                        <div className="name">{chatId}</div>
+                        <div
+                          className={`name ${
+                            selectedChatId === chatId ? "bold" : ""
+                          }`}
+                        >
+                          {chatId}
+                        </div>
                       </div>
                     </li>
                   ))}
                 </ul>
               </div>
-              {/* <div className="chat-container  col-9">
-                <div className="chat_messenger chat-history"> */}
-              {/* <div className="chat-history"> */}
               <ul className=" chat-container  col-9 chat_messenger chat-history">
                 {chatMessages.map((message, index) => (
                   <li
@@ -135,14 +140,14 @@ const AdminPage = () => {
                         : "seft-message-user"
                     }`}
                   >
-                    <div className="message">{message.content}</div>
+                    <div className="message">
+                      {message.content} <br /> {message.timestamp}
+                    </div>
                   </li>
                 ))}
               </ul>
-              {/* </div> */}
             </div>
-            {/* </div>
-             </div> */}
+
             <div className="row reply">
               <div className="col-sm-1 col-xs-1 reply-emojis">
                 <i className="fa fa-smile-o fa-2x"></i>
@@ -187,7 +192,6 @@ const AdminPage = () => {
           </div>
         </div>
       </div>
-      {/* </div> */}
     </div>
   );
 };
