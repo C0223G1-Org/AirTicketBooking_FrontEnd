@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import './index.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import Header from "./components/home/Header";
 import "bootstrap/dist/css/bootstrap.css";
@@ -51,7 +51,7 @@ root.render(
                     <Route path="/header-admin" element={<HeaderAdmin/>}/>
                     <Route path="/header-employee" element={<HeaderEmployee/>}/>
                     <Route
-                        path="/printTicket/:id"
+                        path="/printTicket"
                         element={<PrintTicket></PrintTicket>}
                     ></Route>
                     <Route
@@ -72,6 +72,8 @@ root.render(
                     <Route path="/list/:data" element={<ListRouter/>}/>
                     <Route path="/detail-ticket/:data" element={<DetailTicket/>}/>
                     <Route path="/info-passenger/:data" element={<InfoPassenger/>}/>
+                    <Route path="/payment/:id" element={<PaymentComponent/>}/>
+
                     {/*<Route path="/employee" element={<EmployeeList/>} />*/}
                     {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
                     <Route path='/listPost' element={<ListPost/>}/>
@@ -83,6 +85,7 @@ root.render(
                         element={<SearchResultPage/>}
                     />
                     <Route path="/admin/messages" element={<AdminPage/>}></Route>
+                    <Route path="/login" element={<Login/>}></Route>
                 </Routes>
 
                 <Footer/>
