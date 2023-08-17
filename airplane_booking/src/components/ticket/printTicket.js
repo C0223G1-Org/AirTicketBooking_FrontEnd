@@ -18,7 +18,7 @@ export default function Print() {
 
   const param = useParams();
   const getTicket = async () => {
-    const data = await findTicketById(param.idTicket);
+    const data = await findTicketById(param.id);
     setTicket(data);
     console.log("Ticket data:", data);
   };
@@ -28,7 +28,7 @@ export default function Print() {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: 'emp-data',
-    onAfterPrint: () => alert('In vé thành công')
+  
   })
   
   return (
