@@ -36,6 +36,7 @@ import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage
 import {TicketProvider} from "./components/searchTickets_KietNT/TicketContext";
 import AdminPage from "./components/chat_messenger/AdminChat";
 import CreateReport from "./component/report/CreateReport";
+import EditEmployee from "./component/Employee/EditEmployee";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -71,8 +72,9 @@ root.render(
                     <Route path="/list/:data" element={<ListRouter/>}/>
                     <Route path="/detail-ticket/:data" element={<DetailTicket/>}/>
                     <Route path="/info-passenger/:data" element={<InfoPassenger/>}/>
-                    {/*<Route path="/employee" element={<EmployeeList/>} />*/}
-                    {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
+                    <Route path="/employee" element={<EmployeeList/>} />
+                    <Route path='/employee/create' element={<CreateEmployee />} />
+                    <Route path='/employee/update/:id' element={<EditEmployee />} />
                     <Route path='/listPost' element={<ListPost/>}/>
                     <Route path='/updatePost/:id' element={<UpdatePost/>}/>
                     <Route path='/createPost' element={<CreatePost/>}/>
