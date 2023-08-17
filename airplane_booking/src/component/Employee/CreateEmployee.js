@@ -100,7 +100,7 @@ function CreateEmployee() {
                                             gender: true,
                                             emailEmployee: "",
                                             passwordEmployee: "",
-                                            confirmPasswordEmployee:"",
+                                            confirmPasswordEmployee: "",
                                             typeEmployee: {
                                                 idEmployee: 1
                                             }
@@ -224,7 +224,8 @@ function CreateEmployee() {
                                                     style={{color: 'red'}}>*</span></span>
                                                             <Field className="form-control" type="password"
                                                                    name='confirmPasswordEmployee'/>
-                                                            <ErrorMessage name='confirmPasswordEmployee' className='mesError'/>
+                                                            <ErrorMessage name='confirmPasswordEmployee'
+                                                                          className='mesError'/>
 
                                                         </div>
                                                     </div>
