@@ -5,6 +5,7 @@ import image from "../../logo_5.png";
 import {getCustomerByEmail} from "../../services/CustomerServices";
 import {getEmployeeByEmail} from "../../services/EmployeeServices";
 
+
 export default function Header() {
     const [user, setUser] = useState(null);
     const [emailUser, setEmailUser] = useState("");
@@ -12,8 +13,7 @@ export default function Header() {
     const [flag, setFlag] = useState(false)
     const [flag1, setFlag1] = useState(false)
     const [flag2, setFlag2] = useState(false)
-    const [flag3, setFlag3] = useState(false)
-
+    // const [flag3, setFlag3] = useState(false)
 
     console.log(localStorage)
     const loginUser = async () => {
@@ -71,16 +71,16 @@ export default function Header() {
     }, [flag]);
     console.log(flag1)
 
-    setTimeout(() => {
-        if (emailUser !== null) {
-            setFlag3(true)
-        }
-    }, 1000);
-    useEffect(() => {
-        loginUser();
-        getUser()
-        console.log("aaaaaa")
-    }, [flag3])
+    // setTimeout(() => {
+    //     if (emailUser !== null) {
+    //         setFlag3(true)
+    //     }
+    // }, 1000);
+    // useEffect(() => {
+    //     loginUser();
+    //     getUser()
+    //     console.log("aaaaaa")
+    // }, [flag3])
 
 
     // localStoragevvvvvvvv
@@ -199,6 +199,8 @@ export default function Header() {
                                                 <li><Link to={`/historyPayment`} className="dropdown-item">Lịch sử đặt
                                                     vé</Link>
                                                 </li>
+                                                <li><Link to={``} className="dropdown-item">Đổi mật khẩu</Link>
+                                                </li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -281,6 +283,8 @@ export default function Header() {
                                                     <li><a className="dropdown-item" href="#">Quản lý kinh doanh</a></li>
                                                     <li><Link to={`/ticket/booked`} className="dropdown-item">Quản lý
                                                         vé</Link></li>
+                                                    <li><Link to={``} className="dropdown-item">Đổi mật khẩu</Link>
+                                                    </li>
                                                     <li><a className="dropdown-item" href="#">Báo cáo</a></li>
                                                 </ul>
                                             </li>
@@ -363,6 +367,8 @@ export default function Header() {
                                                         nhân
                                                         viên</Link></li>
                                                     <li><a className="dropdown-item" href="#">Danh sách khách hàng</a>
+                                                    </li>
+                                                    <li><Link to={``} className="dropdown-item">Đổi mật khẩu</Link>
                                                     </li>
                                                     <li><a className="dropdown-item" href="#">Quản lý vé</a></li>
                                                     <li><a className="dropdown-item" href="#">Báo cáo</a></li>

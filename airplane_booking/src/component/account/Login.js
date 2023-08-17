@@ -10,9 +10,9 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 
-
 export function Login() {
     const navigate = useNavigate();
+
     // const [userInfo, setUserInfo] = useState({
     //     token: '',
     //     username: '',
@@ -74,6 +74,7 @@ export function Login() {
                             console.log("Token:", localStorage.token);
                             console.log(localStorage.username);
                             console.log(localStorage.role);
+
                             // setUserInfo({
                             //     token: localStorage.getItem('role'),
                             //     username: response.data.username,
@@ -82,12 +83,10 @@ export function Login() {
                             // Đăng nhập thành công, chuyển hướng hoặc thực hiện hành động khác
 
 
-
                         }
                         resetForm();
-
-                        await navigate("/home");
-
+                        window.location.href = '/home'
+                        // await window.location.reload('http://localhost:3000/home');
                     } catch (e) {
                         // Xử lý lỗi đăng nhập
                         // toast.error(e.response.data);

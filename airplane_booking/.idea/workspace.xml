@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="SangTDN commit 17/08/2023">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="kiet update code ngay 15-08">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,10 +45,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -60,32 +59,7 @@
       <updated>1692013370002</updated>
       <workItem from="1692013374244" duration="33000" />
       <workItem from="1692100149710" duration="6984000" />
-      <workItem from="1692149995936" duration="680000" />
-      <workItem from="1692240925260" duration="7000" />
-      <workItem from="1692280870230" duration="856000" />
     </task>
-    <task id="LOCAL-00001" summary="SangTDN">
-      <created>1692114319925</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1692114319925</updated>
-    </task>
-    <task id="LOCAL-00002" summary="SangTDN commit 16/08/2023">
-      <created>1692150046305</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1692150046305</updated>
-    </task>
-    <task id="LOCAL-00003" summary="SangTDN commit 17/08/2023">
-      <created>1692280894057</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1692280894057</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,12 +75,9 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="SangTDN" />
-    <MESSAGE value="SangTDN commit 16/08/2023" />
-    <MESSAGE value="SangTDN commit 17/08/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="SangTDN commit 17/08/2023" />
+    <MESSAGE value="kiet update code ngay 15-08" />
+    <option name="LAST_COMMIT_MESSAGE" value="kiet update code ngay 15-08" />
   </component>
 </project>
