@@ -4,8 +4,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getCustomerById, updateCustomer } from '../services/CustomerServices';
 import Swal from 'sweetalert2'
 import * as yup from "yup";
-import { v4 } from "uuid";
-import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
+import { v4 } from 'uuid';
+import {
+    ref,
+    uploadBytes,
+    getDownloadURL,
+} from "firebase/storage";
 import { storage } from '../firebase-chat';
 import "../css/customer/customer_update_details.css"
 // import "../css/customer/bootstrap.min.css"

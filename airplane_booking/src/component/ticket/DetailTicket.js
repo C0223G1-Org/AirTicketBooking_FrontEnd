@@ -6,6 +6,7 @@ import {useEffect} from "react";
 import {getTypeTicketById} from "../../services/TypeTicket";
 import numeral from 'numeral';
 import moment from "moment";
+import image from "../../logo_5.png";
 export default function DetailTicket() {
     const [route, setRoute] = useState([]);
     const [routeDestination, setRouteDestination] = useState([]);
@@ -127,7 +128,7 @@ export default function DetailTicket() {
                                         </div>
                                         <div className="col-4 info-fight">
                                             <div className="logo-image">
-                                                {/* <img src="./image/VN.png" alt="logo"> */}
+                                                {image}
                                                 <p className="vietnam-airline">CodeGym Airline</p>
                                             </div>
                                             <p>

@@ -66,23 +66,28 @@ export function Login() {
 
                             // const decodedToken = jwt(response.data.token);
                             // Lưu trữ thông tin người dùng vào localStorage hoặc state
-                            localStorage.setItem("token", response.data.token);
-                            localStorage.setItem("username", response.data.username);
-                            localStorage.setItem("role", response.data.role);
+                             localStorage.setItem("token", response.data.token);
+                             localStorage.setItem("username", response.data.username);
+                             localStorage.setItem("role", response.data.role);
                             // localStorage.setItem('userId', decodedToken.userId);
                             console.log("resp: " + response);
                             console.log("Token:", localStorage.token);
-                            console.log("Username:", localStorage.username);
-                            console.log("Role:", localStorage.role);
+                            console.log(localStorage.username);
+                            console.log(localStorage.role);
                             // setUserInfo({
                             //     token: localStorage.getItem('role'),
                             //     username: response.data.username,
                             //     role: response.data.role
                             // });
+                            // Đăng nhập thành công, chuyển hướng hoặc thực hiện hành động khác
+
+
+
                         }
                         resetForm();
-                        // Đăng nhập thành công, chuyển hướng hoặc thực hiện hành động khác
-                        navigate("/signup");
+
+                        await navigate("/home");
+
                     } catch (e) {
                         // Xử lý lỗi đăng nhập
                         // toast.error(e.response.data);

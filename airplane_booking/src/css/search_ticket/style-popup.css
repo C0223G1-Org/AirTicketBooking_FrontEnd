@@ -49,6 +49,24 @@
     overflow-wrap: break-word;
     max-width: 700px;
   }
+
+  .chat-history .m-b-0 .other-message-admin .message {
+    float: right;
+    background-color: #1F698F;
+    color: #ffffff;
+    overflow-wrap: break-word;
+    max-width: 350px;
+  }
+
+  .chat-history .m-b-0 .seft-message-user .message {
+    float: left;
+    background-color:#ffffff ;
+    color: #1F698F;
+  
+    overflow-wrap: break-word;
+    max-width: 400px;
+  }
+
   .reply {
     margin-top: 10px;
   }
