@@ -4,24 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="">
+    <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="HuyHD update employee lan 8">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css-SangTDN/assets/css/styles.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css-SangTDN/assets/css/styles.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/CustomerManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/CustomerManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Employee/CreateEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/CreateEmployee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Employee/EditEmployee.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/EditEmployee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Employee/employeeEdit.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/employeeEdit.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Employee/firebare.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/firebase.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ticket/printTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket/printTicket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase-chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase-chat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/EmployeeServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/EmployeeServices.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +22,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="247ea1c3-e3fb-4a63-878e-4a256b9f25cd" />
+        <option name="url" value="https://github.com/C0223G1-Org/AirTicketBooking_FrontEnd.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -47,18 +44,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/fontend_module6/AirTicketBooking_FrontEnd/airplane_booking",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/fontend_module6/AirTicketBooking_FrontEnd/airplane_booking&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2022.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\fontend_module_6\AirTicketBooking_FrontEnd\airplane_booking\src\component\Employee" />
@@ -109,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692200393945</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="HuyHD update employee lan 8">
+      <created>1692257543770</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692257543770</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +133,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="kiet update code ngay 15-08" />
     <MESSAGE value="HuyHD update employee lan 6" />
-    <option name="LAST_COMMIT_MESSAGE" value="HuyHD update employee lan 6" />
+    <MESSAGE value="HuyHD update employee lan 8" />
+    <option name="LAST_COMMIT_MESSAGE" value="HuyHD update employee lan 8" />
   </component>
 </project>
