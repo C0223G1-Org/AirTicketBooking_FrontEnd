@@ -7,7 +7,7 @@ import * as AccountService from "../../services/AccountServices";
 import * as RoleService from "../../services/RoleServices";
 import {Link, useNavigate} from "react-router-dom";
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
-import {storage} from "../../firebase";
+import {storage} from "../../firebase-chat";
 
 function CreateEmployee() {
     let navigate = useNavigate();

@@ -6,7 +6,7 @@ import { CreateCustomer } from '../services/CustomerServices';
 import "../employeeCreateCustomer.css"
 import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from '../firebase';
+import { storage } from '../firebase-chat';
 import { v4 } from "uuid";
 
 function EmployeeCreateCustomer() {
@@ -85,8 +85,8 @@ function EmployeeCreateCustomer() {
         })}
         onSubmit={async (values) => {
           const role = {
-            idRole: 1,
-            nameRole: "customer"
+            idRole: 3,
+            nameRole: "ROLE_CUSTOMER"
           }
           const account = {
             username: values.emailCustomer,
@@ -189,8 +189,8 @@ function EmployeeCreateCustomer() {
                             <Field className="form-control" as="select" name="genderCustomer">
                               <option value="">Chọn giới tính</option>
 
-                              <option value={true}>Nam</option>
-                              <option value={false}>Nữ</option>
+                              <option value="true">Nam</option>
+                              <option value="false">Nữ</option>
 
                             </Field>
                             <ErrorMessage className='error' name='genderCustomer' component={"div"} />
