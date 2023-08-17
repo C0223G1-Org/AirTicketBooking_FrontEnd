@@ -4,7 +4,7 @@ import 'numeral/locales/vi'; // Import bộ định dạng số học của Vi�
 
 const CurrencyFormat = ({ value }) => {
     numeral.locale('vi'); // Sử dụng bộ định dạng số học của Việt Nam
-    const formattedValue = numeral(value).format('0,0 $');
+    const formattedValue = numeral(value).format('0,0 đ');
     return <span>{formattedValue}</span>;
 };
 
