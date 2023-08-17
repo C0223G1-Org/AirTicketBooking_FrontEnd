@@ -20,5 +20,11 @@ body{
     width: auto;
     border-radius: 5px;
     height: 40px;
-    margin-right: 10px;   
+    margin-right: 10px;
+}
+.background-customer{
+    	background-image: url("../../img/background.jpg") ;
+    	background-size: cover;
+    	background-position: center;
+
 }

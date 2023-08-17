@@ -69,7 +69,7 @@ export default function HeaderEmployee() {
                     <ul className="navbar-nav login">
                         <li className="nav-item">
                             <a className="nav-link active" href="#">
-                                XIN CHÀO - EMPLOYEE
+                                Xin chào - NamPC
                             </a>
                         </li>
                         <li className="nav-item">

@@ -8,6 +8,11 @@ export  async function getTypeSeatById(id) {
     const res = await axios.get("http://localhost:8080/type-seat/detail/" + id)
 }
 export  async function getTypeSeatByName(name){
-    const res =  await axios.get("http://localhost:8080/type-seat/search/"+name)
-    return res.data
+    try {
+        const res =  await axios.get("http://localhost:8080/type-seat/search/"+name)
+        return res.data
+    }catch (error){
+        console.log("Không tìm thấy loại ghế");
+    }
+
 }

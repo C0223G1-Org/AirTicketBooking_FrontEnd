@@ -55,3 +55,8 @@ export async function getEmployeeById(id) {
     const response = await axios.get(`http://localhost:8080/api/employee/${id}`)
     return response.data;
 }
+
+export async function getEmployeeByEmail(email) {
+    const res = await axios.get("http://localhost:8080/api/employee/login/" + email);
+    return res.data;
+}

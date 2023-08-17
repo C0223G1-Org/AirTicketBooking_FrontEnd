@@ -24,6 +24,7 @@ export default function Home() {
     const [selectedDestination, setSelectedDestination] = useState('');
 
 
+
     const handleSearchTicket = () => {
         console.log(ticketType)
         if (ticketType != null) {
