@@ -7,7 +7,6 @@ import HeaderCustomer from "./HeaderCustomer.";
 import image from "../../logo_5.png";
 
 export default function Header() {
-    // localStoragevvvvvvvv
     return (
         <>
         <header className="header">
