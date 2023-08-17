@@ -21,7 +21,7 @@ export default function CustomerManagement() {
             await setEmailFunction("").then(await setNameFunction("")).then(await setNationalityFunction(""))
             Swal.fire({
                 icon: 'error',
-                title: 'Không tìm thấy!',
+                title: 'Không tìm thấy khách hàng !',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -135,9 +135,9 @@ export default function CustomerManagement() {
 
     }
     return (
-        <div>
+        <div className="background-customer">
 
-            <div>
+            <div className="background-customer" >
                 <meta charSet="UTF-8"/>
                 <title>Quản lí khách hàng</title>
 
@@ -149,7 +149,7 @@ export default function CustomerManagement() {
                 <link rel="stylesheet"
                       href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css"/>
 
-                <div className="container mx-auto px-4 sm:px-8" id="customer">
+                <div className="container mx-auto px-4 sm:px-8 background-customer" id="customer">
                     <div className="py-8" style={{textAlign: 'center'}}>
                         <div className="title">
                             <h1 style={{fontSize: '50px'}}>QUẢN LÍ KHÁCH HÀNG</h1>
@@ -321,7 +321,7 @@ export default function CustomerManagement() {
                                             :
                                             <tbody>
                                             <tr style={{height: '150px'}}>
-                                                <td style={{color: "red", fontSize: '150px',}} colSpan="7">Không có dữ
+                                                <td style={{color: "red", fontSize: '50px',}} colSpan="7">Không có dữ
                                                     liệu
                                                 </td>
                                             </tr>
