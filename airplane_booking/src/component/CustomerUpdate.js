@@ -9,10 +9,10 @@ import {
     ref,
     uploadBytes,
     getDownloadURL,
-    listAll,
-    list,
 } from "firebase/storage";
-import { storage } from '../firebase';
+import { storage } from '../firebase-chat';
+import "../css/customer/customer_update_details.css"
+// import "../css/customer/bootstrap.min.css"
 
 
 
@@ -47,7 +47,7 @@ export default function CustomerUpdate() {
         // console.log(status);
         if (imageUpload == null) {
             await updateCustomer({ ...update, imgCustomer: customer.imgCustomer }).then(
-                navigate(`/customer_details/${customer.idCustomer}`),
+                navigate(`/customers/details/${customer.idCustomer}`),
                 // getCustomer()
             ).then(
                 () => {
@@ -65,7 +65,7 @@ export default function CustomerUpdate() {
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then(async (url) => {
                     await updateCustomer({ ...update, imgCustomer: url }).then(
-                        navigate(`/customer_details/${customer.idCustomer}`),
+                        navigate(`/customers/details/${customer.idCustomer}`),
                         // getCustomer()
                     );
                     console.log(url);
@@ -301,7 +301,7 @@ export default function CustomerUpdate() {
                                                 </div>
                                                 <div className="form-btn" style={{ display: 'flex', justifyContent: 'right' }}>
                                                     <button type='submit' disabled={status == false} className="submit-btn" style={{ marginRight: '10px' }}>Lưu</button>
-                                                    <button type='button' className="submit-btn" onClick={() => { navigate(`/customer_details/${customer.idCustomer}`) }}>Hủy</button>
+                                                    <button type='button' className="submit-btn" onClick={() => { navigate(`/customers/details/${customer.idCustomer}`) }}>Hủy</button>
                                                 </div>
                                             </Form>
 

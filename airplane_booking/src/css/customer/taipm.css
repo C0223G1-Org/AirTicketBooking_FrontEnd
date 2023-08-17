@@ -1,0 +1,30 @@
+body{
+    box-sizing: border-box ;
+    font-family:sans-serif;
+}
+#customer .title{
+    color: #fff;
+    background-color: #016984;
+    padding:10px 0px;
+}
+#customer .relative {
+    margin-right: 10px;
+    
+}
+#customer .relative input{
+    border-radius: 5px;
+    height: 40px;
+}
+
+#customer .my-2 button{
+    width: auto;
+    border-radius: 5px;
+    height: 40px;
+    margin-right: 10px;
+}
+.background-customer{
+    	background-image: url("../../img/background.jpg") ;
+    	background-size: cover;
+    	background-position: center;
+
+}

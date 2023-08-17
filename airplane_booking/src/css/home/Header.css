@@ -1,0 +1,70 @@
+#header {
+    font-family: "Diavlo", "sans-seriff";
+}
+
+.header #navbarSupportedContent a{
+    color: white;
+}
+.header #navbarSupportedContent li:hover a,.header #navbarSupportedContent i:hover{
+    color: #daa310;
+}
+
+.login {
+    display: flex;
+}
+
+.login .nav-item {
+    text-align: end;
+}
+
+@media (max-width: 680px) {
+    .login .nav-item {
+        text-align: start;
+    }
+}
+
+@media (max-width: 1000px) {
+    .login .nav-item {
+        text-align: start;
+    }
+}
+
+header {
+    background: #166987;
+
+}
+nav i {
+    color: white;
+}
+
+.navbar .navbar-brand {
+    color: #deaa1f
+}
+
+.navbar a:first-child {
+    padding-left: 10px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: rgb(147, 20, 84);
+}
+
+.dropdown-menu {
+    background: #166987;
+}
+
+.dropdown-menu li a {
+    background: #166987;
+}
+
+.header {
+    color: white;
+}
+.navbar-nav .nav-item .nav-link{
+    color: white;
+}
+.navbar img {
+    width: 150px;
+    height: 70px;
+}
+

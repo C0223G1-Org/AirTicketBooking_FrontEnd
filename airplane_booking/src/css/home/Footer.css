@@ -1,0 +1,72 @@
+#footer {
+    font-family: "Diavlo", "sans-seriff";
+}
+:root {
+    --bs-gutter-x: 1.5rem;
+}
+    .footer {
+    padding-top:30px;
+    background: #166987;
+    color: white;
+}
+#footer .footer-item .row{
+    margin-left: calc(1 * var(--bs-gutter-x));
+}
+#footer  .footer-social:first-child{
+    margin-left: 100px;
+
+}
+#footer .footer-item h6 {
+    color: #deaa39;
+}
+#footer .footer-social .col-4 .row .sky-img img {
+    width: 150px;
+}
+#footer .footer-social .col-4 .row .codegym-img img{
+    width: 200px;
+}
+#footer .footer-social .col-4 .row .d-flex a .fa-brands  {
+    width: 50px;
+}
+#footer .footer-social .col-4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#footer .footer-item .col-3 .row a:hover {
+    color: #daa310;
+}
+#footer .fa-cc-paypal {
+    font-size: 30px;
+    padding: 10px;
+}
+#footer .fa-cc-jcb {
+    font-size: 30px;
+    padding: 10px;
+}
+#footer .fa-cc-mastercard {
+    font-size: 30px;
+    padding: 10px;
+}
+#footer .fa-cc-visa {
+    font-size: 30px;
+    padding: 10px;
+
+}
+#footer .fa-facebook {
+    font-size: 30px;
+    padding: 10px;
+}
+#footer .fa-square-youtube {
+    font-size: 30px;
+    padding: 10px;
+}
+#footer .fa-instagram {
+    font-size: 30px;
+    padding: 10px;
+}
+
+
+
