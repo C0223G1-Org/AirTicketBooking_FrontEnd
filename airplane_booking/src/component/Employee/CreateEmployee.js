@@ -10,7 +10,7 @@ import {v4} from "uuid";
 import {createEmployee} from "../../services/EmployeeServices";
 import Swal from "sweetalert2";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
-import {storage} from "../../firebase-chat";
+
 
 
 function CreateEmployee() {
