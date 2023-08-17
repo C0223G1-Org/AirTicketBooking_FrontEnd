@@ -15,7 +15,6 @@ export default function Header() {
     const [flag3, setFlag3] = useState(false)
 
 
-    console.log(localStorage)
     const loginUser = async () => {
         if (localStorage.getItem("username") != null) {
             setEmailUser(
@@ -41,14 +40,14 @@ export default function Header() {
         }
     }
 
-    console.log("aaaaa")
+
     const handleLogout = () => {
         localStorage.setItem("token", null);
         localStorage.setItem("username", null);
         localStorage.setItem("role", null);
         setUser(null)
     }
-    // console.log(flag)
+
     useEffect(() => {
         setFlag(!flag)
     }, [flag1]);
@@ -69,7 +68,7 @@ export default function Header() {
         console.log("asd")
         getUser()
     }, [flag]);
-    console.log(flag1)
+
 
     setTimeout(() => {
         if (emailUser !== null) {
@@ -79,7 +78,6 @@ export default function Header() {
     useEffect(() => {
         loginUser();
         getUser()
-        console.log("aaaaaa")
     }, [flag3])
 
 

@@ -29,7 +29,6 @@ export default function InfoPassenger() {
 
     // data
     const arr = data.split(",");
-    console.log(arr);
     // I- 1 chiều 1.loại vé, 2.id tuyến bay,3. loại ghế ,4. giá 1 vé, 5. Người lớn 6.Trẻ em
     // II 2 chiều //1.loại vé, 2.id tuyến đi,3. idtuyến vế ,4. loại ghế đi, 5. loại ghế về , 6. giá đi. 7.giá về, 8.Người lớn, 9.Trẻ em
 
@@ -71,7 +70,6 @@ export default function InfoPassenger() {
 
         const getTypeSeat = async () => {
             const data = await getTypeSeatByName(arr[2])
-            console.log(data)
             setTypeSeat(data);
         }
         useEffect(() => {
@@ -267,6 +265,7 @@ export default function InfoPassenger() {
                                                     typePassenger: typePassengerObj,
                                                     seat: seatDeparture,
                                                     customer: customer,
+                                                    dateBooking: "",
                                                 }
                                                 objectReturn = {
                                                     ...ticket,
@@ -277,15 +276,16 @@ export default function InfoPassenger() {
                                                     typePassenger: typePassengerObj,
                                                     seat: seatReturn,
                                                     customer: customer,
+                                                    dateBooking: "",
                                                 }
                                             }
 
-                                            console.log(objectReturn);
+
                                             try {
                                                 await createNewTicket(objectDeparture);
                                                 await createNewTicket(objectReturn);
                                             } catch (error) {
-                                                console.log(123);
+                                                console.log("Lỗi rồi")
                                             }
 
                                         })
@@ -483,7 +483,7 @@ export default function InfoPassenger() {
                                                                                name={`tickets.${index}.genderPassenger`}
                                                                                id={`tickets.${index}.genderPassenger`}
                                                                         >
-                                                                            <option value={false}>Chọn giới
+                                                                            <option value={""}>Chọn giới
                                                                                 tính
                                                                             </option>
                                                                             <option value={false}>Nữ
@@ -618,7 +618,7 @@ export default function InfoPassenger() {
                                                                                name={`tickets.${index + arr[7] * 1}.genderPassenger`}
                                                                                id={`tickets.${index + arr[7] * 1}.genderPassenger`}
                                                                         >
-                                                                            <option value={false}>Chọn giới tính</option>
+                                                                            <option value={""}>Chọn giới tính</option>
                                                                             <option value={false}>Nữ
                                                                             </option>
                                                                             <option value={true}>Nam
@@ -690,7 +690,6 @@ export default function InfoPassenger() {
                                     onSubmit={async (values) => {
                                         await new Promise((r) => setTimeout(r, 500));
                                         const price = totalPrice1;
-                                        console.log(price)
                                         const typeTicketObj = {...typeTicket};
                                         const customer = await getCustomerByEmail(localStorage.getItem("username"));
                                         {
@@ -737,6 +736,7 @@ export default function InfoPassenger() {
                                                         typePassenger: typePassengerObj,
                                                         seat: seat,
                                                         customer: customer,
+                                                        dateBooking: "",
                                                     }
                                                 }
                                                 // alert((JSON.stringify(ticket)))
@@ -861,7 +861,7 @@ export default function InfoPassenger() {
                                                                                    name={`tickets.${index}.genderPassenger`}
                                                                                    id={`tickets.${index}.genderPassenger`}
                                                                             >
-                                                                                <option value={false}>Chọn giới
+                                                                                <option value={""}>Chọn giới
                                                                                     tính
                                                                                 </option>
                                                                                 <option value={false}>Nữ
@@ -980,7 +980,7 @@ export default function InfoPassenger() {
                                                                                    name={`tickets.${index + arr[4] * 1}.genderPassenger`}
                                                                                    id={`tickets.${index + arr[4] * 1}.genderPassenger`}
                                                                             >
-                                                                                <option value={false}>Chọn giới tính
+                                                                                <option value={""}>Chọn giới tính
                                                                                 </option>
                                                                                 <option value={false}>Nữ
                                                                                 </option>
