@@ -12,7 +12,6 @@ import {v4} from "uuid";
 import CKEditorComponent from "./CKEditorComponent";
 import {createPost} from "../../services/PostServices";
 
-
 export function CreatePost() {
     const navigate = useNavigate();
     const [employees, setEmployee] = useState([]);
@@ -50,13 +49,9 @@ export function CreatePost() {
             }
         )
     })
-
-
     // const formatDateTime = (datePost) => {
     //     return moment(datePost).format("DD/MM/YYYY HH:mm:ss");
     // };
-
-
     useEffect(() => {
         const findAllEmployees = async () => {
             const result = await postService.getAllEmployee()
@@ -111,7 +106,6 @@ export function CreatePost() {
                 savePost(values)
             }}
         >
-
             <div className="container-fluid " style={{marginBottom: "2rem"}}>
                 <div className="row justify-content-center align-items-center" style={{display:"flex"}}>
                     <div className="col-md-6" style={{borderRadius: "4px"}}>
