@@ -21,7 +21,7 @@ export default function CustomerManagement() {
             await setEmailFunction("").then(await setNameFunction("")).then(await setNationalityFunction(""))
             Swal.fire({
                 icon: 'error',
-                title: 'Không tìm thấy!',
+                title: 'Không tìm thấy khách hàng !',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -135,9 +135,9 @@ export default function CustomerManagement() {
 
     }
     return (
-        <div>
+        <div className="background-customer">
 
-            <div>
+            <div className="background-customer" >
                 <meta charSet="UTF-8"/>
                 <title>Quản lí khách hàng</title>
 
@@ -149,7 +149,7 @@ export default function CustomerManagement() {
                 <link rel="stylesheet"
                       href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css"/>
 
-                <div className="container mx-auto px-4 sm:px-8" id="customer">
+                <div className="container mx-auto px-4 sm:px-8 background-customer" id="customer">
                     <div className="py-8" style={{textAlign: 'center'}}>
                         <div className="title">
                             <h1 style={{fontSize: '50px'}}>QUẢN LÍ KHÁCH HÀNG</h1>
@@ -166,9 +166,9 @@ export default function CustomerManagement() {
                                             id="nationality" defaultValue={""}
                                             className="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                                         <option value={""}>Quốc tịch</option>
-                                        <option value={"Lào"}>Lào</option>
+                                        <option value={"Nhật Bản"}>Nhật Bản</option>
                                         <option value={"Việt Nam"}>Việt Nam</option>
-                                        <option value={"Hàn Quốc"}>Hàn Quốc</option>
+                                        <option value={"Lào"}>Lào</option>
                                     </select>
 
                                 </div>
@@ -293,7 +293,7 @@ export default function CustomerManagement() {
                                                         </td>
                                                         <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                                             <p className="text-gray-900 whitespace-no-wrap">
-                                                                <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                <a
                                                                    onClick={async () => {
 
                                                                        await deleteCustomer(item)
@@ -321,7 +321,7 @@ export default function CustomerManagement() {
                                             :
                                             <tbody>
                                             <tr style={{height: '150px'}}>
-                                                <td style={{color: "red", fontSize: '150px',}} colSpan="7">Không có dữ
+                                                <td style={{color: "red", fontSize: '50px',}} colSpan="7">Không có dữ
                                                     liệu
                                                 </td>
                                             </tr>
@@ -344,7 +344,15 @@ export default function CustomerManagement() {
                                                 className="text-sm  font-semibold py-2 px-4 rounded-l"
                                                 style={{background: 'rgb(223, 165, 18)', color: '#ffffff'}}>
                                                 Trước
-                                            </button> : ""}
+                                            </button> : <button
+                                                onClick={async () => {
+
+                                                    await previousPage()
+                                                }}
+                                                className="text-sm  font-semibold py-2 px-4 rounded-l"
+                                                style={{background: 'rgb(223, 165, 18)', color: '#ffffff',opacity:'0,6', cursor: 'not-allowed'}}>
+                                                Trước
+                                            </button>}
 
                                             <button className="text-sm  font-semibold py-2 px-4 rounded-r" style={{
                                                 background: 'rgb(223, 165, 18)',
@@ -365,24 +373,34 @@ export default function CustomerManagement() {
                                                 }}>
                                                     Sau
                                                 </button>
-                                                : ""}
-                                            <div className="text-sm  font-semibold py-2 px-4 " style={{
+                                                : <button onClick={async () => {
+
+                                                    await nextPage();
+                                                }} className="text-sm  font-semibold py-2 px-4 rounded-r" style={{
+                                                    background: 'rgb(223, 165, 18)',
+                                                    color: '#ffffff',
+                                                    marginLeft: '5px',opacity:'0,6', cursor: 'not-allowed'
+                                                }}>
+                                                    Sau
+                                                </button>}
+                                            <div className="  font-semibold py-2 px-4 " style={{
                                                 background: 'rgb(223, 165, 18)',
                                                 color: 'black',
-                                                marginLeft: '5px'
+                                                marginLeft: '5px',
+                                                borderRadius:'5px'
                                             }}>
                                                 <input id="numberPage" type="number"
-                                                       style={{width: '60px', border: '1px solid'}} pattern="^[0-9]{4}$"
+                                                       style={{width: '50px',borderRadius:'5px'}}
                                                        onKeyDown={async (event) => {
                                                            if (event.keyCode == 13) {
                                                                await searchPage()
                                                            }
                                                        }}/>
-                                                <button className="text-sm  font-semibold py-2 px-4 rounded-r"
+                                                <button className=""
                                                         onClick={async () => {
                                                             await searchPage()
                                                         }}
-                                                        style={{border: '1px solid', marginLeft: '10px'}}>
+                                                        style={{ marginLeft: '10px',bodeRadius:'5px',color:'white'}}>
                                                     <i
                                                         className="fa-solid fa-magnifying-glass"></i></button>
                                             </div>

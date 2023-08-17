@@ -86,9 +86,10 @@ body {
     background-color: #daa310;
     box-shadow: inset;
     color: #fff;
-    height: 30px;
     width: 200px;
     font-size: 20px;
+    padding: 10px 0;
+    border-radius: 5px;
 }
 
 #detail-ticket .btn button:first-child {
