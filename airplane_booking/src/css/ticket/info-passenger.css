@@ -9,7 +9,6 @@ body {
 #info-passenger .wrapper {
     background: rgba(237, 234, 234, 0.422);
     padding: 30px 100px;
-    text-transform: capitalize;
 }
 
 #info-passenger.wrap {
@@ -48,7 +47,7 @@ body {
     font-weight: bold;
 }
 
-#info-passenger .passenger {
+#info-passenger .nam-passenger {
     color: #daa310;
 }
 
