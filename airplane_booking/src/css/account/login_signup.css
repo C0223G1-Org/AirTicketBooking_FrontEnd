@@ -6,43 +6,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 
 /*--- reset code ---*/
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
+/*html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    border: 0;*/
+/*    font-size: 100%;*/
+/*    font: inherit;*/
+/*    vertical-align: baseline;*/
+/*}*/
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-    display: block;
-}
+/*article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {*/
+/*    display: block;*/
+/*}*/
 
-ol, ul {
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-}
+/*ol, ul {*/
+/*    list-style: none;*/
+/*    margin: 0px;*/
+/*    padding: 0px;*/
+/*}*/
 
-blockquote, q {
-    quotes: none;
-}
+/*blockquote, q {*/
+/*    quotes: none;*/
+/*}*/
 
 blockquote:before, blockquote:after, q:before, q:after {
     content: '';
     content: none;
 }
 
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
+/*table {*/
+/*    border-collapse: collapse;*/
+/*    border-spacing: 0;*/
+/*}*/
 
 /* start editing from here */
-a {
-    text-decoration: none;
-}
+/*a {*/
+/*    text-decoration: none;*/
+/*}*/
 
 .txt-rt {
     text-align: right;
@@ -80,9 +80,9 @@ a {
 }
 
 /* Position Relative */
-.pos-absolute {
-    position: absolute;
-}
+/*.pos-absolute {*/
+/*    position: absolute;*/
+/*}*/
 
 /* Position Absolute */
 .vertical-base {
@@ -162,7 +162,7 @@ input[type="checkbox"]:checked + label:before {
 h1.w3ls {
     font-size: 50px;
     color: #fff;
-    padding: 40px 0;
+    padding: 30px 0;
     text-align: center;
     /*-- w3layouts --*/
     text-transform: uppercase;
@@ -171,14 +171,21 @@ h1.w3ls {
 
 .content-w3ls {
     /*background-color:#202123;*/
-    width: 86%;
+
+    width: 80%;
     margin: 0 auto 50px;
     padding: 0;
+}
+.bgimagedk{
+    background-image: url(../../css/account/img/maydk.png);
+}
+.bgimagedn{
+    background-image: url(../../css/account/img/maydn.png);
 }
 
 .content-w3ls .content-agile1 {
     width: 40%;
-    float: left;
+    /*float: left;*/
     /*background: url(../images/content.jpg) no-repeat;*/
     background-position: center;
     background-size: cover;
@@ -202,11 +209,27 @@ h2.agileits1 {
 p.agileits2 {
     font-size: 15px;
     font-weight: normal;
-    color: rgb(6, 133, 170);
+    /*color: rgb(6, 133, 170);*/
     text-align: center;
     text-transform: capitalize;
+    color: rgba(248,220,255,0.42);
 }
 
+/*.login-container {*/
+/*    background-image: url(../../css/account/img/background.jpg); !* Hình nền của bạn *!*/
+/*    background-size: cover; !* Đảm bảo hình nền được điều chỉnh kích thước phù hợp *!*/
+/*    position: relative; !* Đặt vị trí tương đối cho phần tử cha *!*/
+/*    height: 100vh; !* Đặt chiều cao của phần tử cha là 100% chiều cao của viewport *!*/
+/*}*/
+
+/*.login-form {*/
+/*    position: absolute; !* Đặt vị trí tuyệt đối để nằm trên phần tử cha *!*/
+/*    !*top: 60%; !* Đặt vị trí đứng giữa theo chiều dọc *!*!*/
+/*    !*left: 80%; !* Đặt vị trí đứng giữa theo chiều ngang *!*!*/
+/*    !*transform: translate(-50%, -50%); !* Di chuyển phần tử lên trên và sang trái 50% của kích thước của nó *!*!*/
+/*    background-color: rgba(255, 255, 255, 0.7); !* Đặt màu nền với độ mờ (opacity) *!*/
+/*    !*padding: 20px; !* Đặt padding cho phần tử *!*!*/
+/*}*/
 .selectBox-dropdown {
     border: none !important;
     background-color: transparent !important;
@@ -215,12 +238,14 @@ p.agileits2 {
 }
 
 .content-w3ls .content-agile2 {
-    width: 48%;
-    float: left;
+    width: 100%;
+    /*float: left;*/
     padding: 25px 0 25px;
     /*background-color: #dadada;*/
     /*background-image: url("../img/anh-may-bay-dep-cho-iphone.jpeg");*/
     border-radius: 10px;
+    /*background-color: rgba(255, 255, 255, 0.7);*/
+    /*position: absolute;*/
 }
 
 input#firstname, input#email, input#password1, input#password2, select#email {
@@ -228,6 +253,7 @@ input#firstname, input#email, input#password1, input#password2, select#email {
     height: 50px;
     /*padding: 0 5px;*/
     /*color: rgb(6, 133, 170);*/
+    color: black;
     font-size: 17px;
     font-weight: 200;
     background-color: transparent;
@@ -240,6 +266,8 @@ input#firstname, input#email, input#password1, input#password2, select#email {
     margin: 0 auto;
     display: block;
     outline: none;
+    /*border: 1px solid rgb(6, 133, 170);;*/
+    /*border-radius: 5px;*/
 }
 
 .col-md-4 {

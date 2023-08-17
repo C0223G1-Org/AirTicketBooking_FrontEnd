@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import "../../css/account/login_signup.css"
-import "../../css/account/login_signup_2.css"
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as yup from "yup";
 import axios from "axios";
@@ -114,62 +113,71 @@ export function SignUp() {
                 }}
             >
                 <div>
-                    {/*<h1 className="w3ls" style={{color: "rgb(6, 133, 170)"}}>*/}
-                    {/*    ĐĂNG KÝ*/}
-                    {/*</h1>*/}
-                    <div className="content-w3ls">
-                        <div className="content-agile1">
-                            <h2 className="agileits1" style={{padding: "25% 0"}}>
-                                ĐĂNG KÝ
-                            </h2>
-                        </div>
-                        <div className="content-agile2 bg-white">
-                            <Form>
-                                <div className="row">
-                                    <div className="col-md-4"
-                                         style={{
-                                             marginTop: "2%",
-                                             paddingLeft: "7%",
-                                             color: "rgb(6, 133, 170)",
-                                             fontWeight: "bold"
-                                         }}
-                                    >
-                                        {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
-                                        <span>Email(<sup style={{fontSize: 8}}><sup><i
+                    <h1 className="w3ls" style={{color: "rgb(6, 133, 170)"}}>
+                        ĐĂNG KÝ
+                    </h1>
+                    <div className="content-w3ls bgimagedk" style={{borderRadius: "7px", padding: "20px 0"}}>
+                        <div className="row" style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
+                            <div className="col-md-5">
+                                <div className="content-agile2" style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
+                                    {/*<span style={{fontSize: "18px"}}>&nbsp; / &nbsp;</span>*/}
+                                    <div style={{margin:"10px", fontSize:"18px"}}>
+                                        <p>- Tất cả các trường có dấu (<sup style={{fontSize: 8}}><sup><i
                                             className="fa-solid fa-star-of-life"
                                             style={{color: "#ff0019"}}/></sup></sup>
-                                            )</span>
-                                        {/*                    <p style="color: red">Chưa nhập email</p>*/}
-                                    </div>
-                                    <div className="col-md-8">
-                                        <Field
-                                            type="email"
-                                            id="email"
-                                            name="emailCustomer"
-                                            placeholder="mail@gmail.com"
-                                            required=""
-                                        />
-                                        <div className="row">
-                                            <div className="col-1"/>
-                                            <div className="col-10">
-                                                <ErrorMessage component="span" name="emailCustomer"
-                                                              className="err-mes"/>
-                                            </div>
-                                            <div className="col-1"/>
-                                        </div>
+                                            ) là bắt buộc</p>
+                                        <p>- Qúy khách nhập đúng thông tin trong hộ chiếu /Chứng minh nhân dân
+                                            /Căn cước công dân</p>
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="col-md-4"
-                                         style={{
-                                             marginTop: "2%",
-                                             paddingLeft: "7%",
-                                             color: "rgb(6, 133, 170)",
-                                             fontWeight: "bold"
-                                         }}
-                                    >
-                                        {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
-                                        <span>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="content-agile2">
+                                    <Form>
+                                        <div className="row">
+                                            <div className="col-md-4"
+                                                 style={{
+                                                     marginTop: "2%",
+                                                     paddingLeft: "7%",
+                                                     color: "rgb(6, 133, 170)",
+                                                     fontWeight: "bold"
+                                                 }}
+                                            >
+                                                {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
+                                                <span>Email(<sup style={{fontSize: 8}}><sup><i
+                                                    className="fa-solid fa-star-of-life"
+                                                    style={{color: "#ff0019"}}/></sup></sup>
+                                            )</span>
+                                                {/*                    <p style="color: red">Chưa nhập email</p>*/}
+                                            </div>
+                                            <div className="col-md-8">
+                                                <Field
+                                                    type="email"
+                                                    id="email"
+                                                    name="emailCustomer"
+                                                    placeholder="xxx@xxx.xxx"
+                                                />
+                                                <div className="row">
+                                                    <div className="col-1"/>
+                                                    <div className="col-10">
+                                                        <ErrorMessage component="span" name="emailCustomer"
+                                                                      className="err-mes"/>
+                                                    </div>
+                                                    <div className="col-1"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-4"
+                                                 style={{
+                                                     marginTop: "2%",
+                                                     paddingLeft: "7%",
+                                                     color: "rgb(6, 133, 170)",
+                                                     fontWeight: "bold"
+                                                 }}
+                                            >
+                                                {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
+                                                <span>
                     Mật khẩu(
                     <sup style={{fontSize: 8}}>
                     <sup>
@@ -180,37 +188,37 @@ export function SignUp() {
                     </sup>
                     </sup>)
                     </span>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <Field
-                                            type="password"
-                                            className="lock"
-                                            name="password"
-                                            placeholder="Nhập"
-                                            id="password1"
-                                            required=""
-                                        />
-                                        <div className="row">
-                                            <div className="col-1"/>
-                                            <div className="col-10">
-                                                <ErrorMessage component="span" name="password"
-                                                              className="err-mes"/>
                                             </div>
-                                            <div className="col-1"/>
+                                            <div className="col-md-8">
+                                                <Field
+                                                    type="password"
+                                                    className="lock"
+                                                    name="password"
+                                                    placeholder="*****"
+                                                    id="password1"
+                                                    required=""
+                                                />
+                                                <div className="row">
+                                                    <div className="col-1"/>
+                                                    <div className="col-10">
+                                                        <ErrorMessage component="span" name="password"
+                                                                      className="err-mes"/>
+                                                    </div>
+                                                    <div className="col-1"/>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-4"
-                                         style={{
-                                             marginTop: "2%",
-                                             paddingLeft: "7%",
-                                             color: "rgb(6, 133, 170)",
-                                             fontWeight: "bold"
-                                         }}
-                                    >
-                                        {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
-                                        <span>
+                                        <div className="row">
+                                            <div className="col-md-4"
+                                                 style={{
+                                                     marginTop: "2%",
+                                                     paddingLeft: "7%",
+                                                     color: "rgb(6, 133, 170)",
+                                                     fontWeight: "bold"
+                                                 }}
+                                            >
+                                                {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
+                                                <span>
                     Nhập lại mật khẩu(
                     <sup style={{fontSize: 8}}>
                     <sup>
@@ -221,37 +229,37 @@ export function SignUp() {
                     </sup>
                     </sup>)
                     </span>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <Field
-                                            type="password"
-                                            className="lock"
-                                            name="passwordAgain"
-                                            placeholder="Nhập"
-                                            id="password2"
-                                            required=""
-                                        />
-                                        <div className="row">
-                                            <div className="col-1"/>
-                                            <div className="col-10">
-                                                <ErrorMessage component="span" name="passwordAgain"
-                                                              className="err-mes"/>
                                             </div>
-                                            <div className="col-1"/>
+                                            <div className="col-md-8">
+                                                <Field
+                                                    type="password"
+                                                    className="lock"
+                                                    name="passwordAgain"
+                                                    placeholder="*****"
+                                                    id="password2"
+                                                    required=""
+                                                />
+                                                <div className="row">
+                                                    <div className="col-1"/>
+                                                    <div className="col-10">
+                                                        <ErrorMessage component="span" name="passwordAgain"
+                                                                      className="err-mes"/>
+                                                    </div>
+                                                    <div className="col-1"/>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-4"
-                                         style={{
-                                             marginTop: "2%",
-                                             paddingLeft: "7%",
-                                             color: "rgb(6, 133, 170)",
-                                             fontWeight: "bold"
-                                         }}
-                                    >
-                                        {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
-                                        <span>
+                                        <div className="row">
+                                            <div className="col-md-4"
+                                                 style={{
+                                                     marginTop: "2%",
+                                                     paddingLeft: "7%",
+                                                     color: "rgb(6, 133, 170)",
+                                                     fontWeight: "bold"
+                                                 }}
+                                            >
+                                                {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
+                                                <span>
                     Điện thoại(
                     <sup style={{fontSize: 8}}>
                     <sup>
@@ -262,37 +270,37 @@ export function SignUp() {
                     </sup>
                     </sup>)
                     </span>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <Field
-                                            type="text"
-                                            id="firstname"
-                                            name="telCustomer"
-                                            placeholder="Nhập"
-                                        />
-                                        <div className="row">
-                                            <div className="col-1"/>
-                                            <div className="col-10">
-                                                <ErrorMessage component="span" name="telCustomer"
-                                                              className="err-mes"/>
                                             </div>
-                                            <div className="col-1"/>
+                                            <div className="col-md-8">
+                                                <Field
+                                                    type="text"
+                                                    id="firstname"
+                                                    name="telCustomer"
+                                                    placeholder="0123456789/+84123456789"
+                                                />
+                                                <div className="row">
+                                                    <div className="col-1"/>
+                                                    <div className="col-10">
+                                                        <ErrorMessage component="span" name="telCustomer"
+                                                                      className="err-mes"/>
+                                                    </div>
+                                                    <div className="col-1"/>
+                                                </div>
+                                                {/*<ErrorMessage component="span" name="" className="err-mes"/>*/}
+                                                {/*<p className="err-mes">Chưa nhập số điện thoại</p>*/}
+                                            </div>
                                         </div>
-                                        {/*<ErrorMessage component="span" name="" className="err-mes"/>*/}
-                                        {/*<p className="err-mes">Chưa nhập số điện thoại</p>*/}
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-4"
-                                         style={{
-                                             marginTop: "2%",
-                                             paddingLeft: "7%",
-                                             color: "rgb(6, 133, 170)",
-                                             fontWeight: "bold"
-                                         }}
-                                    >
-                                        {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
-                                        <span>
+                                        <div className="row">
+                                            <div className="col-md-4"
+                                                 style={{
+                                                     marginTop: "2%",
+                                                     paddingLeft: "7%",
+                                                     color: "rgb(6, 133, 170)",
+                                                     fontWeight: "bold"
+                                                 }}
+                                            >
+                                                {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
+                                                <span>
                     Họ và tên(
                     <sup style={{fontSize: 8}}>
                     <sup>
@@ -303,39 +311,39 @@ export function SignUp() {
                     </sup>
                     </sup>)
                     </span>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <Field
-                                            type="text"
-                                            id="firstname"
-                                            name="nameCustomer"
-                                            placeholder="Nhập"
-                                            title="Vui lòng nhập họ và tên theo CCCD"
-                                            required=""
-                                        />
-                                        <div className="row">
-                                            <div className="col-1"/>
-                                            <div className="col-10">
-                                                <ErrorMessage component="span" name="nameCustomer"
-                                                              className="err-mes"/>
                                             </div>
-                                            <div className="col-1"/>
+                                            <div className="col-md-8">
+                                                <Field
+                                                    type="text"
+                                                    id="firstname"
+                                                    name="nameCustomer"
+                                                    placeholder="Nguyen Van A"
+                                                    title="Vui lòng nhập họ và tên theo CCCD"
+                                                    required=""
+                                                />
+                                                <div className="row">
+                                                    <div className="col-1"/>
+                                                    <div className="col-10">
+                                                        <ErrorMessage component="span" name="nameCustomer"
+                                                                      className="err-mes"/>
+                                                    </div>
+                                                    <div className="col-1"/>
+                                                </div>
+                                                {/*<ErrorMessage component="span" name="" className="err-mes"/>*/}
+                                                {/*<p className="err-mes">Chưa nhập họ và tên</p>*/}
+                                            </div>
                                         </div>
-                                        {/*<ErrorMessage component="span" name="" className="err-mes"/>*/}
-                                        {/*<p className="err-mes">Chưa nhập họ và tên</p>*/}
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-4"
-                                         style={{
-                                             marginTop: "2%",
-                                             paddingLeft: "7%",
-                                             color: "rgb(6, 133, 170)",
-                                             fontWeight: "bold"
-                                         }}
-                                    >
-                                        {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
-                                        <span>
+                                        <div className="row">
+                                            <div className="col-md-4"
+                                                 style={{
+                                                     marginTop: "2%",
+                                                     paddingLeft: "7%",
+                                                     color: "rgb(6, 133, 170)",
+                                                     fontWeight: "bold"
+                                                 }}
+                                            >
+                                                {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
+                                                <span>
                     Ngày sinh(
                     <sup style={{fontSize: 8}}>
                     <sup>
@@ -346,38 +354,38 @@ export function SignUp() {
                     </sup>
                     </sup>)
                     </span>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <Field
-                                            type="date"
-                                            id="email"
-                                            name="dateCustomer"
-                                            placeholder=""
-                                        />
-                                        <div className="row">
-                                            <div className="col-1"/>
-                                            <div className="col-10">
-                                                <ErrorMessage component="span" name="dateCustomer"
-                                                              className="err-mes"/>
                                             </div>
-                                            <div className="col-1"/>
+                                            <div className="col-md-8">
+                                                <Field
+                                                    type="date"
+                                                    id="email"
+                                                    name="dateCustomer"
+                                                    // placeholder="Chọn"
+                                                />
+                                                <div className="row">
+                                                    <div className="col-1"/>
+                                                    <div className="col-10">
+                                                        <ErrorMessage component="span" name="dateCustomer"
+                                                                      className="err-mes"/>
+                                                    </div>
+                                                    <div className="col-1"/>
+                                                </div>
+                                                {/*<ErrorMessage component="span" name="Customer" className="err-mes"/>*/}
+                                                {/*<p className="err-mes">Chưa chọn ngày sinh</p>*/}
+                                            </div>
                                         </div>
-                                        {/*<ErrorMessage component="span" name="Customer" className="err-mes"/>*/}
-                                        {/*<p className="err-mes">Chưa chọn ngày sinh</p>*/}
-                                    </div>
-                                </div>
 
-                                <div className="row">
-                                    <div className="col-md-4"
-                                         style={{
-                                             marginTop: "2%",
-                                             paddingLeft: "7%",
-                                             color: "rgb(6, 133, 170)",
-                                             fontWeight: "bold"
-                                         }}
-                                    >
-                                        {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
-                                        <span>
+                                        <div className="row">
+                                            <div className="col-md-4"
+                                                 style={{
+                                                     marginTop: "2%",
+                                                     paddingLeft: "7%",
+                                                     color: "rgb(6, 133, 170)",
+                                                     fontWeight: "bold"
+                                                 }}
+                                            >
+                                                {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
+                                                <span>
                     Giới tính(
                     <sup style={{fontSize: 8}}>
                     <sup>
@@ -388,41 +396,41 @@ export function SignUp() {
                     </sup>
                     </sup>)
                     </span>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <Field
-                                            as="select"
-                                            className="form-select"
-                                            id="email"
-                                            name="genderCustomer"
-                                            // required=""
-                                        >
-                                            <option value={2}>-- Chọn --</option>
-                                            <option value={0}>Nam</option>
-                                            <option value={1}>Nữ</option>
-                                            {/*<option value="3">Khác</option>*/}
-                                        </Field>
-                                        <div className="row">
-                                            <div className="col-1"/>
-                                            <div className="col-10">
-                                                <ErrorMessage component="span" name="genderCustomer"
-                                                              className="err-mes"/>
                                             </div>
-                                            <div className="col-1"/>
+                                            <div className="col-md-8">
+                                                <Field
+                                                    as="select"
+                                                    className="form-select"
+                                                    id="email"
+                                                    name="genderCustomer"
+                                                    // required=""
+                                                >
+                                                    {/*<option value={2}>-- Chọn --</option>*/}
+                                                    <option value={0}>Nam</option>
+                                                    <option value={1}>Nữ</option>
+                                                    {/*<option value="3">Khác</option>*/}
+                                                </Field>
+                                                <div className="row">
+                                                    <div className="col-1"/>
+                                                    <div className="col-10">
+                                                        <ErrorMessage component="span" name="genderCustomer"
+                                                                      className="err-mes"/>
+                                                    </div>
+                                                    <div className="col-1"/>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-4"
-                                         style={{
-                                             marginTop: "2%",
-                                             paddingLeft: "7%",
-                                             color: "rgb(6, 133, 170)",
-                                             fontWeight: "bold"
-                                         }}
-                                    >
-                                        {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
-                                        <span>
+                                        <div className="row">
+                                            <div className="col-md-4"
+                                                 style={{
+                                                     marginTop: "2%",
+                                                     paddingLeft: "7%",
+                                                     color: "rgb(6, 133, 170)",
+                                                     fontWeight: "bold"
+                                                 }}
+                                            >
+                                                {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
+                                                <span>
                     Hộ chiếu/CCCD(
                     <sup style={{fontSize: 8}}>
                     <sup>
@@ -433,37 +441,37 @@ export function SignUp() {
                     </sup>
                     </sup>)
                     </span>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <Field
-                                            type="text"
-                                            id="email"
-                                            name="idCardCustomer"
-                                            placeholder="Nhập"
-                                            // title="Please enter a valid email"
-                                            // required=""
-                                        />
-                                        <div className="row">
-                                            <div className="col-1"/>
-                                            <div className="col-10">
-                                                <ErrorMessage component="span" name="idCardCustomer"
-                                                              className="err-mes"/>
                                             </div>
-                                            <div className="col-1"/>
+                                            <div className="col-md-8">
+                                                <Field
+                                                    type="text"
+                                                    id="email"
+                                                    name="idCardCustomer"
+                                                    placeholder=""
+                                                    // title="Please enter a valid email"
+                                                    // required=""
+                                                />
+                                                <div className="row">
+                                                    <div className="col-1"/>
+                                                    <div className="col-10">
+                                                        <ErrorMessage component="span" name="idCardCustomer"
+                                                                      className="err-mes"/>
+                                                    </div>
+                                                    <div className="col-1"/>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-4"
-                                         style={{
-                                             marginTop: "2%",
-                                             paddingLeft: "7%",
-                                             color: "rgb(6, 133, 170)",
-                                             fontWeight: "bold"
-                                         }}
-                                    >
-                                        {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
-                                        <span>
+                                        <div className="row">
+                                            <div className="col-md-4"
+                                                 style={{
+                                                     marginTop: "2%",
+                                                     paddingLeft: "7%",
+                                                     color: "rgb(6, 133, 170)",
+                                                     fontWeight: "bold"
+                                                 }}
+                                            >
+                                                {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
+                                                <span>
                     Quốc tịch(
                     <sup style={{fontSize: 8}}>
                     <sup>
@@ -473,83 +481,95 @@ export function SignUp() {
                     </sup>
                     </sup>)
                     </span>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <Field
-                                            as="select"
-                                            className="form-select"
-                                            id="email"
-                                            name="nationalityCustomer"
-                                            // required=""
-                                        >
-                                            <option value="Việt Nam">Việt Nam</option>
-                                            <option value="USA">USA</option>
-                                            <option value="Japan">Japan</option>
-                                        </Field>
-                                        <div className="row">
-                                            <div className="col-1"/>
-                                            <div className="col-10">
-                                                <ErrorMessage component="span" name="nationalityCustomer"
-                                                              className="err-mes"/>
                                             </div>
-                                            <div className="col-1"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-4"
-                                         style={{
-                                             marginTop: "2%",
-                                             paddingLeft: "7%",
-                                             color: "rgb(6, 133, 170)",
-                                             fontWeight: "bold"
-                                         }}
-                                    >
-                                        {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
-                                        <span>Địa chỉ</span>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <Field
-                                            type="text"
-                                            id="email"
-                                            name="addressCustomer"
-                                            placeholder="Nhập"
-                                        />
-                                        <div className="row">
-                                            <div className="col-1"/>
-                                            <div className="col-10">
-                                                <ErrorMessage component="span" name="addressCustomer"
-                                                              className="err-mes"/>
+                                            <div className="col-md-8">
+                                                <Field
+                                                    as="select"
+                                                    className="form-select"
+                                                    id="email"
+                                                    name="nationalityCustomer"
+                                                    // required=""
+                                                >
+                                                    <option value="Việt Nam">Việt Nam</option>
+                                                    <option value="USA">USA</option>
+                                                    <option value="Japan">Japan</option>
+                                                </Field>
+                                                <div className="row">
+                                                    <div className="col-1"/>
+                                                    <div className="col-10">
+                                                        <ErrorMessage component="span" name="nationalityCustomer"
+                                                                      className="err-mes"/>
+                                                    </div>
+                                                    <div className="col-1"/>
+                                                </div>
                                             </div>
-                                            <div className="col-1"/>
                                         </div>
-                                        {/*<ErrorMessage component="span" name="" className="err-mes"/>*/}
-                                    </div>
+                                        <div className="row">
+                                            <div className="col-md-4"
+                                                 style={{
+                                                     marginTop: "2%",
+                                                     paddingLeft: "7%",
+                                                     color: "rgb(6, 133, 170)",
+                                                     fontWeight: "bold"
+                                                 }}
+                                            >
+                                                {/*                     style="margin-top: 2%;padding-left: 10%; color: rgb(6, 133, 170); font-weight: bold"*/}
+                                                <span>Địa chỉ</span>
+                                            </div>
+                                            <div className="col-md-8">
+                                                <Field
+                                                    type="text"
+                                                    id="email"
+                                                    name="addressCustomer"
+                                                    placeholder=""
+                                                />
+                                                <div className="row">
+                                                    <div className="col-1"/>
+                                                    <div className="col-10">
+                                                        <ErrorMessage component="span" name="addressCustomer"
+                                                                      className="err-mes"/>
+                                                    </div>
+                                                    <div className="col-1"/>
+                                                </div>
+                                                {/*<ErrorMessage component="span" name="" className="err-mes"/>*/}
+                                            </div>
+                                        </div>
+                                        <div className="row" style={{margin: "10px"}}>
+                                            <div className="col-3"/>
+                                            <div className="col-6 text-center">
+                                                <button type="submit" className="btn"
+                                                        style={{
+                                                            marginTop: "3%",
+                                                            // paddingLeft: "15%",
+                                                            backgroundColor: "rgb(6, 133, 170)",
+                                                            color: "white",
+                                                            // fontWeight: "bold",
+                                                            fontSize: "18px"
+                                                        }}>
+                                                    Đăng Ký
+                                                </button>
+                                            </div>
+                                            <div className="col-3" style={{marginTop:"2%"}}>
+                                                <Link to='/login' style={{textDecoration: "underline", fontSize: "18px", paddingRight: "2px"}}>Đăng
+                                                    nhập
+                                                </Link>
+                                            </div>
+
+                                        </div>
+                                    </Form>
+                                    {/*<div className="text-center">*/}
+                                    {/*    <button type="button" className="btn btn-primary" style={{margin: "1%"}}>*/}
+                                    {/*        <i className="fab fa-facebook"/>*/}
+                                    {/*    </button>*/}
+                                    {/*    <button type="button" className="btn btn-danger">*/}
+                                    {/*        <i className="fab fa-google"/>*/}
+                                    {/*    </button>*/}
+                                    {/*</div>*/}
                                 </div>
-                                <div className="text-center" style={{marginBottom: "10px"}}>
-                                    <button type="submit" className="btn"
-                                            style={{
-                                                marginTop: "3%",
-                                                // paddingLeft: "15%",
-                                                backgroundColor: "rgb(6, 133, 170)",
-                                                color: "white",
-                                                // fontWeight: "bold",
-                                                fontSize: "18px"
-                                            }}>
-                                        Đăng Ký
-                                    </button>
-                                </div>
-                            </Form>
-                            {/*<div className="text-center">*/}
-                            {/*    <button type="button" className="btn btn-primary" style={{margin: "1%"}}>*/}
-                            {/*        <i className="fab fa-facebook"/>*/}
-                            {/*    </button>*/}
-                            {/*    <button type="button" className="btn btn-danger">*/}
-                            {/*        <i className="fab fa-google"/>*/}
-                            {/*    </button>*/}
-                            {/*</div>*/}
+                            </div>
+                            <div className="col-md-1"></div>
+                            {/*<div className="clear"/>*/}
                         </div>
-                        {/*<div className="clear"/>*/}
                     </div>
                 </div>
             </Formik>
