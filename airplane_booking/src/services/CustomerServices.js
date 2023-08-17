@@ -37,3 +37,8 @@ export async function getListCustomers(page,name,email,nationality){
  export async function deleteCustomers(id){
     await axios.put(`http://localhost:8080/customers/delete/${id}`)
  }
+
+ export async function getCustomerByEmail(email) {
+    const res = await axios.get("http://localhost:8080/customers/login/" + email);
+    return res.data;
+ }
