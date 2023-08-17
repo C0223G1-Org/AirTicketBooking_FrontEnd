@@ -4,7 +4,7 @@ body {
 
 .m-3 .col-12 .card img {
     width: 100%;
-    height: 150px;
+    height: 120px;
 }
 
 .m-3 .col-12 .card {
@@ -30,7 +30,7 @@ body {
     border: 1px solid #daa310;
 }
 
-.m-3 .col-12 .row .col {
+.m-3 .col-12 .row .col-12 {
     padding-top: 20px;
 }
 
@@ -257,10 +257,10 @@ body {
 
 }
 
-.modal_inner .title {
+.modal_inner .title-bonus {
     text-align: center;
     background: #166987;
     color: white;
-    vertical-align: center;
     padding: 10px 0;
+    vertical-align: center;
 }
