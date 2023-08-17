@@ -45,8 +45,8 @@ nav i {
     padding-left: 10px;
 }
 
-.dropdown-menu li:hover a {
-    color: #166987;
+.dropdown-menu .dropdown-item:hover {
+    color: rgb(147, 20, 84);
 }
 
 .dropdown-menu {
@@ -54,15 +54,17 @@ nav i {
 }
 
 .dropdown-menu li a {
-    color: white;
+    background: #166987;
 }
 
-.navbar-nav li:hover a {
-    color: #daa310;
-}
 .header {
     color: white;
 }
 .navbar-nav .nav-item .nav-link{
     color: white;
 }
+.navbar img {
+    width: 170px;
+    height: 100px;
+}
+

@@ -1,11 +1,14 @@
 import React from "react";
 import "../../css/home/Header.css";
+import {Link} from "react-router-dom";
+import image from "../../logo_5.png";
+
 
 export default function HeaderCustomer() {
     return (
         <header className='header'>
             <nav className="navbar navbar-expand-lg">
-                <a className="navbar-brand" href="#">CodeGym Airline</a>
+                <img className="navbar-brand" src={image} alt='CodeGym Airline'/>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -32,10 +35,10 @@ export default function HeaderCustomer() {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" href="#">
+                            <Link className="nav-link active" to={`/listPost`}>
                                 <i className="fa-regular fa-newspaper"/>
                                 Tin tức
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link active" href="#">
@@ -51,7 +54,7 @@ export default function HeaderCustomer() {
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a className="dropdown-item" href="#">Xem thông tin tài khoản</a></li>
-                                <li><a className="dropdown-item" href="#">Lịch sử đặt vé</a></li>
+                                <li><Link to={`/historyPayment`} className="dropdown-item">Lịch sử đặt vé</Link></li>
                             </ul>
                         </li>
                     </ul>

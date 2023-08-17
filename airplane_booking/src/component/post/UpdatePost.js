@@ -120,7 +120,7 @@ export function UpdatePost() {
                 }}
             >
                 <div className="container " style={{marginBottom: "5rem"}}>
-                    <div className="row height d-flex justify-content-center align-items-center">
+                    <div className="row  justify-content-center align-items-center">
                         <div className="col-md-6" style={{borderRadius: "4px"}}>
                             <div className="card-tri" style={{marginTop: "4rem", marginBottom: "2rem", paddingLeft: "0px", paddingTop: "0px", paddingRight: "0px"}}>
                                 <div style={{borderRadius: "4px", textAlign: "center", backgroundColor: "#4FA3E3", height: "57px", color: "white"}}>
@@ -172,6 +172,7 @@ export function UpdatePost() {
                 </div>
             </Formik>
             }
+
         </>
 
     );

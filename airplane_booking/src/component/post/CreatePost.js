@@ -7,10 +7,11 @@ import * as Yup from "yup"
 import moment from "moment";
 import Swal from "sweetalert2";
 import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
-import {storage} from './firebase';
+import {storage} from '../../firebase';
 import {v4} from "uuid";
 import CKEditorComponent from "./CKEditorComponent";
 import {createPost} from "../../services/PostServices";
+
 
 export function CreatePost() {
     const navigate = useNavigate();
@@ -49,9 +50,13 @@ export function CreatePost() {
             }
         )
     })
+
+
     // const formatDateTime = (datePost) => {
     //     return moment(datePost).format("DD/MM/YYYY HH:mm:ss");
     // };
+
+
     useEffect(() => {
         const findAllEmployees = async () => {
             const result = await postService.getAllEmployee()
@@ -104,61 +109,69 @@ export function CreatePost() {
             })}
             onSubmit={(values) => {
                 savePost(values)
-            }}
-        >
-            <div className="container-fluid " style={{marginBottom: "2rem"}}>
-                <div className="row justify-content-center align-items-center" style={{display:"flex"}}>
-                    <div className="col-md-6" style={{borderRadius: "4px"}}>
-                        <div className="card-tri" style={{marginTop: "4rem", marginBottom: "4rem", paddingLeft: "0px", paddingTop: "0px", paddingRight: "0px"}}>
+            }}>
 
-                            <div style={{borderRadius: "4px", textAlign: "center", backgroundColor: "#4FA3E3", height: "57px", color: "white"}}>
-                                <h2 style={{paddingTop:"15px"}}>THÊM MỚI THÔNG TIN </h2>
+            <div className="container " style={{marginBottom: "5rem"}}>
+                <div className="row justify-content-center align-items-center" style={{display:"flex"}}>
+                    < div className="col-md-6" style={{borderRadius: "4px"}}>
+                        <div className="card-update-post" style={{
+                            marginTop: "4rem",
+                            marginBottom: "4rem",
+                            paddingLeft: "0px",
+                            paddingTop: "0px",
+                            paddingRight: "0px"
+                        }}>
+                            <div style={{
+                                borderRadius: "4px",
+                                textAlign: "center",
+                                backgroundColor: "#4FA3E3",
+                                height: "57px",
+                                color: "white"
+                            }}>
+                                <h2 style={{paddingTop: "15px"}}>THÊM MỚI THÔNG TIN </h2>
                             </div>
                             <Form style={{marginLeft: "40px", marginRight: "40px"}}>
-
-                            <div className="mt-4 inputs"><span>Tiêu đề <span style={{color: "red"}}>*</span></span>
-                                    <Field type="text" className="form-control" id="title" name="title"
+                                <div className="mt-4 inputs"><span>Tiêu đề <span style={{color: "red"}}>*</span></span>
+                                    <Field
+                                        type="text"
+                                        className="form-control"
+                                        id="title"
+                                        name="title"
                                     />
                                 </div>
-                                <div className="mt-2 inputs"><span>Ngày tạo <span style={{color: "red"}}>*</span>{formatDateTime(new Date())}</span>
+                                <div className="mt-2 inputs">
+                                    <span>Ngày tạo <span
+                                        style={{color: "red"}}>*</span>{formatDateTime(new Date())}</span>
                                 </div>
                                 <div className="mt-2 inputs">
-                                    <span>Tải lên hình ảnh <span style={{color: "red"}}>*</span></span>
-                                    <div className="custom-file" style={{ position: "relative", overflow: "hidden" }}>
-                                        <input
-                                            className="custom-file-input"
-                                            accept="image/png, image/gif, image/jpeg"
-                                            type="file"
-                                            ref={inputFileRef}
-                                            onChange={handleInputChange}
-                                            name="image"
-                                        />
-                                        <span className="custom-file-control"></span>
-                                    </div>
-                                    <img name="image" width="80%" ref={imgPreviewRef} style={{ display: "none" }}/>
+                                    <span>Upload hình ảnh <span style={{color: "red"}}>*</span></span>
+                                    <Field className="custom-file-input"
+                                           accept="image/png, image/gif, image/jpeg" type="file" id="input-file"
+                                           ref={inputFileRef} onChange={handleInputChange} name='image'/>
+                                    <img style={{borderRadius:"20px"}} name='image'
+                                         id="img-preview" ref={imgPreviewRef} alt="Preview"/>
                                 </div>
 
-                                <div className="mt-4 inputs"><span>Nội dung <span style={{color: "red"}}>*</span></span>
-                                    <Field name="content" component={CKEditorComponent}/>
+                                <div className="mt-4 inputs">
+                                    <span>Nội dung <span style={{color: "red"}}>*</span></span>
+                                    <Field
+                                        name="content"
+                                        component={CKEditorComponent}
+                                    />
                                 </div>
                                 <div className="mt-4 btn-group">
                                     <div className="text-center m-auto">
-                                        <button
-                                            type="button"
-                                            className="btn btn-secondary"
-                                            style={{width: "100px"}}
-                                        >
-                                            <b className="text-center">Quay lại</b>
+                                        <button type="button" className="btn btn-secondary1"
+                                            style={{}}>
+                                            <b className="text-center1">Quay lại</b>
                                         </button>
                                     </div>
                                     <div className="text-center m-auto">
-                                        <button
-                                            type="submit"
+                                        <button type="submit"
                                             className="btn btn-warning "
                                             data-mdb-toggle="modal"
-                                            data-mdb-target="#exampleModalToggle1"
-                                        >
-                                            <b className="text-center">Thêm mới</b>
+                                            data-mdb-target="#exampleModalToggle1">
+                                            <b className="text-center1">Thêm mới</b>
                                         </button>
                                     </div>
                                 </div>

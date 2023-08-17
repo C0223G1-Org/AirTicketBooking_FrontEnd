@@ -1,15 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup"
 import Swal from 'sweetalert2';
 import { CreateCustomer } from '../services/CustomerServices';
 import "../employeeCreateCustomer.css"
 import { useNavigate } from 'react-router-dom';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from '../firebase-chat';
+import { v4 } from "uuid";
 
 function EmployeeCreateCustomer() {
+
+  const imgPreviewRef = useRef(null)
+
+
+  const [fileUpload, setFileUpload] = useState(null)
+  const onChange = (file) => {
+    setFileUpload(file)
+    const reader = new FileReader();
+    reader.addEventListener("load", function () {
+      imgPreviewRef.current.src = reader.result;
+      imgPreviewRef.current.style.display = "block";
+    });
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+  const getUrl = async (file) => {
+    const imgRef = ref(storage, `images/${file.name + v4()}`);
+    await uploadBytes(imgRef, file)
+    const url = await getDownloadURL(imgRef)
+    console.log(url);
+    return url;
+  }
+
   const navigave = useNavigate()
   return (
     <>
+    
       <Formik
         initialValues={{
           nameCustomer: "",
@@ -28,11 +56,11 @@ function EmployeeCreateCustomer() {
             .required("Không được để trống trường này")
             .min(3, "Họ và tên tối thiểu 3 ký tự và tối đa 30 ký tự")
             .max(30, "Họ và tên tối thiểu 3 ký tự và tối đa 30 ký tự")
-          .matches(/^[A-Z]{1}[a-z]*(\s[A-Z]{1}[a-z]*)*$/,"Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ"),
-           genderCustomer: yup.boolean().required("Không được để trống trường này"),
+            .matches(/^[A-Z]{1}[a-z]*(\s[A-Z]{1}[a-z]*)*$/, "Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ"),
+          genderCustomer: yup.boolean().required("Không được để trống trường này"),
           emailCustomer: yup.string()
             .required("Không được để trống trường này")
-            .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,"Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
+            .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
             .min(12, "Email tối thiểu 12 ký tự và tối đa 50 ký tự")
             .max(50, "Email tối thiểu 12 ký tự và tối đa 50 ký tự"),
           telCustomer: yup.string()
@@ -65,27 +93,51 @@ function EmployeeCreateCustomer() {
             password: values.password,
             role: role
           }
-          const customer = {
-            nameCustomer: values.nameCustomer,
-            genderCustomer: values.genderCustomer,
-            emailCustomer: values.emailCustomer,
-            telCustomer: values.telCustomer,
-            addressCustomer: values.addressCustomer,
-            imgCustomer: values.imgCustomer,
-            nationalityCustomer: values.nationalityCustomer,
-            idCardCustomer: values.idCardCustomer,
-            dateCustomer: values.dateCustomer,
-            flagCustomer: false,
-            account: account
+          console.log(fileUpload)
+          let customer = {}
+          if (fileUpload != null) {
+            const urlImage = await getUrl(fileUpload)
+            console.log(urlImage);          
+             customer = {
+              nameCustomer: values.nameCustomer,
+              genderCustomer: values.genderCustomer,
+              emailCustomer: values.emailCustomer,
+              telCustomer: values.telCustomer,
+              addressCustomer: values.addressCustomer,
+              imgCustomer: urlImage,
+              nationalityCustomer: values.nationalityCustomer,
+              idCardCustomer: values.idCardCustomer,
+              dateCustomer: values.dateCustomer,
+              flagCustomer: false,
+              account: account
+            }
+          }else{
+             customer = {
+              nameCustomer: values.nameCustomer,
+              genderCustomer: values.genderCustomer,
+              emailCustomer: values.emailCustomer,
+              telCustomer: values.telCustomer,
+              addressCustomer: values.addressCustomer,
+              imgCustomer: values.imgCustomer,
+              nationalityCustomer: values.nationalityCustomer,
+              idCardCustomer: values.idCardCustomer,
+              dateCustomer: values.dateCustomer,
+              flagCustomer: false,
+              account: account
+            }
           }
+
+
+
           console.log(customer)
+
           await CreateCustomer(customer)
           navigave("/customers")
           Swal.fire({
             icon: 'success',
             title: "Thêm mới thành công",
             timer: 2000,
-            showConfirmButton:false
+            showConfirmButton: false
           }
           )
 
@@ -98,7 +150,8 @@ function EmployeeCreateCustomer() {
               <div className="row">
                 <div className="col-12 col-sm-12 col-md-4 col-lg-4">
                   <div>
-                    <img src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg" alt="Preview Image" id="img-preview" />
+                    <img src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg" 
+                    ref={imgPreviewRef} alt="Preview Image" id="img-preview" />
                   </div>
                 </div>
                 <div className="col-12 col-sm-12 col-md-8 col-lg-8">
@@ -256,7 +309,9 @@ function EmployeeCreateCustomer() {
                         <div className="col-md-6">
                           <div className="form-group">
                             <span className="form-label" style={{ marginBottom: '20px' }}>Ảnh</span>
-                            <Field className="form-control" name="imgCustomer" type="file" style={{ paddingTop: '35px' }} id="field-file" />
+                            <Field className="form-control"  onChange={(event) => onChange(event.target.files[0])} accept="img/*"
+                             name="imgCustomer" type="file" style={{ paddingTop: '35px',color:"transparent"}} id="field-file" ref={fileUpload}
+                              />
                           </div>
                         </div>
                       </div>
@@ -272,7 +327,6 @@ function EmployeeCreateCustomer() {
             </div>
           </div>
         </div>
-
       </Formik>
     </>
   );

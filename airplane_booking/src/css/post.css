@@ -1,4 +1,4 @@
-.card-tri {
+.card-update-post {
     border: none;
     padding: 20px;
     position: relative;
@@ -7,6 +7,7 @@
 }
 
 @media screen and (max-width: 768px) {
+
     body {
         font-size: 14px;
         background-color: #eee;
@@ -24,9 +25,18 @@ body {
     background-color: #eee;
     font-family: "Poppins", sans-serif;
     font-weight: 300;
+    /*background-image: url('./img/background.jpg')*/
 }
 
 .btn-group {
     display: flex;
     justify-content: space-between;
+}
+.btn-secondary1{
+    color: white;
+    background-color: rgba(101, 100, 100, 0.93);
+}
+.text-center1{
+    text-align: center;
+
 }

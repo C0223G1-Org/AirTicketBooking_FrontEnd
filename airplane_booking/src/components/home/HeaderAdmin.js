@@ -1,11 +1,14 @@
 import React from "react";
 import "../../css/home/Header.css";
+import {Link, NavLink} from "react-router-dom";
+import image from "../../logo_5.png";
+
 
 export default function HeaderAdmin() {
     return (
         <header className='header'>
             <nav className="navbar navbar-expand-lg">
-                <a className="navbar-brand" href="#">CodeGym Airline</a>
+                <img className="navbar-brand" src={image} alt='CodeGym Airline'/>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"><i className="fa-solid fa-bars" /></span>
                 </button>
@@ -30,16 +33,22 @@ export default function HeaderAdmin() {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" href="#">
+                            <Link className="nav-link active" to={`/listPost`}>
                                 <i className="fa-regular fa-newspaper" />
                                 Tin tức
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" href="#">
+                            <NavLink to="/tickets/search-ticket" className="nav-link active">
                                 <i className="fa-solid fa-circle-info" />
                                 Thông tin hành trình
-                            </a>
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to="/admin/messages" className="nav-link active">
+                                <i className="fa-solid fa-circle-info" />
+                                Chat
+                            </NavLink>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,9 +56,9 @@ export default function HeaderAdmin() {
                                 Quản lý
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="#">Quản lý nhân viên</a></li>
+                                <li><Link to={`/employee`} className="dropdown-item" href="#">Quản lý nhân viên</Link></li>
                                 <li><a className="dropdown-item" href="#">Danh sách khách hàng</a></li>
-                                <li><hr className="dropdown-divider" /></li>
+                                <li><a className="dropdown-item" href="#">Quản lý vé</a></li>
                                 <li><a className="dropdown-item" href="#">Báo cáo</a></li>
                             </ul>
                         </li>

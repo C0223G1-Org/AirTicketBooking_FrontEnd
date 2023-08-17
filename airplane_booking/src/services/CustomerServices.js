@@ -1,5 +1,13 @@
 import axios from "axios";
 
+export async function updateCustomer(customer){
+   const response= await axios.put('/'+customer.idCustomer,customer)
+   return response
+}
+export async function getCustomerById(id){
+    const response =await axios.get('http://localhost:8080/customers/'+id)
+    return response.data
+}
 export const CreateCustomer = async (obj)=>{
      await axios.post("http://localhost:8080/customers/",obj)
 }

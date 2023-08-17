@@ -5,16 +5,28 @@ import Swal from 'sweetalert2';
 import { GetCustomerById, UpdateCustomer } from '../services/CustomerServices';
 import "../employeeCreateCustomer.css"
 import { useNavigate, useParams } from 'react-router-dom';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from '../firebase-chat';
+import { v4 } from "uuid";
+
 
 function EmployeeUpdateCustomer() {
+    const [fileUpload, setFileUpload] = useState(null)
+    const [oldUrl, setOldUrl] = useState("")
+
     const navigave = useNavigate()
     const params = useParams();
     const [customer, setCustomer] = useState({})
-    const inputFileRef = useRef(null);
+
     const imgPreviewRef = useRef(null);
-    const handleInputChange = (event) => {
-        const file = event.target.files[0];
-        // setImageUpload(file)
+
+    const setOldImg = () => {
+        var imgElement = document.getElementById("img-preview");
+        if(oldUrl){
+        imgElement.src = oldUrl;}
+    }
+    const onChange = (file) => {
+        setFileUpload(file)
         const reader = new FileReader();
         reader.addEventListener("load", function () {
             imgPreviewRef.current.src = reader.result;
@@ -22,13 +34,22 @@ function EmployeeUpdateCustomer() {
         });
         if (file) {
             reader.readAsDataURL(file);
-        }
-    };
+          }
+    }
+
+    const getUrl = async (file) => {
+        const imgRef = ref(storage, `images/${file.name + v4()}`);
+        await uploadBytes(imgRef, file)
+        const url = await getDownloadURL(imgRef)
+        return url;
+    }
+
     const getCustomer = async () => {
         try {
             const data = await GetCustomerById(params.id)
             console.log(data);
             setCustomer(data)
+            
         }
         catch (error) {
             navigave("/customers")
@@ -36,19 +57,26 @@ function EmployeeUpdateCustomer() {
                 icon: "error",
                 title: "Không tìm thấy đối tượng này",
                 timer: 2000,
-                showConfirmButton:false
+                showConfirmButton: false
             })
         }
     }
     useEffect(() => {
         getCustomer()
     }, [params.id])
+    useEffect(() => {
+        setOldUrl(customer.imgCustomer)
+    }, [customer])
+    useEffect(() => {
+        setOldImg()
+    }, [oldUrl])
+
     return (
         <>
             {customer.idCustomer &&
                 <Formik
                     initialValues={{
-                        ...customer
+                        ...customer, imgCustomer: ""
                     }}
 
                     validationSchema={yup.object({
@@ -56,8 +84,8 @@ function EmployeeUpdateCustomer() {
                             .required("Không được để trống trường này")
                             .min(3, "Họ và tên tối thiểu 3 ký tự và tối đa 30 ký tự")
                             .max(30, "Họ và tên tối thiểu 3 ký tự và tối đa 30 ký tự")
-                            .matches(/^[A-Z]{1}[a-z]*(\s[A-Z]{1}[a-z]*)*$/,"Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ"),
-                             genderCustomer: yup.boolean().required("Không được để trống trường này"),
+                            .matches(/^[A-Z]{1}[a-z]*(\s[A-Z]{1}[a-z]*)*$/, "Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ"),
+                        genderCustomer: yup.boolean().required("Không được để trống trường này"),
                         emailCustomer: yup.string()
                             .required("Không được để trống trường này")
                             .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt ")
@@ -83,9 +111,16 @@ function EmployeeUpdateCustomer() {
 
                     })}
                     onSubmit={async (values) => {
-                        console.log(values);
-                        const data = {
-                            ...values
+                        let data = {}
+                        if (fileUpload != null) {
+                            const urlImage = await getUrl(fileUpload)
+                            data = {
+                                ...values, imgCustomer: urlImage
+                            }
+                        } else {
+                            data = {
+                                ...values, imgCustomer: oldUrl
+                            }
                         }
                         console.log(data);
                         await UpdateCustomer(data)
@@ -94,7 +129,7 @@ function EmployeeUpdateCustomer() {
                             icon: 'success',
                             title: "Sửa đổi thành công",
                             timer: 2000,
-                            showConfirmButton:false
+                            showConfirmButton: false
                         }
                         )
 
@@ -107,7 +142,9 @@ function EmployeeUpdateCustomer() {
                                 <div className="row">
                                     <div className="col-12 col-sm-12 col-md-4 col-lg-4">
                                         <div>
-                                            <img name='imgCustomer' src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg" id="img-preview" ref={imgPreviewRef} style={{ display: 'none' }} alt="Preview" />                                        </div>
+                                        <img src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg" 
+                    ref={imgPreviewRef} alt="Preview Image" id="img-preview" />
+                                        </div>
                                     </div>
                                     <div className="col-12 col-sm-12 col-md-8 col-lg-8">
                                         <div className="booking-form">
@@ -193,7 +230,7 @@ function EmployeeUpdateCustomer() {
                                                                     </sup>
                                                                 </sup>)
                                                             </span>
-                                                            <Field className="form-control" name="dateCustomer" type="date" required />
+                                                            <Field className="form-control" name="dateCustomer" type="date" />
                                                             <ErrorMessage className='error' name='dateCustomer' component={"div"} />
                                                         </div>
                                                     </div>
@@ -253,7 +290,8 @@ function EmployeeUpdateCustomer() {
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <span className="form-label" style={{ marginBottom: '20px' }}>Ảnh</span>
-                                                            <Field className="form-control" style={{ paddingTop: '35px' }} type="file" id="input-file" ref={inputFileRef} onChange={handleInputChange} name='imgCustomer' />
+                                                            <Field className="form-control" style={{ paddingTop: '35px' }} type="file" id="input-file" name='imgCustomer'
+                                                               accept="img/*"  onChange={(event) => onChange(event.target.files[0])} />
                                                         </div>
                                                     </div>
                                                 </div>
