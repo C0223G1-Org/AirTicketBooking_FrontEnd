@@ -26,6 +26,7 @@ import InfoPassenger from "./component/ticket/InfoPassenger";
 import EmployeeList from "./component/Employee/EmployeeList";
 import CreateEmployee from "./component/Employee/CreateEmployee";
 import ListPost from "./component/post/ListPost";
+import './index.css';
 // import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
 // import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
 // import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";

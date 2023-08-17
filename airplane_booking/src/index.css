@@ -1,4 +1,3 @@
-
 :root {
   --airLine--: rgb(6, 133, 170);
   --buttonAirLine--: rgb(223, 165, 18);
@@ -8,9 +7,10 @@
   margin: 0;
 }
 
-h1 {
+.h1-ticket {
   color: var(--airLine--);
   text-align: center;
+  margin-top: 5%;
 }
 
 .section-ticket {
@@ -18,9 +18,11 @@ h1 {
   display: flex;
   justify-content: space-between;
 }
-.section-ticket ul{
+
+.section-ticket ul {
   padding: 0 !important;
 }
+
 .section-ticket-item {
   list-style: none;
   display: inline-block;
@@ -60,13 +62,15 @@ h1 {
   min-width: 100%;
   border-spacing: 0;
   border-collapse: separate;
-  position: relative;
 }
 
 .table-ticket table td {
   padding: 10px 0;
   border-bottom: 1px solid #e3e3d5;
   text-align: center;
+  height: 50px;
+  max-width: 300px;
+  min-width: 50px;
 }
 
 .table-ticket table thead {
@@ -77,15 +81,15 @@ h1 {
   height: 35px;
   color: white;
   text-align: center;
+
 }
 
 .pagination-ticket {
-  position: absolute;
-  top: 410px;
   right: 0;
   display: flex;
   justify-content: flex-end;
   margin: 10px 5%;
+  margin-bottom: 5%;
 }
 
 .pagination-ticket .pagination-ticket-item {
@@ -119,15 +123,17 @@ h1 {
   display: inline-block;
   margin: 0 5px;
 }
-.modal-search{
+
+.modal-search {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  left:0;
+  left: 0;
   display: flex;
 
 }
+
 .show-search-ticket {
   position: absolute;
   width: 100%;
@@ -138,26 +144,33 @@ h1 {
 
   /*background-color: #d3d3b7;*/
 }
-.show-search-ticket ul{
+
+.show-search-ticket ul {
   margin: auto;
-  background-color: #b3d3d7;
-  border-radius: 10px;
+  /* background-color: #b3d3d7; */
+  background-color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   width: 650px;
 }
-.show-search-ticket li{
+
+.show-search-ticket li {
   list-style: none;
 
 }
+
 .show-search-ticket ul {
- padding-left:0 !important;
+  padding-left: 0 !important;
 }
+
 .show-search-ticket-header {
   width: 100%;
   background-color: var(--airLine--);
   display: flex;
-  height: 38px;
+  height: 45px;
   position: relative;
-  border-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
 
 /*.show-search-ticket-header-item {*/
@@ -179,7 +192,7 @@ h1 {
 }
 
 .show-search-ticket-header .item-one {
-  height: 38px;
+  height: 45px;
   width: 33.3%;
   border-radius: 5px;
   text-align: center;
@@ -188,7 +201,7 @@ h1 {
 
 .show-search-ticket-header .item-two {
   left: 33.3%;
-  height: 38px;
+  height: 45px;
   width: 33.3%;
   border-radius: 5px;
   text-align: center;
@@ -198,7 +211,7 @@ h1 {
 
 .show-search-ticket-header .item-three {
   left: 66.7%;
-  height: 38px;
+  height: 45px;
   width: 33.3%;
   text-align: center;
   border-radius: 5px;
@@ -206,7 +219,7 @@ h1 {
 }
 
 .show-search-ticket-header-item p {
-  padding-top: 8px;
+  padding-top: 10px;
   color: white;
 }
 
@@ -214,160 +227,209 @@ h1 {
   color: white;
   margin-right: 5px;
 }
+
 .show-search-ticket-body-sale-selection {
   display: flex;
   justify-content: start;
 }
-.show-search-ticket-body-sale-selection-item{
+
+.show-search-ticket-body-sale-selection-item {
   list-style: none;
   display: inline-block;
+  margin: 0 15px;
 }
-.show-search-ticket-sale-body{
+
+.show-search-ticket-sale-body {
   margin: 10px 30px;
 }
 
-.show-search-ticket-body-sale-selection-item button{
+.show-search-ticket-body-sale-selection-item button {
   margin-top: 15px;
   border-radius: 10px;
-  background-color: #FBF9F2;
+  background-color: #e7e3d5;
   border-color: #e3e3d5;
+  width: 100px;
   min-width: 80px;
 }
-.show-search-ticket-body-sale-selection-item button:hover{
-  background-color: var(--buttonAirLine--);
+
+.show-search-ticket-body-sale-selection-item button:hover {
+  background-color: var(--airLine--);
   color: white;
   border-color: var(--airLine--);
   cursor: pointer;
 }
 
-.show-search-ticket-body-input{
+.show-search-ticket-body-input {
   display: flex;
   justify-content: start;
-  margin: 10px 30px;
+  margin: 20px 30px;
 }
-.show-search-ticket-body-input-item{
+
+.show-search-ticket-body-input-item {
   display: inline-block;
 }
-.show-search-ticket-body-input-item select{
+.show-search-ticket-body-input-item i{
+  margin: 0 10px;
+}
+
+.show-search-ticket-body-input-item .select {
   border-top: none;
   border-left: none;
   border-right: none;
-  margin: 20px 10px;
-  min-width:20%;
+  border-bottom: 3px solid var(--airLine--) ;
+  margin: 10px 10px;
+  min-width: 40%;
+
+}
+
+.show-search-ticket-body-input-item input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  
+  margin: 0 10px;
+  margin-left: 45px;
+  min-width: 30%;
+  max-width: 100px;
   border-color: #e3e3d5;
 }
 
-.show-search-ticket-body-input-item input{
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-radius: 10px;
-  margin: 20px 10px;
-  min-width: 20%;
-  max-width: 120px;
-  border-color: #e3e3d5;
+.show-search-ticket-body-input-item input[type='date'] {
+  min-width: 70px;
 }
-.show-search-ticket-body-submit{
+
+.show-search-ticket-body-input-item input[type='text'] {
+  min-width: 240px;
+}
+
+.show-search-ticket-body-input-item label {
+  margin-top: 10px;
+  margin-left: 15px;
+  top: 0;
+}
+
+.show-search-ticket-body-submit {
   display: flex;
   justify-content: space-between;
-  margin: 10px 30px;
+  height:80px;
+  margin: 0 30px !important;
+ 
 }
-.show-search-ticket-body-input-passenger{
+.show-search-ticket-body-submit ul{
+  margin-top: 5px !important;
+  margin-left: 5px;
+}
+
+.show-search-ticket-body-submit li {
   display: inline-block;
 }
-.show-search-ticket-body-input-passenger input{
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-radius: 5px;
-  min-width: 30%;
-  max-width: 120px;
-  border-color: #e3e3d5;
-  margin-bottom: 20px;
+
+.show-search-ticket-body-input-passenger label {
+  min-width: 115px;
+  margin: 0 10px;
 }
-.show-search-ticket-body-input-passenger button{
+.show-search-ticket-body-input-passenger input[type='date']{
+  max-width: 120px;
+}
+
+.show-search-ticket-body-input-passenger button {
   border-radius: 10px;
   min-width: 100px;
   max-width: 120px;
-  background-color: #FBF9F2;
+  background-color: #e7e3d5;
   border-color: #e3e3d5;
   cursor: pointer;
-  margin-left: 10px !important;
-  margin-bottom: 20px;
 }
-.show-search-ticket-body-input-passenger button:hover{
-  background-color: var(--buttonAirLine--);
+
+.show-search-ticket-body-input-passenger button:hover {
+  background-color: var(--airLine--);
   border-color: var(--airLine--);
 }
-.show-seat-ticket-body-input{
+
+.show-seat-ticket-body-input {
   display: flex;
   justify-content: space-around;
 }
-.show-seat-ticket-body-input-item{
+
+.show-seat-ticket-body-input-item {
   display: inline-block;
   margin: 30px 10px;
 }
-.show-seat-ticket-body-input-item input{
+
+.show-seat-ticket-body-input-item input {
   border-radius: 5px;
   border: none;
 }
-.show-seat-ticket-body-input-item button{
+
+.show-seat-ticket-body-input-item button {
   border-radius: 5px;
+  background-color: #e7e3d5;
   min-width: 70px;
 }
-.show-seat-ticket-body-input-item button:hover{
-  background-color: var(--buttonAirLine--);
+
+.show-seat-ticket-body-input-item button:hover {
+  background-color: var(--airLine--);
   border-color: var(--airLine--);
 }
-.show-route-ticket-body-input{
+
+.show-route-ticket-body-input {
   display: flex;
   justify-content: space-around;
 }
-.show-route-ticket-body-input-item{
+
+.show-route-ticket-body-input-item {
   display: inline-block;
   margin: 30px 10px;
 }
+
 body {
-   font-family: Roboto, sans-serif;
+  font-family: Roboto, sans-serif;
 }
-.show-route-ticket-body-input-item input{
+
+.show-route-ticket-body-input-item input {
   border-radius: 5px;
   border: none;
   width: 150px;
 }
-.show-route-ticket-body-input-item button{
+
+.show-route-ticket-body-input-item button {
   border-radius: 5px;
   min-width: 100px;
+  background-color: #e7e3d5;
 }
-.show-route-ticket-body-input-item button:hover{
-  background-color: var(--buttonAirLine--);
+
+.show-route-ticket-body-input-item button:hover {
+  background-color: var(--airLine--);
   border-color: var(--airLine--);
 }
 
-.section-unBook-ticket{
+.section-unBook-ticket {
   display: flex;
   justify-content: space-between;
   margin: 30px 5%;
 }
-.section-unBook-ticket-item{
+
+.section-unBook-ticket-item {
   list-style: none;
   display: inline-block;
 
 }
-.section-unBook-ticket ul{
+
+.section-unBook-ticket ul {
   padding: 0 !important;
 }
 
-.section-unBook-ticket-item input{
-  margin:0 10px;
+.section-unBook-ticket-item input {
+  margin: 0 10px;
   max-width: 150px;
-  border-radius: 5px ;
+  border-radius: 5px;
   min-height: 40px;
   cursor: pointer;
   border-color: var(--airLine--);
 }
-.section-unBook-ticket-item button{
-  border-radius: 5px ;
+
+.section-unBook-ticket-item button {
+  border-radius: 5px;
   cursor: pointer;
   border-color: var(--buttonAirLine--);
   background-color: white;
@@ -375,12 +437,13 @@ body {
   min-height: 40px;
   color: var(--buttonAirLine--);
 }
-.section-unBook-ticket-item button:hover{
-  background-color:var(--buttonAirLine--);
+
+.section-unBook-ticket-item button:hover {
+  background-color: var(--buttonAirLine--);
   color: white;
 }
 
 
-.err-mess{
+.err-mess {
   color: red;
 }
