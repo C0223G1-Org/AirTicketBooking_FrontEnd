@@ -134,18 +134,22 @@ function TicketBooked() {
                                     <td >{ticket.priceTicket}</td>
                                     <td className="icon-ticket">
                                         <ul>
+                                            <Link to={`/tickets/updateTicket/${ticket.id}`}>
                                             <li className="icon-ticket-item">
                                                 <i className="fa-solid fa-pen-to-square" />
 
                                             </li>
+                                                </Link>
                                             <li className="icon-ticket-item">
                                               
                                                     <i onClick={()=>deleteTicket(ticket.id)} className="fa-solid fa-trash mx-2" style={{ color: '#eb0f1a' }}></i>
                                                 {/* <ModalDeleteTicket ticket={ticket} delete={() => deleteTicket(ticket.id)} icon={"fa-solid fa-trash mx-2"} /> */}
                                             </li>
+                                            <Link to={`/printTicket/${ticket.id}`}>
                                             <li className="icon-ticket-item">
                                                 <i className="fa-sharp fa-solid fa-file-pdf mx-2" style={{ color: '#8c2626' }} />
                                             </li>
+                                            </Link>
                                         </ul>
                                     </td>
                                 </tr>
