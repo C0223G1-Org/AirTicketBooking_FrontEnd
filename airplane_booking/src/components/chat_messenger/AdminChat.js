@@ -7,10 +7,11 @@ const AdminPage = () => {
   const [selectedChatId, setSelectedChatId] = useState(null);
   const [chatMessages, setChatMessages] = useState([]);
   const [adminMessage, setAdminMessage] = useState("");
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     // Lấy danh sách các cuộc trò chuyện
-    const chatsRef = ref(database, "chats");
+    const chatsRef = ref(database, "users");
     onValue(chatsRef, (snapshot) => {
       const data = snapshot.val();
       const chatList = data ? Object.keys(data) : [];
@@ -43,15 +44,29 @@ const AdminPage = () => {
       onValue(chatMessagesRef, (snapshot) => {
         const data = snapshot.val();
         const messages = data ? Object.values(data) : [];
+        console.log(messages);
         setChatMessages(messages);
       });
     }
   }, [selectedChatId]);
 
-  const handleSelectChat = (chatId, userId) => {
+  useEffect(() => {
+    if (selectedChatId) {
+      const userNameRef = ref(
+        database,
+        `chats/${selectedChatId}/user/${selectedChatId}`
+      );
+      onValue(userNameRef, (snapshot) => {
+        const data = snapshot.val();
+        const name = data ? data.sender : "";
+        setUserName(name);
+      });
+    }
+  }, [selectedChatId]);
+
+  const handleSelectChat = (chatId) => {
     setSelectedChatId(chatId);
     console.log(chatId);
-    console.log(userId);
   };
 
   const handleSendMessage = () => {
@@ -71,7 +86,7 @@ const AdminPage = () => {
 
   return (
     <div id="message">
-      <div className="container">
+      <div className="container" style={{}}>
         <div
           id="fpt_ai_livechat_container_header_chat"
           style={{
@@ -91,17 +106,17 @@ const AdminPage = () => {
         <div className=" clearfix">
           {/* <div className="col-lg-12"> */}
           <div className="card-admin-chat chat-app ">
-            <div className="row" >
+            <div className="row">
               <div id="plist" className="people-list col-3">
                 <ul className="list-unstyled chat-list mt-2 mb-0">
-                  {chats.map((chatId, userId) => (
+                  {chats.map((chatId) => (
                     <li
                       className="clearfix"
                       key={chatId}
-                      onClick={() => handleSelectChat(chatId, chats[chatId])}
+                      onClick={() => handleSelectChat(chatId)}
                     >
                       <div className="about">
-                        <div className="name">{userId}</div>
+                        <div className="name">{chatId}</div>
                       </div>
                     </li>
                   ))}
@@ -137,6 +152,11 @@ const AdminPage = () => {
               </div>
               <div className="col-sm-9 col-xs-9 reply-main">
                 <input
+                  onKeyDown={(event) => {
+                    if (event.keyCode == 13) {
+                      handleSendMessage();
+                    }
+                  }}
                   className="form-control"
                   rows="1"
                   id="comment"
