@@ -46,7 +46,7 @@ const UpdateTicket = () => {
               </div>
             </div>
           </div>
-      
+
           {ticket.idTicket && (
             <Formik
               onSubmit={async (values) => {
@@ -59,6 +59,7 @@ const UpdateTicket = () => {
                   },
                 };
                 await handleEditTicket(object);
+                  console.log("2132131231")
                 // navigate("/")
               }}
               initialValues={{
@@ -94,7 +95,7 @@ const UpdateTicket = () => {
                         {ticket?.seat?.positionSeat}
                       </p>
                     </div>
-      
+
                     <div className="class form-group col-sm-6">
                       <b>Giá: </b>
                       <p className="form-control">{ticket?.priceTicket}</p>
@@ -125,6 +126,8 @@ const UpdateTicket = () => {
                         type="text"
                         name="namePassenger"
                         className="form-control"
+                        placeholder="Vui lòng nhập tên người đi"
+                        style={{ background: "#f2f2f2" }}
                       />
                       <div style={{ color: "red" }}>
                         <ErrorMessage name="namePassenger" />
@@ -140,6 +143,8 @@ const UpdateTicket = () => {
                         type="text"
                         name="customer"
                         className="form-control"
+                        placeholder="Vui lòng nhập email thanh toán"
+                        style={{ background: "#f2f2f2" }}
                       />
                       <div style={{ color: "red" }}>
                         <ErrorMessage name="customer" />

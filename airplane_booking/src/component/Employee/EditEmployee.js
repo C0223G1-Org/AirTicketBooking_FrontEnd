@@ -2,7 +2,6 @@ import './employeeEdit.css';
 import * as Yup from "yup";
 
 // import {storage} from "./firebare";
-
 import React, {useEffect, useState} from 'react';
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import {Link, useNavigate, useParams} from 'react-router-dom';

@@ -1,4 +1,4 @@
-.background-image {
+.img {
   width: 70%;
   margin-left: 15%;
   justify-items: center;
@@ -7,11 +7,13 @@
   border-radius: 10px;
   box-shadow: 0px 0px 10px #888888;
   box-sizing: border-box;
+  margin-top: 20px ;
+  margin-bottom: 20px;
 }
 
-.container {
+/* .container {
   background-color: white;
-}
+} */
 
 .passenger {
   padding-left: 30px;
@@ -54,11 +56,21 @@ h2 {
 .star{
   color:red;
 }
+
+
+
 .form-control {
+
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form-controler {
   
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: beige;
 }
 
 .form-buttons {

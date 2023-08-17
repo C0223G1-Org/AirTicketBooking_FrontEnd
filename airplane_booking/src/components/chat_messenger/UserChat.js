@@ -33,13 +33,14 @@ const UserChat = () => {
   const handleStartChat = async () => {
     // Tạo room chat riêng cho người dùng
     const chatRef = push(ref(database, "chats"));
+
     const newChatId = chatRef.key;
 
     // Lưu tên người dùng và chat ID vào database
-    push(ref(database, `chats/${newChatId}/user`), username);
+    push(ref(database, `chats/${newChatId}/user`), newChatId);
     push(ref(database, `users/${username}`), newChatId);
 
-    setChatId(newChatId);
+    setChatId(username);
     setChatStarted(true);
   };
 
@@ -86,7 +87,10 @@ const UserChat = () => {
           </div>
 
           <div className="row clearfix">
-            <div className="col-lg-12">
+            <div
+              className="col-lg-12"
+              style={{ overflowY: "auto", maxHeight: "400px" }}
+            >
               <div className="chat_messenger_user">
                 <div className="chat-history">
                   <ul className="m-b-0">
@@ -123,6 +127,11 @@ const UserChat = () => {
                   </div>
                   <div className="col-sm-9 col-xs-9 reply-main">
                     <input
+                      onKeyDown={(event) => {
+                        if (event.keyCode == 13) {
+                          handleSendMessage();
+                        }
+                      }}
                       className="form-control"
                       rows="1"
                       id="comment"
@@ -159,6 +168,11 @@ const UserChat = () => {
       <div style={{ display: chatStarted ? "none" : "block" }}>
         <h2>Nhập tên của bạn và bắt đầu trò chuyện</h2>
         <input
+          onKeyDown={(event) => {
+            if (event.keyCode == 13) {
+              handleStartChat();
+            }
+          }}
           type="text"
           placeholder="Tên người dùng"
           value={username}
