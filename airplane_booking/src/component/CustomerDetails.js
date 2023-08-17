@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCustomerById } from "../services/CustomerServices";
 import { Link, useParams } from "react-router-dom";
-import moment from 'moment';
-
-
-
+import moment from "moment";
 
 export default function CustomerDetails() {
 

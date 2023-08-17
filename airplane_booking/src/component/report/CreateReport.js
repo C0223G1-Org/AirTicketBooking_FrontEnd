@@ -29,6 +29,7 @@ export default function CreateReport() {
             setDataTimeCurrent([{
                 dateBooking: null,
                 priceTicket: null,
+                title: null
             }]);
         } else {
             setDataTimeCurrent(res.data);
@@ -39,7 +40,8 @@ export default function CreateReport() {
         if (res === null) {
             setDataTimePrevious([{
                 dateBooking: null,
-                priceTicket: null
+                priceTicket: null,
+                title: null
             }]);
         } else {
             setDataTimePrevious(res.data);
@@ -48,10 +50,10 @@ export default function CreateReport() {
     const getDataAbout = async (starDate, endDate) => {
         const res = await searchAboutAPI(starDate, endDate)
         if (res === null) {
-            setDataTimeAbout([{
+            setDataTimeAbout({
                 dateBooking: null,
                 priceTicket: null
-            }]);
+            });
         } else {
             setDataTimeAbout(res.data);
         }
@@ -59,10 +61,10 @@ export default function CreateReport() {
     const getDataAbout1 = async (starDate1, endDate1) => {
         const res = await searchAbout1API(starDate1, endDate1)
         if (res === null) {
-            setDataTimeAbout1([{
+            setDataTimeAbout1({
                 dateBooking: null,
                 priceTicket: null
-            }]);
+            });
         } else {
             setDataTimeAbout1(res.data);
         }
