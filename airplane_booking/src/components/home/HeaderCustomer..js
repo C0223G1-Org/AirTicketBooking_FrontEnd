@@ -61,7 +61,7 @@ export default function HeaderCustomer() {
                     <ul className="navbar-nav login">
                         <li className="nav-item">
                             <a className="nav-link active" href="#">
-                                XIN CHÀO - CUSTOMER
+                                Xin chào - HungLV
                             </a>
                         </li>
                         <li className="nav-item">
