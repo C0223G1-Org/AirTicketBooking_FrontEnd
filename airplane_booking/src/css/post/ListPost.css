@@ -1,0 +1,295 @@
+.list-news {
+    font-family: "Oxygen", sans-serif;
+    color: #050505;
+    /*background-color: white;*/
+}
+.overview-list-post{
+    background: url("../../img/background.jpg") no-repeat center/cover;
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.main-son {
+    max-width: 1200px;
+    margin: 0;
+}
+
+.cards_news {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.card_image_news {
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    max-height: 200px;
+}
+
+.card_image_news img {
+    width: 100%;
+    height: 15rem;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    object-fit: cover;
+}
+
+.card_image_news:hover img {
+    transform: scale(1.3);
+}
+
+/* .card_price {*/
+/*    position: absolute;*/
+/*    bottom: 8px;*/
+/*    right: 8px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    width: 45px;*/
+/*    height: 45px;*/
+/*    border-radius: 0.25rem;*/
+/*    background-color: #166987;*/
+/*    font-size: 18px;*/
+/*    font-weight: 700;*/
+/*}*/
+
+/*.card_price span {*/
+/*    font-size: 12px;*/
+/*    margin-top: -2px;*/
+/*} */
+.note {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 4px 8px;
+    border-radius: 0.25rem;
+    background-color: rgba(22, 105, 135, 0.51);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.note-detail {
+    position: relative;
+    border-radius: 0.25rem;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.card_item_news {
+    display: inline-block;
+    padding: 1rem;
+}
+
+@media (min-width: 40rem) {
+    .card_item_news {
+        width: 50%;
+    }
+}
+
+@media (max-width: 40rem) {
+    .card_item_news {
+        width: 100%;
+    }
+}
+
+@media (min-width: 56rem) {
+    .card_item_news {
+        width: 25%;
+    }
+}
+
+.card-son {
+    background-color: white;
+    border-radius: 0.25rem;
+    box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+}
+
+.card_content {
+    position: relative;
+    padding: 16px;
+    height: 6rem;
+    border-radius: 15px;
+}
+
+.card_content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.card_content::-webkit-scrollbar-track {
+    box-shadow: 0;
+    border-radius: 0;
+}
+
+.card_title {
+    position: relative;
+    margin: 0 0 10px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.card_title::after {
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #166987;
+    content: "";
+}
+
+.card_title_detail {
+    position: relative;
+    margin: 0 0 10px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.card_title_detail::after {
+    position: absolute;
+    display: block;
+    width: 50px;
+    bottom: 0;
+    left: 50%;
+    content: "";
+}
+
+.card_text {
+    height: 50px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.card_text p:last-child {
+    margin: 0;
+}
+
+.news-card-button {
+    justify-content: center;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 20px;
+}
+
+.news-button {
+    /*font-size: 25px;*/
+    margin: 0.9em;
+    border-radius: 10px;
+}
+
+.news-hots {
+    /*margin-bottom: 10px;*/
+    width: 100%;
+    padding: 16px;
+    list-style-type: none;
+
+}
+
+.vertical_news {
+    max-width: 1200px;
+    margin: 0;
+    transform: translateY(0%);
+    border-left: 3px solid rgba(51, 49, 49, 0.49);
+}
+
+@media screen and (max-width: 992px) and (max-height: 1024px) {
+    .vertical_news {
+        border-left: none;
+    }
+}
+
+.search {
+    background-color: #d7a60c;
+    margin-left: 0.5rem;
+    border-radius: 10px;
+    border: none;
+}
+
+.search:active {
+    color: #7e7e7e;
+    background-color: #036691;
+}
+
+@media screen and (max-width: 509px) {
+    .search-post {
+        display: none;
+    }
+
+    .add-post {
+        width: 93%;
+    }
+
+    .news-button {
+        width: 100%;
+    }
+}
+.custom-confirm-button-employee {
+    background-color: #0685aa !important;
+    /* Các thuộc tính CSS khác mà bạn muốn áp dụng */
+}
+.btn1{
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 7px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 10px
+}
+.btn1:hover{
+    background-color: white;
+    border-color: #d7a60c;
+    border-width: 1px;
+}
+.scroll-to-top-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.show-back{
+    display: block;
+}

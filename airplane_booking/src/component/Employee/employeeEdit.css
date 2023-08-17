@@ -304,9 +304,17 @@
 .mesError{
     color: red;
 }
-/*.style_button_search_page{*/
-
-/*}*/
-/*.style_button_page{*/
-
-/*}*/
+.style_button_search_page{
+    width: 3rem;
+    height: 20px;
+    padding-left: 5px;
+    border: 1px solid black;
+    margin-right: 5px;
+    color: black;
+    text-align: center;
+}
+.style_button_page{
+    background: rgb(223, 165, 18);
+    color: #ffffff;
+    margin-right: 10px;
+}

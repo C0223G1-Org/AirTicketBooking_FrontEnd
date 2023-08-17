@@ -1,18 +1,17 @@
 import './employeeEdit.css';
 import * as Yup from "yup";
 
-import {storage} from "./firebare";
-
+// import {storage} from "./firebare";
 import React, {useEffect, useState} from 'react';
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import * as EmployeeService from '../../services/EmployeeServices';
 import * as AccountService from '../../services/AccountServices';
 import * as RoleService from '../../services/RoleServices';
-import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage';
+// import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage';
 
 
-export function EditEmployee() {
+export default function EditEmployee() {
     let navigate = useNavigate();
     let param = useParams();
     const [roleList, setRoleList] = useState([]);

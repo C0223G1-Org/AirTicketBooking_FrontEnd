@@ -75,6 +75,13 @@ body {
 #info-passenger .info-third {
     margin-top: 20px;
 }
+#info-passenger .info-four .el-form-header{
+    background-color: #006790;
+    color: #ffffff;
+    padding: 7.5px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
 
 #info-passenger .logo-image {
     display: flex;
@@ -94,9 +101,11 @@ body {
     background-color: #daa310;
     box-shadow: inset;
     color: #fff;
-    height: 30px;
+    /*height: 30px;*/
     width: 200px;
     font-size: 20px;
+    padding: 10px 0;
+    border-radius: 5px;
 }
 
 #info-passenger .btn button:first-child {
@@ -104,12 +113,12 @@ body {
 }
 
 #info-passenger .info-customer {
-    border: 1px solid black;
     padding: 20px 0px;
 }
 
-#info-passenger .info-customer .check-children {
-    display: flex;
+#info-passenger .info-customer .list-passenger i{
+    padding-right: 10px;
+    color: #006790;
 }
 
 #info-passenger .info-customer .field {
@@ -142,10 +151,14 @@ body {
 #info-passenger #infor-ticket-2 {
     margin-top: 30px;
 }
-
+#info-passenger .fist-line {
+    border-top: 1px solid #1b6d85;
+    margin-bottom: 23px;
+}
 #info-passenger .line {
-    margin: 30px 0;
-    border-top: 2px solid #7fb3c7;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-top: 2px dashed #1b6d85;
 }
 #info-passenger .text-red{
     color: red;

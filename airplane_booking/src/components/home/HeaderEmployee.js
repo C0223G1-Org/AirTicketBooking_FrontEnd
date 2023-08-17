@@ -1,12 +1,14 @@
 import React from "react";
 import "../../css/home/Header.css";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
+import image from "../../logo_5.png";
+
 
 export default function HeaderEmployee() {
     return (
         <header className='header'>
             <nav className="navbar navbar-expand-lg">
-                <a className="navbar-brand" href="#">CodeGym Airline</a>
+                <img className="navbar-brand" src={image} alt='CodeGym Airline'/>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -39,10 +41,16 @@ export default function HeaderEmployee() {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link active" href="#">
-                                <i className="fa-solid fa-circle-info"/>
+                            <NavLink to="/tickets/search-ticket" className="nav-link active">
+                                <i className="fa-solid fa-circle-info" />
                                 Thông tin hành trình
-                            </a>
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to="/admin/messages" className="nav-link active">
+                                <i className="fa-solid fa-circle-info" />
+                                Chat
+                            </NavLink>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -54,9 +62,6 @@ export default function HeaderEmployee() {
                                 <li><Link to={`/customers`} className="dropdown-item" >Quản lý khách hàng</Link></li>
                                 <li><a className="dropdown-item" href="#">Quản lý kinh doanh</a></li>
                                 <li><Link to={`/ticket/booked`} className="dropdown-item">Quản lý vé</Link></li>
-                                <li>
-                                    <hr className="dropdown-divider"/>
-                                </li>
                                 <li><a className="dropdown-item" href="#">Báo cáo</a></li>
                             </ul>
                         </li>
@@ -64,7 +69,7 @@ export default function HeaderEmployee() {
                     <ul className="navbar-nav login">
                         <li className="nav-item">
                             <a className="nav-link active" href="#">
-                                XIN CHÀO - EMPLOYEE
+                                Xin chào - NamPC
                             </a>
                         </li>
                         <li className="nav-item">
