@@ -106,54 +106,72 @@ export function UpdatePost() {
     return (
         <>
             {post.id &&
-            <Formik
-                initialValues={{
-                    id:post?.id,
-                    title: post?.title,
-                    employee: 1,
-                    datePost: formatDateTime1(new Date()),
-                    content: post?.content
-                }}
-                validationSchema={Yup.object({
-                    title: Yup.string().required("Không được để trống"),
-                    content: Yup.string().required("Không được để trống")
-                })}
-                onSubmit={(values,{setSubmitting}) => {
-                    setTimeout(()=>{
-                        update(values)
-                        setSubmitting(false)
-                    },4000)
-                }}
-            >
-                {
-                    ({isSubmitting})=>(
-                        <div className="container-fluid" style={{marginBottom: "5rem"}}>
-                            <div className="row  justify-content-center align-items-center" style={{display:"flex"}}>
-                                <div className="col-md-6" style={{borderRadius: "4px"}}>
-                                    <div className="card-update-post" style={{marginTop: "4rem", marginBottom: "2rem", paddingLeft: "0px", paddingTop: "0px", paddingRight: "0px"}}>
-                                        <div style={{borderRadius: "4px", textAlign: "center", backgroundColor: "#4FA3E3", height: "57px", color: "white"}}>
-                                            <h2 style={{paddingTop: "15px"}}>CHỈNH SỬA TIN TỨC</h2>
-                                        </div>
-                                        <Form style={{marginLeft: "40px", marginRight: "40px"}}>
-                                            <div className="mt-4 inputs"><span>Tiêu đề <span style={{color: "red"}}>*</span></span>
-                                                <Field type="text" className="form-control" id="title" name="title"/>
+                <Formik
+                    initialValues={{
+                        id: post?.id,
+                        title: post?.title,
+                        employee: 1,
+                        datePost: formatDateTime1(new Date()),
+                        content: post?.content
+                    }}
+                    validationSchema={Yup.object({
+                        title: Yup.string().required("Không được để trống"),
+                        content: Yup.string().required("Không được để trống")
+                    })}
+                    onSubmit={(values, {setSubmitting}) => {
+                        setTimeout(() => {
+                            update(values)
+                            setSubmitting(false)
+                        }, 4000)
+                    }}
+                >
+                    {
+                        ({isSubmitting}) => (
+                            <div className="container-fluid" style={{marginBottom: "5rem"}}>
+                                <div className="row  justify-content-center align-items-center"
+                                     style={{display: "flex"}}>
+                                    <div className="col-md-6" style={{borderRadius: "4px"}}>
+                                        <div className="card-update-post" style={{
+                                            marginTop: "4rem",
+                                            marginBottom: "2rem",
+                                            paddingLeft: "0px",
+                                            paddingTop: "0px",
+                                            paddingRight: "0px"
+                                        }}>
+                                            <div style={{
+                                                borderRadius: "4px",
+                                                textAlign: "center",
+                                                backgroundColor: "#4FA3E3",
+                                                height: "57px",
+                                                color: "white"
+                                            }}>
+                                                <h2 style={{paddingTop: "15px"}}>CHỈNH SỬA TIN TỨC</h2>
                                             </div>
-                                            <div className="mt-2 inputs"><span>Ngày tạo <span style={{color: "red"}}>*</span>       {formatDateTime(new Date())}</span>
-                                            </div>
-                                            <div className="mt-2 inputs"><span>Upload hình ảnh <span style={{color: "red"}}>*</span></span>
-                                                <Field className="custom-file-input"
-                                                       accept="image/png, image/gif, image/jpeg" type="file"
-                                                       ref={inputFileRef} onChange={handleInputChange} name='image'/>
-                                                <img  src={post.image} width="100%"
-                                                      ref={imgPreviewRef}  name='image'/>
-                                            </div>
+                                            <Form style={{marginLeft: "40px", marginRight: "40px"}}>
+                                                <div className="mt-4 inputs"><span>Tiêu đề <span
+                                                    style={{color: "red"}}>*</span></span>
+                                                    <Field type="text" className="form-control" id="title"
+                                                           name="title"/>
+                                                </div>
+                                                <div className="mt-2 inputs"><span>Ngày tạo <span
+                                                    style={{color: "red"}}>*</span> {formatDateTime(new Date())}</span>
+                                                </div>
+                                                <div className="mt-2 inputs"><span>Upload hình ảnh <span
+                                                    style={{color: "red"}}>*</span></span>
+                                                    <Field className="custom-file-input"
+                                                           accept="image/png, image/gif, image/jpeg" type="file"
+                                                           ref={inputFileRef} onChange={handleInputChange}
+                                                           name='image'/>
+                                                    <img src={post.image} width="100%"
+                                                         ref={imgPreviewRef} name='image'/>
+                                                </div>
 
-                                            <div className="mt-4 inputs">
-                                                <span>Nội dung <span style={{color: "red"}}>*</span></span>
-                                                <Field name="content" component={CKEditorComponent} value={post.content}/>
-                                            </div>
-                                            {
-                                                isSubmitting ?
+                                                <div className="mt-4 inputs">
+                                                    <span>Nội dung <span style={{color: "red"}}>*</span></span>
+                                                    <Field name="content" component={CKEditorComponent}
+                                                           value={post.content}/>
+                                                </div>
+                                                {isSubmitting ?
                                                     <FidgetSpinner
                                                         visible={true}
                                                         height="80"
@@ -163,10 +181,11 @@ export function UpdatePost() {
                                                         wrapperClass="dna-wrapper"
                                                         ballColors={['#ff0000', '#00ff00', '#0000ff']}
                                                         backgroundColor="#F4442E"
-                                                    />:
+                                                    /> :
                                                     <div className="mt-4 btn-group ">
                                                         <div className="text-center m-auto">
-                                                            <Link to={'/listPost'} type="button" className="btn btn-secondary1">
+                                                            <Link to={'/listPost'} type="button"
+                                                                  className="btn btn-secondary1">
                                                                 <b className="text-center1">Quay lại</b>
                                                             </Link>
                                                         </div>
@@ -179,16 +198,14 @@ export function UpdatePost() {
                                                             </button>
                                                         </div>
                                                     </div>
-                                            }
-                                        </Form>
+                                                }
+                                            </Form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                }
-
-            </Formik>
+                        )}
+                </Formik>
             }
 
         </>

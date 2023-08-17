@@ -14,6 +14,7 @@ export default function ListPost() {
             behavior: 'smooth',
         });
     };
+
     const [showButton, setShowButton] = useState(false);
     const [detail, setDetail] = useState([]);
     const [employee, setEmployee] = useState([]);
