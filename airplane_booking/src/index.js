@@ -31,6 +31,7 @@ import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage
 import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
 import AdminPage from "./components/chat_messenger/AdminChat";
 import {Login} from "./component/account/Login";
+import CreateReport from "./component/report/CreateReport";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -75,6 +76,7 @@ root.render(
            <Route path="/admin/messages" element={<AdminPage />}></Route>
            <Route path="/admin/messages" element={<AdminPage />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/report" element={<CreateReport />}></Route>
         </Routes>
 
         <Footer />
