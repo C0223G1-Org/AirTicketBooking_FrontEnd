@@ -3,7 +3,9 @@
     color: #050505;
     /*background-color: white;*/
 }
-
+.overview-list-post{
+    background: url("../../img/background.jpg") no-repeat center/cover;
+}
 *,
 *::before,
 *::after {
@@ -275,4 +277,19 @@
     background-color: white;
     border-color: #d7a60c;
     border-width: 1px;
+}
+.scroll-to-top-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.show-back{
+    display: block;
 }

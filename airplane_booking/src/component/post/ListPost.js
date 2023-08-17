@@ -5,8 +5,16 @@ import Swal from 'sweetalert2'
 import {deletePost, getListPost, getNewsHot, searchPosts} from "../../services/PostServices";
 import moment from 'moment';
 import {NavLink} from "react-router-dom";
+import BackToTop from "../../img/mui_ten_len.png"
 
 export default function ListPost() {
+   const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+    const [showButton, setShowButton] = useState(false);
     const [detail, setDetail] = useState([]);
     const [employee, setEmployee] = useState([]);
     const [page, setPage] = useState(0);
@@ -14,10 +22,21 @@ export default function ListPost() {
     const limit = 4;
     const [listPosts, setListPosts] = useState([]);
     const [news, setNews] = useState([]);
-    const [messages, setMessage] = useState('');
+    const [messages, setMessages] = useState('');
     const formatDateTime = (dateTime) => {
         return moment(dateTime).format("DD/MM/YYYY HH:mm:ss");
     };
+    useEffect(()=>{
+        const handleScroll = ()=>{
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollThreshold = 500 ;
+        setShowButton(scrollTop > scrollThreshold);
+        }
+        window.addEventListener('scroll', handleScroll);
+        return () =>{
+            window.removeEventListener('scroll', handleScroll);
+        }
+    },[])
     const detailPost = (post, employee) => {
         setDetail(post);
         setEmployee(employee);
@@ -30,9 +49,9 @@ export default function ListPost() {
         } catch (error) {
             setNews([]);
             const message = 'Không có bài viết nào nổi bật. ';
-            setMessage(message);
+            setMessages(message);
         }
-
+        console.log(messages)
     }
     useEffect(() => {
         getNews();
@@ -80,7 +99,7 @@ export default function ListPost() {
             setListPosts(data);
             setPage(total - 1);
         } catch (error) {
-            Swal.fire({
+            await Swal.fire({
                 title: 'Không có tên bài viết nào mà bạn cần.',
                 icon: 'error',
                 showConfirmButton: false,
@@ -94,25 +113,25 @@ export default function ListPost() {
     const checkDelete = async (id, title) => {
         Swal.fire({
                 title: 'Bạn muốn xoá bài viết có tên ' + title + ' ?',
-                html: '<p style="color: red;">Bạn sẽ không thể khôi phục tập tin này!</p>',
+                html: '<p style="color: red;">Bạn sẽ không thể khôi phục tập tin này.</p>',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Xác nhận ',
                 cancelButtonText: 'Huỷ',
                 reverseButtons: true,
-            customClass: {
-                confirmButton: 'custom-confirm-button-employee',
-            }
+                customClass: {
+                    confirmButton: 'custom-confirm-button-employee',
+                }
             }
         ).then((res) => {
             if (res.isConfirmed) {
                 deletePost(id).then(() => {
                     getList().then(() => {
-                        getNews().then(() =>{
+                        getNews().then(() => {
                             console.log("10101");
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Xoá Thành công!!!!',
+                                title: 'Xoá Thành công.',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -124,16 +143,15 @@ export default function ListPost() {
         })
     }
 
-
-
     return (
         <>
-            <body className="list-news">
-            <div className="row container-fluid">
+            <button className={`scroll-to-top-button ${showButton ? 'show' : 'd-none'}`} onClick={scrollToTop}><img src={BackToTop} width={30} alt="Back to top"/></button>
+            <body className="list-news overview-list-post">
+            <div className="row container-fluid ">
                 <div className="main-son col-12 col-lg-9 ">
-                    <div className="justify-content-between" style={{display: 'flex'}}>
+                    <div className="justify-content-between" style={{display: 'flex',marginBottom:'8.25px'}}>
                         <div className="add-post">
-                            <NavLink to="/createPost" className="btn search mt-2"> Thêm mới</NavLink>
+                            <NavLink to="/createPost" className="btn1 search mt-3" style={{color:'black'}}> Thêm mới</NavLink>
                         </div>
                         <div className="search-post" style={{marginBottom: '1rem'}}>
                             <Formik initialValues={{
@@ -168,7 +186,8 @@ export default function ListPost() {
                                     <div className="card_content">
                                         <h5 className="card_title">{post.title.length > quantity ? `${post.title.slice(0, quantity)}...` : post.title}</h5>
                                         <div className="card_text">
-                                            <div dangerouslySetInnerHTML={{ __html: post.content.length > quantity ? `${post.content.slice(0, quantity)}...` : post.content}}>
+                                            <div
+                                                dangerouslySetInnerHTML={{__html: post.content.length > quantity ? `${post.content.slice(0, quantity)}...` : post.content}}>
                                             </div>
                                         </div>
                                     </div>
@@ -197,15 +216,14 @@ export default function ListPost() {
 
                 <div className="vertical_news col-12 col-lg-3">
                     <div>
-                        <h4 className="text-uppercase h2" style={{marginBottom: '16px', marginTop: '16px'}}>Tin nổi
-                            bật</h4>
+                        <h4 className="text-uppercase h2" style={{marginBottom: '16px', marginTop: '16px'}}>Tin nổi bật</h4>
                     </div>
                     <ul className="cards_news">
-                        <li className={`text-center w-100 ${messages ? '' : 'd-none'}`}>
+                        <li className={`news-hots text-center w-100 ${messages === '' ? 'd-none' : 'd-block'}`}>
                             <p>{messages}</p>
                         </li>
-                        {news.map((newss) => (
-                            <li className="news-hots">
+                        {news != []&&(news.map((newss,index) => (
+                            <li className="news-hots" key={index}>
                                 <div className="card-son card">
                                     <button className="btn p-0 m-0" onClick={() => {
                                         detailPost(newss, newss.employee)
@@ -218,7 +236,8 @@ export default function ListPost() {
                                     <div className="card_content">
                                         <h5 className="card_title ">{newss.title.length > quantity ? `${newss.title.slice(0, quantity)}...` : newss.title}</h5>
                                         <div className="card_text">
-                                            <div dangerouslySetInnerHTML={{ __html: newss.content.length > quantity ? `${newss.content.slice(0, quantity)}...` : newss.content}}>
+                                            <div
+                                                dangerouslySetInnerHTML={{__html: newss.content.length > quantity ? `${newss.content.slice(0, quantity)}...` : newss.content}}>
                                             </div>
                                         </div>
                                     </div>
@@ -231,7 +250,7 @@ export default function ListPost() {
                                     </div>
                                 </div>
                             </li>
-                        ))}
+                        )))}
                     </ul>
                 </div>
             </div>

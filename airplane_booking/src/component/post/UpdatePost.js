@@ -4,7 +4,7 @@ import * as postService from "../../services/PostServices"
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {getDownloadURL, ref, uploadBytesResumable} from "@firebase/storage";
-import {storage} from "../../firebase";
+import {storage} from "../../firebase-chat";
 import {v4} from "uuid";
 import {uploadBytes} from "firebase/storage";
 import {updatePost} from "../../services/PostServices";
