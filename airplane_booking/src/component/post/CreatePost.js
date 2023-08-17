@@ -12,6 +12,7 @@ import {v4} from "uuid";
 import CKEditorComponent from "./CKEditorComponent";
 import {createPost} from "../../services/PostServices";
 import {FidgetSpinner} from "react-loader-spinner"
+import {Link} from "react-router-dom";
 
 
 export function CreatePost() {
@@ -23,7 +24,9 @@ export function CreatePost() {
     const formatDateTime = (dateTime) => {
         return moment(dateTime).format("DD/MM/YYYY HH:mm");
     };
-
+    const formatDateTime1 = (dateTime) => {
+        return moment(dateTime).format("YYYY-MM-DD HH:mm:ss");
+    };
 
     const savePost = (async (post) => {
         const fileName = `images/${imageUpload.name + v4()}`
@@ -51,12 +54,6 @@ export function CreatePost() {
             }
         )
     })
-
-
-    // const formatDateTime = (datePost) => {
-    //     return moment(datePost).format("DD/MM/YYYY HH:mm:ss");
-    // };
-
 
     useEffect(() => {
         const findAllEmployees = async () => {
@@ -98,7 +95,7 @@ export function CreatePost() {
             initialValues={{
                 title: '',
                 employee: 1,
-                datePost: new Date(),
+                datePost: formatDateTime1(new Date()) ,
                 image: '',
                 content: ''
             }}
@@ -189,9 +186,9 @@ export function CreatePost() {
                                                     />:
                                                     <div className="mt-4 btn-group ">
                                                         <div className="text-center m-auto">
-                                                            <button type="button" className="btn btn-secondary1">
+                                                            <Link to="/listPost" type="button" className="btn btn-secondary1">
                                                                 <b className="text-center1">Quay lại</b>
-                                                            </button>
+                                                            </Link>
                                                         </div>
                                                     <div className="text-center m-auto">
                                                         <button type="submit"

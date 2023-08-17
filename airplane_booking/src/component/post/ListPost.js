@@ -8,7 +8,7 @@ import {NavLink} from "react-router-dom";
 import BackToTop from "../../img/mui_ten_len.png"
 
 export default function ListPost() {
-   const scrollToTop = () => {
+    const scrollToTop = () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth',
@@ -26,17 +26,17 @@ export default function ListPost() {
     const formatDateTime = (dateTime) => {
         return moment(dateTime).format("DD/MM/YYYY HH:mm:ss");
     };
-    useEffect(()=>{
-        const handleScroll = ()=>{
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollThreshold = 500 ;
-        setShowButton(scrollTop > scrollThreshold);
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollThreshold = 500;
+            setShowButton(scrollTop > scrollThreshold);
         }
         window.addEventListener('scroll', handleScroll);
-        return () =>{
+        return () => {
             window.removeEventListener('scroll', handleScroll);
         }
-    },[])
+    }, [])
     const detailPost = (post, employee) => {
         setDetail(post);
         setEmployee(employee);
@@ -143,13 +143,16 @@ export default function ListPost() {
 
     return (
         <>
-            <button className={`scroll-to-top-button ${showButton ? 'show' : 'd-none'}`} onClick={scrollToTop}><img src={BackToTop} width={30} alt="Back to top"/></button>
+            <button className={`scroll-to-top-button ${showButton ? 'show' : 'd-none'}`} onClick={scrollToTop}><img
+                src={BackToTop} width={30} alt="Back to top"/></button>
             <body className="list-news overview-list-post">
             <div className="row container-fluid ">
                 <div className="main-son col-12 col-lg-9 ">
-                    <div className="justify-content-between" style={{display: 'flex',marginBottom:'8.25px'}}>
+                    <div className="justify-content-between" style={{display: 'flex', marginBottom: '8.25px'}}>
                         <div className="add-post">
-                            <NavLink to="/createPost" className="btn1 search mt-3" style={{color:'black'}}> Thêm mới</NavLink>
+                            <NavLink to="/createPost"
+                                     className={`btn1 search mt-3 ${localStorage.usename === 'ROLE_EMPLOYEE' || localStorage.usename === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
+                                     style={{color: 'black'}}> Thêm mới</NavLink>
                         </div>
                         <div className="search-post" style={{marginBottom: '1rem'}}>
                             <Formik initialValues={{
@@ -170,7 +173,7 @@ export default function ListPost() {
 
                     </div>
                     <ul className="cards_news">
-                        {listPosts  !=[] &&(listPosts.map((post) => (
+                        {listPosts != [] && (listPosts.map((post) => (
                             <li className="card_item_news" key={post.id}>
                                 <div className="card-son card ">
                                     <a className="btn p-0 m-0" onClick={() => {
@@ -189,12 +192,13 @@ export default function ListPost() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="news-card-button">
+                                    <div className="news-card-button ">
                                         <NavLink to={"/updatePost/" + post.id}
-                                                 className="btn1 news-button search  btn-warning">Sửa</NavLink>
-                                        <a className="btn1 news-button search  btn-warning" onClick={() => {
-                                            checkDelete(`${post.id}`, `${post.title}`)
-                                        }}>Xoá</a>
+                                                 className={`btn1 news-button search  btn-warning ${localStorage.usename === 'ROLE_EMPLOYEE' || localStorage.usename === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}>Sửa</NavLink>
+                                        <a className={`btn1 news-button search  btn-warning ${localStorage.usename === 'ROLE_EMPLOYEE' || localStorage.usename === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
+                                           onClick={() => {
+                                               checkDelete(`${post.id}`, `${post.title}`)
+                                           }}>Xoá</a>
                                         {/* <button className="news-button btn btn-danger" onClick={() => { setShowModal(true) }} >Xoá</button> */}
                                     </div>
                                 </div>
@@ -214,13 +218,14 @@ export default function ListPost() {
 
                 <div className="vertical_news col-12 col-lg-3">
                     <div>
-                        <h4 className="text-uppercase h2" style={{marginBottom: '16px', marginTop: '16px'}}>Tin nổi bật</h4>
+                        <h4 className="text-uppercase h2" style={{marginBottom: '16px', marginTop: '16px'}}>Tin nổi
+                            bật</h4>
                     </div>
                     <ul className="cards_news">
                         <li className={`news-hots text-center w-100 ${messages === '' ? 'd-none' : 'd-block'}`}>
                             <p>{messages}</p>
                         </li>
-                        {news != []&&(news.map((newss,index) => (
+                        {news != [] && (news.map((newss, index) => (
                             <li className="news-hots" key={index}>
                                 <div className="card-son card">
                                     <button className="btn p-0 m-0" onClick={() => {
@@ -241,8 +246,8 @@ export default function ListPost() {
                                     </div>
                                     <div className="news-card-button">
                                         <NavLink to={"/updatePost/" + newss.id}
-                                                 className="news-button search btn1  btn-warning ">Sửa</NavLink>
-                                        <a className="news-button search btn1 btn-warning " onClick={() => {
+                                                 className={`news-button search btn1  btn-warning ${localStorage.usename === 'ROLE_EMPLOYEE' || localStorage.usename === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}>Sửa</NavLink>
+                                        <a className={`news-button search btn1 btn-warning ${localStorage.usename === 'ROLE_EMPLOYEE' || localStorage.usename === 'ROLE_ADMIN' ? 'd-block' : 'd-none'} `} onClick={() => {
                                             checkDelete(`${newss.id}`, `${newss.title}`)
                                         }}>Xoá</a>
                                     </div>
@@ -253,42 +258,48 @@ export default function ListPost() {
                 </div>
             </div>
             {/* <!--chi tiêt--> */}
-
-            {/*<div className="modal fade" id="exampleModalDetail" tabIndex={-1} aria-labelledby="exampleModalLabel1"*/}
-            {/*     aria-hidden="true">*/}
-            {/*    <div className="modal-dialog modal-fullscreen modal-dialog-scrollable">*/}
-            {/*        <div className="modal-content">*/}
-            {/*            <div className="modal-header bg-info h-10">*/}
-            {/*                <h5 className="modal-title" id="exampleModalLabel1">Chi tiết bài viết</h5>*/}
-            {/*                <button type="button" className="btn-close" data-bs-dismiss="modal"*/}
-            {/*                        aria-label="Close"></button>*/}
-            {/*            </div>*/}
-            {/*            <div className="modal-body" style={{padding: 0}}>*/}
-            {/*                <div className="row container-fluid mt-1 mb-5 d-inline-flex">*/}
-            {/*                    <div className="col-4" style={{height:'300px',maxHeight:'100px'}}>*/}
-            {/*                        <img className="d-flex position-relative" width="90%"*/}
-            {/*                             src={detail.image} alt="mixed vegetable salad in a mason jar."/>*/}
-            {/*                    </div>*/}
-            {/*                    <div className="col-8 card_content ">*/}
-            {/*                        <div className="note-detail">*/}
-            {/*                            <p className="m-0">Người đăng: {employee.nameEmployee}</p>*/}
-            {/*                            <p>Thời gian: {formatDateTime(detail.datePost)}</p>*/}
-            {/*                            <h1 className="card_title_detail">{detail.title}</h1>*/}
-            {/*                        </div>*/}
-            {/*                    </div>*/}
-            {/*                </div>*/}
-            {/*                <div className="row card_text mt-3 container-fluid text-justify">*/}
-            {/*                   <div className="col-12">*/}
-            {/*                       <div dangerouslySetInnerHTML={{ __html: detail.content}}></div>*/}
-            {/*                   </div>*/}
-            {/*                </div>*/}
-            {/*            </div>*/}
-            {/*            <div className="modal-footer" style={{maxHeight: '70px'}}>*/}
-            {/*                <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Thoát</button>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <div className="modal fade" id="exampleModalDetail" tabIndex={-1} aria-labelledby="exampleModalLabel1"
+                 aria-hidden="true">
+                <div className="modal-dialog modal-fullscreen modal-dialog-scrollable">
+                    <div className="modal-content">
+                        <div className="modal-header bg-info h-10">
+                            <h5 className="modal-title" id="exampleModalLabel1">Chi tiết bài viết</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body" style={{padding: 0}}>
+                            <div className="row container-fluid title-detail mt-1 mb-5" style={{flexDirection: "row"}}>
+                                <div className="col-4 img-detail" style={{height: '10rem', position: 'relative'}}>
+                                    <img
+                                        style={{width: "95%", height: "100%", objectFit: "cover", position: "absolute"}}
+                                        src={detail.image} alt="mixed vegetable salad in a mason jar."/>
+                                </div>
+                                <div className="col-8 card_content" style={{position: "relative"}}>
+                                    <div className="note-detail" style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        position: "absolute",
+                                        top: "10px",
+                                        left: "5px"
+                                    }}>
+                                        <p className="m-0">Người đăng: {employee.nameEmployee}</p>
+                                        <p>Thời gian: {formatDateTime(detail.datePost)}</p>
+                                        <h1 className="card_title_detail">{detail.title}</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row card_text container-fluid text-justify">
+                                <div className="col-12">
+                                    <div dangerouslySetInnerHTML={{__html: detail.content}}></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="modal-footer" style={{maxHeight: '70px'}}>
+                            <button type="button" className="btn1 btn-warning" data-bs-dismiss="modal">Thoát</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </body>
         </>
     );

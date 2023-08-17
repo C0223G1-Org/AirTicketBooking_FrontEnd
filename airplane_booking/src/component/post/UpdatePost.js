@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import CKEditorComponent from "./CKEditorComponent";
 import moment from "moment";
 import {FidgetSpinner} from "react-loader-spinner";
+import {Link} from "react-router-dom";
 
 export function UpdatePost() {
     const [employees, setEmployee] = useState([]);
@@ -32,7 +33,9 @@ export function UpdatePost() {
     const formatDateTime = (dateTime) => {
         return moment(dateTime).format("DD/MM/YYYY HH:mm");
     };
-
+    const formatDateTime1 = (dateTime) => {
+        return moment(dateTime).format("YYYY-MM-DD HH:mm:ss");
+    };
 
     const update = (async (post) => {
         const fileName = `images/${imageUpload.name + v4()}`;
@@ -108,12 +111,11 @@ export function UpdatePost() {
                     id:post?.id,
                     title: post?.title,
                     employee: 1,
-                    datePost: new Date(),
+                    datePost: formatDateTime1(new Date()),
                     content: post?.content
                 }}
                 validationSchema={Yup.object({
                     title: Yup.string().required("Không được để trống"),
-                    // image: Yup.string().required("Không được để trống"),
                     content: Yup.string().required("Không được để trống")
                 })}
                 onSubmit={(values,{setSubmitting}) => {
@@ -164,9 +166,9 @@ export function UpdatePost() {
                                                     />:
                                                     <div className="mt-4 btn-group ">
                                                         <div className="text-center m-auto">
-                                                            <button type="button" className="btn btn-secondary1">
+                                                            <Link to={'/listPost'} type="button" className="btn btn-secondary1">
                                                                 <b className="text-center1">Quay lại</b>
-                                                            </button>
+                                                            </Link>
                                                         </div>
                                                         <div className="text-center m-auto">
                                                             <button type="submit"

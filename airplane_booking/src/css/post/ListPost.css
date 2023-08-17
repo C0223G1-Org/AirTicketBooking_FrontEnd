@@ -79,7 +79,7 @@
     position: relative;
     border-radius: 0.25rem;
     color: rgba(0, 0, 0, 0.7);
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 700;
 }
 
@@ -158,8 +158,8 @@
     position: relative;
     margin: 0 0 10px;
     padding-bottom: 5px;
-    text-align: center;
-    font-size: 25px;
+    text-align: left;
+    font-size: 20px;
     text-transform: uppercase;
     font-weight: 700;
 }
@@ -170,11 +170,10 @@
     width: 50px;
     bottom: 0;
     left: 50%;
-    content: "";
+
 }
 
 .card_text {
-    height: 50px;
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
@@ -292,4 +291,12 @@
 }
 .show-back{
     display: block;
+}
+@media screen and (max-width: 755px){
+    .title-detail{
+        height: 25vh;
+    }
+    .img-detail{
+        display: none;
+    }
 }
