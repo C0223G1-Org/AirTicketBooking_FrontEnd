@@ -162,7 +162,7 @@ export function CreatePost() {
                                                 />
                                                 <span className="custom-file-control"></span>
                                             </div>
-                                            <img name="image" width="80%" ref={imgPreviewRef} style={{ display: "none" }}/>
+                                            <img name="image" width="100%" ref={imgPreviewRef} style={{ display: "none" }}/>
                                             {/*<ErrorMessage name="image" component="span" style={{color:"red"}}/>*/}
                                         </div>
 

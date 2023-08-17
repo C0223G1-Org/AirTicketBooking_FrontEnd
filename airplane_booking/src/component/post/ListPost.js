@@ -40,7 +40,6 @@ export default function ListPost() {
     const detailPost = (post, employee) => {
         setDetail(post);
         setEmployee(employee);
-        console.log(employee);
     };
     const getNews = async () => {
         try {
@@ -48,10 +47,10 @@ export default function ListPost() {
             setNews(data);
         } catch (error) {
             setNews([]);
+            console.log("thah")
             const message = 'Không có bài viết nào nổi bật. ';
             setMessages(message);
         }
-        console.log(messages)
     }
     useEffect(() => {
         getNews();
@@ -74,7 +73,6 @@ export default function ListPost() {
     useEffect(() => {
         getPost();
     }, [page]);
-
 
     const getList = async () => {
         try {
@@ -172,7 +170,7 @@ export default function ListPost() {
 
                     </div>
                     <ul className="cards_news">
-                        {listPosts.map((post) => (
+                        {listPosts  !=[] &&(listPosts.map((post) => (
                             <li className="card_item_news" key={post.id}>
                                 <div className="card-son card ">
                                     <a className="btn p-0 m-0" onClick={() => {
@@ -201,7 +199,7 @@ export default function ListPost() {
                                     </div>
                                 </div>
                             </li>
-                        ))}
+                        )))}
                     </ul>
                     <button
                         className={`btn btn-light btn-outline-secondary  border-0 w-100 ${page === total - 1 ? 'd-none' : ''} ${listPosts.length === 0 ? 'd-none' : ''}`}
