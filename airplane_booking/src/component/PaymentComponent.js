@@ -1,18 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../css/payment/Payment.css';
 import { getTicketByTicketId, updateTicketByIdTicket } from '../services/PaymentService';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios, { HttpStatusCode } from 'axios';
+import emailjs from '@emailjs/browser';
 
 const PaymentComponent = () => {
     const [payment, setPayment] = useState([])
+    const form = useRef();
+    const {id} = useParams();
+
+    const sendEmail = () => {
+
+        emailjs.sendForm('service_l9te1ld', 'template_iybo18n', form.current, 'On7_qRZ-R9_ULgaCg')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+    };
+
+
     // const { id } = useParams();
     const negative = useNavigate();
     const getTicket = () => {
         const getTicketById = async () => {
             try {
-                const paymentData = await getTicketByTicketId();
+                const paymentData = await getTicketByTicketId(id);
                 setPayment(paymentData);
                 console.log(payment);
             } catch (error) {
@@ -22,12 +37,11 @@ const PaymentComponent = () => {
         getTicketById();
     }
     useEffect(() => {
-        console.log("aaaaa");
         getTicket()
     }, []);
-    useEffect( () => {
+    useEffect(() => {
         document.title = 'Thanh toán'
-        })
+    })
 
     let typeTicket = payment?.typeTicket?.nameTypeTicket;
     let stateTicket = 0;
@@ -72,24 +86,25 @@ const PaymentComponent = () => {
                 },
                 createOrder: createOrder,
                 onApprove: async (data, actions) => {
-                
+
                     const order = await actions.order.capture();
-                  
+
                     // Gửi thông tin trạng thái thanh toán tới Spring Boot
-                    await updateTicketByIdTicket(1, order.status)
+                    const reponse = await updateTicketByIdTicket(1, order.status)
                     console.log(order.status)
                     if (order.status === 'COMPLETED' || order.status === 200 || order.status === HttpStatusCode.Ok
-                        || order.status === 'thành công') {                   
+                        || order.status === 'thành công') {
                         Swal.fire({
                             icon: 'success',
                             title: 'Thanh toán thành công',
                             timer: 2000
-                        }).then(() => {
-                            negative('/success')
-                        });
+                        }
+                        ).then(
+                            sendEmail()
+                        );
                     } else if (order.status === 422 || order.status === 404 || order.status === 'CANCELLED' ||
-                    order.status === 'DECLINED'||  order.status === 'FAILED' ||  order.status === 'EXPIRED' ||
-                    order.status === 'PENDING') {
+                        order.status === 'DECLINED' || order.status === 'FAILED' || order.status === 'EXPIRED' ||
+                        order.status === 'PENDING') {
                         Swal.fire({
                             icon: 'error',
                             title: 'Thanh toán thất bại',
@@ -112,14 +127,21 @@ const PaymentComponent = () => {
     const formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     return (
+        //    <form onSubmit={sendEmail}>
         <div className="ticket">
+            {/* <form onSubmit={sendEmail}> */}
             <h1 className="title">CHI TIẾT CHUYẾN BAY</h1>
             <div className="info">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-6">
                         <p className="label">Danh sách người đi:</p>
                         <p className="value"> {payment.namePassenger}</p>
                         <p className="value">{payment.namePassenger}</p>
+                    </div>
+                    <div className="col-6">
+                        <p className="label" >Email khách hàng:</p>
+                        <p className="value" name="emailCustomer" > {payment?.customer?.emailCustomer}</p>
+
                     </div>
                 </div>
                 <div className="row">
@@ -213,6 +235,7 @@ const PaymentComponent = () => {
                     <p className="value" id="totalAmount">2,200,000 VND</p>
                 </div>
             </div>
+            {/* </form> */}
             <div className="row">
                 <div className="col-5">
                     <p className="label">Điều kiện giá vé:</p>
@@ -221,14 +244,18 @@ const PaymentComponent = () => {
                 </div>
                 <div className="col-7 payment">
                     <p className="label">Thanh toán</p>
-                    <div id="paypal-button-container"></div>
-
+                    <form ref={form} onSubmit={sendEmail}>
+                    
+                        <div id="paypal-button-container"></div>
+                    </form>
                 </div>
             </div>
             <p className="thank-you">Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!</p>
         </div>
 
-    )
-};
+
+    );
+}
+
 
 export default PaymentComponent;
