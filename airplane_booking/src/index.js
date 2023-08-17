@@ -32,6 +32,7 @@ import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext"
 import AdminPage from "./components/chat_messenger/AdminChat";
 import {Login} from "./component/account/Login";
 import CreateReport from "./component/report/CreateReport";
+import PaymentComponent from './component/PaymentComponent';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -77,6 +78,7 @@ root.render(
            <Route path="/admin/messages" element={<AdminPage />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/report" element={<CreateReport />}></Route>
+          <Route path='/payment/:id' element={<PaymentComponent/>}></Route>
         </Routes>
 
         <Footer />

@@ -22,14 +22,14 @@ const PaymentComponent = () => {
         };
         getTicketById();
     }
-
+console.log(payments);
     let arr1 = [];
     let arr2 = [];
     const sss = () => {
 
         payments.forEach((name) => {
 
-            if (name.seat.route.departure.nameDeparture === 'Hải Phòng(HPH) - Cát Bi') {
+            if (name.seat.route.departure.nameDeparture == 'Hải Phòng(HPH) - Cát Bi') {
                 arr1.push(name)
             } else {
                 arr2.push(name)
@@ -40,7 +40,7 @@ const PaymentComponent = () => {
     }
 
     sss()
-
+    console.log(payments);
 
     useEffect(() => {
         getTicket()
