@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import './index.css';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import './index.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import Header from "./components/home/Header";
 import "bootstrap/dist/css/bootstrap.css";
@@ -51,7 +51,7 @@ root.render(
                     <Route path="/header-admin" element={<HeaderAdmin/>}/>
                     <Route path="/header-employee" element={<HeaderEmployee/>}/>
                     <Route
-                        path="/printTicket"
+                        path="/printTicket/:id"
                         element={<PrintTicket></PrintTicket>}
                     ></Route>
                     <Route
