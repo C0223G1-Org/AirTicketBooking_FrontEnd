@@ -331,7 +331,7 @@ export default function CustomerManagement() {
                                 }
                                 {customers.length != 0 ?
                                     <div
-                                        className="px-3 py-1 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
+                                        className="px-3 py-1 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
 
                                         <div className="inline-flex mt-2 xs:mt-0">
 

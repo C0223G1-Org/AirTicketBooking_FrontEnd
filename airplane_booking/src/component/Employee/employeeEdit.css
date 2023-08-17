@@ -301,9 +301,7 @@
     border-radius: 35px;
     margin-right: 10px;
 }
-.mesError{
-    color: red;
-}
+
 .style_button_search_page{
     width: 30px;
     height: 20px;
@@ -325,4 +323,29 @@
     padding: 5px;
     background-color: white;
     border-top: 1px solid;
+}
+.table_employee_stt{
+    width: 2%;
+}
+.table_employee_name{
+    width: 8%;
+}
+.table_employee_gender{
+    width: 4%;
+}
+.table_employee_email{
+    width: 7%;
+}
+.table_employee_birthday{
+    width: 5%;
+}
+.table_employee_phone{
+    width: 5%;
+}
+.table_employee_action{
+    width: 5%;
+}
+.custom-confirm-button-employee {
+    background-color: #0685aa !important;
+    /* Các thuộc tính CSS khác mà bạn muốn áp dụng */
 }

@@ -26,14 +26,16 @@ function EmployeeList() {
 
 
     const getEmployees = async (page, pageSize) => {
-        if (allSearchResults.length > 0 && page === currentSearchPage) {
+        if (allSearchResults.length > 0 ) {
             const startIndex = page * pageSize;
             const endIndex = startIndex + pageSize;
             const currentPageResults = allSearchResults.slice(startIndex, endIndex);
 
+
             setEmployeeList(currentPageResults);
             setShowLastPageButton(page < totalPages - 1);
             setCurrentPage(page);
+            console.log("aaaa"+totalPages)
         } else {
             const data = await getListEmployee(page, pageSize);
             setEmployeeList(data.content);
@@ -55,37 +57,58 @@ function EmployeeList() {
     // }
 
     const handleSearch = async () => {
-        const results = await searchEmployee(gender, name, currentPage, 5);
+        if (currentPage !== 1 || currentSearchPage!== 1) {
+            setCurrentPage(0);
+            const results = await searchEmployee(gender, name, 0, 5);
+
+
+        console.log(results)
+        let allResults = results.content || [];
+
+        let totalPages = results.totalPages || 0;
+        let nextPage = currentPage + 1;
+
+        while (nextPage < totalPages) {
+            const additionalResults = await searchEmployee(gender, name, nextPage, 5);
+            allResults = [...allResults, ...(additionalResults.content || [])];
+            nextPage++;
+        }
         if (results.content == undefined) {
             await Swal.fire({
                 text: 'Không tìm thấy nhân viên với thông tin này!',
                 confirmButtonText: 'Xác nhận',
-                reverseButtons: true
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: 'custom-confirm-button-employee',
+                }
             });
             setName("");
             setGender("");
             return
         }
-        setEmployeeList(results.content)
-        // Lưu trữ kết quả tìm kiếm
-        setAllSearchResults((prevResults) => [...prevResults, ...results.content]);
+        setEmployeeList(results.content);
+        setAllSearchResults(allResults);
         setTotalPages(results.totalPages);
+        setCurrentSearchPage(results.totalPages)
         setCurrentPage(0);
         setName("");
         setGender("");
-    };
+    }};
 
     const handleDeleteEmployee = async (id, name) => {
         console.log(id);
         console.log(name);
         Swal.fire({
-                title: 'Bạn muốn xoá nhân viên ' + name + ' có mã nhân viên là ' + id + ' không?',
+                title: 'Bạn muốn xoá nhân viên ' + name + ' không?',
                 html: '<p style = " color: red">Bạn sẽ không thể hoàn tác hành động này!</p>',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Xác nhận ',
                 cancelButtonText: 'Huỷ',
-                reverseButtons: true
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: 'custom-confirm-button-employee',
+                }
             }
         ).then((res) => {
             if (res.isConfirmed) {
@@ -96,7 +119,8 @@ function EmployeeList() {
                             icon: 'success',
                             title: 'Xoá Thành công!!!!',
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 1500,
+
                         })
                     })
                 });
@@ -108,8 +132,10 @@ function EmployeeList() {
 
     // Hàm xử lý khi người dùng chuyển trang
     const handlePageChange = async (page) => {
-        if (allSearchResults.length > 0 && page === currentSearchPage) {
+        console.log("bbbb"+currentSearchPage)
+        if (allSearchResults.length > 0 ) {
             setShowLastPageButton(page < totalPages - 1);
+            setTotalPages(currentSearchPage);
             setCurrentPage(page);
         } else {
             setCurrentSearchPage(page);
@@ -132,7 +158,10 @@ function EmployeeList() {
             Swal.fire({
                     text: 'Trang không tồn tại!',
                     confirmButtonText: 'Xác nhận',
-                    reverseButtons: true
+                    reverseButtons: true,
+                    customClass: {
+                        confirmButton: 'custom-confirm-button-employee',
+                    }
                 }
             )
         }
@@ -194,27 +223,27 @@ function EmployeeList() {
                         <div className="inline-block min-w-full shadow rounded-lg ">
 
                             <table className="container">
-                                <thead >
+                                <thead>
                                 <tr className=" table_header_employee">
-                                    <th className="col px-4 border-b-2  text-left text-xs   uppercase tracking-wider">
+                                    <th className="table_employee_stt px-5 border-b-2  text-left text-xs   uppercase tracking-wider">
                                         STT
                                     </th>
-                                    <th className="col border-b-2   text-left text-xs   uppercase tracking-wider">
+                                    <th className="table_employee_name border-b-2   text-left text-xs   uppercase tracking-wider">
                                         Họ Tên
                                     </th>
-                                    <th className="col border-b-2   text-left text-xs   uppercase tracking-wider">
+                                    <th className="table_employee_gender  border-b-2   text-left text-xs   uppercase tracking-wider">
                                         Giới tính
                                     </th>
-                                    <th className="col py-2 border-b-2   text-left text-xs   uppercase tracking-wider">
+                                    <th className="table_employee_email py-3 border-b-2   text-left text-xs   uppercase tracking-wider">
                                         Tài khoản
                                     </th>
-                                    <th className="col py-2 border-b-2   text-left text-xs   uppercase tracking-wider">
+                                    <th className="table_employee_birthday py-2 border-b-2   text-left text-xs   uppercase tracking-wider">
                                         Ngày sinh
                                     </th>
-                                    <th className="col border-b-2   text-left text-xs   uppercase tracking-wider">
+                                    <th className="table_employee_phone border-b-2   text-left text-xs   uppercase tracking-wider">
                                         Số điện thoại
                                     </th>
-                                    <th className="col border-b-2   text-left text-xs   uppercase tracking-wider">
+                                    <th className="table_employee_action border-b-2   text-left text-xs   uppercase tracking-wider">
                                         Thao tác
                                     </th>
                                 </tr>
@@ -222,12 +251,12 @@ function EmployeeList() {
                                 <tbody>
                                 {employeeList.map((e, index) => (
                                     <tr key={e.idEmployee}>
-                                        <td className="col px-4 py-3 border-b border-gray-200 bg-white text-sm">{(currentPage * 5) + index + 1}</td>
+                                        <td className="col px-5 py-3 border-b border-gray-200 bg-white text-sm">{(currentPage * 5) + index + 1}</td>
                                         <td className="col flex py-3 border-b border-gray-200 bg-white text-sm">
                                             <img className="image_employee"
                                                  src={e.image} alt=""/>
                                             <span className="py-3">{e.nameEmployee}</span></td>
-                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.gender ? "Nam" : "Nữ"}</td>
+                                        <td className="col  py-3 border-b border-gray-200 bg-white text-sm">{e.gender ? "Nam" : "Nữ"}</td>
                                         <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.emailEmployee}</td>
                                         <td className="col py-3 border-b border-gray-200 bg-white text-sm">{new Date(e.dateEmployee).toLocaleDateString("en-GB")}</td>
                                         <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.telEmployee}</td>
@@ -250,73 +279,74 @@ function EmployeeList() {
                                 </tbody>
                             </table>
 
-                                <div className="container_employee_page">
-                                    <div className=" inline-block mt-2 xs:mt-0">
+                            <div
+                                className="px-3 py-1 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
+                                <div className=" inline-flex mt-2 xs:mt-0">
+                                    <button
+                                        className="style_button_page text-sm font-semibold py-2 px-4 rounded-l"
+                                        disabled={currentPage === 0}
+                                        onClick={() => handlePageChange(currentPage - 1)}
+                                    >
+                                        Trước
+                                    </button>
+
+                                    {Array.from(Array(totalPages).keys())
+                                        .slice(0, 3)
+                                        .map((page) => (
+                                            <button
+                                                key={page}
+                                                className={`text-sm font-semibold py-2 px-4 ${
+                                                    page === currentPage ? 'bg-gray-500 text-black' : 'bg-yellow-600 text-white'
+                                                } rounded`}
+                                                style={{marginRight: '10px'}}
+                                                onClick={() => handlePageChange(page)}
+                                            >
+                                                {page + 1}
+                                            </button>
+                                        ))}
+
+                                    {totalPages > 3 && (
+                                        <div className="style_button_page text-sm font-semibold py-2 px-2 rounded">
+                                            <input
+                                                className="style_button_search_page"
+                                                type="number"
+                                                value={searchPage}
+                                                onChange={(e) => setSearchPage(e.target.value)}
+                                                onKeyPress={handleKeyEnterPage}
+                                            />
+                                            <button onClick={handleSearchPage}>
+                                                <i className="fa-solid fa-magnifying-glass"/>
+                                            </button>
+                                        </div>
+                                    )}
+
+                                    {currentPage !== totalPages - 1 && (
                                         <button
-                                            className="style_button_page text-sm font-semibold py-2 px-4 rounded-l"
-                                            disabled={currentPage === 0}
-                                            onClick={() => handlePageChange(currentPage - 1)}
+                                            className="text-sm font-semibold py-2 px-4 rounded-r"
+                                            style={{
+                                                background: 'rgb(223, 165, 18)',
+                                                color: '#ffffff',
+                                                marginRight: '10px'
+                                            }}
+                                            disabled={currentPage === totalPages - 1}
+                                            onClick={() => handlePageChange(currentPage + 1)}
                                         >
-                                            Trước
+                                            Sau
                                         </button>
+                                    )}
 
-                                        {Array.from(Array(totalPages).keys())
-                                            .slice(0, 3)
-                                            .map((page) => (
-                                                <button
-                                                    key={page}
-                                                    className={`text-sm font-semibold py-2 px-4 ${
-                                                        page === currentPage ? 'bg-gray-500 text-black' : 'bg-yellow-600 text-white'
-                                                    } rounded`}
-                                                    style={{marginRight: '10px'}}
-                                                    onClick={() => handlePageChange(page)}
-                                                >
-                                                    {page + 1}
-                                                </button>
-                                            ))}
-
-                                        {totalPages > 3 && (
-                                            <div className="style_button_page text-sm font-semibold py-2 px-2 rounded">
-                                                <input
-                                                    className="style_button_search_page"
-                                                    type="number"
-                                                    value={searchPage}
-                                                    onChange={(e) => setSearchPage(e.target.value)}
-                                                    onKeyPress={handleKeyEnterPage}
-                                                />
-                                                <button onClick={handleSearchPage}>
-                                                    <i className="fa-solid fa-magnifying-glass"/>
-                                                </button>
-                                            </div>
-                                        )}
-
-                                        {currentPage !== totalPages - 1 && (
-                                            <button
-                                                className="text-sm font-semibold py-2 px-4 rounded-r"
-                                                style={{
-                                                    background: 'rgb(223, 165, 18)',
-                                                    color: '#ffffff',
-                                                    marginRight: '10px'
-                                                }}
-                                                disabled={currentPage === totalPages - 1}
-                                                onClick={() => handlePageChange(currentPage + 1)}
-                                            >
-                                                Sau
-                                            </button>
-                                        )}
-
-                                        {showLastPageButton && (
-                                            <button
-                                                className="text-sm font-semibold py-2 px-4 rounded"
-                                                style={{background: 'rgb(223, 165, 18)', color: '#ffffff'}}
-                                                onClick={() => handlePageChange(totalPages - 1)}
-                                            >
-                                                Trang cuối
-                                            </button>
-                                        )}
-                                    </div>
-
+                                    {showLastPageButton && (
+                                        <button
+                                            className="text-sm font-semibold py-2 px-4 rounded"
+                                            style={{background: 'rgb(223, 165, 18)', color: '#ffffff'}}
+                                            onClick={() => handlePageChange(totalPages - 1)}
+                                        >
+                                            Trang cuối
+                                        </button>
+                                    )}
                                 </div>
+
+                            </div>
 
                         </div>
                     </div>
