@@ -2,7 +2,20 @@ import {Formik, Form, Field, ErrorMessage} from"formik";
 import {changePassword} from "../services/AccountServices";
 import * as yup from "yup";
 import Swal from "sweetalert2";
+import { useState } from "react";
 function ChangePassword (){
+
+  const [showOldPassword, setShowOldPassword] = useState(false);
+
+  const toggleShowOldPassword = () => {
+    setShowOldPassword(!showOldPassword);
+  };
+
+  const [showNewPassword, setShowNewPassword] = useState(false);
+
+  const toggleShowNewPassword = () => {
+    setShowNewPassword(!showNewPassword);
+  };
 
     return(
         <div>
@@ -16,7 +29,7 @@ function ChangePassword (){
         <link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet" />
         {/* /fonts */}
         <link rel="stylesheet" href="../css-SangTDN/assets/css/style1.css" />
-        <link rel="stylesheet" href="../css-SangTDN/assets/css/font-awesome.min.css" />
+        {/* <link rel="stylesheet" href="../css-SangTDN/assets/css/font-awesome.min.css" /> */}
         <h1 className="w3ls" style={{color: 'rgb(6, 133, 170)'}}>ĐỔI MẬT KHẨU</h1>
         <div className="content-w3ls">
           <div className="content-agile1">
@@ -78,8 +91,14 @@ function ChangePassword (){
                   </span>
                 </div>
                 <div className="col-md-8">
-                  <Field className=" agileinfo" type="password" id="email" name="oldPassword" placeholder="Nhập" title="Chưa nhập email" />
-                  <p style={{ color: "red", paddingLeft:"5rem" }}>
+                  <Field style ={{marginBottom: "0px",fontWeight :"bold"}} className=" agileinfo" type={showOldPassword ? "text" : "password"} id="email" name="oldPassword" title="Chưa nhập email" ></Field>
+                  <span toggle="oldPassword" class={showOldPassword ? "fa fa-eye-slash" : "fa fa-eye"} style={{
+                  position: "relative",
+                  top: "-25px",
+                  left: "330px",
+                 }} onClick={toggleShowOldPassword} ></span>
+                  
+                  <p style={{ color: "red", paddingLeft:"2rem" ,fontWeight :"bold", width: "35rem" }}>
                       <ErrorMessage name="oldPassword"></ErrorMessage>
                     </p>
                 </div>
@@ -90,11 +109,13 @@ function ChangePassword (){
                   </span>
                 </div>
                 <div className="col-md-8">
-                  <Field className=" agileinfo" type="password" name="newPassword" placeholder="Nhập" id="password1"  />
-                  <p style={{ color: "red" , paddingLeft:"5rem"}}>
+                  <Field style={{fontWeight :"bold"}} className=" agileinfo" type={showNewPassword ? "text" : "password"} name="newPassword" id="password1"  />
+                  
+                  <p style={{ color: "red", paddingLeft:"2rem" ,fontWeight :"bold", width: "35rem" }}>
                       <ErrorMessage name="newPassword"></ErrorMessage>
                     </p>
                 </div>
+                <span toggle="newPassword" class={showNewPassword ? "fa fa-eye-slash" : "fa fa-eye"} style={{textAlign: "right", marginLeft: "-285px"}} onClick={toggleShowNewPassword} ></span>
               </div>
               <div className="row">
                 <div className="col-md-5" style={{marginTop: '2%', paddingLeft: '10%', color: 'rgb(6, 133, 170)', fontWeight: 'bold'}}>
@@ -102,8 +123,8 @@ function ChangePassword (){
                   </span>
                 </div>
                 <div className="col-md-8">
-                  <Field className=" agileinfo" type="password" name="confirmPassword" placeholder="Nhập" id="password2"/>
-                  <p style={{ color: "red" , paddingLeft:"5rem" }}>
+                  <Field style={{fontWeight :"bold"}} className=" agileinfo" type={showNewPassword ? "text" : "password"} name="confirmPassword" id="password2"/>
+                  <p style={{ color: "red", paddingLeft:"2rem" ,fontWeight :"bold", width: "35rem" }}>
                       <ErrorMessage name="confirmPassword"></ErrorMessage>
                     </p>
                 </div>

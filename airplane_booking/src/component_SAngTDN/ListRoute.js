@@ -155,8 +155,8 @@ function ListRouter() {
       const departureTimeCheck = updateTimes(departureDay,timeDeparture)
       if((arrivalTime-departureTimeCheck<3 * 3600 * 1000)){
         Swal.fire(
-          "chyến về phải sau chuyến đi nhất 3 tiếng",
-          '',
+          "Bạn ơi!",
+          'Vui lòng chọn lại chuyến bay với Chuyến 2 có giờ khởi hành lớn hơn 3 giờ, so với giờ đến của Chuyến 1',
           'warning'
         )
       }else{
@@ -174,8 +174,8 @@ function ListRouter() {
       const arrivalTimeCheck = updateTimes(departureDay,timeDeparture)
       if((arrivalTimeCheck-departureTime<3 * 3600 * 1000)){
         Swal.fire(
-          "chyến về phải sau chuyến đi nhất 3 tiếng",
-          '',
+          "Bạn ơi!",
+          'Vui lòng chọn lại chuyến bay với Chuyến 2 có giờ khởi hành lớn hơn 3 giờ, so với giờ đến của Chuyến 1',
           'warning'
         )
       }else{
@@ -192,9 +192,6 @@ function ListRouter() {
     }
   }
   
-  console.log("aa"+departureTime);
-  console.log("bb"+arrivalTime);
- 
 
   const tabsTime = [date1, date2, date3, date4, date5];
 
@@ -208,7 +205,7 @@ function ListRouter() {
       loaiVe: arr[4],
       nguoiLon: arr[5],
       treEm: arr[6],
-      emBe: arr[7],
+      // emBe: arr[7],
     };
     setInfor(obj);
   };
@@ -355,10 +352,12 @@ const handleOnClickDeparture = ()=>{
     //1.loại vé, 2.id tuyến đi,3. idtuyến vế ,4. loại ghế đi 5, loại ghế về , 6. giá đi. 7.giá về
   }
 
+  useEffect(()=>{
+    document.title = 'danh sách chuyến bay'
+  },{})
   return (
     <>
     <div style={{background :"white", minHeight : "50rem"}}>
-      {document.title = 'danh sách chuyến bay'}
       <div className="container" >
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -382,7 +381,7 @@ const handleOnClickDeparture = ()=>{
           <aside className="left-sidebar" style={{ padding: "0px" }}>
             {/* Sidebar scroll*/}
             <div style={{maxHeight: "100%"}}>
-              <div className="brand-logo d-flex align-items-center justify-content-between">
+              {/* <div className="brand-logo d-flex align-items-center justify-content-between">
                 <a href="/#" className="text-nowrap logo-img">
                   <img
                     src="../css-SangTDN/assets/images/logos/vietnam-airline-logo.jpg"
@@ -391,7 +390,7 @@ const handleOnClickDeparture = ()=>{
                   />
                 </a>
                 <p>(logo mẫu)</p>
-              </div>
+              </div> */}
               {/* Sidebar navigation*/}
               <br />
               {/* <div>
@@ -622,7 +621,7 @@ const handleOnClickDeparture = ()=>{
                 CHUYẾN BAY {info.loaiVe == 0 ? <span>1</span> : <span>2</span>}{" "}
                 CHIỀU | {info.nguoiLon} người lớn
                 {info.treEm != 0 && <span> - {info.treEm} trẻ em</span>}
-                {info.emBe != 0 && <span> - {info.emBe} em bé</span>}
+                {/* {info.emBe != 0 && <span> - {info.emBe} em bé</span>}  */}
               </h6>
 
               {flag==true?<p>
@@ -707,7 +706,7 @@ const handleOnClickDeparture = ()=>{
                     {flights.length!==0?
                     <table
                       className="table table-bordered table-responsive"
-                      style={{ textAlign: "center", border: "#9a9292" }}
+                      style={{ textAlign: "center", border: "#9a9292" , padding: "0px"}}
                     >
                       {/* Heading */}
                       <thead>
@@ -788,7 +787,8 @@ const handleOnClickDeparture = ()=>{
                         {flights.map((f) => {
                           return (
                             <>
-                             <tr key={f.idRoute}>
+                             <tr key={f.idRoute}
+                             >
                                 <td style={{ background: "rgb(211,177,88)" }}>
                                   <div
                                     style={{
