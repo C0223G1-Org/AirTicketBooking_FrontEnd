@@ -1,0 +1,266 @@
+body {
+    font-family: "Diavlo", "sans-seriff";
+}
+
+.m-3 .col-12 .card img {
+    width: 100%;
+    height: 120px;
+}
+
+.m-3 .col-12 .card {
+    height: 380px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-body {
+    color: #166987;
+}
+
+.cheap {
+    color: #166987;
+
+}
+
+.buy {
+    background: #daa310;
+    color: white;
+    border: 1px solid #daa310;
+}
+
+.m-3 .col-12 .row .col-12 {
+    padding-top: 20px;
+}
+
+.btn:hover {
+    background: white;
+    color: #daa310;
+    border: 1px solid #daa310;
+}
+
+.card-body h6 {
+    height: 20px;
+}
+
+.card-body .price-ticket {
+    font-size: 13px;
+}
+
+.card-body {
+    /*background-color: #246c81;*/
+}
+
+#top_10 .select-top10  {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    box-sizing: border-box;
+}
+
+#top_10 .modal_overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 25, 25, 0.21);
+
+}
+
+#top_10 .modal_body {
+    width: 600px;
+    height: 370px;
+    background-color: white;
+    margin: auto;
+    border-radius: 5px;
+    z-index: 999;
+}
+
+#top_10 .modal_inner {
+}
+
+#top_10 .modal_inner .form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#top_10 .modal_inner h2 {
+    color: #166987;
+}
+
+#top_10 .modal_inner .form-control {
+    background-color: #fff;
+    height: 50px;
+    padding: 0px 15px;
+    padding-top: 24px;
+    color: #191a1e;
+    border: 2px solid #dfe5e9;
+    font-size: 16px;
+    font-weight: 700;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 4px;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+#top_10 .modal_inner .form-control::-webkit-input-placeholder {
+    color: #dfe5e9;
+}
+
+#top_10 .modal_inner .form-control:-ms-input-placeholder {
+    color: #dfe5e9;
+}
+
+#top_10 .modal_inner .form-control::placeholder {
+    color: #dfe5e9;
+}
+
+#top_10 .modal_inner .form-control:focus {
+    background: #f9fafb;
+}
+
+#top_10 .modal_inner input[type="date"].form-control:invalid {
+    color: #dfe5e9;
+}
+
+#top_10 .modal_inner select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#top_10 .modal_inner select.form-control + .select-arrow {
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    width: 32px;
+    line-height: 32px;
+    height: 32px;
+    text-align: center;
+    pointer-events: none;
+    color: #dfe5e9;
+    font-size: 14px;
+
+}
+
+#top_10 .modal_inner select.form-control + .select-arrow:after {
+    content: '\279C';
+    display: block;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+#top_10 .modal_inner .form-label {
+    position: absolute;
+    top: 6px;
+    left: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 24px;
+    height: 24px;
+    font-size: 12px;
+    color: #166987;
+}
+
+#top_10 .modal_inner .form-checkbox input {
+    position: absolute !important;
+    margin-left: -9999px !important;
+    visibility: hidden !important;
+}
+
+#top_10 .modal_inner .form-checkbox label {
+    position: relative;
+    padding-top: 4px;
+    padding-left: 30px;
+    font-weight: 700;
+    color: #166987;
+}
+
+#top_10 .modal_inner .form-checkbox label + label {
+    margin-left: 15px;
+}
+
+#top_10 .modal_inner .form-checkbox input + span {
+    position: absolute;
+    left: 2px;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid #dfe5e9;
+    border-radius: 50%;
+}
+
+#top_10 .modal_inner .form-checkbox input + span:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    background-color: #4fa3e3;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+#top_10 .modal_inner .form-checkbox input:not(:checked) + span:after {
+    opacity: 0;
+}
+
+#top_10 .modal_inner .form-checkbox input:checked + span:after {
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+}
+
+#top_10 .modal_inner .form-btn .home-btn {
+    color: #fff;
+    background-color: #daa310;
+    font-weight: 400;
+    height: 50px;
+    font-size: 18px;
+    border: none;
+    width: 70%;
+    border-radius: 4px;
+    margin-left: 50px;
+}
+
+#top_10 .modal_inner h1 {
+    font-size: 52px;
+    text-transform: uppercase;
+    color: #4fa3e3;
+    font-weight: 400;
+}
+
+#top_10 .modal_inner p {
+    font-size: 25px;
+    color: #191a1e;
+}
+
+#top_10 .modal_inner .form-btn .back-btn {
+    color: #fff;
+    background-color: #166987;
+    font-weight: 400;
+    height: 50px;
+    font-size: 18px;
+    border: none;
+    width: 70%;
+    border-radius: 4px;
+    margin-left: 50px;
+
+}
+
+#top_10 .modal_inner .title-bonus {
+    text-align: center;
+    background: #166987;
+    color: white;
+    padding: 10px 0;
+    vertical-align: center;
+}

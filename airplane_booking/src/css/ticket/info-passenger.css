@@ -1,0 +1,248 @@
+body {
+    box-sizing: border-box;
+    padding: 0;
+    font-family: "Diavlo", "sans-seriff";
+    /*margin: 40px 0px 30px 30px;*/
+
+}
+
+#info-passenger .wrapper {
+    background: rgba(237, 234, 234, 0.422);
+    padding: 30px 100px;
+    text-transform: capitalize;
+}
+
+#info-passenger.wrap {
+    margin-top: 40px;
+    padding-left: 20px;
+}
+
+#info-passenger .title {
+    background-color: #016984;
+    color: #fff;
+    padding: 20px 0;
+    text-transform: uppercase;
+}
+#info-passenger .route{
+    color: #1b6d85;
+    text-transform: initial;
+    font-size: 20px;
+    font-weight: 600;
+}
+#info-passenger .route i{
+    width: 40px;
+    height: 20px;
+}
+
+#info-passenger .vietnam-airline {
+    color: #016984;
+}
+
+#info-passenger .wrap i {
+    color: #78adb1;
+    font-size: 24px;
+    padding: 5px;
+}
+
+#info-passenger .wrap .location span {
+    font-weight: bold;
+}
+
+#info-passenger .passenger {
+    color: #daa310;
+}
+
+#info-passenger .wrap .money {
+    color: #016984;
+    font-weight: bold;
+
+}
+
+#info-passenger .wrap .outstanding {
+    color: #daa310;
+    font-weight: bold;
+}
+
+#info-passenger .wrap p {
+    font-weight: bold;
+}
+
+#info-passenger .info-second {
+    margin-top: 20px;
+
+}
+
+#info-passenger .info-third {
+    margin-top: 20px;
+}
+#info-passenger .info-four .el-form-header{
+    background-color: #006790;
+    color: #ffffff;
+    padding: 7.5px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+#info-passenger .logo-image {
+    display: flex;
+}
+
+#info-passenger .logo-image img {
+    padding: 0 5px;
+    height: 26px
+}
+
+#info-passenger .btn {
+    margin: 20px 0;
+}
+
+#info-passenger .btn button {
+    border: none;
+    background-color: #daa310;
+    box-shadow: inset;
+    color: #fff;
+    /*height: 30px;*/
+    width: 200px;
+    font-size: 20px;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+#info-passenger .btn button:first-child {
+    margin-right: 40px;
+}
+
+#info-passenger .info-customer {
+    padding: 20px 0px;
+}
+
+#info-passenger .info-customer .list-passenger i{
+    padding-right: 10px;
+    color: #006790;
+}
+
+#info-passenger .info-customer .field {
+    margin: 20px 0;
+}
+
+#info-passenger .info-customer .field label {
+    width: 40%;
+}
+
+#info-passenger .info-customer .field input,
+#info-passenger .info-customer .field select {
+    height: 24px;
+    width: 50%;
+}
+#info-passenger .info-customer .field select option{
+    padding: 2px;
+    background: rgba(27, 109, 133, 0.78);
+    color: #fff;
+}
+#info-passenger .info-customer .field select option:first-child{
+    background-color: #daa310;
+
+}
+
+#info-passenger .check-children input {
+    margin: 0 5px 12px 5px;
+}
+
+#info-passenger #infor-ticket-2 {
+    margin-top: 30px;
+}
+#info-passenger .fist-line {
+    border-top: 1px solid #1b6d85;
+    margin-bottom: 23px;
+}
+#info-passenger .line {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-top: 2px dashed #1b6d85;
+}
+#info-passenger .text-red{
+    color: red;
+    text-transform: capitalize;
+    font-size: 14px;
+    margin-left: 40%;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 10px;
+
+    }
+
+    #info-passenger .title p {
+        font-size: 20px;
+    }
+
+    #info-passenger .wrapper {
+        padding: 20px 0;
+        margin: 0px;
+    }
+
+    #info-passenger .logo-image img {
+        display: none;
+    }
+
+    #info-passenger .info-customer {
+        margin-left: 1px;
+        padding: 10px 10px;
+        width: 100%;
+    }
+
+    #info-passenger .info-customer .field {
+        margin-left: 5px;
+    }
+
+    #info-passenger .info-customer .field label {
+        width: 80px;
+    }
+
+    #info-passenger .info-customer .field input {
+        width: 100px;
+    }
+
+    #info-passenger .info-customer .field select {
+        width: 100px;
+    }
+
+    #info-passenger .btn button {
+        margin-bottom: 10px;
+    }
+
+    #info-passenger .btn button:last-child {
+        margin-left: 0;
+    }
+
+    #info-passenger .btn button:first-child {
+        margin-left: 40px;
+    }
+
+}
+
+@media (max-width: 1000px) {
+    #info-passenger .wrapper {
+        padding: 20px 5px;
+    }
+
+    #info-passenger .info-customer {
+        width: 100%;
+    }
+
+    #info-passenger .info-customer .field label {
+        display: block;
+        width: 100%
+    }
+
+    #info-passenger .info-customer .field input,
+    #info-passenger .info-customer .field select {
+        width: 70%;
+    }
+
+
+}

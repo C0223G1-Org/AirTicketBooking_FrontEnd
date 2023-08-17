@@ -8,6 +8,9 @@ export const createAccount = async (account) => {
     }
 }
 
+export async function changePassword(account){
+    const res = await axios.patch("http://localhost:8080/api/account/"+account.id,account);
+}
 export const editAccount = async (account) => {
     try {
         await axios.patch(`http://localhost:8080/api/account/q`, account)

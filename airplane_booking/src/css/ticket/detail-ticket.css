@@ -1,0 +1,175 @@
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Diavlo", "sans-seriff";
+
+}
+
+#detail-ticket .wrapper {
+    align-items: center;
+    background: rgba(237, 234, 234, 0.422);
+    padding: 10px 100px;
+    text-transform: capitalize;
+
+}
+
+#detail-ticket .title {
+    background-color: #016984;
+    color: #fff;
+    padding: 20px 0;
+    text-transform: uppercase;
+}
+
+#detail-ticket .vietnam-airline {
+    color: #016984;
+}
+
+#detail-ticket .wrap {
+    margin-top: 40px;
+    padding-left: 20px;
+}
+
+#detail-ticket .wrap i {
+    color: #78adb1;
+    font-size: 24px;
+    padding: 5px;
+}
+
+
+#detail-ticket .wrap .location span {
+    font-weight: bold;
+}
+#detail-ticket .passenger{
+    color: #daa310;
+}
+
+.wrap .money {
+    color: #016984;
+    font-weight: bold;
+
+}
+
+#detail-ticket .wrap .outstanding {
+    color: #daa310;
+    font-weight: bold;
+}
+
+#detail-ticket .wrap p {
+    font-weight: bold;
+}
+
+#detail-ticket .info-second {
+    margin-top: 20px;
+
+}
+
+#detail-ticket .info-third {
+    margin-top: 20px;
+}
+
+#detail-ticket .logo-image {
+    display: flex;
+}
+
+#detail-ticket .logo-image img {
+    padding: 0 5px;
+    height: 26px
+}
+
+#detail-ticket .btn {
+    margin: 20px 0;
+}
+
+#detail-ticket .btn button {
+    border: none;
+    background-color: #daa310;
+    box-shadow: inset;
+    color: #fff;
+    width: 200px;
+    font-size: 20px;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+#detail-ticket .btn button:first-child {
+    margin-right: 40px;
+}
+
+/*#detail-ticket .info-customer {*/
+/*    border: 1px solid black;*/
+/*    padding: 20px 0px;*/
+/*    width: 80%;*/
+/*}*/
+
+/*#detail-ticket .info-customer .check-children {*/
+/*    display: flex;*/
+/*}*/
+
+/*#detail-ticket.info-customer .field {*/
+/*    padding: 5px 0;*/
+/*}*/
+
+/*#detail-ticket.info-customer .field label {*/
+/*    width: 30%;*/
+/*}*/
+
+/*#detail-ticket.info-customer .field input,*/
+/*#detail-ticket.info-customer .field select {*/
+/*    height: 24px;*/
+/*    width: 40%;*/
+
+/*}*/
+
+/*#detail-ticket.check-children input {*/
+/*    margin: 0 5px 12px 5px;*/
+/*}*/
+
+@media (max-width: 768px) {
+    body{
+        font-size: 10px;
+        padding: 0;
+        margin: 0;
+    }
+    #detail-ticket.container{
+        padding:0;
+    }
+
+    #detail-ticket .title p {
+        font-size: 20px;
+    }
+
+    #detail-ticket .wrapper {
+        padding: 20px;
+        margin: 0px;
+    }
+    #detail-ticket .row {
+        --bs-gutter-x: 0.5rem;
+        --bs-gutter-y: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: calc(-1 * var(--bs-gutter-y));
+        margin-right: calc(-.5 * var(--bs-gutter-x));
+        margin-left: calc(-.5 * var(--bs-gutter-x));
+    }
+    #detail-ticket .wrap .row{
+        padding-right: 0;
+    }
+    #detail-ticket .wrap .location span:last-child{
+        display: block;
+    }
+
+    #detail-ticket .wrap .infor-fight {
+        display: block;
+    }
+
+    #detail-ticket .logo-image img {
+        display: none;
+    }
+
+    #detail-ticket .btn button {
+        margin-left:60px;
+        margin-bottom: 10px;
+    }
+
+}

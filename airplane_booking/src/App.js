@@ -1,22 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
-import CreateEmployee from "./component/Employee/CreateEmployee";
-import {Route, Routes} from "react-router-dom";
-import EmployeeList from "./component/Employee/EmployeeList";
-import EditEmployee from "./component/Employee/EditEmployee";
-
+import React from "react";
+import {Route, Routes} from "react-router";
+import {CreatePost} from "./component/CreatePost";
+import ListPost from './component/ListPost';
+import {UpdatePost} from "./component/UpdatePost";
 
 function App() {
-    return (
-        <>
-            <Routes>
-                <Route path='/employee' element={<EmployeeList/>}/>
-                <Route path='employee/create' element={<CreateEmployee/>}/>
-                <Route path='employee/update/:id' element={<EditEmployee/>}/>
-            </Routes>
+  return (
+<>
+  <BrowserRouter>
+  <Routes>
+ <Route path="/" element={<SearchDemo/>}></Route>
+ <Route path="/list/:data" element={<ListRouter/>}></Route>
+ <Route path="/change-password" element={<ChangePassword/>}></Route>
+  <Route path="/ticket/booked" element={<TicketBooked/>}/>
+  <Route path="/ticket/unbooked" element={<TicketUnBook/>}/>
+</Routes>
+  </BrowserRouter>
 
-        </>
-    );
+</>
+  );
 }
 
 export default App;
