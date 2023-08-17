@@ -44,37 +44,11 @@ function TicketBooked() {
         setStatusTicket(status)
     }
     useEffect(() => {
-        takeDeparture()
-        takeDestination()
         getTickets()
-    }, [page, ticketObj])
+    }, [])
     const getTickets = () => {
-        searchBookedTicket(page, ticketObj).then((data) => {
-            console.log(ticketObj)
-            let numberPage
-            console.log(data.totalElements)
-            if (data.totalElements > 5) {
-                numberPage = data.totalElements % 5;
-                console.log(numberPage)
-            } else {
-                numberPage = 0;
-            }
-            if ((data.totalElements / 5 - data.totalElements % 5) > 0) {
-                numberPage += 1;
-            }
-            setLoopCount(numberPage)
+        getListTickets(page).then((data) => {
             setTickets(data.content)
-        })
-    }
-    const takeDestination = () => {
-        getAllDestination().then((data) => {
-            console.log(data)
-            setDestination(data)
-        })
-    }
-    const takeDeparture = () => {
-        getAllDeparture().then((data) => {
-            setDeparture(data)
         })
     }
     const deleteTicket = async (id) => {
@@ -99,6 +73,8 @@ function TicketBooked() {
             }
         })
     }
+    const [inputType, setInputType] = useState('text');
+    const [date, setDate] = useState('');
 
 
     const dataSearch = (obj) => {
@@ -189,21 +165,23 @@ function TicketBooked() {
                                     <td className="icon-ticket">
                                         <ul>
                                             <Link to={`/tickets/updateTicket/${ticket.id}`}>
-                                                <li className="icon-ticket-item">
-                                                    <i className="fa-solid fa-pen-to-square" />
-                                                    </li>
-                                            </Link>
-                                        
-                                        <li className="icon-ticket-item">
+                                            <li className="icon-ticket-item">
+                                                <i className="fa-solid fa-pen-to-square" />
 
-                                            <i onClick={() => deleteTicket(ticket.id)} className="fa-solid fa-trash mx-2" style={{ color: '#eb0f1a' }}></i>
-                                            {/* <ModalDeleteTicket ticket={ticket} delete={() => deleteTicket(ticket.id)} icon={"fa-solid fa-trash mx-2"} /> */}
-                                        </li>
-                                        <li className="icon-ticket-item">
-                                            <i className="fa-sharp fa-solid fa-file-pdf mx-2" style={{ color: '#8c2626' }} />
-                                        </li>
-                                    </ul>
-                                </td>
+                                            </li>
+                                            </Link>
+                                            <li className="icon-ticket-item">
+
+                                                    <i onClick={()=>deleteTicket(ticket.id)} className="fa-solid fa-trash mx-2" style={{ color: '#eb0f1a' }}></i>
+                                                {/* <ModalDeleteTicket ticket={ticket} delete={() => deleteTicket(ticket.id)} icon={"fa-solid fa-trash mx-2"} /> */}
+                                            </li>
+                                            <Link to={`/printTicket/${ticket.id}`}>
+                                            <li className="icon-ticket-item">
+                                                <i className="fa-sharp fa-solid fa-file-pdf mx-2" style={{ color: '#8c2626' }} />
+                                            </li>
+                                            </Link>
+                                        </ul>
+                                    </td>
                                 </tr>
                             ))}
                     </tbody>

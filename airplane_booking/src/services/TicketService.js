@@ -17,8 +17,8 @@ export async function updateListTicket(ticket){
         await axios.patch(`http://localhost:8080/tickets/updateTicket/`+ticket.idTicket,ticket);
 }
 
-export async function findTicketById(){
-    const res= await axios.get(`http://localhost:8080/tickets/${1}`)
+export async function findTicketById(id){
+    const res= await axios.get(`http://localhost:8080/tickets/${id}`)
     return res.data;
 }
 export async function getListCustomer() {

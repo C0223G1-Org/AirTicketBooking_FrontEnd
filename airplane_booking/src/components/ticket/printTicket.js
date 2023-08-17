@@ -18,22 +18,24 @@ export default function Print() {
 
   const param = useParams();
   const getTicket = async () => {
-    const data = await findTicketById(param.idTicket);
+    const data = await findTicketById(param.id);
     setTicket(data);
     console.log("Ticket data:", data);
   };
+
   const componentRef = useRef();
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: 'emp-data',
-    onAfterPrint: () => alert('In vé thành công')
+  
   })
+  
   return (
-
     <>
       <div ref={componentRef} style={{ width: '100%', height: window.innerHeight }}>
         <div className="ticket">
+        
           <div className="row col-12 print">
             <h1 className="codeGym">VÉ MÁY BAY - CODEGYM AIRLINES</h1>
           </div>
