@@ -3,6 +3,8 @@ import {getRouteById, getTop10CheapestRoute} from "../../services/RouteServices"
 import '../../css/home/Top10.css';
 import { useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
+import CurrencyFormat from "../format-currency/CurrencyFormat";
+import moment from "moment";
 
 export default function GetTop10Cheapest() {
     const [top10s, setTop10s] = useState([]);
@@ -13,8 +15,13 @@ export default function GetTop10Cheapest() {
     const navigate = useNavigate();
 
     const getTop10 = async () => {
-        const data = await getTop10CheapestRoute();
-        setTop10s(data);
+        try {
+            const data = await getTop10CheapestRoute();
+            setTop10s(data);
+        } catch (error) {
+            console.log("Không có dữ liệu top 10")
+        }
+
     }
 
     const openModal = () => {
@@ -39,7 +46,7 @@ export default function GetTop10Cheapest() {
         if (adult != '') {
             const totalPeople = Number.parseInt(adult) + Number.parseInt(children);
             if (totalPeople <= 5) {
-                navigate(`/list/${route.departure.nameDeparture},${route.destination.nameDestination},${route.dateDeparture},0,${adult},${children}`);
+                navigate(`/list/${route.departure.nameDeparture},${route.destination.nameDestination},${route.dateDeparture},,0,${adult},${children}`);
             } else {
                 Swal.fire({
                     icon: 'warning',
@@ -58,6 +65,8 @@ export default function GetTop10Cheapest() {
         }
     }
 
+
+
     useEffect(() => {
         getTop10();
     }, [])
@@ -75,7 +84,7 @@ export default function GetTop10Cheapest() {
                         </div>
                         <div className="modal_body">
                             <div className="modal_inner">
-                                <div className='title'>
+                                <div className='title-bonus'>
                                     <h3>Đặt vé chuyến bay {route.nameRoute}</h3>
                                 </div>
                                 <div className="row">
@@ -118,19 +127,22 @@ export default function GetTop10Cheapest() {
                                                 <option value='2'>2</option>
                                                 <option value='3'>3</option>
                                                 <option value='4'>4</option>
+                                                <option value='5'>5</option>
                                             </select>
                                             <span className="select-arrow"/>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <span className="form-label">Trẻ em (0-12 tuổi)</span>
+                                            <span className="form-label">Trẻ em (0-15 tuổi)</span>
                                             <select className="form-control"
                                                     onChange={(e) => {setChildren(e.target.value)}}
                                                     required>
                                                 <option value='0'>0</option>
                                                 <option value='1'>1</option>
                                                 <option value='2'>2</option>
+                                                <option value='3'>3</option>
+                                                <option value='4'>4</option>
                                             </select>
                                             <span className="select-arrow"/>
                                         </div>
@@ -157,22 +169,22 @@ export default function GetTop10Cheapest() {
                         {
                             top10s.map((route) => {
                                 return (
-                                    <div className="col">
+                                    <div className="col-12">
                                         <div className="card" key={route.idRoute}>
                                             <img
-                                                src="https://reviewvilla.vn/wp-content/uploads/2022/05/kinh-nghiem-du-lich-ha-noi-5-1024x577.jpg"
+                                                src={route.imageDestination}
                                                 className="card-img-top" alt="..."/>
                                             <div className="card-body">
                                                 <div className="row"><h6
                                                     style={{color: "#daa310"}}>{route.timeDeparture} - {route.timeArrival}</h6>
                                                 </div>
                                                 <div className="row"><h6
-                                                    style={{color: "#daa310"}}>{route.dateDeparture}</h6></div>
+                                                    style={{color: "#daa310"}}>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </h6></div>
                                                 <div className="row"><h6>{route.nameDeparture} đến</h6></div>
                                                 <div className="row"><h6> {route.nameDestination}</h6></div>
                                                 <div className="row"><h6 className='price-ticket'
-                                                                         style={{color: "#daa310"}}>Chỉ
-                                                    từ {route.priceRoute} (Một chiều/Phổ thông)</h6></div>
+                                                                         style={{color: "#daa310"}}>
+                                                    Từ {<CurrencyFormat value={route.priceRoute} />} VNĐ (Một chiều)</h6></div>
                                                 <div className="row"><button className="btn buy" onClick={() => {
                                                     getRouteFindById(route.idRoute)
                                                 }}>Đến mua ngay</button></div>

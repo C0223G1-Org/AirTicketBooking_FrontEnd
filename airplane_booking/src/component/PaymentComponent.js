@@ -3,16 +3,17 @@ import '../css/payment/Payment.css';
 import { getTicketByTicketId, updateTicketByIdTicket } from '../services/PaymentService';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import axios, { HttpStatusCode } from 'axios';
+import { HttpStatusCode } from 'axios';
 
-const PaymentComponent = () => {
+const   PaymentComponent = () => {
     const [payment, setPayment] = useState([])
-    // const { id } = useParams();
+    const { id } = useParams();
     const negative = useNavigate();
     const getTicket = () => {
         const getTicketById = async () => {
             try {
-                const paymentData = await getTicketByTicketId();
+                console.log(id)
+                const paymentData = await getTicketByTicketId(id);
                 setPayment(paymentData);
                 console.log(payment);
             } catch (error) {
@@ -85,7 +86,7 @@ const PaymentComponent = () => {
                             title: 'Thanh toán thành công',
                             timer: 2000
                         }).then(() => {
-                            negative('/success')
+                            negative('/home')
                         });
                     } else if (order.status === 422 || order.status === 404 || order.status === 'CANCELLED' ||
                     order.status === 'DECLINED'||  order.status === 'FAILED' ||  order.status === 'EXPIRED' ||

@@ -4,6 +4,7 @@ import { Link,NavLink } from 'react-router-dom';
 import HeaderEmployee from "./HeaderEmployee";
 import HeaderAdmin from "./HeaderAdmin";
 import HeaderCustomer from "./HeaderCustomer.";
+import image from "../../logo_5.png";
 
 export default function Header() {
     // localStoragevvvvvvvv
@@ -11,7 +12,8 @@ export default function Header() {
         <>
         <header className="header">
             <nav className="navbar navbar-expand-lg">
-                <a className="navbar-brand" href="#">CodeGym Airline</a>
+                <img className="navbar-brand" src={image} alt='CodeGym Airline'/>
+                {/*<a  href="#">CodeGym Airline</a>*/}
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"><i className="fa-solid fa-bars" /></span>
                 </button>
@@ -47,13 +49,6 @@ export default function Header() {
                                 Thông tin hành trình
                             </NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink to="/admin/messages" className="nav-link active">
-                                <i className="fa-solid fa-circle-info" />
-                                Chat
-                            </NavLink>
-                        </li>
-
                     </ul>
                     <ul className="navbar-nav login">
                         <li className="nav-item">

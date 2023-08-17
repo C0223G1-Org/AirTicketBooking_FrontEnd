@@ -12,7 +12,23 @@
       <change beforePath="$PROJECT_DIR$/src/components/ticket/updateTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket/updateTicket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/ticket/printTicket.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/ticket/printTicket.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/ticket/updateTicket.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/ticket/updateTicket.css" afterDir="false" />
+    <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="kiet update code ngay 15-08">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/AccountServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/AccountServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/CustomerServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/CustomerServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/DepartureServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/DepartureServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/DestinationServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/DestinationServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/EmployeeServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/EmployeeServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/LugguageServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/LugguageServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/PostServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/PostServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/RoleServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/RoleServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/RouteServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/RouteServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/TicketService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/TicketService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/TypePassenger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/TypePassenger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/TypeSeatServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/TypeSeatServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/TypeTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/TypeTicket.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +44,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
   </component>
   <component name="GithubProjectSettings">
     <option name="branchProtectionPatterns">
@@ -53,7 +76,13 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -133,5 +162,7 @@
     <MESSAGE value="VuDT commit cập nhật css FrontEnd updateTicket,và printTicket  lần 4" />
     <MESSAGE value="VuDT commit cập nhật css và coding FrontEnd updateTicket,và printTicket lần 5" />
     <option name="LAST_COMMIT_MESSAGE" value="VuDT commit cập nhật css và coding FrontEnd updateTicket,và printTicket lần 5" />
+    <MESSAGE value="kiet update code ngay 15-08" />
+    <option name="LAST_COMMIT_MESSAGE" value="kiet update code ngay 15-08" />
   </component>
 </project>
