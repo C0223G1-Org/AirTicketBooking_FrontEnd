@@ -152,7 +152,7 @@ export default function ListPost() {
                     <div className="justify-content-between" style={{display: 'flex', marginBottom: '8.25px'}}>
                         <div className="add-post">
                             <NavLink to="/createPost"
-                                     className={`btn1 search mt-3 ${localStorage.usename === 'ROLE_EMPLOYEE' || localStorage.usename === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
+                                     className={`btn1 search mt-3 ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
                                      style={{color: 'black'}}> Thêm mới</NavLink>
                         </div>
                         <div className="search-post" style={{marginBottom: '1rem'}}>
@@ -195,8 +195,8 @@ export default function ListPost() {
                                     </div>
                                     <div className="news-card-button ">
                                         <NavLink to={"/updatePost/" + post.id}
-                                                 className={`btn1 news-button search  btn-warning ${localStorage.usename === 'ROLE_EMPLOYEE' || localStorage.usename === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}>Sửa</NavLink>
-                                        <a className={`btn1 news-button search  btn-warning ${localStorage.usename === 'ROLE_EMPLOYEE' || localStorage.usename === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
+                                                 className={`btn1 news-button search  btn-warning ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}>Sửa</NavLink>
+                                        <a className={`btn1 news-button search  btn-warning ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
                                            onClick={() => {
                                                checkDelete(`${post.id}`, `${post.title}`)
                                            }}>Xoá</a>
@@ -247,8 +247,8 @@ export default function ListPost() {
                                     </div>
                                     <div className="news-card-button">
                                         <NavLink to={"/updatePost/" + newss.id}
-                                                 className={`news-button search btn1  btn-warning ${localStorage.usename === 'ROLE_EMPLOYEE' || localStorage.usename === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}>Sửa</NavLink>
-                                        <a className={`news-button search btn1 btn-warning ${localStorage.usename === 'ROLE_EMPLOYEE' || localStorage.usename === 'ROLE_ADMIN' ? 'd-block' : 'd-none'} `} onClick={() => {
+                                                 className={`news-button search btn1  btn-warning ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}>Sửa</NavLink>
+                                        <a className={`news-button search btn1 btn-warning ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'} `} onClick={() => {
                                             checkDelete(`${newss.id}`, `${newss.title}`)
                                         }}>Xoá</a>
                                     </div>

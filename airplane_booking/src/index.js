@@ -36,6 +36,8 @@ import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage
 import {TicketProvider} from "./components/searchTickets_KietNT/TicketContext";
 import AdminPage from "./components/chat_messenger/AdminChat";
 import CreateReport from "./component/report/CreateReport";
+import PaymentComponent from "./component/PaymentComponent";
+import {Login} from "./component/account/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
