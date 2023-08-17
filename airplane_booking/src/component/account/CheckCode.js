@@ -10,7 +10,7 @@ export function CheckCode() {
     const [count, setCount] = useState(1);
     const navigate = useNavigate();
     const param = useParams();
-    const [userName, setUserName] = useState(param.data);
+    const [userName, setUserName] = useState('');
     const getUserName = async (data) => {
         setUserName(data);
         console.log("userName: " + userName);
