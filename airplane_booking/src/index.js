@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import './index.css';
+import './index.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import Header from "./components/home/Header";
@@ -36,13 +36,14 @@ import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage
 import {TicketProvider} from "./components/searchTickets_KietNT/TicketContext";
 import AdminPage from "./components/chat_messenger/AdminChat";
 import CreateReport from "./component/report/CreateReport";
+import {Login} from "./component/account/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
             <TicketProvider>
-                <Header/>
+                <Header/>v
                 <Routes>
                     <Route path="/home" element={<Home/>}></Route>
                     <Route path="/top10" element={<GetTop10Cheapest/>}></Route>
@@ -50,7 +51,7 @@ root.render(
                     <Route path="/header-admin" element={<HeaderAdmin/>}/>
                     <Route path="/header-employee" element={<HeaderEmployee/>}/>
                     <Route
-                        path="/printTicket"
+                        path="/printTicket/:id"
                         element={<PrintTicket></PrintTicket>}
                     ></Route>
                     <Route
@@ -71,7 +72,7 @@ root.render(
                     <Route path="/list/:data" element={<ListRouter/>}/>
                     <Route path="/detail-ticket/:data" element={<DetailTicket/>}/>
                     <Route path="/info-passenger/:data" element={<InfoPassenger/>}/>
-                    <Route path="/payment/:id" element={<PaymentComponent/>}/>
+                    {/*<Route path="/payment/:id" element={<PaymentComponent/>}/>*/}
 
                     {/*<Route path="/employee" element={<EmployeeList/>} />*/}
                     {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}

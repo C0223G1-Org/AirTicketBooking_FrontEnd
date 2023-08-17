@@ -15,7 +15,7 @@ import { findTicketById, updateListTicket } from "../../services/TicketService";
  */
 
 const UpdateTicket = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         getTicket();
@@ -59,8 +59,8 @@ const UpdateTicket = () => {
                   },
                 };
                 await handleEditTicket(object);
-                  console.log("2132131231")
-                // navigate("/")
+
+                navigate("/ticket/booked")
               }}
               initialValues={{
                 namePassenger: ticket?.namePassenger,
@@ -155,10 +155,10 @@ const UpdateTicket = () => {
                     <button type="submit" className="btn btn-primary">
                       Xác nhận
                     </button>
-                    <Link to="/" className="btn btn-secondary">
+                    <Link to="/ticket/booked" className="btn btn-secondary">
                       Huỷ
                     </Link>
-                    .
+
                   </div>
                 </div>
               </Form>

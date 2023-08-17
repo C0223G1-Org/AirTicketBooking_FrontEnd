@@ -172,7 +172,7 @@ console.log(showChatbox);
             </div>
           </div>}
         {showChatbox && 
-          <div className="form-popup" id="myForm" style={{ display: chatStarted ? "none" : "block" }}>
+          <div className="form-popup" id="myForm" style={{ display: chatForm ? "none" : "block" }}>
             <h2>Nhập tên của bạn và bắt đầu trò chuyện</h2>
             <input
               onKeyDown={(event) => {
@@ -183,13 +183,18 @@ console.log(showChatbox);
               type="text"
               placeholder="Tên người dùng"
               value={username}
+              id="showChatbox"
               onChange={(e) => setUsername(e.target.value)}
             />
-            <button onClick={handleStartChat}>Bắt đầu</button>
-          </div>}
+            <button onClick={
+              handleStartChat
+            }>Bắt đầu</button>
+          </div>
+        }
         {/* popup */}
         <div>
           {chatForm==false ?
+
             <button
               id="fpt_ai_livechat_button"
               className="fpt_ai_livechat_button_blink"
@@ -211,9 +216,9 @@ console.log(showChatbox);
               style={{ background: "#EEEEEEEE" }}
               onClick={() => {
                 setChatForm(!chatForm)
-                // setShowChatbox(!showChatbox)
+                setShowChatbox(!showChatbox)
                 // setShowbutton(showButton)
-                
+                setUsername("")
               }} >
               <img src="https://img.icons8.com/external-bluetone-bomsymbols-/91/external-close-digital-design-bluetone-set-2-bluetone-bomsymbols-.png" alt="external-close-digital-design-bluetone-set-2-bluetone-bomsymbols-" />
             </button>
