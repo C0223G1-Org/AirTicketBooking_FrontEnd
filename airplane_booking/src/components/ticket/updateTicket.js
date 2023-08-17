@@ -38,7 +38,7 @@ const UpdateTicket = () => {
     }
     return (
         <div className="img">
-        <div className="background-image">
+      
           <div className="table-title">
             <div className="title">
               <div className="update">
@@ -163,7 +163,7 @@ const UpdateTicket = () => {
               </Form>
             </Formik>
           )}
-        </div>
+       
       </div>
     )
 }

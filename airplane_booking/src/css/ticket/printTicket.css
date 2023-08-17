@@ -105,7 +105,9 @@
 .button-area button:hover {
   background-color: rgb(228, 214, 177);
 }
-
+.imgPrint{
+  background-image: url("/src/logo_5.png");
+}
 @media (max-width: 768px) {
   .ticket {
     max-width: 90%;
