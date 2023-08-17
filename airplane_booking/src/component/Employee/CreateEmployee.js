@@ -10,6 +10,7 @@ import {v4} from "uuid";
 import {createEmployee} from "../../services/EmployeeServices";
 import Swal from "sweetalert2";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
+import {storage} from "../../firebase-chat";
 
 
 
@@ -86,25 +87,26 @@ function CreateEmployee() {
     return (
         <>
             <div>
-                <div id="booking" className="section">
-                    <div className="section-center">
+                <div id="bookingQuoc" className="sectionQuoc">
+                    <div className="sectionQuoc-center">
                         <div className="container">
                             <div className="row">
-                                <div className="col-12 col-sm-12 col-md-4 col-lg-4">
+                                {/*<div className='col-md-2 col-lg-2'></div>*/}
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-4">
                                     <div>
                                         {/*<img*/}
                                         {/*    src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"*/}
                                         {/*    alt="Preview Image" id="img-preview"/>*/}
-                                        <img style={{marginTop: '50px', marginLeft: '55px'}} name='image'
+                                        <img style={{marginTop: '50px',marginLeft:'100px'}} name='image'
                                              id="img-preview"
                                              src="https://cdn-icons-png.flaticon.com/256/9131/9131529.png"
                                              ref={imgPreviewRef} alt="Preview Image"/>
                                     </div>
                                 </div>
-                                <div className="col-12 col-sm-12 col-md-8 col-lg-8">
-                                    <div className="booking-form">
-                                        <div className="title" style={{padding: '0px'}}>
-                                            <p>Thêm mới nhân viên</p>
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-6" style={{padding:"0"}}>
+                                    <div className="booking-formQuoc">
+                                        <div style={{width:'100%'}}>
+                                            <p className='pQuoc'>Thêm mới nhân viên</p>
                                         </div>
                                         <Formik initialValues={{
                                             nameEmployee: "",
@@ -121,10 +123,16 @@ function CreateEmployee() {
                                         }}
                                                 validationSchema={Yup.object({
                                                     nameEmployee: Yup.string()
+                                                        .test('no-leading-whitespace', 'Tên không được bắt đầu bằng khoảng trắng.', (value) => {
+                                                            return !value.startsWith(' ');
+                                                        })
+                                                        .test('no-trailing-whitespace', 'Tên không được kết thúc bằng khoảng trắng.', (value) => {
+                                                            return !value.endsWith(' ');
+                                                        })
                                                         .required("Vui lòng nhập.")
                                                         .min(5, "Tên quá ngắn,phải từ 5 kí tự.")
                                                         .max(50, "tên quá dài.")
-                                                        .matches(/^[^!@#$%^&*()+=\[\]{};':"\\|.<>?`~/]+$/, "Tên không chứa ký tự đặc biệt như @#$.."),
+                                                        .matches(/^[^!@#$%^&*()+=\[\]{};':"\\|.<>?`~0-9]+$/, "Tên không chứa ký tự đặc biệt như @#$.. và số."),
                                                     dateEmployee: Yup.date()
                                                         .required("Vui lòng chọn.")
                                                         .test("is-over-18", "Bạn chưa đủ 18 . ", function (value) {
@@ -136,6 +144,12 @@ function CreateEmployee() {
                                                                 return false;
                                                             }
                                                             return true;
+                                                        })
+                                                        .test("is-under-60", "Bạn đã quá 60 tuổi.", function (value) {
+                                                            const currentDate = new Date();
+                                                            const selectedDate = new Date(value);
+                                                            const ageDiff = currentDate.getFullYear() - selectedDate.getFullYear();
+                                                            return ageDiff <= 60;
                                                         }),
                                                     gender: Yup.boolean()
                                                         .required("Vui lòng chọn giới tính."),
@@ -171,7 +185,7 @@ function CreateEmployee() {
                                         >
 
 
-                                            <Form className="booking-form-padding">
+                                            <Form className="booking-formQuoc-padding">
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <div className="form-group">
