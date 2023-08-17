@@ -5,7 +5,6 @@ import {searchAbout1API, searchAboutAPI, searchCurrentAPI, searchPreviousAPI} fr
 import {ChartComponent} from "./ChartComponent";
 import {Chart} from "chart.js/auto"
 import ExportExcel from "./ExprortExcel";
-import * as yup from "yup";
 
 
 export default function CreateReport() {
