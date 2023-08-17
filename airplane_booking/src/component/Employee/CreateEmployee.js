@@ -10,7 +10,8 @@ import {v4} from "uuid";
 import {createEmployee} from "../../services/EmployeeServices";
 import Swal from "sweetalert2";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
-import {storage} from "../../firebase";
+import {storage} from "../../firebase-chat";
+
 
 function CreateEmployee() {
     const navigate = useNavigate();
@@ -62,7 +63,16 @@ function CreateEmployee() {
             })
             return;
         }
-        setImageUpload(file)
+        if (!file){
+            Swal.fire({
+                icon: 'error',
+                title: 'vui long chon anh',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return;
+        }
+            setImageUpload(file)
         const reader = new FileReader();
         reader.addEventListener("load", function () {
             imgPreviewRef.current.src = reader.result;
@@ -85,8 +95,10 @@ function CreateEmployee() {
                                         {/*<img*/}
                                         {/*    src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"*/}
                                         {/*    alt="Preview Image" id="img-preview"/>*/}
-                                        <img style={{marginTop: '50px', marginLeft:'55px'}} name='image'
-                                             id="img-preview" src="https://cdn-icons-png.flaticon.com/256/9131/9131529.png" ref={imgPreviewRef} alt="Preview Image"/>
+                                        <img style={{marginTop: '50px', marginLeft: '55px'}} name='image'
+                                             id="img-preview"
+                                             src="https://cdn-icons-png.flaticon.com/256/9131/9131529.png"
+                                             ref={imgPreviewRef} alt="Preview Image"/>
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-12 col-md-8 col-lg-8">
@@ -131,8 +143,8 @@ function CreateEmployee() {
                                                         .matches(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
                                                             "Email phải đúng định dạng xxx@gmail.com.")
                                                         .required("Vui lòng nhập email."),
-                                                    image: Yup.string()
-                                                        .required("Vui lòng chọn ảnh."),
+                                                    // image: Yup.string()
+                                                    //     .required("Vui lòng chọn ảnh."),
                                                     telEmployee: Yup.string()
                                                         .required("Vui lòng nhập số điện thoại.")
                                                         .matches(
@@ -177,7 +189,8 @@ function CreateEmployee() {
                                             style={{color: 'red'}}>*</span>)</span>
                                                             <Field name='dateEmployee' className="form-control"
                                                                    type="date"/>
-                                                            <ErrorMessage name='dateEmployee' component='div' className='error_red_employee'/>
+                                                            <ErrorMessage name='dateEmployee' component='div'
+                                                                          className='error_red_employee'/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -188,7 +201,8 @@ function CreateEmployee() {
                                             style={{color: 'red'}}>*</span>)</span>
                                                             <Field name='emailEmployee' className="form-control"
                                                                    type="text"/>
-                                                            <ErrorMessage name='emailEmployee' component='div' className='error_red_employee'/>
+                                                            <ErrorMessage name='emailEmployee' component='div'
+                                                                          className='error_red_employee'/>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
@@ -210,7 +224,8 @@ function CreateEmployee() {
                                                style={{color: 'red'}}>*</span>)</span>
                                                             <Field name='passwordEmployee' className="form-control"
                                                                    type="password"/>
-                                                            <ErrorMessage name='passwordEmployee' component='div' className='error_red_employee'/>
+                                                            <ErrorMessage name='passwordEmployee' component='div'
+                                                                          className='error_red_employee'/>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
@@ -232,7 +247,8 @@ function CreateEmployee() {
                                                 style={{color: 'red'}}>*</span>)</span>
                                                             <Field className="form-control" type="text"
                                                                    name='telEmployee'/>
-                                                            <ErrorMessage name='telEmployee' component='div' className='error_red_employee'/>
+                                                            <ErrorMessage name='telEmployee' component='div'
+                                                                          className='error_red_employee'/>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
@@ -249,7 +265,8 @@ function CreateEmployee() {
                                                                    }}
                                                                    ref={inputFileRef} onChange={handleInputChange}
                                                                    name='image'/>
-                                                            <ErrorMessage name='image' component='div' className='error_red_employee'/>
+                                                            <ErrorMessage name='image' component='div'
+                                                                          className='error_red_employee'/>
                                                         </div>
                                                     </div>
                                                     <div style={{textAlign: 'center'}}>

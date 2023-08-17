@@ -8,8 +8,9 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import {v4} from "uuid";
 import {createEmployee, updateEmployee} from "../../services/EmployeeServices";
 import Swal from "sweetalert2";
-import {storage} from "../../firebase";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
+import {storage} from "../../firebase-chat";
+
 
 function EditEmployee() {
     const navigate = useNavigate();
