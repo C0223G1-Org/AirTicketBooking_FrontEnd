@@ -1,12 +1,10 @@
-
-import ListRouter from "./component_SAngTDN/ListRoute";
-import SearchDemo from "./component_SAngTDN/SearchDemo";import ChangePassword from "./component_SAngTDN/ChangePassword";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import TicketBooked from "./components/TicketBooked";
-import TicketUnBook from "./components/TicketUnBook";
-
-
-
+import logo from './logo.svg';
+import './App.css';
+import React from "react";
+import {Route, Routes} from "react-router";
+import {CreatePost} from "./component/CreatePost";
+import ListPost from './component/ListPost';
+import {UpdatePost} from "./component/UpdatePost";
 
 function App() {
   return (

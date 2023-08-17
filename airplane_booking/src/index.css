@@ -339,7 +339,7 @@ body {
   border-radius: 5px;
   min-width: 100px;
 }
-.show-route-ticket-body-input-item button:hover{
+.show-route-ticket-body-input-item button:hover {
   background-color: var(--buttonAirLine--);
   border-color: var(--airLine--);
 }
@@ -381,6 +381,4 @@ body {
 }
 
 
-.err-mess{
-  color: red;
-}
+
