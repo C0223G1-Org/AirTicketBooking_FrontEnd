@@ -66,7 +66,7 @@ export default function HeaderAdmin() {
                     <ul className="navbar-nav login">
                         <li className="nav-item">
                             <a className="nav-link active" href="#">
-                                XIN CHÀO - ADMIN
+                                Xin chào - ADMIN
                             </a>
                         </li>
                         <li className="nav-item">

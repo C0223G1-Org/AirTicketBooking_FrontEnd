@@ -9,6 +9,12 @@ export async function getListRouter(departure,destination,dateDeparture){
     return res.data
 }
 export  async function getRouteById(idRoute){
-    const res =  await axios.get("http://localhost:8080/route/"+idRoute)
-    return res.data
+    try {
+        const res =  await axios.get("http://localhost:8080/route/"+idRoute)
+        return res.data
+    }
+    catch (error){
+        console.log("không tìm thấy tuyến bay")
+    }
+
 }
