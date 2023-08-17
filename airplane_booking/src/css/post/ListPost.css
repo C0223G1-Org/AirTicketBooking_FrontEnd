@@ -24,6 +24,7 @@
 }
 
 .card_image_news {
+    margin: 0;
     overflow: hidden;
     position: relative;
     max-height: 200px;
@@ -110,13 +111,13 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding: 1px;
+    padding: 0;
 }
 
 .card_content {
     position: relative;
-    padding: 16px 12px 32px 24px;
-    height: 10rem;
+    padding: 16px;
+    height: 6rem;
     border-radius: 15px;
 }
 
@@ -171,7 +172,7 @@
 }
 
 .card_text {
-    height: 60px;
+    height: 50px;
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
@@ -185,7 +186,7 @@
     justify-content: center;
     display: flex;
     align-items: flex-end;
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     right: 0;
@@ -194,7 +195,7 @@
 
 .news-button {
     /*font-size: 25px;*/
-    margin: 0.5em;
+    margin: 0.9em;
     border-radius: 10px;
 }
 
@@ -243,4 +244,30 @@
     .news-button {
         width: 100%;
     }
+}
+.custom-confirm-button-employee {
+    background-color: #0685aa !important;
+    /* Các thuộc tính CSS khác mà bạn muốn áp dụng */
+}
+.btn1{
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px
 }

@@ -161,9 +161,9 @@ export function CreatePost() {
                                 </div>
                                 <div className="mt-4 btn-group">
                                     <div className="text-center m-auto">
-                                        <button type="button" className="btn btn-warning"
+                                        <button type="button" className="btn btn-secondary1"
                                             style={{}}>
-                                            <b className="text-center">Quay lại</b>
+                                            <b className="text-center1">Quay lại</b>
                                         </button>
                                     </div>
                                     <div className="text-center m-auto">
@@ -171,7 +171,7 @@ export function CreatePost() {
                                             className="btn btn-warning "
                                             data-mdb-toggle="modal"
                                             data-mdb-target="#exampleModalToggle1">
-                                            <b className="text-center">Thêm mới</b>
+                                            <b className="text-center1">Thêm mới</b>
                                         </button>
                                     </div>
                                 </div>

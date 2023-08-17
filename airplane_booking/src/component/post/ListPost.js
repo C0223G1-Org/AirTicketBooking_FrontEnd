@@ -1,5 +1,5 @@
 import {Field, Form, Formik} from "formik";
-import '../../css/post/card2.css';
+import '../../css/post/ListPost.css';
 import {useEffect, useState} from "react";
 import Swal from 'sweetalert2'
 import {deletePost, getListPost, getNewsHot, searchPosts} from "../../services/PostServices";
@@ -99,7 +99,10 @@ export default function ListPost() {
                 showCancelButton: true,
                 confirmButtonText: 'Xác nhận ',
                 cancelButtonText: 'Huỷ',
-                reverseButtons: true
+                reverseButtons: true,
+            customClass: {
+                confirmButton: 'custom-confirm-button-employee',
+            }
             }
         ).then((res) => {
             if (res.isConfirmed) {
@@ -153,8 +156,8 @@ export default function ListPost() {
                     <ul className="cards_news">
                         {listPosts.map((post) => (
                             <li className="card_item_news" key={post.id}>
-                                <div className="card card-son ">
-                                    <a className="btn p-0" onClick={() => {
+                                <div className="card-son card ">
+                                    <a className="btn p-0 m-0" onClick={() => {
                                         detailPost(post, post.employee)
                                     }} data-bs-toggle="modal" data-bs-target="#exampleModalDetail">
                                         <div className="card_image_news">
@@ -171,8 +174,8 @@ export default function ListPost() {
                                     </div>
                                     <div className="news-card-button">
                                         <NavLink to={"/updatePost/" + post.id}
-                                                 className="news-button search btn btn-warning">Sửa</NavLink>
-                                        <a className="news-button search btn btn-warning" onClick={() => {
+                                                 className="btn1 news-button search  btn-warning">Sửa</NavLink>
+                                        <a className="btn1 news-button search  btn-warning" onClick={() => {
                                             checkDelete(`${post.id}`, `${post.title}`)
                                         }}>Xoá</a>
                                         {/* <button className="news-button btn btn-danger" onClick={() => { setShowModal(true) }} >Xoá</button> */}
@@ -203,8 +206,8 @@ export default function ListPost() {
                         </li>
                         {news.map((newss) => (
                             <li className="news-hots">
-                                <div className="card     card-son">
-                                    <button className="btn p-0" onClick={() => {
+                                <div className="card-son card">
+                                    <button className="btn p-0 m-0" onClick={() => {
                                         detailPost(newss, newss.employee)
                                     }} data-bs-toggle="modal" data-bs-target="#exampleModalDetail">
                                         <div className="card_image_news">
@@ -221,8 +224,8 @@ export default function ListPost() {
                                     </div>
                                     <div className="news-card-button">
                                         <NavLink to={"/updatePost/" + newss.id}
-                                                 className="news-button search btn btn-warning ">Sửa</NavLink>
-                                        <a className="news-button search btn btn-warning " onClick={() => {
+                                                 className="news-button search btn1 btn-warning ">Sửa</NavLink>
+                                        <a className="news-button search btn1 btn-warning " onClick={() => {
                                             checkDelete(`${newss.id}`, `${newss.title}`)
                                         }}>Xoá</a>
                                     </div>
@@ -233,41 +236,42 @@ export default function ListPost() {
                 </div>
             </div>
             {/* <!--chi tiêt--> */}
-            <div className="modal fade" id="exampleModalDetail" tabIndex={-1} aria-labelledby="exampleModalLabel1"
-                 aria-hidden="true">
-                <div className="modal-dialog modal-fullscreen modal-dialog-scrollable">
-                    <div className="modal-content">
-                        <div className="modal-header bg-info h-10">
-                            <h5 className="modal-title" id="exampleModalLabel1">Chi tiết bài viết</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body" style={{padding: 0}}>
-                            <div className="row container-fluid mt-1 mb-5 d-inline-flex">
-                                <div className="col-4" style={{height:'300px',maxHeight:'100px'}}>
-                                    <img className="d-flex position-relative" width="90%"
-                                         src={detail.image} alt="mixed vegetable salad in a mason jar."/>
-                                </div>
-                                <div className="col-8 card_content ">
-                                    <div className="note-detail">
-                                        <p className="m-0">Người đăng: {employee.nameEmployee}</p>
-                                        <p>Thời gian: {formatDateTime(detail.datePost)}</p>
-                                        <h1 className="card_title_detail">{detail.title}</h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row card_text mt-3 container-fluid text-justify">
-                               <div className="col-12">
-                                   <div dangerouslySetInnerHTML={{ __html: detail.content}}></div>
-                               </div>
-                            </div>
-                        </div>
-                        <div className="modal-footer" style={{maxHeight: '70px'}}>
-                            <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Thoát</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            {/*<div className="modal fade" id="exampleModalDetail" tabIndex={-1} aria-labelledby="exampleModalLabel1"*/}
+            {/*     aria-hidden="true">*/}
+            {/*    <div className="modal-dialog modal-fullscreen modal-dialog-scrollable">*/}
+            {/*        <div className="modal-content">*/}
+            {/*            <div className="modal-header bg-info h-10">*/}
+            {/*                <h5 className="modal-title" id="exampleModalLabel1">Chi tiết bài viết</h5>*/}
+            {/*                <button type="button" className="btn-close" data-bs-dismiss="modal"*/}
+            {/*                        aria-label="Close"></button>*/}
+            {/*            </div>*/}
+            {/*            <div className="modal-body" style={{padding: 0}}>*/}
+            {/*                <div className="row container-fluid mt-1 mb-5 d-inline-flex">*/}
+            {/*                    <div className="col-4" style={{height:'300px',maxHeight:'100px'}}>*/}
+            {/*                        <img className="d-flex position-relative" width="90%"*/}
+            {/*                             src={detail.image} alt="mixed vegetable salad in a mason jar."/>*/}
+            {/*                    </div>*/}
+            {/*                    <div className="col-8 card_content ">*/}
+            {/*                        <div className="note-detail">*/}
+            {/*                            <p className="m-0">Người đăng: {employee.nameEmployee}</p>*/}
+            {/*                            <p>Thời gian: {formatDateTime(detail.datePost)}</p>*/}
+            {/*                            <h1 className="card_title_detail">{detail.title}</h1>*/}
+            {/*                        </div>*/}
+            {/*                    </div>*/}
+            {/*                </div>*/}
+            {/*                <div className="row card_text mt-3 container-fluid text-justify">*/}
+            {/*                   <div className="col-12">*/}
+            {/*                       <div dangerouslySetInnerHTML={{ __html: detail.content}}></div>*/}
+            {/*                   </div>*/}
+            {/*                </div>*/}
+            {/*            </div>*/}
+            {/*            <div className="modal-footer" style={{maxHeight: '70px'}}>*/}
+            {/*                <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Thoát</button>*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             </body>
         </>
     );

@@ -1,4 +1,4 @@
-.card {
+.card-update-post {
     border: none;
     padding: 20px;
     position: relative;
@@ -7,7 +7,6 @@
 }
 
 @media screen and (max-width: 768px) {
-
     body {
         font-size: 14px;
         background-color: #eee;
@@ -15,8 +14,6 @@
         font-weight: 300;
     }
 }
-
-
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -30,18 +27,15 @@ body {
     /*background-image: url('./img/background.jpg')*/
 }
 
-.height {
-    height: 100vh
-}
-
-.card-update-post {
-    border: none;
-    padding: 20px;
-    position: relative;
-    border-radius: 4px;
-}
-
 .btn-group {
     display: flex;
     justify-content: space-between;
+}
+.btn-secondary1{
+    color: white;
+    background-color: rgba(101, 100, 100, 0.93);
+}
+.text-center1{
+    text-align: center;
+
 }
