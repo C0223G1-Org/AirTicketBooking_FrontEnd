@@ -69,6 +69,7 @@ export default function SearchResultPage() {
   return (
     <>
       {searchTicket.content && (
+        <div id="search-result">
         <div id="detail-ticket-search" >
           <div className="container" >
             <div className="title-search text-center">
@@ -212,6 +213,7 @@ export default function SearchResultPage() {
               );
             })}
           </div>
+        </div>
         </div>
       )}
     </>

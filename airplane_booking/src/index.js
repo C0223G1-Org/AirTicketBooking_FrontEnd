@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import Header from "./components/home/Header";
 import "bootstrap/dist/css/bootstrap.css";
@@ -26,6 +26,7 @@ import InfoPassenger from "./component/ticket/InfoPassenger";
 import EmployeeList from "./component/Employee/EmployeeList";
 import CreateEmployee from "./component/Employee/CreateEmployee";
 import ListPost from "./component/post/ListPost";
+import './index.css';
 import {UpdatePost} from "./component/post/UpdatePost";
 import {CreatePost} from "./component/post/CreatePost";
 // import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
@@ -36,13 +37,14 @@ import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage
 import {TicketProvider} from "./components/searchTickets_KietNT/TicketContext";
 import AdminPage from "./components/chat_messenger/AdminChat";
 import CreateReport from "./component/report/CreateReport";
+import {Login} from "./component/account/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
             <TicketProvider>
-                <Header/>
+                <Header/>v
                 <Routes>
                     <Route path="/home" element={<Home/>}></Route>
                     <Route path="/top10" element={<GetTop10Cheapest/>}></Route>
@@ -71,6 +73,8 @@ root.render(
                     <Route path="/list/:data" element={<ListRouter/>}/>
                     <Route path="/detail-ticket/:data" element={<DetailTicket/>}/>
                     <Route path="/info-passenger/:data" element={<InfoPassenger/>}/>
+                    {/*<Route path="/payment/:id" element={<PaymentComponent/>}/>*/}
+
                     {/*<Route path="/employee" element={<EmployeeList/>} />*/}
                     {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
                     <Route path='/listPost' element={<ListPost/>}/>
@@ -82,6 +86,7 @@ root.render(
                         element={<SearchResultPage/>}
                     />
                     <Route path="/admin/messages" element={<AdminPage/>}></Route>
+                    <Route path="/login" element={<Login/>}></Route>
                 </Routes>
 
                 <Footer/>
