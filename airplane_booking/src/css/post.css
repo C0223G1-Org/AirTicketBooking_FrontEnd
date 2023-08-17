@@ -2,11 +2,12 @@
     border: none;
     padding: 20px;
     position: relative;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 4px;
 }
 
 @media screen and (max-width: 768px) {
+
     body {
         font-size: 14px;
         background-color: #eee;
@@ -15,16 +16,16 @@
     }
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-}
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 body {
-    background-color: #eee;
+    /*background-color: #eee;*/
     font-family: "Poppins", sans-serif;
     font-weight: 300;
-    /*background-image: url('./img/background.jpg')*/
+    background-image: url("../img/background.jpg");
+    background-repeat: no-repeat;
+   background-size: cover;
+
 }
 
 .btn-group {
@@ -37,5 +38,5 @@ body {
 }
 .text-center1{
     text-align: center;
-
+    color: black;
 }
