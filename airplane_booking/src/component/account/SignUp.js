@@ -447,7 +447,7 @@ export function SignUp() {
                                                     type="text"
                                                     id="email"
                                                     name="idCardCustomer"
-                                                    placeholder=""
+                                                    placeholder="A123456/123456123456"
                                                     // title="Please enter a valid email"
                                                     // required=""
                                                 />
