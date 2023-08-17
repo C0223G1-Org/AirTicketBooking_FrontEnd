@@ -1,12 +1,14 @@
 import React from "react";
 import "../../css/home/Header.css";
 import {Link} from "react-router-dom";
+import image from "../../logo_5.png";
+
 
 export default function HeaderCustomer() {
     return (
         <header className='header'>
             <nav className="navbar navbar-expand-lg">
-                <a className="navbar-brand" href="#">CodeGym Airline</a>
+                <img className="navbar-brand" src={image} alt='CodeGym Airline'/>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +61,7 @@ export default function HeaderCustomer() {
                     <ul className="navbar-nav login">
                         <li className="nav-item">
                             <a className="nav-link active" href="#">
-                                XIN CHÀO - CUSTOMER
+                                Xin chào - HungLV
                             </a>
                         </li>
                         <li className="nav-item">

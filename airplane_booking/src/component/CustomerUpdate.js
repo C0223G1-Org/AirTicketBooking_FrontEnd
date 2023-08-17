@@ -9,10 +9,8 @@ import {
     ref,
     uploadBytes,
     getDownloadURL,
-    listAll,
-    list,
 } from "firebase/storage";
-import { storage } from '../firebase';
+import { storage } from '../firebase-chat';
 import "../css/customer/customer_update_details.css"
 // import "../css/customer/bootstrap.min.css"
 

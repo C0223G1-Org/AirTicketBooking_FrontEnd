@@ -1,13 +1,11 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://localhost:8080/customers'
-
 export async function updateCustomer(customer){
    const response= await axios.put('/'+customer.idCustomer,customer)
    return response
 }
 export async function getCustomerById(id){
-    const response =await axios.get('/'+id)
+    const response =await axios.get('http://localhost:8080/customers/'+id)
     return response.data
 }
 export const CreateCustomer = async (obj)=>{
@@ -38,4 +36,9 @@ export async function getListCustomers(page,name,email,nationality){
  // }
  export async function deleteCustomers(id){
     await axios.put(`http://localhost:8080/customers/delete/${id}`)
+ }
+
+ export async function getCustomerByEmail(email) {
+    const res = await axios.get("http://localhost:8080/customers/login/" + email);
+    return res.data;
  }
