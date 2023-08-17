@@ -14,6 +14,7 @@ function TicketUnBook() {
     }, [page,unTicketObj])
     const showUnBookTickets = () => {
         searchUnBookedTicket(page,unTicketObj).then((data) => {
+            console.log(data.content)
             let numberPage
             if (data.totalElements > 5) {
                 numberPage = data.totalElements % 5;
@@ -104,11 +105,11 @@ function TicketUnBook() {
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>Mã Ghế</th>
                             <th>Mã Chuyến Bay</th>
                             <th>Tuyến Bay</th>
                             <th>Ngày Đi</th>
-                            <th>Loại Vé</th>
+                            <th>Giá Vé</th>
+                            <th>Số Lượng</th>
 
                         </tr>
                     </thead>
@@ -116,11 +117,11 @@ function TicketUnBook() {
                         {unTickets && unTickets.map((ticket, index) => (
                             <tr key={index}>
                                 <td  >{index + (page * 5)}</td>
-                                <td >{ticket.positionSeat}</td>
                                 <td >{ticket.nameRoute}</td>
                                 <td >{ticket.nameDeparture}-{ticket.nameDestination}</td>
                                 <td >{ticket.timeDeparture}</td>
-                                <td >{ticket.typeSeat}</td>
+                                <td>{ticket.priceTicket}</td>
+                                <td>{ticket.countEmpty}</td>
                             </tr>
                         ))}
                     </tbody>

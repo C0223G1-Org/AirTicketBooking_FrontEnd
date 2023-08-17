@@ -44,37 +44,62 @@ function TicketBooked() {
         setStatusTicket(status)
     }
     useEffect(() => {
+        takeDeparture()
+        takeDestination()
         getTickets()
-    }, [])
+    }, [page, ticketObj])
     const getTickets = () => {
-        getListTickets(page).then((data) => {
+        searchBookedTicket(page, ticketObj).then((data) => {
+            console.log(ticketObj)
+            let numberPage
+            console.log(data.totalElements)
+            if (data.totalElements > 5) {
+                numberPage = data.totalElements % 5;
+                console.log(numberPage)
+            } else {
+                numberPage = 0;
+            }
+            if ((data.totalElements / 5 - data.totalElements % 5) > 0) {
+                numberPage += 1;
+            }
+            setLoopCount(numberPage)
             setTickets(data.content)
         })
     }
-    const deleteTicket = async (id) => {
+    const takeDestination = () => {
+        getAllDestination().then((data) => {
+            console.log(data)
+            setDestination(data)
+        })
+    }
+    const takeDeparture = () => {
+        getAllDeparture().then((data) => {
+            setDeparture(data)
+        })
+    }
+    const deleteTicket = async (ticket) => {
         Swal.fire({
-            title: 'Bạn chắc chắn xóa không?',
-            text: "Hành động này không thể khôi phục!",
+            title: 'Bạn có muốn xóa khách hàng ' + ticket.namePassenger + " ?"
+            ,
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Xóa !'
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Không',
+            reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                deleteTicketDB(id).then(() => {
+                deleteTicketDB(ticket.id).then(() => {
                     getTickets(page)
                 })
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Xóa thành công!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         })
     }
-    const [inputType, setInputType] = useState('text');
-    const [date, setDate] = useState('');
 
 
     const dataSearch = (obj) => {
@@ -145,7 +170,7 @@ function TicketBooked() {
                                 <th>STT</th>
                                 <th>Tên Khác Hàng</th>
                                 <th>Mã Chuyến Bay</th>
-                                <th>Ngày Đặt Vé</th>
+                                {/* <th>Ngày Đặt Vé</th> */}
                                 <th>Tuyến Bay</th>
                                 <th>Ngày Đi</th>
                                 <th>Tổng Tiền</th>
@@ -158,13 +183,13 @@ function TicketBooked() {
                                     <td >{index + (page * 5)}</td>
                                     <td >{ticket.namePassenger}</td>
                                     <td >{ticket.nameRoute}</td>
-                                    <td>{ticket.dateBooking}</td>
+                                    {/* <td>{ticket.dateBooking}</td> */}
                                     <td >{ticket.nameDeparture}-{ticket.nameDestination}</td>
                                     <td >{ticket.timeDeparture}</td>
                                     <td >{ticket.priceTicket}</td>
                                     <td className="icon-ticket">
                                         <ul>
-                                            <Link to={`/tickets/updateTicket/${ticket.id}`}>
+                                        <Link to={`/tickets/updateTicket/${ticket.id}`}>
                                             <li className="icon-ticket-item">
                                                 <i className="fa-solid fa-pen-to-square" />
 
@@ -172,7 +197,7 @@ function TicketBooked() {
                                             </Link>
                                             <li className="icon-ticket-item">
 
-                                                    <i onClick={()=>deleteTicket(ticket.id)} className="fa-solid fa-trash mx-2" style={{ color: '#eb0f1a' }}></i>
+                                                    <i onClick={()=>deleteTicket(ticket)} className="fa-solid fa-trash mx-2" style={{ color: '#eb0f1a' }}></i>
                                                 {/* <ModalDeleteTicket ticket={ticket} delete={() => deleteTicket(ticket.id)} icon={"fa-solid fa-trash mx-2"} /> */}
                                             </li>
                                             <Link to={`/printTicket/${ticket.id}`}>
@@ -180,8 +205,8 @@ function TicketBooked() {
                                                 <i className="fa-sharp fa-solid fa-file-pdf mx-2" style={{ color: '#8c2626' }} />
                                             </li>
                                             </Link>
-                                        </ul>
-                                    </td>
+                                    </ul>
+                                </td>
                                 </tr>
                             ))}
                     </tbody>
