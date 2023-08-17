@@ -11,7 +11,7 @@ export const createPost=async (post)=>{
 }
 export const getAllEmployee=async ()=>{
     try {
-        const result=await axios.get("/api/employee")
+        const result=await axios.get("http://localhost:8080/api/employee")
         return result.data
     }catch (err) {
         console.log(err)
@@ -24,8 +24,6 @@ try {
     console.log(e)
 }
 }
-
-
 
 
 export async function getListPost(page, limit) {
