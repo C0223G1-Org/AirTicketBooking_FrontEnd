@@ -9,8 +9,6 @@ import {
     ref,
     uploadBytes,
     getDownloadURL,
-    listAll,    
-    list,
 } from "firebase/storage";
 import { storage } from '../firebase-chat';
 import "../css/customer/customer_update_details.css"
@@ -28,10 +26,20 @@ export default function CustomerUpdate() {
     // const imagesListRef = ref(storage, "images/");
     const [status, setStatus] = useState(true)
     const navigate = useNavigate()
-    const getCustomer = async (id) => {
-        const customer = await getCustomerById(id)
-        setCustomer(customer)
-    }
+    const getCustomer = async() => {
+        try{       
+        const customer = await getCustomerById(param.id)
+                setCustomer(customer)}
+                catch(error){
+                        Swal.fire({
+                            icon:"error",
+                            timer:2000,
+                            title: "Không tìm thấy đối tượng này"
+                        })
+                        
+                }
+        }
+    
 
     const updateCus = (async (update) => {
         console.log(status);
@@ -45,7 +53,7 @@ export default function CustomerUpdate() {
                 () => {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Chỉnh sửa thành công !',
+                        title: 'Chỉnh sửa thành công.  ',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -66,7 +74,7 @@ export default function CustomerUpdate() {
                 () => {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Chỉnh sửa thành công !',
+                        title: 'Chỉnh sửa thành công.',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -75,7 +83,7 @@ export default function CustomerUpdate() {
     })
 
     useEffect(() => {
-        getCustomer(param.id)
+        getCustomer()
     }, [param.id])
 
     const inputFileRef = useRef(null);
@@ -86,7 +94,7 @@ export default function CustomerUpdate() {
         if (file.size > 3000000) {
             Swal.fire({
                 icon: 'error',
-                title: 'Dung lượng ảnh tối đa 3MB',
+                title: 'Dung lượng ảnh tối đa 3MB.',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -117,17 +125,17 @@ export default function CustomerUpdate() {
                             }}
 
                             validationSchema={yup.object({
-                                nameCustomer: yup.string().min(3, "Họ và tên tối thiểu 3 ký tự.").max(30, "Họ và tên tối đa 30 ký tự. ").required("Vui lòng nhập họ và tên.")
-                                // .matches(/^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$/,"Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ và không chứa các kí tự đặc biệt hoặc số").required("Vui lòng nhập họ và tên"),
+                                nameCustomer: yup.string().min(3, "Họ và tên tối thiểu 3 ký tự.").max(100, "Họ và tên tối đa 100 ký tự. ").required("Vui lòng nhập họ và tên.")
+                                // .matches(/^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$/," không chứa các kí tự đặc biệt hoặc số")
                                 , genderCustomer: yup.string().required("Vui lòng chọn giới tính."),
                                 // email_customer:yup.string().min("Email tối thiểu 12 ký tự").max("Email tối đa 50 ký tự").matches(/^[\w-]+@([\w-])+[\w-]{2,4}$/,"Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt").required("Vui lòng điền email"),
-                                telCustomer: yup.string().matches(/^(\+84|0)[1-9][0-9]{8}$/, "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số").required("Vui lòng nhập số điện thoại."),
+                                telCustomer: yup.string().matches(/^(\+84|0)[1-9][0-9]{8}$/, "Không chứa các kí tự đặc biệt").required("Vui lòng nhập số điện thoại."),
                                 addressCustomer: yup.string().min(10, "Địa chỉ tối thiểu 10 kí tự.").max(100, "Địa chỉ tối đa chỉ 100 kí tự.").required("Vui lòng nhập địa chỉ."),
                                 nationalityCustomer: yup.string().required("Vui lòng chọn quốc tịch của bạn."),
-                                idCardCustomer: yup.string().min(6, "CCCD/Pasport tối thiểu 6 kí tự và tối đa 12 kí tự.").max(12, "CCCD/Pasport tối thiểu 6 kí tự và tối đa 12 kí tự.").matches(/^([A-Z][0-9]{6,12})|([0-9]{12})$/, "CCCD/Password tối đa 12 kí tự và không chứa kí tự đặc biệt.").required("Vui lòng nhập CCCD/Passport."),
+                                idCardCustomer: yup.string().min(6, "CCCD/Pasport tối thiểu 6 kí tự.").max(12, "CCCD/Pasport tối đa 12 kí tự.").matches(/^([A-Z][0-9]{6,12})|([0-9]{12})$/, "CCCD/Password không chứa kí tự đặc biệt.").required("Vui lòng nhập CCCD/Passport."),
                                 dateCustomer: yup.date().max(maxDate, 'Khách hàng phải trên 18 tuổi.')
-                                .min(minDate, 'Khách hàng phải trên 18 tuổi và dưới 100 tuổi.')
-                                .required("Vui lòng nhập ngày tháng năm sinh.")
+                                    .min(minDate, 'Khách hàng phải trên 18 tuổi và dưới 100 tuổi.')
+                                    .required("Vui lòng nhập ngày tháng năm sinh.")
                             })}
 
                             onSubmit={(values) => {
@@ -234,19 +242,19 @@ export default function CustomerUpdate() {
                                                     </div>
                                                 </div>
                                                 <div className="row">
-                                                <div className="col-md-12">
-                                                    <div className="form-group">
-                                                        <span className="form-label">Địa chỉ
-                                                            (<sup style={{ fontSize: '8px' }}>
-                                                                <sup>
-                                                                    <i className="fa-solid fa-star-of-life" style={{ color: '#ff0019' }}>
-                                                                    </i>
-                                                                </sup>
-                                                            </sup>)
-                                                        </span>
-                                                        <Field className="form-control" type="text" name='addressCustomer' />
-                                                        <ErrorMessage component='div' id='error' name='addressCustomer' />
-                                                    </div>
+                                                    <div className="col-md-12">
+                                                        <div className="form-group">
+                                                            <span className="form-label">Địa chỉ
+                                                                (<sup style={{ fontSize: '8px' }}>
+                                                                    <sup>
+                                                                        <i className="fa-solid fa-star-of-life" style={{ color: '#ff0019' }}>
+                                                                        </i>
+                                                                    </sup>
+                                                                </sup>)
+                                                            </span>
+                                                            <Field className="form-control" type="text" name='addressCustomer' />
+                                                            <ErrorMessage component='div' id='error' name='addressCustomer' />
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 {/* <div className="row">

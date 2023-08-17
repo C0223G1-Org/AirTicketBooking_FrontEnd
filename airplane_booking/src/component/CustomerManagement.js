@@ -12,8 +12,11 @@ export default function CustomerManagement() {
     let [email, setEmail] = useState("")
     let [nationality, setNationality] = useState([])
     const [customers, setCustomers] = useState([])
+    const [customer, setCustomer] = useState({})
+
     const getListCustomer = async (page, name, email, nationality) => {
         console.log(name);
+
         const setListCustomer = async () => {
             setCustomers(await getListCustomers(page, name, email, nationality))
         }
@@ -21,11 +24,15 @@ export default function CustomerManagement() {
             await setEmailFunction("").then(await setNameFunction("")).then(await setNationalityFunction(""))
             Swal.fire({
                 icon: 'error',
-                title: 'Không tìm thấy!',
+                title: 'Không tìm thấy khách hàng !',
                 showConfirmButton: false,
                 timer: 1500
             })
         })
+    }
+
+    const detailCustomer=async (customer)=>{
+        setCustomer(customer)
     }
     const deleteCustomer = async (item) => {
         Swal.fire({
@@ -135,9 +142,9 @@ export default function CustomerManagement() {
 
     }
     return (
-        <div>
+        <div className="background-customer">
 
-            <div>
+            <div className="background-customer">
                 <meta charSet="UTF-8"/>
                 <title>Quản lí khách hàng</title>
 
@@ -149,7 +156,7 @@ export default function CustomerManagement() {
                 <link rel="stylesheet"
                       href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css"/>
 
-                <div className="container mx-auto px-4 sm:px-8" id="customer">
+                <div className="container mx-auto px-4 sm:px-8 background-customer" id="customer">
                     <div className="py-8" style={{textAlign: 'center'}}>
                         <div className="title">
                             <h1 style={{fontSize: '50px'}}>QUẢN LÍ KHÁCH HÀNG</h1>
@@ -165,10 +172,10 @@ export default function CustomerManagement() {
                                         }}
                                             id="nationality" defaultValue={""}
                                             className="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                        <option value={""}>Quốc tịch</option>
-                                        <option value={"Lào"}>Lào</option>
+                                        <option value={""}>Quốc tịch &darr;</option>
+                                        <option value={"Nhật Bản"}>Nhật Bản</option>
                                         <option value={"Việt Nam"}>Việt Nam</option>
-                                        <option value={"Hàn Quốc"}>Hàn Quốc</option>
+                                        <option value={"Lào"}>Lào</option>
                                     </select>
 
                                 </div>
@@ -221,28 +228,28 @@ export default function CustomerManagement() {
                                 {
                                     <table className="min-w-full leading-normal myTable">
                                         <thead>
-                                        <tr style={{background: 'rgb(6, 133, 170)', color: '#ffffff'}}>
-                                            <th className=" py-3    text-left text-x "
-                                                style={{textAlign: 'center', width: '10px'}}>
+                                        <tr  style={{background: 'rgb(6, 133, 170)', color: '#ffffff'}}>
+                                            <th className=" col-md-1 py-3     text-x "
+                                                style={{textAlign: 'center'}}>
                                                 STT
                                             </th>
-                                            <th className=" py-3    text-left text-x "
+                                            <th className=" col-md-2 py-3     text-x "
                                                 style={{textAlign: 'center', width: '5px'}}>
                                                 Họ tên
                                             </th>
-                                            <th className=" py-3    text-left text-x  " style={{textAlign: 'center'}}>
+                                            <th className=" col-md-2 py-3     text-x  " style={{textAlign: 'center'}}>
                                                 Ngày sinh
                                             </th>
-                                            <th className=" py-3    text-left text-x " style={{textAlign: 'center'}}>
+                                            <th className=" col-md-1 py-3     text-x " style={{textAlign: 'center'}}>
                                                 Giới tính
                                             </th>
-                                            <th className=" py-3    text-left text-x " style={{textAlign: 'center'}}>
+                                            <th className="col-md-2 py-3     text-x " style={{textAlign: 'center'}}>
                                                 Quốc tịch
                                             </th>
-                                            <th className=" py-3    text-left text-x  " style={{textAlign: 'center'}}>
+                                            <th className="col-md-2 py-3     text-x  " style={{textAlign: 'center'}}>
                                                 Email
                                             </th>
-                                            <th className=" py-3    text-left text-x  " style={{textAlign: 'center'}}>
+                                            <th className="col-md-2 py-3     text-x  " style={{textAlign: 'center'}}>
                                                 Hành động
                                             </th>
                                         </tr>
@@ -252,64 +259,77 @@ export default function CustomerManagement() {
                                             <tbody>
                                             {customers.content.map((item, index) =>
                                                 (
-                                                    <tr key={`ctm_${index}`}>
-                                                        <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm"
-                                                            style={{textAlign: 'center'}}>
-                                                            <div><p>{(page * 5) + (index + 1)}</p></div>
-                                                            {}
+                                                    <tr  key={`ctm_${index}`}>
+                                                        <td className="col-md-1  bg-white "
+                                                            style={{textAlign: 'center',weight:"10px"}}>
+                                                            <p>{(page * 5) + (index + 1)}</p>
+
                                                         </td>
-                                                        <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                                        <td className=" col-md-1  py-3   bg-white">
                                                             <div className="flex items-center">
                                                                 <div className="flex-shrink-0 w-10 h-10">
                                                                     <img className="w-full h-full rounded-full"
                                                                          src={item.imgCustomer} alt=""/>
 
                                                                 </div>
-                                                                <div className="ml-3">
+                                                                <div>
                                                                     <p className=" whitespace-no-wrap">
-                                                                        {item.nameCustomer}
+                                                                        {item.nameCustomer.split(" ")[item.nameCustomer.split(" ").length-1]}
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                                        <td className="col-md-2 px-5 py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">{moment(`${item.dateCustomer}`).format('DD-MM-YYYY')}</p>
                                                         </td>
-                                                        <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                                        <td className=" col-md-1 px-5 py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">
                                                                 {item.genderCustomer == true ? <p>Nam</p> : <p>Nữ</p>}
                                                             </p>
                                                         </td>
-                                                        <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                                        <td className="col-md-2 px-5 py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">
                                                                 {item.nationalityCustomer}
                                                             </p>
                                                         </td>
-                                                        <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                                        <td className="col-md-2  py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">
-                                                                {item.emailCustomer}
+                                                                {item.emailCustomer.split("@")[0]}
 
                                                             </p>
                                                         </td>
-                                                        <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                                        <td className="col-md-2  py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">
-                                                                <a data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                                   onClick={async () => {
+                                                                <span
+                                                                    onClick={async ()=>{
+                                                                        await detailCustomer(item)
+                                                                    }}
+                                                                    style={{
+                                                                    fontSize: '20px',
+                                                                    marginRight: '5px'
 
-                                                                       await deleteCustomer(item)
+                                                                }} data-bs-toggle="modal"
+                                                                      data-bs-target="#exampleModalDetail">
+                                                                <i className="fa-solid fa-circle-info"></i> </span>
+                                                                <a
+                                                                    onClick={async () => {
 
-                                                                   }}>
+                                                                        await deleteCustomer(item)
+
+                                                                    }}>
+
                                                                     <span style={{
                                                                         fontSize: '20px',
                                                                         marginRight: '10px',
                                                                         color: 'red'
-                                                                    }}><i className="fa-solid fa-trash"/></span>
+                                                                    }}><i className="fa-solid fa-trash-can "/></span>
                                                                 </a>
                                                                 <Link to={`/customers/edit/${item.idCustomer}`}>
                                                                     <span
                                                                         style={{fontSize: '20px', color: '#c5c58f'}}><i
                                                                         className="fa-solid fa-pen-to-square"/></span>
                                                                 </Link>
+
 
                                                             </p>
                                                         </td>
@@ -321,7 +341,7 @@ export default function CustomerManagement() {
                                             :
                                             <tbody>
                                             <tr style={{height: '150px'}}>
-                                                <td style={{color: "red", fontSize: '150px',}} colSpan="7">Không có dữ
+                                                <td style={{color: "red", fontSize: '50px',}} colSpan="7">Không có dữ
                                                     liệu
                                                 </td>
                                             </tr>
@@ -341,12 +361,25 @@ export default function CustomerManagement() {
 
                                                     await previousPage()
                                                 }}
-                                                className="text-sm  font-semibold py-2 px-4 rounded-l"
+                                                className="text-sm   py-2 px-3 rounded-l"
                                                 style={{background: 'rgb(223, 165, 18)', color: '#ffffff'}}>
                                                 Trước
-                                            </button> : ""}
+                                            </button> : <button
+                                                onClick={async () => {
 
-                                            <button className="text-sm  font-semibold py-2 px-4 rounded-r" style={{
+                                                    await previousPage()
+                                                }}
+                                                className="text-sm   py-2 px-3 rounded-l"
+                                                style={{
+                                                    background: 'rgb(223, 165, 18)',
+                                                    color: '#ffffff',
+                                                    opacity: '0,6',
+                                                    cursor: 'not-allowed'
+                                                }}>
+                                                Trước
+                                            </button>}
+
+                                            <button className="text-sm   py-2 px-3 rounded-l" style={{
                                                 background: 'rgb(223, 165, 18)',
                                                 color: '#ffffff',
                                                 marginLeft: '5px'
@@ -358,31 +391,41 @@ export default function CustomerManagement() {
                                                 <button onClick={async () => {
 
                                                     await nextPage();
-                                                }} className="text-sm  font-semibold py-2 px-4 rounded-r" style={{
+                                                }} className="text-sm   py-2 px-3 rounded-l" style={{
                                                     background: 'rgb(223, 165, 18)',
                                                     color: '#ffffff',
                                                     marginLeft: '5px'
                                                 }}>
                                                     Sau
                                                 </button>
-                                                : ""}
-                                            <div className="text-sm  font-semibold py-2 px-4 " style={{
+                                                : <button onClick={async () => {
+
+                                                    await nextPage();
+                                                }} className="text-sm   py-2 px-3 rounded-l" style={{
+                                                    background: 'rgb(223, 165, 18)',
+                                                    color: '#ffffff',
+                                                    marginLeft: '5px', opacity: '0,6', cursor: 'not-allowed'
+                                                }}>
+                                                    Sau
+                                                </button>}
+                                            <div className="   py-2 px-3 rounded-l" style={{
                                                 background: 'rgb(223, 165, 18)',
                                                 color: 'black',
-                                                marginLeft: '5px'
+                                                marginLeft: '5px',
+                                                borderRadius: '5px'
                                             }}>
                                                 <input id="numberPage" type="number"
-                                                       style={{width: '60px', border: '1px solid'}} pattern="^[0-9]{4}$"
+                                                       style={{width: '50px', borderRadius: '5px'}}
                                                        onKeyDown={async (event) => {
                                                            if (event.keyCode == 13) {
                                                                await searchPage()
                                                            }
                                                        }}/>
-                                                <button className="text-sm  font-semibold py-2 px-4 rounded-r"
+                                                <button className=""
                                                         onClick={async () => {
                                                             await searchPage()
                                                         }}
-                                                        style={{border: '1px solid', marginLeft: '10px'}}>
+                                                        style={{marginLeft: '10px', bodeRadius: '5px', color: 'white'}}>
                                                     <i
                                                         className="fa-solid fa-magnifying-glass"></i></button>
                                             </div>
@@ -396,7 +439,40 @@ export default function CustomerManagement() {
                 </div>
             </div>
 
+            <div style={{marginTop:"150px"}}  className="modal fade" id="exampleModalDetail" tabIndex={-1} aria-labelledby="exampleModalLabel1"
+                 aria-hidden="true">
+                <div  className="modal-dialog modal-fullscreen-md-down ">
+                    <div  style={{height:"300px"}} className="modal-content">
+                        <div  className="modal-header bg-info ">
+                            <h3 style={{fontSize:"20px"}} className="modal-title" id="exampleModalLabel1">Chi tiết khách hàng</h3>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body" style={{padding: 0}}>
+                            <div className="row container-fluid   ">
+
+                                <div className="col-12 card_content ">
+                                    <div className="">
+                                        <p className="">Họ và tên: {customer.nameCustomer} </p>
+                                        <p>Năm sinh: {moment(`${customer.dateCustomer}`).format('DD-MM-YYYY')}</p>
+                                        <p>Giới tính: {customer.genderCustomer}</p>
+                                        <p>Quốc gia: {customer.nationalityCustomer}</p>
+                                        <p>Email: {customer.emailCustomer}</p>
+                                        <p>Số điện thoại:  {customer.telEmployee}</p>
+                                        <p>Địa chỉ: {customer.addressCustomer}</p>
+                                        <p>CCCD/Passport: {customer.idCardCustomer}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row card_text mt-3 container-fluid text-justify">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     );
 }
+

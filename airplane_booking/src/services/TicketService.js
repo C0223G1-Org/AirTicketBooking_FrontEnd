@@ -13,11 +13,12 @@ export async function   searchTicketByNameAndIdCardPassengerResult(name,idCard,p
 
 
 export async function updateListTicket(ticket){
+    console.log("nhan")
         await axios.patch(`http://localhost:8080/tickets/updateTicket/`+ticket.idTicket,ticket);
 }
 
-export async function findTicketById(){
-    const res= await axios.get(`http://localhost:8080/tickets/${1}`)
+export async function findTicketById(id){
+    const res= await axios.get(`http://localhost:8080/tickets/${id}`)
     return res.data;
 }
 export async function getListCustomer() {
@@ -26,8 +27,6 @@ export async function getListCustomer() {
 }
 export  async function createNewTicket(ticket) {
     await axios.post("http://localhost:8080/tickets", ticket)
-
-
 }
 
 export async function getListSeat(){
@@ -71,7 +70,6 @@ export const searchBookedTicket=async(page,ticketSearch)=>{
 }
 export const searchUnBookedTicket=async(page,ticketSearch)=>{
     const ticket = qs.stringify(ticketSearch);
-    console.log(ticket)
     const response=await axios.get(`http://localhost:8080/tickets/search-unbooked/${page}?${ticket}`)
     return response.data
 }

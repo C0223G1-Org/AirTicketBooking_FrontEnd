@@ -1,23 +1,13 @@
 .app-content {
-
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Times New Roman', Times, serif;
-  background-color: #f2f2f2;
-}
-
-.seat {
-  padding-right: 110px;
-}
-
 .ticket {
-  width: 70%;
-  margin: 10px auto;
+  width: 100%;
+  margin: 20px auto;
   background-color: white;
   border: 5px solid rgb(6, 133, 170);
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0px 0px 10px #888888;
 }
 
@@ -26,15 +16,12 @@ body {
 }
 
 .codeGym {
- text-align: center;
+  text-align: center;
   color: white;
- 
 }
 
 .print {
-  
-  font-size: 14px;
-  margin-bottom: 30px;
+  font-size: medium;
   color: #0055a3;
   background-color: rgb(6, 133, 170);
   padding-left: 10px;
@@ -57,73 +44,57 @@ body {
 
 .thank-you {
   text-align: center;
-  margin-top: 20px;
-  color: gray;
+  margin-top: 10px;
+  color: white;
 }
 
 .row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
 }
 
 .col-6 {
   width: 50%;
 }
 
-.label::before {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background-color: #0055a3;
-  margin-right: 10px;
-  border-radius: 50%;
-}
-
-.value::before {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background-color: #888888;
-  margin-right: 10px;
-  border-radius: 50%;
-}
-
-.passenger-list li::before {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background-color: #0055a3;
-  margin-right: 10px;
-  border-radius: 50%;
-}
-
+.label::before,
+.value::before,
+.passenger-list li::before,
 .condition-list li::before {
   content: "";
   display: inline-block;
   width: 10px;
   height: 10px;
-  background-color: #888888;
   margin-right: 10px;
   border-radius: 50%;
+}
+
+.label::before {
+  background-color: #0055a3;
+}
+
+.value::before,
+.condition-list li::before {
+  background-color: #888888;
 }
 
 .button-area {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  
   border-radius: 10px;
-
+  height: 50px;
+  margin-top: -400px;
 }
 
 .button-area button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  background-color: rgb(217, 171, 52);
+  color: white;
+  border: 3px solid rgb(6, 133, 170);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #888888;
 }
 
 .button-area button[primary="true"] {
@@ -134,15 +105,9 @@ body {
 .button-area button:hover {
   background-color: rgb(228, 214, 177);
 }
-
-.button-area button {
-  background-color: rgb(217, 171, 52);
-  color: white;
-  border: 3px solid rgb(6, 133, 170);
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px #888888;
+.imgPrint{
+  background-image: url("/src/logo_5.png");
 }
-
 @media (max-width: 768px) {
   .ticket {
     max-width: 90%;
@@ -162,10 +127,9 @@ body {
     width: 100%;
   }
 
-
-
   .button-area button {
     padding: 8px 16px;
     font-size: 14px;
+
   }
 }
