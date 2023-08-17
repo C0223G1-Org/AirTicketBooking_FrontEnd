@@ -119,7 +119,6 @@ export function UpdatePost() {
                     update(values)
                 }}
             >
-
                 <div className="container " style={{marginBottom: "5rem"}}>
                     <div className="row height d-flex justify-content-center align-items-center">
                         <div className="col-md-6" style={{borderRadius: "4px"}}>
