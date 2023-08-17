@@ -1,4 +1,4 @@
-.card {
+.card-tri {
     border: none;
     padding: 20px;
     position: relative;
@@ -29,16 +29,8 @@ body {
     /*background-image: url('./img/background.jpg')*/
 }
 
-.height {
-    height: 100vh
-}
 
-.card {
-    border: none;
-    padding: 20px;
-    position: relative;
-    border-radius: 4px;
-}
+
 
 .btn-group {
     display: flex;

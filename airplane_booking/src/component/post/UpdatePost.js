@@ -20,7 +20,7 @@ export function UpdatePost() {
     const [imageUpload, setImageUpload] = useState(null);
     const param = useParams()
     const navigate = useNavigate();
-    const [status,setStatus]=useState(true)
+
     useEffect(() => {
         const update = async () => {
             const result = await postService.findPostById(param.id)
@@ -116,127 +116,34 @@ export function UpdatePost() {
                     content: Yup.string().required("Không được để trống")
                 })}
                 onSubmit={(values) => {
-                    setStatus(false)
                     update(values)
                 }}
             >
 
-                <
-                    div
-                    className="container "
-                    style={
-                        {
-                            marginBottom: "5rem"
-                        }
-                    }>
-                    <
-                        div
-                        className="row height d-flex justify-content-center align-items-center">
-                        < div
-                            className="col-md-6"
-                            style={
-                                {
-                                    borderRadius: "4px"
-                                }
-                            }>
-                            <
-                                div
-                                className="card"
-                                style={
-                                    {
-                                        marginTop: "4rem",
-                                        marginBottom:
-                                            "4rem",
-                                        paddingLeft:
-                                            "0px",
-                                        paddingTop:
-                                            "0px",
-                                        paddingRight:
-                                            "0px"
-                                    }
-                                }
-                            >
-                                <
-                                    div
-                                    style={
-                                        {
-                                            borderRadius: "4px",
-                                            textAlign:
-                                                "center",
-                                            backgroundColor:
-                                                "#4FA3E3",
-                                            height:
-                                                "57px",
-                                            color:
-                                                "white"
-                                        }
-                                    }
-                                >
-                                    <h2
-                                        style={
-                                            {
-                                                marginTop: "9px"
-                                            }
-                                        }>
-                                        THÊM
-                                        MỚI
-                                        THÔNG
-                                        TIN </h2>
+                <div className="container " style={{marginBottom: "5rem"}}>
+                    <div className="row height d-flex justify-content-center align-items-center">
+                        <div className="col-md-6" style={{borderRadius: "4px"}}>
+                            <div className="card-tri" style={{marginTop: "4rem", marginBottom: "2rem", paddingLeft: "0px", paddingTop: "0px", paddingRight: "0px"}}>
+                                <div style={{borderRadius: "4px", textAlign: "center", backgroundColor: "#4FA3E3", height: "57px", color: "white"}}>
+                                    <h2 style={{marginTop: "9px"}}>THÊM MỚI THÔNG TIN </h2>
                                 </div>
                                 <Form style={{marginLeft: "40px", marginRight: "40px"}}>
-                                    <div className="mt-4 inputs">
-<span>
-Tiêu đề <span style={{color: "red"}}>*</span>
-</span>
-                                        <Field
-                                            type="text"
-                                            className="form-control"
-                                            id="title"
-                                            name="title"
-                                        />
-
-
+                                    <div className="mt-4 inputs"><span>Tiêu đề <span style={{color: "red"}}>*</span></span>
+                                        <Field type="text" className="form-control" id="title" name="title"/>
                                     </div>
-                                    {/*<div className="mt-2 inputs">*/}
-                                    {/*    <span>*/}
-                                    {/*      Nhân viên <span style={{ color: "red" }}>*</span>*/}
-                                    {/*    </span>*/}
-                                    {/*    <Field*/}
-                                    {/*        type="number"*/}
-                                    {/*        value="1"*/}
-                                    {/*        className="form-control"*/}
-                                    {/*        id="employee"*/}
-                                    {/*        name="employee"*/}
-                                    {/*        readOnly*/}
-                                    {/*    />*/}
-                                    {/*</div>*/}
-                                    <div className="mt-2 inputs">
-<span>
-Ngày tạo <span style={{color: "red"}}>*</span>       {formatDateTime(new Date())}
-</span>
-
-
+                                    <div className="mt-2 inputs"><span>Ngày tạo <span style={{color: "red"}}>*</span>       {formatDateTime(new Date())}</span>
                                     </div>
-                                    <div className="mt-2 inputs">
-<span>
-Upload hình ảnh <span style={{color: "red"}}>*</span>
-</span>
+                                    <div className="mt-2 inputs"><span>Upload hình ảnh <span style={{color: "red"}}>*</span></span>
                                         <Field className="custom-file-input"
-                                               accept="image/png, image/gif, image/jpeg" type="file" id="input-file"
+                                               accept="image/png, image/gif, image/jpeg" type="file"
                                                ref={inputFileRef} onChange={handleInputChange} name='image'/>
-                                        <img  src={post.image}
-                                             id="img-preview" ref={imgPreviewRef} alt="Preview" name='image'/>
-
+                                        <img  src={post.image} width="100%"
+                                              ref={imgPreviewRef}  name='image'/>
                                     </div>
 
                                     <div className="mt-4 inputs">
-<span>
-Nội dung <span style={{color: "red"}}>*</span>
-</span>
-                                        <Field
-                                            name="content"
-                                            component={CKEditorComponent}
-                                        />
+                                        <span>Nội dung <span style={{color: "red"}}>*</span></span>
+                                        <Field name="content" component={CKEditorComponent}/>
                                     </div>
                                     <div className="mt-4 btn-group">
                                         <div className="text-center m-auto">
@@ -266,7 +173,6 @@ Nội dung <span style={{color: "red"}}>*</span>
                 </div>
             </Formik>
             }
-
         </>
 
     );
