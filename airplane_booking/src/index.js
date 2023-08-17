@@ -27,6 +27,8 @@ import EmployeeList from "./component/Employee/EmployeeList";
 // import CreateEmployee from "./component/Employee/CreateEmployee";
 // import EditEmployee from "./component/Employee/EditEmployee";
 import ListPost from "./component/post/ListPost";
+import ExportPDF from './components/ticket/printTicket';
+import Print from './components/ticket/printTicket';
 
 // import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
 // import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
@@ -43,7 +45,7 @@ root.render(
                 <Route path='/header-customer' element={<HeaderCustomer />} />
                 <Route path='/header-admin' element={<HeaderAdmin />} />
                 <Route path='/header-employee' element={<HeaderEmployee />} />
-                <Route path='/printTicket' element={<PrintTicket></PrintTicket>}></Route>
+                <Route path='/printTicket' element={<Print></Print>}></Route>
                 <Route path='/tickets/updateTicket/:id' element={<UpdateTicket />}></Route>
                 <Route path="/ticket/booked" element={<TicketBooked/>}/>
                 <Route path="/ticket/unbooked" element={<TicketUnBook/>}/>
