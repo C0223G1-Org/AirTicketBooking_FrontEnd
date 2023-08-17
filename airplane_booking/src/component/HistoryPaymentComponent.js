@@ -228,7 +228,7 @@ function HistoryPaymentComponent() {
                         numberPage -= 1;
                         if (numberPage <= payments.totalPages && numberPage >= 1) {
                           page = numberPage
-                          await setPageFunction(numberPage).then(setPayments (await showList(page)))
+                          await setPageFunction(numberPage).then( (await showList(page,nameDeparture,nameDestination)))
                         } else {
                           Swal.fire({
                             icon: 'warning',
