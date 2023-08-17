@@ -72,6 +72,10 @@ root.render(
                     <Route path="/list/:data" element={<ListRouter/>}/>
                     <Route path="/detail-ticket/:data" element={<DetailTicket/>}/>
                     <Route path="/info-passenger/:data" element={<InfoPassenger/>}/>
+                    <Route path="/payment/:id" element={<PaymentComponent/>}/>
+
+                    {/*<Route path="/employee" element={<EmployeeList/>} />*/}
+                    {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
                     <Route path="/employee" element={<EmployeeList/>} />
                     <Route path='/employee/create' element={<CreateEmployee />} />
                     <Route path='/employee/update/:id' element={<EditEmployee />} />
@@ -84,6 +88,7 @@ root.render(
                         element={<SearchResultPage/>}
                     />
                     <Route path="/admin/messages" element={<AdminPage/>}></Route>
+                    <Route path="/login" element={<Login/>}></Route>
                 </Routes>
 
                 <Footer/>
