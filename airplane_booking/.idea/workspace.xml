@@ -22,35 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9940190e-4050-4e32-b542-a40edc64470e" name="Changes" comment="VuDT commit cập nhật css và coding FrontEnd updateTicket,và printTicket lần 5"/>
+    <list default="true" id="9940190e-4050-4e32-b542-a40edc64470e" name="Changes" comment="VuDT commit cập nhật css và coding FrontEnd updateTicket,và printTicket lần 5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ticket/printTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket/printTicket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ticket/updateTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket/updateTicket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/ticket/printTicket.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/ticket/printTicket.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/ticket/updateTicket.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/ticket/updateTicket.css" afterDir="false" />
-    <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="kiet update code ngay 15-08"/>
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-    <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="thanh son update code ngay 17-08">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/post/CreatePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/CreatePost.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/post/ListPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/ListPost.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/PostServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/PostServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/AccountServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/AccountServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/CustomerServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/CustomerServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/DepartureServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/DepartureServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/DestinationServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/DestinationServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/EmployeeServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/EmployeeServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/LugguageServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/LugguageServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/PostServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/PostServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/RoleServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/RoleServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/RouteServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/RouteServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/TicketService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/TicketService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/TypePassenger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/TypePassenger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/TypeSeatServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/TypeSeatServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/TypeTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/TypeTicket.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,23 +57,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)",
+    "ts.external.directory.path": "D:\\codegym\\downloads\\WebStorm 2022.3.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -130,25 +93,6 @@
       <workItem from="1692225872804" duration="2804000" />
       <workItem from="1692233451322" duration="17359000" />
     </task>
-    <task id="LOCAL-00001" summary="thanh son commit frontend ngày 16-08-2023">
-      <created>1692174627312</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1692174627312</updated>
-    </task>
-    <task id="LOCAL-00002" summary="thanh son commit frontend ngày 16-08-2023">
-      <created>1692178696830</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1692178696830</updated>
-      <workItem from="1692100149710" duration="13649000" />
-      <workItem from="1692148362813" duration="2887000" />
-      <workItem from="1692156893554" duration="3100000" />
-      <workItem from="1692245608645" duration="1217000" />
-      <workItem from="1692253767450" duration="642000" />
-    </task>
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
       <created>1692107583066</created>
@@ -165,14 +109,6 @@
       <option name="project" value="LOCAL" />
       <updated>1692107644550</updated>
     </task>
-    <task id="LOCAL-00003" summary="VuDT commit cập nhật css FrontEnd updateTicket,và printTicket  lần 4">
-      <created>1692173265950</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1692173265951</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <task id="LOCAL-00003" summary="thanh son commit frontend ngày 16-08-2023">
       <created>1692179188594</created>
       <option name="number" value="00003" />
@@ -250,7 +186,6 @@
     <MESSAGE value="thaivv commit code tuong doi cho cac ban merge" />
     <MESSAGE value="VuDT commit cập nhật css FrontEnd updateTicket,và printTicket  lần 4" />
     <MESSAGE value="VuDT commit cập nhật css và coding FrontEnd updateTicket,và printTicket lần 5" />
-    <option name="LAST_COMMIT_MESSAGE" value="VuDT commit cập nhật css và coding FrontEnd updateTicket,và printTicket lần 5" />
     <MESSAGE value="kiet update code ngay 15-08" />
     <MESSAGE value="thanh son update code ngay 17-08" />
     <option name="LAST_COMMIT_MESSAGE" value="thanh son update code ngay 17-08" />
