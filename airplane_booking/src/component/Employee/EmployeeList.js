@@ -1,17 +1,22 @@
 import React, {useEffect, useState} from "react";
 import {getListEmployee, searchEmployee, deleteEmployee} from "../../services/EmployeeServices";
 import Swal from "sweetalert2";
+import '../../component/Employee/employeeEdit.css';
 import {Link} from "react-router-dom";
+
 
 /**
  * Create by: HuyHD
  * @returns {JSX.Element}
  * @constructor
  */
-export default function EmployeeList() {
+function EmployeeList() {
     const [employeeList, setEmployeeList] = useState([]);
     const [gender, setGender] = useState(null);
     const [name, setName] = useState('');
+    const [flag, setFlag] = useState(true);
+
+
 
     const [searchPage, setSearchPage] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
@@ -20,10 +25,12 @@ export default function EmployeeList() {
 
     const getEmployees = async (page, pageSize) => {
         const data = await getListEmployee(page, pageSize);
+        data.totalPages = undefined;
         setEmployeeList(data.content);
         setTotalPages(data.totalPages);
         setShowLastPageButton(page < data.totalPages - 1);
     };
+
 
     // const getEmployee = async (id) => {
     //     try {
@@ -34,22 +41,25 @@ export default function EmployeeList() {
     //         alert("a")
     //     }
     // }
+
     const handleSearch = async () => {
-        try {
-            const results = await searchEmployee(gender, name, currentPage, 2);
-            setEmployeeList(results.content);
-            setTotalPages(results.totalPages);
-
-        } catch (error) {
+        const results = await searchEmployee(gender, name, currentPage, 5);
+        if (results.content == undefined) {
             await Swal.fire({
-                    text: 'Không tìm thấy nhân viên với thông tin này!',
-                    confirmButtonText: 'Xác nhận',
-                    reverseButtons: true
-
-                }
-            )
-
+                text: 'Không tìm thấy nhân viên với thông tin này!',
+                confirmButtonText: 'Xác nhận',
+                reverseButtons: true
+            });
+            setName("");
+            setGender("");
+            return
         }
+        setFlag(false);
+        setEmployeeList(results.content);
+        setTotalPages(results.totalPages);
+
+        setName("");
+        setGender("");
     };
 
     const handleDeleteEmployee = async (id, name) => {
@@ -68,7 +78,7 @@ export default function EmployeeList() {
             if (res.isConfirmed) {
                 deleteEmployee(id).then(() => {
                     console.log("10101");
-                    getEmployees(0, 2).then(() => {
+                    getEmployees(0, 5).then(() => {
                         Swal.fire({
                             icon: 'success',
                             title: 'Xoá Thành công!!!!',
@@ -82,14 +92,15 @@ export default function EmployeeList() {
         })
     }
 
+
     // Hàm xử lý khi người dùng chuyển trang
     const handlePageChange = async (page) => {
         setCurrentPage(page);
-        await getEmployees(page, 2);
+        await getEmployees(page, 5);
     };
 
     useEffect(() => {
-        getEmployees(currentPage, 2);
+        getEmployees(currentPage, 5);
 
     }, [currentPage]);
 
@@ -98,7 +109,7 @@ export default function EmployeeList() {
         const pageNumber = parseInt(searchPage, 10);
         if (!isNaN(pageNumber) && pageNumber > 0 && pageNumber <= totalPages) {
             handlePageChange(pageNumber - 1);
-            setSearchPage('');
+
         } else {
             Swal.fire({
                     text: 'Trang không tồn tại!',
@@ -107,7 +118,10 @@ export default function EmployeeList() {
                 }
             )
         }
+        setSearchPage('');
     };
+
+    console.log(employeeList)
 
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
@@ -119,6 +133,7 @@ export default function EmployeeList() {
             handleSearchPage();
         }
     };
+
     return (
         <>
             <div>
@@ -129,8 +144,8 @@ export default function EmployeeList() {
                     <div className="container my-2 flex sm:flex-row flex-col">
                         <div className="flex col-ms col-4">
                             <div className="col-ms col">
-                                <Link to="src/create/employee" className="btn font-semibold form_button_employee "
-                                   style={{marginLeft: '10px'}}>
+                                <Link to="/employee/create" className="btn font-semibold form_button_employee "
+                                      style={{marginLeft: '100px'}}>
                                     <i className="fa-solid fa-plus"/> <span>Thêm mới nhân viên</span></Link>
                             </div>
                         </div>
@@ -159,6 +174,8 @@ export default function EmployeeList() {
                     </div>
                     <div className="container  sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                         <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+
+
                             <table className="min-w-full leading-normal">
                                 <thead>
                                 <tr className="table_header_employee">
@@ -188,21 +205,21 @@ export default function EmployeeList() {
                                 <tbody>
                                 {employeeList.map((e, index) => (
                                     <tr key={e.idEmployee}>
-                                        <td class="col px-4 py-3 border-b border-gray-200 bg-white text-sm">{(currentPage * 2) + index + 1}</td>
-                                        <td class="col flex py-3 border-b border-gray-200 bg-white text-sm">
-                                            <img class="image_employee"
+                                        <td className="col px-4 py-3 border-b border-gray-200 bg-white text-sm">{(currentPage * 5) + index + 1}</td>
+                                        <td className="col flex py-3 border-b border-gray-200 bg-white text-sm">
+                                            <img className="image_employee"
                                                  src={e.image} alt=""/>
-                                            <span class="py-3">{e.nameEmployee}</span></td>
-                                        <td class="col py-3 border-b border-gray-200 bg-white text-sm">{e.gender ? "Nam" : "Nữ"}</td>
-                                        <td class="col py-3 border-b border-gray-200 bg-white text-sm">{e.emailEmployee}</td>
-                                        <td class="col py-3 border-b border-gray-200 bg-white text-sm">{e.dateEmployee}</td>
-                                        <td class="col py-3 border-b border-gray-200 bg-white text-sm">{e.telEmployee}</td>
-                                        <td class="col py-3 border-b border-gray-200 bg-white text-sm">
+                                            <span className="py-3">{e.nameEmployee}</span></td>
+                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.gender ? "Nam" : "Nữ"}</td>
+                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.emailEmployee}</td>
+                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">{new Date(e.dateEmployee).toLocaleDateString("en-GB")}</td>
+                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">{e.telEmployee}</td>
+                                        <td className="col py-3 border-b border-gray-200 bg-white text-sm">
                                             {/*<a href="#" type="button" data-bs-toggle="modal" data-bs-target="#detailModal" title="Chi tiết"*/}
                                             {/*onClick={()=> getEmployee(e.idEmployee)}>*/}
                                             {/*    <i className="fa-solid fa-circle-info icon_detail_employee" />*/}
                                             {/*</a>*/}
-                                            <Link to={`src/edit/employee/${e.idEmployee}`} title="Sửa"><i
+                                            <Link  to={`/employee/update/${e.idEmployee}`} title="Sửa"><i
                                                 className="fa-solid fa-pen-to-square icon_edit_employee"/></Link>
                                             <a type="button" title="Xóa"
                                                onClick={() => {
@@ -215,57 +232,61 @@ export default function EmployeeList() {
                                 ))}
                                 </tbody>
                             </table>
-                            <div
-                                className="px-5 py-3 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
+                            <div className="px-5 py-3 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
                                 <div className="inline-flex mt-2 xs:mt-0">
                                     <button
-
-                                        className=" style_button_page text-sm font-semibold py-2 px-4 rounded-l"
+                                        className="style_button_page text-sm font-semibold py-2 px-4 rounded-l"
                                         disabled={currentPage === 0}
                                         onClick={() => handlePageChange(currentPage - 1)}
                                     >
                                         Trước
                                     </button>
-
+                                    ​
                                     {Array.from(Array(totalPages).keys())
                                         .slice(0, 3)
                                         .map((page) => (
                                             <button
-
                                                 key={page}
                                                 className={`text-sm font-semibold py-2 px-4 ${
                                                     page === currentPage ? 'bg-gray-500 text-black' : 'bg-yellow-600 text-white'
                                                 } rounded`}
-                                                style={{marginRight: '10px'}}
+                                                style={{ marginRight: '10px' }}
                                                 onClick={() => handlePageChange(page)}
                                             >
                                                 {page + 1}
                                             </button>
                                         ))}
-                                    <div className="style_button_page text-sm font-semibold py-2 px-2 rounded"
-                                    >
-                                        <input class="style_button_search_page"
-                                               type="number"
-                                               value={searchPage}
-                                               onChange={(e) => setSearchPage(e.target.value)}
-                                               onKeyPress={handleKeyEnterPage}
-                                        />
-
-                                        <button onClick={handleSearchPage}><i className="fa-solid fa-magnifying-glass"/>
+                                    ​
+                                    {totalPages > 3 && (
+                                        <div className="style_button_page text-sm font-semibold py-2 px-2 rounded">
+                                            <input
+                                                className="style_button_search_page"
+                                                type="number"
+                                                value={searchPage}
+                                                onChange={(e) => setSearchPage(e.target.value)}
+                                                onKeyPress={handleKeyEnterPage}
+                                            />
+                                            <button onClick={handleSearchPage}>
+                                                <i className="fa-solid fa-magnifying-glass" />
+                                            </button>
+                                        </div>
+                                    )}
+                                    ​
+                                    {currentPage !== totalPages - 1 && (
+                                        <button
+                                            className="text-sm font-semibold py-2 px-4 rounded-r"
+                                            style={{ background: 'rgb(223, 165, 18)', color: '#ffffff', marginRight: '10px' }}
+                                            disabled={currentPage === totalPages - 1}
+                                            onClick={() => handlePageChange(currentPage + 1)}
+                                        >
+                                            Sau
                                         </button>
-                                    </div>
-                                    <button
-                                        className="text-sm font-semibold py-2 px-4 rounded-r"
-                                        style={{background: 'rgb(223, 165, 18)', color: '#ffffff', marginRight: '10px'}}
-                                        disabled={currentPage === totalPages - 1}
-                                        onClick={() => handlePageChange(currentPage + 1)}
-                                    >
-                                        Sau
-                                    </button>
+                                    )}
+                                    ​
                                     {showLastPageButton && (
                                         <button
                                             className="text-sm font-semibold py-2 px-4 rounded"
-                                            style={{background: 'rgb(223, 165, 18)', color: '#ffffff'}}
+                                            style={{ background: 'rgb(223, 165, 18)', color: '#ffffff' }}
                                             onClick={() => handlePageChange(totalPages - 1)}
                                         >
                                             Trang cuối
@@ -281,3 +302,15 @@ export default function EmployeeList() {
         </>
     );
 }
+export default EmployeeList;
+
+
+
+
+
+
+
+
+
+
+
