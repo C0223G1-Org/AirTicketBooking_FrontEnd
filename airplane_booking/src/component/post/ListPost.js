@@ -9,7 +9,7 @@ import BackToTop from "../../img/mui_ten_len.png"
 
 export default function ListPost() {
     const scrollToTop = () => {
-        const scrollStep = window.scrollY / (2000 / 15); // Tốc độ cuộn
+        const scrollStep = window.scrollY / (200 / 15); // Tốc độ cuộn
         const scrollInterval = setInterval(() => {
             if (window.scrollY !== 0) {
                 window.scrollBy(0, -scrollStep);
@@ -166,7 +166,7 @@ export default function ListPost() {
             <body className="list-news overview-list-post">
             <div className="row container-fluid ">
                 <div className="main-son col-12 col-lg-9 ">
-                    <div className="justify-content-between" style={{display: 'flex', marginBottom: '8.25px'}}>
+                    <div className="justify-content-between" style={{display: 'flex', marginBottom: '16px'}}>
                         <div className="add-post">
                             <NavLink to="/createPost"
                                      className={`btn1 search-son mt-3 ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
