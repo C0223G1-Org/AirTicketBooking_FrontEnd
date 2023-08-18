@@ -229,16 +229,16 @@ function EmployeeList() {
                     <div className="my-2 flex sm:flex-row flex-col">
                         <div className="col-ms col-4 ">
                             <div className="col-ms col ">
-                                <Link to="/employee/create" className="btn   font-semibold form_button_employee "
+                                <Link to="/employee/create" className="btn mt-2  font-semibold form_button_employee "
                                       style={{marginLeft: ''}}>
                                     <i className="fa-solid fa-plus "/> <span
                                     className="h5">Thêm mới nhân viên</span></Link>
                             </div>
                         </div>
-                        <div className=" col-ms col-8 mt-4">
-                            <div className="ml-10 col-md-4 inline-flex justify-end" style={{position: 'relative'}}>
+                        <div className=" col-ms col-8 ">
+                            <div className="ml-10 col-md-4 inline-flex justify-end" >
                                 <span className="search_gender_employee">Giới tính:</span>
-                                <select className="mt-1 h6" style={{border: '1px solid black'}}
+                                <select className=" h5" style={{border: '1px solid black', height:"2rem"}}
                                         value={gender}
                                         onChange={(e) => setGender(e.target.value)}>
                                     <option value="">Tất Cả</option>
@@ -246,9 +246,9 @@ function EmployeeList() {
                                     <option value="false">Nữ</option>
                                 </select>
                             </div>
-                            <div className="col-md-7 inline-flex" style={{position: 'relative'}}>
-                                <label className="col-3 items-end search_name_employee justify-end">Họ và
-                                    tên:</label>
+                            <div className="col-md-7 inline-flex" >
+                                <label className="col-3 mt-2 items-end search_name_employee justify-end"><b>Họ và
+                                    tên:</b></label>
                                 <div className="col-8 inline-flex">
                                     <input className=" form-control h-10 " type="search" placeholder="Tìm kiếm"
                                            aria-label="Search" value={name}
@@ -411,8 +411,8 @@ function EmployeeList() {
 
                 <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel5"
                      aria-hidden="true">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
+                    <div className="modal-dialog" >
+                        <div className="modal-content" >
                             <div className="modal-header table_header_employee">
                                 <h1 className="modal-title fs-5" id="exampleModalLabel">CHI TIẾT NHÂN VIÊN</h1>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal"

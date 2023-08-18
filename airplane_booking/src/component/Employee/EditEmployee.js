@@ -11,8 +11,11 @@ import Swal from "sweetalert2";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {storage} from "../../firebase-chat";
 
-
-
+/**
+ * Create by: QuocNHA
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function EditEmployee() {
     const navigate = useNavigate();
     const param = useParams();
@@ -20,39 +23,60 @@ function EditEmployee() {
     const inputFileRef = useRef(null);
     const [imageUpload, setImageUpload] = useState(null);
     const [employeeId, setEmployeesId] = useState(null);
-    useEffect(() => {
-        const fetchEmployeeById = async () => {
+    const fetchEmployeeById = async () => {
+        try {
             const rs = await EmployeeService.findById(param.id)
-            console.log(rs)
             setEmployeesId(rs)
+            console.log(rs)
+        } catch (error) {
+            await Swal.fire({
+                icon: 'error',
+                title: 'ID không tồn tại!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            navigate("/employee");
         }
-        fetchEmployeeById()
-    }, [param.id])
+    };
 
+    useEffect(() => {
+        fetchEmployeeById();
+    }, [param.id]);
 
     if (!employeeId) {
-        return null;
+        return null
     }
 
 
     const savePost = async (post) => {
-        const fileName = `images/${imageUpload.name + v4()}`
-        const imageRef = ref(storage, fileName);
-        uploadBytes(imageRef, imageUpload).then((snapshot) => {
-            getDownloadURL(snapshot.ref).then(async (url) => {
-                console.log(url)
+        if (imageUpload) { // Kiểm tra nếu có ảnh được chọn
+            const fileName = `images/${imageUpload.name + v4()}`
+            const imageRef = ref(storage, fileName);
+            uploadBytes(imageRef, imageUpload).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then(async (url) => {
+                    console.log(url)
 
-                await updateEmployee({
-                    ...post, image: url
+                    await updateEmployee({
+                        ...post, image: url
 
-                }).then(navigate("/employee"))
-                console.log(url);
+                    }).then(navigate("/employee"))
+                    console.log(url);
+                })
+            }).then(() => {
+                Swal.fire({
+                    icon: 'success', title: 'Chỉnh sửa thành công !', showConfirmButton: false, timer: 1000
+                })
             })
-        }).then(() => {
-            Swal.fire({
-                icon: 'success', title: 'Chỉnh sửa thành công !', showConfirmButton: false, timer: 1000
-            })
-        })
+        } else {
+            await updateEmployee({
+                ...post // Bỏ phần image khi không có ảnh
+            }).then(navigate("/employee"))
+                .then(() => {
+                    Swal.fire({
+                        icon: 'success', title: 'Chỉnh sửa thành công !', showConfirmButton: false, timer: 1000
+                    })
+                })
+        }
     }
     const handleInputChange = (event) => {
         const file = event.target.files[0];
@@ -85,14 +109,14 @@ function EditEmployee() {
                                         {/*<img*/}
                                         {/*    src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"*/}
                                         {/*    alt="Preview Image" id="img-preview"/>*/}
-                                        <img style={{marginTop: '10px',marginLeft:'100px'}} name='image'
+                                        <img style={{marginTop: '10px', marginLeft: '100px'}} name='image'
                                              id="img-preview" src={employeeId.image} ref={imgPreviewRef}
                                              alt="Preview Image"/>
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-6" style={{padding: '0px'}}>
                                     <div className="booking-formQuoc">
-                                        <div className="" style={{width:'100%'}}>
+                                        <div className="" style={{width: '100%'}}>
                                             <p className='pQuoc'>Chỉnh sửa nhân viên</p>
                                         </div>
                                         <Formik initialValues={{
@@ -110,6 +134,12 @@ function EditEmployee() {
                                         }}
                                                 validationSchema={Yup.object({
                                                     nameEmployee: Yup.string()
+                                                        .test('no-leading-whitespace', 'Tên không được bắt đầu bằng khoảng trắng.', (value) => {
+                                                            return !value.startsWith(' ');
+                                                        })
+                                                        .test('no-trailing-whitespace', 'Tên không được kết thúc bằng khoảng trắng.', (value) => {
+                                                            return !value.endsWith(' ');
+                                                        })
                                                         .required("Vui lòng nhập.")
                                                         .min(5, "Tên quá ngắn,phải từ 5 kí tự.")
                                                         .max(50, "tên quá dài.")
@@ -166,7 +196,8 @@ function EditEmployee() {
                                             style={{color: 'red'}}>*</span>)</span>
                                                             <Field name='nameEmployee' className="form-control"
                                                                    type="text"/>
-                                                            <ErrorMessage name='nameEmployee' component='div' className='error_red_employee'/>
+                                                            <ErrorMessage name='nameEmployee' component='div'
+                                                                          className='error_red_employee'/>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
@@ -175,7 +206,8 @@ function EditEmployee() {
                                             style={{color: 'red'}}>*</span>)</span>
                                                             <Field name='dateEmployee' className="form-control"
                                                                    type="date"/>
-                                                            <ErrorMessage name='dateEmployee' component='div' className='error_red_employee'/>
+                                                            <ErrorMessage name='dateEmployee' component='div'
+                                                                          className='error_red_employee'/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -207,7 +239,8 @@ function EditEmployee() {
                                                         style={{color: 'red'}}>*</span>)</span>
                                                             <Field className="form-control" type="text"
                                                                    name='telEmployee'/>
-                                                            <ErrorMessage name='telEmployee' component='div' className='error_red_employee'/>
+                                                            <ErrorMessage name='telEmployee' component='div'
+                                                                          className='error_red_employee'/>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
@@ -224,7 +257,8 @@ function EditEmployee() {
                                                                    }}
                                                                    ref={inputFileRef} onChange={handleInputChange}
                                                                    name='image'/>
-                                                            <ErrorMessage name='image' component='div' className='error_red_employee'/>
+                                                            <ErrorMessage name='image' component='div'
+                                                                          className='error_red_employee'/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -251,7 +285,6 @@ function EditEmployee() {
                         </div>
                     </div>
                 </div>
-
             </div>
 
         </>
