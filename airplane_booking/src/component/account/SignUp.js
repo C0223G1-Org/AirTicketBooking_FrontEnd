@@ -93,8 +93,7 @@ export function SignUp() {
                         console.log(userName);
                         // resetForm();
                         // Đăng ký thành công, chuyển hướng hoặc thực hiện hành động khác
-                        // navigate(`/checkCode/${userName}`);
-                        navigate(`/checkCode/${userName}`);
+                        navigate(`/checkCode/${response.data.username}`);
                         // <CheckCode propData = {userName}/>;
                     } catch (e) {
                         // Xử lý lỗi đăng ký

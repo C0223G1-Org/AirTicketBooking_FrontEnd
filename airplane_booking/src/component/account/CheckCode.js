@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "bootstrap/dist/css/bootstrap.css"
+import "../../css/account/login_signup.css"
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as yup from "yup";
 import {useNavigate, useParams} from "react-router";
@@ -27,15 +28,15 @@ export function CheckCode() {
     }
     return (
         <>
-            <div className="row mt-lg-5">
-                <div className="col-md-4"/>
-                <div className="col-md-4 text-center">
-                    <div className="row align-items-center mt-lg-5 bg-body" style={{borderRadius: "10px"}}>
-                        <div className="header-text mb-4 mt-lg-3">
-                            <h2>Xác nhận đăng ký</h2>
-                        </div>
-                        <p>Chúng tôi đã gửi mã xác nhận đến Email đăng ký của bạn, nhập mã xác nhận để kích hoạt tài
-                            khoản!!!</p>
+            <div className="container">
+            <div className="row">
+                <div className="col-md-3"/>
+                <div className="col-md-6 bgimagedn">
+                    <div className="text-center" style={{width:"500px", borderRadius: "10px",
+                        backgroundColor: "rgba(255, 255, 255, 0.7)", margin: "10% auto"}}>
+                            <h1 style={{color: "rgb(6, 133, 170)", parddingTop:"5%"}}>Xác nhận đăng ký</h1>
+                        <p style={{margin: "0 9%"}}>Chúng tôi đã gửi mã xác nhận đến Email đăng ký của bạn.
+                            Nhập mã xác nhận để kích hoạt tài khoản.</p>
                         <Formik
                             initialValues={{
                                 verificationCode: ''
@@ -110,7 +111,9 @@ export function CheckCode() {
                                                 className="form-control text-center"
                                                 placeholder="Mã"
                                             />
-                                            <ErrorMessage name="verificationCode" component="span" className="error-r"/>
+                                            <div className="text-center">
+                                                <ErrorMessage name="verificationCode" component="span" style={{color:"red"}}/>
+                                            </div>
                                         </fieldset>
                                     </div>
                                     <div className="col-3"/>
@@ -118,7 +121,7 @@ export function CheckCode() {
                                 <div className="text-center" style={{marginBottom: "10px"}}>
                                     <button type="submit" className="btn"
                                             style={{
-                                                margin: "5%",
+                                                margin: "3%",
                                                 // paddingLeft: "15%",
                                                 backgroundColor: "rgb(6, 133, 170)",
                                                 color: "white",
@@ -132,7 +135,8 @@ export function CheckCode() {
                         </Formik>
                     </div>
                 </div>
-                <div className="col-md-4"/>
+                <div className="col-md-3"/>
+            </div>
             </div>
         </>
     )
