@@ -136,8 +136,6 @@ export default function CreateReport() {
                                                                 <option value="year">Năm này - Năm trước</option>
                                                             </Field>
                                                             <Field className="form-control" name="timePrevious" hidden/>
-                                                            <ErrorMessage name="timeCurrent" component="span"
-                                                                          style={{color: "red"}}/>
                                                         </div>
                                                     </div>
                                                     <div>
@@ -157,8 +155,6 @@ export default function CreateReport() {
                                                                            disabled={values.travelType === "one-way"}
                                                                            max={new Date().toISOString().split('T')[0]}
                                                                     />
-                                                                    <ErrorMessage name="timeCurrent" component="span"
-                                                                                  style={{color: "red"}}/>
                                                                 </div>
                                                             </div>
                                                             <div className="col-md-6">
@@ -170,14 +166,12 @@ export default function CreateReport() {
                                                                            disabled={values.travelType === "one-way"}
                                                                            max={new Date().toISOString().split('T')[0]}
                                                                     />
-                                                                    <ErrorMessage name="timeCurrent" component="span"
-                                                                                  style={{color: "red"}}/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h4 style={{marginTop:"-1.5vh"}}>So sánh với:</h4>
+                                                <h4 style={{marginTop: "-1.5vh"}}>So sánh với:</h4>
                                                 <div className="row" style={{marginTop: "2vh"}}>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
