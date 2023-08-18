@@ -139,7 +139,7 @@ input[type="checkbox"] {
 }
 
 /* Thiết lập kiểu checkbox được chọn */
-label:before {
+label#dn:before {
     content: "";
     display: inline-block;
     width: 20px;
@@ -153,7 +153,7 @@ label:before {
 }
 
 /* Thiết lập kiểu checkbox được chọn */
-input[type="checkbox"]:checked + label:before {
+input[type="checkbox"]:checked + label#dn:before {
     content: "\2713";
     color: #666;
     text-align: center;

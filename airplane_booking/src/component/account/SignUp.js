@@ -404,7 +404,7 @@ export function SignUp() {
                                                     name="genderCustomer"
                                                     // required=""
                                                 >
-                                                    {/*<option value={2}>-- Chọn --</option>*/}
+                                                    <option value={2}>-- Chọn giới tính --</option>
                                                     <option value={0}>Nam</option>
                                                     <option value={1}>Nữ</option>
                                                     {/*<option value="3">Khác</option>*/}
@@ -489,6 +489,7 @@ export function SignUp() {
                                                     name="nationalityCustomer"
                                                     // required=""
                                                 >
+                                                    <option value={null}>-- Chọn quốc tịch --</option>
                                                     <option value="Việt Nam">Việt Nam</option>
                                                     <option value="USA">USA</option>
                                                     <option value="Japan">Japan</option>

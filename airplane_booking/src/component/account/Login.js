@@ -233,7 +233,7 @@ export function Login() {
                                         >
                                             <Field type="checkbox" name="check" value="1" id="myCheckbox"
                                                    className="myCheckbox"/>
-                                            <label htmlFor="myCheckbox" className="myCheckbox">
+                                            <label id="dn"  htmlFor="myCheckbox" className="myCheckbox">
                                                 Ghi nhớ đăng nhập
                                             </label>
                                         </div>
