@@ -139,7 +139,7 @@ export default function DetailTicket() {
                                             <p className="">{(route.departure.nameDeparture).split("-")[0]}</p>
                                             <p className="outstanding">
                                                 <span>{route.timeDeparture} </span>
-                                                <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
+                                                <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                             </p>
                                             <p>{(route.departure.nameDeparture).split("-")[1]}</p>
                                         </div>
@@ -147,7 +147,7 @@ export default function DetailTicket() {
                                             <p className="">{(route.destination.nameDestination).split("-")[0]}</p>
                                             <p className="outstanding">
                                                 <span>{(route.timeArrival)} </span>
-                                                <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
+                                                <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
                                             </p>
                                             <p>{(route.destination.nameDestination).split("-")[1]}</p>
                                         </div>
@@ -241,7 +241,7 @@ export default function DetailTicket() {
                                             <p>{(route.departure.nameDeparture).split("-")[1]}</p>
                                         </div>
                                         <div className="col-4 info-fight">
-                                            <p className="">{(route.destination.nameDestination).split("-")[0]}</p>
+                                            <p className="">{(routeDestination.destination.nameDestination).split("-")[0]}</p>
                                             <p className="outstanding">
                                                 <span>{(route.timeArrival)} </span>
                                                 <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
@@ -318,7 +318,7 @@ export default function DetailTicket() {
                                             <p className="">{(routeDestination.departure.nameDeparture).split("-")[0]}</p>
                                             <p className="outstanding">
                                                 <span>{routeDestination.timeDeparture} </span>
-                                                <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
+                                                <span>{moment(`${routeDestination.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                             </p>
                                             <p>{(routeDestination.departure.nameDeparture).split("-")[1]}</p>
                                         </div>
@@ -326,7 +326,7 @@ export default function DetailTicket() {
                                             <p className="">{(routeDestination.destination.nameDestination).split("-")[0]}</p>
                                             <p className="outstanding">
                                                 <span>{routeDestination.timeArrival} </span>
-                                                <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
+                                                <span>{moment(`${routeDestination.dateArrival}`).format("DD-MM-YYYY")} </span>
                                             </p>
                                             <p>{(routeDestination.destination.nameDestination).split("-")[1]}</p>
                                         </div>

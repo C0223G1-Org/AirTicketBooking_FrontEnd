@@ -757,16 +757,16 @@ export default function InfoPassenger() {
                                                     <div className="col-4 info-fight">
                                                         <p className="">{(route.departure.nameDeparture).split("-")[0]}</p>
                                                         <p className="outstanding">
-                                                            <span>{route.timeArrival} </span>
-                                                            <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
+                                                            <span>{route.timeDeparture} </span>
+                                                            <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                                         </p>
                                                         <p>{(route.departure.nameDeparture).split("-")[1]}</p>
                                                     </div>
                                                     <div className="col-4 info-fight">
                                                         <p className="">{(route.destination.nameDestination).split("-")[0]}</p>
                                                         <p className="outstanding">
-                                                            <span>{(route.timeDeparture)} </span>
-                                                            <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
+                                                            <span>{(route.timeArrival)} </span>
+                                                            <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
                                                         </p>
                                                         <p>{(route.destination.nameDestination).split("-")[1]}</p>
                                                     </div>

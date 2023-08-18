@@ -24,12 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9940190e-4050-4e32-b542-a40edc64470e" name="Changes" comment="Nampc commit FE 6.4.8 Thông tin hành khách thực hiện chuyến bay ngày 17/8/2023">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/PaymentComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/PaymentComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/ticket/DetailTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ticket/DetailTicket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component_SAngTDN/ChangePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component_SAngTDN/ChangePassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/ticket/InfoPassenger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ticket/InfoPassenger.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +98,7 @@
       <workItem from="1692259503791" duration="6379000" />
       <workItem from="1692271019507" duration="21826000" />
       <workItem from="1692297490304" duration="1640000" />
-      <workItem from="1692320209137" duration="2405000" />
+      <workItem from="1692320209137" duration="3230000" />
     </task>
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
@@ -190,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692298690639</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Nampc commit FE 6.4.8 Thông tin hành khách thực hiện chuyến bay ngày 17/8/2023">
+      <created>1692323101582</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1692323101582</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
