@@ -1,14 +1,21 @@
  .app-content {
   box-sizing: border-box;
 }
-
- .ticket {
+  .print-ticket{
+    border: 7px solid rgb(6, 133, 170);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #888888;
+    margin-top: 20px;
+  }
+ .print-ticket .print {
   width: 100%;
-  margin: 20px auto;
-  background-color: white;
-  border: 5px solid rgb(6, 133, 170);
-  border-radius: 20px;
+  background-color: rgb(6, 133, 170);
+  border: 10px solid rgb(6, 133, 170);
+  border-radius: 10px;  
   box-shadow: 0px 0px 10px #888888;
+  margin-left:0px;
+  margin-bottom: 2px;
+  
 }
 
  .info {
@@ -20,13 +27,14 @@
   color: white;
 }
 
- .print {
+ .print-ve {
   font-size: medium;
-  color: #0055a3;
   background-color: rgb(6, 133, 170);
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px #888888;
   padding-left: 10px;
   margin-left: 0px;
-
+  
 }
  .print img{
   height: 50px;
@@ -44,13 +52,16 @@
   list-style: none;
   margin-left: 20px;
 }
- .thank-you {
+.print-ve .thank-you {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px;
   color: white;
 }
+.print-ve{
+  margin-top: -20px;
+}
 
- .row {
+ .print-ticket .row {
   display: flex;
   justify-content: space-between;
 }
@@ -78,12 +89,7 @@
  color: rgb(6, 133, 170);
 
 }
-#print {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 20px;
-}
+
 
 .print-container {
   width: 100%;
@@ -101,7 +107,8 @@
   display: flex;
   justify-content: center;
   border-radius: 10px;
-  padding-bottom: 10px;
+  padding-top: 60px;
+  padding-bottom: 20px;
 }
 
  .button-print button {

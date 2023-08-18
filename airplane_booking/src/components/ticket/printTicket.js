@@ -37,7 +37,7 @@ export default function Print() {
 
     <div>
       <div ref={componentRef} style={{ width: '100%', height: window.innerHeight }} >
-        <div className="ticket">
+        <div className="print-ticket">
 
           <div className="row col-12 print">
             <div className="col-1">
@@ -116,7 +116,7 @@ export default function Print() {
               </div>
             </div>
           </div>
-          <div className="row col-12 print">
+          <div className="row col-12 print-ve">
             <p className="thank-you">Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!</p>
           </div>
         </div>
