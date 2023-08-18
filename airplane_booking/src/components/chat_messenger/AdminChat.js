@@ -147,7 +147,6 @@ const AdminPage = () => {
                 ))}
               </ul>
             </div>
-
             <div className="row reply">
               <div className="col-sm-1 col-xs-1 reply-emojis">
                 <i className="fa fa-smile-o fa-2x"></i>

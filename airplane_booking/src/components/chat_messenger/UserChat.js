@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { database, ref, push, onValue, set } from "../../firebase-chat.js";
 import "../../css/search_ticket/style-popup.css";
+import image from "../../logo_5.png";
 
 const UserChat = () => {
   const [username, setUsername] = useState("");
@@ -13,8 +14,6 @@ const UserChat = () => {
   const [chatForm, setChatForm] = useState(false)
   const [showChatbox, setShowChatbox] = useState(false);
   const [showButton, setShowbutton] = useState(false);
-
-
   const [hasSentStartMessage, setHasSentStartMessage] = useState(false);
 
   useEffect(() => {
@@ -41,6 +40,7 @@ const UserChat = () => {
     const chatRef = push(ref(database, "chats"));
     const currentTime = new Date();
     const newChatId = chatRef.key;
+  
 
     // Lưu tên người dùng và chat ID vào database
     push(ref(database, `chats/${newChatId}/user`), newChatId);
@@ -59,7 +59,7 @@ const UserChat = () => {
 
     setChatId(username);
     setChatStarted(true);
-    setChatForm(!chatForm)
+    setChatForm(false)
   };
 
   const handleSendMessage = () => {
