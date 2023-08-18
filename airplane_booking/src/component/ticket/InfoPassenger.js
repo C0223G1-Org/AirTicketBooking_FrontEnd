@@ -29,7 +29,6 @@ export default function InfoPassenger() {
 
     // data
     const arr = data.split(",");
-    console.log(arr);
     // I- 1 chiều 1.loại vé, 2.id tuyến bay,3. loại ghế ,4. giá 1 vé, 5. Người lớn 6.Trẻ em
     // II 2 chiều //1.loại vé, 2.id tuyến đi,3. idtuyến vế ,4. loại ghế đi, 5. loại ghế về , 6. giá đi. 7.giá về, 8.Người lớn, 9.Trẻ em
 
@@ -73,7 +72,6 @@ export default function InfoPassenger() {
 
         const getTypeSeat = async () => {
             const data = await getTypeSeatByName(arr[2])
-            console.log(data)
             setTypeSeat(data);
         }
         useEffect(() => {
@@ -174,7 +172,7 @@ export default function InfoPassenger() {
         <>
             <head>
                 <meta charSet="UTF-8"/>
-                <title>Thông Tin Hành Khách</title>
+                <title>Thông Tin Hành Khách Thực Hiện Chuyến Bay</title>
             </head>
             {route.idRoute &&
                 <div>
@@ -269,6 +267,7 @@ export default function InfoPassenger() {
                                                     typePassenger: typePassengerObj,
                                                     seat: seatDeparture,
                                                     customer: customer,
+                                                    dateBooking: "",
                                                 }
                                                 objectReturn = {
                                                     ...ticket,
@@ -279,15 +278,16 @@ export default function InfoPassenger() {
                                                     typePassenger: typePassengerObj,
                                                     seat: seatReturn,
                                                     customer: customer,
+                                                    dateBooking: "",
                                                 }
                                             }
 
-                                            console.log(objectReturn);
+
                                             try {
                                                 await createNewTicket(objectDeparture);
                                                 await createNewTicket(objectReturn);
                                             } catch (error) {
-                                                console.log(123);
+                                                console.log("Lỗi rồi")
                                             }
 
                                         })
@@ -306,18 +306,20 @@ export default function InfoPassenger() {
                                             </div>
                                             {/*khứ hồi*/}
                                             <div className="row">
+                                                {/*nơi đi*/}
                                                 <div className="col-4 info-fight">
                                                     <p className="">{(route.departure.nameDeparture).split("-")[0]}</p>
                                                     <p className="outstanding">
-                                                        <span>{route.timeDeparture} </span>
+                                                        <span>{route.timeDeparture.split(":")[0]+":"+route.timeDeparture.split(":")[1]} </span>
                                                         <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                                     </p>
                                                     <p>{(route.departure.nameDeparture).split("-")[1]}</p>
                                                 </div>
+                                                {/*nơi đến*/}
                                                 <div className="col-4 info-fight">
                                                     <p className="">{(route.destination.nameDestination).split("-")[0]}</p>
                                                     <p className="outstanding">
-                                                        <span>{(route.timeArrival)} </span>
+                                                        <span>{(route.timeArrival.split(":")[0]+":"+route.timeArrival.split(":")[1])} </span>
                                                         <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
                                                     </p>
                                                     <p>{(route.destination.nameDestination).split("-")[1]}</p>
@@ -379,7 +381,7 @@ export default function InfoPassenger() {
                                                     <div className="col-4 info-fight">
                                                         <p className="">{(routeDestination.departure.nameDeparture).split("-")[0]}</p>
                                                         <p className="outstanding">
-                                                            <span>{routeDestination.timeDeparture} </span>
+                                                            <span>{routeDestination.timeDeparture.split(":")[0]+":"+routeDestination.timeDeparture.split(":")[1]} </span>
                                                             <span>{moment(`${routeDestination.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                                         </p>
                                                         <p>{(routeDestination.departure.nameDeparture).split("-")[1]}</p>
@@ -387,7 +389,7 @@ export default function InfoPassenger() {
                                                     <div className="col-4 info-fight">
                                                         <p className="">{(routeDestination.destination.nameDestination).split("-")[0]}</p>
                                                         <p className="outstanding">
-                                                            <span>{routeDestination.timeArrival} </span>
+                                                            <span>{routeDestination.timeArrival.split(":")[0]+":"+routeDestination.timeArrival.split(":")[1]} </span>
                                                             <span>{moment(`${routeDestination.dateArrival}`).format("DD-MM-YYYY")} </span>
                                                         </p>
                                                         <p>{(routeDestination.destination.nameDestination).split("-")[1]}</p>
@@ -399,8 +401,7 @@ export default function InfoPassenger() {
                                                         </div>
                                                         <p>
                                                             Chuyến bay:
-                                                            <span
-                                                                className="outstanding"> {routeDestination.nameRoute}</span>
+                                                            <span className="outstanding"> {routeDestination.nameRoute}</span>
                                                         </p>
                                                         <p>
                                                             Loại ghế :
@@ -485,7 +486,7 @@ export default function InfoPassenger() {
                                                                                name={`tickets.${index}.genderPassenger`}
                                                                                id={`tickets.${index}.genderPassenger`}
                                                                         >
-                                                                            <option value={false}>Chọn giới
+                                                                            <option value={""}>Chọn giới
                                                                                 tính
                                                                             </option>
                                                                             <option value={false}>Nữ
@@ -620,7 +621,7 @@ export default function InfoPassenger() {
                                                                                name={`tickets.${index + arr[7] * 1}.genderPassenger`}
                                                                                id={`tickets.${index + arr[7] * 1}.genderPassenger`}
                                                                         >
-                                                                            <option value={false}>Chọn giới tính</option>
+                                                                            <option value={""}>Chọn giới tính</option>
                                                                             <option value={false}>Nữ
                                                                             </option>
                                                                             <option value={true}>Nam
@@ -668,16 +669,18 @@ export default function InfoPassenger() {
                                                                         </Field>
                                                                     </div>
                                                                 </div>
+                                                                <div className="line"></div>
                                                             </div>
                                                         )
                                                     })
                                                     }
                                                 </div>
+
                                             </div>
-                                            <div className="line"></div>
+
                                             {/*chiều về*/}
 
-                                            <div className=" btn">
+                                            <div className="detail-ticket-btn">
                                                 <button>Chọn lại chuyến bay</button>
                                                 <button type="submit">Đặt vé</button>
                                             </div>
@@ -686,13 +689,13 @@ export default function InfoPassenger() {
                                 </Form>
                             </Formik>
                             :
+                            // một chiều
                             <>
                                 <Formik
                                     initialValues={initialValues}
                                     onSubmit={async (values) => {
                                         await new Promise((r) => setTimeout(r, 500));
                                         const price = totalPrice1;
-                                        console.log(price)
                                         const typeTicketObj = {...typeTicket};
                                         const customer = await getCustomerByEmail(localStorage.getItem("username"));
                                         {
@@ -739,6 +742,7 @@ export default function InfoPassenger() {
                                                         typePassenger: typePassengerObj,
                                                         seat: seat,
                                                         customer: customer,
+                                                        dateBooking: "",
                                                     }
                                                 }
                                                 // alert((JSON.stringify(ticket)))
@@ -756,19 +760,21 @@ export default function InfoPassenger() {
                                         <FieldArray name="ticket">
                                             <div className="row wrap">
                                                 <div className="row">
+                                                    {/*nơi đi*/}
                                                     <div className="col-4 info-fight">
                                                         <p className="">{(route.departure.nameDeparture).split("-")[0]}</p>
                                                         <p className="outstanding">
-                                                            <span>{route.timeArrival} </span>
-                                                            <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
+                                                            <span>{route.timeDeparture.split(":")[0]+":"+route.timeDeparture.split(":")[1]} </span>
+                                                            <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                                         </p>
                                                         <p>{(route.departure.nameDeparture).split("-")[1]}</p>
                                                     </div>
+                                                    {/*nơi đến*/}
                                                     <div className="col-4 info-fight">
                                                         <p className="">{(route.destination.nameDestination).split("-")[0]}</p>
                                                         <p className="outstanding">
-                                                            <span>{(route.timeDeparture)} </span>
-                                                            <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
+                                                            <span>{(route.timeArrival.split(":")[0]+":"+route.timeArrival.split(":")[1])} </span>
+                                                            <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
                                                         </p>
                                                         <p>{(route.destination.nameDestination).split("-")[1]}</p>
                                                     </div>
@@ -783,7 +789,7 @@ export default function InfoPassenger() {
                                                         </p>
                                                         <p>
                                                             Loại ghế :
-                                                            <span className="outstanding"> {arr[2]}</span>
+                                                            <span className="outstanding"> {arr[3]}</span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -863,7 +869,7 @@ export default function InfoPassenger() {
                                                                                    name={`tickets.${index}.genderPassenger`}
                                                                                    id={`tickets.${index}.genderPassenger`}
                                                                             >
-                                                                                <option value={false}>Chọn giới
+                                                                                <option value={""}>Chọn giới
                                                                                     tính
                                                                                 </option>
                                                                                 <option value={false}>Nữ
@@ -982,7 +988,7 @@ export default function InfoPassenger() {
                                                                                    name={`tickets.${index + arr[4] * 1}.genderPassenger`}
                                                                                    id={`tickets.${index + arr[4] * 1}.genderPassenger`}
                                                                             >
-                                                                                <option value={false}>Chọn giới tính
+                                                                                <option value={""}>Chọn giới tính
                                                                                 </option>
                                                                                 <option value={false}>Nữ
                                                                                 </option>
@@ -1021,7 +1027,7 @@ export default function InfoPassenger() {
                                                         }
                                                     </div>
                                                 </div>
-                                                <div className=" btn">
+                                                <div className="detail-ticket-btn">
                                                     <button onClick={() => {
                                                         navigate("/list/")
                                                     }

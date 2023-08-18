@@ -203,7 +203,7 @@ function EmployeeList() {
                                     <i className="fa-solid fa-plus "/> <span className="h5">Thêm mới nhân viên</span></Link>
                             </div>
                         </div>
-                        <div className=" col-ms col-8 mt-4">
+                        <div className=" col-ms col-8 mt-2">
                             <div className="ml-10 col-md-4 inline-flex justify-end" style={{position:'relative'}}>
                                 <span className="search_gender_employee">Giới tính:</span>
                                 <select className="mt-1 h6" style={{border:'1px solid black'}}
@@ -214,8 +214,8 @@ function EmployeeList() {
                                     <option value="false">Nữ</option>
                                 </select>
                             </div>
-                            <div className="col-md-7 inline-flex" style={{position:'relative'}}>
-                                <label className="col-3 items-end search_name_employee justify-end">Họ và tên:</label>
+                            <div className="col-md-7 inline-flex " >
+                                <label className="col-3 items-end search_name_employee justify-end text-#166987"><b>Họ và tên:</b></label>
                                 <div className="col-8 inline-flex">
                                 <input className=" form-control h-10 " type="search" placeholder="Tìm kiếm"
                                        aria-label="Search" value={name}

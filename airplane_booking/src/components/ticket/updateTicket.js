@@ -37,6 +37,7 @@ const UpdateTicket = () => {
         })
     }
     return (
+        <div id="update-ticket">
         <div className="img">
         <div className="background-image">
           <div className="table-title">
@@ -166,6 +167,7 @@ const UpdateTicket = () => {
           )}
         </div>
       </div>
+        </div>
     )
 }
 
