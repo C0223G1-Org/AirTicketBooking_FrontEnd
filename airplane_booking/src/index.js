@@ -74,10 +74,8 @@ root.render(
                     <Route path='/updatePost/:id' element={<UpdatePost/>}/>
                     <Route path='/createPost' element={<CreatePost/>}/>
                     <Route path="/tickets/search-ticket" element={<SearchTicketPage/>}/>
-                    <Route
-                        path="/tickets/search-ticket-results"
-                        element={<SearchResultPage/>}
-                    />
+                    <Route path="/tickets/search-ticket-results"
+                        element={<SearchResultPage/>} />
                     <Route path="/admin/messages" element={<AdminPage/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
