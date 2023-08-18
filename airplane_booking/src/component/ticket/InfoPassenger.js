@@ -173,7 +173,7 @@ export default function InfoPassenger() {
                 <title>Thông Tin Hành Khách Thực Hiện Chuyến Bay</title>
             </head>
             {route.idRoute &&
-                <div>
+                <div className="all-page">
                     <div className="container" id="info-passenger">
                         <div className="title text-center">
                             <p className="h1">Thông tin hành khách</p>
@@ -409,17 +409,17 @@ export default function InfoPassenger() {
                                                 </div>
                                                 <div className="row info-second">
                                                     <div className="col-2">
-                                                        <p>Loại hành khách</p>
-                                                        <p>Người lớn:<span className="nam-passenger">{arr[7]}</span></p>
-                                                        <p>Trẻ em : <span className="nam-passenger">{arr[8]}</span></p>
+                                                        <p className=""> Loại hành khách</p>
+                                                        <p className="person">Người lớn:<span className="nam-passenger">{arr[7]}</span></p>
+                                                        <p className="person">Trẻ em : <span className="nam-passenger">{arr[8]}</span></p>
                                                     </div>
                                                     <div className="col-2">
-                                                        <p>Loại vé</p>
-                                                        <p id="type-ticket" className="outstanding">
+                                                        <p className="type-ticket">Loại vé</p>
+                                                        <p className="outstanding">
                                                             {typeTicket.nameTypeTicket}
                                                         </p>
                                                     </div>
-                                                    <div className="col-2">
+                                                    <div className="col-2 nam-ticket">
                                                         <p>Giá mỗi vé</p>
                                                         <p className="money">{formattedPriceRouter2} VND</p>
                                                     </div>
@@ -794,9 +794,9 @@ export default function InfoPassenger() {
                                                 <div className="row info-second">
                                                     <div className="col-2">
                                                         <p>Loại hành khách</p>
-                                                        <p>Người lớn : <span className="nam-passenger">{arr[4]}</span>
+                                                        <p className="person">Người lớn : <span className="nam-passenger">{arr[4]}</span>
                                                         </p>
-                                                        <p>Trẻ em : <span className="nam-passenger">{arr[5]}</span></p>
+                                                        <p className="person">Trẻ em : <span className="nam-passenger">{arr[5]}</span></p>
                                                     </div>
                                                     <div className="col-2">
                                                         <p>Loại vé</p>

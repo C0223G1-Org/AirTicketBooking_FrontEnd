@@ -2,6 +2,7 @@ import { Await, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getListRouter } from "../services/RouteServices";
 import Swal from "sweetalert2";
+import logo from "../logo-remove-background.png"
 
 
 function ListRouter() {
@@ -385,10 +386,11 @@ function ListRouter() {
                   <div className="brand-logo d-flex align-items-center justify-content-between">
                     <a href="/#" className="text-nowrap logo-img">
                       <img
-                          src="../css-SangTDN/assets/images/logos/vietnam-airline-logo.jpg"
-                          width={180}
+                          src={logo}
+                          width={100}
                           alt=""
                       />
+                      <p className="codegym-airline">codegym airline</p>
                     </a>
                     {/*<p>(logo mẫu)</p>*/}
                   </div>

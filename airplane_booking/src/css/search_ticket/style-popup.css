@@ -280,15 +280,15 @@
 .float-right {
     float: right
 }
-.clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    font-family: SansSerif;
-    content: " ";
-    clear: both;
-    height: 0;
-}
+/*.clearfix:after {*/
+/*    visibility: hidden;*/
+/*    display: block;*/
+/*    font-size: 0;*/
+/*    font-family: SansSerif;*/
+/*    content: " ";*/
+/*    clear: both;*/
+/*    height: 0;*/
+/*}*/
 @media only screen and (max-width: 767px) {
     .chat-app .people-list {
         height: 465px;
@@ -515,12 +515,56 @@ button#fpt_ai_livechat_button {
     background-size: cover;
     background-position: center;
 }
-.form-popup {
-
+.form-popup-first {
     position: fixed;
-    bottom: 100px;
+    bottom: 60px;
     right: 50px;
-    width: 300px;
+    width: 365px;
+    height: 500px;
+    border: none;
+    border-radius: 15px;
+    z-index: 9999;
+    background: white;
+    border: 1px solid  #daa310 ;
+}
+.form-popup-first .title{
+    display: flex;
+    margin-left: 0.1px;
+    background: #1b6d85;
+    color: #ffffff;
+    width:365px ;
+    text-align: center;
+    vertical-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.form-popup-first i{
+    text-align: center;
+    margin-top: 15px;
+}
+.form-popup-first .title .first-title{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: center;
+    margin-top: 10px;
+}
+.form-popup-first .panel-item{
+    border: 1px solid #1b6d85;
+    height: 30px;
+}
+.form-popup-first .title .image img{
+    z-index: 9999;
+    background: white;
+}
+
+.form-popup {
+    position: fixed;
+    bottom: 60px;
+    right: 50px;
+    width: 365px;
+    height: 500px;
     border: none;
     border-radius: 15px;
     z-index: 9;
@@ -538,6 +582,23 @@ button#fpt_ai_livechat_button {
     justify-content: center;
     align-items: center;
     font-size: 16px;
+}
+.h22 .title{
+    color: #ffffff;
+    font-size: 17px;
+    text-align: center;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: bold ;
+}
+.clearfix{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    width: 200px;
+    height: 400px;
 }
 /* .chat{
     border: none;
@@ -602,7 +663,6 @@ button#fpt_ai_livechat_button {
     transform: translate(-50%, -50%);
 }
 .form-popup::-webkit-scrollbar {
-    width: 0.5em;
     background-color: #F5F5F5;
     display: none;
 }

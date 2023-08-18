@@ -13,6 +13,7 @@ const UserChat = () => {
   const [showChatbox, setShowChatbox] = useState(false);
   const [showButton, setShowbutton] = useState(false);
   const [hasSentStartMessage, setHasSentStartMessage] = useState(false);
+
   useEffect(() => {
     if (chatId) {
       const messagesRef = ref(database, `chats/${chatId}/messages`);
@@ -91,35 +92,35 @@ const UserChat = () => {
                   }}
               >
                 <h2 className="h22" >
-                  CodeGym AirLine
+                  <p className="title">CodeGym AirLine</p>
                 </h2>
                 <div className="row clearfix">
                   <div
-                      className="col-lg-12"
+                      className=""
                       style={{ overflowY: "auto", maxHeight: "400px" }}
                   >
                     <div className="chat_messenger_user">
                       <div className="chat-history">
-                        <ul className="m-b-0">
-                          {messages.map((message, index) => (
-                              <li
-                                  key={index}
-                                  className={`clearfix ${message.sender === "admin"
-                                      ? "seft-message-user"
-                                      : "other-message-admin"
-                                  }`}
-                              >
-                                <div className="message">{message.content} <br/> {message.timestamp}</div>
-                              </li>
-                          ))}
-                          {adminMessages.map((msg, index) => (
-                              <li key={index} className="clearfix">
-                                <div className="message other-message">
-                                  {msg.content}
-                                </div>
-                              </li>
-                          ))}
-                        </ul>
+                        {/*<ul className="m-b-0">*/}
+                        {/*  {messages.map((message, index) => (*/}
+                        {/*      <li*/}
+                        {/*          key={index}*/}
+                        {/*          className={`clearfix ${message.sender === "admin"*/}
+                        {/*              ? "seft-message-user"*/}
+                        {/*              : "other-message-admin"*/}
+                        {/*          }`}*/}
+                        {/*      >*/}
+                        {/*        <div className="message">{message.content} <br/> {message.timestamp}</div>*/}
+                        {/*      </li>*/}
+                        {/*  ))}*/}
+                        {/*  {adminMessages.map((msg, index) => (*/}
+                        {/*      <li key={index} className="clearfix">*/}
+                        {/*        <div className="message other-message">*/}
+                        {/*          {msg.content}*/}
+                        {/*        </div>*/}
+                        {/*      </li>*/}
+                        {/*  ))}*/}
+                        {/*</ul>*/}
                       </div>
                       <div className="row reply">
                         {/* <div className="col-sm-1 col-xs-1 reply-emojis">
@@ -165,9 +166,31 @@ const UserChat = () => {
                 </div>
               </div>}
           {showChatbox &&
-              <div className="form-popup" style={{ display: chatForm ? "none" : "block" }}>
-                <h2 className="h22" >Nhập tên của bạn để bắt đầu trò chuyện: </h2>
-                <input style={{position: "relative"}} class="chat__conversation-panel__input panel-item" placeholder="Nhập tên của bạn..." onKeyDown={(event) => {
+              <div className="form-popup-first " style={{ display: chatForm ? "none" : "block" }}>
+                <div className="title row">
+                  <div className="col-3 image">
+                    <img src="/logo-remove-background.png" alt=""/>
+                  </div>
+                  <div className="col-8">
+                    <p className="first-title">Codegym airline</p>
+                  </div>
+                  <div className="col-1">
+                    <i className="fa-solid fa-xmark"></i>
+                  </div>
+                </div>
+                <div className="row required-form">
+                  <div className="logo-codegym">
+                    <img src="" alt=""/>
+                  </div>
+
+                  <div>
+                    xin quý khách vui lòng nhập tên
+                  </div>
+                  <div>
+                  </div>
+                </div>
+
+                <input style={{position: "relative"}} className="chat__conversation-panel__input panel-item" onKeyDown={(event) => {
                   if (event.keyCode == 13) {
                     handleStartChat();
                   }
