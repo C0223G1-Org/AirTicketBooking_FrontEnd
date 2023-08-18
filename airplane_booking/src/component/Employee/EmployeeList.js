@@ -96,49 +96,46 @@ function EmployeeList() {
     const handleDeleteEmployee = async (id, name) => {
         console.log(id);
         console.log(name);
-        try {
 
-
-            Swal.fire({
-                    title: 'Bạn muốn xoá nhân viên ' + name + ' không?',
-                    html: '<p style = " color: red">Bạn sẽ không thể hoàn tác hành động này!</p>',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Xác nhận ',
-                    cancelButtonText: 'Huỷ',
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: 'custom-confirm-button-employee',
-                    }
+        Swal.fire({
+                title: 'Bạn muốn xoá nhân viên ' + name + ' không?',
+                html: '<p style = " color: red">Bạn sẽ không thể hoàn tác hành động này!</p>',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Xác nhận ',
+                cancelButtonText: 'Huỷ',
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: 'custom-confirm-button-employee',
                 }
-            ).then((res) => {
-                if (res.isConfirmed) {
-                    deleteEmployee(id).then(() => {
-                        console.log("10101");
-                        getEmployees(0, 5).then(() => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Xoá Thành công!',
-                                showConfirmButton: false,
-                                timer: 2000,
+            }
+        ).then((res) => {
+            if (res.isConfirmed) {
+                deleteEmployee(id).then(() => {
+                    console.log("10101");
+                    getEmployees(0, 5).then(() => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Xoá Thành công!',
+                            showConfirmButton: false,
+                            timer: 2000,
 
-                            })
                         })
-                    });
-                } else if (res.dismiss === Swal.DismissReason.cancel) {
-                }
-            })
-        } catch (error) {
-            getEmployees(0, 5).then(() => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Đã xảy ra lỗi! Xoá không thành công!',
-                    showConfirmButton: false,
-                    timer: 2000,
+                    })
+                });
+            } else if (res.dismiss === Swal.DismissReason.cancel) {
+            } else {
+                getEmployees(0, 5).then(() => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Đã xảy ra lỗi! Xoá không thành công!',
+                        showConfirmButton: false,
+                        timer: 2000,
 
+                    })
                 })
-            })
-        }
+            }
+        })
     }
 
 
@@ -236,9 +233,9 @@ function EmployeeList() {
                             </div>
                         </div>
                         <div className=" col-ms col-8 ">
-                            <div className="ml-10 col-md-4 inline-flex justify-end" >
+                            <div className="ml-10 col-md-4 inline-flex justify-end">
                                 <span className="search_gender_employee">Giới tính:</span>
-                                <select className=" h5" style={{border: '1px solid black', height:"2rem"}}
+                                <select className=" h5" style={{border: '1px solid black', height: "2rem"}}
                                         value={gender}
                                         onChange={(e) => setGender(e.target.value)}>
                                     <option value="">Tất Cả</option>
@@ -246,7 +243,7 @@ function EmployeeList() {
                                     <option value="false">Nữ</option>
                                 </select>
                             </div>
-                            <div className="col-md-7 inline-flex" >
+                            <div className="col-md-7 inline-flex">
                                 <label className="col-3 mt-2 items-end search_name_employee justify-end"><b>Họ và
                                     tên:</b></label>
                                 <div className="col-8 inline-flex">
@@ -267,7 +264,7 @@ function EmployeeList() {
                         <div className="inline-block min-w-full shadow rounded-lg " style={{minHeight: "536px"}}>
                             <div className="container"
                                  style={{display: "flex", flexDirection: "column", minHeight: "100%"}}>
-                                <div style={{flex: "1", minHeight:"490px"}}>
+                                <div style={{flex: "1", minHeight: "490px"}}>
                                     <table className="container">
                                         <thead>
                                         <tr className="table_header_employee">
@@ -318,6 +315,7 @@ function EmployeeList() {
                                                 </td>
                                                 <td className=" py-3 border-b border-gray-200 bg-white text-sm">
                                                     <a type="button" data-bs-toggle="modal"
+                                                       style={{color: '#333', textDecoration: 'none'}}
                                                        data-bs-target="#exampleModal1"
                                                        title="Chi tiết" onClick={() => getEmployee(e.idEmployee)}>
                                                         <i className="fa-solid fa-circle-info icon_detail_employee"/>
@@ -343,11 +341,12 @@ function EmployeeList() {
 
                                 <div
 
-                                     className="px-3 py-1 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
-                                    <div className=" inline-flex mt-2 xs:mt-0">
+                                    className="px-3 py-1 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
+                                    <div className=" inline-flex mt-2 xs:mt-0 ">
                                         <button
-                                            className={`style_button_page text-sm font-semibold py-2 px-4 rounded-l ${currentPage === 0 ? 'hidden' : ''}`}
+                                            className={`style_button_page_next text-sm font-semibold py-2 px-4 rounded-l ${currentPage === 0 ? 'hidden' : ''}`}
                                             disabled={currentPage === 0}
+                                            title="Trang trước"
                                             onClick={() => handlePageChange(currentPage - 1)}
                                         >
                                             Trước
@@ -366,19 +365,15 @@ function EmployeeList() {
 
                                         {currentPage !== totalPages - 1 && (
                                             <button
-                                                className="text-sm font-semibold py-2 px-4 rounded-r"
-                                                style={{
-                                                    background: 'rgb(223, 165, 18)',
-                                                    color: '#ffffff',
-                                                    marginRight: '10px'
-                                                }}
+                                                className='style_button_page_next text-sm font-semibold py-2 px-4 rounded-r'
+                                                title="Trang sau"
                                                 disabled={currentPage === totalPages - 1}
                                                 onClick={() => handlePageChange(currentPage + 1)}
                                             >
                                                 Sau
                                             </button>
                                         )}
-                                        <div className="style_button_page text-sm font-semibold py-2 px-2 rounded">
+                                        <div className="style_button_page  text-sm font-semibold py-2 px-2 rounded">
                                             <input
                                                 className="style_button_search_page"
                                                 type="number"
@@ -411,8 +406,8 @@ function EmployeeList() {
 
                 <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel5"
                      aria-hidden="true">
-                    <div className="modal-dialog" >
-                        <div className="modal-content" >
+                    <div className="modal-dialog">
+                        <div className="modal-content">
                             <div className="modal-header table_header_employee">
                                 <h1 className="modal-title fs-5" id="exampleModalLabel">CHI TIẾT NHÂN VIÊN</h1>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal"
