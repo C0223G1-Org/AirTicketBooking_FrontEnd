@@ -35,7 +35,7 @@ export const ChartComponent = ({dataTimeCurrent, dataTimePrevious, dataTimeAbout
                     labels: dataTimePrevious.map((row) => row.dateBooking),
                     title: {
                         display: true,
-                        text: 'Khoảng thời gian',
+                        text: 'Thời gian',
                         font: {
                             size: 20,
                         },

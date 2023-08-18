@@ -145,7 +145,7 @@ export default function CreateReport() {
                                                             <Field type="radio" id="multi-city" name="travelType"
                                                                    value="multi-city"
                                                                    onClick={() => resetFieldName(resetForm)}/>
-                                                            <b style={{fontSize: "25px"}}> So sánh theo tháng</b>
+                                                            <b style={{fontSize: "25px"}}> So sánh tùy chọn</b>
                                                         </label>
                                                         <div className="row">
                                                             <div className="col-md-6">
