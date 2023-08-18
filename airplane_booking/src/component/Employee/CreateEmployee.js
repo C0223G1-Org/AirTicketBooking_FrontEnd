@@ -99,7 +99,7 @@ function CreateEmployee() {
                                         {/*    alt="Preview Image" id="img-preview"/>*/}
                                         <img style={{marginTop: '50px',marginLeft:'100px'}} name='image'
                                              id="img-preview"
-                                             src="https://cdn-icons-png.flaticon.com/256/9131/9131529.png"
+                                             src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"
                                              ref={imgPreviewRef} alt="Preview Image"/>
                                     </div>
                                 </div>
