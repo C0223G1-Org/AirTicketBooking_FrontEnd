@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../css/payment/Payment.css';
-import { getTicketByTicketId, updateTicketByIdTicket } from '../services/PaymentService';
+import { getTicketByCustomerId, updateTicketByIdTicket } from '../services/PaymentService';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios, { HttpStatusCode } from 'axios';
@@ -14,7 +14,7 @@ const PaymentComponent = () => {
         const getTicket = () => {
             const getTicketById = async () => {
                 try {
-                    const paymentData = await getTicketByTicketId(id);
+                    const paymentData = await getTicketByCustomerId(id);
                     setPayment(paymentData);
 
                 } catch (error) {

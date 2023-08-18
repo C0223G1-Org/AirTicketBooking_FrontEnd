@@ -309,7 +309,7 @@ function TicketBooked() {
                                                             </Field>
                                                         </li>
                                                         <li className="show-search-ticket-body-input-item">
-                                                            <label>Ngày Khời Hành </label>
+                                                            <label>Ngày Bay</label>
                                                             <Field type="date" name="departureDate" placeHolder="Ngày khởi hành" />
 
                                                         </li>
