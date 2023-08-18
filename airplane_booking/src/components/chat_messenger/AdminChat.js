@@ -64,6 +64,7 @@ const AdminPage = () => {
 
   const handleSelectChat = (chatId) => {
     setSelectedChatId(chatId);
+    console.log(chatId);
   };
 
   const handleSendMessage = () => {
