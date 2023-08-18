@@ -7,16 +7,37 @@ import Swal from "sweetalert2";
 function TicketUnBook() {
     const [unTickets, setUnTickets] = useState([])
     const [page, setPage] = useState(0)
+    const [loopCount, setLoopCount] = useState(0)
+    const [unTicketObj,setUnTicketObj]=useState({});
     useEffect(() => {
         showUnBookTickets(page)
-    }, [page])
+    }, [page,unTicketObj])
     const showUnBookTickets = () => {
-        getListUnBookTicket(page).then((data) => {
+        searchUnBookedTicket(page,unTicketObj).then((data) => {
+            console.log(data.content)
+            let numberPage
+            if (data.totalElements > 5) {
+                numberPage = data.totalElements % 5;
+                console.log(numberPage)
+            } else {
+                numberPage = 0;
+            }
+            if ((data.totalElements / 5 - data.totalElements % 5) > 0) {
+                numberPage += 1;
+            }
+            setLoopCount(numberPage)
             setUnTickets(data.content)
         })
     }
-    const findUnbooked=(value)=>{
-        searchUnBookedTicket(page,value).then((data)=>{
+    const transferPage = (value) => {
+        if (value >= 0) {
+            setPage(value)
+        }
+
+    }
+    const findUnbooked = (value) => {
+        setUnTicketObj(value)
+        searchUnBookedTicket(page, unTicketObj).then((data) => {
             if (!data.content) {
                 Swal.fire({
                     icon: "error",
@@ -24,16 +45,28 @@ function TicketUnBook() {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                showUnBookTickets(page)
+            
             } else {
+                let numberPage
+                console.log(data.totalElements)
+                if (data.totalElements > 5) {
+                    numberPage = data.totalElements % 5;
+                    console.log(numberPage)
+                } else {
+                    numberPage = 0;
+                }
+                if ((data.totalElements / 5 - data.totalElements % 5) > 0) {
+                    numberPage += 1;
+                }
+                setLoopCount(numberPage)
                 setUnTickets(data.content)
             }
-           
+
         })
     }
     return (
         <div>
-            <h1>
+           <h1 className="h1-ticket">
                 Quản Lý Bán Vé
             </h1>
             <div className="section-unBook-ticket">
@@ -50,7 +83,7 @@ function TicketUnBook() {
                             routeCode: "",
                             chairCode: ""
                         }}
-                        onSubmit={(value)=>{
+                        onSubmit={(value) => {
                             findUnbooked(value)
                         }}>
                         <Form>
@@ -72,23 +105,23 @@ function TicketUnBook() {
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>Mã Ghế</th>
                             <th>Mã Chuyến Bay</th>
                             <th>Tuyến Bay</th>
                             <th>Ngày Đi</th>
-                            <th>Loại Vé</th>
+                            <th>Giá Vé</th>
+                            <th>Số Lượng</th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        {unTickets.map((ticket, index) => (
+                        {unTickets && unTickets.map((ticket, index) => (
                             <tr key={index}>
-                                <td  >{index}</td>
-                                <td >{ticket.positionSeat}</td>
+                                <td  >{index + (page * 5)}</td>
                                 <td >{ticket.nameRoute}</td>
                                 <td >{ticket.nameDeparture}-{ticket.nameDestination}</td>
                                 <td >{ticket.timeDeparture}</td>
-                                <td >{ticket.typeSeat}</td>
+                                <td>{ticket.priceTicket}</td>
+                                <td>{ticket.countEmpty}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -97,22 +130,15 @@ function TicketUnBook() {
             <div className="pagination-ticket">
                 <ul>
                     <li className="pagination-ticket-item">
-                        <button type="button" style={{ borderTopLeftRadius: '5px', borderBottomLeftRadius: '5px' }}>Trước</button>
+                        <button type="button" onClick={() => { transferPage(page - 1) }} style={{ borderTopLeftRadius: '5px', borderBottomLeftRadius: '5px' }}>Trước</button>
                     </li>
+                    {Array.from({ length: loopCount }, (_, index) => (
+                        <li className="pagination-ticket-item" key={index}>
+                            <button type="button" onClick={() => { transferPage(index) }}>{index}</button>
+                        </li>
+                    ))}
                     <li className="pagination-ticket-item">
-                        <button type="button">1</button>
-                    </li>
-                    <li className="pagination-ticket-item">
-                        <button type="button">2</button>
-                    </li>
-                    <li className="pagination-ticket-item">
-                        <button type="button">3</button>
-                    </li>
-                    <li className="pagination-ticket-item">
-                        <button type="button">4</button>
-                    </li>
-                    <li className="pagination-ticket-item">
-                        <button type="button" style={{ borderTopRightRadius: '5px', borderBottomRightRadius: '5px' }}>Sau</button>
+                        <button type="button" onClick={() => { if (page < (loopCount - 1)) { transferPage(page + 1) } }} style={{ borderTopRightRadius: '5px', borderBottomRightRadius: '5px' }}>Sau</button>
                     </li>
                 </ul>
             </div>
