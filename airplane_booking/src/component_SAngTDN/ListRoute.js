@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getListRouter } from "../services/RouteServices";
 import Swal from "sweetalert2";
 
+
 function ListRouter() {
   const { data } = useParams();
   const [info, setInfor] = useState({});
@@ -389,7 +390,7 @@ function ListRouter() {
                           alt=""
                       />
                     </a>
-                    <p>(logo mẫu)</p>
+                    {/*<p>(logo mẫu)</p>*/}
                   </div>
                   {/* Sidebar navigation*/}
                   <br />
