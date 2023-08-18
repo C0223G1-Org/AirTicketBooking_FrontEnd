@@ -182,10 +182,10 @@ export default function Header() {
                                             </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link active" href="#">
+                                            <NavLink to="/tickets/search-ticket" className="nav-link active">
                                                 <i className="fa-solid fa-circle-info"/>
                                                 Thông tin hành trình
-                                            </a>
+                                            </NavLink>
                                         </li>
                                         <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -292,7 +292,9 @@ export default function Header() {
                                                 </a>
                                             </li>
                                             <li className="nav-item">
-                                                <a className="nav-link active" href="#">
+                                                <a className="nav-link active" onClick={() => {
+                                                    handleLogout()
+                                                }}>
                                                     <i className="fa-solid fa-right-from-bracket"/>
                                                     Đăng xuất
                                                 </a>
