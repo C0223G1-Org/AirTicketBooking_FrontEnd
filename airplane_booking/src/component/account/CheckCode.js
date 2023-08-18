@@ -7,6 +7,7 @@ import {useNavigate, useParams} from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
 import {ThreeDots} from "react-loader-spinner";
+import {Logined} from "./Logined";
 
 export function CheckCode() {
     const [count, setCount] = useState(1);
@@ -24,11 +25,20 @@ export function CheckCode() {
     useEffect(() => {
         getUserName(param.data).then(r => null);
     }, [param.data])
+    const [role, setRole] = useState(localStorage.getItem("role"));
+    console.log("role " + role);
+    useEffect(() => {
+        // if (role === "ROLE_ADMIN" || role === "ROLE_EMPLOYEE" || role === "ROLE_CUSTOMER") {
+        //     return <Logined/>;
+        // }
+        setRole(localStorage.getItem("role"));
+    }, []);
     if (!userName) {
         return null;
     }
     return (
         <>
+            {role !== "ROLE_CUSTOMER" ? (role !== "ROLE_ADMIN" ? (role !== "ROLE_EMPLOYEE" ?
             <div className="container">
                 <div className="row">
                     <div className="col-md-3"/>
@@ -91,7 +101,7 @@ export function CheckCode() {
                                                 timer: 2000
                                             });
                                             navigate('/signup');
-                                        }else {
+                                        } else {
                                             await Swal.fire({
                                                 title: 'Sai mã xác nhận lần ' + count + '.',
                                                 text: '(Lưu ý: sai quá 3 lần mã xác nhận và tài khoản sẽ bị hủy)',
@@ -159,6 +169,8 @@ export function CheckCode() {
                     <div className="col-md-3"/>
                 </div>
             </div>
+                : <Logined/>) : <Logined/>) : <Logined/>
+            }
         </>
     )
 }

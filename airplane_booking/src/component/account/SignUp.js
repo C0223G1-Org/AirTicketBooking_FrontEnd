@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import "../../css/account/login_signup.css"
 import {ErrorMessage, Field, Form, Formik} from "formik";
@@ -8,6 +8,7 @@ import axios from "axios";
 import {max} from "moment";
 import Swal from "sweetalert2";
 import {ThreeDots} from "react-loader-spinner"
+import {Logined} from "./Logined";
 
 // import CheckCode from './CheckCode';
 
@@ -17,14 +18,17 @@ export function SignUp() {
     const today = new Date();
     const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
     const minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
-    // const [jr, setJs] = useState(localStorage.getItem("role"));
-    // useEffect(() => {
-    //     if(jr != "ROLE_ADMIN"){
-    //         return null;
-    //     }
-    // }, []);
+    const [role, setRole] = useState(localStorage.getItem("role"));
+    console.log("role " + role);
+    useEffect(() => {
+        // if (role === "ROLE_ADMIN" || role === "ROLE_EMPLOYEE" || role === "ROLE_CUSTOMER") {
+        //     return <Logined/>;
+        // }
+        setRole(localStorage.getItem("role"));
+    }, []);
     return (
         <>
+            {role !== "ROLE_CUSTOMER" ? (role !== "ROLE_ADMIN" ? (role !== "ROLE_EMPLOYEE" ?
             <Formik
                 initialValues={{
                     nameCustomer: "",
@@ -591,7 +595,8 @@ export function SignUp() {
                     </div>
                 )}
             </Formik>
-
+                : <Logined/>) : <Logined/>) : <Logined/>
+            }
         </>
     )
 }
