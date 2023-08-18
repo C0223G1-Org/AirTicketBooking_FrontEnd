@@ -278,12 +278,12 @@ input#firstname, input#email, input#password1, input#password2, select#email {
 /*}*/
 
 
-.col-md-5 {
-    margin-top: 2%;
-    padding-left: 8%;
-    color: rgb(6, 133, 170);
-    font-weight: bold;
-}
+/*.col-md-5 {*/
+/*    margin-top: 2%;*/
+/*    padding-left: 8%;*/
+/*    color: rgb(6, 133, 170);*/
+/*    font-weight: bold;*/
+/*}*/
 
 input#firstname:focus, input#email:focus, input#password1:focus, input#password2:focus, select#email:focus, input#firstname:hover, input#email:hover, input#password1:hover, input#password2:hover, select#email:hover {
     color: rgb(6, 133, 170);

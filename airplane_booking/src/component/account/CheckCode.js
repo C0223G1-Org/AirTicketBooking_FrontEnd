@@ -6,12 +6,13 @@ import * as yup from "yup";
 import {useNavigate, useParams} from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
+import {ThreeDots} from "react-loader-spinner";
 
 export function CheckCode() {
     const [count, setCount] = useState(1);
     const navigate = useNavigate();
     const param = useParams();
-    const [userName, setUserName] = useState('');
+    const [userName, setUserName] = useState(param.data);
     const getUserName = async (data) => {
         setUserName(data);
         console.log("userName: " + userName);
@@ -56,11 +57,12 @@ export function CheckCode() {
                                     }
                                     console.log(values);
                                     console.log("count1: " + count);
-                                    if (count < 4) {
-                                        console.log("count2: " + count);
-                                        try {
+                                    // if (count < 4) {
+                                    //     console.log("count2: " + count);
+                                    try {
+                                        if (count < 4) {
                                             values = {
-                                                username: userName,
+                                                emailCustomer: userName,
                                                 verificationCode: +values.verificationCode,
                                                 count: count,
                                             }
@@ -74,75 +76,83 @@ export function CheckCode() {
                                                     timer: 2000
                                                 })
                                                 resetForm();
-                                                navigate(`/`);
+                                                navigate(`/login`);
                                             }
-                                            // navigate("/login/newPassword", {state: {data: response.data}})
-                                        } catch (error) {
-                                            console.log(error);
-                                            setCount1();
-                                            // toast.error(error.response.data.error);
-                                            if (count === 3) {
-                                                await Swal.fire({
-                                                    title: "Đã nhập sai quá 3 lần, mã sẽ bị hủy",
-                                                    icon: "warning",
-                                                    timer: 2000
-                                                });
-                                                navigate('/signup');
-                                            }
+                                        }
+                                        // navigate("/login/newPassword", {state: {data: response.data}})
+                                    } catch (error) {
+                                        console.log(error);
+                                        setCount1();
+                                        // toast.error(error.response.data.error);
+                                        if (count >= 3) {
+                                            await Swal.fire({
+                                                title: "Đã nhập sai quá 3 lần, mã sẽ bị hủy",
+                                                icon: "warning",
+                                                timer: 2000
+                                            });
+                                            navigate('/signup');
+                                        }else {
                                             await Swal.fire({
                                                 title: 'Sai mã xác nhận lần ' + count + '.',
                                                 text: '(Lưu ý: sai quá 3 lần mã xác nhận và tài khoản sẽ bị hủy)',
                                                 icon: "warning",
                                                 timer: 2000
                                             });
-                                            console.log("count3: " + count);
-                                        } finally {
-                                            setSubmitting(false);
                                         }
-                                    } else {
-                                        await Swal.fire({
-                                            title: "Đã nhập sai quá 3 lần, mã sẽ bị hủy",
-                                            icon: "warning",
-                                            timer: 2000
-                                        });
-                                        navigate('/signup');
+                                        console.log("count3: " + count);
+                                    } finally {
+                                        setSubmitting(false);
                                     }
+                                    // } else {
+                                    //     await Swal.fire({
+                                    //         title: "Đã nhập sai quá 3 lần, mã sẽ bị hủy",
+                                    //         icon: "warning",
+                                    //         timer: 2000
+                                    //     });
+                                    //     navigate('/signup');
+                                    // }
                                 }}
                             >
-                                <Form>
-                                    <div className="row mt-lg-3">
-                                        <div className="col-3"/>
-                                        <div className="col-6">
-                                            <fieldset className="form-group position-relative has-icon-left">
-                                                <Field
-                                                    name="verificationCode"
-                                                    type="text"
-                                                    id="txtUserName"
-                                                    className="form-control text-center"
-                                                    placeholder="Mã"
-                                                />
-                                                <div className="text-center">
-                                                    <ErrorMessage name="verificationCode" component="span"
-                                                                  style={{color: "red"}}/>
-                                                </div>
-                                            </fieldset>
+                                {({isSubmitting}) => (
+                                    <Form>
+                                        <div className="row mt-lg-3">
+                                            <div className="col-3"/>
+                                            <div className="col-6">
+                                                <fieldset className="form-group position-relative has-icon-left">
+                                                    <Field
+                                                        name="verificationCode"
+                                                        type="text"
+                                                        id="txtUserName"
+                                                        className="form-control text-center"
+                                                        placeholder="Mã"
+                                                    />
+                                                    <div className="text-center">
+                                                        <ErrorMessage name="verificationCode" component="span"
+                                                                      style={{color: "red"}}/>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div className="col-3"/>
                                         </div>
-                                        <div className="col-3"/>
-                                    </div>
-                                    <div className="text-center" style={{marginBottom: "10px"}}>
-                                        <button type="submit" className="btn"
-                                                style={{
-                                                    margin: "3%",
-                                                    // paddingLeft: "15%",
-                                                    backgroundColor: "rgb(6, 133, 170)",
-                                                    color: "white",
-                                                    // fontWeight: "bold",
-                                                    fontSize: "18px"
-                                                }}>
-                                            Xác Nhận
-                                        </button>
-                                    </div>
-                                </Form>
+                                        <div className="text-center" style={{marginBottom: "10px"}}>
+                                            {
+                                                isSubmitting ?
+                                                    <ThreeDots/> :
+                                                    <button type="submit" className="btn"
+                                                            style={{
+                                                                margin: "3%",
+                                                                // paddingLeft: "15%",
+                                                                backgroundColor: "rgb(6, 133, 170)",
+                                                                color: "white",
+                                                                // fontWeight: "bold",
+                                                                fontSize: "18px"
+                                                            }}>
+                                                        Xác Nhận
+                                                    </button>
+                                            }
+                                        </div>
+                                    </Form>
+                                )}
                             </Formik>
                         </div>
                     </div>
