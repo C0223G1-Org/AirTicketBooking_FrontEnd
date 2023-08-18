@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="926a5953-2756-4ebd-a047-72cd1e75119d" name="Changes" comment="TaiMP FE ngay 17/8/2023">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/component/CustomerManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/component/CustomerManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/home/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/home/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/ticket/printTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/ticket/printTicket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/ticket/updateTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/ticket/updateTicket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/firebase.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/services/TicketService.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/services/TicketService.js" afterDir="false" />
+    <list default="true" id="926a5953-2756-4ebd-a047-72cd1e75119d" name="Changes" comment="Hoa commit FE">
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/chat_messenger/UserChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/chat_messenger/UserChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/css/search_ticket/style-popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/css/search_ticket/style-popup.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,18 +32,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/airplane_booking" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "HoaLTY"
+  }
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -81,7 +66,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692260202413</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Hoa commit FE">
+      <option name="closed" value="true" />
+      <created>1692283920724</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692283920724</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,10 +90,10 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="TaiMP FE ngay 17/8/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="TaiMP FE ngay 17/8/2023" />
+    <MESSAGE value="Hoa commit FE" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hoa commit FE" />
   </component>
 </project>
