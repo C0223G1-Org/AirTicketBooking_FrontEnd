@@ -79,7 +79,7 @@ root.render(
            <Route path="/admin/messages" element={<AdminPage />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/report" element={<CreateReport />}></Route>
-          <Route path='/payment/:id' element={<PaymentComponent/>}></Route>
+          <Route path='/payment/:departure' element={<PaymentComponent/>}></Route>
           <Route path='/change-password' element={<ChangePassword/>}></Route>
         </Routes>
 

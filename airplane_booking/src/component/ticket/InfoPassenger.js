@@ -68,8 +68,6 @@ export default function InfoPassenger() {
         }, []);
     }
 
-
-
         const getTypeSeat = async () => {
             const data = await getTypeSeatByName(arr[2])
             setTypeSeat(data);
@@ -170,6 +168,7 @@ export default function InfoPassenger() {
 
     return (
         <>
+    
             <head>
                 <meta charSet="UTF-8"/>
                 <title>Thông Tin Hành Khách Thực Hiện Chuyến Bay</title>
@@ -180,7 +179,7 @@ export default function InfoPassenger() {
                         <div className="title text-center">
                             <p className="h1">Thông tin hành khách</p>
                         </div>
-                        {arr[0] == 1 ?
+                        {arr[0] == 1 && route.departure.nameDeparture ?
                             <Formik
                                 initialValues={initialValues}
                                 onSubmit={async (values) => {
@@ -292,7 +291,7 @@ export default function InfoPassenger() {
 
                                         })
                                     }
-                                    navigate(`/payment/${customer.idCustomer}`)
+                                    navigate(`/payment/${route.departure.nameDeparture}`)
                                 }
 
                                 }
@@ -752,7 +751,7 @@ export default function InfoPassenger() {
                                                 await createNewTicket(object);
                                             })
                                         }
-                                        navigate(`/payment/${customer.idCustomer}`)
+                                        navigate(`/payment/${route.departure.nameDeparture}`)
                                     }
                                     }
                                 >

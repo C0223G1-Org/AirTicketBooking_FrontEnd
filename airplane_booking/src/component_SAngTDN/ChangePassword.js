@@ -2,10 +2,13 @@ import {Formik, Form, Field, ErrorMessage} from"formik";
 import {changePassword} from "../services/AccountServices";
 import * as yup from "yup";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getCustomerByEmail } from "../services/CustomerServices";
+
 function ChangePassword (){
 
   const [showOldPassword, setShowOldPassword] = useState(false);
+  const [user,setUser] = useState({});
 
   const toggleShowOldPassword = () => {
     setShowOldPassword(!showOldPassword);
@@ -16,6 +19,19 @@ function ChangePassword (){
   const toggleShowNewPassword = () => {
     setShowNewPassword(!showNewPassword);
   };
+
+  const userName = localStorage.getItem("username");
+  
+  const getUser = async ()=>{
+const data =  await getCustomerByEmail(userName);
+setUser(data)
+  }
+
+  useEffect(()=>{
+    getUser();
+  },[])
+
+  
 
     return(
         <div>
@@ -38,6 +54,7 @@ function ChangePassword (){
           <div className="content-agile2 bg-white">
             <Formik
             initialValues={{
+
                 id: 1,
                 oldPassword : "",
                 newPassword : "",
