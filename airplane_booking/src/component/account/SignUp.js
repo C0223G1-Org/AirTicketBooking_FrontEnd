@@ -491,8 +491,14 @@ export function SignUp() {
                                                 >
                                                     <option value={null}>-- Chọn quốc tịch --</option>
                                                     <option value="Việt Nam">Việt Nam</option>
-                                                    <option value="USA">USA</option>
-                                                    <option value="Japan">Japan</option>
+                                                    <option value="Mỹ">Mỹ</option>
+                                                    <option value="Nhật Bản">Nhật Bản</option>
+                                                    <option value="Trung Quốc">Trung Quốc</option>
+                                                    <option value="Hàn Quốc">Hàn Quốc</option>
+                                                    <option value="Ấn Độ">Ấn Độ</option>
+                                                    <option value="Lào">Lào</option>
+                                                    <option value="Italia">Italia</option>
+                                                    <option value="Thái Lan">Thái Lan</option>
                                                 </Field>
                                                 <div className="row">
                                                     <div className="col-1"/>
