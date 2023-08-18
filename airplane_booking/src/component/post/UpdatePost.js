@@ -93,7 +93,6 @@ export function UpdatePost() {
         findAllEmployees()
     }, [])
     useEffect(() => {
-        document.title = "Thêm mới tin tức";
         window.scrollTo(0, 0)
     }, []);
     if (!post) {

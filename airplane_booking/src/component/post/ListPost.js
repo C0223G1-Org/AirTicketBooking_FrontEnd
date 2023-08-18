@@ -168,8 +168,7 @@ export default function ListPost() {
                 <div className="main-son col-12 col-lg-9 ">
                     <div className="justify-content-between" style={{display: 'flex', marginBottom: '16px'}}>
                         <div className="add-post">
-                            <NavLink to="/createPost"
-                                     className={`btn1 search-son mt-3 ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
+                            <NavLink to="/createPost" className={`btn1 search-son mt-3 ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
                                      style={{color: 'black'}}> Thêm mới</NavLink>
                         </div>
                         <div className="search-post" style={{marginBottom: '1rem'}}>

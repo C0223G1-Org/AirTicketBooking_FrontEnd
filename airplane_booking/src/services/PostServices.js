@@ -11,10 +11,10 @@ export const createPost=async (post)=>{
 }
 export const getAllEmployee=async (email)=>{
     try {
-        const result=await axios.get(`http://localhost:8080/api/employee/login/${email}`)
-        return result.data
+        const result = await axios.get(`http://localhost:8080/api/employee/login/${email}`);
+        return result.data;
     }catch (err) {
-        console.log(err)
+        console.log(err);
     }
 }
 export const updatePost=async (post)=>{

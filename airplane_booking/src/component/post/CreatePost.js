@@ -37,7 +37,7 @@ export default function CreatePost() {
                     ...post,
                     image: url,
                     employee: employees
-                }).then(()=>{
+                }).then(() => {
                     navigate("/listPost")
                 })
                 console.log(url);
@@ -65,7 +65,6 @@ export default function CreatePost() {
         findAllEmployees();
     }, [])
     useEffect(() => {
-        document.title = "Thêm mới tin tức ";
         window.scrollTo(0, 0)
     }, []);
 
@@ -109,7 +108,7 @@ export default function CreatePost() {
             })}
             onSubmit={(values, {setSubmitting}) => {
                 setSubmitting(false);
-                savePost(values).then(()=>{
+                savePost(values).then(() => {
                     setSubmitting(true);
                 });
             }}>
@@ -173,34 +172,34 @@ export default function CreatePost() {
                                             <ErrorMessage name="content" component="span" style={{color: "red"}}/>
                                         </div>
 
-                                        {
-                                            isSubmitting ?
-                                                <FidgetSpinner
-                                                    visible={true}
-                                                    height="80"
-                                                    width="80"
-                                                    ariaLabel="dna-loading"
-                                                    wrapperStyle={{}}
-                                                    wrapperClass="dna-wrapper"
-                                                    ballColors={['#ff0000', '#00ff00', '#0000ff']}
-                                                    backgroundColor="#F4442E"
-                                                /> :
-                                                <div className="mt-4 btn-group ">
-                                                    <div className="text-center m-auto">
-                                                        <Link to="/listPost" type="button"
-                                                              className="btn btn-secondary1">
-                                                            <b className="text-center1">Quay lại</b>
-                                                        </Link>
-                                                    </div>
-                                                    <div className="text-center m-auto">
-                                                        <button type="submit"
-                                                                className="btn btn-warning "
-                                                                data-mdb-toggle="modal"
-                                                                data-mdb-target="#exampleModalToggle1">
-                                                            <b className="text-center1">Thêm mới</b>
-                                                        </button>
-                                                    </div>
-                                                </div>}
+                                        {isSubmitting ?
+                                            <FidgetSpinner
+                                                visible={true}
+                                                height="80"
+                                                width="80"
+                                                ariaLabel="dna-loading"
+                                                wrapperStyle={{}}
+                                                wrapperClass="dna-wrapper"
+                                                ballColors={['#ff0000', '#00ff00', '#0000ff']}
+                                                backgroundColor="#F4442E"
+                                            /> :
+                                            <div className="mt-4 btn-group ">
+                                                <div className="text-center m-auto">
+                                                    <Link to="/listPost" type="button"
+                                                          className="btn btn-secondary1">
+                                                        <b className="text-center1">Quay lại</b>
+                                                    </Link>
+                                                </div>
+                                                <div className="text-center m-auto">
+                                                    <button type="submit"
+                                                            className="btn btn-warning "
+                                                            data-mdb-toggle="modal"
+                                                            data-mdb-target="#exampleModalToggle1">
+                                                        <b className="text-center1">Thêm mới</b>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        }
                                     </Form>
                                 </div>
                             </div>
