@@ -30,7 +30,7 @@ export default function Print() {
 
   })
   return (
-    <>
+    <div id="print">
       <div ref={componentRef} style={{ width: '100%', height: window.innerHeight }}>
         <div className="ticket">
 
@@ -113,6 +113,6 @@ export default function Print() {
       <div className="button-area">
         <button onClick={handlePrint}>In vé</button>
       </div>
-    </>
+    </div>
   )
 }
