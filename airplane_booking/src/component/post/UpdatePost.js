@@ -25,10 +25,26 @@ export function UpdatePost() {
 
     useEffect(() => {
         const update = async () => {
-            const result = await postService.findPostById(param.id)
-            setPost(result)
+            try {
+                const result = await postService.findPostById(param.id)
+                setPost(result);
+                console.log(result)
+            }catch (e){
+                navigate("/listPost")
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ID không tồn tại.',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    customClass: {
+                        icon: 'icon-post',
+                    }
+                })
+            }
+
         }
         update()
+
     }, [param.id])
     const formatDateTime = (dateTime) => {
         return moment(dateTime).format("DD/MM/YYYY HH:mm");
@@ -43,13 +59,14 @@ export function UpdatePost() {
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then(async (url) => {
                 console.log(post)
+
                 await updatePost({
                     ...post,
                     image: url,
-                    employee: employees.find(es => es.idEmployee == post.employee)
-                }).then(
-                    navigate("/listPost")
-                )
+                    employee: employees
+                }).then(()=>{
+                    navigate("/listPost");
+                })
                 console.log(url);
             })
         }).then(
@@ -58,7 +75,10 @@ export function UpdatePost() {
                     icon: 'success',
                     title: 'Chỉnh sửa thành công !',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
+                    customClass: {
+                        icon: 'icon-post',
+                    }
                 })
             }
         )
@@ -67,14 +87,13 @@ export function UpdatePost() {
 
     useEffect(() => {
         const findAllEmployees = async () => {
-            const result = await postService.getAllEmployee()
+            const result = await postService.getAllEmployee(localStorage.username)
             setEmployee(result)
         }
         findAllEmployees()
     }, [])
     useEffect(() => {
-        document.title = "Thêm mới tin tức ";
-
+        document.title = "Thêm mới tin tức";
         window.scrollTo(0, 0)
     }, []);
     if (!post) {
@@ -88,7 +107,7 @@ export function UpdatePost() {
                 icon: 'error',
                 title: 'Dung lượng ảnh tối đa 3MB',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2000
             })
             return;
         }
@@ -118,11 +137,10 @@ export function UpdatePost() {
                         title: Yup.string().required("Không được để trống"),
                         content: Yup.string().required("Không được để trống")
                     })}
-                    onSubmit={(values, {setSubmitting}) => {
-                        setTimeout(() => {
-                            update(values)
-                            setSubmitting(false)
-                        }, 4000)
+                    onSubmit={(values,{setSubmitting}) => {
+                            setSubmitting(false);
+                            update(values);
+                            setSubmitting(true);
                     }}
                 >
                     {

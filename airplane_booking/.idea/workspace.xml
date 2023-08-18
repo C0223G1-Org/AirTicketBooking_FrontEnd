@@ -24,7 +24,16 @@
   <component name="ChangeListManager">
     <list default="true" id="d0a101e2-9ef3-4e9f-bab5-7a56a6f885e3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/post/CKEditorComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/CKEditorComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/post/CreatePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/CreatePost.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/post/ListPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/ListPost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/post/UpdatePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/UpdatePost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/post/ListPost.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/post/ListPost.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/PostServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/PostServices.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +91,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9940190e-4050-4e32-b542-a40edc64470e" name="Changes" comment="VuDT commit cập nhật css FrontEnd updateTicket,và printTicket  lần 4" />
+      <changelist id="d0a101e2-9ef3-4e9f-bab5-7a56a6f885e3" name="Changes" comment="" />
       <created>1692013370002</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -92,7 +101,9 @@
       <workItem from="1692184955497" duration="4779000" />
       <workItem from="1692225872804" duration="2804000" />
       <workItem from="1692233451322" duration="17359000" />
-      <workItem from="1692270652212" duration="11833000" />
+      <workItem from="1692270652212" duration="12123000" />
+      <workItem from="1692285218967" duration="207000" />
+      <workItem from="1692320398314" duration="10196000" />
     </task>
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
@@ -194,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692283812776</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="VuDT update css cho update ticket và print ticket">
+      <created>1692284722956</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1692284722956</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

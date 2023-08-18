@@ -1,7 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 import React from "react";
 import {Route, Routes} from "react-router";
+import {BrowserRouter} from "react-router-dom";
+import SearchDemo from "./component_SAngTDN/SearchDemo";
+import ListRouter from "./component_SAngTDN/ListRoute";
+import ChangePassword from "./component_SAngTDN/ChangePassword";
+import TicketBooked from "./components/TicketBooked";
+import TicketUnBook from "./components/TicketUnBook";
 
 function App() {
   return (

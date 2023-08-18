@@ -9,9 +9,9 @@ export const createPost=async (post)=>{
         console.log(err)
     }
 }
-export const getAllEmployee=async ()=>{
+export const getAllEmployee=async (email)=>{
     try {
-        const result=await axios.get("http://localhost:8080/api/employee")
+        const result=await axios.get(`http://localhost:8080/api/employee/login/${email}`)
         return result.data
     }catch (err) {
         console.log(err)

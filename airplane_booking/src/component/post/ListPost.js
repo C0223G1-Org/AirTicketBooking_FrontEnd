@@ -9,7 +9,7 @@ import BackToTop from "../../img/mui_ten_len.png"
 
 export default function ListPost() {
     const scrollToTop = () => {
-        const scrollStep = window.scrollY / (2000 / 15); // Tốc độ cuộn, có thể điều chỉnh
+        const scrollStep = window.scrollY / (2000 / 15); // Tốc độ cuộn
         const scrollInterval = setInterval(() => {
             if (window.scrollY !== 0) {
                 window.scrollBy(0, -scrollStep);
@@ -53,7 +53,6 @@ export default function ListPost() {
             setNews(data);
         } catch (error) {
             setNews([]);
-            console.log("thah")
             const message = 'Không có bài viết nào nổi bật. ';
             setMessages(message);
         }
@@ -71,7 +70,11 @@ export default function ListPost() {
                 title: 'Không có dữ liệu.',
                 icon: 'error',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 3000,
+                customClass: {
+                    icon: 'icon-post',
+                }
+
             })
         }
 
@@ -92,7 +95,10 @@ export default function ListPost() {
                 title: 'Không có dữ liệu.',
                 icon: 'error',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 3000,
+                customClass: {
+                    icon: 'icon-post',
+                }
             })
         }
     };
@@ -107,7 +113,10 @@ export default function ListPost() {
                 title: 'Không có tên bài viết nào mà bạn cần.',
                 icon: 'error',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 3000,
+                customClass: {
+                    icon: 'icon-post',
+                }
             })
         }
 
@@ -125,6 +134,7 @@ export default function ListPost() {
                 reverseButtons: true,
                 customClass: {
                     confirmButton: 'custom-confirm-button-employee',
+                    icon:"icon-post"
                 }
             }
         ).then((res) => {
@@ -132,12 +142,14 @@ export default function ListPost() {
                 deletePost(id).then(() => {
                     getList().then(() => {
                         getNews().then(() => {
-                            console.log("10101");
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Xoá Thành công.',
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 2000,
+                                customClass: {
+                                    icon: 'icon-post',
+                                }
                             })
                         })
                     })
@@ -157,7 +169,7 @@ export default function ListPost() {
                     <div className="justify-content-between" style={{display: 'flex', marginBottom: '8.25px'}}>
                         <div className="add-post">
                             <NavLink to="/createPost"
-                                     className={`btn1 search mt-3 ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
+                                     className={`btn1 search-son mt-3 ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
                                      style={{color: 'black'}}> Thêm mới</NavLink>
                         </div>
                         <div className="search-post" style={{marginBottom: '1rem'}}>
@@ -171,7 +183,7 @@ export default function ListPost() {
                                 <Form>
                                     <Field className="me-0 mt-3" type="text" id="title" name="title"
                                            placeholder="Nhập tên bài viết . . ."/>
-                                    <button className="search" type="submit">Tìm Kiếm
+                                    <button className="search-son" type="submit">Tìm Kiếm
                                     </button>
                                 </Form>
                             </Formik>
