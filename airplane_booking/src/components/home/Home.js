@@ -9,6 +9,7 @@ import GetTop10Cheapest from "./Top10";
 import Swal from "sweetalert2";
 import Popup from "./ChatPopup";
 import "../../css/search_ticket/style-popup.css";
+import UserChat from '../chat_messenger/UserChat';
 
 
 export default function Home() {
@@ -491,8 +492,7 @@ export default function Home() {
                 <div className="col-2"/>
             </div>
             <div>
-            <Popup />
-
+            <UserChat />
             </div>
             <GetTop10Cheapest/>
 
