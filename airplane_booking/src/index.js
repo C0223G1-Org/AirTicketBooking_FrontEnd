@@ -39,6 +39,8 @@ import CreateReport from "./component/report/CreateReport";
 import {Login} from "./component/account/Login";
 import {SignUp} from "./component/account/SignUp";
 import {CheckCode} from "./component/account/CheckCode";
+import PaymentComponent from "./component/PaymentComponent";
+import ChangePassword from "./component_SAngTDN/ChangePassword";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -82,6 +84,8 @@ root.render(
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
                     <Route path="/checkCode/:data" element={<CheckCode/>}/>
+                    <Route path="/payment/:id" element={<PaymentComponent/>}/>
+                    <Route path="/change-password" element={<ChangePassword/>}/>
                 </Routes>
                 <Footer/>
             </TicketProvider>

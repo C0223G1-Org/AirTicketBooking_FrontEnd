@@ -197,6 +197,8 @@ export default function Header() {
                                                 <li><Link to={`/historyPayment`} className="dropdown-item">Lịch sử đặt
                                                     vé</Link>
                                                 </li>
+                                                <li><Link to={`/change-password`} className="dropdown-item">Đổi mật khẩu</Link>
+                                                </li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -278,7 +280,9 @@ export default function Header() {
                                                     </li>
                                                     <li><a className="dropdown-item" href="#">Quản lý kinh doanh</a></li>
                                                     <li><Link to={`/ticket/booked`} className="dropdown-item">Quản lý
-                                                        vé</Link></li>
+                                                        vé</Link></li> <li>
+                                                    <Link to={`/change-password`} className="dropdown-item">Đổi mật khẩu</Link>
+                                                </li>
                                                     <li><a className="dropdown-item" href="#">Báo cáo</a></li>
                                                 </ul>
                                             </li>
@@ -364,6 +368,8 @@ export default function Header() {
                                                     </li>
                                                     <li><a className="dropdown-item" href="#">Quản lý vé</a></li>
                                                     <li><a className="dropdown-item" href="#">Báo cáo</a></li>
+                                                    <li><Link to={`/historyPayment`} className="dropdown-item">Đổi mật khẩu</Link>
+                                                    </li>
                                                 </ul>
                                             </li>
                                         </ul>
