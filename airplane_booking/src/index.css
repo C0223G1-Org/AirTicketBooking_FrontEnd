@@ -3,9 +3,6 @@
   --buttonAirLine--: rgb(223, 165, 18);
 }
 
-* {
-  margin: 0;
-}
 
 .h1-ticket {
   color: var(--airLine--);

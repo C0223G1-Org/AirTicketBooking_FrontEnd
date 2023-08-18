@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getListRouter } from "../services/RouteServices";
 import Swal from "sweetalert2";
 
+
 function ListRouter() {
   const { data } = useParams();
   const [info, setInfor] = useState({});
@@ -348,7 +349,7 @@ function ListRouter() {
 
   }
   const handleSubmitTwoWay=()=>{
-    navigate(`/detail-ticket/${1},${idRouteDeparture},${idRouteArrival},${departureTypeSeat},${arrivalTypeSeat},${departurePriceTicket},${departurePriceTicket},${array[5]},${array[6]}`);
+    navigate(`/detail-ticket/${1},${idRouteDeparture},${idRouteArrival},${departureTypeSeat},${arrivalTypeSeat},${departurePriceTicket},${arrivalPriceTicket},${array[5]},${array[6]}`);
     //1.loại vé, 2.id tuyến đi,3. idtuyến vế ,4. loại ghế đi 5, loại ghế về , 6. giá đi. 7.giá về
   }
 
@@ -389,7 +390,7 @@ function ListRouter() {
                           alt=""
                       />
                     </a>
-                    <p>(logo mẫu)</p>
+                    {/*<p>(logo mẫu)</p>*/}
                   </div>
                   {/* Sidebar navigation*/}
                   <br />
@@ -805,135 +806,135 @@ function ListRouter() {
                                         {" "}
                                                 đến{" "}
                                       </span>
-                                              {f.timeArrival.slice(0, 5)}
-                                            </h4>
-                                            <small>{f.nameAirCraft}</small>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          {/* <img width="150px" src="https://saoviettravel.com.vn/images/icon-hetcho.svg" /> */}
-                                          {((array[5]*1+array[6]*1)>f.seatsBussinessRemaining)?<img width="150px" src="https://saoviettravel.com.vn/images/icon-hetcho.svg" />:
-                                              <div>
-                                                <h3>
-                                                  {new Intl.NumberFormat("de-DE").format(
-                                                      (f.priceRoute * f.priceExtraBussiness) /
-                                                      1000
-                                                  )}
-                                                </h3>
-                                                <p>000 VND</p>
-                                                <hr style={{ margin: "10px" }} />
-                                                <div className="row">
-                                                  <div className="col-6">
-                                                    <label>Đặt vé &nbsp;</label>
-                                                    <input type="radio" checked={(selecTicketDeparture === f.idRoute+"-a")||(selecTicketArrival === f.idRoute+"-a")} value={f.idRoute+"-a"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraBussiness,f.timeDeparture, f.timeArrival,f.nameRoute,"Bussiness",f.idRoute)} name="ticket" />
-                                                  </div>
-                                                  <div
-                                                      className="col-6"
-                                                      style={{ padding: "0px" }}
-                                                  >
-                                                    <a>Xem chi tiết </a>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                          }
-                                        </td>
-                                        <td>
-                                          {((array[5]*1+array[6]*1)>f.seatsSkybossRemaining)?<img width="150px" src="https://saoviettravel.com.vn/images/icon-hetcho.svg" />:
-                                              <div>
-                                                <h3>
-                                                  {new Intl.NumberFormat("de-DE").format(
-                                                      (f.priceRoute * f.priceExtraSkyboss) /
-                                                      1000
-                                                  )}
-                                                </h3>
-                                                <p>000 VND</p>
-                                                <hr style={{ margin: "10px" }} />
-                                                <div className="row">
-                                                  <div className="col-6">
-                                                    <label>Đặt vé &nbsp;</label>
-                                                    <input type="radio" name="ticket" checked={(selecTicketDeparture === f.idRoute+"-b")||(selecTicketArrival === f.idRoute+"-b")} value={f.idRoute+"-b"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraSkyboss,f.timeDeparture, f.timeArrival,f.nameRoute,"Skyboss",f.idRoute)} />
-                                                  </div>
-                                                  <div
-                                                      className="col-6"
-                                                      style={{ padding: "0px" }}
-                                                  >
-                                                    <a>Xem chi tiết </a>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                          }
-                                        </td>
-                                        <td>
-                                          {((array[5]*1+array[6]*1)>f.seatsVeluxeRemaining)?<img width="150px" src="https://saoviettravel.com.vn/images/icon-hetcho.svg" />:
-                                              <div>
-                                                <h3>
-                                                  {new Intl.NumberFormat("de-DE").format(
-                                                      (f.priceRoute * f.priceExtraVeluxe) / 1000
-                                                  )}
-                                                </h3>
-                                                <p>000 VND</p>
-                                                <hr style={{ margin: "10px" }} />
-                                                <div className="row">
-                                                  <div className="col-6">
-                                                    <label>Đặt vé &nbsp;</label>
-                                                    <input type="radio" name="ticket" checked={(selecTicketDeparture === f.idRoute+"-c")||(selecTicketArrival === f.idRoute+"-c")} value={f.idRoute+"-c"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraVeluxe,f.timeDeparture, f.timeArrival,f.nameRoute,"Veluxe",f.idRoute)} />
-                                                  </div>
-                                                  <div
-                                                      className="col-6"
-                                                      style={{ padding: "0px" }}
-                                                  >
-                                                    <a>Xem chi tiết </a>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                          }
-                                        </td>
-                                        <td>
-                                          {((array[5]*1+array[6]*1)>f.seatsEcoRemaining)?<img width="150px" src="https://saoviettravel.com.vn/images/icon-hetcho.svg" />:
-                                              <div>
-                                                <h3>
-                                                  {new Intl.NumberFormat("de-DE").format(
-                                                      (f.priceRoute * f.priceExtraEco) / 1000
-                                                  )}
-                                                </h3>
-                                                <p>000 VND</p>
-                                                <hr style={{ margin: "10px" }} />
-                                                <div className="row">
-                                                  <div className="col-6">
-                                                    <label>Đặt vé &nbsp;</label>
-                                                    <input type="radio" name="ticket" checked={(selecTicketDeparture === f.idRoute+"-d")||(selecTicketArrival === f.idRoute+"-d")} value={f.idRoute+"-d"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraEco,f.timeDeparture, f.timeArrival,f.nameRoute,"Eco",f.idRoute)} />
-                                                  </div>
-                                                  <div
-                                                      className="col-6"
-                                                      style={{ padding: "0px" }}
-                                                  >
-                                                    <a>Xem chi tiết </a>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                          }
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td
-                                            style={{ padding: "5px", border: "none" }}
-                                        />
-                                      </tr>
-                                    </>
-                                );
-                              })}
-                              </tbody>
-                            </table>
-                            :<p><b>----Không có chuyến bay nào----</b></p>}
-                      </div>
-                    </div>
+                                      {f.timeArrival.slice(0, 5)}
+                                    </h4>
+                                    <small>{f.nameAirCraft}</small>
+                                  </div>
+                                </td>
+                                <td>
+                                  {/* <img width="150px" src="https://saoviettravel.com.vn/images/icon-hetcho.svg" /> */}
+                                  {((array[5]*1+array[6]*1)>f.seatsBussinessRemaining)?<img width="150px" src="https://saoviettravel.com.vn/images/icon-hetcho.svg" />:
+                                  <div>
+                                  <h3>
+                                    {new Intl.NumberFormat("de-DE").format(
+                                      (f.priceRoute * f.priceExtraBussiness) /
+                                        1000
+                                    )}
+                                  </h3>
+                                  <p>000 VND</p>
+                                  <hr style={{ margin: "10px" }} />
+                                  <div className="row">
+                                    <div className="col-6">
+                                      <label>Đặt vé &nbsp;</label>
+                                      <input type="radio" checked={(selecTicketDeparture === f.idRoute+"-a")||(selecTicketArrival === f.idRoute+"-a")} value={f.idRoute+"-a"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraBussiness,f.timeDeparture, f.timeArrival,f.nameRoute,"Bussiness",f.idRoute)} name="ticket" />
+                                    </div>
+                                    <div
+                                      className="col-6"
+                                      style={{ padding: "0px" }}
+                                    >
+                                      <a>Xem chi tiết </a>
+                                    </div>
+                                  </div>
+                                  </div>
+                        }
+                                </td>
+                                <td>
+                                {((array[5]*1+array[6]*1)>f.seatsSkybossRemaining)?<img width="150px" src="https://saoviettravel.com.vn/images/icon-hetcho.svg" />:
+                                  <div>
+                                  <h3>
+                                    {new Intl.NumberFormat("de-DE").format(
+                                      (f.priceRoute * f.priceExtraSkyboss) /
+                                        1000
+                                    )}
+                                  </h3>
+                                  <p>000 VND</p>
+                                  <hr style={{ margin: "10px" }} />
+                                  <div className="row">
+                                    <div className="col-6">
+                                      <label>Đặt vé &nbsp;</label>
+                                      <input type="radio" name="ticket" checked={(selecTicketDeparture === f.idRoute+"-b")||(selecTicketArrival === f.idRoute+"-b")} value={f.idRoute+"-b"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraSkyboss,f.timeDeparture, f.timeArrival,f.nameRoute,"Skyboss",f.idRoute)} />
+                                    </div>
+                                    <div
+                                      className="col-6"
+                                      style={{ padding: "0px" }}
+                                    >
+                                      <a>Xem chi tiết </a>
+                                    </div>
+                                  </div>
+                                  </div>
+                        }
+                                </td>
+                                <td>
+                                {((array[5]*1+array[6]*1)>f.seatsVeluxeRemaining)?<img width="150px" src="https://saoviettravel.com.vn/images/icon-hetcho.svg" />:
+                                  <div>
+                                  <h3>
+                                    {new Intl.NumberFormat("de-DE").format(
+                                      (f.priceRoute * f.priceExtraVeluxe) / 1000
+                                    )}
+                                  </h3>
+                                  <p>000 VND</p>
+                                  <hr style={{ margin: "10px" }} />
+                                  <div className="row">
+                                    <div className="col-6">
+                                      <label>Đặt vé &nbsp;</label>
+                                      <input type="radio" name="ticket" checked={(selecTicketDeparture === f.idRoute+"-c")||(selecTicketArrival === f.idRoute+"-c")} value={f.idRoute+"-c"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraVeluxe,f.timeDeparture, f.timeArrival,f.nameRoute,"Veluxe",f.idRoute)} />
+                                    </div>
+                                    <div
+                                      className="col-6"
+                                      style={{ padding: "0px" }}
+                                    >
+                                      <a>Xem chi tiết </a>
+                                    </div>
+                                  </div>
+                                  </div>
+                        }
+                                </td>
+                                <td>
+                                {((array[5]*1+array[6]*1)>f.seatsEcoRemaining)?<img width="150px" src="https://saoviettravel.com.vn/images/icon-hetcho.svg" />:
+                                  <div>
+                                  <h3>
+                                    {new Intl.NumberFormat("de-DE").format(
+                                      (f.priceRoute * f.priceExtraEco) / 1000
+                                    )}
+                                  </h3>
+                                  <p>000 VND</p>
+                                  <hr style={{ margin: "10px" }} />
+                                  <div className="row">
+                                    <div className="col-6">
+                                      <label>Đặt vé &nbsp;</label>
+                                      <input type="radio" name="ticket" checked={(selecTicketDeparture === f.idRoute+"-d")||(selecTicketArrival === f.idRoute+"-d")} value={f.idRoute+"-d"} onChange={(e)=>handleOnChangeBuyTicket(e,f.priceRoute * f.priceExtraEco,f.timeDeparture, f.timeArrival,f.nameRoute,"Eco",f.idRoute)} />
+                                    </div>
+                                    <div
+                                      className="col-6"
+                                      style={{ padding: "0px" }}
+                                    >
+                                      <a>Xem chi tiết </a>
+                                    </div>
+                                  </div>
+                                  </div>
+                        }
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  style={{ padding: "5px", border: "none" }}
+                                />
+                              </tr>
+                            </>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                    :<p><b>----Không có chuyến bay nào----</b></p>}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </>
+      </div>
+      </div>
+    </>
   );
 }
 
