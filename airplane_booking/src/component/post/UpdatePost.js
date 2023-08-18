@@ -1,7 +1,7 @@
 import {useNavigate, useParams} from "react-router";
 import React, {useEffect, useRef, useState} from "react";
 import * as postService from "../../services/PostServices"
-import {Field, Form, Formik} from "formik";
+import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {getDownloadURL, ref, uploadBytesResumable} from "@firebase/storage";
 import {storage} from "../../firebase-chat";
@@ -13,6 +13,8 @@ import CKEditorComponent from "./CKEditorComponent";
 import moment from "moment";
 import {FidgetSpinner} from "react-loader-spinner";
 
+
+
 export function UpdatePost() {
     const [employees, setEmployee] = useState([]);
     const [post, setPost] = useState()
@@ -22,43 +24,68 @@ export function UpdatePost() {
     const param = useParams()
     const navigate = useNavigate();
 
-    useEffect(() => {
+
         const update = async () => {
-            const result = await postService.findPostById(param.id)
-            setPost(result)
+            try {
+                const result = await postService.findPostById(param.id)
+                setPost(result)
+            }catch (e) {
+                await Swal.fire({
+                    icon: 'error',
+                    title: 'ID không tồn tại!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                navigate("/listPost")
+            }
+
         }
-        update()
-    }, [param.id])
+        useEffect(()=>{
+            update()
+        },[param.id])
+
     const formatDateTime = (dateTime) => {
         return moment(dateTime).format("DD/MM/YYYY HH:mm");
     };
 
 
-    const update = (async (post) => {
-        const fileName = `images/${imageUpload.name + v4()}`;
-        const imageRef = ref(storage, fileName);
-        uploadBytes(imageRef, imageUpload).then((snapshot) => {
-            getDownloadURL(snapshot.ref).then(async (url) => {
-                console.log(post)
-                await updatePost({
-                    ...post,
-                    image: url,
-                    employee: employees.find(es => es.idEmployee == post.employee)
-                }).then(
-                    navigate("/listPost")
-                )
-                console.log(url);
-            })
-        }).then(
-            () => {
+    const updatePosts = (async (post) => {
+        if (imageUpload==null){
+            await updatePost({...post,image:post.image}).then(navigate("/listPost")).then(()=>{
                 Swal.fire({
                     icon: 'success',
-                    title: 'Chỉnh sửa thành công !',
+                    title: 'Chỉnh sửa thành công.  ',
                     showConfirmButton: false,
                     timer: 1500
                 })
-            }
-        )
+            })
+        }else {
+            const fileName = `images/${imageUpload.name + v4()}`;
+            const imageRef = ref(storage, fileName);
+            uploadBytes(imageRef, imageUpload).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then(async (url) => {
+                    console.log(post)
+                    await updatePost({
+                        ...post,
+                        image: url,
+                        employee: employees.find(es => es.idEmployee == post.employee)
+                    }).then(
+                        navigate("/listPost")
+                    )
+                    console.log(url);
+                })
+            }).then(
+                () => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Chỉnh sửa thành công !',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            )
+        }
+
     })
 
 
@@ -102,7 +129,7 @@ export function UpdatePost() {
 
     return (
         <>
-            {post.id &&
+            { post.id &&
             <Formik
                 initialValues={{
                     id:post?.id,
@@ -118,9 +145,9 @@ export function UpdatePost() {
                 })}
                 onSubmit={(values,{setSubmitting}) => {
                     setTimeout(()=>{
-                        update(values)
+                        updatePosts(values)
                         setSubmitting(false)
-                    },4000)
+                    },2000)
                 }}
             >
                 {
@@ -148,7 +175,12 @@ export function UpdatePost() {
 
                                             <div className="mt-4 inputs">
                                                 <span>Nội dung <span style={{color: "red"}}>*</span></span>
-                                                <Field name="content" component={CKEditorComponent} value={post.content}/>
+                                                <Field
+                                                    name="content"
+                                                    component={CKEditorComponent}
+                                                    value={post.content}
+                                                />
+                                                <ErrorMessage name="content" component="span" style={{color:"red"}}/>
                                             </div>
                                             {
                                                 isSubmitting ?

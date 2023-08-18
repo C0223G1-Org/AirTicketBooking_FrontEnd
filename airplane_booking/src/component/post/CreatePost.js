@@ -30,7 +30,6 @@ export function CreatePost() {
         const imageRef = ref(storage, fileName);
        await  uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then(async (url) => {
-
                 await createPost({
                     ...post,
                     image: url,
@@ -108,10 +107,12 @@ export function CreatePost() {
                 content: Yup.string().required("Không được để trống.")
             })}
             onSubmit={(values,{setSubmitting}) => {
-                setTimeout(() => {
-                  savePost(values)
-                    setSubmitting(false)
-                },4000)
+                setSubmitting(true)
+                  savePost(values).then(r => ()=>{
+                      setSubmitting(false)
+                  })
+
+
 
             }}>
             {
