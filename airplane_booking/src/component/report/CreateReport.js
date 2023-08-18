@@ -5,6 +5,7 @@ import {searchAbout1API, searchAboutAPI, searchCurrentAPI, searchPreviousAPI} fr
 import {ChartComponent} from "./ChartComponent";
 import {Chart} from "chart.js/auto"
 import ExportExcel from "./ExprortExcel";
+import ExportExcelButton from "./ExprortExcel";
 
 
 export default function CreateReport() {
@@ -220,14 +221,16 @@ export default function CreateReport() {
                                                 dataTimeAbout={[]}
                                                 dataTimeAbout1={[]}/>
                             }
-                            {/*<div style={{textAlign: "center"}}>*/}
-                            {/*    <button className="btn" style={{*/}
-                            {/*        background: "#daa32a", width: "85px",height:"35px",*/}
-                            {/*        fontSize: "15px", marginLeft: "3.5vw", marginTop: "1vh"*/}
-                            {/*    }}*/}
-                            {/*            onClick={() => handleOnclickExport()}>In báo cáo*/}
-                            {/*    </button>*/}
-                            {/*</div>*/}
+                            <div style={{textAlign: "center"}}>
+                                {dataTimeCurrent && dataTimePrevious || dataTimeAbout && dataTimeAbout1 ?
+                                    <ExportExcelButton dataTimeCurrent={dataTimeCurrent}
+                                                       dataTimePrevious={dataTimePrevious}
+                                                       dataTimeAbout={dataTimeAbout}
+                                                       dataTimeAbout1={dataTimeAbout1} fileName="Revenue"/>
+                                                       :
+                                    ""
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
