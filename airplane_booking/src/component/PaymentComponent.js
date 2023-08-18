@@ -26,6 +26,7 @@ const PaymentComponent = () => {
         getTicketById();
     }
 
+
     let arr1 = [];
     let arr2 = [];
     const listArr = () => {
