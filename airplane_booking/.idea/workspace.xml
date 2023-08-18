@@ -22,7 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0a101e2-9ef3-4e9f-bab5-7a56a6f885e3" name="Changes" comment="VuDT update css cho update ticket và print ticket" />
+    <list default="true" id="d0a101e2-9ef3-4e9f-bab5-7a56a6f885e3" name="Changes" comment="VuDT update css cho update ticket và print ticket">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ticket/updateTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket/updateTicket.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,20 +58,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -91,7 +90,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9940190e-4050-4e32-b542-a40edc64470e" name="Changes" comment="VuDT commit cập nhật css FrontEnd updateTicket,và printTicket  lần 4" />
+      <changelist id="d0a101e2-9ef3-4e9f-bab5-7a56a6f885e3" name="Changes" comment="VuDT update css cho update ticket và print ticket" />
       <created>1692013370002</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -101,6 +100,7 @@
       <workItem from="1692184955497" duration="4779000" />
       <workItem from="1692225872804" duration="2804000" />
       <workItem from="1692233451322" duration="17359000" />
+      <workItem from="1692273927992" duration="3273000" />
     </task>
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
@@ -174,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692256027457</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="VuDT update css cho update ticket và print ticket">
+      <created>1692275378085</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1692275378085</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +204,7 @@
     <MESSAGE value="VuDT commit cập nhật css và coding FrontEnd updateTicket,và printTicket lần 5" />
     <MESSAGE value="kiet update code ngay 15-08" />
     <MESSAGE value="thanh son update code ngay 17-08" />
-    <option name="LAST_COMMIT_MESSAGE" value="thanh son update code ngay 17-08" />
+    <MESSAGE value="VuDT update css cho update ticket và print ticket" />
+    <option name="LAST_COMMIT_MESSAGE" value="VuDT update css cho update ticket và print ticket" />
   </component>
 </project>

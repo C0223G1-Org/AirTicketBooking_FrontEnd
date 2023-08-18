@@ -131,7 +131,7 @@ function TicketBooked() {
                                     <td >{ticket.nameRoute}</td>
                                     <td >{ticket.nameDeparture}-{ticket.nameDestination}</td>
                                     <td >{ticket.timeDeparture}</td>
-                                    <td >{ticket.priceTicket}</td>
+                                    <td>{ticket.priceTicket.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
                                     <td className="icon-ticket">
                                         <ul>
                                             <Link to={`/tickets/updateTicket/${ticket.id}`}>
