@@ -26,7 +26,7 @@ export default function Header() {
         }
     }
 
-    console.log(emailUser)
+    // console.log(emailUser)
 
     const getUser = async () => {
         if (emailUser) {
@@ -41,7 +41,7 @@ export default function Header() {
         }
     }
 
-    console.log("aaaaa")
+    // console.log("aaaaa")
     const handleLogout = () => {
         localStorage.setItem("token", null);
         localStorage.setItem("username", null);
@@ -69,7 +69,7 @@ export default function Header() {
         console.log("asd")
         getUser()
     }, [flag]);
-    console.log(flag1)
+    // console.log(flag1)
 
     // setTimeout(() => {
     //     if (emailUser !== null) {
@@ -199,7 +199,7 @@ export default function Header() {
                                                 <li><Link to={`/historyPayment`} className="dropdown-item">Lịch sử đặt
                                                     vé</Link>
                                                 </li>
-                                                <li><Link to={``} className="dropdown-item">Đổi mật khẩu</Link>
+                                                <li><Link to={`/change-password`} className="dropdown-item">Đổi mật khẩu</Link>
                                                 </li>
                                             </ul>
                                         </li>
@@ -283,7 +283,7 @@ export default function Header() {
                                                     <li><a className="dropdown-item" href="#">Quản lý kinh doanh</a></li>
                                                     <li><Link to={`/ticket/booked`} className="dropdown-item">Quản lý
                                                         vé</Link></li>
-                                                    <li><Link to={``} className="dropdown-item">Đổi mật khẩu</Link>
+                                                    <li><Link to={`/change-password`} className="dropdown-item">Đổi mật khẩu</Link>
                                                     </li>
                                                     <li><a className="dropdown-item" href="#">Báo cáo</a></li>
                                                 </ul>
@@ -368,7 +368,7 @@ export default function Header() {
                                                         viên</Link></li>
                                                     <li><a className="dropdown-item" href="#">Danh sách khách hàng</a>
                                                     </li>
-                                                    <li><Link to={``} className="dropdown-item">Đổi mật khẩu</Link>
+                                                    <li><Link to={`/change-password`} className="dropdown-item">Đổi mật khẩu</Link>
                                                     </li>
                                                     <li><a className="dropdown-item" href="#">Quản lý vé</a></li>
                                                     <li><a className="dropdown-item" href="#">Báo cáo</a></li>

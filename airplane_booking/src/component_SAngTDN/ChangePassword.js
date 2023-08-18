@@ -68,8 +68,8 @@ function ChangePassword (){
                 }
                 catch{
                     Swal.fire({
-                        title: "Mật Khẩu hiện tại của bạn không đúng",
-                        text: "!",
+                        title: "Mật Khẩu hiện tại của bạn không đúng!",
+                        text: "",
                         icon: "warning",
                         button: "Aww yiss!",
                       });

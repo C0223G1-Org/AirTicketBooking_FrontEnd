@@ -33,6 +33,7 @@ import AdminPage from "./components/chat_messenger/AdminChat";
 import {Login} from "./component/account/Login";
 import CreateReport from "./component/report/CreateReport";
 import PaymentComponent from './component/PaymentComponent';
+import ChangePassword from './component_SAngTDN/ChangePassword';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -79,6 +80,7 @@ root.render(
           <Route path="/login" element={<Login />}></Route>
           <Route path="/report" element={<CreateReport />}></Route>
           <Route path='/payment/:id' element={<PaymentComponent/>}></Route>
+          <Route path='/change-password' element={<ChangePassword/>}></Route>
         </Routes>
 
         <Footer />
