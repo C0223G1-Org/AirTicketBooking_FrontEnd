@@ -339,6 +339,7 @@ export default function Home() {
                                     <div className="form-group">
                                         <span className="form-label">Ngày về</span>
                                         <input className="form-control" type="date"
+                                               min={new Date().toISOString().split('T')[0]}
                                                onChange={(e) => {
                                                    setDateDestination(e.target.value)
                                                }}
