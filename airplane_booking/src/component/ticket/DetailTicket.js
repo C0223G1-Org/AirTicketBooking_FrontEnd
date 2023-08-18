@@ -7,12 +7,16 @@ import {getTypeTicketById} from "../../services/TypeTicket";
 import numeral from 'numeral';
 import moment from "moment";
 import image from "../../logo_5.png";
+import {getTypeSeatByName} from "../../services/TypeSeatServices";
 export default function DetailTicket() {
     const [route, setRoute] = useState([]);
     const [routeDestination, setRouteDestination] = useState([]);
     const [typeTicket, setTypeTicket] = useState([]);
     const navigate = useNavigate();
     const {data} = useParams();
+    const [typeSeat, setTypeSeat] = useState([]);
+    const [typeSeatDeparture, setTypeSeatDeparture] = useState([]);
+    const [typeSeatReturn, setTypeSeatReturn] = useState([]);
     // data
     const arr = data.split(",");
     console.log(arr);
@@ -30,34 +34,47 @@ export default function DetailTicket() {
         setTypeTicket(data);
     };
 
-    if (arr[0]==2){
+    if (arr[0] == 1) {
         const getRouterDestination = async () => {
             const data = await getRouteById(arr[2]);
             setRouteDestination(data);
         }
+        const getTypeSeatDeparture = async () => {
+            const data = await getTypeSeatByName(arr[3]);
+            setTypeSeatDeparture(data);
+        }
+        const getTypeSeatReturn = async () => {
+            const data = await getTypeSeatByName(arr[4]);
+            setTypeSeatReturn(data);
+        }
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            getTypeTicket();
-            getRouteDeparture();
             getRouterDestination()
-
+            getTypeSeatDeparture();
+            getTypeSeatReturn();
         }, []);
+    }
+    const getTypeSeat = async () => {
+        const data = await getTypeSeatByName(arr[2])
+        console.log(data)
+        setTypeSeat(data);
     }
     useEffect(() => {
         getTypeTicket();
         getRouteDeparture();
-
+        getTypeSeat();
     }, []);
 
+
     //format tiền tệ vnđ two-Way, giá đi
-    const priceTicket = arr[5] * 1;
+    const priceTicket = route.priceRoute * typeSeatDeparture.priceExtra;
     const priceTax = priceTicket * 0.6;
     const totalPrice = priceTicket + priceTax;
     const formattedPriceRouter = numeral(priceTicket).format('0,0 đ');
     const formattedPriceTax = numeral(priceTax).format('0,0 đ');
     const formattedTotalPrice = numeral(totalPrice).format('0,0 đ');
     //format tiền tệ vnđ two-Way, giá về
-    const priceTicket2 = arr[6] * 1;
+    const priceTicket2 = routeDestination.priceRoute * 1 * typeSeatReturn.priceExtra;
     const priceTax2 = priceTicket2 * 0.6;
     const totalPrice2 = priceTicket2 + priceTax2;
     const formattedPriceRouter2 = numeral(priceTicket2).format('0,0 đ');
@@ -65,27 +82,35 @@ export default function DetailTicket() {
     const formattedTotalPrice2 = numeral(totalPrice2).format('0,0 đ');
 
     //format tiền tệ vnd one-way
-    const priceTicket1 = arr[3] * 1;
-    const priceTax1 = priceTicket1 * 0.6;
-    const totalPrice1 = priceTicket1 + priceTax1;
-    const formattedPriceRouter1 = numeral(priceTicket1).format('0,0 đ');
-    const formattedPriceTax1 = numeral(priceTax1).format('0,0 đ');
-    const formattedTotalPrice1 = numeral(totalPrice1).format('0,0 đ');
+    let formattedPriceRouter1;
+    let formattedPriceTax1;
+    let formattedTotalPrice1;
+    let totalPrice1;
+    let priceTicket1;
+    let priceTax1;
+    if (arr[0]==2) {
+        //format tiền tệ vnd one-way
+        priceTicket1 = route.priceRoute * typeSeat.priceExtra;
+        priceTax1 = priceTicket1 * 0.6;
+        totalPrice1 = priceTicket1 + priceTax1;
+        formattedPriceRouter1 = numeral(priceTicket1).format('0,0 đ');
+        formattedPriceTax1 = numeral(priceTax1).format('0,0 đ');
+        formattedTotalPrice1 = numeral(totalPrice1).format('0,0 đ');
+    }
 
     //onSubmit
     const handleSubmitOneWay = () => {
-        navigate(`/info-passenger/${1},${arr[1]},${arr[2]},${arr[3]},${arr[4]},${arr[5]}`);
+        navigate(`/info-passenger/${2},${arr[1]},${arr[2]},${arr[3]},${arr[4]},${arr[5]}`);
         //1.loại vé, 2.id tuyến bay,3. loại ghế ,4. giá 1 vé,  5. người lớn 6.trẻ em
     }
     const handleSubmitTwoWay = () => {
-        navigate(`/info-passenger/${2},${arr[1]},${arr[2]},${arr[3]},${arr[4]},${arr[5]},${arr[6]},${arr[7]},${arr[8]}`);
+        navigate(`/info-passenger/${1},${arr[1]},${arr[2]},${arr[3]},${arr[4]},${arr[5]},${arr[6]},${arr[7]},${arr[8]}`);
         //1.loại vé, 2.id tuyến đi,3. idtuyến vế ,4. loại ghế đi, 5.loại ghế về , 6. giá đi. 7.giá về
     }
 
     function handleSubmitCancel() {
         navigate("/list");
     }
-
     return (
         <>
             <head>
@@ -99,7 +124,7 @@ export default function DetailTicket() {
                     </div>
 
                     <div className="wrapper d-grid">
-                        {arr[0] == 1 ?
+                        {arr[0] == 2 ?
                             <>
                                 <div className="row wrap">
                                     <div className="location">
@@ -113,7 +138,7 @@ export default function DetailTicket() {
                                         <div className="col-4 info-fight">
                                             <p className="">{(route.departure.nameDeparture).split("-")[0]}</p>
                                             <p className="outstanding">
-                                                <span>{route.timeArrival} </span>
+                                                <span>{route.timeDeparture} </span>
                                                 <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
                                             </p>
                                             <p>{(route.departure.nameDeparture).split("-")[1]}</p>
@@ -121,14 +146,13 @@ export default function DetailTicket() {
                                         <div className="col-4 info-fight">
                                             <p className="">{(route.destination.nameDestination).split("-")[0]}</p>
                                             <p className="outstanding">
-                                                <span>{(route.timeDeparture)} </span>
+                                                <span>{(route.timeArrival)} </span>
                                                 <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                             </p>
                                             <p>{(route.destination.nameDestination).split("-")[1]}</p>
                                         </div>
                                         <div className="col-4 info-fight">
                                             <div className="logo-image">
-                                                {image}
                                                 <p className="vietnam-airline">CodeGym Airline</p>
                                             </div>
                                             <p>
@@ -144,8 +168,8 @@ export default function DetailTicket() {
                                     <div className="row info-second">
                                         <div className="col-2">
                                             <p>số lượng hành khách</p>
-                                            <p>người lớn : <span className="passenger">{arr[4]}</span></p>
-                                            <p>trẻ em : <span className="passenger">{arr[5]}</span></p>
+                                            <p>người lớn : <span className="nam-passenger">{arr[4]}</span></p>
+                                            <p>trẻ em : <span className="nam-passenger">{arr[5]}</span></p>
                                         </div>
                                         <div className="col-2">
                                             <p>Loại vé</p>
@@ -164,7 +188,7 @@ export default function DetailTicket() {
                                             </p>
                                         </div>
                                         <div className="col-2">
-                                            <p>Tổng giá</p>
+                                            <p>Tổng giá mỗi vé</p>
                                             <p className="money">
                                                 {formattedTotalPrice1} VND
                                             </p>
@@ -211,16 +235,16 @@ export default function DetailTicket() {
                                         <div className="col-4 info-fight">
                                             <p className="">{(route.departure.nameDeparture).split("-")[0]}</p>
                                             <p className="outstanding">
-                                                <span>{route.timeArrival} </span>
-                                                <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
+                                                <span>{route.timeDeparture} </span>
+                                                <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                             </p>
                                             <p>{(route.departure.nameDeparture).split("-")[1]}</p>
                                         </div>
                                         <div className="col-4 info-fight">
                                             <p className="">{(route.destination.nameDestination).split("-")[0]}</p>
                                             <p className="outstanding">
-                                                <span>{(route.timeDeparture)} </span>
-                                                <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
+                                                <span>{(route.timeArrival)} </span>
+                                                <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
                                             </p>
                                             <p>{(route.destination.nameDestination).split("-")[1]}</p>
                                         </div>
@@ -242,8 +266,8 @@ export default function DetailTicket() {
                                     <div className="row info-second">
                                         <div className="col-2">
                                             <p>Loại hành khách</p>
-                                            <p>người lớn:<span className="passenger">{arr[7]}</span></p>
-                                            <p>trẻ em : <span className="passenger">{arr[8]}</span></p>
+                                            <p>người lớn:<span className="nam-passenger">{arr[7]}</span></p>
+                                            <p>trẻ em : <span className="name-passenger">{arr[8]}</span></p>
                                         </div>
                                         <div className="col-2">
                                             <p>Loại vé</p>
@@ -262,7 +286,7 @@ export default function DetailTicket() {
                                             </p>
                                         </div>
                                         <div className="col-2">
-                                            <p>Tổng giá</p>
+                                            <p>Tổng giá mỗi vé</p>
                                             <p className="money">
                                                 {formattedTotalPrice} VND
                                             </p>
@@ -293,16 +317,16 @@ export default function DetailTicket() {
                                         <div className="col-4 info-fight">
                                             <p className="">{(routeDestination.departure.nameDeparture).split("-")[0]}</p>
                                             <p className="outstanding">
-                                                <span>{routeDestination.timeArrival} </span>
-                                                <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
+                                                <span>{routeDestination.timeDeparture} </span>
+                                                <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                             </p>
                                             <p>{(routeDestination.departure.nameDeparture).split("-")[1]}</p>
                                         </div>
                                         <div className="col-4 info-fight">
                                             <p className="">{(routeDestination.destination.nameDestination).split("-")[0]}</p>
                                             <p className="outstanding">
-                                                <span>{routeDestination.timeDeparture} </span>
-                                                <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
+                                                <span>{routeDestination.timeArrival} </span>
+                                                <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
                                             </p>
                                             <p>{(routeDestination.destination.nameDestination).split("-")[1]}</p>
                                         </div>
@@ -324,8 +348,8 @@ export default function DetailTicket() {
                                     <div className="row info-second">
                                         <div className="col-2">
                                             <p>Loại hành khách</p>
-                                            <p>người lớn:<span className="passenger">{arr[7]}</span></p>
-                                            <p>trẻ em : <span className="passenger">{arr[8]}</span></p>
+                                            <p>người lớn:<span className="nam-passenger">{arr[7]}</span></p>
+                                            <p>trẻ em : <span className="nam-passenger">{arr[8]}</span></p>
                                         </div>
                                         <div className="col-2">
                                             <p>Loại vé</p>
@@ -344,7 +368,7 @@ export default function DetailTicket() {
                                             </p>
                                         </div>
                                         <div className="col-2">
-                                            <p>Tổng giá</p>
+                                            <p> Tổng giá mỗi vé</p>
                                             <p className="money">
                                                 {formattedTotalPrice2} VND
                                             </p>

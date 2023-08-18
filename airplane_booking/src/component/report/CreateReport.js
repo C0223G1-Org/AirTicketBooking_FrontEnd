@@ -5,6 +5,7 @@ import {searchAbout1API, searchAboutAPI, searchCurrentAPI, searchPreviousAPI} fr
 import {ChartComponent} from "./ChartComponent";
 import {Chart} from "chart.js/auto"
 import ExportExcel from "./ExprortExcel";
+import ExportExcelButton from "./ExprortExcel";
 
 
 export default function CreateReport() {
@@ -29,6 +30,7 @@ export default function CreateReport() {
             setDataTimeCurrent([{
                 dateBooking: null,
                 priceTicket: null,
+                title: null
             }]);
         } else {
             setDataTimeCurrent(res.data);
@@ -39,7 +41,8 @@ export default function CreateReport() {
         if (res === null) {
             setDataTimePrevious([{
                 dateBooking: null,
-                priceTicket: null
+                priceTicket: null,
+                title: null
             }]);
         } else {
             setDataTimePrevious(res.data);
@@ -48,10 +51,10 @@ export default function CreateReport() {
     const getDataAbout = async (starDate, endDate) => {
         const res = await searchAboutAPI(starDate, endDate)
         if (res === null) {
-            setDataTimeAbout([{
+            setDataTimeAbout({
                 dateBooking: null,
                 priceTicket: null
-            }]);
+            });
         } else {
             setDataTimeAbout(res.data);
         }
@@ -59,10 +62,10 @@ export default function CreateReport() {
     const getDataAbout1 = async (starDate1, endDate1) => {
         const res = await searchAbout1API(starDate1, endDate1)
         if (res === null) {
-            setDataTimeAbout1([{
+            setDataTimeAbout1({
                 dateBooking: null,
                 priceTicket: null
-            }]);
+            });
         } else {
             setDataTimeAbout1(res.data);
         }
@@ -134,8 +137,6 @@ export default function CreateReport() {
                                                                 <option value="year">Năm này - Năm trước</option>
                                                             </Field>
                                                             <Field className="form-control" name="timePrevious" hidden/>
-                                                            <ErrorMessage name="timeCurrent" component="span"
-                                                                          style={{color: "red"}}/>
                                                         </div>
                                                     </div>
                                                     <div>
@@ -143,7 +144,7 @@ export default function CreateReport() {
                                                             <Field type="radio" id="multi-city" name="travelType"
                                                                    value="multi-city"
                                                                    onClick={() => resetFieldName(resetForm)}/>
-                                                            <b style={{fontSize: "25px"}}> So sánh theo tháng</b>
+                                                            <b style={{fontSize: "25px"}}> So sánh tùy chọn</b>
                                                         </label>
                                                         <div className="row">
                                                             <div className="col-md-6">
@@ -155,8 +156,6 @@ export default function CreateReport() {
                                                                            disabled={values.travelType === "one-way"}
                                                                            max={new Date().toISOString().split('T')[0]}
                                                                     />
-                                                                    <ErrorMessage name="timeCurrent" component="span"
-                                                                                  style={{color: "red"}}/>
                                                                 </div>
                                                             </div>
                                                             <div className="col-md-6">
@@ -168,14 +167,12 @@ export default function CreateReport() {
                                                                            disabled={values.travelType === "one-way"}
                                                                            max={new Date().toISOString().split('T')[0]}
                                                                     />
-                                                                    <ErrorMessage name="timeCurrent" component="span"
-                                                                                  style={{color: "red"}}/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h4 style={{marginTop:"-1.5vh"}}>So sánh với:</h4>
+                                                <h4 style={{marginTop: "-1.5vh"}}>So sánh với:</h4>
                                                 <div className="row" style={{marginTop: "2vh"}}>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
@@ -224,14 +221,16 @@ export default function CreateReport() {
                                                 dataTimeAbout={[]}
                                                 dataTimeAbout1={[]}/>
                             }
-                            {/*<div style={{textAlign: "center"}}>*/}
-                            {/*    <button className="btn" style={{*/}
-                            {/*        background: "#daa32a", width: "85px",height:"35px",*/}
-                            {/*        fontSize: "15px", marginLeft: "3.5vw", marginTop: "1vh"*/}
-                            {/*    }}*/}
-                            {/*            onClick={() => handleOnclickExport()}>In báo cáo*/}
-                            {/*    </button>*/}
-                            {/*</div>*/}
+                            <div style={{textAlign: "center"}}>
+                                {dataTimeCurrent && dataTimePrevious || dataTimeAbout && dataTimeAbout1 ?
+                                    <ExportExcelButton dataTimeCurrent={dataTimeCurrent}
+                                                       dataTimePrevious={dataTimePrevious}
+                                                       dataTimeAbout={dataTimeAbout}
+                                                       dataTimeAbout1={dataTimeAbout1} fileName="Revenue"/>
+                                                       :
+                                    ""
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
