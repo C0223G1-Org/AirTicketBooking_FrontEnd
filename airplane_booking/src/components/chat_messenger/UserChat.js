@@ -121,7 +121,7 @@ console.log(showChatbox);
                             : "other-message-admin"
                             }`}
                         >
-                          <div className="message">{message.content}</div>
+                          <div className="message">{message.content} <br/> {message.timestamp}</div>
                         </li>
                       ))}
                       {adminMessages.map((msg, index) => (
