@@ -196,7 +196,7 @@ export default function Header() {
                                             </a>
                                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <li><a className="dropdown-item" href="#">Xem thông tin tài khoản</a></li>
-                                                <li><Link to={`/historyPayment`} className="dropdown-item">Lịch sử đặt
+                                                <li><Link to={`/historyPayment/${user.idCustomer}`} className="dropdown-item">Lịch sử đặt
                                                     vé</Link>
                                                 </li>
                                                 <li><Link to={``} className="dropdown-item">Đổi mật khẩu</Link>

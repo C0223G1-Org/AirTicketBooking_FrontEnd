@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import './index.css';
+import './index.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import Header from "./components/home/Header";
@@ -41,6 +41,7 @@ import {SignUp} from "./component/account/SignUp";
 import {CheckCode} from "./component/account/CheckCode";
 import PaymentComponent from "./component/PaymentComponent";
 import ChangePassword from "./component_SAngTDN/ChangePassword";
+import HistoryPaymentComponent from "./component/HistoryPaymentComponent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -54,7 +55,7 @@ root.render(
                     <Route path="/header-customer" element={<HeaderCustomer/>}/>
                     <Route path="/header-admin" element={<HeaderAdmin/>}/>
                     <Route path="/header-employee" element={<HeaderEmployee/>}/>
-                    <Route path="/printTicket" element={<PrintTicket/>}/>
+                    <Route path="/printTicket/:id" element={<PrintTicket/>}/>
                     <Route path="/tickets/updateTicket/:id" element={<UpdateTicket/>}/>
                     <Route path="/ticket/booked" element={<TicketBooked/>}/>
                     <Route path="/ticket/unbooked" element={<TicketUnBook/>}/>
@@ -70,8 +71,8 @@ root.render(
                     <Route path="/list/:data" element={<ListRouter/>}/>
                     <Route path="/detail-ticket/:data" element={<DetailTicket/>}/>
                     <Route path="/info-passenger/:data" element={<InfoPassenger/>}/>
-                    {/*<Route path="/employee" element={<EmployeeList/>} />*/}
-                    {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
+                    <Route path="/employee" element={<EmployeeList/>} />
+                    <Route path='/employee/create' element={<CreateEmployee />} />
                     <Route path='/listPost' element={<ListPost/>}/>
                     <Route path='/updatePost/:id' element={<UpdatePost/>}/>
                     <Route path='/createPost' element={<CreatePost/>}/>
@@ -86,6 +87,7 @@ root.render(
                     <Route path="/checkCode/:data" element={<CheckCode/>}/>
                     <Route path="/payment/:id" element={<PaymentComponent/>}/>
                     <Route path="/change-password" element={<ChangePassword/>}/>
+                    <Route path="/historyPayment/:id" element={<HistoryPaymentComponent/>}/>
                 </Routes>
                 <Footer/>
             </TicketProvider>

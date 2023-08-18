@@ -122,7 +122,8 @@ export function Login() {
 
                         }
                         resetForm();
-                        await navigate("/home");
+                        window.location.href = '/home'
+                        // await navigate("/home");
                     } catch (e) {
                         // Xử lý lỗi đăng nhập
                         // toast.error(e.response.data);

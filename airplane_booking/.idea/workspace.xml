@@ -23,9 +23,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9940190e-4050-4e32-b542-a40edc64470e" name="Changes" comment="Nampc commit FE 6.4.8 Thông tin hành khách thực hiện chuyến bay ngày 17/8/2023">
+      <change afterPath="$PROJECT_DIR$/src/logo-remove-background.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/account/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/account/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/ticket/DetailTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ticket/DetailTicket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/ticket/InfoPassenger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ticket/InfoPassenger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/chat_messenger/AdminChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat_messenger/AdminChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/chat_messenger/UserChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat_messenger/UserChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/account/login_signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/account/login_signup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/search_ticket/style-popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/search_ticket/style-popup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/ticket/detail-ticket.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/ticket/detail-ticket.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/ticket/info-passenger.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/ticket/info-passenger.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,20 +61,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2022.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Git.Branch.Popup.ShowAllRemotes": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/sprint 1/Projet/AirTicketBooking_FrontEnd/airplane_booking/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\sprint 1\Projet\AirTicketBooking_FrontEnd\airplane_booking\src" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -98,7 +114,7 @@
       <workItem from="1692259503791" duration="6379000" />
       <workItem from="1692271019507" duration="21826000" />
       <workItem from="1692297490304" duration="1640000" />
-      <workItem from="1692320209137" duration="3230000" />
+      <workItem from="1692320209137" duration="13208000" />
     </task>
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
@@ -193,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692323101582</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Nampc commit FE 6.4.8 Thông tin hành khách thực hiện chuyến bay ngày 17/8/2023">
+      <created>1692323980994</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1692323980994</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
