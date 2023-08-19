@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export async function getTicketByCustomerId (id) {
-    const resolve = await axios.get(`http://localhost:8080/payment/payment/${id}`)
+export async function getTicketByCustomerId (id, num) {
+    const resolve = await axios.get(`http://localhost:8080/payment/payment/${id}/${num}`)
     return resolve.data
 }
 export async function updateTicketByIdTicket (id, paymentStatus) {
