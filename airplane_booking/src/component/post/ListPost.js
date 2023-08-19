@@ -181,15 +181,6 @@ export default function ListPost() {
                             }}
                                     onSubmit={(value) => {
                                         searchPost(value).then(() => {
-                                            Swal.fire({
-                                                title: 'Đã tìm thấy dữ liệu cho bạn.',
-                                                icon: 'success',
-                                                showLoaderOnDeny: 'true',
-                                                timer: '2000',
-                                                customClass: {
-                                                    icon: 'icon-post',
-                                                }
-                                            })
                                         })
                                     }}
                             >

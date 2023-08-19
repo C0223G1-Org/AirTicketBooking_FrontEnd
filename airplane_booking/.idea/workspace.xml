@@ -23,9 +23,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0a101e2-9ef3-4e9f-bab5-7a56a6f885e3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/post/ListPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/ListPost.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +121,7 @@
       <workItem from="1692284476853" duration="1860000" />
       <workItem from="1692321011498" duration="20154000" />
       <workItem from="1692358372206" duration="3709000" />
-      <workItem from="1692443206047" duration="2231000" />
+      <workItem from="1692443206047" duration="2555000" />
     </task>
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
@@ -261,7 +258,21 @@
       <option name="project" value="LOCAL" />
       <updated>1692430540520</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Thanh son update 19-08-2023 crud post">
+      <created>1692445770661</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1692445770661</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Thanh son update 19-08-2023 crud post">
+      <created>1692445958092</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1692445958092</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,6 +300,7 @@
     <MESSAGE value="thanh son update crud post ngày 18-08-2023" />
     <MESSAGE value="HuyHD update employee ngay 17/08/2023" />
     <MESSAGE value="HuyHD update employee lan 10 ngay 17/08/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="HuyHD update employee lan 10 ngay 17/08/2023" />
+    <MESSAGE value="Thanh son update 19-08-2023 crud post" />
+    <option name="LAST_COMMIT_MESSAGE" value="Thanh son update 19-08-2023 crud post" />
   </component>
 </project>
