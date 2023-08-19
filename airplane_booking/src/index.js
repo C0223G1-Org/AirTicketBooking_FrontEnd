@@ -27,7 +27,7 @@ import EmployeeList from "./component/Employee/EmployeeList";
 import CreateEmployee from "./component/Employee/CreateEmployee";
 import ListPost from "./component/post/ListPost";
 import {UpdatePost} from "./component/post/UpdatePost";
-import {CreatePost} from "./component/post/CreatePost";
+import CreatePost from "./component/post/CreatePost";
 // import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
 // import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
 // import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
@@ -89,6 +89,7 @@ root.render(
                     <Route path="/payment/:departure/:num" element={<PaymentComponent/>}/>
                     <Route path="/change-password" element={<ChangePassword/>}/>
                 </Routes>
+
                 <Footer/>
             </TicketProvider>
         </BrowserRouter>
