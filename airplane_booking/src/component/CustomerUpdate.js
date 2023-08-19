@@ -1,7 +1,7 @@
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getCustomerById, updateCustomer } from '../services/CustomerServices';
+import { UpdateCustomer, getCustomerById } from '../services/CustomerServices';
 import Swal from 'sweetalert2'
 import * as yup from "yup";
 import { v4 } from 'uuid';
@@ -26,28 +26,29 @@ export default function CustomerUpdate() {
     // const imagesListRef = ref(storage, "images/");
     const [status, setStatus] = useState(true)
     const navigate = useNavigate()
-    const getCustomer = async() => {
-        try{       
-        const customer = await getCustomerById(param.id)
-                setCustomer(customer)}
-                catch(error){
-                        Swal.fire({
-                            icon:"error",
-                            timer:2000,
-                            title: "Không tìm thấy đối tượng này"
-                        })
-                        
-                }
+    const getCustomer = async () => {
+        try {
+            const customer = await getCustomerById(param.id)
+            setCustomer(customer)
         }
-    
+        catch (error) {
+            Swal.fire({
+                icon: "error",
+                timer: 2000,
+                title: "Không tìm thấy đối tượng này"
+            })
+            navigate(`/home`)
+        }
+    }
+
 
     const updateCus = (async (update) => {
-        console.log(imageUpload)
         // setStatus(false)
         // console.log(status);
         if (imageUpload == null) {
-            console.log("ádasdasdasd");
-            await updateCustomer({ ...update, imgCustomer: customer.imgCustomer }).then(
+        console.log("status");
+
+            await UpdateCustomer({ ...update, imgCustomer: customer.imgCustomer }).then(
                 navigate(`/customers/details/${customer.idCustomer}`),
                 // getCustomer()
             ).then(
@@ -65,11 +66,12 @@ export default function CustomerUpdate() {
             const imageRef = ref(storage, fileName);
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then(async (url) => {
-                    await updateCustomer({ ...update, imgCustomer: url }).then(
+                    await UpdateCustomer({ ...update, imgCustomer: url }).then(
                         navigate(`/customers/details/${customer.idCustomer}`),
                         // getCustomer()
                     );
-                    console.log("TÀi");                })
+                    console.log(url);
+                })
             }).then(
                 () => {
                     Swal.fire({
@@ -81,7 +83,6 @@ export default function CustomerUpdate() {
                 })
         }
     })
-    console.log(customer)
 
     useEffect(() => {
         getCustomer()
@@ -91,9 +92,7 @@ export default function CustomerUpdate() {
     const imgPreviewRef = useRef(null);
 
     const handleInputChange = (event) => {
-
         const file = event.target.files[0];
-
         if (file.size > 3000000) {
             Swal.fire({
                 icon: 'error',
@@ -115,7 +114,7 @@ export default function CustomerUpdate() {
     };
 
     return (
-<>
+        <>
             {customer.idCustomer &&
                 <div id="booking" className="section" >
                     <div className="section-center">
@@ -126,27 +125,29 @@ export default function CustomerUpdate() {
                                 addressCustomer: customer.addressCustomer, emailCustomer: customer.emailCustomer,
                                 nationalityCustomer: customer.nationalityCustomer, account: customer.account, flagCustomer: customer.flagCustomer
                             }}
+
                             validationSchema={yup.object({
                                 nameCustomer: yup.string().min(3, "Họ và tên tối thiểu 3 ký tự.").max(100, "Họ và tên tối đa 100 ký tự. ").required("Vui lòng nhập họ và tên.")
-                                .matches(/^[A-Z]{1}[a-z]*(\s[A-Z]{1}[a-z]*)*$/," không chứa các kí tự đặc biệt hoặc số")
+                                // .matches(/^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$/," không chứa các kí tự đặc biệt hoặc số")
                                 , genderCustomer: yup.string().required("Vui lòng chọn giới tính."),
                                 // email_customer:yup.string().min("Email tối thiểu 12 ký tự").max("Email tối đa 50 ký tự").matches(/^[\w-]+@([\w-])+[\w-]{2,4}$/,"Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt").required("Vui lòng điền email"),
                                 telCustomer: yup.string().matches(/^(\+84|0)[1-9][0-9]{8}$/, "Không chứa các kí tự đặc biệt").required("Vui lòng nhập số điện thoại."),
                                 addressCustomer: yup.string().min(10, "Địa chỉ tối thiểu 10 kí tự.").max(100, "Địa chỉ tối đa chỉ 100 kí tự.").required("Vui lòng nhập địa chỉ."),
                                 nationalityCustomer: yup.string().required("Vui lòng chọn quốc tịch của bạn."),
-                                idCardCustomer: yup.string().min(6, "CCCD/Pasport tối thiểu 6 kí tự.").max(12, "CCCD/Pasport tối đa 12 kí tự.").matches(/^([A-Z][0-9]{6,12})|([0-9]{12})$/, "CCCD/Password không chứa kí tự đặc biệt hoặc tối đa 12 số.").required("Vui lòng nhập CCCD/Passport."),
+                                idCardCustomer: yup.string().min(6, "CCCD/Pasport tối thiểu 6 kí tự.").max(12, "CCCD/Pasport tối đa 12 kí tự.").matches(/^([A-Z][0-9]{6,12})|([0-9]{12})$/, "CCCD/Password không chứa kí tự đặc biệt.").required("Vui lòng nhập CCCD/Passport."),
                                 dateCustomer: yup.date().max(maxDate, 'Khách hàng phải trên 18 tuổi.')
                                     .min(minDate, 'Khách hàng phải trên 18 tuổi và dưới 100 tuổi.')
                                     .required("Vui lòng nhập ngày tháng năm sinh.")
                             })}
 
                             onSubmit={(values) => {
+                                console.log(values);
                                 setStatus(false)
                                 updateCus(values)
                             }}
                         >
                             <div className="container">
-                                <div className="row">
+                                <div className="row" >
                                     <div className="col-12 col-sm-12 col-md-4 col-lg-4">
                                         <div>
                                             <img style={{ marginTop: 50 }} name='imgCustomer' src={customer.imgCustomer != "" ? customer.imgCustomer : "https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"} id="img-preview" ref={imgPreviewRef} alt="Preview" />
@@ -314,6 +315,6 @@ export default function CustomerUpdate() {
                     </div>
                 </div>
             }
-</>
+        </>
     )
 }

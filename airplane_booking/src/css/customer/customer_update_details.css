@@ -3,7 +3,7 @@
 	height: 100vh;
 }
 
-.booking-form p {
+.booking-form .d {
 	color: #fff;
 	background-color: rgb(6, 133, 170);
 	font-weight: 400;
@@ -11,28 +11,27 @@
 	border: none;
 	width: 100%;
 	border-radius: 4px;
-	/* text-transform: uppercase; */
 	text-align: center;
 	height: 65px;
 	padding-top: 10px;
 }
 
-.section .section-center {
+#booking .section .section-center {
 	margin-top: 75px;
 	position: absolute;
-	/*top: 50%;*/
+	top: 40%;
 	left: 0;
 	right: 0;
-	/*-webkit-transform: translateY(-50%);*/
-	/*transform: translateY(-50%);*/
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
 
 #booking {
-	/*font-family: 'Lato', sans-serif;*/
-	/*background-image: url(/img/customer/background_customer.jpg);*/
-	/*background-size: cover;*/
-	/*background-position: center;*/
-	/*color: #191a1e;*/
+	 font-family: 'Lato', sans-serif; 
+	background-image: url(../search_ticket/img/background.jpg);
+	background-size: cover;
+	background-position: center;
+	color: #191a1e;
 }
 
 .booking-form {
@@ -56,7 +55,7 @@
 	margin-bottom: 20px;
 }
 
-.booking-form .form-control {
+.booking-form .form-control1 {
 	background-color: #fff;
 	height: 65px;
 	padding: 0px 15px;
@@ -73,33 +72,33 @@
 	transition: 0.2s all;
 }
 
-.booking-form .form-control::-webkit-input-placeholder {
+.booking-form .form-control1::-webkit-input-placeholder {
 	color: #dfe5e9;
 }
 
-.booking-form .form-control:-ms-input-placeholder {
+.booking-form .form-control1:-ms-input-placeholder {
 	color: #dfe5e9;
 }
 
-.booking-form .form-control::placeholder {
+.booking-form .form-control1::placeholder {
 	color: #dfe5e9;
 }
 
-.booking-form .form-control:focus {
+.booking-form .form-control1:focus {
 	background: #f9fafb;
 }
 
-.booking-form input[type="date"].form-control:invalid {
+.booking-form input[type="date"].form-control1:invalid {
 	color: #dfe5e9;
 }
 
-.booking-form select.form-control {
+.booking-form select.form-control1 {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 }
 
-.booking-form select.form-control+.select-arrow {
+.booking-form select.form-control1+.select-arrow {
 	position: absolute;
 	right: 6px;
 	bottom: 6px;
@@ -112,7 +111,7 @@
 	font-size: 14px;
 }
 
-.booking-form select.form-control+.select-arrow:after {
+.booking-form select.form-control1+.select-arrow:after {
 	content: '\279C';
 	display: block;
 	-webkit-transform: rotate(90deg);
@@ -239,7 +238,7 @@
 	background: linear-gradient(top, #f9f9f9, #e3e3e3);
 	border: 1px solid #999;
 	border-radius: 3px;
-	padding: 5px 8px;
+	padding: 10px 10px;
 	outline: none;
 	white-space: nowrap;
 	-webkit-user-select: none;
