@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="926a5953-2756-4ebd-a047-72cd1e75119d" name="Changes" comment="Hoa commit FE">
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/chat_messenger/UserChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/chat_messenger/UserChat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/css/search_ticket/style-popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/css/search_ticket/style-popup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/component/CustomerDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/component/CustomerDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/component/CustomerManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/component/CustomerManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/component/CustomerUpdate.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/component/CustomerUpdate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/component/EmployeeCreateCustomer.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/component/EmployeeCreateCustomer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/chat_messenger/AdminChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/chat_messenger/AdminChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/css/account/login_signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/css/account/login_signup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/css/customer/customer_update_details.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/css/customer/customer_update_details.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/css/customer/taipm.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/css/customer/taipm.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/employeeCreateCustomer.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/employeeCreateCustomer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/services/CustomerServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/services/CustomerServices.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,11 +41,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "HoaLTY"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;HoaLTY&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -51,6 +69,8 @@
       <workItem from="1692266408402" duration="1072000" />
       <workItem from="1692270841706" duration="219000" />
       <workItem from="1692271261794" duration="5996000" />
+      <workItem from="1692321718862" duration="2567000" />
+      <workItem from="1692415682087" duration="632000" />
     </task>
     <task id="LOCAL-00001" summary="TaiMP FE ngay 17/8/2023">
       <created>1692258690516</created>
@@ -74,7 +94,31 @@
       <option name="project" value="LOCAL" />
       <updated>1692283920724</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Hoa commit FE">
+      <option name="closed" value="true" />
+      <created>1692321803699</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692321803699</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Hoa commit FE">
+      <option name="closed" value="true" />
+      <created>1692323298260</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692323298260</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Hoa commit FE">
+      <option name="closed" value="true" />
+      <created>1692323546764</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692323546764</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

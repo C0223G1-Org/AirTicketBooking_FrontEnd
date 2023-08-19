@@ -1,7 +1,7 @@
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getCustomerById, updateCustomer } from '../services/CustomerServices';
+import { UpdateCustomer, getCustomerById } from '../services/CustomerServices';
 import Swal from 'sweetalert2'
 import * as yup from "yup";
 import { v4 } from 'uuid';
@@ -26,27 +26,29 @@ export default function CustomerUpdate() {
     // const imagesListRef = ref(storage, "images/");
     const [status, setStatus] = useState(true)
     const navigate = useNavigate()
-    const getCustomer = async() => {
-        try{       
-        const customer = await getCustomerById(param.id)
-                setCustomer(customer)}
-                catch(error){
-                        Swal.fire({
-                            icon:"error",
-                            timer:2000,
-                            title: "Không tìm thấy đối tượng này"
-                        })
-                        
-                }
+    const getCustomer = async () => {
+        try {
+            const customer = await getCustomerById(param.id)
+            setCustomer(customer)
         }
-    
+        catch (error) {
+            Swal.fire({
+                icon: "error",
+                timer: 2000,
+                title: "Không tìm thấy đối tượng này"
+            })
+            navigate(`/home`)
+        }
+    }
+
 
     const updateCus = (async (update) => {
-        console.log(status);
         // setStatus(false)
         // console.log(status);
         if (imageUpload == null) {
-            await updateCustomer({ ...update, imgCustomer: customer.imgCustomer }).then(
+        console.log("status");
+
+            await UpdateCustomer({ ...update, imgCustomer: customer.imgCustomer }).then(
                 navigate(`/customers/details/${customer.idCustomer}`),
                 // getCustomer()
             ).then(
@@ -64,7 +66,7 @@ export default function CustomerUpdate() {
             const imageRef = ref(storage, fileName);
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then(async (url) => {
-                    await updateCustomer({ ...update, imgCustomer: url }).then(
+                    await UpdateCustomer({ ...update, imgCustomer: url }).then(
                         navigate(`/customers/details/${customer.idCustomer}`),
                         // getCustomer()
                     );

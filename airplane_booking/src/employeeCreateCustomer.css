@@ -1,9 +1,9 @@
-.section {
+.hunglv .section {
 	position: relative;
 	height: 100vh;
 }
 
-.booking-form p{
+.hunglv .booking-form p{
 	color: #fff;
 	background-color: #4fa3e3;
 	font-weight: 400;
@@ -17,7 +17,7 @@
 	padding-top: 10px;
 	}
 
-.section .section-center {
+	.hunglv .section .section-center {
 	margin-top: 75px;
 	position: absolute;
 	/*top: 50%;*/
@@ -27,7 +27,7 @@
 	/*transform: translateY(-50%);*/
 }
 
-#booking {
+.hunglv #booking {
 	font-family: 'Lato', sans-serif;
 	/*background-image: url('../img/background.jpg');*/
 	/*background-size: cover;*/
@@ -35,7 +35,7 @@
 	color: #191a1e;
 }
 
-.booking-form {
+.hunglv .booking-form {
 	position: relative;
 	background: #fff;
 	max-width: 800px;
@@ -47,16 +47,16 @@
 	box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
-.booking-form-padding{
+.hunglv .booking-form-padding{
 	padding: 0px 25px 25px;
 }
 
-.booking-form .form-group {
+.hunglv .booking-form .form-group {
 	position: relative;
 	margin-bottom: 20px;
 }
 
-.booking-form .form-control {
+.hunglv .booking-form .form-control {
 	background-color: #fff;
 	height: 65px;
 	padding: 0px 15px;
@@ -72,33 +72,33 @@
 	transition: 0.2s all;
 }
 
-.booking-form .form-control::-webkit-input-placeholder {
+.hunglv .booking-form .form-control::-webkit-input-placeholder {
 	color: #dfe5e9;
 }
 
-.booking-form .form-control:-ms-input-placeholder {
+.hunglv .booking-form .form-control:-ms-input-placeholder {
 	color: #dfe5e9;
 }
 
-.booking-form .form-control::placeholder {
+.hunglv .booking-form .form-control::placeholder {
 	color: #dfe5e9;
 }
 
-.booking-form .form-control:focus {
+.hunglv .booking-form .form-control:focus {
 	background: #f9fafb;
 }
 
-.booking-form input[type="date"].form-control:invalid {
+.hunglv .booking-form input[type="date"].form-control:invalid {
 	color: #dfe5e9;
 }
 
-.booking-form select.form-control {
+.hunglv .booking-form select.form-control {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 }
 
-.booking-form select.form-control+.select-arrow {
+.hunglv .booking-form select.form-control+.select-arrow {
 	position: absolute;
 	right: 6px;
 	bottom: 6px;
@@ -111,14 +111,14 @@
 	font-size: 14px;
 }
 
-.booking-form select.form-control+.select-arrow:after {
+.hunglv .booking-form select.form-control+.select-arrow:after {
 	content: '\279C';
 	display: block;
 	-webkit-transform: rotate(90deg);
 	transform: rotate(90deg);
 }
 
-.booking-form .form-label {
+.hunglv .booking-form .form-label {
 	position: absolute;
 	top: 6px;
 	left: 20px;
@@ -130,13 +130,13 @@
 	color: #98c9ee;
 }
 
-.booking-form .form-checkbox input {
+.hunglv .booking-form .form-checkbox input {
 	position: absolute !important;
 	margin-left: -9999px !important;
 	visibility: hidden !important;
 }
 
-.booking-form .form-checkbox label {
+.hunglv .booking-form .form-checkbox label {
 	position: relative;
 	padding-top: 4px;
 	padding-left: 30px;
@@ -144,11 +144,11 @@
 	color: #191a1e;
 }
 
-.booking-form .form-checkbox label+label {
+.hunglv .booking-form .form-checkbox label+label {
 	margin-left: 15px;
 }
 
-.booking-form .form-checkbox input+span {
+.hunglv .booking-form .form-checkbox input+span {
 	position: absolute;
 	left: 2px;
 	top: 4px;
@@ -159,7 +159,7 @@
 	border-radius: 50%;
 }
 
-.booking-form .form-checkbox input+span:after {
+.hunglv .booking-form .form-checkbox input+span:after {
 	content: '';
 	position: absolute;
 	top: 50%;
@@ -174,17 +174,17 @@
 	transition: 0.2s all;
 }
 
-.booking-form .form-checkbox input:not(:checked)+span:after {
+.hunglv .booking-form .form-checkbox input:not(:checked)+span:after {
 	opacity: 0;
 }
 
-.booking-form .form-checkbox input:checked+span:after {
+.hunglv .booking-form .form-checkbox input:checked+span:after {
 	opacity: 1;
 	width: 10px;
 	height: 10px;
 }
 
-.booking-form .submit-btn {
+.hunglv .booking-form .submit-btn {
 	color: #fff;
 	background-color: rgb(223, 165, 18);
 	font-weight: 400;
@@ -199,29 +199,29 @@
 
 }
 
-.booking-cta {
+.hunglv .booking-cta {
 	margin-top: 45px;
 }
 
-.booking-cta h1 {
+.hunglv .booking-cta h1 {
 	font-size: 52px;
 	text-transform: uppercase;
 	color: #4fa3e3;
 	font-weight: 400;
 }
 
-.booking-cta p {
+.hunglv .booking-cta p {
 	font-size: 22px;
 	color: #191a1e;
 }
 
-#img-preview {
+.hunglv #img-preview {
 	width: 100%;
 	height: 30rem;
 	border-radius: 100px
 }
 
-.error{
+.hunglv .error{
 	color: red;
 	padding-left: 10px;
 }
