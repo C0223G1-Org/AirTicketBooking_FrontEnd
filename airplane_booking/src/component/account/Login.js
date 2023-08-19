@@ -27,9 +27,6 @@ export function Login() {
     const [role, setRole] = useState(localStorage.getItem("role"));
     console.log("role " + role);
     useEffect(() => {
-        // if (role === "ROLE_ADMIN" || role === "ROLE_EMPLOYEE" || role === "ROLE_CUSTOMER") {
-        //     return <Logined/>;
-        // }
         setRole(localStorage.getItem("role"));
     }, []);
     return (
