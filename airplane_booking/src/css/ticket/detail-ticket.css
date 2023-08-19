@@ -22,6 +22,13 @@ body {
     padding: 18px 0;
     text-transform: uppercase;
 }
+#detail-ticket .route{
+    color: #1b6d85;
+    text-transform: initial;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
 
 #detail-ticket .vietnam-airline {
     color: #016984;
