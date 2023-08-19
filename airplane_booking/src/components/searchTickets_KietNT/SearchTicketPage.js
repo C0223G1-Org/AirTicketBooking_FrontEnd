@@ -3,6 +3,7 @@ import { searchTicketByNameAndIdCardPassenger } from "../../services/TicketServi
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import img from "../../css/search_ticket/img/img_1.png";
 import "../../css/search_ticket/style.css";
 import Swal from "sweetalert2";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -27,7 +28,7 @@ export default function SearchTicketPage() {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Không tìm thấy thông tin!",
+        title: "Không tìm thấy chuyến bay của bạn!",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -51,7 +52,7 @@ export default function SearchTicketPage() {
             .max(30, "Họ và tên tối thiểu 3 ký tự và tối đa 30 ký tự")
             .matches(
               /^[A-Z]{1}[a-z]*(\s[A-Z]{1}[a-z]*)*$/,
-              "Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ"
+              "Bạn phải viết hoa chữ cái đầu của từng từ và không được có kí tự đặc biệt hoặc số"
             ),
           idCardPassenger: yup
             .string()
@@ -161,7 +162,7 @@ export default function SearchTicketPage() {
                   className="col-md-7 col-sm-12 col-md-offset-1"
                   id="search_chuyenbay1"
                 >
-                  <img style={{ width: "100%" }} alt="" id="img_2" />
+                  <img src={img} style={{ width: "100%" }} alt="" id="img_2" />
                 </div>
               </div>
             </div>

@@ -594,7 +594,7 @@ button#fpt_ai_livechat_button {
     position: fixed;
     bottom: 100px;
     right: 50px;
-    width: 300px;
+
 	border: none;
 	border-radius: 15px;
     z-index: 9;
@@ -687,4 +687,20 @@ button#fpt_ai_livechat_button {
   
   .form-popup::-webkit-scrollbar-thumb {
     background-color: #000000;
+  }
+  #chat2 .form-control {
+    border-color: transparent;
+  }
+  
+  #chat2 .form-control:focus {
+    border-color: transparent;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+  }
+  
+  .divider:after,
+  .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
   }
