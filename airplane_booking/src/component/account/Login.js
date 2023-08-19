@@ -108,10 +108,10 @@ export function Login() {
                             localStorage.setItem("username", response.data.username);
                             localStorage.setItem("role", response.data.role);
                             // localStorage.setItem('userId', decodedToken.userId);
-                            console.log("resp: " + response);
-                            console.log("Token:", localStorage.token);
-                            console.log(localStorage.username);
-                            console.log(localStorage.role);
+                            // console.log("resp: " + response);
+                            // console.log("Token:", localStorage.token);
+                            // console.log(localStorage.username);
+                            // console.log(localStorage.role);
                             // setUserInfo({
                             //     token: localStorage.getItem('role'),
                             //     username: response.data.username,

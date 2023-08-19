@@ -68,17 +68,17 @@ export default function InfoPassenger() {
         }, []);
     }
 
-        const getTypeSeat = async () => {
-            const data = await getTypeSeatByName(arr[2])
-            setTypeSeat(data);
-        }
-        useEffect(() => {
-            getTypeTicket();
-            getRouteDeparture();
-            getListLuggage();
-            getTypeSeat();
+    const getTypeSeat = async () => {
+        const data = await getTypeSeatByName(arr[2])
+        setTypeSeat(data);
+    }
+    useEffect(() => {
+        getTypeTicket();
+        getRouteDeparture();
+        getListLuggage();
+        getTypeSeat();
 
-        }, []);
+    }, []);
 
 
     //format tiền tệ vnđ two-Way, giá đi
@@ -104,8 +104,8 @@ export default function InfoPassenger() {
     let priceTax1;
     if (arr[0]==2) {
         //format tiền tệ vnd one-way
-         priceTicket1 = route.priceRoute * typeSeat.priceExtra;
-         priceTax1 = priceTicket1 * 0.6;
+        priceTicket1 = route.priceRoute * typeSeat.priceExtra;
+        priceTax1 = priceTicket1 * 0.6;
         totalPrice1 = priceTicket1 + priceTax1;
         formattedPriceRouter1 = numeral(priceTicket1).format('0,0 đ');
         formattedPriceTax1 = numeral(priceTax1).format('0,0 đ');
@@ -168,7 +168,6 @@ export default function InfoPassenger() {
 
     return (
         <>
-    
             <head>
                 <meta charSet="UTF-8"/>
                 <title>Thông Tin Hành Khách Thực Hiện Chuyến Bay</title>
@@ -179,7 +178,7 @@ export default function InfoPassenger() {
                         <div className="title text-center">
                             <p className="h1">Thông tin hành khách</p>
                         </div>
-                        {arr[0] == 1 && route.departure.nameDeparture ?
+                        {arr[0] == 1 ?
                             <Formik
                                 initialValues={initialValues}
                                 onSubmit={async (values) => {
@@ -291,7 +290,7 @@ export default function InfoPassenger() {
 
                                         })
                                     }
-                                    navigate(`/payment/${route.departure.nameDeparture}`)
+                                    navigate(`/payment/${customer.idCustomer}`)
                                 }
 
                                 }
@@ -751,7 +750,7 @@ export default function InfoPassenger() {
                                                 await createNewTicket(object);
                                             })
                                         }
-                                        navigate(`/payment/${route.departure.nameDeparture}`)
+                                        navigate(`/payment/${customer.idCustomer}`)
                                     }
                                     }
                                 >

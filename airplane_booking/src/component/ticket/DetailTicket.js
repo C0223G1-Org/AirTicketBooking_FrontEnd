@@ -139,7 +139,7 @@ export default function DetailTicket() {
                                         <div className="col-4 info-fight">
                                             <p className="">{(route.departure.nameDeparture).split("-")[0]}</p>
                                             <p className="outstanding">
-                                                    <span>{route.timeDeparture.split(":")[0]+":"+route.timeDeparture.split(":")[1]} </span>
+                                                <span>{route.timeDeparture.split(":")[0]+":"+route.timeDeparture.split(":")[1]} </span>
                                                 <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                             </p>
                                             <p>{(route.departure.nameDeparture).split("-")[1]}</p>
