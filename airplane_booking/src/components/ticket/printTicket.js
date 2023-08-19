@@ -18,7 +18,7 @@ export default function Print() {
 
   const param = useParams();
   const getTicket = async () => {
-    const data = await findTicketById(param.idTicket);
+    const data = await findTicketById(param.id);
     setTicket(data);
     console.log("Ticket data:", data);
   };
@@ -31,7 +31,7 @@ export default function Print() {
   })
   return (
 
-    <>
+    <div id="print">
       <div ref={componentRef} style={{ width: '100%', height: window.innerHeight }}>
         <div className="ticket">
           <div className="row col-12 print">
@@ -113,6 +113,6 @@ export default function Print() {
       <div className="button-area">
         <button onClick={handlePrint}>In vé</button>
       </div>
-    </>
+    </div>
   )
 }

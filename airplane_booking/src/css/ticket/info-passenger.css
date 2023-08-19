@@ -9,7 +9,6 @@ body {
 #info-passenger .wrapper {
     background: rgba(237, 234, 234, 0.422);
     padding: 30px 100px;
-    text-transform: capitalize;
 }
 
 #info-passenger.wrap {
@@ -20,7 +19,9 @@ body {
 #info-passenger .title {
     background-color: #016984;
     color: #fff;
-    padding: 20px 0;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    padding: 18px 0;
     text-transform: uppercase;
 }
 #info-passenger .route{
@@ -28,6 +29,7 @@ body {
     text-transform: initial;
     font-size: 20px;
     font-weight: 600;
+    margin-bottom: 5px;
 }
 #info-passenger .route i{
     width: 40px;
@@ -48,7 +50,7 @@ body {
     font-weight: bold;
 }
 
-#info-passenger .passenger {
+#info-passenger .nam-passenger {
     color: #daa310;
 }
 
@@ -92,23 +94,30 @@ body {
     height: 26px
 }
 
-#info-passenger .btn {
+#info-passenger .detail-ticket-btn {
     margin: 20px 0;
+    text-align: center;
 }
 
-#info-passenger .btn button {
-    border: none;
-    background-color: #daa310;
-    box-shadow: inset;
-    color: #fff;
-    /*height: 30px;*/
+#info-passenger .detail-ticket-btn button {
+    border: 2px solid #daa310;
+    background-color: #ffffff;
+    color: #daa310;
     width: 200px;
     font-size: 20px;
-    padding: 10px 0;
     border-radius: 5px;
+    height: 40px;
+
 }
 
-#info-passenger .btn button:first-child {
+#info-passenger .detail-ticket-btn button:hover {
+    border: none;
+    background-color: #daa310;
+    color: #ffffff;
+    animation: linear 0.2s ;
+
+}
+#info-passenger .detail-ticket-btn button:first-child {
     margin-right: 40px;
 }
 
