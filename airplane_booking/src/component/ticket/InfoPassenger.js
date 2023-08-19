@@ -164,7 +164,13 @@ export default function InfoPassenger() {
         ],
     };
 
-    // validate
+    // hủy chuyến bay
+    function handleSubmitCancelOneWay() {
+        navigate(`/list/${route.departure.nameDeparture},${route.destination.nameDestination},${route.dateDeparture},,${0},${arr[4]},${arr[5]}`);
+    }
+    function handleSubmitCancelTwoWay(){
+        navigate(`/list/${route.departure.nameDeparture},${route.destination.nameDestination},${route.dateDeparture},${routeDestination.dateArrival},${1},${arr[7]},${arr[8]}`);
+    }
 
     return (
         <>
@@ -679,7 +685,9 @@ export default function InfoPassenger() {
                                             {/*chiều về*/}
 
                                             <div className="detail-ticket-btn">
-                                                <button>Chọn lại chuyến bay</button>
+                                                <button onClick={()=>{
+                                                    handleSubmitCancelTwoWay();
+                                                }}>Chọn lại chuyến bay</button>
                                                 <button type="submit">Đặt vé</button>
                                             </div>
                                         </div>
@@ -1026,11 +1034,10 @@ export default function InfoPassenger() {
                                                     </div>
                                                 </div>
                                                 <div className="detail-ticket-btn">
-                                                    <button onClick={() => {
-                                                        navigate("/list/")
-                                                    }
-                                                    }>Chọn lại chuyến bay
-                                                    </button>
+                                                <button onClick={()=>{
+                                                    handleSubmitCancelOneWay();
+                                                }}>Chọn lại chuyến bay</button>
+
                                                     <button type="submit">Đặt vé</button>
                                                 </div>
                                             </div>

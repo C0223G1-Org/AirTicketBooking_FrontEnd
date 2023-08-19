@@ -108,8 +108,11 @@ export default function DetailTicket() {
         //1.loại vé, 2.id tuyến đi,3. idtuyến vế ,4. loại ghế đi, 5.loại ghế về , 6. giá đi. 7.giá về
     }
 
-    function handleSubmitCancel() {
-        navigate("/list");
+    function handleSubmitCancelOneWay() {
+        navigate(`/list/${route.departure.nameDeparture},${route.destination.nameDestination},${route.dateDeparture},,${0},${arr[4]},${arr[5]}`);
+    }
+    function handleSubmitCancelTwoWay(){
+        navigate(`/list/${route.departure.nameDeparture},${route.destination.nameDestination},${route.dateDeparture},${routeDestination.dateArrival},${1},${arr[7]},${arr[8]}`);
     }
     return (
         <>
@@ -210,6 +213,7 @@ export default function DetailTicket() {
                                 </div>
                                 <div className="detail-ticket-btn">
                                     <button onClick={() => {
+                                        handleSubmitCancelOneWay();
 
                                     }
                                     }>Hủy
@@ -226,6 +230,10 @@ export default function DetailTicket() {
                             <>
                                 {/*//chiều đi*/}
                                 <div className="row wrap">
+                                <div className="route">
+                                                    <i className="fa-solid fa-plane"></i>
+                                                    Chiều đi
+                                                </div>
                                     <div className="location">
                                         <p className="h3">
                                             {/*//nơi i- nơi đến*/}
@@ -311,6 +319,10 @@ export default function DetailTicket() {
                                 </div>
                                 {/*chiều về*/}
                                 <div className="row wrap">
+                                <div className="route">
+                                                    <i className="fa-solid fa-plane"></i>
+                                                    Chiều về
+                                                </div>
                                     <div className="location">
                                         <p className="h3">
                                             <span> {(routeDestination.departure.nameDeparture).split("-")[0]} </span>
@@ -393,7 +405,7 @@ export default function DetailTicket() {
                                 </div>
                                 <div className="detail-ticket-btn">
                                     <button onClick={() => {
-                                        handleSubmitCancel()
+                                        handleSubmitCancelTwoWay();
 
                                     }
                                     }>Hủy
