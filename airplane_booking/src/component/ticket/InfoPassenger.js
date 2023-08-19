@@ -8,11 +8,13 @@ import moment from "moment/moment";
 import {findLuggageById, getAllLuggage} from "../../services/LugguageServices";
 import {ErrorMessage, Field, FieldArray, Form, Formik, validateYupSchema} from "formik";
 import * as yup from "yup";
-import {createNewTicket} from "../../services/TicketService";
+import {createNewTicket, deleteTicketFlagIsFalse} from "../../services/TicketService";
 import {getTypePassengerById} from "../../services/TypePassenger";
 import {getTypeSeatByName} from "../../services/TypeSeatServices";
 import {getSeatByIdTypeSeat} from "../../services/SeatServices";
 import {getCustomerByEmail, getCustomerById} from "../../services/CustomerServices";
+import Swal      from "sweetalert2";
+
 
 // let passengers = []
 export default function InfoPassenger() {
@@ -26,10 +28,10 @@ export default function InfoPassenger() {
     const [typeSeatReturn, setTypeSeatReturn] = useState([]);
     const navigate = useNavigate();
     const {data} = useParams();
+    const [user, setUser] = useState({});
 
     // data
     const arr = data.split(",");
-    console.log(arr);
     // I- 1 chiều 1.loại vé, 2.id tuyến bay,3. loại ghế ,4. giá 1 vé, 5. Người lớn 6.Trẻ em
     // II 2 chiều //1.loại vé, 2.id tuyến đi,3. idtuyến vế ,4. loại ghế đi, 5. loại ghế về , 6. giá đi. 7.giá về, 8.Người lớn, 9.Trẻ em
 
@@ -42,6 +44,10 @@ export default function InfoPassenger() {
         setRoute(data);
     };
 
+    const getUserLogin = async() => {
+        const data = await getCustomerByEmail(localStorage.getItem("username"));
+        setUser(data);
+    }
 
     const getTypeTicket = async () => {
         const data = await getTypeTicketById(arr[0]);
@@ -71,7 +77,6 @@ export default function InfoPassenger() {
 
         const getTypeSeat = async () => {
             const data = await getTypeSeatByName(arr[2])
-            console.log(data)
             setTypeSeat(data);
         }
         useEffect(() => {
@@ -79,7 +84,7 @@ export default function InfoPassenger() {
             getRouteDeparture();
             getListLuggage();
             getTypeSeat();
-
+            getUserLogin()
         }, []);
 
 
@@ -97,7 +102,6 @@ export default function InfoPassenger() {
     const formattedPriceRouter2 = numeral(priceTicket2).format('0,0 đ');
     const formattedPriceTax2 = numeral(priceTax2).format('0,0 đ');
     const formattedTotalPrice2 = numeral(totalPrice2).format('0,0 đ');
-
     let formattedPriceRouter1;
     let formattedPriceTax1;
     let formattedTotalPrice1;
@@ -129,7 +133,13 @@ export default function InfoPassenger() {
         }
         return array
     }
-
+    let numCustomer;
+    if (arr[0] == 1) {
+        numCustomer= (arr[7]* 1 + arr[8]*1) * 2;
+    } else {
+        numCustomer= (arr[4]* 1 + arr[5]*1);
+    }
+    // console.log(arr[4]* 1 + arr[5]*1);
     const numberPassenger = arrPas();
     const arrBaby = () => {
         let array = [];
@@ -165,14 +175,22 @@ export default function InfoPassenger() {
             }
         ],
     };
+    function handleSubmitCancelOneWay() {
+        navigate(`/list/${route.departure.nameDeparture},${route.destination.nameDestination},${route.dateDeparture},,${0},${arr[4]},${arr[5]}`);
+    }
+    function handleSubmitCancelTwoWay(){
+        navigate(`/list/${route.departure.nameDeparture},${route.destination.nameDestination},${route.dateDeparture},${routeDestination.dateArrival},${1},${arr[7]},${arr[8]}`);
+    }
 
     // validate
 
+
     return (
         <>
+    
             <head>
                 <meta charSet="UTF-8"/>
-                <title>Thông Tin Hành Khách</title>
+                <title>Thông Tin Hành Khách Thực Hiện Chuyến Bay</title>
             </head>
             {route.idRoute &&
                 <div>
@@ -180,117 +198,130 @@ export default function InfoPassenger() {
                         <div className="title text-center">
                             <p className="h1">Thông tin hành khách</p>
                         </div>
-                        {arr[0] == 1 ?
+                        {arr[0] == 1 && route.departure.nameDeparture ?
                             <Formik
                                 initialValues={initialValues}
                                 onSubmit={async (values) => {
-                                    console.log(values)
-                                    await new Promise((r) => setTimeout(r, 500));
-                                    //giá vé chiều đi
-                                    const priceDeparture = totalPrice;
-                                    //giá vé chiều về
-                                    const priceReturn = totalPrice2;
-                                    const typeTicketObj = {...typeTicket};
-                                    const customer = await getCustomerByEmail(localStorage.getItem("username"));
-                                    {
-                                        values.tickets.map(async (ticket, index) => {
-                                            console.log(JSON.stringify(ticket))
-                                            let luggageDeparture
-                                            let luggageReturn
-                                            //hành lý chiều đi
-                                            try {
-                                                luggageDeparture = await findLuggageById(ticket.luggage);
-                                                luggageReturn = await findLuggageById(ticket.luggage2);
-                                            } catch (error) {
-                                                console.log("chưa chọn hành lý")
+                                    // Swal.fire({
+                                    //     title:"Bạn có chắc chắn muốn đặt vé không?",
+                                    //     icon: "question",
+                                    //     showCancelButton: true,
+                                    //     confirmButtonText: 'Xác nhận',
+                                    //     cancelButtonText: 'Không',
+                                    //     reverseButtons: true
+                                    // }).then(async (res) => {
+                                    //     if(res.isConfirmed) {
+                                    //         console.log(values)
+                                            await new Promise((r) => setTimeout(r, 500));
+                                            //giá vé chiều đi
+                                            const priceDeparture = totalPrice;
+                                            //giá vé chiều về
+                                            const priceReturn = totalPrice2;
+                                            const typeTicketObj = {...typeTicket};
+                                            const customer = await getCustomerByEmail(localStorage.getItem("username"));
+                                            {
+                                                values.tickets.map(async (ticket, index) => {
+                                                    console.log(JSON.stringify(ticket))
+                                                    let luggageDeparture
+                                                    let luggageReturn
+                                                    //hành lý chiều đi
+                                                    try {
+                                                        luggageDeparture = await findLuggageById(ticket.luggage);
+                                                        luggageReturn = await findLuggageById(ticket.luggage2);
+                                                    } catch (error) {
+                                                        console.log("chưa chọn hành lý")
+                                                    }
+
+                                                    //hành lý chiều về
+
+                                                    //loại khách
+                                                    let typePassengerObj = {};
+                                                    if (index + 1 <= numberPassenger.length) {
+                                                        typePassengerObj = await getTypePassengerById(1);
+                                                    } else {
+                                                        typePassengerObj = await getTypePassengerById(2);
+                                                    }
+                                                    // ghế chiều đi
+                                                    const typeSeatDeparture = await getTypeSeatByName(arr[3]);
+                                                    const seatDeparture = await getSeatByIdTypeSeat(typeSeatDeparture.idTypeSeat, route.idRoute, index);
+                                                    // ghế chiều về
+                                                    const typeSeatReturn = await getTypeSeatByName(arr[4]);
+                                                    const seatReturn = await getSeatByIdTypeSeat(typeSeatReturn.idTypeSeat, routeDestination.idRoute, index);
+
+                                                    // alert((JSON.stringify(ticket)))
+                                                    //chiều đi
+                                                    let objectDeparture;
+                                                    let objectReturn;
+                                                    if (index + 1 > numberPassenger.length) {
+                                                        objectDeparture = {
+                                                            ...ticket,
+                                                            flagTicket: false,
+                                                            priceTicket: priceDeparture,
+                                                            typeTicket: typeTicketObj,
+                                                            luggage: luggageDeparture,
+                                                            typePassenger: typePassengerObj,
+                                                            seat: seatDeparture,
+                                                            customer: customer,
+                                                            dateBooking: "",
+                                                            emailPassenger: "",
+                                                            idCardPassenger: "",
+                                                            telPassenger: ""
+
+                                                        }
+                                                        objectReturn = {
+                                                            ...ticket,
+                                                            flagTicket: false,
+                                                            priceTicket: priceReturn,
+                                                            typeTicket: typeTicketObj,
+                                                            luggage: luggageReturn,
+                                                            typePassenger: typePassengerObj,
+                                                            seat: seatReturn,
+                                                            customer: customer,
+                                                            dateBooking: "",
+                                                            emailPassenger: "",
+                                                            idCardPassenger: "",
+                                                            telPassenger: ""
+
+                                                        }
+
+                                                    } else {
+                                                        objectDeparture = {
+                                                            ...ticket,
+                                                            flagTicket: false,
+                                                            priceTicket: priceDeparture,
+                                                            typeTicket: typeTicketObj,
+                                                            luggage: luggageDeparture,
+                                                            typePassenger: typePassengerObj,
+                                                            seat: seatDeparture,
+                                                            customer: customer,
+                                                            dateBooking: "",
+                                                        }
+                                                        objectReturn = {
+                                                            ...ticket,
+                                                            flagTicket: false,
+                                                            priceTicket: priceReturn,
+                                                            typeTicket: typeTicketObj,
+                                                            luggage: luggageReturn,
+                                                            typePassenger: typePassengerObj,
+                                                            seat: seatReturn,
+                                                            customer: customer,
+                                                            dateBooking: "",
+                                                        }
+                                                    }
+
+                                                    try {
+                                                        await createNewTicket(objectDeparture);
+                                                        await createNewTicket(objectReturn);
+                                                    } catch (error) {
+                                                        console.log("Lỗi rồi")
+                                                    }
+
+                                                })
                                             }
+                                            navigate(`/payment/${route.departure.nameDeparture}/${numCustomer}`)
 
-                                            //hành lý chiều về
+                                    // })
 
-                                            //loại khách
-                                            let typePassengerObj = {};
-                                            if (index + 1 <= numberPassenger.length) {
-                                                typePassengerObj = await getTypePassengerById(1);
-                                            } else {
-                                                typePassengerObj = await getTypePassengerById(2);
-                                            }
-                                            // ghế chiều đi
-                                            const typeSeatDeparture = await getTypeSeatByName(arr[3]);
-                                            const seatDeparture = await getSeatByIdTypeSeat(typeSeatDeparture.idTypeSeat, route.idRoute, index);
-                                            // ghế chiều về
-                                            const typeSeatReturn = await getTypeSeatByName(arr[4]);
-                                            const seatReturn = await getSeatByIdTypeSeat(typeSeatReturn.idTypeSeat, routeDestination.idRoute, index);
-
-                                            // alert((JSON.stringify(ticket)))
-                                            //chiều đi
-                                            let objectDeparture;
-                                            let objectReturn;
-                                            if (index + 1 > numberPassenger.length) {
-                                                objectDeparture = {
-                                                    ...ticket,
-                                                    flagTicket: false,
-                                                    priceTicket: priceDeparture,
-                                                    typeTicket: typeTicketObj,
-                                                    luggage: luggageDeparture,
-                                                    typePassenger: typePassengerObj,
-                                                    seat: seatDeparture,
-                                                    customer: customer,
-                                                    dateBooking: "",
-                                                    emailPassenger: "",
-                                                    idCardPassenger: "",
-                                                    telPassenger: ""
-
-                                                }
-                                                objectReturn = {
-                                                    ...ticket,
-                                                    flagTicket: false,
-                                                    priceTicket: priceReturn,
-                                                    typeTicket: typeTicketObj,
-                                                    luggage: luggageReturn,
-                                                    typePassenger: typePassengerObj,
-                                                    seat: seatReturn,
-                                                    customer: customer,
-                                                    dateBooking: "",
-                                                    emailPassenger: "",
-                                                    idCardPassenger: "",
-                                                    telPassenger: ""
-
-                                                }
-
-                                            } else {
-                                                objectDeparture = {
-                                                    ...ticket,
-                                                    flagTicket: false,
-                                                    priceTicket: priceDeparture,
-                                                    typeTicket: typeTicketObj,
-                                                    luggage: luggageDeparture,
-                                                    typePassenger: typePassengerObj,
-                                                    seat: seatDeparture,
-                                                    customer: customer,
-                                                }
-                                                objectReturn = {
-                                                    ...ticket,
-                                                    flagTicket: false,
-                                                    priceTicket: priceReturn,
-                                                    typeTicket: typeTicketObj,
-                                                    luggage: luggageReturn,
-                                                    typePassenger: typePassengerObj,
-                                                    seat: seatReturn,
-                                                    customer: customer,
-                                                }
-                                            }
-
-                                            console.log(objectReturn);
-                                            try {
-                                                await createNewTicket(objectDeparture);
-                                                await createNewTicket(objectReturn);
-                                            } catch (error) {
-                                                console.log(123);
-                                            }
-
-                                        })
-                                    }
-                                    navigate(`/payment/${customer.idCustomer}`)
                                 }
 
                                 }
@@ -304,18 +335,20 @@ export default function InfoPassenger() {
                                             </div>
                                             {/*khứ hồi*/}
                                             <div className="row">
+                                                {/*nơi đi*/}
                                                 <div className="col-4 info-fight">
                                                     <p className="">{(route.departure.nameDeparture).split("-")[0]}</p>
                                                     <p className="outstanding">
-                                                        <span>{route.timeDeparture} </span>
+                                                        <span>{route.timeDeparture.split(":")[0]+":"+route.timeDeparture.split(":")[1]} </span>
                                                         <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                                     </p>
                                                     <p>{(route.departure.nameDeparture).split("-")[1]}</p>
                                                 </div>
+                                                {/*nơi đến*/}
                                                 <div className="col-4 info-fight">
                                                     <p className="">{(route.destination.nameDestination).split("-")[0]}</p>
                                                     <p className="outstanding">
-                                                        <span>{(route.timeArrival)} </span>
+                                                        <span>{(route.timeArrival.split(":")[0]+":"+route.timeArrival.split(":")[1])} </span>
                                                         <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
                                                     </p>
                                                     <p>{(route.destination.nameDestination).split("-")[1]}</p>
@@ -377,7 +410,7 @@ export default function InfoPassenger() {
                                                     <div className="col-4 info-fight">
                                                         <p className="">{(routeDestination.departure.nameDeparture).split("-")[0]}</p>
                                                         <p className="outstanding">
-                                                            <span>{routeDestination.timeDeparture} </span>
+                                                            <span>{routeDestination.timeDeparture.split(":")[0]+":"+routeDestination.timeDeparture.split(":")[1]} </span>
                                                             <span>{moment(`${routeDestination.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                                         </p>
                                                         <p>{(routeDestination.departure.nameDeparture).split("-")[1]}</p>
@@ -385,7 +418,7 @@ export default function InfoPassenger() {
                                                     <div className="col-4 info-fight">
                                                         <p className="">{(routeDestination.destination.nameDestination).split("-")[0]}</p>
                                                         <p className="outstanding">
-                                                            <span>{routeDestination.timeArrival} </span>
+                                                            <span>{routeDestination.timeArrival.split(":")[0]+":"+routeDestination.timeArrival.split(":")[1]} </span>
                                                             <span>{moment(`${routeDestination.dateArrival}`).format("DD-MM-YYYY")} </span>
                                                         </p>
                                                         <p>{(routeDestination.destination.nameDestination).split("-")[1]}</p>
@@ -397,8 +430,7 @@ export default function InfoPassenger() {
                                                         </div>
                                                         <p>
                                                             Chuyến bay:
-                                                            <span
-                                                                className="outstanding"> {routeDestination.nameRoute}</span>
+                                                            <span className="outstanding"> {routeDestination.nameRoute}</span>
                                                         </p>
                                                         <p>
                                                             Loại ghế :
@@ -483,7 +515,7 @@ export default function InfoPassenger() {
                                                                                name={`tickets.${index}.genderPassenger`}
                                                                                id={`tickets.${index}.genderPassenger`}
                                                                         >
-                                                                            <option value={false}>Chọn giới
+                                                                            <option value={""}>Chọn giới
                                                                                 tính
                                                                             </option>
                                                                             <option value={false}>Nữ
@@ -618,7 +650,7 @@ export default function InfoPassenger() {
                                                                                name={`tickets.${index + arr[7] * 1}.genderPassenger`}
                                                                                id={`tickets.${index + arr[7] * 1}.genderPassenger`}
                                                                         >
-                                                                            <option value={false}>Chọn giới tính</option>
+                                                                            <option value={""}>Chọn giới tính</option>
                                                                             <option value={false}>Nữ
                                                                             </option>
                                                                             <option value={true}>Nam
@@ -666,17 +698,21 @@ export default function InfoPassenger() {
                                                                         </Field>
                                                                     </div>
                                                                 </div>
+                                                                <div className="line"></div>
                                                             </div>
                                                         )
                                                     })
                                                     }
                                                 </div>
+
                                             </div>
-                                            <div className="line"></div>
+
                                             {/*chiều về*/}
 
-                                            <div className=" btn">
-                                                <button>Chọn lại chuyến bay</button>
+                                            <div className="detail-ticket-btn">
+                                                <button onClick={() => {
+                                                handleSubmitCancelTwoWay()}
+                                                }>Chọn lại chuyến bay</button>
                                                 <button type="submit">Đặt vé</button>
                                             </div>
                                         </div>
@@ -684,69 +720,85 @@ export default function InfoPassenger() {
                                 </Form>
                             </Formik>
                             :
+                            // một chiều
                             <>
                                 <Formik
                                     initialValues={initialValues}
                                     onSubmit={async (values) => {
-                                        await new Promise((r) => setTimeout(r, 500));
-                                        const price = totalPrice1;
-                                        console.log(price)
-                                        const typeTicketObj = {...typeTicket};
-                                        const customer = await getCustomerByEmail(localStorage.getItem("username"));
-                                        {
-                                            values.tickets.map(async (ticket, index) => {
-                                                const luggageObj = await findLuggageById(ticket.luggage)
-                                                let typePassengerObj = {};
-                                                if (index + 1 <= numberPassenger.length) {
-                                                    typePassengerObj = await getTypePassengerById(1);
-                                                } else {
-                                                    typePassengerObj = await getTypePassengerById(2);
+                                        Swal.fire({
+                                            title:"Bạn có chắc chắn muốn đặt vé không?",
+                                            icon: "question",
+                                            showCancelButton: true,
+                                            confirmButtonText: 'Xác nhận',
+                                            confirmButtonColor:"#333",
+                                            cancelButtonText: 'Không',
+                                            reverseButtons: true
+                                        }).then( async (res) => {
+                                            if (res.isConfirmed) {
+                                                await new Promise((r) => setTimeout(r, 500));
+                                                const price = totalPrice1;
+                                                const typeTicketObj = {...typeTicket};
+                                                const customer = await getCustomerByEmail(localStorage.getItem("username"));
+                                                {
+                                                    values.tickets.map(async (ticket, index) => {
+                                                        const luggageObj = await findLuggageById(ticket.luggage)
+                                                        let typePassengerObj = {};
+                                                        if (index + 1 <= numberPassenger.length) {
+                                                            typePassengerObj = await getTypePassengerById(1);
+                                                        } else {
+                                                            typePassengerObj = await getTypePassengerById(2);
+                                                        }
+                                                        const typeSeatObj = await getTypeSeatByName(arr[2]);
+
+                                                        const seatObj = {
+                                                            typeSeat: typeSeatObj,
+                                                            route: route,
+                                                        }
+                                                        const seat = await getSeatByIdTypeSeat(seatObj.typeSeat.idTypeSeat, route.idRoute, index);
+                                                        let object;
+                                                        if (index + 1 > numberPassenger.length) {
+                                                            object = {
+                                                                ...ticket,
+                                                                flagTicket: false,
+                                                                priceTicket: price,
+                                                                typeTicket: typeTicketObj,
+                                                                luggage: luggageObj,
+                                                                typePassenger: typePassengerObj,
+                                                                seat: seat,
+                                                                customer: customer,
+                                                                dateBooking: "",
+                                                                emailPassenger: "",
+                                                                idCardPassenger: "",
+                                                                telPassenger: ""
+
+                                                            }
+
+                                                        } else {
+                                                            object = {
+                                                                ...ticket,
+                                                                flagTicket: false,
+                                                                priceTicket: price,
+                                                                typeTicket: typeTicketObj,
+                                                                luggage: luggageObj,
+                                                                typePassenger: typePassengerObj,
+                                                                seat: seat,
+                                                                customer: customer,
+                                                                dateBooking: "",
+                                                            }
+                                                        }
+                                                        // alert((JSON.stringify(ticket)))
+
+
+                                                        console.log(object)
+                                                        await createNewTicket(object);
+                                                    })
                                                 }
-                                                const typeSeatObj = await getTypeSeatByName(arr[2]);
+                                                navigate(`/payment/${route.departure.nameDeparture}/${numCustomer}`)
+                                            } else {
+                                                return
+                                            }
+                                        })
 
-                                                const seatObj = {
-                                                    typeSeat: typeSeatObj,
-                                                    route: route,
-                                                }
-                                                const seat = await getSeatByIdTypeSeat(seatObj.typeSeat.idTypeSeat, route.idRoute, index);
-                                                let object;
-                                                if (index + 1 > numberPassenger.length) {
-                                                    object = {
-                                                        ...ticket,
-                                                        flagTicket: false,
-                                                        priceTicket: price,
-                                                        typeTicket: typeTicketObj,
-                                                        luggage: luggageObj,
-                                                        typePassenger: typePassengerObj,
-                                                        seat: seat,
-                                                        customer: customer,
-                                                        dateBooking: "",
-                                                        emailPassenger: "",
-                                                        idCardPassenger: "",
-                                                        telPassenger: ""
-
-                                                    }
-
-                                                } else {
-                                                    object = {
-                                                        ...ticket,
-                                                        flagTicket: false,
-                                                        priceTicket: price,
-                                                        typeTicket: typeTicketObj,
-                                                        luggage: luggageObj,
-                                                        typePassenger: typePassengerObj,
-                                                        seat: seat,
-                                                        customer: customer,
-                                                    }
-                                                }
-                                                // alert((JSON.stringify(ticket)))
-
-
-                                                console.log(object)
-                                                await createNewTicket(object);
-                                            })
-                                        }
-                                        navigate(`/payment/${customer.idCustomer}`)
                                     }
                                     }
                                 >
@@ -754,19 +806,21 @@ export default function InfoPassenger() {
                                         <FieldArray name="ticket">
                                             <div className="row wrap">
                                                 <div className="row">
+                                                    {/*nơi đi*/}
                                                     <div className="col-4 info-fight">
                                                         <p className="">{(route.departure.nameDeparture).split("-")[0]}</p>
                                                         <p className="outstanding">
-                                                            <span>{route.timeArrival} </span>
-                                                            <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
+                                                            <span>{route.timeDeparture.split(":")[0]+":"+route.timeDeparture.split(":")[1]} </span>
+                                                            <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
                                                         </p>
                                                         <p>{(route.departure.nameDeparture).split("-")[1]}</p>
                                                     </div>
+                                                    {/*nơi đến*/}
                                                     <div className="col-4 info-fight">
                                                         <p className="">{(route.destination.nameDestination).split("-")[0]}</p>
                                                         <p className="outstanding">
-                                                            <span>{(route.timeDeparture)} </span>
-                                                            <span>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </span>
+                                                            <span>{(route.timeArrival.split(":")[0]+":"+route.timeArrival.split(":")[1])} </span>
+                                                            <span>{moment(`${route.dateArrival}`).format("DD-MM-YYYY")} </span>
                                                         </p>
                                                         <p>{(route.destination.nameDestination).split("-")[1]}</p>
                                                     </div>
@@ -781,7 +835,7 @@ export default function InfoPassenger() {
                                                         </p>
                                                         <p>
                                                             Loại ghế :
-                                                            <span className="outstanding"> {arr[2]}</span>
+                                                            <span className="outstanding"> {arr[3]}</span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -861,7 +915,7 @@ export default function InfoPassenger() {
                                                                                    name={`tickets.${index}.genderPassenger`}
                                                                                    id={`tickets.${index}.genderPassenger`}
                                                                             >
-                                                                                <option value={false}>Chọn giới
+                                                                                <option value={""}>Chọn giới
                                                                                     tính
                                                                                 </option>
                                                                                 <option value={false}>Nữ
@@ -980,7 +1034,7 @@ export default function InfoPassenger() {
                                                                                    name={`tickets.${index + arr[4] * 1}.genderPassenger`}
                                                                                    id={`tickets.${index + arr[4] * 1}.genderPassenger`}
                                                                             >
-                                                                                <option value={false}>Chọn giới tính
+                                                                                <option value={""}>Chọn giới tính
                                                                                 </option>
                                                                                 <option value={false}>Nữ
                                                                                 </option>
@@ -1019,9 +1073,9 @@ export default function InfoPassenger() {
                                                         }
                                                     </div>
                                                 </div>
-                                                <div className=" btn">
+                                                <div className="detail-ticket-btn">
                                                     <button onClick={() => {
-                                                        navigate("/list/")
+                                                        handleSubmitCancelOneWay()
                                                     }
                                                     }>Chọn lại chuyến bay
                                                     </button>

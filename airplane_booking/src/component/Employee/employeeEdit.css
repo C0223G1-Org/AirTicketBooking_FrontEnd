@@ -266,7 +266,9 @@
 .search_button_employee {
     background: #dfa512;
     color: white;
-
+}
+.search_button_employee :hover {
+    color: #0685aa;
 }
 
 .table_header_employee {
@@ -279,18 +281,27 @@
     margin-right: 20px;
     color: #0653aa;
 }
+.icon_detail_employee:hover {
+    color: #dfa512;
+}
 
 .icon_edit_employee {
     font-size: 25px;
     margin-right: 20px;
     color: #0685aa
 }
+.icon_edit_employee:hover {
+    color: #dfa512;
+}
+
 
 .icon_delete_employee {
     font-size: 25px;
     color: #8f1f34;
 }
-
+.icon_delete_employee:hover {
+    color: #dfa512;
+}
 .error_red_employee {
     color: red;
 }
@@ -302,7 +313,7 @@
 }
 
 .style_button_search_page{
-    width: 30px;
+    width: 3rem;
     height: 20px;
     padding-left: 5px;
     border: 1px solid black;
@@ -315,6 +326,21 @@
     color: #ffffff;
     margin-right: 10px;
 }
+.style_button_page:hover{
+    background: #0685aa;
+
+}
+
+.style_button_page_next{
+    background: rgb(223, 165, 18);
+    color: #ffffff;
+    margin-right: 10px;
+}
+.style_button_page_next:hover{
+    background: #0685aa;
+    color: white;
+}
+
 .container_employee_page{
     display: flex;
     justify-content: space-between;
@@ -323,27 +349,7 @@
     background-color: white;
     border-top: 1px solid;
 }
-.table_employee_stt{
-    width: 2%;
-}
-.table_employee_name{
-    width: 8%;
-}
-.table_employee_gender{
-    width: 4%;
-}
-.table_employee_email{
-    width: 7%;
-}
-.table_employee_birthday{
-    width: 5%;
-}
-.table_employee_phone{
-    width: 5%;
-}
-.table_employee_action{
-    width: 5%;
-}
+
 .custom-confirm-button-employee {
     background-color: #0685aa !important;
     /* Các thuộc tính CSS khác mà bạn muốn áp dụng */
