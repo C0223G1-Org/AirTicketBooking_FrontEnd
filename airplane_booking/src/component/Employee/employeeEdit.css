@@ -1,9 +1,9 @@
-.section {
+.sectionQuoc {
     position: relative;
     height: 100vh;
 }
 
-.booking-form p{
+.booking-formQuoc .pQuoc{
     color: #fff;
     background-color: #4fa3e3;
     font-weight: 400;
@@ -17,7 +17,7 @@
     padding-top: 10px;
 }
 
-.section .section-center {
+.sectionQuoc .sectionQuoc-center {
     position: absolute;
     top: 50%;
     left: 0;
@@ -26,7 +26,7 @@
     transform: translateY(-50%);
 }
 
-#booking {
+#bookingQuoc {
     font-family: 'Lato', sans-serif;
     background-image: url('/public/background.jpg');
     background-size: cover;
@@ -34,28 +34,27 @@
     color: #191a1e;
 }
 
-.booking-form {
+.booking-formQuoc {
     position: relative;
     background: #fff;
-    max-width: 642px;
     width: 100%;
-    margin: auto;
+    margin: 0;
     /*padding: 25px 25px 25px;*/
     border-radius: 4px;
     -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
     box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
-.booking-form-padding{
+.booking-formQuoc-padding{
     padding: 0px 25px 25px;
 }
 
-.booking-form .form-group {
+.booking-formQuoc .form-group {
     position: relative;
     margin-bottom: 20px;
 }
 
-.booking-form .form-control {
+.booking-formQuoc .form-control {
     background-color: #fff;
     height: 65px;
     padding: 0px 15px;
@@ -71,33 +70,33 @@
     transition: 0.2s all;
 }
 
-.booking-form .form-control::-webkit-input-placeholder {
+.booking-formQuoc .form-controlQuoc::-webkit-input-placeholder {
     color: #dfe5e9;
 }
 
-.booking-form .form-control:-ms-input-placeholder {
+.booking-formQuoc .form-controlQuoc:-ms-input-placeholder {
     color: #dfe5e9;
 }
 
-.booking-form .form-control::placeholder {
+.booking-formQuoc .form-controlQuoc::placeholder {
     color: #dfe5e9;
 }
 
-.booking-form .form-control:focus {
+.booking-form .form-controlQuoc:focus {
     background: #f9fafb;
 }
 
-.booking-form input[type="date"].form-control:invalid {
+.booking-formQuoc input[type="date"].form-controlQuoc:invalid {
     color: #dfe5e9;
 }
 
-.booking-form select.form-control {
+.booking-formQuoc select.form-controlQuoc {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 }
 
-.booking-form select.form-control+.select-arrow {
+.booking-formQuoc select.form-controlQuoc+.select-arrow {
     position: absolute;
     right: 6px;
     bottom: 6px;
@@ -110,7 +109,7 @@
     font-size: 14px;
 }
 
-.booking-form select.form-control+.select-arrow:after {
+.booking-formQuoc select.form-controlQuoc+.select-arrow:after {
     content: '\279C';
     display: block;
     -webkit-transform: rotate(90deg);
@@ -123,7 +122,7 @@
 
 }
 
-.booking-form .form-label {
+.booking-formQuoc .form-label {
     position: absolute;
     top: 6px;
     left: 20px;
@@ -135,13 +134,13 @@
     color: #98c9ee;
 }
 
-.booking-form .form-checkbox input {
+.booking-formQuoc .form-checkbox input {
     position: absolute !important;
     margin-left: -9999px !important;
     visibility: hidden !important;
 }
 
-.booking-form .form-checkbox label {
+.booking-formQuoc .form-checkbox label {
     position: relative;
     padding-top: 4px;
     padding-left: 30px;
@@ -149,11 +148,11 @@
     color: #191a1e;
 }
 
-.booking-form .form-checkbox label+label {
+.booking-formQuoc .form-checkbox label+label {
     margin-left: 15px;
 }
 
-.booking-form .form-checkbox input+span {
+.booking-formQuoc .form-checkbox input+span {
     position: absolute;
     left: 2px;
     top: 4px;
@@ -164,7 +163,7 @@
     border-radius: 50%;
 }
 
-.booking-form .form-checkbox input+span:after {
+.booking-formQuoc .form-checkbox input+span:after {
     content: '';
     position: absolute;
     top: 50%;
@@ -179,30 +178,30 @@
     transition: 0.2s all;
 }
 
-.booking-form .form-checkbox input:not(:checked)+span:after {
+.booking-formQuoc .form-checkbox input:not(:checked)+span:after {
     opacity: 0;
 }
 
-.booking-form .form-checkbox input:checked+span:after {
+.booking-formQuoc .form-checkbox input:checked+span:after {
     opacity: 1;
     width: 10px;
     height: 10px;
 }
 
-/*.booking-form .submit-btn {*/
-/*	color: #fff;*/
-/*	background-color: rgb(223, 165, 18);*/
-/*	font-weight: 400;*/
-/*	height: 40px;*/
-/*	font-size: 18px;*/
-/*	border: none;*/
-/*	width: 20%;*/
-/*	border-radius: 4px;*/
-/*	text-transform: uppercase;*/
-/*	!*justify-content: right;*!*/
-/*	!*display: flex;*!*/
+    /*.booking-form .submit-btn {*/
+    /*	color: #fff;*/
+    /*	background-color: rgb(223, 165, 18);*/
+    /*	font-weight: 400;*/
+    /*	height: 40px;*/
+    /*	font-size: 18px;*/
+    /*	border: none;*/
+    /*	width: 20%;*/
+    /*	border-radius: 4px;*/
+    /*	text-transform: uppercase;*/
+    /*	!*justify-content: right;*!*/
+    /*	!*display: flex;*!*/
 
-/*}*/
+    /*}*/
 
 .booking-cta {
     margin-top: 45px;
@@ -267,7 +266,9 @@
 .search_button_employee {
     background: #dfa512;
     color: white;
-
+}
+.search_button_employee :hover {
+    color: #0685aa;
 }
 
 .table_header_employee {
@@ -280,18 +281,27 @@
     margin-right: 20px;
     color: #0653aa;
 }
+.icon_detail_employee:hover {
+    color: #dfa512;
+}
 
 .icon_edit_employee {
     font-size: 25px;
     margin-right: 20px;
-    color: #0653aa
+    color: #0685aa
 }
+.icon_edit_employee:hover {
+    color: #dfa512;
+}
+
 
 .icon_delete_employee {
     font-size: 25px;
     color: #8f1f34;
 }
-
+.icon_delete_employee:hover {
+    color: #dfa512;
+}
 .error_red_employee {
     color: red;
 }
@@ -301,9 +311,7 @@
     border-radius: 35px;
     margin-right: 10px;
 }
-.mesError{
-    color: red;
-}
+
 .style_button_search_page{
     width: 3rem;
     height: 20px;
@@ -317,4 +325,32 @@
     background: rgb(223, 165, 18);
     color: #ffffff;
     margin-right: 10px;
+}
+.style_button_page:hover{
+    background: #0685aa;
+
+}
+
+.style_button_page_next{
+    background: rgb(223, 165, 18);
+    color: #ffffff;
+    margin-right: 10px;
+}
+.style_button_page_next:hover{
+    background: #0685aa;
+    color: white;
+}
+
+.container_employee_page{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: white;
+    border-top: 1px solid;
+}
+
+.custom-confirm-button-employee {
+    background-color: #0685aa !important;
+    /* Các thuộc tính CSS khác mà bạn muốn áp dụng */
 }

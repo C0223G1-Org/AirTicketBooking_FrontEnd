@@ -1,276 +1,295 @@
+import React, {useEffect, useRef, useState} from 'react';
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import * as EmployeeService from "../../services/EmployeeServices";
 import './employeeEdit.css';
 import * as Yup from "yup";
+import {Link, useNavigate, useParams} from "react-router-dom";
 
-// import {storage} from "./firebare";
-import React, {useEffect, useState} from 'react';
-import {ErrorMessage, Field, Form, Formik} from 'formik';
-import {Link, useNavigate, useParams} from 'react-router-dom';
-import * as EmployeeService from '../../services/EmployeeServices';
-import * as AccountService from '../../services/AccountServices';
-import * as RoleService from '../../services/RoleServices';
-// import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage';
+import {v4} from "uuid";
+import {createEmployee, updateEmployee} from "../../services/EmployeeServices";
+import Swal from "sweetalert2";
+import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
+import {storage} from "../../firebase-chat";
 
-
-export default function EditEmployee() {
-    let navigate = useNavigate();
-    let param = useParams();
-    const [roleList, setRoleList] = useState([]);
+/**
+ * Create by: QuocNHA
+ * @returns {JSX.Element}
+ * @constructor
+ */
+function EditEmployee() {
+    const navigate = useNavigate();
+    const param = useParams();
+    const imgPreviewRef = useRef(null)
+    const inputFileRef = useRef(null);
+    const [imageUpload, setImageUpload] = useState(null);
     const [employeeId, setEmployeesId] = useState(null);
-    const [accountId,setAccountId]=useState(null)
-    const [avatar, setAvatarFile] = useState(null);
-    const [avatarUrl, setAvatarUrl] = useState(null);
-    const [fileSelected, setFileSelected] = useState(false);
-
-    useEffect(() => {
-        const list = async () => {
-            const rs=await RoleService.findByRole()
-            setRoleList(rs)
-        }
-        list()
-    }, [])
-
-    useEffect(()=>{
-        const findByAccount =async ()=>{
-            const rs =await AccountService.findById(param.id)
-            setAccountId(rs)
-        }
-        findByAccount()
-    },[param.id])
-
-    useEffect(() => {
-        const fetchEmployeeById = async () => {
+    const fetchEmployeeById = async () => {
+        try {
             const rs = await EmployeeService.findById(param.id)
-            console.log(rs)
             setEmployeesId(rs)
+            console.log(rs)
+        } catch (error) {
+            await Swal.fire({
+                icon: 'error',
+                title: 'ID không tồn tại!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            navigate("/employee");
         }
-        fetchEmployeeById()
-    }, [param.id])
+    };
 
+    useEffect(() => {
+        fetchEmployeeById();
+    }, [param.id]);
 
     if (!employeeId) {
-        return null;
+        return null
     }
 
 
-    return (
-        <>
-            <div id="booking" className="section">
-                <div className="section-center">
-                    <div className="container">
-                        <div className="booking-form">
-                            <div className="title" style={{padding: '0px'}}>
-                                <p>Chỉnh sửa thông tin nhân viên</p>
+    const savePost = async (post) => {
+        if (imageUpload) { // Kiểm tra nếu có ảnh được chọn
+            const fileName = `images/${imageUpload.name + v4()}`
+            const imageRef = ref(storage, fileName);
+            uploadBytes(imageRef, imageUpload).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then(async (url) => {
+                    console.log(url)
+
+                    await updateEmployee({
+                        ...post, image: url
+
+                    }).then(navigate("/employee"))
+                    console.log(url);
+                })
+            }).then(() => {
+                Swal.fire({
+                    icon: 'success', title: 'Chỉnh sửa thành công !', showConfirmButton: false, timer: 1000
+                })
+            })
+        } else {
+            await updateEmployee({
+                ...post // Bỏ phần image khi không có ảnh
+            }).then(navigate("/employee"))
+                .then(() => {
+                    Swal.fire({
+                        icon: 'success', title: 'Chỉnh sửa thành công !', showConfirmButton: false, timer: 1000
+                    })
+                })
+        }
+    }
+    const handleInputChange = (event) => {
+        const file = event.target.files[0];
+        if (file.size > 3000000) {
+            Swal.fire({
+                icon: 'error', title: 'Dung lượng ảnh tối đa 3MB', showConfirmButton: false, timer: 1500
+            })
+            return;
+        }
+        setImageUpload(file)
+        const reader = new FileReader();
+        reader.addEventListener("load", function () {
+            imgPreviewRef.current.src = reader.result;
+            imgPreviewRef.current.style.display = "block";
+        });
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
+
+    return (<>
+            <div>
+                <div id="bookingQuoc" className="sectionQuoc">
+                    <div className="sectionQuoc-center">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-4">
+                                    <div>
+                                        {/*<img*/}
+                                        {/*    src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"*/}
+                                        {/*    alt="Preview Image" id="img-preview"/>*/}
+                                        <img style={{marginTop: '10px', marginLeft: '100px'}} name='image'
+                                             id="img-preview" src={employeeId.image} ref={imgPreviewRef}
+                                             alt="Preview Image"/>
+                                    </div>
+                                </div>
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-6" style={{padding: '0px'}}>
+                                    <div className="booking-formQuoc">
+                                        <div className="" style={{width: '100%'}}>
+                                            <p className='pQuoc'>Chỉnh sửa nhân viên</p>
+                                        </div>
+                                        <Formik initialValues={{
+                                            idEmployee: employeeId.idEmployee,
+                                            nameEmployee: employeeId.nameEmployee,
+                                            dateEmployee: employeeId.dateEmployee,
+                                            telEmployee: employeeId.telEmployee,
+                                            // image: employeeId.image,
+                                            gender: employeeId.gender,
+                                            emailEmployee: employeeId.emailEmployee,
+                                            passwordEmployee: employeeId.passwordEmployee, // confirmPasswordEmployee: employeeId.confirmPasswordEmployee,
+                                            typeEmployee: {
+                                                idEmployee: 1
+                                            }
+                                        }}
+                                                validationSchema={Yup.object({
+                                                    nameEmployee: Yup.string()
+                                                        .test('no-leading-whitespace', 'Tên không được bắt đầu bằng khoảng trắng.', (value) => {
+                                                            return !value.startsWith(' ');
+                                                        })
+                                                        .test('no-trailing-whitespace', 'Tên không được kết thúc bằng khoảng trắng.', (value) => {
+                                                            return !value.endsWith(' ');
+                                                        })
+                                                        .required("Vui lòng nhập.")
+                                                        .min(5, "Tên quá ngắn,phải từ 5 kí tự.")
+                                                        .max(50, "tên quá dài.")
+                                                        .matches(/^[^!@#$%^&*()+=\[\]{};':"\\|.<>?`~0-9]+$/, "Tên không chứa ký tự đặc biệt như @#$.. và số."),
+                                                    dateEmployee: Yup.date()
+                                                        .required("Vui lòng chọn.")
+                                                        .test("is-over-18", "Bạn chưa đủ 18 . ", function (value) {
+                                                            const currentDate = new Date();
+                                                            const selectedDate = new Date(value);
+                                                            const ageDiff =
+                                                                currentDate.getFullYear() - selectedDate.getFullYear();
+                                                            if (ageDiff < 18) {
+                                                                return false;
+                                                            }
+                                                            return true;
+                                                        })
+                                                        .test("is-under-60", "Bạn đã quá 60 tuổi.", function (value) {
+                                                            const currentDate = new Date();
+                                                            const selectedDate = new Date(value);
+                                                            const ageDiff = currentDate.getFullYear() - selectedDate.getFullYear();
+                                                            return ageDiff <= 60;
+                                                        }),
+                                                    gender: Yup.boolean()
+                                                        .required("Vui lòng chọn giới ."), // emailEmployee: Yup.string()
+                                                    //     .matches(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                                                    //         "Email phải đúng định dạng xxx@gmail.com")
+                                                    //     .required("Vui lòng nhập email")
+                                                    // ,
+                                                    telEmployee: Yup.string()
+                                                        .required("Vui lòng nhập số điện thoại.")
+                                                        .matches(/^(\+?84|0)(3[2-9]|5[2689]|7[06-9]|8[1-9]|9[0-9])[0-9]{7}$/, "Số điện thoại không hợp lệ, phải từ 10 hoặc 11 số"), // passwordEmployee: Yup.string()
+                                                    //     .required("Vui lòng nhập mật khẩu")
+                                                    //     .min(5, "Mật khẩu quá ngắn,phải từ 5 kí tự")
+                                                    //     .max(50, "Mật khẩu quá dài"),
+                                                    // confirmPasswordEmployee: Yup.string()
+                                                    //     .required("Vui lòng nhập mật khẩu xác nhận")
+                                                    //     .oneOf([Yup.ref('passwordEmployee'), null], 'Mật khẩu xác nhận không khớp')
+
+                                                })}
+                                                onSubmit={(values) => {
+                                                    console.log(values)
+                                                    savePost(values)
+
+
+                                                }}
+                                        >
+
+
+                                            <Form className="booking-formQuoc-padding">
+                                                <div className="row">
+                                                    <div className="col-md-6">
+                                                        <div className="form-group">
+                                        <span className="form-label">Họ và tên (<span
+                                            style={{color: 'red'}}>*</span>)</span>
+                                                            <Field name='nameEmployee' className="form-control"
+                                                                   type="text"/>
+                                                            <ErrorMessage name='nameEmployee' component='div'
+                                                                          className='error_red_employee'/>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <div className="form-group">
+                                        <span className="form-label">Ngày sinh (<span
+                                            style={{color: 'red'}}>*</span>)</span>
+                                                            <Field name='dateEmployee' className="form-control"
+                                                                   type="date"/>
+                                                            <ErrorMessage name='dateEmployee' component='div'
+                                                                          className='error_red_employee'/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col-md-6">
+                                                        <div className="form-group">
+                                                            <span className="form-label">Email </span>
+
+                                                            <div
+                                                                className="form-control">{employeeId.emailEmployee}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <div className="form-group">
+                                                             <span className="form-label">Giới tính (<span
+                                                                 style={{color: 'red'}}>*</span>)</span>
+                                                            <Field name='gender' className="form-control"
+                                                                   as="select">
+                                                                <option value={true}>Nam</option>
+                                                                <option value={false}>Nữ</option>
+                                                            </Field>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col-md-6">
+                                                        <div className="form-group">
+                                                    <span className="form-label">Số điện thoại (<span
+                                                        style={{color: 'red'}}>*</span>)</span>
+                                                            <Field className="form-control" type="text"
+                                                                   name='telEmployee'/>
+                                                            <ErrorMessage name='telEmployee' component='div'
+                                                                          className='error_red_employee'/>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <div className="form-group">
+                                                        <span className="form-label">Cập nhật hình ảnh (<span
+                                                            style={{color: 'red'}}>*</span>)</span>
+                                                            <Field className="custom-file-input"
+                                                                   accept="image/png, image/gif, image/jpeg" type="file"
+                                                                   id="input-file"
+                                                                   style={{
+                                                                       marginTop: "30px",
+                                                                       marginLeft: "30px",
+                                                                       width: '50%'
+                                                                   }}
+                                                                   ref={inputFileRef} onChange={handleInputChange}
+                                                                   name='image'/>
+                                                            <ErrorMessage name='image' component='div'
+                                                                          className='error_red_employee'/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style={{textAlign: 'center'}}>
+                                                    <Link to='/employee' className="btn"
+                                                          style={{
+                                                              background: 'gray',
+                                                              marginRight: '10px',
+                                                              color: 'white'
+                                                          }}>Quay
+                                                        lại
+                                                    </Link>
+                                                    <button type='submit' className="btn"
+                                                            style={{background: '#daa32a'}}>Xác nhận
+                                                    </button>
+                                                </div>
+                                            </Form>
+                                        </Formik>
+                                    </div>
+                                </div>
                             </div>
-                            <Formik initialValues={{
-                                nameEmployee: employeeId.nameEmployee,
-                                dateEmployee: employeeId.dateEmployee,
-                                emailEmployee: employeeId.emailEmployee,
-                                telEmployee: employeeId.telEmployee,
-                                image: employeeId.image,
-                                gender: employeeId.gender,
-                                account: {
-                                    username: accountId.username,
-                                    password: accountId.password,
-                                    role: {
-                                        idRole: 1
-                                    }
-                                }
-                            }}
-                                    validationSchema={Yup.object({
-                                        nameEmployee: Yup.string()
-                                            .required("Vui lòng nhập")
-                                            .min(5, "Tên quá ngắn,phải từ 5 kí tự")
-                                            .max(50, "tên quá dài")
-                                            .matches(/^[^!@#$%^&*()+=\[\]{};':"\\|.<>?`~/]+$/, "Tên không chứa ký tự đặc biệt như @#$.."),
-                                        dateEmployee: Yup.date()
-                                            .required("Vui lòng chọn")
-                                            .test("is-over-18", "Bạn chưa đủ 18 tuổi ", function (value) {
-                                                const currentDate = new Date();
-                                                const selectedDate = new Date(value);
-                                                const ageDiff =
-                                                    currentDate.getFullYear() - selectedDate.getFullYear();
-                                                if (ageDiff < 18) {
-                                                    return false;
-                                                }
-                                                return true;
-                                            }),
-                                        gender: Yup.boolean()
-                                            .required("Vui lòng chọn giới tính"),
-                                        emailEmployee: Yup.string()
-                                            .matches(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-                                                "Email phải đúng định dạng xxx@gmail.com")
-                                            .required("Vui lòng nhập email")
-                                        ,
-                                        telEmployee: Yup.string()
-                                            .required("Vui lòng nhập số điện thoại")
-                                            .matches(
-                                                /^(\+?84|0)(3[2-9]|5[2689]|7[06-9]|8[1-9]|9[0-9])[0-9]{7}$/,
-                                                "Số điện thoại không hợp lệ, phải từ 10 hoặc 11 số"
-                                            ),
-                                        account: Yup.object({
-                                            username: Yup.string()
-                                                .required("Vui lòng nhập tài khoản")
-                                                .min(5, "Tài khoản quá ngắn,phải từ 5 kí tự")
-                                                .max(50, "Tài khoản quá dài"),
-                                            password: Yup.string()
-                                                .required("Vui lòng nhập mật khẩu")
-                                                .min(5, "Mật khẩu quá ngắn,phải từ 5 kí tự")
-                                                .max(50, "Mật khẩu quá dài")
-                                        })
 
-                                    })}
-                                    onSubmit={async (values) => {
-                                        console.log(values)
-                                        console.log(avatar)
-                                        try {
-                                            console.log(values)
-                                            const accountData = {
-                                                username: values.account.username,
-                                                password: values.account.password,
-                                                role: {idRole: +values.account.role},
-                                            };
 
-                                            await AccountService.editAccount(accountData);
-
-                                            const employeeData = {
-                                                nameEmployee: values.nameEmployee,
-                                                dateEmployee: values.dateEmployee,
-                                                emailEmployee: values.emailEmployee,
-                                                telEmployee: values.telEmployee,
-                                                image: values.image,
-                                                gender: values.gender,
-                                                account: {...values.account, role: {idRole: +values.account.role}}
-                                            };
-
-                                            await EmployeeService.updateEmployee(employeeData);
-
-                                            alert("Chỉnh sửa thành công");
-                                            navigate('/')
-                                        } catch (error) {
-                                            console.error('Lỗi khi thêm mới:', error);
-                                        }
-                                    }}
-
-                            >
-
-                                <Form className="booking-form-padding">
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                        <span className="form-label">Họ và tên <span
-                                            style={{color: 'red'}}>*</span></span>
-                                                <Field name='nameEmployee' className="form-control" type="text"/>
-                                                <ErrorMessage name='nameEmployee' style={{color: 'red'}}
-                                                              className='mesError'/>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                        <span className="form-label">Ngày sinh <span
-                                            style={{color: 'red'}}>*</span></span>
-                                                <Field name='dateEmployee' className="form-control" type="date"/>
-                                                <ErrorMessage name='dateEmployee'/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                        <span className="form-label">Email <span
-                                            style={{color: 'red'}}>*</span></span>
-                                                <Field name='emailEmployee' className="form-control" type="text"/>
-                                                <ErrorMessage name='emailEmployee'/>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="form-checkbox" style={{marginTop: '4px'}}>
-                                                <label style={{paddingLeft: '20px', marginBottom: '20px'}}
-                                                       id="id_gioi_tinh_employee">
-                                                    <span/>Giới tính <span style={{color: 'red'}}>*</span>
-                                                </label>
-                                                <label htmlFor="one-way">
-                                                    <Field type="radio" id="one-way" name="gender" value='false'/>
-                                                    <span/>Nam
-                                                </label>
-                                                <label htmlFor="multi-city">
-                                                    <Field type="radio" id="multi-city" name="gender" value='true'/>
-                                                    <span/>Nữ
-                                                    <ErrorMessage name='gender'/>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/*<div className="row">*/}
-                                    {/*    <div className="col-md-6">*/}
-                                    {/*        <div className="form-group">*/}
-                                    {/*       <span className="form-label">Nhập user name <span*/}
-                                    {/*           style={{color: 'red'}}>*</span></span>*/}
-                                    {/*            <Field name='account.username' className="form-control" type="text"/>*/}
-                                    {/*            <ErrorMessage name='account.username'/>*/}
-                                    {/*        </div>*/}
-                                    {/*    </div>*/}
-                                    {/*    <div className="col-md-6">*/}
-                                    {/*        <div className="form-group">*/}
-                                    {/*            <span className="form-label">Mật khẩu <span*/}
-                                    {/*                style={{color: 'red'}}>*</span></span>*/}
-                                    {/*            <Field className="form-control" type="password"*/}
-                                    {/*                   name='account.password'/>*/}
-                                    {/*            <ErrorMessage name='account.password' className='mesError'/>*/}
-
-                                    {/*        </div>*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                            <span className="form-label">Số điện thoại <span
-                                                style={{color: 'red'}}>*</span></span>
-                                                <Field className="form-control" type="text" name='telEmployee'/>
-                                                <ErrorMessage name='telEmployee'/>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <span className="form-label">Phân quyền <span
-                                                    style={{color: 'red'}}>*</span></span>
-                                                <Field component='select' name='account.role' className="form-control">
-                                                    {
-                                                        roleList.map((value, index) => (
-                                                            <option key={index} value={value.idRole}>
-                                                                {value.nameRole}
-                                                            </option>
-                                                        ))
-                                                    }
-                                                </Field>
-                                                <span className="select-arrow"/>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                        {/*    <div className="form-group">*/}
-                                        {/*<span className="form-label" style={{marginBottom: '30px'}}>Hình ảnh <span*/}
-                                        {/*    style={{color: 'red'}}>*</span></span>*/}
-                                        {/*    </div>*/}
-
-                                            {/*<Field name='image' className="form-control" type="file"*/}
-                                            {/*       style={{marginLeft: '4%'}}/>*/}
-                                            {/*<ErrorMessage name='image'/>*/}
-
-                                        </div>
-                                    </div>
-                                    <div style={{textAlign: 'center'}}>
-                                        <Link to='/' className="btn"
-                                              style={{background: 'gray', marginRight: '10px', color: 'white'}}>Quay
-                                            lại
-                                        </Link>
-                                        <button type='submit' className="btn" style={{background: '#daa32a'}}>Chỉnh sửa
-                                        </button>
-                                    </div>
-                                </Form>
-                            </Formik>
                         </div>
                     </div>
                 </div>
             </div>
-        </>);
+
+        </>
+    )
+        ;
 }
 
+export default EditEmployee;

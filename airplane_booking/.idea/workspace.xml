@@ -27,6 +27,11 @@
       <change beforePath="$PROJECT_DIR$/src/component/post/ListPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post/ListPost.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/post/ListPost.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/post/ListPost.css" afterDir="false" />
     </list>
+    <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Employee/employeeEdit.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/employeeEdit.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +47,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="247ea1c3-e3fb-4a63-878e-4a256b9f25cd" />
+        <option name="url" value="https://github.com/C0223G1-Org/AirTicketBooking_FrontEnd.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -51,21 +69,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\codegym\\downloads\\WebStorm 2022.3.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/fontend_module_6/AirTicketBooking_FrontEnd/airplane_booking",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\fontend_module_6\AirTicketBooking_FrontEnd\airplane_booking\src\component\Employee" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\case_study\study_module6\AirTicketBooking_FrontEnd\airplane_booking\src\img" />
+      <recent name="E:\fontend_module_6\AirTicketBooking_FrontEnd\airplane_booking\src\component\Employee" />
     </key>
   </component>
   <component name="RunManager">
@@ -88,7 +110,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d0a101e2-9ef3-4e9f-bab5-7a56a6f885e3" name="Changes" comment="" />
+      <changelist id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="" />
       <created>1692013370002</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -102,6 +124,10 @@
       <workItem from="1692285218967" duration="207000" />
       <workItem from="1692320398314" duration="19370000" />
       <workItem from="1692429660875" duration="2030000" />
+      <workItem from="1692260974956" duration="2787000" />
+      <workItem from="1692284476853" duration="1860000" />
+      <workItem from="1692321011498" duration="20154000" />
+      <workItem from="1692358372206" duration="3709000" />
     </task>
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
@@ -175,6 +201,35 @@
       <option name="project" value="LOCAL" />
       <updated>1692256027457</updated>
     </task>
+    <task id="LOCAL-00011" summary="HuyHD update employee ngay 17/08/2023">
+      <created>1692284555427</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1692284555427</updated>
+    </task>
+    <task id="LOCAL-00012" summary="HuyHD update employee lan 10 ngay 17/08/2023">
+      <created>1692285133902</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1692285133902</updated>
+    </task>
+    <task id="LOCAL-00013" summary="HuyHD update employee lan 10 ngay 17/08/2023">
+      <created>1692348643414</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1692348643414</updated>
+    </task>
+    <task id="LOCAL-00014" summary="HuyHD update employee lan 10 ngay 17/08/2023">
+      <created>1692350170730</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1692350170730</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <task id="LOCAL-00011" summary="Thanh son update ngay 17-08-2023">
       <created>1692265062862</created>
       <option name="number" value="00011" />
@@ -265,5 +320,8 @@
     <MESSAGE value="VuDT update css cho update ticket và print ticket" />
     <MESSAGE value="thanh son update crud post ngày 18-08-2023" />
     <option name="LAST_COMMIT_MESSAGE" value="thanh son update crud post ngày 18-08-2023" />
+    <MESSAGE value="HuyHD update employee ngay 17/08/2023" />
+    <MESSAGE value="HuyHD update employee lan 10 ngay 17/08/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="HuyHD update employee lan 10 ngay 17/08/2023" />
   </component>
 </project>

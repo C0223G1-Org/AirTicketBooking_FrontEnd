@@ -36,8 +36,12 @@ import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage
 import {TicketProvider} from "./components/searchTickets_KietNT/TicketContext";
 import AdminPage from "./components/chat_messenger/AdminChat";
 import CreateReport from "./component/report/CreateReport";
-import PaymentComponent from "./component/PaymentComponent";
 import {Login} from "./component/account/Login";
+import {SignUp} from "./component/account/SignUp";
+import {CheckCode} from "./component/account/CheckCode";
+import PaymentComponent from "./component/PaymentComponent";
+import ChangePassword from "./component_SAngTDN/ChangePassword";
+import EditEmployee from "./component/Employee/EditEmployee";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -46,19 +50,13 @@ root.render(
             <TicketProvider>
                 <Header/>
                 <Routes>
-                    <Route path="/home" element={<Home/>}></Route>
-                    <Route path="/top10" element={<GetTop10Cheapest/>}></Route>
+                    <Route path="/home" element={<Home/>}/>
+                    <Route path="/top10" element={<GetTop10Cheapest/>}/>
                     <Route path="/header-customer" element={<HeaderCustomer/>}/>
                     <Route path="/header-admin" element={<HeaderAdmin/>}/>
                     <Route path="/header-employee" element={<HeaderEmployee/>}/>
-                    <Route
-                        path="/printTicket"
-                        element={<PrintTicket></PrintTicket>}
-                    ></Route>
-                    <Route
-                        path="/tickets/updateTicket/:id"
-                        element={<UpdateTicket/>}
-                    ></Route>
+                    <Route path="/printTicket" element={<PrintTicket/>}/>
+                    <Route path="/tickets/updateTicket/:id" element={<UpdateTicket/>}/>
                     <Route path="/ticket/booked" element={<TicketBooked/>}/>
                     <Route path="/ticket/unbooked" element={<TicketUnBook/>}/>
                     <Route path="/customers" element={<CustomerManagement/>}/>
@@ -73,10 +71,9 @@ root.render(
                     <Route path="/list/:data" element={<ListRouter/>}/>
                     <Route path="/detail-ticket/:data" element={<DetailTicket/>}/>
                     <Route path="/info-passenger/:data" element={<InfoPassenger/>}/>
-                    <Route path="/payment/:id" element={<PaymentComponent/>}/>
-
-                    {/*<Route path="/employee" element={<EmployeeList/>} />*/}
-                    {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
+                    <Route path="/employee" element={<EmployeeList/>} />
+                    <Route path='/employee/create' element={<CreateEmployee />} />
+                    <Route path='/employee/update/:id' element={<EditEmployee />} />
                     <Route path='/listPost' element={<ListPost/>}/>
                     <Route path='/updatePost/:id' element={<UpdatePost/>}/>
                     <Route path='/createPost' element={<CreatePost/>}/>
@@ -85,8 +82,12 @@ root.render(
                         path="/tickets/search-ticket-results"
                         element={<SearchResultPage/>}
                     />
-                    <Route path="/admin/messages" element={<AdminPage/>}></Route>
-                    <Route path="/login" element={<Login/>}></Route>
+                    <Route path="/admin/messages" element={<AdminPage/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/signup" element={<SignUp/>}/>
+                    <Route path="/checkCode/:data" element={<CheckCode/>}/>
+                    <Route path="/payment/:id" element={<PaymentComponent/>}/>
+                    <Route path="/change-password" element={<ChangePassword/>}/>
                 </Routes>
 
                 <Footer/>

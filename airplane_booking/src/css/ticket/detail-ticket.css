@@ -40,7 +40,8 @@ body {
 #detail-ticket .wrap .location span {
     font-weight: bold;
 }
-#detail-ticket .passenger{
+#detail-ticket .nam-passenger{
+    padding-left: 2px;
     color: #daa310;
 }
 
@@ -84,12 +85,12 @@ body {
 #detail-ticket .btn button {
     border: none;
     background-color: #daa310;
-    box-shadow: inset;
     color: #fff;
     width: 200px;
     font-size: 20px;
     padding: 10px 0;
     border-radius: 5px;
+    height: 40px;
 }
 
 #detail-ticket .btn button:first-child {
