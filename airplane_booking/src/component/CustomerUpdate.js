@@ -112,7 +112,7 @@ export default function CustomerUpdate() {
     };
 
     return (
-        <>
+<>
             {customer.idCustomer &&
                 <div id="booking" className="section" >
                     <div className="section-center">
@@ -313,6 +313,6 @@ export default function CustomerUpdate() {
                     </div>
                 </div>
             }
-        </>
+</>
     )
 }

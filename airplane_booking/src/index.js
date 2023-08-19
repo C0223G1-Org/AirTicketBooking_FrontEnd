@@ -86,7 +86,7 @@ root.render(
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
                     <Route path="/checkCode/:data" element={<CheckCode/>}/>
-                    <Route path="/payment/:id" element={<PaymentComponent/>}/>
+                    <Route path="/payment/:departure/:num" element={<PaymentComponent/>}/>
                     <Route path="/change-password" element={<ChangePassword/>}/>
                 </Routes>
                 <Footer/>
