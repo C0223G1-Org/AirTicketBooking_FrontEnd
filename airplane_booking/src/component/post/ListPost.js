@@ -6,6 +6,7 @@ import {deletePost, getListPost, getNewsHot, searchPosts} from "../../services/P
 import moment from 'moment';
 import {NavLink} from "react-router-dom";
 import BackToTop from "../../img/mui_ten_len.png"
+import {FidgetSpinner} from "react-loader-spinner";
 
 export default function ListPost() {
     const scrollToTop = () => {
@@ -159,6 +160,7 @@ export default function ListPost() {
         })
     }
 
+
     return (
         <>
             <button className={`scroll-to-top-button ${showButton ? 'show' : 'd-none'}`} onClick={scrollToTop}><img
@@ -172,12 +174,22 @@ export default function ListPost() {
                                      className={`btn1 search-son mt-3 ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
                                      style={{color: 'black'}}> Thêm mới</NavLink>
                         </div>
-                        <div className="search-post" style={{marginBottom: '1rem'}}>
+                        <div className="search-post" style={{marginBottom: '0.5rem'}}>
                             <Formik initialValues={{
                                 title: ''
                             }}
                                     onSubmit={(value) => {
-                                        searchPost(value)
+                                        searchPost(value).then(() => {
+                                            Swal.fire({
+                                                title: 'Đã tìm thấy dữ liệu cho bạn.',
+                                                icon: 'success',
+                                                showLoaderOnDeny: 'true',
+                                                timer: '2000',
+                                                customClass: {
+                                                    icon: 'icon-post',
+                                                }
+                                            })
+                                        })
                                     }}
                             >
                                 <Form>
@@ -188,8 +200,8 @@ export default function ListPost() {
                                 </Form>
                             </Formik>
                         </div>
-
                     </div>
+
                     <ul className="cards_news">
                         {listPosts !== [] && (listPosts.map((post) => (
                             <li className="card_item_news" key={post.id}>
