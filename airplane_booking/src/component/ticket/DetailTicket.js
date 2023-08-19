@@ -231,7 +231,12 @@ export default function DetailTicket() {
                             <>
                                 {/*//chiều đi*/}
                                 <div className="row wrap">
+                                    <div className="route">
+                                        <i className="fa-solid fa-plane"></i>
+                                        Chiều đi
+                                    </div>
                                     <div className="location">
+
                                         <p className="h3">
                                             {/*//nơi i- nơi đến*/}
                                             <span> {(route.departure.nameDeparture).split("-")[0]} </span>
@@ -316,6 +321,10 @@ export default function DetailTicket() {
                                 </div>
                                 {/*chiều về*/}
                                 <div className="row wrap">
+                                    <div className="route">
+                                        <i className="fa-solid fa-plane"></i>
+                                        Chiều về
+                                    </div>
                                     <div className="location">
                                         <p className="h3">
                                             <span> {(routeDestination.departure.nameDeparture).split("-")[0]} </span>
