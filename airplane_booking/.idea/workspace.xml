@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a22c4e3d-69c9-4531-b057-73ef87a7ab83" name="Changes" comment="Nhan update  18/08 00.10">
+    <list default="true" id="a22c4e3d-69c9-4531-b057-73ef87a7ab83" name="Changes" comment="Nhan update  18/08 00.34">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/PaymentComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/PaymentComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketBooked.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBooked.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketUnBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketUnBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +66,10 @@
       <workItem from="1692271772930" duration="2079000" />
       <workItem from="1692287368009" duration="22000" />
       <workItem from="1692289676966" duration="436000" />
-      <workItem from="1692292197291" duration="1193000" />
+      <workItem from="1692292197291" duration="1857000" />
+      <workItem from="1692320845350" duration="732000" />
+      <workItem from="1692321682900" duration="420000" />
+      <workItem from="1692329894990" duration="12000" />
     </task>
     <task id="LOCAL-00001" summary="Nhan update  17/8 15:00">
       <created>1692259144780</created>
@@ -102,16 +106,35 @@
       <option name="project" value="LOCAL" />
       <updated>1692292264933</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Nhan update  18/08 00.34">
+      <created>1692293729893</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692293729894</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Nhan update  17/8 15:00" />
     <MESSAGE value="Nhan update  17/8 23:30" />
     <MESSAGE value="Nhan update  18/08 00.10" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nhan update  18/08 00.10" />
+    <MESSAGE value="Nhan update  18/08 00.34" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nhan update  18/08 00.34" />
   </component>
 </project>

@@ -3,6 +3,7 @@ import { getListUnBookTicket, searchUnBookedTicket } from "../services/TicketSer
 import { Link } from "react-router-dom";
 import { Field, Form, Formik } from "formik";
 import Swal from "sweetalert2";
+import "../css/ticket/manage-ticket.css";
 
 function TicketUnBook() {
     const [unTickets, setUnTickets] = useState([])
@@ -81,7 +82,6 @@ function TicketUnBook() {
                     <Formik
                         initialValues={{
                             routeCode: "",
-                            chairCode: ""
                         }}
                         onSubmit={(value) => {
                             findUnbooked(value)
@@ -91,23 +91,20 @@ function TicketUnBook() {
                                 <Field type="text" name="routeCode" placeholder="Mã Chuyến Bay" />
                             </li>
                             <li className="section-unBook-ticket-item">
-                                <Field type="text" name="chairCode" placeholder="Mã Ghế" />
-                            </li>
-                            <li className="section-unBook-ticket-item">
                                 <button type="submit">Tìm Kiếm</button>
                             </li>
                         </Form>
                     </Formik>
                 </ul>
             </div>
-            <div className="table-ticket">
-                <table>
+            <div className="table-ticket " >
+                <table >
                     <thead>
                         <tr>
                             <th>STT</th>
                             <th>Mã Chuyến Bay</th>
                             <th>Tuyến Bay</th>
-                            <th>Ngày Đi</th>
+                            <th>Giờ Bay</th>
                             <th>Giá Vé</th>
                             <th>Số Lượng</th>
 
