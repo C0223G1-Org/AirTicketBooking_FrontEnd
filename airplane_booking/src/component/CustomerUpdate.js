@@ -42,10 +42,11 @@ export default function CustomerUpdate() {
     
 
     const updateCus = (async (update) => {
-        console.log(status);
+        console.log(imageUpload)
         // setStatus(false)
         // console.log(status);
         if (imageUpload == null) {
+            console.log("ádasdasdasd");
             await updateCustomer({ ...update, imgCustomer: customer.imgCustomer }).then(
                 navigate(`/customers/details/${customer.idCustomer}`),
                 // getCustomer()
@@ -68,8 +69,7 @@ export default function CustomerUpdate() {
                         navigate(`/customers/details/${customer.idCustomer}`),
                         // getCustomer()
                     );
-                    console.log(url);
-                })
+                    console.log("TÀi");                })
             }).then(
                 () => {
                     Swal.fire({
@@ -81,6 +81,7 @@ export default function CustomerUpdate() {
                 })
         }
     })
+    console.log(customer)
 
     useEffect(() => {
         getCustomer()
@@ -90,7 +91,9 @@ export default function CustomerUpdate() {
     const imgPreviewRef = useRef(null);
 
     const handleInputChange = (event) => {
+
         const file = event.target.files[0];
+
         if (file.size > 3000000) {
             Swal.fire({
                 icon: 'error',
@@ -123,23 +126,21 @@ export default function CustomerUpdate() {
                                 addressCustomer: customer.addressCustomer, emailCustomer: customer.emailCustomer,
                                 nationalityCustomer: customer.nationalityCustomer, account: customer.account, flagCustomer: customer.flagCustomer
                             }}
-
                             validationSchema={yup.object({
                                 nameCustomer: yup.string().min(3, "Họ và tên tối thiểu 3 ký tự.").max(100, "Họ và tên tối đa 100 ký tự. ").required("Vui lòng nhập họ và tên.")
-                                // .matches(/^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$/," không chứa các kí tự đặc biệt hoặc số")
+                                .matches(/^[A-Z]{1}[a-z]*(\s[A-Z]{1}[a-z]*)*$/," không chứa các kí tự đặc biệt hoặc số")
                                 , genderCustomer: yup.string().required("Vui lòng chọn giới tính."),
                                 // email_customer:yup.string().min("Email tối thiểu 12 ký tự").max("Email tối đa 50 ký tự").matches(/^[\w-]+@([\w-])+[\w-]{2,4}$/,"Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt").required("Vui lòng điền email"),
                                 telCustomer: yup.string().matches(/^(\+84|0)[1-9][0-9]{8}$/, "Không chứa các kí tự đặc biệt").required("Vui lòng nhập số điện thoại."),
                                 addressCustomer: yup.string().min(10, "Địa chỉ tối thiểu 10 kí tự.").max(100, "Địa chỉ tối đa chỉ 100 kí tự.").required("Vui lòng nhập địa chỉ."),
                                 nationalityCustomer: yup.string().required("Vui lòng chọn quốc tịch của bạn."),
-                                idCardCustomer: yup.string().min(6, "CCCD/Pasport tối thiểu 6 kí tự.").max(12, "CCCD/Pasport tối đa 12 kí tự.").matches(/^([A-Z][0-9]{6,12})|([0-9]{12})$/, "CCCD/Password không chứa kí tự đặc biệt.").required("Vui lòng nhập CCCD/Passport."),
+                                idCardCustomer: yup.string().min(6, "CCCD/Pasport tối thiểu 6 kí tự.").max(12, "CCCD/Pasport tối đa 12 kí tự.").matches(/^([A-Z][0-9]{6,12})|([0-9]{12})$/, "CCCD/Password không chứa kí tự đặc biệt hoặc tối đa 12 số.").required("Vui lòng nhập CCCD/Passport."),
                                 dateCustomer: yup.date().max(maxDate, 'Khách hàng phải trên 18 tuổi.')
                                     .min(minDate, 'Khách hàng phải trên 18 tuổi và dưới 100 tuổi.')
                                     .required("Vui lòng nhập ngày tháng năm sinh.")
                             })}
 
                             onSubmit={(values) => {
-                                console.log(values);
                                 setStatus(false)
                                 updateCus(values)
                             }}
