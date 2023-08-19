@@ -18,7 +18,7 @@
   padding-left: 30px;
 }
 
-.class {
+#update-ticktet .class {
   padding-left: 30px;
 }
 
@@ -59,17 +59,18 @@
 
 
 #update-ticket .form-control {
-
+  background-color: white;
   padding: 10px;
+  width: 100%;
   border: none;
   border-radius: 4px;
 }
 #update-ticket .form-controler {
-  
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: beige;
+  background-color: red;
 }
 
 #update-ticket .form-buttons {

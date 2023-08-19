@@ -5,7 +5,7 @@ import { useReactToPrint } from 'react-to-print';
 import { useParams } from 'react-router-dom';
 import { findTicketById } from '../../services/TicketService';
 import '../../css/ticket/printTicket.css';
-import logo from '../../../src/logo_5.png'
+import logo from '../../../src/maybay_xanh.png'
 
 
 
@@ -35,15 +35,14 @@ export default function Print() {
 
   return (
 
-    <div>
+    <div className="print-all ">
       <div ref={componentRef} style={{ width: '100%', height: window.innerHeight }} >
         <div className="print-ticket">
-
           <div className="row col-12 print">
-            <div className="col-1">
+            <div className="col-2">
               <img src={logo} alt="Logo" />
             </div>
-            <div className="col-10">
+            <div className="col-9">
               <h1 className="codeGym">VÉ MÁY BAY - CODEGYM AIRLINES</h1>
             </div>
             <div className="col-1"></div>

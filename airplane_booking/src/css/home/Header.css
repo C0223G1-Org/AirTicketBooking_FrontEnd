@@ -38,7 +38,8 @@ nav i {
 }
 
 .navbar .navbar-brand {
-    color: #deaa1f
+    color: #deaa1f;
+    
 }
 
 .navbar a:first-child {

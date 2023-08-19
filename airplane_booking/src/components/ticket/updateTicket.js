@@ -126,7 +126,7 @@ const UpdateTicket = () => {
                       id="namePassenger"
                       type="text"
                       name="namePassenger"
-                      className="form-control"
+                      className="form-controler"
                       placeholder="Vui lòng nhập tên người đi"
                       style={{ background: "#f2f2f2" }}
                     />
@@ -143,7 +143,7 @@ const UpdateTicket = () => {
                       id="customer"
                       type="text"
                       name="customer"
-                      className="form-control"
+                      className="form-controler"
                       placeholder="Vui lòng nhập email thanh toán"
                       style={{ background: "#f2f2f2" }}
                     />

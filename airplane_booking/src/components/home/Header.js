@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import "../../css/home/Header.css";
 import {Link, NavLink} from 'react-router-dom';
-import image from "../../logo_5.png";
+import image from "../../maybay_header.png"
 import {getCustomerByEmail} from "../../services/CustomerServices";
 import {getEmployeeByEmail} from "../../services/EmployeeServices";
 
