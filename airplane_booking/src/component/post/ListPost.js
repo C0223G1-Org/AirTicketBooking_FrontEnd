@@ -30,6 +30,7 @@ export default function ListPost() {
     const [listPosts, setListPosts] = useState([]);
     const [news, setNews] = useState([]);
     const [messages, setMessages] = useState('');
+    const [status, setStatus] = useState(true);
     const formatDateTime = (dateTime) => {
         return moment(dateTime).format("DD/MM/YYYY HH:mm:ss");
     };
@@ -108,7 +109,7 @@ export default function ListPost() {
         try {
             const data = await searchPosts(value.title);
             setListPosts(data);
-            setPage(total - 1);
+            setStatus(false);
         } catch (error) {
             await Swal.fire({
                 title: 'Không có tên bài viết nào mà bạn cần.',
@@ -236,7 +237,7 @@ export default function ListPost() {
                         )))}
                     </ul>
                     <button
-                        className={`btn btn-light btn-outline-secondary  border-0 w-100 ${page === total - 1 ? 'd-none' : ''} ${listPosts.length === 0 ? 'd-none' : ''}`}
+                        className={`btn btn-light btn-outline-secondary  border-0 w-100 ${page === total - 1 ? 'd-none' : ''} ${status ? '' : 'd-none'} ${listPosts.length === 0 ? 'd-none' : ''}`}
                         onClick={() => {
                             if (page < total - 1) {
                                 setPage((prev) => prev + 1)
