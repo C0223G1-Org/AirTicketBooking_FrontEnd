@@ -23,6 +23,8 @@
     "numeral": "^2.0.6",
     "qs": "^6.11.2",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.8.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-loader-spinner": "^5.3.4",
     "react-modal": "^3.16.1",
@@ -38,10 +40,8 @@
     "sweetalert2": "^11.7.22",
     "uuid": "^9.0.0",
     "web-vitals": "^2.1.4",
-    "yup": "^1.2.0",
     "xlsx": "^0.18.5",
-    "ckeditor4-react": "^4.3.0",
-    "react-loader-spinner": "^5.3.4"
+    "yup": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
