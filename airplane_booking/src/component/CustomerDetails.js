@@ -34,13 +34,13 @@ export default function CustomerDetails() {
     <div id="booking" className="section">
       <div className="section-center">
         <div className="container">
-          <div className="row">
+          <div className="row" >
             <div className="col-12 col-sm-12 col-md-4 col-lg-4">
               <div>
                 <img style={{marginTop:50}} src={customer.imgCustomer!=""?customer.imgCustomer:"https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"}  alt="Preview Image" id="img-preview" />
               </div>
             </div>
-            <div className="col-12 col-sm-12 col-md-8 col-lg-8">
+            <div className="col-12 col-sm-12 col-md-8 col-lg-8" >
               <div className="booking-form">
                 <div>
                   <p className="d" style={{fontWeight:"500",textAlign:"center"}}> THÔNG TIN CÁ NHÂN</p>

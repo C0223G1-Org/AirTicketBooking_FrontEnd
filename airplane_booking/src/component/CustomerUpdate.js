@@ -147,7 +147,7 @@ export default function CustomerUpdate() {
                             }}
                         >
                             <div className="container">
-                                <div className="row">
+                                <div className="row" >
                                     <div className="col-12 col-sm-12 col-md-4 col-lg-4">
                                         <div>
                                             <img style={{ marginTop: 50 }} name='imgCustomer' src={customer.imgCustomer != "" ? customer.imgCustomer : "https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"} id="img-preview" ref={imgPreviewRef} alt="Preview" />

@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="926a5953-2756-4ebd-a047-72cd1e75119d" name="Changes" comment="Hoa commit FE">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/component/CustomerDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/component/CustomerDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/component/CustomerManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/component/CustomerManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/component/CustomerUpdate.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/component/CustomerUpdate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/component/EmployeeCreateCustomer.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/component/EmployeeCreateCustomer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/chat_messenger/AdminChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/chat_messenger/AdminChat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/css/account/login_signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/css/account/login_signup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/css/customer/customer_update_details.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/css/customer/customer_update_details.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/css/customer/taipm.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/css/customer/taipm.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/employeeCreateCustomer.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/employeeCreateCustomer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/services/CustomerServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/services/CustomerServices.js" afterDir="false" />
-    </list>
+    <list default="true" id="926a5953-2756-4ebd-a047-72cd1e75119d" name="Changes" comment="Hoa commit FE" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,13 +12,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="main" />
-      </list>
-    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -70,7 +51,7 @@
       <workItem from="1692270841706" duration="219000" />
       <workItem from="1692271261794" duration="5996000" />
       <workItem from="1692321718862" duration="2567000" />
-      <workItem from="1692415682087" duration="632000" />
+      <workItem from="1692415682087" duration="1200000" />
     </task>
     <task id="LOCAL-00001" summary="TaiMP FE ngay 17/8/2023">
       <created>1692258690516</created>
@@ -118,7 +99,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692323546764</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Hoa commit FE">
+      <option name="closed" value="true" />
+      <created>1692417332997</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1692417332999</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
