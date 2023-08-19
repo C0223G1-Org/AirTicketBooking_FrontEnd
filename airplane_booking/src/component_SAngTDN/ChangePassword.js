@@ -115,7 +115,7 @@ function ChangePassword (){
                                             <ErrorMessage name="newPassword"></ErrorMessage>
                                         </p>
                                     </div>
-                                    <span toggle="newPassword" class={showNewPassword ? "fa fa-eye-slash" : "fa fa-eye"} style={{textAlign: "right", marginLeft: "-285px"}} onClick={toggleShowNewPassword} ></span>
+                                    <span toggle="newPassword" className={showNewPassword ? "fa fa-eye-slash" : "fa fa-eye"} style={{textAlign: "right", marginLeft: "-285px"}} onClick={toggleShowNewPassword} ></span>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-5" style={{marginTop: '2%', paddingLeft: '10%', color: 'rgb(6, 133, 170)', fontWeight: 'bold'}}>
