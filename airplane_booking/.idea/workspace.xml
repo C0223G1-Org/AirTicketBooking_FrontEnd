@@ -63,6 +63,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\case_study\study_module6\AirTicketBooking_FrontEnd\airplane_booking\src\img" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -96,7 +101,7 @@
       <workItem from="1692270652212" duration="12123000" />
       <workItem from="1692285218967" duration="207000" />
       <workItem from="1692320398314" duration="19370000" />
-      <workItem from="1692429660875" duration="835000" />
+      <workItem from="1692429660875" duration="2030000" />
     </task>
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
@@ -226,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692350912731</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="thanh son update crud post ngày 18-08-2023">
+      <created>1692430540520</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1692430540520</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

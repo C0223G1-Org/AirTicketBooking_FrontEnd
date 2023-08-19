@@ -2,9 +2,11 @@
     font-family: "Oxygen", sans-serif;
     color: #050505;
 }
-.overview-list-post{
+
+.overview-list-post {
     background: url("../../img/background.jpg") no-repeat center/cover;
 }
+
 *,
 *::before,
 *::after {
@@ -226,11 +228,13 @@
         width: 100%;
     }
 }
+
 .custom-confirm-button-employee {
     background-color: #0685aa !important;
     /* Các thuộc tính CSS khác mà bạn muốn áp dụng */
 }
-.btn1{
+
+.btn1 {
     text-decoration: none;
     display: inline-block;
     padding: 6px 12px;
@@ -252,11 +256,13 @@
     border: 1px solid transparent;
     border-radius: 10px
 }
-.btn1:hover{
+
+.btn1:hover {
     background-color: white;
     border-color: #d7a60c;
     border-width: 1px;
 }
+
 .scroll-to-top-button {
     position: fixed;
     right: 20px;
@@ -269,19 +275,23 @@
     border-radius: 4px;
     cursor: pointer;
 }
-.show-back{
+
+.show-back {
     display: block;
 }
-@media screen and (max-width: 755px){
-    .title-detail{
+
+@media screen and (max-width: 755px) {
+    .title-detail {
         height: 25vh;
     }
-    .img-detail{
+
+    .img-detail {
         display: none;
     }
 }
-.icon-post{
+
+.icon-post {
     margin: auto;
-    border: 0.25em solid rgba(0,0,0,0);
+    border: 0.25em solid rgba(0, 0, 0, 0);
     background: rgba(255, 255, 255, 0);
 }

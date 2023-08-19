@@ -134,7 +134,7 @@ export default function ListPost() {
                 reverseButtons: true,
                 customClass: {
                     confirmButton: 'custom-confirm-button-employee',
-                    icon:"icon-post"
+                    icon: "icon-post"
                 }
             }
         ).then((res) => {
@@ -168,7 +168,8 @@ export default function ListPost() {
                 <div className="main-son col-12 col-lg-9 ">
                     <div className="justify-content-between" style={{display: 'flex', marginBottom: '16px'}}>
                         <div className="add-post">
-                            <NavLink to="/createPost" className={`btn1 search-son mt-3 ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
+                            <NavLink to="/createPost"
+                                     className={`btn1 search-son mt-3 ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}
                                      style={{color: 'black'}}> Thêm mới</NavLink>
                         </div>
                         <div className="search-post" style={{marginBottom: '1rem'}}>
@@ -264,9 +265,10 @@ export default function ListPost() {
                                     <div className="news-card-button">
                                         <NavLink to={"/updatePost/" + newss.id}
                                                  className={`news-button search btn1  btn-warning ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'}`}>Sửa</NavLink>
-                                        <a className={`news-button search btn1 btn-warning ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'} `} onClick={() => {
-                                            checkDelete(`${newss.id}`, `${newss.title}`)
-                                        }}>Xoá</a>
+                                        <a className={`news-button search btn1 btn-warning ${localStorage.role === 'ROLE_EMPLOYEE' || localStorage.role === 'ROLE_ADMIN' ? 'd-block' : 'd-none'} `}
+                                           onClick={() => {
+                                               checkDelete(`${newss.id}`, `${newss.title}`)
+                                           }}>Xoá</a>
                                     </div>
                                 </div>
                             </li>
