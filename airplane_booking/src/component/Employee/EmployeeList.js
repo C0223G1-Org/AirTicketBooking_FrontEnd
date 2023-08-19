@@ -225,12 +225,10 @@ function EmployeeList() {
                     </div>
                     <div className="my-2 flex sm:flex-row flex-col">
                         <div className="col-ms col-4 ">
-                            <div className="col-ms col ">
-                                <Link to="/employee/create" className="btn mt-2  font-semibold form_button_employee "
-                                      style={{marginLeft: ''}}>
-                                    <i className="fa-solid fa-plus "/> <span
-                                    className="h5">Thêm mới nhân viên</span></Link>
-                            </div>
+                            <Link to="/employee/create" className="btn mt-2  font-semibold form_button_employee "
+                                  style={{marginLeft: ''}}>
+                                <i className="fa-solid fa-plus "/> <span
+                                className="h5">Thêm mới nhân viên</span></Link>
                         </div>
                         <div className=" col-ms col-8 ">
                             <div className="ml-10 col-md-4 inline-flex justify-end">
@@ -243,7 +241,7 @@ function EmployeeList() {
                                     <option value="false">Nữ</option>
                                 </select>
                             </div>
-                            <div className="col-md-7 inline-flex">
+                            <div className="col-md-7 inline-flex justify-content-end ml-6">
                                 <label className="col-3 mt-2 items-end search_name_employee justify-end"><b>Họ và
                                     tên:</b></label>
                                 <div className="col-8 inline-flex">
