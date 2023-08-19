@@ -190,7 +190,7 @@ export default function ListPost() {
 
                     </div>
                     <ul className="cards_news">
-                        {listPosts != [] && (listPosts.map((post) => (
+                        {listPosts !== [] && (listPosts.map((post) => (
                             <li className="card_item_news" key={post.id}>
                                 <div className="card-son card ">
                                     <a className="btn p-0 m-0" onClick={() => {
@@ -242,7 +242,7 @@ export default function ListPost() {
                         <li className={`news-hots text-center w-100 ${messages === '' ? 'd-none' : 'd-block'}`}>
                             <p>{messages}</p>
                         </li>
-                        {news != [] && (news.map((newss, index) => (
+                        {news !== [] && (news.map((newss, index) => (
                             <li className="news-hots" key={index}>
                                 <div className="card-son card">
                                     <button className="btn p-0 m-0" onClick={() => {
