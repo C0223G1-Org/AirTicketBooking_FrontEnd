@@ -5,7 +5,13 @@ export async function updateCustomer(customer){
    return response
 }
 export async function getCustomerById(id){
-    const response =await axios.get('http://localhost:8080/customers/'+id)
+    const token = localStorage.getItem('token');
+    const response =await axios.get('http://localhost:8080/customers/'+id,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
     return response.data
 }
 export const CreateCustomer = async (obj)=>{
