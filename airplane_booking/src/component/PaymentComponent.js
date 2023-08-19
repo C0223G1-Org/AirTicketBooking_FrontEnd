@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../css/payment/Payment.css';
 import { getTicketByCustomerId, updateTicketByIdTicket } from '../services/PaymentService';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios, { HttpStatusCode } from 'axios';
+import {getCustomerByEmail} from "../services/CustomerServices";
+
 
 const PaymentComponent = () => {
     const [payments, setPayment] = useState([]);
-    const { id } = useParams();
+    const { departure } = useParams();
 
     const negative = useNavigate();
-
     const getTicket = () => {
         const getTicketById = async () => {
             try {
-                const paymentData = await getTicketByCustomerId(id);
+                const data = await getCustomerByEmail(localStorage.getItem("username"))
+                const paymentData = await getTicketByCustomerId(data.idCustomer);
                 setPayment(paymentData);
+
             } catch (error) {
                 console.error('Error occurred while getting payment data:', error)
             }
@@ -23,40 +26,29 @@ const PaymentComponent = () => {
         getTicketById();
     }
 
+
     let arr1 = [];
     let arr2 = [];
-    const sss = () => {
-
+    const listArr = () => {
         payments.forEach((name) => {
-
-            if (name.seat.route.departure.nameDeparture === 'Hải Phòng(HPH) - Cát Bi') {
+            if (name.seat.route.departure.nameDeparture === departure) {
                 arr1.push(name)
             } else {
                 arr2.push(name)
             }
         })
-
-
     }
-
-    sss()
-
-
+    const location = useLocation;
+    listArr()
     useEffect(() => {
         getTicket()
-
-    }, []);
+    }, [location]);
     useEffect(() => {
         document.title = 'Thanh toán'
     })
-
-
     let stateButton = 0;
 
     const renderPaypalButton = (payments) => {
-        console.log(payments);
-
-
         const createOrder = (data, actions) => {
             try {
                 const totalAmount = document.getElementById("totalAmount").innerText;
@@ -73,15 +65,14 @@ const PaymentComponent = () => {
                         },
                     ],
                 });
-
             } catch (error) {
                 console.error('Error creating order:', error);
                 throw error;
             }
-
         };
 
-        window.paypal.Buttons({
+        window.paypal
+            .Buttons({
                 style: {
                     color: 'gold',
                     layout: 'vertical',
@@ -100,9 +91,9 @@ const PaymentComponent = () => {
                         updateTicketByIdTicket(item.idTicket, order.status)
                     })
                     // Gửi thông tin trạng thái thanh toán tới Spring Boot
+
                     if (order.status === 'COMPLETED' || order.status === 200 || order.status === HttpStatusCode.Ok
                         || order.status === 'thành công') {
-
                         Swal.fire({
                             icon: 'success',
                             title: 'Thanh toán thành công',
@@ -116,7 +107,7 @@ const PaymentComponent = () => {
                         Swal.fire({
                             icon: 'error',
                             title: 'Thanh toán thất bại',
-                            timer: 2000
+                            timer: 3000
                         })
                         negative('/failed')
                             ;
@@ -133,17 +124,20 @@ const PaymentComponent = () => {
             showConfirmButton: true,
             confirmButtonColor: '#ffc439',
             cancelButtonColor: 'grey',
+            confirmButtonText: "Xác nhận",
+            cancelButtonText: 'Huỷ bỏ'
         }).then((result) => {
-            if (result) {
+            if (result && result.value) {
                 if (stateButton === 0) {
                     renderPaypalButton(payments);
                     console.log(payments);
                     stateButton++;
+
+                    const kiemTraButton = document.querySelector('#paypal-button-container button');
+                    kiemTraButton.style.display = 'none';
                 }
             }
-
-
-        })
+        })  
 
     };
 
@@ -160,9 +154,9 @@ const PaymentComponent = () => {
         return null;
     }
     return (
-
-        <div className="ticket">
-
+        //    <form onSubmit={sendEmail}>
+        <div className="ticket" id='payment'>
+            {/* <form onSubmit={sendEmail}> */}
             <h1 className="title">CHI TIẾT CHUYẾN BAY</h1>
             <div className="info">
                 <div className="row">
@@ -214,14 +208,14 @@ const PaymentComponent = () => {
                         </div>
                         <div className="col-3">
                             <p className="label">Tiền vé:</p>
-                            <p className="value" style={{ width: '130px' }}>{formattedPrice} VND</p>
+                            <p className="value" style={{ width: '140px' }}>{formattedPrice} VND</p>
                         </div>
                     </div>
                 </div>
 
 
                 {arr2.length > 0 && (
-                    <>
+                    <div>
                         <div className="row">
                             <p className="route">Trở về</p>
                         </div>
@@ -233,34 +227,35 @@ const PaymentComponent = () => {
                             <div className="col-3">
                                 <p className="label">Nơi đến:</p>
                                 <p className="value">{arr2[0]?.seat?.route?.destination?.nameDestination}</p>
-                                <div className="col-3">
-                                    <p className="label">Giờ bay:</p>
-                                    <p className="value">{arr2[0]?.seat?.route?.timeDeparture}</p>
-                                </div>
-                                <div className="col-3">
-                                    <p className="label">Giờ đến:</p>
-                                    <p className="value">{arr2[0]?.seat?.route?.timeArrival}</p>
-                                </div>
                             </div>
-                            <div className="row">
-                                <div className="col-3">
-                                    <p className="label">{arr2[0]?.seat?.route?.nameRoute}:</p>
-                                    <p className="value">{arr2[0]?.seat?.route?.airCraft?.nameAirCraft}</p>
-                                </div>
-                                <div className="col-3">
-                                    <p className="label">Ngày đi:</p>
-                                    <p className="value">{arr2[0]?.seat?.route?.dateDeparture}</p>
-                                </div>
-                                <div className="col-3">
-                                    <p className="label">Ngày đến:</p>
-                                    <p className="value">{arr2[0]?.seat?.route?.dateArrival}</p>
-                                </div>
-                                <div className="col-3">
-                                    <p className="label">Tiền vé:</p>
-                                    <p className="value" style={{ width: '130px' }}>{formattedPrice2}</p>
-                                </div>
+                            <div className="col-3">
+                                <p className="label">Giờ bay:</p>
+                                <p className="value">{arr2[0]?.seat?.route?.timeDeparture}</p>
                             </div>
-                        </div> </>
+                            <div className="col-3">
+                                <p className="label">Giờ đến:</p>
+                                <p className="value">{arr2[0]?.seat?.route?.timeArrival}</p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-3">
+                                <p className="label">{arr2[0]?.seat?.route?.nameRoute}</p>
+                                <p className="value">{arr2[0]?.seat?.route?.airCraft?.nameAirCraft}</p>
+                            </div>
+                            <div className="col-3">
+                                <p className="label">Ngày đi:</p>
+                                <p className="value">{arr2[0]?.seat?.route?.dateDeparture}</p>
+                            </div>
+                            <div className="col-3">
+                                <p className="label">Ngày đến:</p>
+                                <p className="value">{arr2[0]?.seat?.route?.dateArrival}</p>
+                            </div>
+                            <div className="col-3">
+                                <p className="label">Tiền vé:</p>
+                                <p className="value" style={{ width: '140px' }}>{formattedPrice2} VND</p>
+                            </div>
+                        </div>
+                    </div>
                 )}
 
 
@@ -268,16 +263,17 @@ const PaymentComponent = () => {
 
                     <div className="col-4">
                         <p className="label">Tổng tiền:</p>
-                        <p className="value" id="totalAmount">{formattedPrice3}</p>
+                        <p className="value" id="totalAmount">{formattedPrice3} VND</p>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-5">
+                    <div className="col-7">
                         <p className="label">Điều kiện giá vé:</p>
                         <p className="value">Giá vé đã bao gồm thuế và phí</p>
-                        <p className="value">Hành lý xách tay: 7kg</p>
+                        <p className="value">Hành lý xách tay: 10kg</p>
+                        <p className="value">Hành lý ki gui: 23kg</p>
                     </div>
-                    <div className="col-7 payment">
+                    <div className="col-5 payment">
                         <p className="label" >Thanh toán</p>
                         <div id="paypal-button-container" > <button onClick={() => handlePayment()} className='btn btn-primary'>Kiểm tra</button></div>
 

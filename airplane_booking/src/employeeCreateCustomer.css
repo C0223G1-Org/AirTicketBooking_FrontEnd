@@ -226,10 +226,12 @@
 	padding-left: 10px;
 }
 
-/*body{*/
-/*	background-image: url('../src/img/background.jpg') ;*/
-/*	background-size: cover;*/
-/*	background-position: center;*/
-/*}*/
+.hunglv {
+	background-image: url('../src/img/background.jpg') ;
+	background-size: cover;
+background-position: center;
+height: 120vh;
+
+}
 
 
