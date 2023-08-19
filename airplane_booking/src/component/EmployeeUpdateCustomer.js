@@ -72,7 +72,7 @@ function EmployeeUpdateCustomer() {
     }, [oldUrl])
 
     return (
-        <>
+        <div className='hunglv'>
             {customer.idCustomer &&
                 <Formik
                     initialValues={{
@@ -290,7 +290,7 @@ function EmployeeUpdateCustomer() {
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <span className="form-label" style={{ marginBottom: '20px' }}>Ảnh</span>
-                                                            <Field className="form-control" style={{ paddingTop: '35px' }} type="file" id="input-file" name='imgCustomer'
+                                                            <Field className="form-control" style={{ paddingTop: '35px',color:"transparent"}} type="file" id="input-file" name='imgCustomer'
                                                                accept="img/*"  onChange={(event) => onChange(event.target.files[0])} />
                                                         </div>
                                                     </div>
@@ -310,7 +310,7 @@ function EmployeeUpdateCustomer() {
 
                 </Formik>
             }
-        </>
+        </div>
     );
 }
 

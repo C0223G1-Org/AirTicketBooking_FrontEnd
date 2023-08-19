@@ -1,7 +1,6 @@
 import {Link, useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import "../../css/account/login_signup.css"
-import "../../css/account/login_signup_2.css"
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as yup from "yup";
 import axios from "axios";
@@ -10,9 +9,34 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 
-
 export function Login() {
     const navigate = useNavigate();
+    const [userName, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+    const setPwUs = async (u, p) => {
+        setUserName(u);
+        setPassword(p);
+        console.log(userName, password);
+    };
+    useEffect(() => {
+        setPwUs(localStorage.getItem("user_name"), localStorage.getItem("password"));
+    }, [localStorage.getItem("user_name"), localStorage.getItem("password")])
+
+    // let checkbox = document.getElementById("myCheckbox");
+    // checkbox.addEventListener('change', function() {
+    //     if (this.checked) {
+    //         console.log("Checkbox is checked");
+    //         // Thực hiện các hành động khi checkbox được chọn
+    //         localStorage.setItem("password", values.password);
+    //         localStorage.setItem("user_name", values.username);
+    //     } else {
+    //         console.log("Checkbox is not checked");
+    //         // Thực hiện các hành động khi checkbox không được chọn
+    //         localStorage.setItem("password", null);
+    //         localStorage.setItem("user_name", null);
+    //     }
+    // });
+
     // const [userInfo, setUserInfo] = useState({
     //     token: '',
     //     username: '',
@@ -38,8 +62,9 @@ export function Login() {
         <>
             <Formik
                 initialValues={{
-                    username: "",
-                    password: ""
+                    username: userName,
+                    password: password,
+                    check: '',
                 }}
                 validationSchema={yup.object({
                     username: yup.string()
@@ -53,7 +78,20 @@ export function Login() {
                         .matches(/^(?=.*[A-Z])(?=.*[0-9]).{8,20}$/, 'Mật khẩu phải từ 8 ký tự và ít hơn 20 ký tự, có chứa ký tự in hoa và ký tự số'),
                 })}
                 onSubmit={async (values, {setSubmitting, resetForm}) => {
-                    // console.log(values);
+                    console.log(values);
+                    if (values.check.length === 1) {
+                        localStorage.setItem("user_name", values.username);
+                        localStorage.setItem("password", values.password);
+
+                    } else {
+                        localStorage.setItem("user_name", null);
+                        localStorage.setItem("password", null);
+                    }
+                    values = {
+                        username: values.username,
+                        password: values.password,
+                    }
+                    console.log(localStorage.getItem("user_name"), localStorage.getItem("password"));
                     try {
                         // Gửi yêu cầu đăng nhập
                         const response = await axios.post(
@@ -66,9 +104,9 @@ export function Login() {
 
                             // const decodedToken = jwt(response.data.token);
                             // Lưu trữ thông tin người dùng vào localStorage hoặc state
-                             localStorage.setItem("token", response.data.token);
-                             localStorage.setItem("username", response.data.username);
-                             localStorage.setItem("role", response.data.role);
+                            localStorage.setItem("token", response.data.token);
+                            localStorage.setItem("username", response.data.username);
+                            localStorage.setItem("role", response.data.role);
                             // localStorage.setItem('userId', decodedToken.userId);
                             console.log("resp: " + response);
                             console.log("Token:", localStorage.token);
@@ -82,12 +120,10 @@ export function Login() {
                             // Đăng nhập thành công, chuyển hướng hoặc thực hiện hành động khác
 
 
-
                         }
                         resetForm();
-
-                        await navigate("/home");
-
+                        window.location.href = '/home'
+                        // await navigate("/home");
                     } catch (e) {
                         // Xử lý lỗi đăng nhập
                         // toast.error(e.response.data);
@@ -104,145 +140,148 @@ export function Login() {
                 }}
             >
                 <Form>
-                    {/*<h1 className="w3ls" style={{color: "rgb(6, 133, 170)"}}>*/}
-                    {/*    ĐĂNG NHẬP*/}
-                    {/*</h1>*/}
-                    <div className="content-w3ls">
-                        <div className="content-agile1">
-                            <h2 className="agileits1" style={{padding: "25% 0"}}>
-                                Đăng Nhập
-                            </h2>
-                            {/*<br/>*/}
-                            {/*<h1 className="agileits1" style={{color: "rgb(6, 133, 170)", padding: "25% 0"}}>*/}
-                            {/*    ĐĂNG NHẬP*/}
-                            {/*</h1>*/}
-                        </div>
-                        <div className="content-agile2 bg-white">
-                            <div className="row">
-                                <div
-                                    className="col-md-4"
-                                    style={{
-                                        marginTop: "2%",
-                                        paddingLeft: "10%",
-                                        color: "rgb(6, 133, 170)",
-                                        fontWeight: "bold"
-                                    }}
-                                >
-                                    <span style={{fontSize: 20}}>Email</span>
-                                </div>
-                                <div className="col-md-8">
-                                    <Field
-                                        className=" agileinfo"
-                                        type="email"
-                                        id="email"
-                                        name="username"
-                                        placeholder="xxx@xxx.xxx"
-                                        // title="Chưa nhập email"
-                                        required=""
-                                    />
-                                    {/*<p className="err-mes">Chưa nhập email</p>*/}
+                    <h1 className="w3ls" style={{color: "rgb(6, 133, 170)"}}>
+                        ĐĂNG NHẬP
+                    </h1>
+                    <div className="content-w3ls bgimagedn" style={{borderRadius: "7px", padding: "20px 0"}}>
+                        <div className="row ">
+                            <div className="col-3">
+                                {/*<div className="content-agile1">*/}
+                                {/*    <h2 className="agileits1" style={{padding: "20% 0", color: "rgb(6, 133, 170)"}}>*/}
+                                {/*        Đăng Nhập*/}
+                                {/*    </h2>*/}
+                                {/*<br/>*/}
+                                {/*<h1 className="agileits1" style={{color: "rgb(6, 133, 170)", padding: "25% 0"}}>*/}
+                                {/*    ĐĂNG NHẬP*/}
+                                {/*</h1>*/}
+                                {/*</div>*/}
+                            </div>
+                            <div className="col-6">
+                                <div className="content-agile2" style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
                                     <div className="row">
-                                        <div className="col-1"/>
-                                        <div className="col-10">
-                                            <ErrorMessage component="span" name="username"
-                                                          className="err-mes"/>
+                                        <div
+                                            className="col-md-4"
+                                            style={{
+                                                marginTop: "2%",
+                                                paddingLeft: "7%",
+                                                color: "rgb(6, 133, 170)",
+                                                fontWeight: "bold"
+                                            }}
+                                        >
+                                            <span style={{fontSize: 20}}>Email</span>
                                         </div>
-                                        <div className="col-1"/>
-                                    </div>
+                                        <div className="col-md-8">
+                                            <Field
+                                                className=" agileinfo"
+                                                type="email"
+                                                id="email"
+                                                name="username"
+                                                placeholder="xxx@xxx.xxx"
+                                                // title="Chưa nhập email"
+                                                required=""
+                                            />
+                                            <div className="row">
+                                                <div className="col-1"/>
+                                                <div className="col-10">
+                                                    <ErrorMessage component="span" name="username"
+                                                                  className="err-mes"/>
+                                                </div>
+                                                <div className="col-1"/>
+                                            </div>
 
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div
-                                    className="col-md-4"
-                                    style={{
-                                        marginTop: "2%",
-                                        paddingLeft: "10%",
-                                        color: "rgb(6, 133, 170)",
-                                        fontWeight: "bold"
-                                    }}
-                                >
-                                    <span style={{fontSize: 20}}>Mật khẩu</span>
-                                </div>
-                                <div className="col-md-8">
-                                    <Field
-                                        className="agileinfo"
-                                        type="password"
-                                        name="password"
-                                        placeholder="Nhập"
-                                        id="password1"
-                                        required=""
-                                    />
-                                    {/*<p className="err-mes">Chưa nhập mật khẩu</p>*/}
-                                    <div className="row">
-                                        <div className="col-1"/>
-                                        <div className="col-10">
-                                            <ErrorMessage component="span" name="password"
-                                                          className="err-mes"/>
                                         </div>
-                                        <div className="col-1"/>
+                                    </div>
+                                    <div className="row">
+                                        <div
+                                            className="col-md-4"
+                                            style={{
+                                                marginTop: "2%",
+                                                paddingLeft: "7%",
+                                                color: "rgb(6, 133, 170)",
+                                                fontWeight: "bold"
+                                            }}
+                                        >
+                                            <span style={{fontSize: 20}}>Mật khẩu</span>
+                                        </div>
+                                        <div className="col-md-8">
+                                            <Field
+                                                className="agileinfo"
+                                                type="password"
+                                                name="password"
+                                                placeholder="*****"
+                                                id="password1"
+                                                required=""
+                                            />
+                                            <div className="row">
+                                                <div className="col-1"/>
+                                                <div className="col-10">
+                                                    <ErrorMessage component="span" name="password"
+                                                                  className="err-mes"/>
+                                                </div>
+                                                <div className="col-1"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div
+                                            className="col-md-5"
+                                            style={{
+                                                marginTop: "3%",
+                                                paddingLeft: "8%",
+                                                color: "rgb(6, 133, 170)",
+                                                fontWeight: "revert"
+                                            }}
+                                        >
+                                            <Field type="checkbox" name="check" value="1" id="myCheckbox"
+                                                   className="myCheckbox"/>
+                                            <label htmlFor="myCheckbox" className="myCheckbox">
+                                                Ghi nhớ đăng nhập
+                                            </label>
+                                        </div>
+                                        <div
+                                            className="col-md-7"
+                                            style={{
+                                                marginTop: "3%",
+                                                paddingLeft: "15%",
+                                                color: "rgb(6, 133, 170)",
+                                                fontWeight: "revert",
+                                                display: "flex"
+                                            }}
+                                        >
+                                            <Link to='/signup' style={{
+                                                textDecoration: "underline",
+                                                fontSize: "16px",
+                                                paddingRight: "2px"
+                                            }}>Đăng
+                                                ký
+                                            </Link>
+                                            <span style={{fontSize: "18px"}}>&nbsp; / &nbsp;</span>
+                                            <Link href="#" to={''}>
+                                                <p style={{textDecoration: "underline", fontSize: "16px"}}>Quên mật
+                                                    khẩu?</p>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                    <div className="text-center" style={{marginBottom: "10px"}}>
+                                        <button type="submit" className="btn"
+                                                style={{
+                                                    marginTop: "2%",
+                                                    // paddingLeft: "15%",
+                                                    backgroundColor: "rgb(6, 133, 170)",
+                                                    color: "white",
+                                                    // fontWeight: "bold",
+                                                    fontSize: "18px"
+                                                }}>
+                                            Đăng Nhập
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                            <div className="row">
-                                <div
-                                    className="col-md-6"
-                                    style={{
-                                        marginTop: "2%",
-                                        paddingLeft: "10%",
-                                        color: "rgb(6, 133, 170)",
-                                        fontWeight: "revert"
-                                    }}
-                                >
-                                    <input type="checkbox" id="myCheckbox" className="myCheckbox"/>
-                                    <label htmlFor="myCheckbox" className="myCheckbox">
-                                        Ghi nhớ đăng nhập
-                                    </label>
-                                </div>
-                                <div
-                                    className="col-md-6"
-                                    style={{
-                                        marginTop: "2%",
-                                        paddingLeft: "15%",
-                                        color: "rgb(6, 133, 170)",
-                                        fontWeight: "revert"
-                                    }}
-                                >
-                                    <Link href="#">
-                                        <p style={{textDecoration: "underline"}}>Quên mật khẩu?</p>
-                                    </Link>
-                                </div>
-                            </div>
-                            {/*<input type="submit" className="register" defaultValue="Đăng nhập" >Đăng nhập</input>*/}
-                            <div className="text-center" style={{marginBottom: "10px"}}>
-                                <button type="submit" className="btn"
-                                        style={{
-                                            marginTop: "2%",
-                                            // paddingLeft: "15%",
-                                            backgroundColor: "rgb(6, 133, 170)",
-                                            color: "white",
-                                            // fontWeight: "bold",
-                                            fontSize: "18px"
-                                        }}>
-                                    Đăng Nhập
-                                </button>
-                            </div>
-                            <div className="text-center">
-                                <button type="button" className="btn btn-primary" style={{margin: "1%"}}>
-                                    <i className="fab fa-facebook"/>
-                                </button>
-                                <button type="button" className="btn btn-danger">
-                                    <i className="fab fa-google"/>
-                                </button>
-                                <br/>
-                                <Link to='/signup' className="btn">Đăng ký</Link>
-                            </div>
+                            <div className="col-3"/>
                         </div>
-                        {/*<div className="clear"/>*/}
                     </div>
                 </Form>
             </Formik>
-            {/*<ToastContainer/>*/}
         </>
     )
 }

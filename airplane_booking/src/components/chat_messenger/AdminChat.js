@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { database, ref, push, onValue, off } from "../../firebase-chat";
 import "../../css/search_ticket/style-popup.css";
+
 const AdminPage = () => {
   const [chats, setChats] = useState([]);
   const [selectedChatId, setSelectedChatId] = useState(null);
   const [chatMessages, setChatMessages] = useState([]);
   const [adminMessage, setAdminMessage] = useState("");
   const [userName, setUserName] = useState("");
+
   useEffect(() => {
     // Lấy danh sách các cuộc trò chuyện
     const chatsRef = ref(database, "users");
@@ -14,23 +16,27 @@ const AdminPage = () => {
       const data = snapshot.val();
       const chatList = data ? Object.keys(data) : [];
       setChats(chatList);
+      console.log(chatList);
     });
+
     // Reset các tin nhắn khi không có cuộc trò chuyện được chọn
     if (!selectedChatId) {
       setChatMessages([]);
     }
+
     return () => {
       // Huỷ đăng ký khi component unmount
       off(chatsRef);
       if (selectedChatId) {
         const chatMessagesRef = ref(
-          database,
-          `chats/${selectedChatId}/messages`
+            database,
+            `chats/${selectedChatId}/messages`
         );
         off(chatMessagesRef);
       }
     };
   }, [selectedChatId]);
+
   useEffect(() => {
     if (selectedChatId) {
       // Lắng nghe tin nhắn của cuộc trò chuyện được chọn
@@ -43,6 +49,7 @@ const AdminPage = () => {
       });
     }
   }, [selectedChatId]);
+
   useEffect(() => {
     if (selectedChatId) {
       const userNameRef = ref(
@@ -56,10 +63,12 @@ const AdminPage = () => {
       });
     }
   }, [selectedChatId]);
+
   const handleSelectChat = (chatId) => {
     setSelectedChatId(chatId);
     console.log(chatId);
   };
+
   const handleSendMessage = () => {
     if (adminMessage.trim() === "") return;
     const currentTime = new Date();
@@ -71,10 +80,13 @@ const AdminPage = () => {
         minute: "2-digit",
       }),
     };
+
     // Gửi tin nhắn từ admin tới cuộc trò chuyện được chọn
     push(ref(database, `chats/${selectedChatId}/messages`), newAdminMessage);
+
     setAdminMessage("");
   };
+
   return (
     <div id="message">
       <div className="container" style={{}}>

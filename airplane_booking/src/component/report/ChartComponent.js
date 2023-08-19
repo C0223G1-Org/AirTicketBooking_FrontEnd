@@ -1,22 +1,23 @@
 import React from 'react';
 import {Line} from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
 
 export const ChartComponent = ({dataTimeCurrent, dataTimePrevious, dataTimeAbout, dataTimeAbout1}) => {
     let chartData, options;
 
-    if (dataTimeCurrent && dataTimePrevious) {
+    if (dataTimeCurrent && dataTimeCurrent.length > 0 && dataTimePrevious && dataTimePrevious.length > 0) {
         chartData = {
             labels: [],
             datasets: [
                 {
-                    label: "Hiện tại",
+                    label: dataTimeCurrent[0].title,
                     data: dataTimeCurrent.map((row) => row.priceTicket),
                     borderColor: '#FF6384',
                     backgroundColor: '#FF6384',
                     fill: false,
                 },
                 {
-                    label: "Trước đó",
+                    label: dataTimePrevious[0].title,
                     data: dataTimePrevious.map((row) => row.priceTicket),
                     borderColor: '#36A2EB',
                     backgroundColor: '#36A2EB',
@@ -34,7 +35,7 @@ export const ChartComponent = ({dataTimeCurrent, dataTimePrevious, dataTimeAbout
                     labels: dataTimePrevious.map((row) => row.dateBooking),
                     title: {
                         display: true,
-                        text: 'Khoảng thời gian',
+                        text: 'Thời gian',
                         font: {
                             size: 20,
                         },
@@ -49,6 +50,11 @@ export const ChartComponent = ({dataTimeCurrent, dataTimePrevious, dataTimeAbout
                             size: 20,
                         },
                     },
+                    ticks: {
+                        callback: function (value, index, values) {
+                            return parseFloat(value).toLocaleString('vi-VN')+' VNĐ';
+                        }
+                    }
                 },
             },
             plugins: {
@@ -68,23 +74,26 @@ export const ChartComponent = ({dataTimeCurrent, dataTimePrevious, dataTimeAbout
                 },
             },
         };
+        return <Line data={chartData} options={options}/>;
     } else if (dataTimeAbout && dataTimeAbout1) {
         chartData = {
             labels: [],
             datasets: [
                 {
-                    label: 'Khoảng thời gian đầu',
+                    label: dataTimeAbout.map((row) => row.dateBooking),
                     data: dataTimeAbout.map((row) => row.priceTicket),
                     borderColor: '#FF6384',
                     backgroundColor: '#FF6384',
                     fill: false,
+                    maxBarThickness: 50,
                 },
                 {
-                    label: 'Khoảng thời gian sau',
+                    label:dataTimeAbout1.map((row) => row.dateBooking),
                     data: dataTimeAbout1.map((row) => row.priceTicket),
                     borderColor: '#36A2EB',
                     backgroundColor: '#36A2EB',
                     fill: false,
+                    maxBarThickness: 50,
                 },
             ],
         };
@@ -95,10 +104,9 @@ export const ChartComponent = ({dataTimeCurrent, dataTimePrevious, dataTimeAbout
             scales: {
                 x: {
                     type: 'category', // Use 'category' scale for the x-axis
-                    labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                    labels: ["So sánh"],
                     title: {
                         display: true,
-                        text: 'Khoảng thời gian',
                         font: {
                             size: 20,
                         },
@@ -113,12 +121,17 @@ export const ChartComponent = ({dataTimeCurrent, dataTimePrevious, dataTimeAbout
                             size: 20,
                         },
                     },
+                    ticks: {
+                        callback: function (value, index, values) {
+                            return parseFloat(value).toLocaleString('vi-VN')+' VNĐ';
+                        }
+                    }
                 },
             },
             plugins: {
                 title: {
                     display: true,
-                    text: 'Thống kê doanh thu theo tháng',
+                    text: 'Thống kê doanh thu',
                     font: {
                         size: 50,
                     },
@@ -132,7 +145,8 @@ export const ChartComponent = ({dataTimeCurrent, dataTimePrevious, dataTimeAbout
                 },
             },
         };
+        return <Bar data={chartData} options={options}/>;
     }
 
-    return <Line data={chartData} options={options}/>;
+
 };
