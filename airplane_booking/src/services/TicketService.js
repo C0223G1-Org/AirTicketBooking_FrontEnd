@@ -73,3 +73,8 @@ export const searchUnBookedTicket=async(page,ticketSearch)=>{
     const response=await axios.get(`http://localhost:8080/tickets/search-unbooked/${page}?${ticket}`)
     return response.data
 }
+export const deleteTicketFlagIsFalse=async(idCustomer)=>{
+    
+ await axios.delete(`http://localhost:8080/tickets/delete/${idCustomer}`)
+  
+}

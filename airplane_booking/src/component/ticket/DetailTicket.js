@@ -8,6 +8,8 @@ import numeral from 'numeral';
 import moment from "moment";
 import logobg from"../../logo-remove-background.png"
 import {getTypeSeatByName} from "../../services/TypeSeatServices";
+import { deleteTicketFlagIsFalse } from "../../services/TicketService";
+import { getCustomerByEmail } from "../../services/CustomerServices";
 export default function DetailTicket() {
     const [route, setRoute] = useState([]);
     const [routeDestination, setRouteDestination] = useState([]);
@@ -103,8 +105,11 @@ export default function DetailTicket() {
         navigate(`/info-passenger/${2},${arr[1]},${arr[2]},${arr[3]},${arr[4]},${arr[5]}`);
         //1.loại vé, 2.id tuyến bay,3. loại ghế ,4. giá 1 vé,  5. Người lớn 6.Trẻ em
     }
-    const handleSubmitTwoWay = () => {
-        navigate(`/info-passenger/${1},${arr[1]},${arr[2]},${arr[3]},${arr[4]},${arr[5]},${arr[6]},${arr[7]},${arr[8]}`);
+    const handleSubmitTwoWay =async () => {
+        const userData= await getCustomerByEmail(localStorage.getItem("username"))
+    
+       await deleteTicketFlagIsFalse(userData.idCustomer).then(()=>{navigate(`/info-passenger/${1},${arr[1]},${arr[2]},${arr[3]},${arr[4]},${arr[5]},${arr[6]},${arr[7]},${arr[8]}`)})
+        ;
         //1.loại vé, 2.id tuyến đi,3. idtuyến vế ,4. loại ghế đi, 5.loại ghế về , 6. giá đi. 7.giá về
     }
 

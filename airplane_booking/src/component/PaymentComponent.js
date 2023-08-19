@@ -1,72 +1,77 @@
-import React, { useEffect, useRef, useState } from 'react';
-import '../css/payment/Payment.css';
-import { getTicketByCustomerId, updateTicketByIdTicket } from '../services/PaymentService';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import axios, { HttpStatusCode } from 'axios';
+import React, {useEffect, useState} from "react";
+import "../css/payment/Payment.css";
+import {
+    getTicketByCustomerId,
+    updateTicketByIdTicket,
+} from "../services/PaymentService";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
+import Swal from "sweetalert2";
+import {HttpStatusCode} from "axios";
 import {getCustomerByEmail} from "../services/CustomerServices";
-
 
 const PaymentComponent = () => {
     const [payments, setPayment] = useState([]);
-    const { departure } = useParams();
+    const {departure} = useParams();
+    const {num} = useParams();
+    const [user, setUser] = useState({});
 
-    const negative = useNavigate();
-    const getTicket = () => {
-        const getTicketById = async () => {
-            try {
-                const data = await getCustomerByEmail(localStorage.getItem("username"))
-                const paymentData = await getTicketByCustomerId(data.idCustomer);
-                setPayment(paymentData);
+    const navigate = useNavigate();
 
-            } catch (error) {
-                console.error('Error occurred while getting payment data:', error)
-            }
-        };
-        getTicketById();
-    }
 
+    const getTicketById = async () => {
+        try {
+            const data = await getCustomerByEmail(localStorage.getItem("username"));
+            setUser(data);
+            const paymentData = await getTicketByCustomerId(data.idCustomer, num);
+            setPayment(paymentData);
+        } catch (error) {
+            console.error("Error occurred while getting payment data:", error);
+        }
+    };
 
     let arr1 = [];
     let arr2 = [];
     const listArr = () => {
         payments.forEach((name) => {
-            if (name.seat.route.departure.nameDeparture === departure) {
-                arr1.push(name)
+            if (name.seat.route.departure.nameDeparture == departure) {
+                arr1.push(name);
             } else {
-                arr2.push(name)
+                arr2.push(name);
             }
-        })
-    }
-    const location = useLocation;
-    listArr()
+        });
+    };
+    listArr();
+    const location = useLocation()
     useEffect(() => {
-        getTicket()
-    }, [location]);
-    useEffect(() => {
-        document.title = 'Thanh toán'
-    })
+        getTicketById();
+    }, []);
+
+
+    // useEffect(() => {
+    //   document.title = "Thanh toán";
+    // });
+    console.log(payments);
     let stateButton = 0;
 
     const renderPaypalButton = (payments) => {
         const createOrder = (data, actions) => {
             try {
                 const totalAmount = document.getElementById("totalAmount").innerText;
-                const amountValueVND = parseFloat(totalAmount.replace(/[^\d.]/g, ''));
+                const amountValueVND = parseFloat(totalAmount.replace(/[^\d.]/g, ""));
                 const exchangeRate = 23000; // Tỷ giá VND sang USD
                 const amountValueUSD = amountValueVND / exchangeRate;
                 return actions.order.create({
                     purchase_units: [
                         {
                             amount: {
-                                currency_code: 'USD',
+                                currency_code: "USD",
                                 value: amountValueUSD.toFixed(2),
                             },
                         },
                     ],
                 });
             } catch (error) {
-                console.error('Error creating order:', error);
+                console.error("Error creating order:", error);
                 throw error;
             }
         };
@@ -74,58 +79,66 @@ const PaymentComponent = () => {
         window.paypal
             .Buttons({
                 style: {
-                    color: 'gold',
-                    layout: 'vertical',
-                    shape: 'rect',
-                    label: 'pay',
+                    color: "gold",
+                    layout: "vertical",
+                    shape: "rect",
+                    label: "pay",
                     height: 40,
                     marginLeft: 400,
                 },
                 createOrder: createOrder,
                 onApprove: async (data, actions) => {
-
                     const order = await actions.order.capture();
                     console.log(order.status);
                     console.log(payments);
                     payments.forEach((item) => {
-                        updateTicketByIdTicket(item.idTicket, order.status)
-                    })
+                        updateTicketByIdTicket(item.idTicket, order.status);
+                    });
                     // Gửi thông tin trạng thái thanh toán tới Spring Boot
 
-                    if (order.status === 'COMPLETED' || order.status === 200 || order.status === HttpStatusCode.Ok
-                        || order.status === 'thành công') {
+                    if (
+                        order.status === "COMPLETED" ||
+                        order.status === 200 ||
+                        order.status === HttpStatusCode.Ok ||
+                        order.status === "thành công"
+                    ) {
                         Swal.fire({
-                            icon: 'success',
-                            title: 'Thanh toán thành công',
-                            timer: 3000
-                        })
-                        negative('/home')
-
-                    } else if (order.status === 422 || order.status === 404 || order.status === 'CANCELLED' ||
-                        order.status === 'DECLINED' || order.status === 'FAILED' || order.status === 'EXPIRED' ||
-                        order.status === 'PENDING') {
+                            icon: "success",
+                            title: "Thanh toán thành công",
+                            timer: 3000,
+                        });
+                        navigate("/home");
+                    } else if (
+                        order.status === 422 ||
+                        order.status === 404 ||
+                        order.status === "CANCELLED" ||
+                        order.status === "DECLINED" ||
+                        order.status === "FAILED" ||
+                        order.status === "EXPIRED" ||
+                        order.status === "PENDING"
+                    ) {
                         Swal.fire({
-                            icon: 'error',
-                            title: 'Thanh toán thất bại',
-                            timer: 3000
-                        })
-                        negative('/failed')
-                            ;
+                            icon: "error",
+                            title: "Thanh toán thất bại",
+                            timer: 3000,
+                        });
+                        navigate("/failed");
                     }
                 },
-            }).render('#paypal-button-container');
+            })
+            .render("#paypal-button-container");
     };
 
     const handlePayment = () => {
         Swal.fire({
-            icon: 'warning',
-            text: 'Bạn có chắc thông tin đã đúng ?',
+            icon: "warning",
+            text: "Bạn có chắc thông tin đã đúng ?",
             showCancelButton: true,
             showConfirmButton: true,
-            confirmButtonColor: '#ffc439',
-            cancelButtonColor: 'grey',
+            confirmButtonColor: "#ffc439",
+            cancelButtonColor: "grey",
             confirmButtonText: "Xác nhận",
-            cancelButtonText: 'Huỷ bỏ'
+            cancelButtonText: "Huỷ bỏ",
         }).then((result) => {
             if (result && result.value) {
                 if (stateButton === 0) {
@@ -133,29 +146,33 @@ const PaymentComponent = () => {
                     console.log(payments);
                     stateButton++;
 
-                    const kiemTraButton = document.querySelector('#paypal-button-container button');
-                    kiemTraButton.style.display = 'none';
+                    const kiemTraButton = document.querySelector(
+                        "#paypal-button-container button"
+                    );
+                    kiemTraButton.style.display = "none";
                 }
             }
-        })  
-
+        });
     };
 
     const price = arr1[0]?.priceTicket * arr1.length || 0;
     const price2 = arr2[0]?.priceTicket * arr2.length || 0;
     const total = price + price2;
 
-    const formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    const formattedPrice2 = price2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    const formattedPrice3 = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
+    const formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const formattedPrice2 = price2
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const formattedPrice3 = total
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
     if (!payments) {
         return null;
     }
     return (
         //    <form onSubmit={sendEmail}>
-        <div className="ticket" id='payment'>
+        <div className="ticket" id="payment">
             {/* <form onSubmit={sendEmail}> */}
             <h1 className="title">CHI TIẾT CHUYẾN BAY</h1>
             <div className="info">
@@ -163,11 +180,8 @@ const PaymentComponent = () => {
                     <div className="col-12">
                         <p className="label">Danh sách người đi:</p>
                         {arr1.map((item) => {
-                            return (
-                                <p className="value"> {item.namePassenger}</p>
-                            )
+                            return <p className="value"> {item.namePassenger}</p>;
                         })}
-
                     </div>
                 </div>
                 <div className="row">
@@ -178,11 +192,15 @@ const PaymentComponent = () => {
                     <div className="row">
                         <div className="col-3">
                             <p className="label">Nơi đi:</p>
-                            <p className="value">{arr1[0]?.seat?.route?.departure?.nameDeparture}</p>
+                            <p className="value">
+                                {arr1[0]?.seat?.route?.departure?.nameDeparture}
+                            </p>
                         </div>
                         <div className="col-3">
                             <p className="label">Nơi đến:</p>
-                            <p className="value">{arr1[0]?.seat?.route?.destination?.nameDestination}</p>
+                            <p className="value">
+                                {arr1[0]?.seat?.route?.destination?.nameDestination}
+                            </p>
                         </div>
                         <div className="col-3">
                             <p className="label">Giờ bay:</p>
@@ -196,7 +214,9 @@ const PaymentComponent = () => {
                     <div className="row">
                         <div className="col-3">
                             <p className="label">{arr1[0]?.seat?.route?.nameRoute}</p>
-                            <p className="value">{arr1[0]?.seat?.route?.airCraft?.nameAirCraft}</p>
+                            <p className="value">
+                                {arr1[0]?.seat?.route?.airCraft?.nameAirCraft}
+                            </p>
                         </div>
                         <div className="col-3">
                             <p className="label">Ngày đi:</p>
@@ -208,11 +228,12 @@ const PaymentComponent = () => {
                         </div>
                         <div className="col-3">
                             <p className="label">Tiền vé:</p>
-                            <p className="value" style={{ width: '140px' }}>{formattedPrice} VND</p>
+                            <p className="value" style={{width: "140px"}}>
+                                {formattedPrice} VND
+                            </p>
                         </div>
                     </div>
                 </div>
-
 
                 {arr2.length > 0 && (
                     <div>
@@ -222,11 +243,15 @@ const PaymentComponent = () => {
                         <div className="row">
                             <div className="col-3">
                                 <p className="label">Nơi đi:</p>
-                                <p className="value">{arr2[0]?.seat?.route?.departure?.nameDeparture}</p>
+                                <p className="value">
+                                    {arr2[0]?.seat?.route?.departure?.nameDeparture}
+                                </p>
                             </div>
                             <div className="col-3">
                                 <p className="label">Nơi đến:</p>
-                                <p className="value">{arr2[0]?.seat?.route?.destination?.nameDestination}</p>
+                                <p className="value">
+                                    {arr2[0]?.seat?.route?.destination?.nameDestination}
+                                </p>
                             </div>
                             <div className="col-3">
                                 <p className="label">Giờ bay:</p>
@@ -240,7 +265,9 @@ const PaymentComponent = () => {
                         <div className="row">
                             <div className="col-3">
                                 <p className="label">{arr2[0]?.seat?.route?.nameRoute}</p>
-                                <p className="value">{arr2[0]?.seat?.route?.airCraft?.nameAirCraft}</p>
+                                <p className="value">
+                                    {arr2[0]?.seat?.route?.airCraft?.nameAirCraft}
+                                </p>
                             </div>
                             <div className="col-3">
                                 <p className="label">Ngày đi:</p>
@@ -252,18 +279,20 @@ const PaymentComponent = () => {
                             </div>
                             <div className="col-3">
                                 <p className="label">Tiền vé:</p>
-                                <p className="value" style={{ width: '140px' }}>{formattedPrice2} VND</p>
+                                <p className="value" style={{width: "140px"}}>
+                                    {formattedPrice2} VND
+                                </p>
                             </div>
                         </div>
                     </div>
                 )}
 
-
                 <div className="row">
-
                     <div className="col-4">
                         <p className="label">Tổng tiền:</p>
-                        <p className="value" id="totalAmount">{formattedPrice3} VND</p>
+                        <p className="value" id="totalAmount">
+                            {formattedPrice3} VND
+                        </p>
                     </div>
                 </div>
                 <div className="row">
@@ -273,17 +302,22 @@ const PaymentComponent = () => {
                         <p className="value">Hành lý xách tay: 7kg</p>
                     </div>
                     <div className="col-5 payment">
-                        <p className="label" >Thanh toán</p>
-                        <div id="paypal-button-container" > <button onClick={() => handlePayment()} className='btn btn-primary'>Kiểm tra</button></div>
-
+                        <p className="label">Thanh toán</p>
+                        <div id="paypal-button-container">
+                            <button
+                                onClick={() => handlePayment()}
+                                className="btn btn-primary"
+                            >
+                                Kiểm tra
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <p className="thank-you">Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!</p>
+                <p className="thank-you">
+                    Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!
+                </p>
             </div>
         </div>
-
-    )
-}
-    ;
-
+    );
+};
 export default PaymentComponent;
