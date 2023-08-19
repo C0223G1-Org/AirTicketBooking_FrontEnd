@@ -1,9 +1,9 @@
 import {Formik, Form, Field, ErrorMessage} from"formik";
-import {changePassword} from "../services/AccountServices";
+import {changePassword, getAccountByGmail} from "../services/AccountServices";
 import * as yup from "yup";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
-import { getCustomerByEmail } from "../services/CustomerServices";
+
 
 function ChangePassword (){
 
@@ -23,7 +23,7 @@ function ChangePassword (){
   const userName = localStorage.getItem("username");
   
   const getUser = async ()=>{
-const data =  await getCustomerByEmail(userName);
+const data =  await getAccountByGmail(userName);
 setUser(data)
   }
 
@@ -76,7 +76,7 @@ setUser(data)
             })}
             onSubmit={async(value)=>{
                 const account ={
-                    id: value.id,
+                    id: user.idAccount,
                     oldPassword : value.oldPassword,
                     newPassword : value.newPassword
                 }

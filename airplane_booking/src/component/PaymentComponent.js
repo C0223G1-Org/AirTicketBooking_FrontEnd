@@ -270,7 +270,8 @@ const PaymentComponent = () => {
                     <div className="col-7">
                         <p className="label">Điều kiện giá vé:</p>
                         <p className="value">Giá vé đã bao gồm thuế và phí</p>
-                        <p className="value">Hành lý xách tay: 7kg</p>
+                        <p className="value">Hành lý xách tay: 10kg</p>
+                        <p className="value">Hành lý ki gui: 23kg</p>
                     </div>
                     <div className="col-5 payment">
                         <p className="label" >Thanh toán</p>
