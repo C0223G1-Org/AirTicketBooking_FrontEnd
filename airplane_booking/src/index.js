@@ -83,6 +83,7 @@ root.render(
           <Route path="/signup" element={<SignUp/>}/>
           <Route path="/checkCode/:data" element={<CheckCode/>}/>
           <Route path="/report" element={<CreateReport />}></Route>
+         
           <Route path='/payment/:departure/:num' element={<PaymentComponent/>}></Route>
           <Route path='/change-password' element={<ChangePassword/>}></Route>
         </Routes>

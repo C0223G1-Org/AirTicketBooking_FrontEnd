@@ -13,17 +13,27 @@ const PaymentComponent = () => {
     const [payments, setPayment] = useState([]);
     const {departure} = useParams();
     const {num} = useParams();
-    const [user, setUser] = useState({});
 
+    const [flag, setFlag] = useState(false)
+    // const [user, setUser] = useState({});
+
+    setTimeout(()=>{
+        if(flag === false){
+            setFlag(true)
+        }
+    },500)
     const navigate = useNavigate();
 
 
     const getTicketById = async () => {
         try {
             const data = await getCustomerByEmail(localStorage.getItem("username"));
-            setUser(data);
+            // setUser(data);
+            console.log(data);
             const paymentData = await getTicketByCustomerId(data.idCustomer, num);
             setPayment(paymentData);
+            console.log(paymentData);
+            console.log(payments);
         } catch (error) {
             console.error("Error occurred while getting payment data:", error);
         }
@@ -42,14 +52,19 @@ const PaymentComponent = () => {
     };
     listArr();
     const location = useLocation()
-    useEffect(() => {
-        getTicketById();
-    }, []);
-
 
     // useEffect(() => {
-    //   document.title = "Thanh toán";
-    // });
+    //                 setUser(getCustomerByEmail(localStorage.getItem("username")));
+    // }, []);
+
+    useEffect(() => {
+        getTicketById();
+    }, [flag]);
+
+
+    useEffect(() => {
+      document.title = "Thanh toán";
+    });
     console.log(payments);
     let stateButton = 0;
 
