@@ -26,3 +26,8 @@ export const findById = async (id) => {
         console.log(e)
     }
 }
+
+export const getAccountByGmail = async (gmail) =>{
+    const res = await axios.get("http://localhost:8080/api/account/email/"+gmail)
+    return res.data
+}
