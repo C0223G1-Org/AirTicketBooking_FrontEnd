@@ -177,22 +177,64 @@ body {
     #detail-ticket .wrap .row {
         padding-right: 0;
     }
-
-    #detail-ticket .wrap .location span:last-child {
-        display: block;
+    #detail-ticket .wrap .location{
+        font-size: 15px;
     }
 
-    #detail-ticket .wrap .infor-fight {
+    #detail-ticket .wrap .info-fight {
         display: block;
     }
+    #detail-ticket .wrapper .wrap .info-fight {
+        display: flex;
+        width: 100%;
+    }
 
-    #detail-ticket .logo-image img {
+    #detail-ticket .wrapper .wrap .info-fight p:first-child {
+        width: 33.3%;
+    }
+
+    #detail-ticket .wrapper .wrap .info-fight p:nth-child(2) {
+        width: 33.33%;
+        float: left;
+        margin-right: 10px;
+    }
+
+    #detail-ticket .wrapper .wrap .info-fight p:last-child {
+        float: left;
+    }
+
+
+    #detail-ticket .logo-image{
         display: none;
+    }
+    
+    #detail-ticket .info-second {
+        display: flex;
+    }
+
+    #detail-ticket .info-second .col-2 {
+        width: 100%;
+        display: flex;
+    }
+
+    #detail-ticket .info-second .col-2 p {
+        float: left;
+        margin-right: 10px;
+    }
+
+
+    #detail-ticket .detail-ticket-btn button {
+        font-size: 15px;
     }
 
     #detail-ticket .detail-ticket-btn button {
-        margin-left: 60px;
         margin-bottom: 10px;
+        width: 140px;
     }
+
+    #detail-ticket .detail-ticket-btn button:last-child {
+        margin-left: -30px;
+    }
+
 
 }
