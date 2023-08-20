@@ -48,6 +48,7 @@ root.render(
             <TicketProvider>
                 <Header/>
                 <Routes>
+                    <Route path="/" element={<Home/>}/>
                     <Route path="/home" element={<Home/>}/>
                     <Route path="/top10" element={<GetTop10Cheapest/>}/>
                     <Route path="/header-customer" element={<HeaderCustomer/>}/>
@@ -86,10 +87,12 @@ root.render(
                     <Route path="/checkCode/:data" element={<CheckCode/>}/>
                     <Route path="/payment/:departure/:num" element={<PaymentComponent/>}/>
                     <Route path="/change-password" element={<ChangePassword/>}/>
-
                     <Route path="/history-payment/:id" element={<HistoryPaymentComponent/>}/>
                     <Route path="/detail-history/:id/:departure/:destination/:dateBooking" element={<DetailHistoryPaymentComponent/>}/>
-
+                    <Route path="/payment/:departure/:num" element={<PaymentComponent/>}/>
+                    <Route path="/change-password" element={<ChangePassword/>}/>
+                    <Route path="/history-payment/:id" element={<HistoryPaymentComponent/>}/>
+                    <Route path="/detail-history/:departure/:destination/:dateBooking" element={<DetailHistoryPaymentComponent/>}/>
                 </Routes>
 
         <Footer />

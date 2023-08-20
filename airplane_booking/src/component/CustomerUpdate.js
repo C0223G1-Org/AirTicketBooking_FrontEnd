@@ -110,16 +110,9 @@ export default function CustomerUpdate() {
             reader.readAsDataURL(file);
         }
     };
-    const [role, setRole] = useState(localStorage.getItem("role"));
-    const [email, setEmail] = useState(localStorage.getItem("username"));
-    console.log("role " + role);
-    useEffect(() => {
-        setRole(localStorage.getItem("role"));
-        setEmail(localStorage.getItem("username"));
-    }, []);
-    if (role === null || email === null) {
-        return <Unauthorzied/>
-    } else if ((role === 'ROLE_CUSTOMER' && email === customer?.emailCustomer)) {
+    const role= localStorage.getItem("role");
+    const email= localStorage.getItem("username");
+    if ((role === 'ROLE_CUSTOMER' && email === customer?.emailCustomer)) {
         return (
             <>
                 {customer.idCustomer &&
@@ -394,7 +387,7 @@ export default function CustomerUpdate() {
                 }
             </>
         )
-    } else {
-        return <Unauthorzied/>
     }
+    return <Unauthorzied/>
+
 }

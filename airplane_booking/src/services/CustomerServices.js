@@ -66,7 +66,13 @@ const token = localStorage.getItem('token');
 //         return res.data;
 // }
 export async function deleteCustomers(id) {
-    await axios.put(`http://localhost:8080/customers/delete/${id}`)
+    const token = localStorage.getItem('token');
+    await axios.put(`http://localhost:8080/customers/delete/${id}`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
 }
 
 export async function getCustomerByEmail(email) {

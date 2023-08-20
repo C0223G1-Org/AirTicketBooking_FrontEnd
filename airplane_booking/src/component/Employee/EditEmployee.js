@@ -10,6 +10,7 @@ import {createEmployee, updateEmployee} from "../../services/EmployeeServices";
 import Swal from "sweetalert2";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {storage} from "../../firebase-chat";
+import {Unauthorzied} from "../Unauthorized";
 
 /**
  * Create by: QuocNHA
@@ -96,200 +97,202 @@ function EditEmployee() {
             reader.readAsDataURL(file);
         }
     };
-
-
-    return (<>
-            <div>
-                <div id="bookingQuoc" className="sectionQuoc">
-                    <div className="sectionQuoc-center">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-12 col-sm-12 col-md-6 col-lg-4">
-                                    <div>
-                                        {/*<img*/}
-                                        {/*    src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"*/}
-                                        {/*    alt="Preview Image" id="img-preview"/>*/}
-                                        <img style={{marginTop: '10px', marginLeft: '100px'}} name='image'
-                                             id="img-preview" src={employeeId.image} ref={imgPreviewRef}
-                                             alt="Preview Image"/>
-                                    </div>
-                                </div>
-                                <div className="col-12 col-sm-12 col-md-6 col-lg-6" style={{padding: '0px'}}>
-                                    <div className="booking-formQuoc">
-                                        <div className="" style={{width: '100%'}}>
-                                            <p className='pQuoc'>Chỉnh sửa nhân viên</p>
+    const role = localStorage.getItem("role");
+    if ((role === 'ROLE_ADMIN')) {
+        return (
+            <>
+                <div>
+                    <div id="bookingQuoc" className="sectionQuoc">
+                        <div className="sectionQuoc-center">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-12 col-sm-12 col-md-6 col-lg-4">
+                                        <div>
+                                            {/*<img*/}
+                                            {/*    src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"*/}
+                                            {/*    alt="Preview Image" id="img-preview"/>*/}
+                                            <img style={{marginTop: '10px', marginLeft: '100px'}} name='image'
+                                                 id="img-preview" src={employeeId.image} ref={imgPreviewRef}
+                                                 alt="Preview Image"/>
                                         </div>
-                                        <Formik initialValues={{
-                                            idEmployee: employeeId.idEmployee,
-                                            nameEmployee: employeeId.nameEmployee,
-                                            dateEmployee: employeeId.dateEmployee,
-                                            telEmployee: employeeId.telEmployee,
-                                            // image: employeeId.image,
-                                            gender: employeeId.gender,
-                                            emailEmployee: employeeId.emailEmployee,
-                                            passwordEmployee: employeeId.passwordEmployee, // confirmPasswordEmployee: employeeId.confirmPasswordEmployee,
-                                            typeEmployee: {
-                                                idEmployee: 1
-                                            }
-                                        }}
-                                                validationSchema={Yup.object({
-                                                    nameEmployee: Yup.string()
-                                                        .test('no-leading-whitespace', 'Tên không được bắt đầu bằng khoảng trắng.', (value) => {
-                                                            return !value.startsWith(' ');
-                                                        })
-                                                        .test('no-trailing-whitespace', 'Tên không được kết thúc bằng khoảng trắng.', (value) => {
-                                                            return !value.endsWith(' ');
-                                                        })
-                                                        .required("Vui lòng nhập.")
-                                                        .min(5, "Tên quá ngắn,phải từ 5 kí tự.")
-                                                        .max(50, "tên quá dài.")
-                                                        .matches(/^[^!@#$%^&*()+=\[\]{};':"\\|.<>?`~0-9]+$/, "Tên không chứa ký tự đặc biệt như @#$.. và số."),
-                                                    dateEmployee: Yup.date()
-                                                        .required("Vui lòng chọn.")
-                                                        .test("is-over-18", "Bạn chưa đủ 18 . ", function (value) {
-                                                            const currentDate = new Date();
-                                                            const selectedDate = new Date(value);
-                                                            const ageDiff =
-                                                                currentDate.getFullYear() - selectedDate.getFullYear();
-                                                            if (ageDiff < 18) {
-                                                                return false;
-                                                            }
-                                                            return true;
-                                                        })
-                                                        .test("is-under-60", "Bạn đã quá 60 tuổi.", function (value) {
-                                                            const currentDate = new Date();
-                                                            const selectedDate = new Date(value);
-                                                            const ageDiff = currentDate.getFullYear() - selectedDate.getFullYear();
-                                                            return ageDiff <= 60;
-                                                        }),
-                                                    gender: Yup.boolean()
-                                                        .required("Vui lòng chọn giới ."), // emailEmployee: Yup.string()
-                                                    //     .matches(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-                                                    //         "Email phải đúng định dạng xxx@gmail.com")
-                                                    //     .required("Vui lòng nhập email")
-                                                    // ,
-                                                    telEmployee: Yup.string()
-                                                        .required("Vui lòng nhập số điện thoại.")
-                                                        .matches(/^(\+?84|0)(3[2-9]|5[2689]|7[06-9]|8[1-9]|9[0-9])[0-9]{7}$/, "Số điện thoại không hợp lệ, phải từ 10 hoặc 11 số"), // passwordEmployee: Yup.string()
-                                                    //     .required("Vui lòng nhập mật khẩu")
-                                                    //     .min(5, "Mật khẩu quá ngắn,phải từ 5 kí tự")
-                                                    //     .max(50, "Mật khẩu quá dài"),
-                                                    // confirmPasswordEmployee: Yup.string()
-                                                    //     .required("Vui lòng nhập mật khẩu xác nhận")
-                                                    //     .oneOf([Yup.ref('passwordEmployee'), null], 'Mật khẩu xác nhận không khớp')
+                                    </div>
+                                    <div className="col-12 col-sm-12 col-md-6 col-lg-6" style={{padding: '0px'}}>
+                                        <div className="booking-formQuoc">
+                                            <div className="" style={{width: '100%'}}>
+                                                <p className='pQuoc'>Chỉnh sửa nhân viên</p>
+                                            </div>
+                                            <Formik initialValues={{
+                                                idEmployee: employeeId.idEmployee,
+                                                nameEmployee: employeeId.nameEmployee,
+                                                dateEmployee: employeeId.dateEmployee,
+                                                telEmployee: employeeId.telEmployee,
+                                                // image: employeeId.image,
+                                                gender: employeeId.gender,
+                                                emailEmployee: employeeId.emailEmployee,
+                                                passwordEmployee: employeeId.passwordEmployee, // confirmPasswordEmployee: employeeId.confirmPasswordEmployee,
+                                                typeEmployee: {
+                                                    idEmployee: 1
+                                                }
+                                            }}
+                                                    validationSchema={Yup.object({
+                                                        nameEmployee: Yup.string()
+                                                            .test('no-leading-whitespace', 'Tên không được bắt đầu bằng khoảng trắng.', (value) => {
+                                                                return !value.startsWith(' ');
+                                                            })
+                                                            .test('no-trailing-whitespace', 'Tên không được kết thúc bằng khoảng trắng.', (value) => {
+                                                                return !value.endsWith(' ');
+                                                            })
+                                                            .required("Vui lòng nhập.")
+                                                            .min(5, "Tên quá ngắn,phải từ 5 kí tự.")
+                                                            .max(50, "tên quá dài.")
+                                                            .matches(/^[^!@#$%^&*()+=\[\]{};':"\\|.<>?`~0-9]+$/, "Tên không chứa ký tự đặc biệt như @#$.. và số."),
+                                                        dateEmployee: Yup.date()
+                                                            .required("Vui lòng chọn.")
+                                                            .test("is-over-18", "Bạn chưa đủ 18 . ", function (value) {
+                                                                const currentDate = new Date();
+                                                                const selectedDate = new Date(value);
+                                                                const ageDiff =
+                                                                    currentDate.getFullYear() - selectedDate.getFullYear();
+                                                                if (ageDiff < 18) {
+                                                                    return false;
+                                                                }
+                                                                return true;
+                                                            })
+                                                            .test("is-under-60", "Bạn đã quá 60 tuổi.", function (value) {
+                                                                const currentDate = new Date();
+                                                                const selectedDate = new Date(value);
+                                                                const ageDiff = currentDate.getFullYear() - selectedDate.getFullYear();
+                                                                return ageDiff <= 60;
+                                                            }),
+                                                        gender: Yup.boolean()
+                                                            .required("Vui lòng chọn giới ."), // emailEmployee: Yup.string()
+                                                        //     .matches(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                                                        //         "Email phải đúng định dạng xxx@gmail.com")
+                                                        //     .required("Vui lòng nhập email")
+                                                        // ,
+                                                        telEmployee: Yup.string()
+                                                            .required("Vui lòng nhập số điện thoại.")
+                                                            .matches(/^(\+?84|0)(3[2-9]|5[2689]|7[06-9]|8[1-9]|9[0-9])[0-9]{7}$/, "Số điện thoại không hợp lệ, phải từ 10 hoặc 11 số"), // passwordEmployee: Yup.string()
+                                                        //     .required("Vui lòng nhập mật khẩu")
+                                                        //     .min(5, "Mật khẩu quá ngắn,phải từ 5 kí tự")
+                                                        //     .max(50, "Mật khẩu quá dài"),
+                                                        // confirmPasswordEmployee: Yup.string()
+                                                        //     .required("Vui lòng nhập mật khẩu xác nhận")
+                                                        //     .oneOf([Yup.ref('passwordEmployee'), null], 'Mật khẩu xác nhận không khớp')
 
-                                                })}
-                                                onSubmit={(values) => {
-                                                    console.log(values)
-                                                    savePost(values)
+                                                    })}
+                                                    onSubmit={(values) => {
+                                                        console.log(values)
+                                                        savePost(values)
 
 
-                                                }}
-                                        >
+                                                    }}
+                                            >
 
 
-                                            <Form className="booking-formQuoc-padding">
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        <div className="form-group">
+                                                <Form className="booking-formQuoc-padding">
+                                                    <div className="row">
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
                                         <span className="form-label">Họ và tên (<span
                                             style={{color: 'red'}}>*</span>)</span>
-                                                            <Field name='nameEmployee' className="form-control"
-                                                                   type="text"/>
-                                                            <ErrorMessage name='nameEmployee' component='div'
-                                                                          className='error_red_employee'/>
+                                                                <Field name='nameEmployee' className="form-control"
+                                                                       type="text"/>
+                                                                <ErrorMessage name='nameEmployee' component='div'
+                                                                              className='error_red_employee'/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <div className="form-group">
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
                                         <span className="form-label">Ngày sinh (<span
                                             style={{color: 'red'}}>*</span>)</span>
-                                                            <Field name='dateEmployee' className="form-control"
-                                                                   type="date"/>
-                                                            <ErrorMessage name='dateEmployee' component='div'
-                                                                          className='error_red_employee'/>
+                                                                <Field name='dateEmployee' className="form-control"
+                                                                       type="date"/>
+                                                                <ErrorMessage name='dateEmployee' component='div'
+                                                                              className='error_red_employee'/>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        <div className="form-group">
-                                                            <span className="form-label">Email </span>
+                                                    <div className="row">
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <span className="form-label">Email </span>
 
-                                                            <div
-                                                                className="form-control">{employeeId.emailEmployee}</div>
+                                                                <div
+                                                                    className="form-control">{employeeId.emailEmployee}</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <div className="form-group">
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
                                                              <span className="form-label">Giới tính (<span
                                                                  style={{color: 'red'}}>*</span>)</span>
-                                                            <Field name='gender' className="form-control"
-                                                                   as="select">
-                                                                <option value={true}>Nam</option>
-                                                                <option value={false}>Nữ</option>
-                                                            </Field>
+                                                                <Field name='gender' className="form-control"
+                                                                       as="select">
+                                                                    <option value={true}>Nam</option>
+                                                                    <option value={false}>Nữ</option>
+                                                                </Field>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        <div className="form-group">
+                                                    <div className="row">
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
                                                     <span className="form-label">Số điện thoại (<span
                                                         style={{color: 'red'}}>*</span>)</span>
-                                                            <Field className="form-control" type="text"
-                                                                   name='telEmployee'/>
-                                                            <ErrorMessage name='telEmployee' component='div'
-                                                                          className='error_red_employee'/>
+                                                                <Field className="form-control" type="text"
+                                                                       name='telEmployee'/>
+                                                                <ErrorMessage name='telEmployee' component='div'
+                                                                              className='error_red_employee'/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <div className="form-group">
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
                                                         <span className="form-label">Cập nhật hình ảnh (<span
                                                             style={{color: 'red'}}>*</span>)</span>
-                                                            <Field className="custom-file-input"
-                                                                   accept="image/png, image/gif, image/jpeg" type="file"
-                                                                   id="input-file"
-                                                                   style={{
-                                                                       marginTop: "30px",
-                                                                       marginLeft: "30px",
-                                                                       width: '50%'
-                                                                   }}
-                                                                   ref={inputFileRef} onChange={handleInputChange}
-                                                                   name='image'/>
-                                                            <ErrorMessage name='image' component='div'
-                                                                          className='error_red_employee'/>
+                                                                <Field className="custom-file-input"
+                                                                       accept="image/png, image/gif, image/jpeg"
+                                                                       type="file"
+                                                                       id="input-file"
+                                                                       style={{
+                                                                           marginTop: "30px",
+                                                                           marginLeft: "30px",
+                                                                           width: '50%'
+                                                                       }}
+                                                                       ref={inputFileRef} onChange={handleInputChange}
+                                                                       name='image'/>
+                                                                <ErrorMessage name='image' component='div'
+                                                                              className='error_red_employee'/>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div style={{textAlign: 'center'}}>
-                                                    <Link to='/employee' className="btn"
-                                                          style={{
-                                                              background: 'gray',
-                                                              marginRight: '10px',
-                                                              color: 'white'
-                                                          }}>Quay
-                                                        lại
-                                                    </Link>
-                                                    <button type='submit' className="btn"
-                                                            style={{background: '#daa32a'}}>Xác nhận
-                                                    </button>
-                                                </div>
-                                            </Form>
-                                        </Formik>
+                                                    <div style={{textAlign: 'center'}}>
+                                                        <Link to='/employee' className="btn"
+                                                              style={{
+                                                                  background: 'gray',
+                                                                  marginRight: '10px',
+                                                                  color: 'white'
+                                                              }}>Quay
+                                                            lại
+                                                        </Link>
+                                                        <button type='submit' className="btn"
+                                                                style={{background: '#daa32a'}}>Xác nhận
+                                                        </button>
+                                                    </div>
+                                                </Form>
+                                            </Formik>
+                                        </div>
                                     </div>
                                 </div>
+
+
                             </div>
-
-
                         </div>
                     </div>
                 </div>
-            </div>
-
-        </>
-    )
-        ;
+            </>
+        );
+    }
+    return <Unauthorzied/>
 }
 
 export default EditEmployee;
