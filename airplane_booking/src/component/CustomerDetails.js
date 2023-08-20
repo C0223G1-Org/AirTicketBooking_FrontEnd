@@ -30,7 +30,7 @@ export default function CustomerDetails() {
   },[])
 
   return (
-
+<div className="hoalty">
     <div id="booking" className="section">
       <div className="section-center">
         <div className="container">
@@ -117,5 +117,6 @@ export default function CustomerDetails() {
         </div>
       </div>
     </div>
+</div>
   );
 }
