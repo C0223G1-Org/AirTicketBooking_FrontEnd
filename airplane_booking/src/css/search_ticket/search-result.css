@@ -1,8 +1,8 @@
 
-.search-result #detail-ticket-search {
+#search-result {
     box-sizing: border-box;
     background-image: url('../search_ticket/img/background.jpg');
-    padding:  40px 0px 30px 30px;;
+  
     font-family: "Diavlo", "sans-seriff";
     text-transform: capitalize;
 }
@@ -12,13 +12,22 @@
 }
 #search-result .wrapper {
     align-items: center;
-    background: rgba(237, 234, 234, 0.422);
+    background: #fff;
     padding: 30px 100px;
 
 }
 #search-result .d-flex{
     position: relative;
     left: 950px;
+}
+.inline-flex .text-sm  {
+    color: rgb(223, 165, 18);
+    background-color: #fff;
+    border: 1px solid rgb(223, 165, 18);
+}
+.text-sm:hover{
+    background-color:rgb(223, 165, 18) ;
+    color: #fff;
 }
 #search-result .title-search {
     background-color: #016984;

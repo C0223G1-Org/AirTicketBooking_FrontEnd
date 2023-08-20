@@ -15,6 +15,7 @@ const UserChat = () => {
   const [hasSentStartMessage, setHasSentStartMessage] = useState(false);
   const bottomRef = useRef(null);
   const [isFirstMessage, setIsFirstMessage] = useState(true);
+  
   useEffect(() => {
     if (chatId) {
       const messagesRef = ref(database, `chats/${chatId}/messages`);
