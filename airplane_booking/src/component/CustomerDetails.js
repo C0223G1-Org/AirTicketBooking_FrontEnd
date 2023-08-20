@@ -1,21 +1,33 @@
 import { useEffect, useState } from "react";
 import { getCustomerById } from "../services/CustomerServices";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import moment from 'moment';
 import "../css/customer/customer_update_details.css"
+import Swal from "sweetalert2";
 
 
 
 
 export default function CustomerDetails() {
-
+  const navigate=useNavigate()
   const [customer, setCustomer] = useState({})
   const param = useParams()
   const [id,setId]=useState(0)
 
   const getCustomer = async (id) => {
-    const data = await getCustomerById(id)
+    try {
+      const data = await getCustomerById(id)
     setCustomer(data)
+  }
+  catch (error) {
+      Swal.fire({
+          icon: "error",
+          timer: 1000,
+          title: "Không tìm thấy đối tượng này"
+      })
+      navigate(`/home`)
+  }
+    
 
   }
   // console.log(customer.imgCustomer)

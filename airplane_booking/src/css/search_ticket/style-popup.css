@@ -447,7 +447,7 @@ button#fpt_ai_livechat_button {
     background-image: url('../search_ticket/img/background.jpg');
     padding:  40px 0px 30px 30px;;
     font-family: "Diavlo", "sans-seriff";
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     background-size: cover;
     background-position: center;
 }

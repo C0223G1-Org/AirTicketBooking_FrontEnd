@@ -84,7 +84,7 @@ const UserChat = () => {
       timestamp: currentTime.toLocaleDateString("vi-VN", {
         hour: "2-digit",
         minute: "2-digit",
-        second:"2-digit"
+        second:"2-digit"  
       }),
     });
     // Gửi tin nhắn mới lên database

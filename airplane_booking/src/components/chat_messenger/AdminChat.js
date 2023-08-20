@@ -10,15 +10,7 @@ const AdminPage = () => {
   const [userName, setUserName] = useState("");
   const bottomRef = useRef(null); // Tham chiếu tới phần tử cuối cùng
  const [flag,setFlag]=useState(false)
-  // const list= async () =>{
-  //     const ordersref = collection(database, "users");
-  //     const q = query(ordersref, orderBy("timezone", "desc"));
-  //     const querysnapshot = await q.get();
-  //     console.log(querysnapshot);
-  //   }
-  //   useEffect(()=>{
-  //     list()
-  //   },[])
+
   useEffect(() => {
     // Lấy danh sách các cuộc trò chuyện
     const chatsRef = ref(database, "users");
@@ -122,7 +114,7 @@ const AdminPage = () => {
       timestamp: currentTime.toLocaleTimeString("vi-VN", {
         hour: "2-digit",
         minute: "2-digit",
-        second:"2-digit"
+       
       }),
     };
 
@@ -131,6 +123,7 @@ const AdminPage = () => {
 
     setAdminMessage("");
   };
+ 
 
   return (
 

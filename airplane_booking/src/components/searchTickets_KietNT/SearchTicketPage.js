@@ -156,6 +156,7 @@ export default function SearchTicketPage() {
                 <div
                   className="col-md-7 col-sm-12 col-md-offset-1"
                   id="search_chuyenbay1"
+                  style={{paddingBottom:'0'}}
                 >
                   <img src={img} alt="" id="img_2" />
                 </div>
