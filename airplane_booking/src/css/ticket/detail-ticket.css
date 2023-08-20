@@ -9,16 +9,25 @@ body {
 #detail-ticket .wrapper {
     align-items: center;
     background: rgba(237, 234, 234, 0.422);
-    padding: 10px 100px;
-    text-transform: capitalize;
+    padding: 0px 100px;
+    margin-bottom: 20px;
 
 }
 
 #detail-ticket .title {
     background-color: #016984;
     color: #fff;
-    padding: 20px 0;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    padding: 18px 0;
     text-transform: uppercase;
+}
+#detail-ticket .route{
+    color: #1b6d85;
+    text-transform: initial;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
 }
 
 #detail-ticket .vietnam-airline {
@@ -26,7 +35,7 @@ body {
 }
 
 #detail-ticket .wrap {
-    margin-top: 40px;
+    margin-top: 30px;
     padding-left: 20px;
 }
 
@@ -40,7 +49,8 @@ body {
 #detail-ticket .wrap .location span {
     font-weight: bold;
 }
-#detail-ticket .nam-passenger{
+
+#detail-ticket .nam-passenger {
     padding-left: 2px;
     color: #daa310;
 }
@@ -78,22 +88,30 @@ body {
     height: 26px
 }
 
-#detail-ticket .btn {
+#detail-ticket .detail-ticket-btn {
     margin: 20px 0;
+    text-align: center;
 }
 
-#detail-ticket .btn button {
-    border: none;
-    background-color: #daa310;
-    color: #fff;
+#detail-ticket .detail-ticket-btn button {
+    border: 2px solid #daa310;
+    background-color: #ffffff;
+    color: #daa310;
     width: 200px;
     font-size: 20px;
-    padding: 10px 0;
     border-radius: 5px;
     height: 40px;
 }
 
-#detail-ticket .btn button:first-child {
+#detail-ticket .detail-ticket-btn button:hover {
+    border: none;
+    background-color: #daa310;
+    color: #ffffff;
+
+}
+
+
+#detail-ticket .detail-ticket-btn button:first-child {
     margin-right: 40px;
 }
 
@@ -127,13 +145,14 @@ body {
 /*}*/
 
 @media (max-width: 768px) {
-    body{
+    body {
         font-size: 10px;
         padding: 0;
         margin: 0;
     }
-    #detail-ticket.container{
-        padding:0;
+
+    #detail-ticket.container {
+        padding: 0;
     }
 
     #detail-ticket .title p {
@@ -144,6 +163,7 @@ body {
         padding: 20px;
         margin: 0px;
     }
+
     #detail-ticket .row {
         --bs-gutter-x: 0.5rem;
         --bs-gutter-y: 0;
@@ -153,10 +173,12 @@ body {
         margin-right: calc(-.5 * var(--bs-gutter-x));
         margin-left: calc(-.5 * var(--bs-gutter-x));
     }
-    #detail-ticket .wrap .row{
+
+    #detail-ticket .wrap .row {
         padding-right: 0;
     }
-    #detail-ticket .wrap .location span:last-child{
+
+    #detail-ticket .wrap .location span:last-child {
         display: block;
     }
 
@@ -168,8 +190,8 @@ body {
         display: none;
     }
 
-    #detail-ticket .btn button {
-        margin-left:60px;
+    #detail-ticket .detail-ticket-btn button {
+        margin-left: 60px;
         margin-bottom: 10px;
     }
 

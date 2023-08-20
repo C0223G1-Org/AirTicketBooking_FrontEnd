@@ -1,7 +1,7 @@
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getCustomerById, updateCustomer } from '../services/CustomerServices';
+import { UpdateCustomer, getCustomerById } from '../services/CustomerServices';
 import Swal from 'sweetalert2'
 import * as yup from "yup";
 import { v4 } from 'uuid';
@@ -26,27 +26,29 @@ export default function CustomerUpdate() {
     // const imagesListRef = ref(storage, "images/");
     const [status, setStatus] = useState(true)
     const navigate = useNavigate()
-    const getCustomer = async() => {
-        try{       
-        const customer = await getCustomerById(param.id)
-                setCustomer(customer)}
-                catch(error){
-                        Swal.fire({
-                            icon:"error",
-                            timer:2000,
-                            title: "Không tìm thấy đối tượng này"
-                        })
-                        
-                }
+    const getCustomer = async () => {
+        try {
+            const customer = await getCustomerById(param.id)
+            setCustomer(customer)
         }
-    
+        catch (error) {
+            Swal.fire({
+                icon: "error",
+                timer: 2000,
+                title: "Không tìm thấy đối tượng này"
+            })
+            navigate(`/home`)
+        }
+    }
+
 
     const updateCus = (async (update) => {
-        console.log(status);
         // setStatus(false)
         // console.log(status);
         if (imageUpload == null) {
-            await updateCustomer({ ...update, imgCustomer: customer.imgCustomer }).then(
+        console.log("status");
+
+            await UpdateCustomer({ ...update, imgCustomer: customer.imgCustomer }).then(
                 navigate(`/customers/details/${customer.idCustomer}`),
                 // getCustomer()
             ).then(
@@ -64,7 +66,7 @@ export default function CustomerUpdate() {
             const imageRef = ref(storage, fileName);
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then(async (url) => {
-                    await updateCustomer({ ...update, imgCustomer: url }).then(
+                    await UpdateCustomer({ ...update, imgCustomer: url }).then(
                         navigate(`/customers/details/${customer.idCustomer}`),
                         // getCustomer()
                     );
@@ -114,6 +116,7 @@ export default function CustomerUpdate() {
     return (
         <>
             {customer.idCustomer &&
+                <div className="hoalty">
                 <div id="booking" className="section" >
                     <div className="section-center">
                         <Formik
@@ -145,7 +148,7 @@ export default function CustomerUpdate() {
                             }}
                         >
                             <div className="container">
-                                <div className="row">
+                                <div className="row" >
                                     <div className="col-12 col-sm-12 col-md-4 col-lg-4">
                                         <div>
                                             <img style={{ marginTop: 50 }} name='imgCustomer' src={customer.imgCustomer != "" ? customer.imgCustomer : "https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"} id="img-preview" ref={imgPreviewRef} alt="Preview" />
@@ -274,8 +277,8 @@ export default function CustomerUpdate() {
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <div className="form-group">
-                                                            <span className="form-label" style={{ marginBottom: '20px' }}>Ảnh</span>
-                                                            <Field className="custom-file-input" style={{ paddingTop: '35px' }} accept="image/png, image/gif, image/jpeg" type="file" id="input-file" ref={inputFileRef} onChange={handleInputChange} name='imgCustomer' />
+                                                            <span className="form-label " style={{ marginBottom: '20px' }}>Ảnh</span>
+                                                            <Field className="form-control" style={{ paddingTop: '35px',color:"transparent"}} accept="image/png, image/gif, image/jpeg" type="file" id="input-file" ref={inputFileRef} onChange={handleInputChange} name='imgCustomer' />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
@@ -311,6 +314,7 @@ export default function CustomerUpdate() {
                                 </div>
                             </div></Formik>
                     </div>
+                </div>
                 </div>
             }
         </>
