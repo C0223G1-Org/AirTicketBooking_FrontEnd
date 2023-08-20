@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { TicketContext } from "./TicketContext";
 import { searchTicketByNameAndIdCardPassengerResult } from "../../services/TicketService";
 import "../../css/search_ticket/search-result.css";
+
 export default function SearchResultPage() {
   const { tickets, setTickets } = useContext(TicketContext);
   const [searchTicket, setSearchTicket] = useState([]);
@@ -9,68 +10,51 @@ export default function SearchResultPage() {
 
   let [page, setPage] = useState(0);
   console.log(page);
-  // const getTicketList = async () => {
-  //   const data = await searchTicketByNameAndIdCardPassengerResult(
-  //     tickets.content[0].namePassenger,
-  //     tickets.content[0].idCardPassenger,
-  //     page
-  //   );
-  //   console.log(page);
-  //   setSearchTicket(data);
-  // };
+
   const nextPage = async () => {
-    page += 1;
-    if (page < searchTicket.totalPages) {
-      setPage(page);
-      console.log(page);
-      console.log(page);
+    let nextPageValue = page + 1;
+    if (nextPageValue < searchTicket.totalPages) {
+      setPage(nextPageValue);
+      console.log(nextPageValue);
       const data = await searchTicketByNameAndIdCardPassengerResult(
-        tickets.content[0].namePassenger,
-        tickets.content[0].idCardPassenger,
-        page
+        tickets.content?.[0]?.namePassenger,
+        tickets.content?.[0]?.idCardPassenger,
+        nextPageValue
       );
       setSearchTicket(data);
-    } else {
-      page -= 1;
     }
   };
 
   const previousPage = async () => {
-    page -= 1;
-    if (page >= 0) {
-      setPage(page);
-      console.log(page);
+    let previousPageValue = page - 1;
+    if (previousPageValue >= 0) {
+      setPage(previousPageValue);
+      console.log(previousPageValue);
       const data = await searchTicketByNameAndIdCardPassengerResult(
-        tickets.content[0].namePassenger,
-        tickets.content[0].idCardPassenger,
-        page
+        tickets.content?.[0]?.namePassenger,
+        tickets.content?.[0]?.idCardPassenger,
+        previousPageValue
       );
       setSearchTicket(data);
-      console.log(page);
-    } else {
-      page += 1;
     }
   };
 
-  // useEffect(() => {
-  //   getTicketList();
-  // }, [page]);
   useEffect(() => {
-    (async () =>
-      setSearchTicket(
-        await searchTicketByNameAndIdCardPassengerResult(
-          tickets.content[0].namePassenger,
-          tickets.content[0].idCardPassenger,
-          page
-        )
-      ))();
+    (async () => {
+      const data = await searchTicketByNameAndIdCardPassengerResult(
+        tickets.content?.[0]?.namePassenger,
+        tickets.content?.[0]?.idCardPassenger,
+        page
+      );
+      setSearchTicket(data);
+    })();
   }, [page]);
   return (
     <>
       {searchTicket.content && (
-        <div id="search-result">  
-          <div id="detail-ticket-search">
-            <div className="container">
+        <div id="search-result">
+          <div className="container">
+            <div id="detail-ticket-search" style={{paddingTop:"20px",paddingBottom:"20px"}}>
               <div className="title-search text-center">
                 <p className="h1">Lịch Sử chuyến bay</p>
               </div>

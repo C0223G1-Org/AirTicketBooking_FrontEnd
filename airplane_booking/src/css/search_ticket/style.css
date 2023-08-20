@@ -54,28 +54,31 @@
     /* max-width: 642px; */
     width: 100%;
     margin: auto;
-    /*padding: 25px 25px 25px;*/
+    /* padding: 25px 25px 25px; */
     border-radius: 4px;
-    -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
     box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+    height: 662px;
 }
 
 .booking-search-form-padding {
     padding: 20px 25px 25px;
 }
-
+.error{
+    color: red;
+}
 .booking-search-form .form-group {
     position: relative;
     margin-bottom: 20px;
 
 }
-#search_chuyenbay {
-    height: 697px;
+#search_chuyenbay1 {
     position: relative;
-    padding: 0px;
-    bottom: 26px;
+    right: 12px;
+    /* padding: 0; */
+    z-index: 1;
+    padding-bottom: 30px;
+    padding-top: 20px;
 }
-
  #search_chuyenbay1 {
     position: relative;
     right: 12px;
@@ -249,11 +252,11 @@
     color: #191a1e;
 }
 
-#img_2{
-    src: url(../../css/search_ticket/img/img_1.png);
+#img_2 {
+    src: url(http://localhost:3000/static/media/img_1.86c476e….png);
     position: relative;
     display: block;
-    width: 100%;
+    width: 707px;
     z-index: 2;
-
+    right: 12px;
 }
