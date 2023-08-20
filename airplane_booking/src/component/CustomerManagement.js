@@ -254,7 +254,7 @@ export default function CustomerManagement() {
                             <div className="inline-block min-w-full shadow rounded-lg ">
                                 <div className=""
                                      style={{display: "flex", flexDirection: "column", minHeight: "100%"}}>
-                                    <div style={{flex: "1", minHeight: "416px"}}>
+                                    <div className="inlineTable" >
                                 {
 
                                     <table className="min-w-full leading-normal myTable" style={{minWeight:"1000px"}}>
