@@ -1,6 +1,6 @@
 import axios from "axios";
 import { date } from "yup";
-import qs from 'qs';
+import * as qs from 'qs';
 
 export async function searchTicketByNameAndIdCardPassenger(name,idCard,page) {
     const res = await axios.get('http://localhost:8080/tickets/search-ticket/'+ name +'/' + idCard + '?page=' + page)
@@ -72,4 +72,9 @@ export const searchUnBookedTicket=async(page,ticketSearch)=>{
     const ticket = qs.stringify(ticketSearch);
     const response=await axios.get(`http://localhost:8080/tickets/search-unbooked/${page}?${ticket}`)
     return response.data
+}
+export const deleteTicketFlagIsFalse=async(idCustomer)=>{
+    
+ await axios.delete(`http://localhost:8080/tickets/delete/${idCustomer}`)
+  
 }

@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8d74d6a-ed3f-40c1-8fdf-a4da6fe9378b" name="Changes" comment="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 20/8 lan 1">
+    <list default="true" id="a22c4e3d-69c9-4531-b057-73ef87a7ab83" name="Changes" comment="Nhan update  18/08 00.34">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/DetailHistoryPaymentComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/DetailHistoryPaymentComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/payment/Payment.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/payment/Payment.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketBooked.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBooked.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketUnBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketUnBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,13 +25,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="main" />
-      </list>
-    </option>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -40,77 +34,84 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Module-5/flight/test.html" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Codegym/module-6-airline/AirTicketBooking_FrontEnd/airplane_booking&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c8d74d6a-ed3f-40c1-8fdf-a4da6fe9378b" name="Changes" comment="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan nagy 15/8" />
+      <changelist id="a22c4e3d-69c9-4531-b057-73ef87a7ab83" name="Changes" comment="Nhan update lan 3 18/5 10:50" />
       <created>1692013370002</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692013370002</updated>
       <workItem from="1692013374244" duration="33000" />
       <workItem from="1692100149710" duration="6984000" />
-      <workItem from="1692112901997" duration="209000" />
-      <workItem from="1692245910571" duration="65000" />
-      <workItem from="1692292074236" duration="1349000" />
-      <workItem from="1692294228794" duration="10000" />
-      <workItem from="1692294861684" duration="934000" />
-      <workItem from="1692296092279" duration="538000" />
-      <workItem from="1692505812712" duration="1600000" />
-      <workItem from="1692511361777" duration="3928000" />
+      <workItem from="1692180744088" duration="28000" />
+      <workItem from="1692258049897" duration="1211000" />
+      <workItem from="1692260290985" duration="871000" />
+      <workItem from="1692271476124" duration="38000" />
+      <workItem from="1692271772930" duration="2079000" />
+      <workItem from="1692287368009" duration="22000" />
+      <workItem from="1692289676966" duration="436000" />
+      <workItem from="1692292197291" duration="1857000" />
+      <workItem from="1692320845350" duration="732000" />
+      <workItem from="1692321682900" duration="420000" />
+      <workItem from="1692329894990" duration="12000" />
     </task>
-    <task id="LOCAL-00001" summary="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 15/8 lan 2">
-      <created>1692112983425</created>
+    <task id="LOCAL-00001" summary="Nhan update  17/8 15:00">
+      <created>1692259144780</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1692112983425</updated>
+      <updated>1692259144780</updated>
     </task>
-    <task id="LOCAL-00002" summary="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 17/8 lan 1">
-      <created>1692292143618</created>
+    <task id="LOCAL-00002" summary="Nhan update  17/8 15:00">
+      <created>1692260732068</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1692292143618</updated>
+      <updated>1692260732068</updated>
     </task>
-    <task id="LOCAL-00003" summary="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 18/8 lan 1">
-      <created>1692293782961</created>
+    <task id="LOCAL-00003" summary="Nhan update  17/8 15:00">
+      <created>1692271803903</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1692293782961</updated>
+      <updated>1692271803903</updated>
     </task>
-    <task id="LOCAL-00004" summary="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 18/8 lan 1">
-      <created>1692294938980</created>
+    <task id="LOCAL-00004" summary="Nhan update  17/8 23:30">
+      <created>1692289702781</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1692294938980</updated>
+      <updated>1692289702781</updated>
     </task>
-    <task id="LOCAL-00005" summary="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 20/8 lan 1">
-      <created>1692511440826</created>
+    <task id="LOCAL-00005" summary="Nhan update  18/08 00.10">
+      <created>1692292264933</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1692511440826</updated>
+      <updated>1692292264933</updated>
     </task>
-    <task id="LOCAL-00006" summary="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 20/8 lan 1">
-      <created>1692511472685</created>
+    <task id="LOCAL-00006" summary="Nhan update  18/08 00.34">
+      <created>1692293729893</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1692511472685</updated>
+      <updated>1692293729894</updated>
     </task>
     <option name="localTasksCounter" value="7" />
     <servers />
@@ -128,13 +129,12 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 15/8 lan 2" />
-    <MESSAGE value="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 17/8 lan 1" />
-    <MESSAGE value="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 18/8 lan 1" />
-    <MESSAGE value="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 20/8 lan 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 20/8 lan 1" />
+    <MESSAGE value="Nhan update  17/8 15:00" />
+    <MESSAGE value="Nhan update  17/8 23:30" />
+    <MESSAGE value="Nhan update  18/08 00.10" />
+    <MESSAGE value="Nhan update  18/08 00.34" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nhan update  18/08 00.34" />
   </component>
 </project>

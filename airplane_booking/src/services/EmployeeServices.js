@@ -10,7 +10,7 @@ export const createEmployee = async (employee) => {
 
 export const updateEmployee = async (employee) => {
     try {
-        await axios.patch(`http://localhost:8080/api/employee/`, employee)
+        await axios.patch(`http://localhost:8080/api/employee/${employee.idEmployee}`, employee)
     } catch (e) {
 
     }
@@ -51,10 +51,10 @@ export async function deleteEmployee(id) {
     return response.data;
 }
 
-export async function getEmployeeById(id) {
-    const response = await axios.get(`http://localhost:8080/api/employee/${id}`)
-    return response.data;
-}
+// export async function getEmployeeById(id) {
+//     const response = await axios.get(`http://localhost:8080/api/employee/${id}`)
+//     return response.data;
+// }
 
 export async function getEmployeeByEmail(email) {
     const res = await axios.get("http://localhost:8080/api/employee/login/" + email);

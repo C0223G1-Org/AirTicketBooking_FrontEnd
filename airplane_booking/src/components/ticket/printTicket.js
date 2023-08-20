@@ -27,13 +27,13 @@ export default function Print() {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: 'emp-data',
-
+    onAfterPrint: () => alert('In vé thành công')
   })
   return (
-    <>
+
+    <div id="print">
       <div ref={componentRef} style={{ width: '100%', height: window.innerHeight }}>
         <div className="ticket">
-
           <div className="row col-12 print">
             <h1 className="codeGym">VÉ MÁY BAY - CODEGYM AIRLINES</h1>
           </div>
@@ -113,6 +113,6 @@ export default function Print() {
       <div className="button-area">
         <button onClick={handlePrint}>In vé</button>
       </div>
-    </>
+    </div>
   )
 }

@@ -212,6 +212,23 @@
         scroll-behavior: smooth
     }
 }
+.brand-logo {
+margin-bottom: 5px;
+}
+.brand-logo a{
+    text-decoration: none;
+}
+.brand-logo img{
+    margin-left: 35px;
+
+}
+.codegym-airline {
+    text-decoration: none;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #daa310;
+    font-weight: bold;
+}
 /*===========*/
 table p {
     margin-top: 0;
@@ -2490,6 +2507,7 @@ progress {
     }
 }
 
+
 .table {
     --bs-table-color: var(--bs-body-color);
     --bs-table-bg: transparent;
@@ -2509,7 +2527,7 @@ progress {
 }
 
 .table > :not(caption) > * > * {
-    padding: 10px 16px 0px 16px;
+    padding: 16px 16px;
     background-color: var(--bs-table-bg);
     border-bottom-width: var(--bs-border-width);
     -webkit-box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);

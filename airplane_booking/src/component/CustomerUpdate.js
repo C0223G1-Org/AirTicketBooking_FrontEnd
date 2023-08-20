@@ -1,7 +1,7 @@
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getCustomerById, updateCustomer } from '../services/CustomerServices';
+import { UpdateCustomer, getCustomerById } from '../services/CustomerServices';
 import Swal from 'sweetalert2'
 import * as yup from "yup";
 import { v4 } from 'uuid';
@@ -26,24 +26,36 @@ export default function CustomerUpdate() {
     // const imagesListRef = ref(storage, "images/");
     const [status, setStatus] = useState(true)
     const navigate = useNavigate()
-    const getCustomer = async (id) => {
-        const customer = await getCustomerById(id)
-        setCustomer(customer)
+    const getCustomer = async () => {
+        try {
+            const customer = await getCustomerById(param.id)
+            setCustomer(customer)
+        }
+        catch (error) {
+            Swal.fire({
+                icon: "error",
+                timer: 2000,
+                title: "Không tìm thấy đối tượng này"
+            })
+            navigate(`/home`)
+        }
     }
 
+
     const updateCus = (async (update) => {
-        console.log(status);
         // setStatus(false)
         // console.log(status);
         if (imageUpload == null) {
-            await updateCustomer({ ...update, imgCustomer: customer.imgCustomer }).then(
+        console.log("status");
+
+            await UpdateCustomer({ ...update, imgCustomer: customer.imgCustomer }).then(
                 navigate(`/customers/details/${customer.idCustomer}`),
                 // getCustomer()
             ).then(
                 () => {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Chỉnh sửa thành công !',
+                        title: 'Chỉnh sửa thành công.  ',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -54,7 +66,7 @@ export default function CustomerUpdate() {
             const imageRef = ref(storage, fileName);
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then(async (url) => {
-                    await updateCustomer({ ...update, imgCustomer: url }).then(
+                    await UpdateCustomer({ ...update, imgCustomer: url }).then(
                         navigate(`/customers/details/${customer.idCustomer}`),
                         // getCustomer()
                     );
@@ -64,7 +76,7 @@ export default function CustomerUpdate() {
                 () => {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Chỉnh sửa thành công !',
+                        title: 'Chỉnh sửa thành công.',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -73,7 +85,7 @@ export default function CustomerUpdate() {
     })
 
     useEffect(() => {
-        getCustomer(param.id)
+        getCustomer()
     }, [param.id])
 
     const inputFileRef = useRef(null);
@@ -84,7 +96,7 @@ export default function CustomerUpdate() {
         if (file.size > 3000000) {
             Swal.fire({
                 icon: 'error',
-                title: 'Dung lượng ảnh tối đa 3MB',
+                title: 'Dung lượng ảnh tối đa 3MB.',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -104,6 +116,7 @@ export default function CustomerUpdate() {
     return (
         <>
             {customer.idCustomer &&
+                <div className="hoalty">
                 <div id="booking" className="section" >
                     <div className="section-center">
                         <Formik
@@ -115,17 +128,17 @@ export default function CustomerUpdate() {
                             }}
 
                             validationSchema={yup.object({
-                                nameCustomer: yup.string().min(3, "Họ và tên tối thiểu 3 ký tự.").max(30, "Họ và tên tối đa 30 ký tự. ").required("Vui lòng nhập họ và tên.")
-                                // .matches(/^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$/,"Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ và không chứa các kí tự đặc biệt hoặc số").required("Vui lòng nhập họ và tên"),
+                                nameCustomer: yup.string().min(3, "Họ và tên tối thiểu 3 ký tự.").max(100, "Họ và tên tối đa 100 ký tự. ").required("Vui lòng nhập họ và tên.")
+                                // .matches(/^[\\p{Lu}][\\p{Ll}]*([\\s][\\p{Lu}][\\p{Ll}]*)*$/," không chứa các kí tự đặc biệt hoặc số")
                                 , genderCustomer: yup.string().required("Vui lòng chọn giới tính."),
                                 // email_customer:yup.string().min("Email tối thiểu 12 ký tự").max("Email tối đa 50 ký tự").matches(/^[\w-]+@([\w-])+[\w-]{2,4}$/,"Nhập theo định dạng: xxx@xxx.xxx với x không phải là ký tự đặc biệt").required("Vui lòng điền email"),
-                                telCustomer: yup.string().matches(/^(\+84|0)[1-9][0-9]{8}$/, "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số").required("Vui lòng nhập số điện thoại."),
+                                telCustomer: yup.string().matches(/^(\+84|0)[1-9][0-9]{8}$/, "Không chứa các kí tự đặc biệt").required("Vui lòng nhập số điện thoại."),
                                 addressCustomer: yup.string().min(10, "Địa chỉ tối thiểu 10 kí tự.").max(100, "Địa chỉ tối đa chỉ 100 kí tự.").required("Vui lòng nhập địa chỉ."),
                                 nationalityCustomer: yup.string().required("Vui lòng chọn quốc tịch của bạn."),
-                                idCardCustomer: yup.string().min(6, "CCCD/Pasport tối thiểu 6 kí tự và tối đa 12 kí tự.").max(12, "CCCD/Pasport tối thiểu 6 kí tự và tối đa 12 kí tự.").matches(/^([A-Z][0-9]{6,12})|([0-9]{12})$/, "CCCD/Password tối đa 12 kí tự và không chứa kí tự đặc biệt.").required("Vui lòng nhập CCCD/Passport."),
+                                idCardCustomer: yup.string().min(6, "CCCD/Pasport tối thiểu 6 kí tự.").max(12, "CCCD/Pasport tối đa 12 kí tự.").matches(/^([A-Z][0-9]{6,12})|([0-9]{12})$/, "CCCD/Password không chứa kí tự đặc biệt.").required("Vui lòng nhập CCCD/Passport."),
                                 dateCustomer: yup.date().max(maxDate, 'Khách hàng phải trên 18 tuổi.')
-                                .min(minDate, 'Khách hàng phải trên 18 tuổi và dưới 100 tuổi.')
-                                .required("Vui lòng nhập ngày tháng năm sinh.")
+                                    .min(minDate, 'Khách hàng phải trên 18 tuổi và dưới 100 tuổi.')
+                                    .required("Vui lòng nhập ngày tháng năm sinh.")
                             })}
 
                             onSubmit={(values) => {
@@ -135,7 +148,7 @@ export default function CustomerUpdate() {
                             }}
                         >
                             <div className="container">
-                                <div className="row">
+                                <div className="row" >
                                     <div className="col-12 col-sm-12 col-md-4 col-lg-4">
                                         <div>
                                             <img style={{ marginTop: 50 }} name='imgCustomer' src={customer.imgCustomer != "" ? customer.imgCustomer : "https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"} id="img-preview" ref={imgPreviewRef} alt="Preview" />
@@ -232,19 +245,19 @@ export default function CustomerUpdate() {
                                                     </div>
                                                 </div>
                                                 <div className="row">
-                                                <div className="col-md-12">
-                                                    <div className="form-group">
-                                                        <span className="form-label">Địa chỉ
-                                                            (<sup style={{ fontSize: '8px' }}>
-                                                                <sup>
-                                                                    <i className="fa-solid fa-star-of-life" style={{ color: '#ff0019' }}>
-                                                                    </i>
-                                                                </sup>
-                                                            </sup>)
-                                                        </span>
-                                                        <Field className="form-control" type="text" name='addressCustomer' />
-                                                        <ErrorMessage component='div' id='error' name='addressCustomer' />
-                                                    </div>
+                                                    <div className="col-md-12">
+                                                        <div className="form-group">
+                                                            <span className="form-label">Địa chỉ
+                                                                (<sup style={{ fontSize: '8px' }}>
+                                                                    <sup>
+                                                                        <i className="fa-solid fa-star-of-life" style={{ color: '#ff0019' }}>
+                                                                        </i>
+                                                                    </sup>
+                                                                </sup>)
+                                                            </span>
+                                                            <Field className="form-control" type="text" name='addressCustomer' />
+                                                            <ErrorMessage component='div' id='error' name='addressCustomer' />
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 {/* <div className="row">
@@ -264,8 +277,8 @@ export default function CustomerUpdate() {
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <div className="form-group">
-                                                            <span className="form-label" style={{ marginBottom: '20px' }}>Ảnh</span>
-                                                            <Field className="custom-file-input" style={{ paddingTop: '35px' }} accept="image/png, image/gif, image/jpeg" type="file" id="input-file" ref={inputFileRef} onChange={handleInputChange} name='imgCustomer' />
+                                                            <span className="form-label " style={{ marginBottom: '20px' }}>Ảnh</span>
+                                                            <Field className="form-control" style={{ paddingTop: '35px',color:"transparent"}} accept="image/png, image/gif, image/jpeg" type="file" id="input-file" ref={inputFileRef} onChange={handleInputChange} name='imgCustomer' />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
@@ -301,6 +314,7 @@ export default function CustomerUpdate() {
                                 </div>
                             </div></Formik>
                     </div>
+                </div>
                 </div>
             }
         </>

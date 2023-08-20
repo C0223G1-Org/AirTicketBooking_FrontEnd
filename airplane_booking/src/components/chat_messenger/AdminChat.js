@@ -71,11 +71,14 @@ const AdminPage = () => {
 
   const handleSendMessage = () => {
     if (adminMessage.trim() === "") return;
-
+    const currentTime = new Date();
     const newAdminMessage = {
       sender: "admin",
       content: adminMessage,
-      timestamp: Date.now(),
+      timestamp: currentTime.toLocaleTimeString("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
     };
 
     // Gửi tin nhắn từ admin tới cuộc trò chuyện được chọn
@@ -85,109 +88,132 @@ const AdminPage = () => {
   };
 
   return (
-    <div id="message">
-      <div className="container" style={{}}>
-        <div
-          id="fpt_ai_livechat_container_header_chat"
-          style={{
-            background: "#1F6987FF",
-            color: "#ffffffff",
-            height: "60px",
-            zIndex: "999",
-          }}
-        >
-          <div>
-            <h4 style={{ position: "relative", top: "15px", left: "24px" }}>
-              CodeGym AirLine
-            </h4>
-          </div>
+    <div id="message" style={{ paddingLeft: "250px" }}>
+      <div
+        style={{
+          width: "80%",
+          background: "#1F6987FF",
+          color: "#ffffffff",
+          height: "60px",
+          zIndex: "999",
+        }}
+      >
+        <div>
+          <h4
+            style={{
+              position: "relative",
+              top: "15px",
+              left: "24px",
+              color: "rgb(223, 165, 18)",
+              textTransform: "uppercase",
+              fontWeight: "bold",
+            }}
+          >
+            CodeGym AirLine
+          </h4>
         </div>
-
-        <div className=" clearfix">
-          {/* <div className="col-lg-12"> */}
-          <div className="card-admin-chat chat-app ">
-            <div className="row">
-              <div id="plist" className="people-list col-3">
-                <ul className="list-unstyled chat-list mt-2 mb-0">
-                  {chats.map((chatId) => (
-                    <li
-                      className="clearfix"
-                      key={chatId}
-                      onClick={() => handleSelectChat(chatId)}
-                    >
-                      <div className="about">
-                        <div className="name">{chatId}</div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              {/* <div className="chat-container  col-9">
-                <div className="chat_messenger chat-history"> */}
-              {/* <div className="chat-history"> */}
-              <ul className=" chat-container  col-9 chat_messenger chat-history">
-                {chatMessages.map((message, index) => (
-                  <li
-                    key={index}
-                    className={`clearfix ${
-                      message.sender === "admin"
-                        ? "other-message-admin"
-                        : "seft-message-user"
+      </div>
+      <div
+        className="row people-list "
+        style={{ height: "400px", background: "#fff", width: "80%" }}
+      >
+        <div
+          className=" chat-app col-3"
+          style={{ height: "400px", borderRight: "2px solid rgb(6, 133, 170)" }}
+          id="style-8"
+        >
+          <ul>
+            {chats.map((chatId) => (
+              <li
+                className={` ${
+                  selectedChatId === chatId ? "selected-user" : ""
+                }`}
+                key={chatId}
+                onClick={() => handleSelectChat(chatId)}
+              >
+                <div className="about">
+                  <div
+                    className={`name ${
+                      selectedChatId === chatId ? "bold" : ""
                     }`}
                   >
-                    <div className="message">{message.content}</div>
-                  </li>
-                ))}
-              </ul>
-              {/* </div> */}
-            </div>
-            {/* </div>
-             </div> */}
-            <div className="row reply">
-              <div className="col-sm-1 col-xs-1 reply-emojis">
-                <i className="fa fa-smile-o fa-2x"></i>
-              </div>
-              <div className="col-sm-1 col-xs-1 reply-recording">
-                <i className="fa fa-microphone fa-2x" aria-hidden="true"></i>
-              </div>
-              <div className="col-sm-9 col-xs-9 reply-main">
-                <input
-                  onKeyDown={(event) => {
-                    if (event.keyCode == 13) {
-                      handleSendMessage();
-                    }
-                  }}
-                  className="form-control"
-                  rows="1"
-                  id="comment"
-                  placeholder="Nhập câu trả lời"
-                  value={adminMessage}
-                  onChange={(e) => setAdminMessage(e.target.value)}
-                />
-              </div>
-              <div className="col-sm-1 col-xs-1 reply-send">
-                <button
-                  className="fa fa-send fa-2x"
-                  aria-hidden="true"
-                  onClick={handleSendMessage}
+                    {chatId}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className=" col-9 ">
+          <div
+            className="row chat-app"
+            style={{ height: "350px" }}
+            id="style-8"
+          >
+            <ul className=" chat-container chat_messenger chat-history">
+              {chatMessages.map((message, index) => (
+                <li
+                  key={index}
+                  className={`clearfix ${
+                    message.sender === "admin"
+                      ? "other-message-admin"
+                      : "seft-message-user"
+                  }`}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="35"
-                    height="35"
-                    fill="currentColor"
-                    className="bi bi-send"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
-                  </svg>
-                </button>
-              </div>
+                  <div className="message">
+                    {message.content} <br />{" "}
+                    <span style={{ fontSize: "10px", float: "left" }}>
+                      {message.timestamp}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="row reply">
+            <div className="col-11">
+              <input
+                onKeyDown={(event) => {
+                  if (event.keyCode == 13) {
+                    handleSendMessage();
+                  }
+                }}
+                className="form-control"
+                rows="1"
+                id="comment"
+                placeholder="Nhập câu trả lời"
+                value={adminMessage}
+                onChange={(e) => setAdminMessage(e.target.value)}
+              />
             </div>
+
+            <a
+              className="chat__conversation-panel__button panel-item btn-icon "
+              aria-hidden="true"
+              onClick={handleSendMessage}
+            >
+              {" "}
+              <svg
+                style={{ top: "20px", left: "20px" }}
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                data-reactid="1036"
+              >
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
-      {/* </div> */}
     </div>
   );
 };
