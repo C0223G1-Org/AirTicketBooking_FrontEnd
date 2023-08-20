@@ -8,9 +8,16 @@ export const createAccount = async (account) => {
     }
 }
 
-export async function changePassword(account){
-    const res = await axios.patch("http://localhost:8080/api/account/"+account.id,account);
+export async function changePassword(account) {
+    const token = localStorage.getItem('token');
+    const res = await axios.patch("http://localhost:8080/api/account/" + account.id, account,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        });
 }
+
 export const editAccount = async (account) => {
     try {
         await axios.patch(`http://localhost:8080/api/account/q`, account)
@@ -22,12 +29,18 @@ export const editAccount = async (account) => {
 export const findById = async (id) => {
     try {
         return (await axios.get(`http://localhost:8080/api/account/q/${id}`)).data
-    }catch (e){
+    } catch (e) {
         console.log(e)
     }
 }
 
-export const getAccountByGmail = async (gmail) =>{
-    const res = await axios.get("http://localhost:8080/api/account/email/"+gmail)
+export const getAccountByGmail = async (gmail) => {
+    const token = localStorage.getItem('token');
+    const res = await axios.get("http://localhost:8080/api/account/email/" + gmail,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
     return res.data
 }

@@ -38,7 +38,8 @@ export default function Header() {
                 let data = await getEmployeeByEmail(rightEmail);
                 setUser(data);
             } else if (rightRole == "ROLE_ADMIN") {
-
+                let data = await getEmployeeByEmail(rightEmail);
+                setUser(data);
             }
         }
     }
@@ -299,7 +300,7 @@ export default function Header() {
                                     </div>
                                 </nav>
                             </header>
-                            : <header className='header'>
+                        : <header className='header'>
                                 <nav className="navbar navbar-expand-lg">
                                     <Link to={"/home"}><img className="navbar-brand" src={image}
                                                             alt='CodeGym Airline'/></Link>

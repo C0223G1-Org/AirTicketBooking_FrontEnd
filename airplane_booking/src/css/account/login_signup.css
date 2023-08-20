@@ -6,43 +6,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 
 /*--- reset code ---*/
-/*html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    border: 0;*/
-/*    font-size: 100%;*/
-/*    font: inherit;*/
-/*    vertical-align: baseline;*/
-/*}*/
 
-/*article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {*/
-/*    display: block;*/
-/*}*/
-
-/*ol, ul {*/
-/*    list-style: none;*/
-/*    margin: 0px;*/
-/*    padding: 0px;*/
-/*}*/
-
-/*blockquote, q {*/
-/*    quotes: none;*/
-/*}*/
 
 blockquote:before, blockquote:after, q:before, q:after {
     content: '';
     content: none;
 }
 
-/*table {*/
-/*    border-collapse: collapse;*/
-/*    border-spacing: 0;*/
-/*}*/
-
-/* start editing from here */
-/*a {*/
-/*    text-decoration: none;*/
-/*}*/
 
 .txt-rt {
     text-align: right;
@@ -159,6 +129,7 @@ input[type="checkbox"]:checked + label#dn:before {
     text-align: center;
     line-height: 20px;
 }
+
 h1.w3ls {
     font-size: 50px;
     color: #fff;
@@ -171,15 +142,20 @@ h1.w3ls {
 
 .content-w3ls {
     /*background-color:#202123;*/
-
     width: 80%;
-    margin: 0 auto 50px;
-    padding: 0;
+    margin: 0 auto;
 }
-.bgimagedk{
+
+.bgimagebody {
+    background-image: url(../../css/account/img/background.jpg);
+    paddingBottom: "50px"
+}
+
+.bgimagedk {
     background-image: url(../../css/account/img/maydk.png);
 }
-.bgimagedn{
+
+.bgimagedn {
     background-image: url(../../css/account/img/maydn.png);
 }
 
@@ -215,24 +191,9 @@ p.agileits2 {
     /*color: rgb(6, 133, 170);*/
     text-align: center;
     text-transform: capitalize;
-    color: rgba(248,220,255,0.42);
+    color: rgba(248, 220, 255, 0.42);
 }
 
-/*.login-container {*/
-/*    background-image: url(../../css/account/img/background.jpg); !* Hình nền của bạn *!*/
-/*    background-size: cover; !* Đảm bảo hình nền được điều chỉnh kích thước phù hợp *!*/
-/*    position: relative; !* Đặt vị trí tương đối cho phần tử cha *!*/
-/*    height: 100vh; !* Đặt chiều cao của phần tử cha là 100% chiều cao của viewport *!*/
-/*}*/
-
-/*.login-form {*/
-/*    position: absolute; !* Đặt vị trí tuyệt đối để nằm trên phần tử cha *!*/
-/*    !*top: 60%; !* Đặt vị trí đứng giữa theo chiều dọc *!*!*/
-/*    !*left: 80%; !* Đặt vị trí đứng giữa theo chiều ngang *!*!*/
-/*    !*transform: translate(-50%, -50%); !* Di chuyển phần tử lên trên và sang trái 50% của kích thước của nó *!*!*/
-/*    background-color: rgba(255, 255, 255, 0.7); !* Đặt màu nền với độ mờ (opacity) *!*/
-/*    !*padding: 20px; !* Đặt padding cho phần tử *!*!*/
-/*}*/
 .selectBox-dropdown {
     border: none !important;
     background-color: transparent !important;
@@ -273,21 +234,6 @@ input#firstname, input#email, input#password1, input#password2, select#email {
     /*border-radius: 5px;*/
 }
 
-/*.col-md-4 {*/
-/*    margin-top: 2%;*/
-/*    padding-left: 6%;*/
-/*    color: rgb(6, 133, 170);*/
-/*    font-weight: bold;*/
-/*}*/
-
-
-/*.col-md-5 {*/
-/*    margin-top: 2%;*/
-/*    padding-left: 8%;*/
-/*    color: rgb(6, 133, 170);*/
-/*    font-weight: bold;*/
-/*}*/
-
 input#firstname:focus, input#email:focus, input#password1:focus, input#password2:focus, select#email:focus, input#firstname:hover, input#email:hover, input#password1:hover, input#password2:hover, select#email:hover {
     color: rgb(6, 133, 170);
     border-bottom: 2px solid #3970b0;
@@ -326,7 +272,7 @@ input:hover:-ms-input-placeholder {
 }
 
 input.register {
-    width: 300px;
+    width: 350px;
     margin: 30px auto;
     display: block;
     height: 50px;
@@ -457,9 +403,10 @@ p.copyright a:hover {
     h2.agileits1 {
         padding: 235px 0 15px;
     }
+
     input#firstname, input#email, input#password1, input#password2, select#email {
         font-size: 15px;
-        width: 285px;
+        width: 260px;
     }
 }
 
@@ -488,7 +435,7 @@ p.copyright a:hover {
 
     input#firstname, input#email, input#password1, input#password2, select#email {
         font-size: 15px;
-        width: 240px;
+        width: 200px;
     }
 }
 
@@ -497,6 +444,7 @@ p.copyright a:hover {
     text-align: right;
     padding-right: 10%;
     margin: 0 0 10px;
+    /*padding-left: 7%;*/
 }
 
 @media (max-width: 1024px) {
@@ -514,10 +462,12 @@ p.copyright a:hover {
     .content-w3ls {
         width: 90%;
     }
+
     input#firstname, input#email, input#password1, input#password2, select#email {
-        width: 220px;
+        /*width: 220px;*/
         /*padding-right: 10px;*/
     }
+
 }
 
 /*@media (max-width: 800px) {*/
@@ -548,6 +498,9 @@ p.copyright a:hover {
     h2.agileits1 {
         padding: 210px 0 15px;
     }
+    .err-mes{
+        padding-left: 15%;
+    }
 }
 
 @media (max-width: 736px) {
@@ -569,10 +522,13 @@ p.copyright a:hover {
     .content-w3ls {
         width: 65%;
     }
-    input#firstname, input#email, input#password1, input#password2, select#email {
-        width: 320px;
-        margin: 0 auto 10px;
 
+    input#firstname, input#email, input#password1, input#password2, select#email {
+        /*width: 320px;*/
+        margin: 0 auto 10px;
+    }
+    .err-mes{
+        padding-left: 3%;
     }
 }
 

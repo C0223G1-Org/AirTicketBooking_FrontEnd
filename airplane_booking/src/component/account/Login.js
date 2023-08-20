@@ -13,19 +13,18 @@ import {Logined} from "./Logined";
 
 export function Login() {
     const navigate = useNavigate();
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
+    const [userName, setUserName] = useState(localStorage.getItem("user_name"));
+    const [password, setPassword] = useState(localStorage.getItem("password"));
     const setPwUs = async (u, p) => {
         setUserName(u);
         setPassword(p);
-        console.log(userName, password);
+        // console.log(userName, password);
     };
     useEffect(() => {
         setPwUs(localStorage.getItem("user_name"), localStorage.getItem("password"))
             .then(r => null);
-    }, [localStorage.getItem("user_name"), localStorage.getItem("password")])
+    }, [])
     const [role, setRole] = useState(localStorage.getItem("role"));
-    console.log("role " + role);
     useEffect(() => {
         setRole(localStorage.getItem("role"));
     }, []);
@@ -51,7 +50,7 @@ export function Login() {
                     })}
                     onSubmit={async (values, {setSubmitting, resetForm}) => {
                         // setSubmitting(false);
-                        console.log(values);
+                        // console.log(values);
                         if (values.check.length === 1) {
                             localStorage.setItem("user_name", values.username);
                             localStorage.setItem("password", values.password);
@@ -64,8 +63,8 @@ export function Login() {
                             username: values.username,
                             password: values.password,
                         }
-                        console.log(localStorage.getItem("user_name"), localStorage.getItem("password"));
-                        console.log(values);
+                        // console.log(localStorage.getItem("user_name"), localStorage.getItem("password"));
+                        // console.log(values);
                         try {
                             // Gửi yêu cầu đăng nhập
                             const response = await axios.post(
@@ -80,10 +79,10 @@ export function Login() {
                                 localStorage.setItem("token", response.data.token);
                                 localStorage.setItem("username", response.data.username);
                                 localStorage.setItem("role", response.data.role);
-                                console.log("resp: " + response);
-                                console.log("Token:", localStorage.token);
-                                console.log(localStorage.username);
-                                console.log(localStorage.role);
+                                // console.log("resp: " + response);
+                                // console.log("Token:", localStorage.token);
+                                // console.log(localStorage.username);
+                                // console.log(localStorage.role);
                                 // Đăng nhập thành công, chuyển hướng hoặc thực hiện hành động khác
                             }
                             // await handleSubmit(values);
@@ -105,14 +104,14 @@ export function Login() {
                 >
                     {({isSubmitting}) => (
                         <Form>
-                            {/*<div className="bgimagedk">*/}
+                            <div className="bgimagebody" style={{paddingBottom: "50px"}}>
                                 <h1 className="w3ls" style={{color: "rgb(6, 133, 170)"}}>
                                     ĐĂNG NHẬP
                                 </h1>
-                                <div className="content-w3ls bgimagedn"
+                                <div className="content-w3ls"
                                      style={{borderRadius: "7px", padding: "20px 0"}}>
                                     <div className="row ">
-                                        <div className="col-3">
+                                        <div className=" col-3">
                                         </div>
                                         <div className="col-6">
                                             <div className="content-agile2"
@@ -122,7 +121,7 @@ export function Login() {
                                                         className="col-md-4"
                                                         style={{
                                                             marginTop: "2%",
-                                                            paddingLeft: "7%",
+                                                            paddingLeft: "8%",
                                                             color: "rgb(6, 133, 170)",
                                                             fontWeight: "bold"
                                                         }}
@@ -156,7 +155,7 @@ export function Login() {
                                                         className="col-md-4"
                                                         style={{
                                                             marginTop: "2%",
-                                                            paddingLeft: "7%",
+                                                            paddingLeft: "8%",
                                                             color: "rgb(6, 133, 170)",
                                                             fontWeight: "bold"
                                                         }}
@@ -187,7 +186,7 @@ export function Login() {
                                                         className="col-md-5"
                                                         style={{
                                                             marginTop: "3%",
-                                                            paddingLeft: "8%",
+                                                            paddingLeft: "12%",
                                                             color: "rgb(6, 133, 170)",
                                                             fontWeight: "revert"
                                                         }}
@@ -248,7 +247,7 @@ export function Login() {
                                         <div className="col-3"/>
                                     </div>
                                 </div>
-                            {/*</div>*/}
+                            </div>
                         </Form>
                     )}
                 </Formik>

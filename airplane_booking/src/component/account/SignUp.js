@@ -21,9 +21,6 @@ export function SignUp() {
     const [role, setRole] = useState(localStorage.getItem("role"));
     console.log("role " + role);
     useEffect(() => {
-        // if (role === "ROLE_ADMIN" || role === "ROLE_EMPLOYEE" || role === "ROLE_CUSTOMER") {
-        //     return <Logined/>;
-        // }
         setRole(localStorage.getItem("role"));
     }, []);
     return (
@@ -58,7 +55,7 @@ export function SignUp() {
                         telCustomer: yup.string().required('Không được để trống trường này.')
                             .matches(/^(\+84|0)[1-9][0-9]{8}$/, "Nhập theo định dạng +84xxxxxxxxx hoặc 0xxxxxxxxx với x là ký tự số."),
                         nationalityCustomer: yup.string().required('Không được để trống trường này.')
-                        , // .min(1, 'Không được để trống trường này!')
+                            .min(1, 'Không được để trống trường này!'),
                         // .max(10, 'Không được để trống trường này!'),
                         idCardCustomer: yup.string().required('Không được để trống tường này.')
                             .matches(/^([A-Z][0-9]{5,12})|([0-9]{12})$/, "Hộ chiếu và CCCD phải từ 6-12 ký tự."),
@@ -115,16 +112,16 @@ export function SignUp() {
                     }}
                 >
                     {({isSubmitting}) => (
-                        <div>
-                            <div>
-
-                            </div>
+                        <div className="bgimagebody" style={{paddingBottom: "50px"}}>
                             <h1 className="w3ls" style={{color: "rgb(6, 133, 170)"}}>
                                 ĐĂNG KÝ
                             </h1>
-                            <div className="content-w3ls bgimagedk" style={{borderRadius: "7px", padding: "20px 0"}}>
-                                <div className="row"
-                                     style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
+                            <div className="content-w3ls" style={{
+                                backgroundColor: "rgba(255, 255, 255, 0.7)",
+                                borderRadius: "7px",
+                                padding: "20px 0 5px"
+                            }}>
+                                <div className="row">
                                     <div className="col-md-5" style={{
                                         marginTop: "2%",
                                         paddingLeft: "8%",
@@ -504,16 +501,37 @@ export function SignUp() {
                                                             name="nationalityCustomer"
                                                             // required=""
                                                         >
-                                                            <option value={null}>-- Chọn quốc tịch --</option>
-                                                            <option value="Việt Nam">Việt Nam</option>
-                                                            <option value="Mỹ">Mỹ</option>
-                                                            <option value="Nhật Bản">Nhật Bản</option>
-                                                            <option value="Trung Quốc">Trung Quốc</option>
-                                                            <option value="Hàn Quốc">Hàn Quốc</option>
-                                                            <option value="Ấn Độ">Ấn Độ</option>
-                                                            <option value="Lào">Lào</option>
-                                                            <option value="Italia">Italia</option>
-                                                            <option value="Thái Lan">Thái Lan</option>
+                                                            <option value=''>
+                                                                <span style={{color: "rgb(6, 133, 170)"}}>
+                                                                    -- Chọn quốc tịch --
+                                                                </span>
+                                                            </option>
+                                                            <option value='Việt Nam'>Việt Nam</option>
+                                                            <option value='Trung Quốc'>Trung Quốc</option>
+                                                            <option value='Thái Lan'>Thái Lan</option>
+                                                            <option value='Malaysia'>Malaysia</option>
+                                                            <option value='Singapo'>Singapo</option>
+                                                            <option value='Anh'>Anh</option>
+                                                            <option value='Hàn Quốc'>Hàn Quốc</option>
+                                                            <option value='Mỹ'>Mỹ</option>
+                                                            <option value='Pháp'>Pháp</option>
+                                                            <option value='Nhật Bản'>Nhật Bản</option>
+                                                            <option value='Hong Kong'>Hong Kong</option>
+                                                            <option value='Macau'>Macau</option>
+                                                            <option value='Triều Tiên'>Triều Tiên</option>
+                                                            <option value='Ấn Độ'>Ấn Độ</option>
+                                                            <option value='Nga'>Nga</option>
+                                                            <option value='Quatar'>Quatar</option>
+                                                            <option value='Thổ Nhi Kỳ'>Thổ Nhi Kỳ</option>
+                                                            <option value='Đan Mạch'>Đan Mạch</option>
+                                                            <option value='Đức'>Đức</option>
+                                                            <option value='Bỉ'>Bỉ</option>
+                                                            <option value='Thụy Sĩ'>Thụy Sĩ</option>
+                                                            <option value='Áo'>Áo</option>
+                                                            <option value='Argentina'>Argentina</option>
+                                                            <option value='Tây Ban Nha'>Tây Ban Nha</option>
+                                                            <option value='Bồ Đào Nha'>Bồ Đào Nha</option>
+                                                            <option value='Campuchia'>Campuchia</option>
                                                         </Field>
                                                         <div className="row">
                                                             <div className="col-1"/>
@@ -564,7 +582,7 @@ export function SignUp() {
                                                             isSubmitting ? <ThreeDots/> :
                                                                 <button type="submit" className="btn"
                                                                         style={{
-                                                                            marginTop: "3%",
+                                                                            marginTop: "10%",
                                                                             // paddingLeft: "15%",
                                                                             backgroundColor: "rgb(6, 133, 170)",
                                                                             color: "white",
@@ -575,7 +593,7 @@ export function SignUp() {
                                                                 </button>
                                                         }
                                                     </div>
-                                                    <div className="col-3" style={{marginTop: "2%"}}>
+                                                    <div className="col-3" style={{marginTop: "5%"}}>
                                                         <Link to='/login' style={{
                                                             textDecoration: "underline",
                                                             fontSize: "18px",
@@ -584,7 +602,6 @@ export function SignUp() {
                                                             nhập
                                                         </Link>
                                                     </div>
-
                                                 </div>
                                             </Form>
                                             {/*<div className="text-center">*/}

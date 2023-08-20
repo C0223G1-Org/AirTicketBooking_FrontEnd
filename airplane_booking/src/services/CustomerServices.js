@@ -5,9 +5,9 @@ import axios from "axios";
 //    return response
 // }
 
-export async function getCustomerById(id){
+export async function getCustomerById(id) {
     const token = localStorage.getItem('token');
-    const response =await axios.get('http://localhost:8080/customers/'+id,
+    const response = await axios.get('http://localhost:8080/customers/' + id,
         {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -15,37 +15,44 @@ export async function getCustomerById(id){
         })
     return response.data
 }
-export const CreateCustomer = async (obj)=>{
-     await axios.post("http://localhost:8080/customers/",obj)
+
+export const CreateCustomer = async (obj) => {
+    const token = localStorage.getItem('token');
+    await axios.post("http://localhost:8080/customers/", obj,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
 }
 
-export const UpdateCustomer = async (obj)=>{
-     await axios.put("http://localhost:8080/customers/"+obj.idCustomer,obj)
+export const UpdateCustomer = async (obj) => {
+    await axios.put("http://localhost:8080/customers/" + obj.idCustomer, obj)
 }
 
-export const GetCustomerById = async (id) =>{
-     const res = await axios.get("http://localhost:8080/customers/"+id)
-     return res.data
+export const GetCustomerById = async (id) => {
+    const res = await axios.get("http://localhost:8080/customers/" + id)
+    return res.data
 }
 
-export async function getListCustomers(page,name,email,nationality){
+export async function getListCustomers(page, name, email, nationality) {
 
-     const res= await axios.get(`http://localhost:8080/customers/list?page=${page}&&name=${name}&&email=${email}&&nationality=${nationality}`)
-         return res.data;
+    const res = await axios.get(`http://localhost:8080/customers/list?page=${page}&&name=${name}&&email=${email}&&nationality=${nationality}`)
+    return res.data;
 
 
- }
+}
 
- // export async function getListSearchCustomers(page,name,email,nationality){
+// export async function getListSearchCustomers(page,name,email,nationality){
 
- //         const res= await axios.get(`http://localhost:8080/customers/search?page=${page}&&name=${name}&&email=${email}&&nationality=${nationality}`)
- //         return res.data;
- // }
- export async function deleteCustomers(id){
+//         const res= await axios.get(`http://localhost:8080/customers/search?page=${page}&&name=${name}&&email=${email}&&nationality=${nationality}`)
+//         return res.data;
+// }
+export async function deleteCustomers(id) {
     await axios.put(`http://localhost:8080/customers/delete/${id}`)
- }
+}
 
- export async function getCustomerByEmail(email) {
+export async function getCustomerByEmail(email) {
     const res = await axios.get("http://localhost:8080/customers/login/" + email);
     return res.data;
- }
+}
