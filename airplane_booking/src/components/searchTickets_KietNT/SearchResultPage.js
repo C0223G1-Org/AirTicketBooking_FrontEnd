@@ -54,7 +54,10 @@ export default function SearchResultPage() {
       {searchTicket.content && (
         <div id="search-result">
           <div className="container">
-            <div id="detail-ticket-search" style={{paddingTop:"20px",paddingBottom:"20px"}}>
+            <div
+              id="detail-ticket-search"
+              style={{ paddingTop: "20px", paddingBottom: "20px" }}
+            >
               <div className="title-search text-center">
                 <p className="h1">Lịch Sử chuyến bay</p>
               </div>
@@ -165,33 +168,45 @@ export default function SearchResultPage() {
                         </div>
                       </div>
                     </div>
-                    <ul className="d-flex">
-                      <li
-                        className="btn btn-dark"
-                        style={{ listStyleType: "none" }}
+                    <div className="row">
+                    <div
+                      className="inline-flex mt-2 xs:mt-0 pad"
+                    
+                    >
+                      <button
+                        className="text-sm   py-2 px-3 rounded-l"
+
                         onClick={async () => {
                           await previousPage();
                         }}
                       >
                         Trước
-                      </li>
+                      </button>
 
-                      <li
-                        className="btn btn-success"
-                        style={{ listStyleType: "none" }}
+                      <button
+                        className="text-sm   py-2 px-3 rounded-l"
+                        style={{
+                          background: "rgb(223, 165, 18)",
+                          color: "#ffffff",
+                          marginLeft: "5px",
+                        }}
                       >
                         {page + 1}
-                      </li>
-                      <li
-                        className="btn btn-dark"
-                        style={{ listStyleType: "none" }}
+                      </button>
+                      <button
+                        className="text-sm   py-2 px-3 rounded-l"
+                        style={{
+                          marginLeft: "5px",
+                          opacity: "0,6",
+                        }}
                         onClick={async () => {
                           await nextPage();
                         }}
                       >
                         Sau
-                      </li>
-                    </ul>
+                      </button>
+                    </div>
+                    </div>
                   </div>
                 );
               })}
