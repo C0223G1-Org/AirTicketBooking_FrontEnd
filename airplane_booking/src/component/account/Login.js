@@ -56,8 +56,8 @@ export function Login() {
                             localStorage.setItem("password", values.password);
 
                         } else {
-                            localStorage.setItem("user_name", null);
-                            localStorage.setItem("password", null);
+                            localStorage.setItem("user_name", '');
+                            localStorage.setItem("password", '');
                         }
                         values = {
                             username: values.username,
