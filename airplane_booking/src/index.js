@@ -88,7 +88,7 @@ root.render(
                     <Route path="/change-password" element={<ChangePassword/>}/>
 
                     <Route path="/history-payment/:id" element={<HistoryPaymentComponent/>}/>
-                    <Route path="/detail-history/:departure/:destination/:dateBooking" element={<DetailHistoryPaymentComponent/>}/>
+                    <Route path="/detail-history/:id/:departure/:destination/:dateBooking" element={<DetailHistoryPaymentComponent/>}/>
 
                 </Routes>
 

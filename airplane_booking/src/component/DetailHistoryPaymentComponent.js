@@ -101,19 +101,21 @@ function DetailHistoryPaymentComponent() {
                                     <p className="value" style={{ width: '200px' }}>  {changePrice(item.priceTicket)} VND</p>
                                 </div>
                             </div>
-                            <button classNamey="back-to-history" style={{
-                                width: '95px',
-                                height: '40px',
-                                border: 'none',
-                                borderRadius: '10px',
-                                backgroundColor: '#dfa512',
-                                outlineColor: 'blue',
-                                marginLeft: '47%'
-                            }}><Link to={`/history-payment/${item.customer.idCustomer}`} style={{textDecoration:'none', color: 'white'}}>Quay lại</Link>
-                            </button>
+
                         </>
                     )
                 })}
+                <button classNamey="back-to-history" style={{
+                    width: '95px',
+                    height: '40px',
+                    border: 'none',
+                    borderRadius: '10px',
+                    backgroundColor: '#dfa512',
+                    outlineColor: 'blue',
+                    marginLeft: '47%'
+                }}><Link to={`/history-payment/${param.id}`} style={{textDecoration:'none', color: 'white'}}>Quay lại</Link>
+                </button>
+
             </div>
         </div>
     )
