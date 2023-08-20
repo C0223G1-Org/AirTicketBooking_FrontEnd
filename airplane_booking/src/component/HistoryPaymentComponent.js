@@ -7,7 +7,7 @@ import moment from "moment";
 
 function HistoryPaymentComponent() {
     const [payments, setPayments] = useState([]);
-   
+
     let [page, setPage] = useState(0)
     const { id } = useParams();
     let [nameDeparture, setNameDeparture] = useState("")
@@ -22,7 +22,7 @@ function HistoryPaymentComponent() {
             console.error('Error occurred while getting payment data:', error)
         }
     };
-   
+
     useEffect(() => {
         showList(page, nameDeparture, nameDestination)
     }, []);
@@ -93,7 +93,7 @@ function HistoryPaymentComponent() {
     const changePrice = (price) => {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
-   
+
 
     if (!payments) {
         return null;
@@ -107,12 +107,12 @@ function HistoryPaymentComponent() {
 
 
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-                    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-                    crossOrigin="anonymous" />
+                      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+                      crossOrigin="anonymous" />
                 <link rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
                 <link rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css" />
+                      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css" />
 
                 <div className="container mx-auto px-4 sm:px-8 background-customer" id="customer"
                 >
@@ -135,9 +135,9 @@ function HistoryPaymentComponent() {
                                     className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                             </div>
                             <button type="submit"
-                                onClick={handleButtonClick}
-                                className="text-sm  font-semibold py-2 px-4 "
-                                style={{ background: 'rgb(223, 165, 18)', color: '#ffffff', }}>
+                                    onClick={handleButtonClick}
+                                    className="text-sm  font-semibold py-2 px-4 "
+                                    style={{ background: 'rgb(223, 165, 18)', color: '#ffffff', }}>
                                 <i className="fa-solid fa-magnifying-glass"></i>
                             </button>
 
@@ -149,44 +149,44 @@ function HistoryPaymentComponent() {
                                 {
                                     <table className="min-w-full leading-normal myTable">
                                         <thead>
-                                            <tr style={{ background: 'rgb(6, 133, 170)', color: '#ffffff' }}>
-                                                <th className=" col-md-1 py-3     text-x "
-                                                    style={{ textAlign: 'center' }}>
-                                                    STT
-                                                </th>
-                                               
-                                                <th className="text-x  " style={{ textAlign: 'center' }}>
-                                                    Tên chuyến bay
-                                                </th>
-                                                <th className="text-x  " style={{ textAlign: 'center' }}>
-                                                    Nơi đi
-                                                </th>
-                                                <th className="text-x " style={{ textAlign: 'center' }}>
-                                                    Nơi đến
-                                                </th>
+                                        <tr style={{ background: 'rgb(6, 133, 170)', color: '#ffffff' }}>
+                                            <th className=" col-md-1 py-3     text-x "
+                                                style={{ textAlign: 'center' }}>
+                                                STT
+                                            </th>
 
-                                                <th className="text-x  " style={{ textAlign: 'center' }}>
-                                                    Ngày đặt vé
-                                                </th>
-                                                <th className="text-x  " style={{ textAlign: 'center' }}>
-                                                    Tổng tiền
-                                                </th>
-                                                <th className="text-x  " style={{ textAlign: 'center' }}>
-                                                    Chi Tiết
-                                                </th>
-                                            </tr>
+                                            <th className="text-x  " style={{ textAlign: 'center' }}>
+                                                Tên chuyến bay
+                                            </th>
+                                            <th className="text-x  " style={{ textAlign: 'center' }}>
+                                                Nơi đi
+                                            </th>
+                                            <th className="text-x " style={{ textAlign: 'center' }}>
+                                                Nơi đến
+                                            </th>
+
+                                            <th className="text-x  " style={{ textAlign: 'center' }}>
+                                                Ngày đặt vé
+                                            </th>
+                                            <th className="text-x  " style={{ textAlign: 'center' }}>
+                                                Tổng tiền
+                                            </th>
+                                            <th className="text-x  " style={{ textAlign: 'center' }}>
+                                                Chi Tiết
+                                            </th>
+                                        </tr>
 
                                         </thead>
                                         {payments.length !== 0 ?
                                             <tbody>
-                                                {payments.content.map((item, index) =>
+                                            {payments.content.map((item, index) =>
                                                 (
                                                     <tr key={`ctm_${index}`}>
                                                         <td className=" bg-white "
                                                             style={{ textAlign: 'center', weight: "10px" }}>
                                                             <p>{(page * 4) + (index + 1)}</p>
                                                         </td>
-                                                    
+
                                                         <td className=" px-3 py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">
                                                                 {item.nameRoute}
@@ -221,16 +221,16 @@ function HistoryPaymentComponent() {
                                                         </td>
                                                     </tr>
                                                 )
-                                                )}
+                                            )}
 
                                             </tbody>
                                             :
                                             <tbody>
-                                                <tr style={{ height: '150px' }}>
-                                                    <td style={{ color: "red", fontSize: '50px' }} colSpan="9">Không có dữ
-                                                        liệu
-                                                    </td>
-                                                </tr>
+                                            <tr style={{ height: '150px' }}>
+                                                <td style={{ color: "red", fontSize: '50px' }} colSpan="9">Không có dữ
+                                                    liệu
+                                                </td>
+                                            </tr>
                                             </tbody>
                                         }
                                     </table>
@@ -301,17 +301,17 @@ function HistoryPaymentComponent() {
                                                 borderRadius: '5px'
                                             }}>
                                                 <input id="numberPage" type="number"
-                                                    style={{ width: '50px', borderRadius: '5px' }}
-                                                    onKeyDown={async (event) => {
-                                                        if (event.keyCode === 13) {
-                                                            await searchPage()
-                                                        }
-                                                    }} />
+                                                       style={{ width: '50px', borderRadius: '5px' }}
+                                                       onKeyDown={async (event) => {
+                                                           if (event.keyCode === 13) {
+                                                               await searchPage()
+                                                           }
+                                                       }} />
                                                 <button className=""
-                                                    onClick={async () => {
-                                                        await searchPage()
-                                                    }}
-                                                    style={{ marginLeft: '10px', bodeRadius: '5px', color: 'white' }}>
+                                                        onClick={async () => {
+                                                            await searchPage()
+                                                        }}
+                                                        style={{ marginLeft: '10px', bodeRadius: '5px', color: 'white' }}>
                                                     <i
                                                         className="fa-solid fa-magnifying-glass"></i></button>
                                             </div>

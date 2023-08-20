@@ -42,6 +42,8 @@ import {CheckCode} from "./component/account/CheckCode";
 import PaymentComponent from "./component/PaymentComponent";
 import ChangePassword from "./component_SAngTDN/ChangePassword";
 import EditEmployee from "./component/Employee/EditEmployee";
+import HistoryPaymentComponent from "./component/HistoryPaymentComponent";
+import DetailHistoryPaymentComponent from "./component/DetailHistoryPaymentComponent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -88,6 +90,10 @@ root.render(
                     <Route path="/checkCode/:data" element={<CheckCode/>}/>
                     <Route path="/payment/:departure/:num" element={<PaymentComponent/>}/>
                     <Route path="/change-password" element={<ChangePassword/>}/>
+
+                    <Route path="/history-payment/:id" element={<HistoryPaymentComponent/>}/>
+                    <Route path="/detail-history/:departure/:destination/:dateBooking" element={<DetailHistoryPaymentComponent/>}/>
+
                 </Routes>
 
                 <Footer/>
