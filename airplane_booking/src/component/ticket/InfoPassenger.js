@@ -13,6 +13,7 @@ import {getTypePassengerById} from "../../services/TypePassenger";
 import {getTypeSeatByName} from "../../services/TypeSeatServices";
 import {getSeatByIdTypeSeat} from "../../services/SeatServices";
 import {getCustomerByEmail, getCustomerById} from "../../services/CustomerServices";
+import { RingLoader } from 'react-spinners';
 import Swal      from "sweetalert2";
 
 
@@ -29,6 +30,14 @@ export default function InfoPassenger() {
     const navigate = useNavigate();
     const {data} = useParams();
     const [user, setUser] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [loading1, setLoading1] = useState(true);
+    const [loading2, setLoading2] = useState(true);
+    const [loading3, setLoading3] = useState(true);
+    const [loading4, setLoading4] = useState(true);
+    const [loading5, setLoading5] = useState(true);
+    const [loading6, setLoading6] = useState(true);
+    // data
 
     // data
     const arr = data.split(",");
@@ -38,37 +47,45 @@ export default function InfoPassenger() {
     const getListLuggage = async () => {
         const data = await getAllLuggage();
         setLuggages(data);
+        setLoading(false);
     }
     const getRouteDeparture = async () => {
         const data = await getRouteById(arr[1]);
         setRoute(data);
+        setLoading1(false);
     };
 
     const getUserLogin = async() => {
         const data = await getCustomerByEmail(localStorage.getItem("username"));
         setUser(data);
+        setLoading2(false);
     }
 
     const getTypeTicket = async () => {
         const data = await getTypeTicketById(arr[0]);
         setTypeTicket(data);
+        setLoading3(false);
     };
     // nếu vé khứ hồi thì tìm tuyến bay về
     if (arr[0] == 1) {
         const getRouterDestination = async () => {
             const data = await getRouteById(arr[2]);
             setRouteDestination(data);
+            setLoading4(false);
         }
         const getTypeSeatDeparture = async () => {
             const data = await getTypeSeatByName(arr[3]);
             setTypeSeatDeparture(data);
+            setLoading5(false);
         }
         const getTypeSeatReturn = async () => {
             const data = await getTypeSeatByName(arr[4]);
             setTypeSeatReturn(data);
+            setLoading6(false);
         }
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
+            window.scrollTo(0, 0);
             getRouterDestination()
             getTypeSeatDeparture();
             getTypeSeatReturn();
@@ -80,6 +97,7 @@ export default function InfoPassenger() {
             setTypeSeat(data);
         }
         useEffect(() => {
+            window.scrollTo(0, 0);
             getTypeTicket();
             getRouteDeparture();
             getListLuggage();
@@ -87,6 +105,13 @@ export default function InfoPassenger() {
             getUserLogin()
         }, []);
 
+
+        if (!route){
+            console.log("info");
+            return null
+           
+        }
+        
 
     //format tiền tệ vnđ two-Way, giá đi
     const priceTicket = route.priceRoute * typeSeatDeparture.priceExtra
@@ -139,7 +164,7 @@ export default function InfoPassenger() {
     } else {
         numCustomer= (arr[4]* 1 + arr[5]*1);
     }
-    // console.log(arr[4]* 1 + arr[5]*1);
+    
     const numberPassenger = arrPas();
     const arrBaby = () => {
         let array = [];
@@ -183,16 +208,30 @@ export default function InfoPassenger() {
     }
 
     // validate
+// if (route==null){
+//     console.log("info");
+//     return null
+   
+// }
+
+console.log(route);
+
 
 
     return (
         <>
-    
-            <head>
+         
+      {/* {(loading==false&&loading1==false&&(arr[0]==1?loading2==false&&loading3==false&&loading4==false&&loading5==false:true)) ? ( */}
+  {(loading==false&&loading1==false&&loading2==false&&loading3==false&&(arr[0]==1?loading6==false&&loading4==false&&loading5==false:true)) ? (
+
+        <div>
+               <head>
                 <meta charSet="UTF-8"/>
                 <title>Thông Tin Hành Khách Thực Hiện Chuyến Bay</title>
             </head>
+
             {route.idRoute &&
+
                 <div>
                     <div className="container" id="info-passenger">
                         <div className="title text-center">
@@ -221,7 +260,7 @@ export default function InfoPassenger() {
                                             const customer = await getCustomerByEmail(localStorage.getItem("username"));
                                             {
                                                 values.tickets.map(async (ticket, index) => {
-                                                    console.log(JSON.stringify(ticket))
+                                                    // console.log(JSON.stringify(ticket))
                                                     let luggageDeparture
                                                     let luggageReturn
                                                     //hành lý chiều đi
@@ -501,6 +540,7 @@ export default function InfoPassenger() {
                                                                                type="text"
                                                                                name={`tickets.${index}.namePassenger`}
                                                                                id={`tickets.${index}.namePassenger`}
+                                                                               required
                                                                         />
                                                                         <ErrorMessage
                                                                             name={`tickets.${index}.namePassenger`}
@@ -514,6 +554,7 @@ export default function InfoPassenger() {
                                                                         <Field as="select"
                                                                                name={`tickets.${index}.genderPassenger`}
                                                                                id={`tickets.${index}.genderPassenger`}
+                                                                               required
                                                                         >
                                                                             <option value={""}>Chọn giới
                                                                                 tính
@@ -602,6 +643,7 @@ export default function InfoPassenger() {
                                                                             type="text"
                                                                             name={`tickets.${index}.idCardPassenger`}
                                                                             id={`tickets.${index}.idCardPassenger`}
+                                                                            required
 
                                                                         />
                                                                         <ErrorMessage
@@ -649,6 +691,7 @@ export default function InfoPassenger() {
                                                                         <Field as="select"
                                                                                name={`tickets.${index + arr[7] * 1}.genderPassenger`}
                                                                                id={`tickets.${index + arr[7] * 1}.genderPassenger`}
+                                                                               required
                                                                         >
                                                                             <option value={""}>Chọn giới tính</option>
                                                                             <option value={false}>Nữ
@@ -725,16 +768,16 @@ export default function InfoPassenger() {
                                 <Formik
                                     initialValues={initialValues}
                                     onSubmit={async (values) => {
-                                        Swal.fire({
-                                            title:"Bạn có chắc chắn muốn đặt vé không?",
-                                            icon: "question",
-                                            showCancelButton: true,
-                                            confirmButtonText: 'Xác nhận',
-                                            confirmButtonColor:"#333",
-                                            cancelButtonText: 'Không',
-                                            reverseButtons: true
-                                        }).then( async (res) => {
-                                            if (res.isConfirmed) {
+                                        // Swal.fire({
+                                        //     title:"Bạn có chắc chắn muốn đặt vé không?",
+                                        //     icon: "question",
+                                        //     showCancelButton: true,
+                                        //     confirmButtonText: 'Xác nhận',
+                                        //     confirmButtonColor:"#333",
+                                        //     cancelButtonText: 'Không',
+                                        //     reverseButtons: true
+                                        // }).then( async (res) => {
+                                            // if (res.isConfirmed) {
                                                 await new Promise((r) => setTimeout(r, 500));
                                                 const price = totalPrice1;
                                                 const typeTicketObj = {...typeTicket};
@@ -789,15 +832,15 @@ export default function InfoPassenger() {
                                                         // alert((JSON.stringify(ticket)))
 
 
-                                                        console.log(object)
+                                                        // console.log(object)
                                                         await createNewTicket(object);
                                                     })
                                                 }
                                                 navigate(`/payment/${route.departure.nameDeparture}/${numCustomer}`)
-                                            } else {
-                                                return
-                                            }
-                                        })
+                                            // } else {
+                                            //     return
+                                            // }
+
 
                                     }
                                     }
@@ -901,6 +944,7 @@ export default function InfoPassenger() {
                                                                                    type="text"
                                                                                    name={`tickets.${index}.namePassenger`}
                                                                                    id={`tickets.${index}.namePassenger`}
+                                                                                   required
                                                                             />
                                                                             <ErrorMessage
                                                                                 name={`tickets.${index}.namePassenger`}
@@ -914,6 +958,7 @@ export default function InfoPassenger() {
                                                                             <Field as="select"
                                                                                    name={`tickets.${index}.genderPassenger`}
                                                                                    id={`tickets.${index}.genderPassenger`}
+                                                                                   required
                                                                             >
                                                                                 <option value={""}>Chọn giới
                                                                                     tính
@@ -987,6 +1032,7 @@ export default function InfoPassenger() {
                                                                                 type="text"
                                                                                 name={`tickets.${index}.idCardPassenger`}
                                                                                 id={`tickets.${index}.idCardPassenger`}
+                                                                                required
 
                                                                             />
                                                                             <ErrorMessage
@@ -1019,6 +1065,7 @@ export default function InfoPassenger() {
                                                                                 type="text"
                                                                                 name={`tickets.${index + arr[4] * 1}.namePassenger`}
                                                                                 id={`tickets.${index + arr[4] * 1}.namePassenger`}
+                                                                                required
                                                                             />
                                                                             <ErrorMessage
                                                                                 name={`tickets.${index + arr[4] * 1}.namePassenger`}
@@ -1033,6 +1080,7 @@ export default function InfoPassenger() {
                                                                             <Field as="select"
                                                                                    name={`tickets.${index + arr[4] * 1}.genderPassenger`}
                                                                                    id={`tickets.${index + arr[4] * 1}.genderPassenger`}
+                                                                                   required
                                                                             >
                                                                                 <option value={""}>Chọn giới tính
                                                                                 </option>
@@ -1090,6 +1138,20 @@ export default function InfoPassenger() {
                     </div>
                 </div>
             }
+        </div>
+
+) : (
+    <div style={{
+        display: "flex",
+justifyContent: "center",
+alignItems: "center",
+height: "100vh",
+    }}>
+      <RingLoader size={150} color={'#123abc'} loading={loading} />
+    </div>
+    )}
+
+         
         </>
     )
 }
