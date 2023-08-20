@@ -8,3 +8,8 @@ export async function getSeatByIdTypeSeat(id,idRoute,number){
         console.log("Không có ghế");
     }
 }
+export const getUnSeatList=async(id)=>{
+    console.log("nhan")
+    const response = await axios.get("http://localhost:8080/seats/seat-unBook/"+id);
+    return response.data;
+}

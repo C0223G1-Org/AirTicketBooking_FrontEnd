@@ -3,29 +3,12 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="">
+    <list default="true" id="a22c4e3d-69c9-4531-b057-73ef87a7ab83" name="Changes" comment="Nhan update  18/08 00.34">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Employee/employeeEdit.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/employeeEdit.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketBooked.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBooked.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketUnBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketUnBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,19 +25,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="247ea1c3-e3fb-4a63-878e-4a256b9f25cd" />
-        <option name="url" value="https://github.com/C0223G1-Org/AirTicketBooking_FrontEnd.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -64,163 +34,86 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/fontend_module_6/AirTicketBooking_FrontEnd/airplane_booking",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Codegym/module-6-airline/AirTicketBooking_FrontEnd/airplane_booking&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\fontend_module_6\AirTicketBooking_FrontEnd\airplane_booking\src\component\Employee" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\fontend_module_6\AirTicketBooking_FrontEnd\airplane_booking\src\component\Employee" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.start" />
-      </list>
-    </recent_temporary>
-  </component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="084e0529-1f4a-4641-9cb2-c03a81bb5902" name="Changes" comment="" />
+      <changelist id="a22c4e3d-69c9-4531-b057-73ef87a7ab83" name="Changes" comment="Nhan update lan 3 18/5 10:50" />
       <created>1692013370002</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1692013370002</updated>
       <workItem from="1692013374244" duration="33000" />
       <workItem from="1692100149710" duration="6984000" />
-      <workItem from="1692184955497" duration="4779000" />
-      <workItem from="1692225872804" duration="2804000" />
-      <workItem from="1692233451322" duration="17359000" />
-      <workItem from="1692260974956" duration="2787000" />
-      <workItem from="1692284476853" duration="1860000" />
-      <workItem from="1692321011498" duration="20154000" />
-      <workItem from="1692358372206" duration="3709000" />
+      <workItem from="1692180744088" duration="28000" />
+      <workItem from="1692258049897" duration="1211000" />
+      <workItem from="1692260290985" duration="871000" />
+      <workItem from="1692271476124" duration="38000" />
+      <workItem from="1692271772930" duration="2079000" />
+      <workItem from="1692287368009" duration="22000" />
+      <workItem from="1692289676966" duration="436000" />
+      <workItem from="1692292197291" duration="1857000" />
+      <workItem from="1692320845350" duration="732000" />
+      <workItem from="1692321682900" duration="420000" />
+      <workItem from="1692329894990" duration="12000" />
     </task>
-    <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
-      <option name="closed" value="true" />
-      <created>1692107583066</created>
+    <task id="LOCAL-00001" summary="Nhan update  17/8 15:00">
+      <created>1692259144780</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1692107583067</updated>
+      <updated>1692259144780</updated>
     </task>
-    <task id="LOCAL-00002" summary="thaivv commit code tuong doi cho cac ban merge">
-      <option name="closed" value="true" />
-      <created>1692107644550</created>
+    <task id="LOCAL-00002" summary="Nhan update  17/8 15:00">
+      <created>1692260732068</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1692107644550</updated>
+      <updated>1692260732068</updated>
     </task>
-    <task id="LOCAL-00003" summary="thanh son commit frontend ngày 16-08-2023">
-      <created>1692179188594</created>
+    <task id="LOCAL-00003" summary="Nhan update  17/8 15:00">
+      <created>1692271803903</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1692179188594</updated>
+      <updated>1692271803903</updated>
     </task>
-    <task id="LOCAL-00004" summary="thanh son commit frontend ngày 16-08-2023">
-      <created>1692181209999</created>
+    <task id="LOCAL-00004" summary="Nhan update  17/8 23:30">
+      <created>1692289702781</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1692181209999</updated>
+      <updated>1692289702781</updated>
     </task>
-    <task id="LOCAL-00005" summary="thanh son commit frontend ngày 16-08-2023">
-      <created>1692186583742</created>
+    <task id="LOCAL-00005" summary="Nhan update  18/08 00.10">
+      <created>1692292264933</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1692186583742</updated>
+      <updated>1692292264933</updated>
     </task>
-    <task id="LOCAL-00006" summary="thanh son update code ngay 17-08">
-      <created>1692236673259</created>
+    <task id="LOCAL-00006" summary="Nhan update  18/08 00.34">
+      <created>1692293729893</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1692236673259</updated>
+      <updated>1692293729894</updated>
     </task>
-    <task id="LOCAL-00007" summary="thanh son update code ngay 17-08">
-      <created>1692236771277</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1692236771277</updated>
-    </task>
-    <task id="LOCAL-00008" summary="thanh son update code ngay 17-08">
-      <created>1692239928203</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1692239928203</updated>
-    </task>
-    <task id="LOCAL-00009" summary="thanh son update code ngay 17-08">
-      <created>1692241404549</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1692241404549</updated>
-    </task>
-    <task id="LOCAL-00010" summary="thanh son update code ngay 17-08">
-      <created>1692256027457</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1692256027457</updated>
-    </task>
-    <task id="LOCAL-00011" summary="HuyHD update employee ngay 17/08/2023">
-      <created>1692284555427</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1692284555427</updated>
-    </task>
-    <task id="LOCAL-00012" summary="HuyHD update employee lan 10 ngay 17/08/2023">
-      <created>1692285133902</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1692285133902</updated>
-    </task>
-    <task id="LOCAL-00013" summary="HuyHD update employee lan 10 ngay 17/08/2023">
-      <created>1692348643414</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1692348643414</updated>
-    </task>
-    <task id="LOCAL-00014" summary="HuyHD update employee lan 10 ngay 17/08/2023">
-      <created>1692350170730</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1692350170730</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,13 +131,10 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="thaivv commit code tuong doi cho cac ban merge" />
-    <MESSAGE value="VuDT commit cập nhật css FrontEnd updateTicket,và printTicket  lần 4" />
-    <MESSAGE value="VuDT commit cập nhật css và coding FrontEnd updateTicket,và printTicket lần 5" />
-    <MESSAGE value="kiet update code ngay 15-08" />
-    <MESSAGE value="thanh son update code ngay 17-08" />
-    <MESSAGE value="HuyHD update employee ngay 17/08/2023" />
-    <MESSAGE value="HuyHD update employee lan 10 ngay 17/08/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="HuyHD update employee lan 10 ngay 17/08/2023" />
+    <MESSAGE value="Nhan update  17/8 15:00" />
+    <MESSAGE value="Nhan update  17/8 23:30" />
+    <MESSAGE value="Nhan update  18/08 00.10" />
+    <MESSAGE value="Nhan update  18/08 00.34" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nhan update  18/08 00.34" />
   </component>
 </project>
