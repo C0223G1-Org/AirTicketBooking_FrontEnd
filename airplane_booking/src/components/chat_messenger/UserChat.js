@@ -1,5 +1,5 @@
 // UserChat.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { database, ref, push, onValue, set } from "../../firebase-chat.js";
 import "../../css/search_ticket/style-popup.css";
 const UserChat = () => {
@@ -13,6 +13,7 @@ const UserChat = () => {
   const [showChatbox, setShowChatbox] = useState(false);
   const [showButton, setShowbutton] = useState(false);
   const [hasSentStartMessage, setHasSentStartMessage] = useState(false);
+  const bottomRef = useRef(null);
   useEffect(() => {
     if (chatId) {
       const messagesRef = ref(database, `chats/${chatId}/messages`);
@@ -39,6 +40,14 @@ const UserChat = () => {
     // Lưu tên người dùng và chat ID vào database
     push(ref(database, `chats/${newChatId}/user`), newChatId);
     push(ref(database, `users/${username}`), newChatId);
+    const userRef = ref(database, `users/${username}`);
+    set(userRef, {
+      chatId: newChatId,
+      timestamp: currentTime.toLocaleDateString("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+    })
     const startMessage = {
       sender: "admin",
       content: `Chào ${username}, Chúc bạn một ngày tốt lành. Tôi là trợ lý ảo của Codegym Airline, Bạn cần chúng tôi trợ giúp điều gì ?`,
@@ -80,6 +89,19 @@ const UserChat = () => {
     }
     setMessage("");
   };
+
+  const scrollToElement = () => {
+    const element = document.getElementById("targetElement");
+    if (element!=null) {
+      element.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+
+    }
+  }
+  useEffect(() => {
+    // 👇️ scroll to bottom every time messages change
+    scrollToElement()
+  }, [messages,adminMessages]);
+
   return (
     <>
       <div>
@@ -102,6 +124,7 @@ const UserChat = () => {
               >
 
                 <div className="chat-history">
+                <div id="targetElement">
                   <ul className="m-b-0">
                     {messages.map((message, index) => (
                       <li
@@ -121,7 +144,10 @@ const UserChat = () => {
                         </div>
                       </li>
                     ))}
+                    <div ref={bottomRef} />
                   </ul>
+                  
+                  </div>
                 </div>
               </div>
             </div>
