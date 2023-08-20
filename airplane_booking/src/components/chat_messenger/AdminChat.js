@@ -9,8 +9,7 @@ const AdminPage = () => {
   const [adminMessage, setAdminMessage] = useState("");
   const [userName, setUserName] = useState("");
   const bottomRef = useRef(null); // Tham chiếu tới phần tử cuối cùng
-
-
+ const [flag,setFlag]=useState(false)
   // const list= async () =>{
   //     const ordersref = collection(database, "users");
   //     const q = query(ordersref, orderBy("timezone", "desc"));
@@ -20,20 +19,13 @@ const AdminPage = () => {
   //   useEffect(()=>{
   //     list()
   //   },[])
-
- 
-
   useEffect(() => {
     // Lấy danh sách các cuộc trò chuyện
     const chatsRef = ref(database, "users");
 
-
-
-    
     onValue(chatsRef, (snapshot) => {
       const data = snapshot.val();
       // const chatList = data ? Object.keys(data) : [];
-      
       console.log(data);
 
       let dataObj=Object.values(data);
@@ -68,7 +60,6 @@ const AdminPage = () => {
 
     return () => {
       // Huỷ đăng ký khi component unmount
-     
       off(chatsRef);
       if (selectedChatId) {
         const chatMessagesRef = ref(
