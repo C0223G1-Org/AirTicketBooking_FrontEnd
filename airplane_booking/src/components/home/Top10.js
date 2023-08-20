@@ -180,8 +180,8 @@ export default function GetTop10Cheapest() {
                                                 </div>
                                                 <div className="row"><h6
                                                     style={{color: "#daa310"}}>{moment(`${route.dateDeparture}`).format("DD-MM-YYYY")} </h6></div>
-                                                <div className="row"><h6>{route.nameDeparture} đến</h6></div>
-                                                <div className="row"><h6> {route.nameDestination}</h6></div>
+                                                <div className="row"><h6>{route.nameDeparture.split("-")[0]} đến</h6></div>
+                                                <div className="row"><h6> {route.nameDestination.split("-")[0]}</h6></div>
                                                 <div className="row"><h6 className='price-ticket'
                                                                          style={{color: "#daa310"}}>
                                                     Từ {<CurrencyFormat value={route.priceRoute} />} VNĐ (Một chiều)</h6></div>

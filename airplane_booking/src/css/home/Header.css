@@ -1,5 +1,8 @@
 #header {
     font-family: "Diavlo", "sans-seriff";
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .header #navbarSupportedContent a{
@@ -34,6 +37,7 @@ header {
 
 }
 nav i {
+    margin-right: 5px;
     color: white;
 }
 
