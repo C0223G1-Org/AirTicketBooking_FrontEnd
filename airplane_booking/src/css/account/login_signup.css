@@ -6,43 +6,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 
 /*--- reset code ---*/
-/* html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-    display: block;
-}
-
-ol, ul {
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-} */
-
-blockquote, q {
-    quotes: none;
-}
 
 blockquote:before, blockquote:after, q:before, q:after {
     content: '';
     content: none;
 }
 
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-/* start editing from here */
-a {
-    text-decoration: none;
-}
 
 .txt-rt {
     text-align: right;
@@ -80,9 +50,9 @@ a {
 }
 
 /* Position Relative */
-.pos-absolute {
-    position: absolute;
-}
+/*.pos-absolute {*/
+/*    position: absolute;*/
+/*}*/
 
 /* Position Absolute */
 .vertical-base {
@@ -139,7 +109,7 @@ input[type="checkbox"] {
 }
 
 /* Thiết lập kiểu checkbox được chọn */
-/* label:before {
+label#dn:before {
     content: "";
     display: inline-block;
     width: 20px;
@@ -150,19 +120,20 @@ input[type="checkbox"] {
     bottom: 1px;
     background-color: #fff;
     border: 1px solid;
-} */
+}
 
 /* Thiết lập kiểu checkbox được chọn */
-input[type="checkbox"]:checked + label:before {
+input[type="checkbox"]:checked + label#dn:before {
     content: "\2713";
     color: #666;
     text-align: center;
     line-height: 20px;
 }
+
 h1.w3ls {
     font-size: 50px;
     color: #fff;
-    padding: 40px 0;
+    padding: 30px 0;
     text-align: center;
     /*-- w3layouts --*/
     text-transform: uppercase;
@@ -171,14 +142,26 @@ h1.w3ls {
 
 .content-w3ls {
     /*background-color:#202123;*/
-    width: 86%;
-    margin: 0 auto 50px;
-    padding: 0;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.bgimagebody {
+    background-image: url(../../css/account/img/background.jpg);
+    paddingBottom: "50px"
+}
+
+.bgimagedk {
+    background-image: url(../../css/account/img/maydk.png);
+}
+
+.bgimagedn {
+    background-image: url(../../css/account/img/maydn.png);
 }
 
 .content-w3ls .content-agile1 {
     width: 40%;
-    float: left;
+    /*float: left;*/
     /*background: url(../images/content.jpg) no-repeat;*/
     background-position: center;
     background-size: cover;
@@ -202,9 +185,10 @@ h2.agileits1 {
 p.agileits2 {
     font-size: 15px;
     font-weight: normal;
-    color: rgb(6, 133, 170);
+    /*color: rgb(6, 133, 170);*/
     text-align: center;
     text-transform: capitalize;
+    color: rgba(248, 220, 255, 0.42);
 }
 
 .selectBox-dropdown {
@@ -215,19 +199,22 @@ p.agileits2 {
 }
 
 .content-w3ls .content-agile2 {
-    width: 48%;
-    float: left;
+    width: 100%;
+    /*float: left;*/
     padding: 25px 0 25px;
     /*background-color: #dadada;*/
     /*background-image: url("../img/anh-may-bay-dep-cho-iphone.jpeg");*/
     border-radius: 10px;
+    /*background-color: rgba(255, 255, 255, 0.7);*/
+    /*position: absolute;*/
 }
 
 input#firstname, input#email, input#password1, input#password2, select#email {
     width: 350px;
     height: 50px;
     /*padding: 0 5px;*/
-    color: rgb(6, 133, 170);
+    /*color: rgb(6, 133, 170);*/
+    color: black;
     font-size: 17px;
     font-weight: 200;
     background-color: transparent;
@@ -240,22 +227,9 @@ input#firstname, input#email, input#password1, input#password2, select#email {
     margin: 0 auto;
     display: block;
     outline: none;
+    /*border: 1px solid rgb(6, 133, 170);;*/
+    /*border-radius: 5px;*/
 }
-
-/* .col-md-4 {
-    margin-top: 2%;
-    padding-left: 8%;
-    color: rgb(6, 133, 170);
-    font-weight: bold;
-}
-
-
-.col-md-5 {
-    margin-top: 2%;
-    padding-left: 8%;
-    color: rgb(6, 133, 170);
-    font-weight: bold;
-} */
 
 input#firstname:focus, input#email:focus, input#password1:focus, input#password2:focus, select#email:focus, input#firstname:hover, input#email:hover, input#password1:hover, input#password2:hover, select#email:hover {
     color: rgb(6, 133, 170);
@@ -295,7 +269,7 @@ input:hover:-ms-input-placeholder {
 }
 
 input.register {
-    width: 300px;
+    width: 350px;
     margin: 30px auto;
     display: block;
     height: 50px;
@@ -426,9 +400,10 @@ p.copyright a:hover {
     h2.agileits1 {
         padding: 235px 0 15px;
     }
+
     input#firstname, input#email, input#password1, input#password2, select#email {
         font-size: 15px;
-        width: 285px;
+        width: 260px;
     }
 }
 
@@ -457,7 +432,7 @@ p.copyright a:hover {
 
     input#firstname, input#email, input#password1, input#password2, select#email {
         font-size: 15px;
-        width: 240px;
+        width: 200px;
     }
 }
 
@@ -466,6 +441,7 @@ p.copyright a:hover {
     text-align: right;
     padding-right: 10%;
     margin: 0 0 10px;
+    /*padding-left: 7%;*/
 }
 
 @media (max-width: 1024px) {
@@ -483,10 +459,12 @@ p.copyright a:hover {
     .content-w3ls {
         width: 90%;
     }
+
     input#firstname, input#email, input#password1, input#password2, select#email {
-        width: 220px;
+        /*width: 220px;*/
         /*padding-right: 10px;*/
     }
+
 }
 
 /*@media (max-width: 800px) {*/
@@ -517,6 +495,9 @@ p.copyright a:hover {
     h2.agileits1 {
         padding: 210px 0 15px;
     }
+    .err-mes{
+        padding-left: 15%;
+    }
 }
 
 @media (max-width: 736px) {
@@ -538,10 +519,13 @@ p.copyright a:hover {
     .content-w3ls {
         width: 65%;
     }
-    input#firstname, input#email, input#password1, input#password2, select#email {
-        width: 320px;
-        margin: 0 auto 10px;
 
+    input#firstname, input#email, input#password1, input#password2, select#email {
+        /*width: 320px;*/
+        margin: 0 auto 10px;
+    }
+    .err-mes{
+        padding-left: 3%;
     }
 }
 
