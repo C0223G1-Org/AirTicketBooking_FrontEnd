@@ -25,14 +25,16 @@ body {
     padding: 18px 0;
     text-transform: uppercase;
 }
-#info-passenger .route{
+
+#info-passenger .route {
     color: #1b6d85;
     text-transform: initial;
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 5px;
 }
-#info-passenger .route i{
+
+#info-passenger .route i {
     width: 40px;
     height: 20px;
 }
@@ -79,7 +81,8 @@ body {
 #info-passenger .info-third {
     margin-top: 20px;
 }
-#info-passenger .info-four .el-form-header{
+
+#info-passenger .info-four .el-form-header {
     background-color: #006790;
     color: #ffffff;
     padding: 7.5px 15px;
@@ -116,9 +119,10 @@ body {
     border: none;
     background-color: #daa310;
     color: #ffffff;
-    animation: linear 0.2s ;
+    animation: linear 0.2s;
 
 }
+
 #info-passenger .detail-ticket-btn button:first-child {
     margin-right: 40px;
 }
@@ -127,7 +131,7 @@ body {
     padding: 20px 0px;
 }
 
-#info-passenger .info-customer .list-passenger i{
+#info-passenger .info-customer .list-passenger i {
     padding-right: 10px;
     color: #006790;
 }
@@ -145,12 +149,14 @@ body {
     height: 24px;
     width: 50%;
 }
-#info-passenger .info-customer .field select option{
+
+#info-passenger .info-customer .field select option {
     padding: 2px;
     background: rgba(27, 109, 133, 0.78);
     color: #fff;
 }
-#info-passenger .info-customer .field select option:first-child{
+
+#info-passenger .info-customer .field select option:first-child {
     background-color: #daa310;
 
 }
@@ -162,16 +168,19 @@ body {
 #info-passenger #infor-ticket-2 {
     margin-top: 30px;
 }
+
 #info-passenger .fist-line {
     border-top: 1px solid #1b6d85;
     margin-bottom: 23px;
 }
+
 #info-passenger .line {
     margin-top: 20px;
     margin-bottom: 30px;
     border-top: 2px dashed #1b6d85;
 }
-#info-passenger .text-red{
+
+#info-passenger .text-red {
     color: red;
     text-transform: capitalize;
     font-size: 14px;
@@ -186,7 +195,8 @@ body {
         font-size: 10px;
 
     }
-    .all-page{
+
+    .all-page {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -200,24 +210,30 @@ body {
         padding: 20px 0;
         margin: 0px;
     }
-    #info-passenger .wrapper .wrap .info-fight{
-        display:flex;
+
+    #info-passenger .wrapper .wrap .info-fight {
+        display: flex;
         width: 100%;
     }
-    #info-passenger .wrapper .wrap .info-fight p:first-child{
+
+    #info-passenger .wrapper .wrap .info-fight p:first-child {
         width: 33.3%;
     }
-    #info-passenger .wrapper .wrap .info-fight p:nth-child(2){
+
+    #info-passenger .wrapper .wrap .info-fight p:nth-child(2) {
         width: 33.33%;
-        float: left ; 
+        float: left;
         margin-right: 10px;
     }
-    #info-passenger .wrapper .wrap .info-fight p:last-child{
+
+    #info-passenger .wrapper .wrap .info-fight p:last-child {
         float: left;
     }
+
     #info-passenger .wrapper .wrap .info-fight .logo-image {
         width: 33%;
     }
+
     #info-passenger .wrapper .wrap .info-fight .logo-image p {
         width: 100%;
     }
@@ -225,38 +241,48 @@ body {
     #info-passenger .logo-image img {
         display: none;
     }
-    #info-passenger .wrap .fist-line{
-        width: 93% ;
+
+    #info-passenger .wrap .fist-line {
+        width: 93%;
         margin-left: 10px;
     }
 
     #info-passenger .info-customer {
-        margin-left: 1px;
-        padding: 10px 10px;
+        margin-left: 20px;
         width: 100%;
+        padding: 0;
     }
-    /* #info-passenger .info-second{
-        display: block;
-    }  */
-     /* #info-passenger .info-second .col-2{
-        width: 100%;
-    }
-    #info-passenger .info-second .col-2 p.person{
-        float: left;
-        margin: 0 10px 0 0;
-    }
-    #info-passenger .info-second .col-2 p.type-ticket{
-        width: 50%;
-        padding-top: 10px;
-    } */
 
+    #info-passenger .info-second {
+        display: flex;
+
+    }
+
+    #info-passenger .info-second .col-2 {
+        width: 100%;
+        display: flex;
+    }
+
+    #info-passenger .info-second .col-2 p {
+        float: left;
+        margin-right: 10px;
+    }
+
+    #info-passenger .info-customer .col-6 {
+        display: block;
+        width: 100%;
+    }
+    #info-passenger .info-customer .col-6{
+        margin-top: 10px;
+    }
 
     #info-passenger .info-customer .field {
         margin-left: 5px;
+        margin: 5px 0;
     }
 
     #info-passenger .info-customer .field label {
-        width: 80px;
+        width: 100px;
     }
 
     #info-passenger .info-customer .field input {
@@ -267,31 +293,35 @@ body {
         width: 100px;
     }
 
-    #info-passenger .detail-ticket-btn button{
+    #info-passenger .detail-ticket-btn button {
         font-size: 15px;
-        padding: 2px  5px;
     }
+
     #info-passenger .detail-ticket-btn button {
         margin-bottom: 10px;
-        width: 150px;
+        width: 140px;
     }
 
     #info-passenger .detail-ticket-btn button:last-child {
-        margin-left: 0;
+        margin-left: -30px;
     }
-
-    #info-passenger .detail-ticket-btn button:first-child {
-        margin-left: 40px;
+    #info-passenger .wrap .fist-line,
+    .line {
+        width: 93%;
+        margin-left: 10px;
+        padding: 0;
     }
 
 }
 
-@media (max-width: 1000px ) {
+@media (max-width: 1000px) {
     #info-passenger .wrapper {
         padding: 20px;
     }
-    #info-passenger .wrap .fist-line ,.line{
-        width: 93% ;
+
+    #info-passenger .wrap .fist-line,
+    .line {
+        width: 93%;
         margin-left: 10px;
     }
 
@@ -310,8 +340,9 @@ body {
         width: 70%;
     }
 }
+
 @media (min-width: 1001px) {
-    #info-passenger .wrapper{
+    #info-passenger .wrapper {
         padding: 30px 50px;
     }
 

@@ -22,8 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9940190e-4050-4e32-b542-a40edc64470e" name="Changes" comment="Nampc commit FE ngày 18/8/2023">
+    <list default="true" id="9940190e-4050-4e32-b542-a40edc64470e" name="Changes" comment="Nampc commit FE ngày 20/8/2023">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/ticket/InfoPassenger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ticket/InfoPassenger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/ticket/detail-ticket.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/ticket/info-passenger.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +110,8 @@
       <workItem from="1692320209137" duration="25042000" />
       <workItem from="1692357015322" duration="1733000" />
       <workItem from="1692368547955" duration="1457000" />
+      <workItem from="1692417108038" duration="5986000" />
+      <workItem from="1692511982481" duration="3080000" />
     </task>
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
@@ -228,7 +234,21 @@
       <option name="project" value="LOCAL" />
       <updated>1692368814856</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Nampc commit FE ngày 19/8/2023">
+      <created>1692417151226</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1692417151226</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Nampc commit FE ngày 20/8/2023">
+      <created>1692512039216</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1692512039216</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,6 +274,8 @@
     <MESSAGE value="Nampc commit FE 6.4.8 Thông tin hành khách thực hiện chuyến bay" />
     <MESSAGE value="Nampc commit FE 6.4.8 Thông tin hành khách thực hiện chuyến bay ngày 17/8/2023" />
     <MESSAGE value="Nampc commit FE ngày 18/8/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nampc commit FE ngày 18/8/2023" />
+    <MESSAGE value="Nampc commit FE ngày 19/8/2023" />
+    <MESSAGE value="Nampc commit FE ngày 20/8/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nampc commit FE ngày 20/8/2023" />
   </component>
 </project>

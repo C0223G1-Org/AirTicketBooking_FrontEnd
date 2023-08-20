@@ -868,6 +868,7 @@ export default function InfoPassenger() {
                                                                                    type="text"
                                                                                    name={`tickets.${index}.namePassenger`}
                                                                                    id={`tickets.${index}.namePassenger`}
+                                                                                   required
                                                                             />
                                                                             <ErrorMessage
                                                                                 name={`tickets.${index}.namePassenger`}
@@ -881,6 +882,7 @@ export default function InfoPassenger() {
                                                                             <Field as="select"
                                                                                    name={`tickets.${index}.genderPassenger`}
                                                                                    id={`tickets.${index}.genderPassenger`}
+                                                                                   required
                                                                             >
                                                                                 <option value={""}>Chọn giới
                                                                                     tính
@@ -954,6 +956,7 @@ export default function InfoPassenger() {
                                                                                 type="text"
                                                                                 name={`tickets.${index}.idCardPassenger`}
                                                                                 id={`tickets.${index}.idCardPassenger`}
+                                                                                required
 
                                                                             />
                                                                             <ErrorMessage
@@ -986,6 +989,7 @@ export default function InfoPassenger() {
                                                                                 type="text"
                                                                                 name={`tickets.${index + arr[4] * 1}.namePassenger`}
                                                                                 id={`tickets.${index + arr[4] * 1}.namePassenger`}
+                                                                                requied
                                                                             />
                                                                             <ErrorMessage
                                                                                 name={`tickets.${index + arr[4] * 1}.namePassenger`}
@@ -1000,6 +1004,7 @@ export default function InfoPassenger() {
                                                                             <Field as="select"
                                                                                    name={`tickets.${index + arr[4] * 1}.genderPassenger`}
                                                                                    id={`tickets.${index + arr[4] * 1}.genderPassenger`}
+                                                                                   required
                                                                             >
                                                                                 <option value={""}>Chọn giới tính
                                                                                 </option>
