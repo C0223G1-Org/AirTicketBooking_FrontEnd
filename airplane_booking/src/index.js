@@ -31,8 +31,6 @@ import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext"
 import AdminPage from "./components/chat_messenger/AdminChat";
 import {Login} from "./component/account/Login";
 import CreateReport from "./component/report/CreateReport";
-import PaymentComponent from './component/PaymentComponent';
-import ChangePassword from './component_SAngTDN/ChangePassword';
 import {SignUp} from "./component/account/SignUp";
 import {CheckCode} from "./component/account/CheckCode";
 import PaymentComponent from "./component/PaymentComponent";
@@ -40,6 +38,8 @@ import ChangePassword from "./component_SAngTDN/ChangePassword";
 import EditEmployee from "./component/Employee/EditEmployee";
 import HistoryPaymentComponent from "./component/HistoryPaymentComponent";
 import DetailHistoryPaymentComponent from "./component/DetailHistoryPaymentComponent";
+import {UpdatePost} from "./component/post/UpdatePost";
+import CreatePost from "./component/post/CreatePost";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

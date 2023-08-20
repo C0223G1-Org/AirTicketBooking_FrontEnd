@@ -1,13 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, {useEffect, useRef, useState} from 'react';
+import {Formik, Form, Field, ErrorMessage} from "formik";
 import * as yup from "yup"
 import Swal from 'sweetalert2';
-import { GetCustomerById, UpdateCustomer } from '../services/CustomerServices';
+import {GetCustomerById, UpdateCustomer} from '../services/CustomerServices';
 import "../employeeCreateCustomer.css"
-import { useNavigate, useParams } from 'react-router-dom';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from '../firebase-chat';
-import { v4 } from "uuid";
+import {useNavigate, useParams} from 'react-router-dom';
+import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
+import {storage} from '../firebase-chat';
+import {v4} from "uuid";
+import {Unauthorzied} from "./Unauthorized";
 
 
 function EmployeeUpdateCustomer() {
@@ -22,8 +23,9 @@ function EmployeeUpdateCustomer() {
 
     const setOldImg = () => {
         var imgElement = document.getElementById("img-preview");
-        if(oldUrl){
-        imgElement.src = oldUrl;}
+        if (oldUrl) {
+            imgElement.src = oldUrl;
+        }
     }
     const onChange = (file) => {
         setFileUpload(file)
@@ -34,7 +36,7 @@ function EmployeeUpdateCustomer() {
         });
         if (file) {
             reader.readAsDataURL(file);
-          }
+        }
     }
 
     const getUrl = async (file) => {
@@ -49,9 +51,8 @@ function EmployeeUpdateCustomer() {
             const data = await GetCustomerById(params.id)
             console.log(data);
             setCustomer(data)
-            
-        }
-        catch (error) {
+
+        } catch (error) {
             navigave("/customers")
             Swal.fire({
                 icon: "error",
@@ -71,9 +72,15 @@ function EmployeeUpdateCustomer() {
         setOldImg()
     }, [oldUrl])
 
-    return (
-        <div className='hunglv'>
-            {customer.idCustomer &&
+    const [role, setRole] = useState(localStorage.getItem("role"));
+    console.log("role " + role);
+    useEffect(() => {
+        setRole(localStorage.getItem("role"));
+    }, []);
+    if (role === 'ROLE_EMPLOYEE' || role === 'ROLE_ADMIN') {
+        return (
+            <div className='hunglv'>
+                {customer.idCustomer &&
                 <Formik
                     initialValues={{
                         ...customer, imgCustomer: ""
@@ -126,11 +133,11 @@ function EmployeeUpdateCustomer() {
                         await UpdateCustomer(data)
                         navigave("/customers")
                         Swal.fire({
-                            icon: 'success',
-                            title: "Sửa đổi thành công",
-                            timer: 2000,
-                            showConfirmButton: false
-                        }
+                                icon: 'success',
+                                title: "Sửa đổi thành công",
+                                timer: 2000,
+                                showConfirmButton: false
+                            }
                         )
 
                     }}
@@ -142,8 +149,9 @@ function EmployeeUpdateCustomer() {
                                 <div className="row">
                                     <div className="col-12 col-sm-12 col-md-4 col-lg-4">
                                         <div>
-                                        <img src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg" 
-                    ref={imgPreviewRef} alt="Preview Image" id="img-preview" />
+                                            <img
+                                                src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"
+                                                ref={imgPreviewRef} alt="Preview Image" id="img-preview"/>
                                         </div>
                                     </div>
                                     <div className="col-12 col-sm-12 col-md-8 col-lg-8">
@@ -153,41 +161,48 @@ function EmployeeUpdateCustomer() {
                                             </div>
                                             <Form className="booking-form-padding">
                                                 <Field type="hidden" name="idCustomer"></Field>
-                                                <Field type="hidden" name="account" value={JSON.stringify(customer.account)} />
+                                                <Field type="hidden" name="account"
+                                                       value={JSON.stringify(customer.account)}/>
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <span className="form-label">Họ và tên (
-                                                                <sup style={{ fontSize: '8px' }}>
+                                                                <sup style={{fontSize: '8px'}}>
                                                                     <sup>
-                                                                        <i className="fa-solid fa-star-of-life" style={{ color: '#ff0019' }}>
+                                                                        <i className="fa-solid fa-star-of-life"
+                                                                           style={{color: '#ff0019'}}>
                                                                         </i>
                                                                     </sup>
                                                                 </sup>)
                                                             </span>
-                                                            <Field className="form-control" name="nameCustomer" type="text" placeholder="Tên đầy đủ" />
-                                                            <ErrorMessage className='error' name='nameCustomer' component={"div"} />
+                                                            <Field className="form-control" name="nameCustomer"
+                                                                   type="text" placeholder="Tên đầy đủ"/>
+                                                            <ErrorMessage className='error' name='nameCustomer'
+                                                                          component={"div"}/>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <span className="form-label">Giới tính (
-                                                                <sup style={{ fontSize: '8px' }}>
+                                                                <sup style={{fontSize: '8px'}}>
                                                                     <sup>
-                                                                        <i className="fa-solid fa-star-of-life" style={{ color: '#ff0019' }}>
+                                                                        <i className="fa-solid fa-star-of-life"
+                                                                           style={{color: '#ff0019'}}>
                                                                         </i>
                                                                     </sup>
                                                                 </sup>)
                                                             </span>
 
-                                                            <Field className="form-control" as="select" name="genderCustomer">
+                                                            <Field className="form-control" as="select"
+                                                                   name="genderCustomer">
                                                                 <option value="">Chọn giới tính</option>
 
                                                                 <option value={true}>Nam</option>
                                                                 <option value={false}>Nữ</option>
 
                                                             </Field>
-                                                            <ErrorMessage className='error' name='genderCustomer' component={"div"} />
+                                                            <ErrorMessage className='error' name='genderCustomer'
+                                                                          component={"div"}/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -195,87 +210,104 @@ function EmployeeUpdateCustomer() {
                                                     <div className="col-md-4">
                                                         <div className="form-group">
                                                             <span className="form-label">CCCD/Passport (
-                                                                <sup style={{ fontSize: '8px' }}>
+                                                                <sup style={{fontSize: '8px'}}>
                                                                     <sup>
-                                                                        <i className="fa-solid fa-star-of-life" style={{ color: '#ff0019' }}>
+                                                                        <i className="fa-solid fa-star-of-life"
+                                                                           style={{color: '#ff0019'}}>
                                                                         </i>
                                                                     </sup>
                                                                 </sup>)
                                                             </span>
-                                                            <Field className="form-control" name="idCardCustomer" type="text" placeholder="CCCD/Passport" />
-                                                            <ErrorMessage className='error' name='idCardCustomer' component={"div"} />
+                                                            <Field className="form-control" name="idCardCustomer"
+                                                                   type="text" placeholder="CCCD/Passport"/>
+                                                            <ErrorMessage className='error' name='idCardCustomer'
+                                                                          component={"div"}/>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-4">
                                                         <div className="form-group">
                                                             <span className="form-label">Số điện thoại (
-                                                                <sup style={{ fontSize: '8px' }}>
+                                                                <sup style={{fontSize: '8px'}}>
                                                                     <sup>
-                                                                        <i className="fa-solid fa-star-of-life" style={{ color: '#ff0019' }}>
+                                                                        <i className="fa-solid fa-star-of-life"
+                                                                           style={{color: '#ff0019'}}>
                                                                         </i>
                                                                     </sup>
                                                                 </sup>)
                                                             </span>
-                                                            <Field className="form-control" name="telCustomer" type="text" placeholder="Số điện thoại" />
-                                                            <ErrorMessage className='error' name='telCustomer' component={"div"} />
+                                                            <Field className="form-control" name="telCustomer"
+                                                                   type="text" placeholder="Số điện thoại"/>
+                                                            <ErrorMessage className='error' name='telCustomer'
+                                                                          component={"div"}/>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-4">
                                                         <div className="form-group">
                                                             <span className="form-label">Ngày sinh (
-                                                                <sup style={{ fontSize: '8px' }}>
+                                                                <sup style={{fontSize: '8px'}}>
                                                                     <sup>
-                                                                        <i className="fa-solid fa-star-of-life" style={{ color: '#ff0019' }}>
+                                                                        <i className="fa-solid fa-star-of-life"
+                                                                           style={{color: '#ff0019'}}>
                                                                         </i>
                                                                     </sup>
                                                                 </sup>)
                                                             </span>
-                                                            <Field className="form-control" name="dateCustomer" type="date" />
-                                                            <ErrorMessage className='error' name='dateCustomer' component={"div"} />
+                                                            <Field className="form-control" name="dateCustomer"
+                                                                   type="date"/>
+                                                            <ErrorMessage className='error' name='dateCustomer'
+                                                                          component={"div"}/>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="row">
                                                     <div className="form-group">
-                                                        <span className="form-label" style={{ paddingLeft: '10px' }}>Địa chỉ (
-                                                            <sup style={{ fontSize: '8px' }}>
+                                                        <span className="form-label" style={{paddingLeft: '10px'}}>Địa chỉ (
+                                                            <sup style={{fontSize: '8px'}}>
                                                                 <sup>
-                                                                    <i className="fa-solid fa-star-of-life" style={{ color: '#ff0019' }}>
+                                                                    <i className="fa-solid fa-star-of-life"
+                                                                       style={{color: '#ff0019'}}>
                                                                     </i>
                                                                 </sup>
                                                             </sup>)
                                                         </span>
-                                                        <Field className="form-control" name="addressCustomer" type="text" placeholder="Phường,Quận,Thành Phố" />
-                                                        <ErrorMessage className='error' name='addressCustomer' component={"div"} />
+                                                        <Field className="form-control" name="addressCustomer"
+                                                               type="text" placeholder="Phường,Quận,Thành Phố"/>
+                                                        <ErrorMessage className='error' name='addressCustomer'
+                                                                      component={"div"}/>
                                                     </div>
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <span className="form-label">Email (
-                                                                <sup style={{ fontSize: '8px' }}>
+                                                                <sup style={{fontSize: '8px'}}>
                                                                     <sup>
-                                                                        <i className="fa-solid fa-star-of-life" style={{ color: '#ff0019' }}>
+                                                                        <i className="fa-solid fa-star-of-life"
+                                                                           style={{color: '#ff0019'}}>
                                                                         </i>
                                                                     </sup>
                                                                 </sup>)
                                                             </span>
-                                                            <Field className="form-control" name="emailCustomer" type="text" placeholder="Email" />
-                                                            <ErrorMessage className='error' name='emailCustomer' component={"div"} />
+                                                            <Field className="form-control" name="emailCustomer"
+                                                                   type="text" placeholder="Email"/>
+                                                            <ErrorMessage className='error' name='emailCustomer'
+                                                                          component={"div"}/>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
                                                             <span className="form-label">Quốc tịch (
-                                                                <sup style={{ fontSize: '8px' }}>
+                                                                <sup style={{fontSize: '8px'}}>
                                                                     <sup>
-                                                                        <i className="fa-solid fa-star-of-life" style={{ color: '#ff0019' }}>
+                                                                        <i className="fa-solid fa-star-of-life"
+                                                                           style={{color: '#ff0019'}}>
                                                                         </i>
                                                                     </sup>
                                                                 </sup>)
                                                             </span>
-                                                            <Field className="form-control" as="select" name="nationalityCustomer">
-                                                            <option value={""}>--Quốc tịch--</option>
+                                                            <Field className="form-control" as="select"
+                                                                   name="nationalityCustomer">
+                                                                <option value={""}>--Quốc tịch--</option>
                                                                 <option value='Việt Nam'>Việt Nam</option>
                                                                 <option value='Trung Quốc'>Trung Quốc</option>
                                                                 <option value='Thái Lan'>Thái Lan</option>
@@ -303,7 +335,8 @@ function EmployeeUpdateCustomer() {
                                                                 <option value='Bồ Đào Nha'>Bồ Đào Nha</option>
                                                                 <option value='Campuchia'>Campuchia</option>
                                                             </Field>
-                                                            <ErrorMessage className='error' name='nationalityCustomer' component={"div"} />
+                                                            <ErrorMessage className='error' name='nationalityCustomer'
+                                                                          component={"div"}/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -311,14 +344,21 @@ function EmployeeUpdateCustomer() {
 
                                                     <div className="col-md-6">
                                                         <div className="form-group">
-                                                            <span className="form-label" style={{ marginBottom: '20px' }}>Ảnh</span>
-                                                            <Field className="form-control" style={{ paddingTop: '35px',color:"transparent"}} type="file" id="input-file" name='imgCustomer'
-                                                               accept="img/*"  onChange={(event) => onChange(event.target.files[0])} />
+                                                            <span className="form-label"
+                                                                  style={{marginBottom: '20px'}}>Ảnh</span>
+                                                            <Field className="form-control"
+                                                                   style={{paddingTop: '35px', color: "transparent"}}
+                                                                   type="file" id="input-file" name='imgCustomer'
+                                                                   accept="img/*"
+                                                                   onChange={(event) => onChange(event.target.files[0])}/>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="form-btn" style={{ display: 'flex', justifyContent: 'right' }}>
-                                                    <button className="submit-btn" type="submit" style={{ marginRight: '10px' }}>Chỉnh sửa</button>
+                                                <div className="form-btn"
+                                                     style={{display: 'flex', justifyContent: 'right'}}>
+                                                    <button className="submit-btn" type="submit"
+                                                            style={{marginRight: '10px'}}>Chỉnh sửa
+                                                    </button>
                                                     <button className="submit-btn" type="reset">Hủy</button>
 
                                                 </div>
@@ -331,9 +371,12 @@ function EmployeeUpdateCustomer() {
                     </div>
 
                 </Formik>
-            }
-        </div>
-    );
+                }
+            </div>
+        );
+    } else {
+        return <Unauthorzied/>
+    }
 }
 
 export default EmployeeUpdateCustomer
