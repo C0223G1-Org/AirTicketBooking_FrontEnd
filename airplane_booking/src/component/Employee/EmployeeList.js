@@ -262,9 +262,9 @@ function EmployeeList() {
                         </div>
                     </div>
                     <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 pt-1 overflow-x-auto">
-                        <div className="inline-block min-w-full shadow rounded-lg " style={{minHeight: "536px"}}>
+                        <div className="inline-block min-w-full shadow rounded-lg " style={{minHeight: "536px",}}>
                             <div className="container"
-                                 style={{display: "flex", flexDirection: "column", minHeight: "100%"}}>
+                                 style={{display: "flex", flexDirection: "column", minHeight: "100%",minWidth:"1000px"}}>
                                 <div style={{flex: "1", minHeight: "490px"}}>
                                     <table className="container">
                                         <thead>

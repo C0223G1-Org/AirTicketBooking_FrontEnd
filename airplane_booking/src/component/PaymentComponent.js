@@ -193,7 +193,7 @@ const PaymentComponent = () => {
     return (
     <>
     {loading === false ? (
-       <div className="ticket" id="payment">
+       <div className="payment-ticket" id="payment">
        {/* <form onSubmit={sendEmail}> */}
        <h1 className="title">CHI TIẾT CHUYẾN BAY</h1>
        <div className="info">

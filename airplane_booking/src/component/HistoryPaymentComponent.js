@@ -215,7 +215,7 @@ function HistoryPaymentComponent() {
                                                             </p>
                                                         </td>
                                                         <td className=" py-3   bg-white ">
-                                                            <Link to={`/detail-history/${item.nameDeparture}/${item.nameDestination}/${item.dateBooking}`}>
+                                                            <Link to={`/detail-history/${id}/${item.nameDeparture}/${item.nameDestination}/${item.dateBooking}`}>
                                                                 <i className="fa-solid fa-circle-info" style={{ color: '#dfa512' }}></i>
                                                             </Link>
                                                         </td>
