@@ -1,6 +1,7 @@
 body {
     box-sizing: border-box;
     padding: 0;
+    margin: 0;
     font-family: "Diavlo", "sans-seriff";
     /*margin: 40px 0px 30px 30px;*/
 
@@ -51,6 +52,7 @@ body {
 }
 
 #info-passenger .nam-passenger {
+    margin-left: 5px;
     color: #daa310;
 }
 
@@ -184,6 +186,11 @@ body {
         font-size: 10px;
 
     }
+    .all-page{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
     #info-passenger .title p {
         font-size: 20px;
@@ -193,9 +200,34 @@ body {
         padding: 20px 0;
         margin: 0px;
     }
+    #info-passenger .wrapper .wrap .info-fight{
+        display:flex;
+        width: 100%;
+    }
+    #info-passenger .wrapper .wrap .info-fight p:first-child{
+        width: 33.3%;
+    }
+    #info-passenger .wrapper .wrap .info-fight p:nth-child(2){
+        width: 33.33%;
+        float: left ;
+        margin-right: 10px;
+    }
+    #info-passenger .wrapper .wrap .info-fight p:last-child{
+        float: left;
+    }
+    #info-passenger .wrapper .wrap .info-fight .logo-image {
+        width: 33%;
+    }
+    #info-passenger .wrapper .wrap .info-fight .logo-image p {
+        width: 100%;
+    }
 
     #info-passenger .logo-image img {
         display: none;
+    }
+    #info-passenger .wrap .fist-line{
+        width: 93% ;
+        margin-left: 10px;
     }
 
     #info-passenger .info-customer {
@@ -203,6 +235,21 @@ body {
         padding: 10px 10px;
         width: 100%;
     }
+    /* #info-passenger .info-second{
+        display: block;
+    }  */
+    /* #info-passenger .info-second .col-2{
+       width: 100%;
+   }
+   #info-passenger .info-second .col-2 p.person{
+       float: left;
+       margin: 0 10px 0 0;
+   }
+   #info-passenger .info-second .col-2 p.type-ticket{
+       width: 50%;
+       padding-top: 10px;
+   } */
+
 
     #info-passenger .info-customer .field {
         margin-left: 5px;
@@ -220,24 +267,34 @@ body {
         width: 100px;
     }
 
-    #info-passenger .btn button {
+    #info-passenger .detail-ticket-btn button{
+        font-size: 15px;
+        padding: 2px  5px;
+    }
+    #info-passenger .detail-ticket-btn button {
         margin-bottom: 10px;
+        width: 150px;
     }
 
-    #info-passenger .btn button:last-child {
+    #info-passenger .detail-ticket-btn button:last-child {
         margin-left: 0;
     }
 
-    #info-passenger .btn button:first-child {
+    #info-passenger .detail-ticket-btn button:first-child {
         margin-left: 40px;
     }
 
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1000px ) {
     #info-passenger .wrapper {
-        padding: 20px 5px;
+        padding: 20px;
     }
+    #info-passenger .wrap .fist-line ,.line{
+        width: 93% ;
+        margin-left: 10px;
+    }
+
 
     #info-passenger .info-customer {
         width: 100%;
@@ -252,6 +309,10 @@ body {
     #info-passenger .info-customer .field select {
         width: 70%;
     }
-
+}
+@media (min-width: 1001px) {
+    #info-passenger .wrapper{
+        padding: 30px 50px;
+    }
 
 }
