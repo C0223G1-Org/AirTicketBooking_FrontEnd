@@ -83,24 +83,11 @@
 }
 .chat-history .m-b-0 .seft-message-user .message {
     float: left;
-    background-color:#ffffff ;
+    background-color:#f5f5f5 ;
     color: #1F698F;
     overflow-wrap: break-word;
     max-width: 200px;
 }
-/* .reply {
-    position: fixed;
-} */
-/* .plist{
-    overflow-y: scroll;
-} */
-/* .reply input {
-    width: 100%;
-} */
-
-/* .reply-main {
-    padding-right: 0;
-} */
 
 .reply-send button {
     background-color: transparent;

@@ -205,6 +205,7 @@ function EmployeeList() {
         return ''; // Trả về một giá trị mặc định nếu phoneNumber không hợp lệ
     }
 
+    console.log(employeeDetail)
     return (
         <>
             <div>
@@ -449,6 +450,11 @@ function EmployeeList() {
                                                 <td style={{paddingLeft: "10px"}}>
                                                     <p>{employeeDetail.emailEmployee}</p></td>
                                             </tr>
+                                            {/*<tr>*/}
+                                            {/*    <td><p>Chức vụ: </p></td>*/}
+                                            {/*    <td style={{paddingLeft: "10px"}}>*/}
+                                            {/*        <p>{employeeDetail.typeEmployee.nameTypeEmployee}</p></td>*/}
+                                            {/*</tr>*/}
                                             <tr>
                                                 <td><p>Ngày sinh: </p></td>
                                                 <td style={{paddingLeft: "10px"}}>

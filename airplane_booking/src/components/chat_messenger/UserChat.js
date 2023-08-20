@@ -9,11 +9,12 @@ const UserChat = () => {
   const [chatId, setChatId] = useState(null);
   const [messages, setMessages] = useState([]);
   const [adminMessages, setAdminMessages] = useState([]);
-  const [chatForm, setChatForm] = useState(false)
+  const [chatForm, setChatForm] = useState(false);
   const [showChatbox, setShowChatbox] = useState(false);
   const [showButton, setShowbutton] = useState(false);
   const [hasSentStartMessage, setHasSentStartMessage] = useState(false);
   const bottomRef = useRef(null);
+  const [isFirstMessage, setIsFirstMessage] = useState(true);
   useEffect(() => {
     if (chatId) {
       const messagesRef = ref(database, `chats/${chatId}/messages`);
@@ -46,8 +47,9 @@ const UserChat = () => {
       timestamp: currentTime.toLocaleDateString("vi-VN", {
         hour: "2-digit",
         minute: "2-digit",
-      })
-    })
+      }),
+    });
+
     const startMessage = {
       sender: "admin",
       content: `Chào ${username}, Chúc bạn một ngày tốt lành. Tôi là trợ lý ảo của Codegym Airline, Bạn cần chúng tôi trợ giúp điều gì ?`,
@@ -59,9 +61,10 @@ const UserChat = () => {
     push(ref(database, `chats/${username}/messages`), startMessage);
     setChatId(username);
     setChatStarted(true);
-    setChatForm(!chatForm)
+    setChatForm(!chatForm);
   };
   console.log(showChatbox);
+
   const handleSendMessage = () => {
     if (message.trim() === "") return;
     const currentTime = new Date();
@@ -75,7 +78,8 @@ const UserChat = () => {
     };
     // Gửi tin nhắn mới lên database
     push(ref(database, `chats/${chatId}/messages`), newMessage);
-    if (!hasSentStartMessage) {
+    if (isFirstMessage) {
+      // Gửi tin nhắn bắt đầu từ phía admin
       const startMessage = {
         sender: "admin",
         content: `Cảm ơn bạn đã liên hệ với chúng tôi, Tư vấn viên của Codegym Airline sẽ phản hồi bạn trong thời gian sớm nhất!`,
@@ -85,7 +89,8 @@ const UserChat = () => {
         }),
       };
       push(ref(database, `chats/${username}/messages`), startMessage);
-      setHasSentStartMessage(true);
+      // Cập nhật biến trạng thái isFirstMessage
+      setIsFirstMessage(false);
     }
     setMessage("");
   };
@@ -105,7 +110,7 @@ const UserChat = () => {
   return (
     <>
       <div>
-        {chatForm &&
+        {chatForm && (
           <div
             className="form-popup"
             style={{
@@ -113,9 +118,7 @@ const UserChat = () => {
               display: chatStarted ? "block" : "none",
             }}
           >
-            <h2 className="h22" >
-              CodeGym AirLine
-            </h2>
+            <h2 className="h22">CodeGym AirLine</h2>
             <div className="row clearfix">
               <div 
               id="style-7"
@@ -146,7 +149,7 @@ const UserChat = () => {
                     ))}
                     <div ref={bottomRef} />
                   </ul>
-                  
+
                   </div>
                 </div>
               </div>
@@ -181,15 +184,22 @@ const UserChat = () => {
 
             </div>
           </div>
-        }
-        {showChatbox &&
-          <div className="form-popup" style={{ display: chatForm ? "none" : "block" }}>
-            <h2 className="h23" >Nhập tên của bạn để bắt đầu trò chuyện: </h2>
-            <input style={{ position: "relative" }} class="chat__conversation-panel__input panel-item" placeholder="Nhập tên của bạn..." onKeyDown={(event) => {
-              if (event.keyCode == 13) {
-                handleStartChat();
-              }
-            }}
+        )}
+        {showChatbox && (
+          <div
+            className="form-popup"
+            style={{ display: chatForm ? "none" : "block" }}
+          >
+            <h2 className="h23">Nhập tên của bạn để bắt đầu trò chuyện: </h2>
+            <input
+              style={{ position: "relative" }}
+              class="chat__conversation-panel__input panel-item"
+              placeholder="Nhập tên của bạn..."
+              onKeyDown={(event) => {
+                if (event.keyCode == 13) {
+                  handleStartChat();
+                }
+              }}
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)} />
@@ -201,37 +211,38 @@ const UserChat = () => {
             </button>
             {/* <button onClick={handleStartChat}>  <i className="fa-solid fa-check"></i></button> */}
           </div>
-        }
+        )}
         {/* popup */}
         <div>
-          {chatForm == false ?
+          {chatForm == false ? (
             <button
               id="fpt_ai_livechat_button"
               className="fpt_ai_livechat_button_blink"
               style={{ background: "#EEEEEEEE" }}
               onClick={() => {
-                setShowChatbox(!showChatbox)
-                setShowbutton(!showButton)
+                setShowChatbox(!showChatbox);
+                setShowbutton(!showButton);
                 console.log(showButton);
-              }} >
+              }}
+            >
               <img
                 src="https://cdn-static-v3.fpt.ai/upload/cc5d89ad1a2ac3ef4db45d7acf2d1ed6/61b5ac99f8e432b71a75e90e9aa27963.png"
                 alt="logobutton"
               />
             </button>
-            :
+          ) : (
             <button
               id="fpt_ai_livechat_button"
               className="fpt_ai_livechat_button_blink"
               style={{ background: "#EEEEEEEE" }}
               onClick={() => {
-                setChatForm(!chatForm)
-                setShowChatbox(!showChatbox)
+                setChatForm(!chatForm);
+                setShowChatbox(!showChatbox);
                 // setShowbutton(showButton)
               }} >
               <img src="https://img.icons8.com/external-bluetone-bomsymbols-/91/external-close-digital-design-bluetone-set-2-bluetone-bomsymbols-.png" alt="external-close-digital-design-bluetone-set-2-bluetone-bomsymbols-" />
             </button>
-          }
+          )}
         </div>
       </div>
     </>

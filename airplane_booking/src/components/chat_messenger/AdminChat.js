@@ -2,9 +2,6 @@ import React, { useEffect, useState,useRef } from "react";
 import { database, ref, push, onValue, off, orderByChild } from "../../firebase-chat";
 import "../../css/search_ticket/style-popup.css";
 
-
-
-
 const AdminPage = () => {
   const [chats, setChats] = useState([]);
   const [selectedChatId, setSelectedChatId] = useState(null);
@@ -33,10 +30,6 @@ const AdminPage = () => {
       const chatList = data ? Object.keys(data) : [];
       setChats(chatList);
     });
-   
-
-
-
 
     // Reset các tin nhắn khi không có cuộc trò chuyện được chọn
     if (!selectedChatId) {
@@ -60,7 +53,7 @@ const AdminPage = () => {
     const element = document.getElementById("targetElement");
     element.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
   }
-  
+
   useEffect(() => {
     // 👇️ scroll to bottom every time messages change
     scrollToElement()
@@ -68,12 +61,12 @@ const AdminPage = () => {
 
   useEffect(() => {
     if (selectedChatId) {
-
       // Lắng nghe tin nhắn của cuộc trò chuyện được chọn
       const chatMessagesRef = ref(database, `chats/${selectedChatId}/messages`);
       onValue(chatMessagesRef, (snapshot) => {
         const data = snapshot.val();
         const messages = data ? Object.values(data) : [];
+        console.log(messages);
         setChatMessages(messages);
       });
     }
@@ -128,7 +121,16 @@ const AdminPage = () => {
           zIndex: "999",
         }}>
         <div>
-          <h4 style={{ position: "relative", top: "15px", left: "24px" }}>
+          <h4
+            style={{
+              position: "relative",
+              top: "15px",
+              left: "24px",
+              color: "rgb(223, 165, 18)",
+              textTransform: "uppercase",
+              fontWeight: "bold",
+            }}
+          >
             CodeGym AirLine
           </h4>
         </div>
@@ -155,7 +157,7 @@ const AdminPage = () => {
               </li>
             ))}
           </ul>
-        
+
 
 
         </div>
@@ -175,11 +177,11 @@ const AdminPage = () => {
                     {message.content} <br /> <span style={{ fontSize: '10px', float: 'left' }}>{message.timestamp}</span>
                   </div>
                 </li>
-                
+
               ))}
                <div ref={bottomRef} />
             </ul>
-             
+
             </div>
           </div>
           <div className="row reply">
@@ -198,7 +200,7 @@ const AdminPage = () => {
                 onChange={(e) => setAdminMessage(e.target.value)}
               />
             </div>
-
+           
             <a
               className="chat__conversation-panel__button panel-item btn-icon "
               aria-hidden="true"
