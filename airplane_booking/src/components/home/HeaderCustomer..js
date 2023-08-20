@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import "../../css/home/Header.css";
 import {Link} from "react-router-dom";
 import image from "../../logo_5.png";
+import {getAccountByGmail} from "../../services/AccountServices";
 
 
 export default function HeaderCustomer() {
@@ -54,7 +55,7 @@ export default function HeaderCustomer() {
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a className="dropdown-item" href="#">Xem thông tin tài khoản</a></li>
-                                <li><Link to={`/historyPayment`} className="dropdown-item">Lịch sử đặt vé</Link></li>
+                                <li><Link to={`/history-payment/:id`} className="dropdown-item">Lịch sử đặt vé</Link></li>
                             </ul>
                         </li>
                     </ul>

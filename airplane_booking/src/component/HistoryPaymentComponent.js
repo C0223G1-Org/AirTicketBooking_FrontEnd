@@ -1,253 +1,331 @@
 import React, { useEffect, useState } from "react";
-import { getCustomerById, getListHistoryByCustomerId } from "../services/HistoryPaymentService";
-import { useParams } from "react-router-dom";
+import { getListHistoryByCustomerId, getListTicketByNameRoute } from "../services/HistoryPaymentService";
+import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import moment from "moment";
 
 
 function HistoryPaymentComponent() {
-  const [payments, setPayments] = useState([]);
-  let [page, setPage] = useState(0)
-  let [nameDeparture, setNameDeparture] = useState("")
-  let [nameDestination, setNameDestination] = useState("")
+    const [payments, setPayments] = useState([]);
 
-  // const  param = useParams();
-  // const [customer, setCustomer] = useState({})
+    let [page, setPage] = useState(0)
+    const { id } = useParams();
+    let [nameDeparture, setNameDeparture] = useState("")
+    let [nameDestination, setNameDestination] = useState("")
 
-  // const getIdCustomer = async () => {
-  //   try {
-  //     const customerData = await getListHistoryByCustomerId();
+    const showList = async (pageable, nameDeparture, nameDestination) => {
+        try {
+            const paymentData = await getListHistoryByCustomerId(id, pageable, nameDeparture, nameDestination);
+            setPayments(paymentData);
 
-  //     setCustomer(customerData);
-  //   } catch (error) {
-  //     console.error('Error occurred while getting customer data:', error);
-  //   }
-  // };
+        } catch (error) {
+            console.error('Error occurred while getting payment data:', error)
+        }
+    };
 
-
-  const showList = async (pageable, nameDeparture, nameDestination) => {
-    try {
-      const paymentData = await getListHistoryByCustomerId(pageable, nameDeparture, nameDestination);
-      setPayments(paymentData);
-
-    } catch (error) {
-      console.error('Error occurred while getting payment data:', error)
+    useEffect(() => {
+        showList(page, nameDeparture, nameDestination)
+    }, []);
+    const setPageFunction = async (pageAfter) => {
+        setPage(pageAfter)
     }
-  };
-  useEffect(() => {
-    showList(page,nameDeparture,nameDestination)
-  }, []);
-  const setPageFunction = async (pageAfter) => {
-    setPage(pageAfter)
-  }
-  const setDepartureFunction = async (departure) => {
-    setNameDeparture(departure)
-  }
-  const setDestinationFunction = async (destination) => {
-    setNameDestination(destination)
-  }
-  function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-      event.preventDefault(); // Ngăn chặn hành vi mặc định của phím Enter
-      performSearch();
+    const setDepartureFunction = async (departure) => {
+        setNameDeparture(departure)
     }
-  }
-  
-  function handleButtonClick() {
-    performSearch();
-  }
-  
-  const performSearch = async () => {
-    const departureSearch = document.getElementById("departure").value;
-    const destinationSearch = document.getElementById("destination").value;
-    await setDepartureFunction(departureSearch)
-      .then( await setDestinationFunction(destinationSearch))
-      .then( await setPageFunction(0))
-      .then(showList(0, departureSearch, destinationSearch));
-  }
-   
-  useEffect( () => {
-    document.title = 'Lịch sử thanh toán'
+    const setDestinationFunction = async (destination) => {
+        setNameDestination(destination)
+    }
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định của phím Enter
+            performSearch();
+        }
+    }
+    const nextPage = async () => {
+        page += 1;
+        if (page < payments.totalPages) {
+            await setPageFunction(page).then((await showList(page, nameDeparture, nameDestination)))
+        } else {
+            page -= 1
+        }
+    }
+    const previousPage = async () => {
+        if (page >= 1) {
+            page -= 1
+        }
+        await setPageFunction(page).then((await showList(page, nameDeparture, nameDestination)))
+    }
+    const searchPage = async () => {
+        let numberPage = document.getElementById("numberPage").value * 1;
+        numberPage = numberPage - 1;
+        if (numberPage > payments.totalPages && numberPage < 1) {
+            await setPageFunction(numberPage).then(await showList(page, nameDeparture, nameDestination))
+            page = numberPage
+        } else {
+            await setPageFunction(0).then(await showList(0, nameDeparture, nameDestination))
+
+            Swal.fire({
+                icon: "error",
+                title: 'Không tìm thấy trang!',
+                showConfirmButton: false,
+                timer: 5000
+            })
+        }
+    }
+
+    function handleButtonClick() {
+        performSearch();
+    }
+
+    const performSearch = async () => {
+        const departureSearch = document.getElementById("departure").value;
+        const destinationSearch = document.getElementById("destination").value;
+        await setDepartureFunction(departureSearch)
+            .then(await setDestinationFunction(destinationSearch))
+            .then(await setPageFunction(0))
+            .then(showList(0, departureSearch, destinationSearch));
+    }
+
+    useEffect(() => {
+        document.title = 'Lịch sử thanh toán'
     })
 
+    const changePrice = (price) => {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
 
-  return (
-    <div>
-      {payments.content &&
-        <div className="container mx-auto px-4 sm:px-8">
-          <div className="py-8">
-            <div>
-              <h2 className="text-2xl font-semibold leading-tight" style={{ textAlign: 'center' }}>LỊCH SỬ GIAO DỊCH</h2>
-            </div>
-            <div class="input-group" style={{ position: 'relative', width: '500px' }}>
-              <input type="search" onKeyPress={handleKeyPress} class="form-control rounded" id="departure" defaultValue={""} placeholder="Tìm kiếm theo nơi đi" aria-label="Search" aria-describedby="search-addon" />
-              <input type="search" onKeyPress={handleKeyPress} class="form-control rounded" id="destination" defaultValue={""} placeholder="Tìm kiếm theo nơi đến" aria-label="Search" aria-describedby="search-addon" />
-              <button type="submit"
-                 onClick={handleButtonClick}
-                class="btn btn-outline" style={{ backgroundColor: '#dfa512', color: 'white' }}>Tìm kiếm</button>
-            </div>
-            <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-              <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                <table className="min-w-full leading-normal">
-                  <thead>
-                    <tr style={{ background: 'rgb(6, 133, 170)', color: '#ffffff' }}>
-                      <th className="px-4 py-2 border-b-2   text-left text-xs   uppercase tracking-wider">
-                        Mã vé
-                      </th>
-                      <th className="px-4 py-2 border-b-2   text-left text-xs   uppercase tracking-wider">
-                        Tên khách hàng
-                      </th>
-                      <th className="px-3 py-3 border-b-2   text-left text-xs   uppercase tracking-wider">
-                        Nơi đi
-                      </th>
-                      <th className="px-3 py-3 border-b-2   text-left text-xs   uppercase tracking-wider">
-                        Nơi đến
-                      </th>
-                      <th className="px-3 py-3 border-b-2   text-left text-xs   uppercase tracking-wider">
-                        Ngày đi
-                      </th>
-                      <th className="px-3 py-3 border-b-2   text-left text-xs   uppercase tracking-wider">
-                        Ngày đến
-                      </th>
-                      <th className="px-3 py-3 border-b-2   text-left text-xs   uppercase tracking-wider">
-                        Giờ bay
-                      </th>
-                      <th className="px-3 py-3 border-b-2   text-left text-xs   uppercase tracking-wider">
-                        Giờ đến
-                      </th>
-                      <th className="px-3 py-3 border-b-2   text-left text-xs   uppercase tracking-wider">
-                        Tổng tiền
-                      </th>
-                      <th className="px-3 py-3 border-b-2   text-left text-xs   uppercase tracking-wider">
-                        Ngày đặt vé
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {payments.content.map((item, count) => {
-                      return (
-                        <tr key={item.idTicket}>
-                          <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
-                            <div className="flex items-center">
-                              <div className="ml-3">
-                                <p className="text-gray-900 whitespace-no-wrap">
-                                  {count}
-                                </p>
-                              </div>
+
+    if (!payments) {
+        return null;
+    }
+
+
+    return (
+        <div className="background-customer">
+            <div className="background-customer">
+                <meta charSet="UTF-8" />
+
+
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+                      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+                      crossOrigin="anonymous" />
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css" />
+
+                <div className="container mx-auto px-4 sm:px-8 background-customer" id="customer"
+                >
+                    <div className="py-8" style={{ textAlign: 'center' }}>
+                        <div className="title" style={{ backgroundColor: '#166987', color: 'white', marginLeft: '-5px' }}>
+                            <h1 style={{ fontSize: '50px' }}>LỊCH SỬ GIAO DỊCH</h1>
+                        </div>
+                        <div className="my-2 flex sm:flex-row flex-col">
+
+                            <div className="block relative">
+                                <input
+                                    onKeyPress={handleKeyPress}
+                                    placeholder="Tìm kiếm theo nơi đi" id="departure" defaultValue={""}
+                                    className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                             </div>
-                          </td>
-                          <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              {item.customer.nameCustomer}
-                            </p>
-                          </td>
-                          <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              {item.seat.route.departure.nameDeparture}
-                            </p>
-                          </td>
-                          <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              {item.seat.route.destination.nameDestination}
-                            </p>
-                          </td>
-                          <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
-                            <p className="text-gray-900 whitespace-no-wrap">
+                            <div className="block relative">
+                                <input
+                                    onKeyPress={handleKeyPress}
+                                    placeholder="Tìm kiếm theo nơi đến" id="destination" defaultValue={""}
+                                    className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+                            </div>
+                            <button type="submit"
+                                    onClick={handleButtonClick}
+                                    className="text-sm  font-semibold py-2 px-4 "
+                                    style={{ background: 'rgb(223, 165, 18)', color: '#ffffff', }}>
+                                <i className="fa-solid fa-magnifying-glass"></i>
+                            </button>
 
-                              {item.seat.route.dateDeparture}
-                            </p>
-                          </td>
-                          <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              {item.seat.route.dateArrival}
-                            </p>
-                          </td>
-                          <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              {item.seat.route.timeDeparture}
+                        </div>
 
-                            </p>
-                          </td>
-                          <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              {item.seat.route.timeArrival}
 
-                            </p>
-                          </td>
-                          <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              {item.priceTicket}
-                            </p>
-                          </td>
-                          <td className="px-3 py-3 border-b border-gray-200 bg-white text-sm">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              {item.dateBooking}
-                            </p>
-                          </td>
-                        </tr>
-                      )
-                    })}
-                  </tbody>
-                </table>
-                <div className="px-5 py-3 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
-                  <span className="text-xs xs:text-sm text-gray-900">
+                        <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                            <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                                {
+                                    <table className="min-w-full leading-normal myTable">
+                                        <thead>
+                                        <tr style={{ background: 'rgb(6, 133, 170)', color: '#ffffff' }}>
+                                            <th className=" col-md-1 py-3     text-x "
+                                                style={{ textAlign: 'center' }}>
+                                                STT
+                                            </th>
 
-                  </span>
-                  <div className="inline-flex mt-2 xs:mt-0">
-                    <button className="text-sm  font-semibold py-2 px-4 rounded-l" disabled={page < 1}
-                      onClick={async () => {
-                        if (page >= 1) {
-                          page -= 1
-                        }
-                        await setPageFunction(page).then( (await showList(page,nameDeparture,nameDestination)))
-                      }} style={{ background: 'rgb(223, 165, 18)', color: '#ffffff' }}>
-                      &lt; Trước
-                    </button>
-                    <button className="text-sm font-semibold py-2 px-4" style={{ background: 'rgb(223, 165, 18)', color: '#ffffff', marginLeft: '5px' }}>
-                      {page + 1}/{payments.totalPages}
-                    </button>
+                                            <th className="text-x  " style={{ textAlign: 'center' }}>
+                                                Tên chuyến bay
+                                            </th>
+                                            <th className="text-x  " style={{ textAlign: 'center' }}>
+                                                Nơi đi
+                                            </th>
+                                            <th className="text-x " style={{ textAlign: 'center' }}>
+                                                Nơi đến
+                                            </th>
 
-                    <button className="text-sm  font-semibold py-2 px-4 rounded-r" disabled={page === payments.totalPages}
-                      onClick={async () => {
-                        page += 1;
-                        if (page < payments.totalPages) {
-                          await setPageFunction(page).then( (await showList(page,nameDeparture,nameDestination)))
-                        } else {
-                          page -= 1
-                        }
-                      }} style={{ background: 'rgb(223, 165, 18)', color: '#ffffff', marginLeft: '5px' }}>
-                      Sau &gt;
-                    </button>
-                  </div>
-                  <br></br>
-                  <div className="text-sm  font-semibold py-2 px-4 " style={{ background: 'rgb(223, 165, 18)', color: 'black', marginLeft: '5px', marginTop: '-15px' }}>
-                    <input id="numberPage" type="number" style={{ width: '50px', border: 'none', borderRadius: '5px', width: '40px' }} pattern="^[0-9]{4}$" />
-                    <button
-                      onClick={async () => {
+                                            <th className="text-x  " style={{ textAlign: 'center' }}>
+                                                Ngày đặt vé
+                                            </th>
+                                            <th className="text-x  " style={{ textAlign: 'center' }}>
+                                                Tổng tiền
+                                            </th>
+                                            <th className="text-x  " style={{ textAlign: 'center' }}>
+                                                Chi Tiết
+                                            </th>
+                                        </tr>
 
-                        let numberPage = document.getElementById("numberPage").value * 1;
-                        numberPage -= 1;
-                        if (numberPage <= payments.totalPages && numberPage >= 1) {
-                          page = numberPage
-                          await setPageFunction(numberPage).then( (await showList(page,nameDeparture,nameDestination)))
-                        } else {
-                          Swal.fire({
-                            icon: 'warning',
-                            title: 'Không tìm thấy!',
-                            showConfirmButton: false,
-                            timer: 1500
-                          })
-                        }
-                      }}
-                      style={{ border: 'none', color: 'white', marginLeft: '7px' }}>Tìm</button>
-                  </div>
+                                        </thead>
+                                        {payments.length !== 0 ?
+                                            <tbody>
+                                            {payments.content.map((item, index) =>
+                                                (
+                                                    <tr key={`ctm_${index}`}>
+                                                        <td className=" bg-white "
+                                                            style={{ textAlign: 'center', weight: "10px" }}>
+                                                            <p>{(page * 4) + (index + 1)}</p>
+                                                        </td>
+
+                                                        <td className=" px-3 py-3   bg-white ">
+                                                            <p className="text-gray-900 whitespace-no-wrap">
+                                                                {item.nameRoute}
+                                                            </p>
+                                                        </td>
+                                                        <td className="  px-3 py-3   bg-white ">
+                                                            <p className="text-gray-900 whitespace-no-wrap">
+                                                                {item.nameDeparture.split('-')[0]}
+                                                            </p>
+                                                        </td>
+                                                        <td className="  px-3 py-3   bg-white ">
+                                                            <p className="text-gray-900 whitespace-no-wrap">
+                                                                {item.nameDestination.split('-')[0]}
+                                                            </p>
+                                                        </td>
+
+
+                                                        <td className=" py-3   bg-white ">
+                                                            <p className="text-gray-900 whitespace-no-wrap">
+                                                                {moment(`${item.dateBooking}`).format('DD-MM-YYYY')}
+                                                            </p>
+                                                        </td>
+                                                        <td className=" py-3   bg-white ">
+                                                            <p className="text-gray-900 whitespace-no-wrap">
+                                                                {changePrice(item.priceTicket)} VND
+                                                            </p>
+                                                        </td>
+                                                        <td className=" py-3   bg-white ">
+                                                            <Link to={`/detail-history/${item.nameDeparture}/${item.nameDestination}/${item.dateBooking}`}>
+                                                                <i className="fa-solid fa-circle-info" style={{ color: '#dfa512' }}></i>
+                                                            </Link>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            )}
+
+                                            </tbody>
+                                            :
+                                            <tbody>
+                                            <tr style={{ height: '150px' }}>
+                                                <td style={{ color: "red", fontSize: '50px' }} colSpan="9">Không có dữ
+                                                    liệu
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        }
+                                    </table>
+                                }
+                                {payments.length !== 0 ?
+                                    <div
+                                        className="px-3 py-1 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
+
+                                        <div className="inline-flex mt-2 xs:mt-0">
+
+
+                                            {page !== 0 ? <button
+                                                onClick={async () => {
+
+                                                    await previousPage()
+                                                }}
+                                                className="text-sm   py-2 px-3 rounded-l"
+                                                style={{ background: 'rgb(223, 165, 18)', color: '#ffffff' }}>
+                                                Trước
+                                            </button> : <button
+                                                onClick={async () => {
+
+                                                    await previousPage()
+                                                }}
+                                                className="text-sm   py-2 px-3 rounded-l"
+                                                style={{
+                                                    background: 'rgb(223, 165, 18)',
+                                                    color: '#ffffff',
+                                                    opacity: '0,6',
+                                                    cursor: 'not-allowed'
+                                                }}>
+                                                Trước
+                                            </button>}
+
+                                            <button className="text-sm   py-2 px-3 rounded-l" style={{
+                                                background: 'rgb(223, 165, 18)',
+                                                color: '#ffffff',
+                                                marginLeft: '5px'
+                                            }}>
+                                                {page + 1}/{payments.totalPages}
+                                            </button>
+
+                                            {page !== payments.totalPages - 1 ?
+                                                <button onClick={async () => {
+
+                                                    await nextPage();
+                                                }} className="text-sm   py-2 px-3 rounded-l" style={{
+                                                    background: 'rgb(223, 165, 18)',
+                                                    color: '#ffffff',
+                                                    marginLeft: '5px'
+                                                }}>
+                                                    Sau
+                                                </button>
+                                                : <button onClick={async () => {
+
+                                                    await nextPage();
+                                                }} className="text-sm   py-2 px-3 rounded-l" style={{
+                                                    background: 'rgb(223, 165, 18)',
+                                                    color: '#ffffff',
+                                                    marginLeft: '5px', opacity: '0,6', cursor: 'not-allowed'
+                                                }}>
+                                                    Sau
+                                                </button>}
+                                            <div className="   py-2 px-3 rounded-l" style={{
+                                                background: 'rgb(223, 165, 18)',
+                                                color: 'black',
+                                                marginLeft: '5px',
+                                                borderRadius: '5px'
+                                            }}>
+                                                <input id="numberPage" type="number"
+                                                       style={{ width: '50px', borderRadius: '5px' }}
+                                                       onKeyDown={async (event) => {
+                                                           if (event.keyCode === 13) {
+                                                               await searchPage()
+                                                           }
+                                                       }} />
+                                                <button className=""
+                                                        onClick={async () => {
+                                                            await searchPage()
+                                                        }}
+                                                        style={{ marginLeft: '10px', bodeRadius: '5px', color: 'white' }}>
+                                                    <i
+                                                        className="fa-solid fa-magnifying-glass"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    : ""}
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      }
-    </div>
 
-  )
+    )
 }
 export default HistoryPaymentComponent;

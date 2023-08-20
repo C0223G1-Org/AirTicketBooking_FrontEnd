@@ -10,13 +10,10 @@ export default function CustomerManagement() {
     let [page, setPage] = useState(0)
     let [name, setName] = useState("")
     let [email, setEmail] = useState("")
-    let [nationality, setNationality] = useState([])
+    let [nationality, setNationality] = useState("")
     const [customers, setCustomers] = useState([])
     const [customer, setCustomer] = useState({})
-
     const getListCustomer = async (page, name, email, nationality) => {
-        console.log(name);
-
         const setListCustomer = async () => {
             setCustomers(await getListCustomers(page, name, email, nationality))
         }
@@ -30,8 +27,7 @@ export default function CustomerManagement() {
             })
         })
     }
-
-    const detailCustomer=async (customer)=>{
+    const detailCustomer = async (customer) => {
         setCustomer(customer)
     }
     const deleteCustomer = async (item) => {
@@ -156,13 +152,23 @@ export default function CustomerManagement() {
                 <link rel="stylesheet"
                       href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css"/>
 
-                <div className="container mx-auto px-4 sm:px-8 background-customer" id="customer">
-                    <div className="py-8" style={{textAlign: 'center'}}>
+                <div className=" mx-auto px-4 sm:px-8" id="customer">
+                    <div style={{textAlign: 'center'}}>
                         <div className="title">
                             <h1 style={{fontSize: '50px'}}>QUẢN LÍ KHÁCH HÀNG</h1>
                         </div>
                         <div className="my-2 flex sm:flex-row flex-col">
                             <div className="flex flex-row mb-1 sm:mb-0">
+                                <Link to="/customers/add">
+                                    <button className="text-sm  font-semibold py-2 px-4 " style={{
+                                        background: 'rgb(223, 165, 18)',
+                                        color: '#ffffff',
+                                        marginLeft: '2px',
+                                        width: '250px'
+                                    }}>Thêm mới khách hàng
+                                    </button>
+
+                                </Link>
                                 <div className="relative">
                                     <select onKeyDown={
                                         async (event) => {
@@ -210,16 +216,7 @@ export default function CustomerManagement() {
                                 style={{background: 'rgb(223, 165, 18)', color: '#ffffff',}}>
                                 <i className="fa-solid fa-magnifying-glass"></i>
                             </button>
-                            <Link to="/customers/add">
-                                <button className="text-sm  font-semibold py-2 px-4 " style={{
-                                    background: 'rgb(223, 165, 18)',
-                                    color: '#ffffff',
-                                    marginLeft: '2px',
-                                    width: '250px'
-                                }}>Thêm mới khách hàng
-                                </button>
 
-                            </Link>
                         </div>
 
 
@@ -228,7 +225,7 @@ export default function CustomerManagement() {
                                 {
                                     <table className="min-w-full leading-normal myTable">
                                         <thead>
-                                        <tr  style={{background: 'rgb(6, 133, 170)', color: '#ffffff'}}>
+                                        <tr style={{background: 'rgb(6, 133, 170)', color: '#ffffff'}}>
                                             <th className=" col-md-1 py-3     text-x "
                                                 style={{textAlign: 'center'}}>
                                                 STT
@@ -259,22 +256,23 @@ export default function CustomerManagement() {
                                             <tbody>
                                             {customers.content.map((item, index) =>
                                                 (
-                                                    <tr  key={`ctm_${index}`}>
+                                                    <tr key={`ctm_${index}`} style={{maxWeight: "250px"}}>
                                                         <td className="col-md-1  bg-white "
-                                                            style={{textAlign: 'center',weight:"10px"}}>
+                                                            style={{textAlign: 'center', weight: "10px"}}>
                                                             <p>{(page * 5) + (index + 1)}</p>
 
                                                         </td>
-                                                        <td className=" col-md-1  py-3   bg-white">
+                                                        <td className=" col-md-2  py-3   bg-white"
+                                                            style={{maxWeight: "250px"}}>
                                                             <div className="flex items-center">
                                                                 <div className="flex-shrink-0 w-10 h-10">
                                                                     <img className="w-full h-full rounded-full"
                                                                          src={item.imgCustomer} alt=""/>
 
                                                                 </div>
-                                                                <div>
+                                                                <div className=" col-md-10  py-2   bg-white">
                                                                     <p className=" whitespace-no-wrap">
-                                                                        {item.nameCustomer.split(" ")[item.nameCustomer.split(" ").length-1]}
+                                                                        {item.nameCustomer}
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -292,44 +290,38 @@ export default function CustomerManagement() {
                                                                 {item.nationalityCustomer}
                                                             </p>
                                                         </td>
-                                                        <td className="col-md-2  py-3   bg-white ">
+                                                        <td className="col-md-2  py-3   bg-white "
+                                                            style={{maxWeight: "250px"}}>
                                                             <p className="text-gray-900 whitespace-no-wrap">
-                                                                {item.emailCustomer.split("@")[0]}
+                                                                {item.emailCustomer}
 
                                                             </p>
                                                         </td>
                                                         <td className="col-md-2  py-3   bg-white ">
-                                                            <p className="text-gray-900 whitespace-no-wrap">
+                                                            <p className="text-gray-900 whitespace-no-wrap ">
                                                                 <span
-                                                                    onClick={async ()=>{
+                                                                    onClick={async () => {
                                                                         await detailCustomer(item)
                                                                     }}
-                                                                    style={{
-                                                                    fontSize: '20px',
-                                                                    marginRight: '5px'
+                                                                    className="icon_detail_employee"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#exampleModalDetail">
+                                                                    <i className="fa-solid fa-circle-info"></i> </span>
 
-                                                                }} data-bs-toggle="modal"
-                                                                      data-bs-target="#exampleModalDetail">
-                                                                <i className="fa-solid fa-circle-info"></i> </span>
+                                                                <Link to={`/customers/edit/${item.idCustomer}`}>
+                                                                    <span
+                                                                        className="icon_edit_employee"><i
+                                                                        className="fa-solid fa-pen-to-square"/></span>
+                                                                </Link>
                                                                 <a
                                                                     onClick={async () => {
 
                                                                         await deleteCustomer(item)
 
-                                                                    }}>
-
-                                                                    <span style={{
-                                                                        fontSize: '20px',
-                                                                        marginRight: '10px',
-                                                                        color: 'red'
-                                                                    }}><i className="fa-solid fa-trash-can "/></span>
+                                                                    }}
+                                                                    className="icon_delete_employee">
+                                                                    <span><i className="fa-solid fa-trash"/></span>
                                                                 </a>
-                                                                <Link to={`/customers/edit/${item.idCustomer}`}>
-                                                                    <span
-                                                                        style={{fontSize: '20px', color: '#c5c58f'}}><i
-                                                                        className="fa-solid fa-pen-to-square"/></span>
-                                                                </Link>
-
 
                                                             </p>
                                                         </td>
@@ -439,39 +431,54 @@ export default function CustomerManagement() {
                 </div>
             </div>
 
-            <div style={{marginTop:"150px"}}  className="modal fade" id="exampleModalDetail" tabIndex={-1} aria-labelledby="exampleModalLabel1"
-                 aria-hidden="true">
-                <div  className="modal-dialog modal-fullscreen-md-down ">
-                    <div  style={{height:"300px"}} className="modal-content">
-                        <div  className="modal-header bg-info ">
-                            <h3 style={{fontSize:"20px"}} className="modal-title" id="exampleModalLabel1">Chi tiết khách hàng</h3>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body" style={{padding: 0}}>
-                            <div className="row container-fluid   ">
 
-                                <div className="col-12 card_content ">
-                                    <div className="">
-                                        <p className="">Họ và tên: {customer.nameCustomer} </p>
-                                        <p>Năm sinh: {moment(`${customer.dateCustomer}`).format('DD-MM-YYYY')}</p>
-                                        <p>Giới tính: {customer.genderCustomer}</p>
-                                        <p>Quốc gia: {customer.nationalityCustomer}</p>
-                                        <p>Email: {customer.emailCustomer}</p>
-                                        <p>Số điện thoại:  {customer.telEmployee}</p>
-                                        <p>Địa chỉ: {customer.addressCustomer}</p>
-                                        <p>CCCD/Passport: {customer.idCardCustomer}</p>
+            <div id="details">
+                <div className="modal fade" id="exampleModalDetail" tabIndex={-1} aria-labelledby="exampleModalLabel1"
+                     aria-hidden="true">
+                    <div className="modal-dialog modal-fullscreen-md-down ">
+                        <div className="modal-content">
+                            <div className="modal-header " style={{justifyContent: "center", alignItems: "center"}}>
+                                <h3 style={{fontSize: "20px"}} className="modal-title" id="exampleModalLabel1">CHI TIẾT
+                                    KHÁCH HÀNG</h3>
+                                {/* <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button> */}
+                            </div>
+                            <div className="modal-body" style={{padding: 0}}>
+                                <div className="row container-fluid   ">
+
+                                    <div className=" card_content ">
+                                        <div className="wai"><img id="zhaopian" src={customer.imgCustomer}/></div>
+                                        <div className="tai">
+                                            <p><span className="biaoqing"><i class="fa-solid fa-user"></i>   Họ và tên:</span> {customer.nameCustomer}
+                                            </p>
+                                            <p><span className="biaoqing"><i class="fa-solid fa-calendar-days"></i> Năm sinh:</span> {moment(`${customer.dateCustomer}`).format('DD-MM-YYYY')}
+                                            </p>
+                                            <p><span className="biaoqing">{customer.genderCustomer ?
+                                                <i class="fa-solid fa-mars"></i> :
+                                                <i class="fa-solid fa-venus"></i>} Giới tính:</span> {customer.genderCustomer ?
+                                                <span>Nam</span> : <span>Nữ</span>}</p>
+                                            <p><span className="biaoqing"><i class="fa-solid fa-earth-americas"></i>    Quốc gia:</span>
+                                                <span>{customer.nationalityCustomer}</span></p>
+                                            <p><span className="biaoqing"><i
+                                                class="fa-solid fa-envelope"></i>  Email:</span> {customer.emailCustomer}
+                                            </p>
+                                            <p><span className="biaoqing"><i class="fa-solid fa-phone"></i> Số điện thoại:</span> {customer.telCustomer}
+                                            </p>
+                                            <p><span className="biaoqing"><i class="fa-solid fa-location-dot"></i>  Địa chỉ:</span> {customer.addressCustomer}
+                                            </p>
+                                            <p><span className="biaoqing"><i class="fa-solid fa-address-card"></i>   CCCD/Passport:</span> {customer.idCardCustomer}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="row card_text mt-3 container-fluid text-justify">
+                                <div className="row card_text mt-3 container-fluid text-justify">
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

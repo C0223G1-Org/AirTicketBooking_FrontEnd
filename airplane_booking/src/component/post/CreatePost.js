@@ -12,9 +12,9 @@ import {v4} from "uuid";
 import CKEditorComponent from "./CKEditorComponent";
 import {createPost} from "../../services/PostServices";
 import {FidgetSpinner} from "react-loader-spinner"
+import {Link} from "react-router-dom";
 
-
-export function CreatePost() {
+export default function CreatePost() {
     const navigate = useNavigate();
     const [employees, setEmployee] = useState([]);
     const imgPreviewRef = useRef(null)
@@ -23,21 +23,23 @@ export function CreatePost() {
     const formatDateTime = (dateTime) => {
         return moment(dateTime).format("DD/MM/YYYY HH:mm");
     };
-
+    const formatDateTime1 = (dateTime) => {
+        return moment(dateTime).format("YYYY-MM-DD HH:mm:ss");
+    };
 
     const savePost = (async (post) => {
         const fileName = `images/${imageUpload.name + v4()}`
         const imageRef = ref(storage, fileName);
-       await  uploadBytes(imageRef, imageUpload).then((snapshot) => {
+        await uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then(async (url) => {
-
+                console.log(employees.idEmployee);
                 await createPost({
                     ...post,
                     image: url,
-                    employee: employees.find(es => es.idEmployee == post.employee)
-                }).then(
+                    employee: employees
+                }).then(() => {
                     navigate("/listPost")
-                )
+                })
                 console.log(url);
             })
         }).then(
@@ -46,27 +48,23 @@ export function CreatePost() {
                     icon: 'success',
                     title: 'Tạo mới thành công !',
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 2000,
+                    customClass: {
+                        icon: 'icon-post',
+                    }
                 })
             }
         )
     })
-
-
-    // const formatDateTime = (datePost) => {
-    //     return moment(datePost).format("DD/MM/YYYY HH:mm:ss");
-    // };
-
-
+    const findAllEmployees = async () => {
+        const result = await postService.getAllEmployee(localStorage.username);
+        setEmployee(result);
+        console.log(result);
+    }
     useEffect(() => {
-        const findAllEmployees = async () => {
-            const result = await postService.getAllEmployee()
-            setEmployee(result)
-        }
-        findAllEmployees()
+        findAllEmployees();
     }, [])
     useEffect(() => {
-        document.title = "Thêm mới tin tức ";
         window.scrollTo(0, 0)
     }, []);
 
@@ -77,7 +75,10 @@ export function CreatePost() {
                 icon: 'error',
                 title: 'Dung lượng ảnh tối đa 3MB',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1500,
+                customClass: {
+                    icon: 'icon-post',
+                }
             })
             return;
         }
@@ -97,27 +98,24 @@ export function CreatePost() {
         <Formik
             initialValues={{
                 title: '',
-                employee: 1,
-                datePost: new Date(),
+                datePost: formatDateTime1(new Date()),
                 image: '',
                 content: ''
             }}
             validationSchema={Yup.object({
                 title: Yup.string().required("Không được để trống."),
-                // image: Yup.string().required("Không được để trống."),
                 content: Yup.string().required("Không được để trống.")
             })}
-            onSubmit={(values,{setSubmitting}) => {
-                setTimeout(() => {
-                  savePost(values)
-                    setSubmitting(false)
-                },4000)
-
+            onSubmit={(values, {setSubmitting}) => {
+                setSubmitting(false);
+                savePost(values).then(() => {
+                    setSubmitting(true);
+                });
             }}>
             {
-                ({isSubmitting})=>(
+                ({isSubmitting}) => (
                     <div className="container-fluid " style={{marginBottom: "5rem"}}>
-                        <div className="row justify-content-center align-items-center" style={{display:"flex"}}>
+                        <div className="row justify-content-center align-items-center" style={{display: "flex"}}>
                             < div className="col-md-6" style={{borderRadius: "4px"}}>
                                 <div className="card-update-post" style={{
                                     marginTop: "4rem",
@@ -143,16 +141,17 @@ export function CreatePost() {
                                                 id="title"
                                                 name="title"
                                             />
-                                            <ErrorMessage name="title" component="span" style={{color:"red"}}/>
+                                            <ErrorMessage name="title" component="span" style={{color: "red"}}/>
                                         </div>
                                         <div className="mt-2 inputs">
-                                    <span>Ngày tạo <span
-                                        style={{color: "red"}}>*</span>   {formatDateTime(new Date())}</span>
+                                            <span>Ngày tạo <span
+                                                style={{color: "red"}}>*</span> {formatDateTime(new Date())}</span>
                                         </div>
                                         <div className="mt-2 inputs">
                                             <span>Tải lên hình ảnh <span style={{color: "red"}}>*</span></span>
-                                            <div className="custom-file" style={{ position: "relative", overflow: "hidden" }}>
-                                                <input
+                                            <div className="custom-file"
+                                                 style={{position: "relative", overflow: "hidden"}}>
+                                                <Field
                                                     className="custom-file-input"
                                                     accept="image/png, image/gif, image/jpeg"
                                                     type="file"
@@ -162,47 +161,45 @@ export function CreatePost() {
                                                 />
                                                 <span className="custom-file-control"></span>
                                             </div>
-                                            <img name="image" width="100%" ref={imgPreviewRef} style={{ display: "none" }}/>
+                                            <img name="image" width="100%" ref={imgPreviewRef}
+                                                 style={{display: "none"}}/>
                                             {/*<ErrorMessage name="image" component="span" style={{color:"red"}}/>*/}
                                         </div>
 
                                         <div className="mt-4 inputs">
                                             <span>Nội dung <span style={{color: "red"}}>*</span></span>
-                                            <Field
-                                                name="content"
-                                                component={CKEditorComponent}
-                                            />
-                                            <ErrorMessage name="content" component="span" style={{color:"red"}}/>
+                                            <Field name="content" component={CKEditorComponent}/>
+                                            <ErrorMessage name="content" component="span" style={{color: "red"}}/>
                                         </div>
 
-                                            {
-                                                isSubmitting ?
-                                                    <FidgetSpinner
-                                                        visible={true}
-                                                        height="80"
-                                                        width="80"
-                                                        ariaLabel="dna-loading"
-                                                        wrapperStyle={{}}
-                                                        wrapperClass="dna-wrapper"
-                                                        ballColors={['#ff0000', '#00ff00', '#0000ff']}
-                                                        backgroundColor="#F4442E"
-                                                    />:
-                                                    <div className="mt-4 btn-group ">
-                                                        <div className="text-center m-auto">
-                                                            <button type="button" className="btn btn-secondary1">
-                                                                <b className="text-center1">Quay lại</b>
-                                                            </button>
-                                                        </div>
-                                                    <div className="text-center m-auto">
-                                                        <button type="submit"
-                                                                className="btn btn-warning "
-                                                                data-mdb-toggle="modal"
-                                                                data-mdb-target="#exampleModalToggle1">
-                                                            <b className="text-center1">Thêm mới</b>
-                                                        </button>
-                                                    </div>
-                                                    </div>
-                                            }
+                                        {isSubmitting ?
+                                            <FidgetSpinner
+                                                visible={true}
+                                                height="80"
+                                                width="80"
+                                                ariaLabel="dna-loading"
+                                                wrapperStyle={{}}
+                                                wrapperClass="dna-wrapper"
+                                                ballColors={['#ff0000', '#00ff00', '#0000ff']}
+                                                backgroundColor="#F4442E"
+                                            /> :
+                                            <div className="mt-4 btn-group ">
+                                                <div className="text-center m-auto">
+                                                    <Link to="/listPost" type="button"
+                                                          className="btn btn-secondary1">
+                                                        <b className="text-center1">Quay lại</b>
+                                                    </Link>
+                                                </div>
+                                                <div className="text-center m-auto">
+                                                    <button type="submit"
+                                                            className="btn btn-warning "
+                                                            data-mdb-toggle="modal"
+                                                            data-mdb-target="#exampleModalToggle1">
+                                                        <b className="text-center1">Thêm mới</b>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        }
                                     </Form>
                                 </div>
                             </div>
@@ -210,8 +207,6 @@ export function CreatePost() {
                     </div>
                 )
             }
-
-
         </Formik>
     );
 }

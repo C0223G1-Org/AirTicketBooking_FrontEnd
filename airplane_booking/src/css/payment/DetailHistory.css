@@ -1,10 +1,14 @@
   
   body {
     font-family: Diavlo, sans-seriff;
-    /* background-color: #f2f2f2; */
+    background-image: url("../../img/background.jpg") ;
+    background-size: cover;
+    background-position: center;
   }
+ 
   
-  .payment-ticket {
+  .detail-history-ticket {
+    
     max-width: 75%;
     margin: 50px auto;
     padding: 30px;
@@ -13,19 +17,19 @@
     border-radius: 10px;
     box-shadow: 0px 0px 10px #888888;
   }
-  #payment .thanh-codegym-airline{
+  #detail-history .thanh-codegym-airline{
     color: #dfa512;
     font-size: 23px;
     text-transform: uppercase;
     font-weight: bold;
   }
-  #payment .thanh-logo img{
+  #detail-history .thanh-logo img{
     margin-left: 25px;
     
   }
-  #payment .thanh-logo
+  #detail-history .thanh-logo
   
-  #payment .title {
+  #detail-history-historyent .title {
     text-align: center;
     font-size: 40px;
     margin-bottom: 20px;
@@ -33,32 +37,23 @@
     font-weight: bold;
   }
   
-  #payment  .label {
+  #detail-history  .label {
     font-weight: bold;
     font-size: 20px;
   }
-  /* .payment .hidden{
-    display: ;
-  } */
 
   
-  #payment .thank-you {
-    text-align: center;
-    margin-top: 20px;
-    color: gray;
-  }
-  
-  #payment .row {
+  #detail-history .row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
   }
   
-  #payment .col-6 {
+  #detail-history .col-6 {
     width: 50%;
   }
   
-  #payment .label::before {
+  #detail-history .label::before {
     content: "";
     display: inline-block;
     width: 10px;
@@ -68,7 +63,7 @@
     border-radius: 50%;
   }
   
-  #payment .value::before {
+  #detail-history .value::before {
     content: "";
     display: inline-block;
     width: 10px;
@@ -78,7 +73,7 @@
     border-radius: 50%;
   }
 
-  #payment .route {
+  #detail-history .route {
     font-size: 25px;
     border: none;
     color: #dfa512;
