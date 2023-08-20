@@ -10,6 +10,7 @@ import {
   child,
   set,
   orderByChild,
+  query
 } from "firebase/database";
 
 const firebaseConfig = {
@@ -25,5 +26,5 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-export { database, ref, push, onValue, off, get, child, set, orderByChild };
+export { database, ref, push, onValue, off, get, child, set, orderByChild ,query};
 export const storage = getStorage(app);
