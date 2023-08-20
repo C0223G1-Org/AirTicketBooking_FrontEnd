@@ -27,17 +27,34 @@ export const CreateCustomer = async (obj) => {
 }
 
 export const UpdateCustomer = async (obj) => {
-    await axios.put("http://localhost:8080/customers/" + obj.idCustomer, obj)
+    const token = localStorage.getItem('token');
+    await axios.put("http://localhost:8080/customers/" + obj.idCustomer, obj,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
 }
 
 export const GetCustomerById = async (id) => {
-    const res = await axios.get("http://localhost:8080/customers/" + id)
+    const token = localStorage.getItem('token');
+    const res = await axios.get("http://localhost:8080/customers/" + id,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
     return res.data
 }
 
 export async function getListCustomers(page, name, email, nationality) {
-
-    const res = await axios.get(`http://localhost:8080/customers/list?page=${page}&&name=${name}&&email=${email}&&nationality=${nationality}`)
+const token = localStorage.getItem('token');
+    const res = await axios.get(`http://localhost:8080/customers/list?page=${page}&&name=${name}&&email=${email}&&nationality=${nationality}`,
+        {
+            headers : {
+                Authorization: `Bearer ${token}`,
+            }
+        })
     return res.data;
 
 

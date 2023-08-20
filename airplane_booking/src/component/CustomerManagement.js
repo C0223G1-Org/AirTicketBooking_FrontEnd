@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {getListCustomers, deleteCustomers} from "../services/CustomerServices";
 import {Link} from "react-router-dom";
 import Swal from "sweetalert2";
@@ -144,9 +144,13 @@ export default function CustomerManagement() {
         setRole(localStorage.getItem("role"));
         setEmailEmp(localStorage.getItem("username"));
     }, []);
-    return (
-        <>
-            {role === 'ROLE_EMPLOYEE' ? (role === 'ROLE_ADMIN' ?
+    if (role === null || email === null) {
+        return <Unauthorzied/>
+    } else if (role === 'ROLE_EMPLOYEE' || role === 'ROLE_ADMIN') {
+        return (
+            <>
+                {/*{role === null ? <Unauthorzied/> :*/}
+                {/*(role !== 'ROLE_CUSTOMER' ?*/}
                 <div className="background-customer">
                     <div className="background-customer">
                         <meta charSet="UTF-8"/>
@@ -270,21 +274,28 @@ export default function CustomerManagement() {
                                                     <tbody>
                                                     {customers.content.map((item, index) =>
                                                         (
-                                                            <tr key={`ctm_${index}`} style={{maxWeight: "250px"}}>
+                                                            <tr key={`ctm_${index}`}
+                                                                style={{maxWeight: "250px"}}>
                                                                 <td className="col-md-1  bg-white "
-                                                                    style={{textAlign: 'center', weight: "10px"}}>
+                                                                    style={{
+                                                                        textAlign: 'center',
+                                                                        weight: "10px"
+                                                                    }}>
                                                                     <p>{(page * 5) + (index + 1)}</p>
 
                                                                 </td>
                                                                 <td className=" col-md-2  py-3   bg-white"
                                                                     style={{maxWeight: "250px"}}>
                                                                     <div className="flex items-center">
-                                                                        <div className="flex-shrink-0 w-10 h-10">
-                                                                            <img className="w-full h-full rounded-full"
-                                                                                 src={item.imgCustomer} alt=""/>
+                                                                        <div
+                                                                            className="flex-shrink-0 w-10 h-10">
+                                                                            <img
+                                                                                className="w-full h-full rounded-full"
+                                                                                src={item.imgCustomer} alt=""/>
 
                                                                         </div>
-                                                                        <div className=" col-md-10  py-2   bg-white">
+                                                                        <div
+                                                                            className=" col-md-10  py-2   bg-white">
                                                                             <p className=" whitespace-no-wrap">
                                                                                 {item.nameCustomer}
                                                                             </p>
@@ -296,7 +307,8 @@ export default function CustomerManagement() {
                                                                 </td>
                                                                 <td className=" col-md-1 px-5 py-3   bg-white ">
                                                                     <p className="text-gray-900 whitespace-no-wrap">
-                                                                        {item.genderCustomer == true ? <p>Nam</p> :
+                                                                        {item.genderCustomer == true ?
+                                                                            <p>Nam</p> :
                                                                             <p>Nữ</p>}
                                                                     </p>
                                                                 </td>
@@ -323,7 +335,8 @@ export default function CustomerManagement() {
                                                                     data-bs-target="#exampleModalDetail">
                                                                     <i className="fa-solid fa-circle-info"></i> </span>
 
-                                                                        <Link to={`/customers/edit/${item.idCustomer}`}>
+                                                                        <Link
+                                                                            to={`/customers/edit/${item.idCustomer}`}>
                                                                     <span
                                                                         className="icon_edit_employee"><i
                                                                         className="fa-solid fa-pen-to-square"/></span>
@@ -349,7 +362,8 @@ export default function CustomerManagement() {
                                                     :
                                                     <tbody>
                                                     <tr style={{height: '150px'}}>
-                                                        <td style={{color: "red", fontSize: '50px',}} colSpan="7">Không
+                                                        <td style={{color: "red", fontSize: '50px',}}
+                                                            colSpan="7">Không
                                                             có
                                                             dữ
                                                             liệu
@@ -372,7 +386,10 @@ export default function CustomerManagement() {
                                                             await previousPage()
                                                         }}
                                                         className="text-sm   py-2 px-3 rounded-l"
-                                                        style={{background: 'rgb(223, 165, 18)', color: '#ffffff'}}>
+                                                        style={{
+                                                            background: 'rgb(223, 165, 18)',
+                                                            color: '#ffffff'
+                                                        }}>
                                                         Trước
                                                     </button> : <button
                                                         onClick={async () => {
@@ -414,7 +431,9 @@ export default function CustomerManagement() {
                                                         }} className="text-sm   py-2 px-3 rounded-l" style={{
                                                             background: 'rgb(223, 165, 18)',
                                                             color: '#ffffff',
-                                                            marginLeft: '5px', opacity: '0,6', cursor: 'not-allowed'
+                                                            marginLeft: '5px',
+                                                            opacity: '0,6',
+                                                            cursor: 'not-allowed'
                                                         }}>
                                                             Sau
                                                         </button>}
@@ -441,7 +460,8 @@ export default function CustomerManagement() {
                                                                     color: 'white'
                                                                 }}>
                                                             <i
-                                                                className="fa-solid fa-magnifying-glass"></i></button>
+                                                                className="fa-solid fa-magnifying-glass"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -473,10 +493,12 @@ export default function CustomerManagement() {
                                         <div className="row container-fluid   ">
 
                                             <div className=" card_content ">
-                                                <div className="wai"><img id="zhaopian" src={customer.imgCustomer}/>
+                                                <div className="wai"><img id="zhaopian"
+                                                                          src={customer.imgCustomer}/>
                                                 </div>
                                                 <div className="tai">
-                                                    <p><span className="biaoqing"><i class="fa-solid fa-user"></i>   Họ và tên:</span> {customer.nameCustomer}
+                                                    <p><span className="biaoqing"><i
+                                                        class="fa-solid fa-user"></i>   Họ và tên:</span> {customer.nameCustomer}
                                                     </p>
                                                     <p><span className="biaoqing"><i
                                                         class="fa-solid fa-calendar-days"></i> Năm sinh:</span> {moment(`${customer.dateCustomer}`).format('DD-MM-YYYY')}
@@ -491,7 +513,8 @@ export default function CustomerManagement() {
                                                     <p><span className="biaoqing"><i
                                                         class="fa-solid fa-envelope"></i>  Email:</span> {customer.emailCustomer}
                                                     </p>
-                                                    <p><span className="biaoqing"><i class="fa-solid fa-phone"></i> Số điện thoại:</span> {customer.telCustomer}
+                                                    <p><span className="biaoqing"><i
+                                                        class="fa-solid fa-phone"></i> Số điện thoại:</span> {customer.telCustomer}
                                                     </p>
                                                     <p><span className="biaoqing"><i
                                                         class="fa-solid fa-location-dot"></i>  Địa chỉ:</span> {customer.addressCustomer}
@@ -511,9 +534,13 @@ export default function CustomerManagement() {
                         </div>
                     </div>
                 </div>
-                : <Unauthorzied/>) : <Unauthorzied/>
-            }
-        </>
-    );
+                {/*            : <Unauthorzied/>*/}
+                {/*    )*/}
+                {/*}*/}
+            </>
+        );
+    } else {
+        return <Unauthorzied/>
+    }
 }
 

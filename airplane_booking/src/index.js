@@ -60,10 +60,7 @@ root.render(
           <Route path="/ticket/unbooked" element={<TicketUnBook />} />
           <Route path="/customers" element={<CustomerManagement />} />
           <Route path="/customers/add" element={<EmployeeCreateCustomer />} />
-          <Route
-            path="/customers/edit/:id"
-            element={<EmployeeUpdateCustomer />}
-          />
+          <Route path="/customers/edit/:id" element={<EmployeeUpdateCustomer />}/>
           <Route path="/customers/update/:id" element={<CustomerUpdate />} />
           <Route path="/customers/details/:id" element={<CustomerDetails />} />
           <Route path="/list/:data" element={<ListRouter />} />
