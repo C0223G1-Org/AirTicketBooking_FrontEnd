@@ -88,58 +88,83 @@ const AdminPage = () => {
   };
 
   return (
-
-    <div id="message" style={{paddingLeft:'250px'}}>
+    <div id="message" style={{ paddingLeft: "250px" }}>
       <div
         style={{
-          width:'80%',
+          width: "80%",
           background: "#1F6987FF",
           color: "#ffffffff",
           height: "60px",
           zIndex: "999",
-        }}>
+        }}
+      >
         <div>
-          <h4 style={{ position: "relative", top: "15px", left: "24px" }}>
+          <h4
+            style={{
+              position: "relative",
+              top: "15px",
+              left: "24px",
+              color: "rgb(223, 165, 18)",
+              textTransform: "uppercase",
+              fontWeight: "bold",
+            }}
+          >
             CodeGym AirLine
           </h4>
         </div>
       </div>
-      <div className="row people-list "  style={{ height: "400px", background: "#fff" ,width:'80%'}} >
-        <div className=" chat-app col-3" style={{ height: "400px", borderRight:'2px solid rgb(6, 133, 170)'}} id="style-8"> 
-            <ul  >
-              {chats.map((chatId) => (
-                <li
-
-                  className={` ${selectedChatId === chatId ? "selected-user" : ""
+      <div
+        className="row people-list "
+        style={{ height: "400px", background: "#fff", width: "80%" }}
+      >
+        <div
+          className=" chat-app col-3"
+          style={{ height: "400px", borderRight: "2px solid rgb(6, 133, 170)" }}
+          id="style-8"
+        >
+          <ul>
+            {chats.map((chatId) => (
+              <li
+                className={` ${
+                  selectedChatId === chatId ? "selected-user" : ""
+                }`}
+                key={chatId}
+                onClick={() => handleSelectChat(chatId)}
+              >
+                <div className="about">
+                  <div
+                    className={`name ${
+                      selectedChatId === chatId ? "bold" : ""
                     }`}
-                  key={chatId}
-                  onClick={() => handleSelectChat(chatId)}
-                >
-                  <div className="about">
-                    <div
-                      className={`name ${selectedChatId === chatId ? "bold" : ""
-                        }`}
-                    >
-                      {chatId}
-                    </div>
+                  >
+                    {chatId}
                   </div>
-                </li>
-              ))}
-            </ul>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className=" col-9 " >
-          <div className="row chat-app" style={{ height: '350px' }} id="style-8">
-            <ul className=" chat-container chat_messenger chat-history" >
+        <div className=" col-9 ">
+          <div
+            className="row chat-app"
+            style={{ height: "350px" }}
+            id="style-8"
+          >
+            <ul className=" chat-container chat_messenger chat-history">
               {chatMessages.map((message, index) => (
                 <li
                   key={index}
-                  className={`clearfix ${message.sender === "admin"
-                    ? "other-message-admin"
-                    : "seft-message-user"
-                    }`}
+                  className={`clearfix ${
+                    message.sender === "admin"
+                      ? "other-message-admin"
+                      : "seft-message-user"
+                  }`}
                 >
-                  <div  className="message">
-                    {message.content} <br /> <span style={{fontSize:'10px',float:'left'}}>{message.timestamp}</span>
+                  <div className="message">
+                    {message.content} <br />{" "}
+                    <span style={{ fontSize: "10px", float: "left" }}>
+                      {message.timestamp}
+                    </span>
                   </div>
                 </li>
               ))}
@@ -161,24 +186,35 @@ const AdminPage = () => {
                 onChange={(e) => setAdminMessage(e.target.value)}
               />
             </div>
-           
+
             <a
-                className="chat__conversation-panel__button panel-item btn-icon "
+              className="chat__conversation-panel__button panel-item btn-icon "
+              aria-hidden="true"
+              onClick={handleSendMessage}
+            >
+              {" "}
+              <svg
+                style={{ top: "20px", left: "20px" }}
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
                 aria-hidden="true"
-                onClick={handleSendMessage}
+                data-reactid="1036"
               >
-                {" "}
-                <svg style={{ top: '20px', left: '20px' }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-reactid="1036">
-                  <line x1="22" y1="2" x2="11" y2="13"></line>
-                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                </svg>
-              </a>
-           
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
     </div>
-
   );
 };
 export default AdminPage;
