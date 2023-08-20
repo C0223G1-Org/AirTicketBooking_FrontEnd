@@ -17,7 +17,6 @@ function HistoryPaymentComponent() {
         try {
             const paymentData = await getListHistoryByCustomerId(id, pageable, nameDeparture, nameDestination);
             setPayments(paymentData);
-
         } catch (error) {
             await setDepartureFunction("")
             .then(await setDestinationFunction(""))

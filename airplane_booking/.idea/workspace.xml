@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a22c4e3d-69c9-4531-b057-73ef87a7ab83" name="Changes" comment="Nhan update  18/08 00.34">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/DetailHistoryPaymentComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/DetailHistoryPaymentComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/HistoryPaymentComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/HistoryPaymentComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="a22c4e3d-69c9-4531-b057-73ef87a7ab83" name="Changes" comment="ThanhVH commit chuc nang thanh toan va xem lich su thanh toan 20/08" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +20,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -35,7 +37,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -58,6 +63,7 @@
       <workItem from="1692320845350" duration="732000" />
       <workItem from="1692321682900" duration="420000" />
       <workItem from="1692329894990" duration="12000" />
+      <workItem from="1692547330965" duration="142000" />
     </task>
     <task id="LOCAL-00001" summary="Nhan update  17/8 15:00">
       <created>1692259144780</created>
@@ -101,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692293729894</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="ThanhVH commit chuc nang thanh toan va xem lich su thanh toan 20/08">
+      <created>1692547413292</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1692547413292</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,6 +137,7 @@
     <MESSAGE value="Nhan update  17/8 23:30" />
     <MESSAGE value="Nhan update  18/08 00.10" />
     <MESSAGE value="Nhan update  18/08 00.34" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nhan update  18/08 00.34" />
+    <MESSAGE value="ThanhVH commit chuc nang thanh toan va xem lich su thanh toan 20/08" />
+    <option name="LAST_COMMIT_MESSAGE" value="ThanhVH commit chuc nang thanh toan va xem lich su thanh toan 20/08" />
   </component>
 </project>
