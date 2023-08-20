@@ -1,4 +1,22 @@
-
+.new-message-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .selected-user .new-message-badge {
+    display: none;
+  }
+  
+  .hide-notification .new-message-badge {
+    opacity: 0;
+  }
 .picker-container {
     /* position: relative; */
     /* width: 300px; */

@@ -1,5 +1,5 @@
 import React, { useEffect, useState,useRef } from "react";
-import { database, ref, push, onValue, off, orderByChild } from "../../firebase-chat";
+import { database, ref, push, onValue, off, orderByChild,query } from "../../firebase-chat";
 import "../../css/search_ticket/style-popup.css";
 
 const AdminPage = () => {
@@ -21,15 +21,43 @@ const AdminPage = () => {
   //     list()
   //   },[])
 
+ 
 
   useEffect(() => {
     // Lấy danh sách các cuộc trò chuyện
     const chatsRef = ref(database, "users");
+
+
     onValue(chatsRef, (snapshot) => {
       const data = snapshot.val();
-      const chatList = data ? Object.keys(data) : [];
-      setChats(chatList);
+      // const chatList = data ? Object.keys(data) : [];
+      
+      console.log(data);
+
+      let dataObj=Object.values(data);
+      let dataKey=Object.keys(data)
+      console.log(dataObj);
+
+      for (let i = 0; i < dataObj.length; i++) {
+        for (let j = i; j < dataObj.length-1; j++) {
+          let bag;
+          let key;
+          if (dataObj[i].timestamp<dataObj[j+1].timestamp) {
+            key=dataKey[i]
+            bag=dataObj[i];
+          
+            dataObj[i]=dataObj[j+1];
+            dataKey[i]=dataKey[j+1];
+
+            dataObj[j+1]=bag
+            dataKey[j+1]=key
+          }
+        }
+      }
+      setChats(dataKey);
+       console.log(dataKey);
     });
+    
 
     // Reset các tin nhắn khi không có cuộc trò chuyện được chọn
     if (!selectedChatId) {
@@ -38,6 +66,7 @@ const AdminPage = () => {
 
     return () => {
       // Huỷ đăng ký khi component unmount
+     
       off(chatsRef);
       if (selectedChatId) {
         const chatMessagesRef = ref(
@@ -100,6 +129,7 @@ const AdminPage = () => {
       timestamp: currentTime.toLocaleTimeString("vi-VN", {
         hour: "2-digit",
         minute: "2-digit",
+        second:"2-digit"
       }),
     };
 
