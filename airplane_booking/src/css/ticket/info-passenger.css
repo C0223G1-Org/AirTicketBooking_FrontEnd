@@ -209,7 +209,7 @@ body {
     }
     #info-passenger .wrapper .wrap .info-fight p:nth-child(2){
         width: 33.33%;
-        float: left ; 
+        float: left ;
         margin-right: 10px;
     }
     #info-passenger .wrapper .wrap .info-fight p:last-child{
@@ -238,17 +238,17 @@ body {
     /* #info-passenger .info-second{
         display: block;
     }  */
-     /* #info-passenger .info-second .col-2{
-        width: 100%;
-    }
-    #info-passenger .info-second .col-2 p.person{
-        float: left;
-        margin: 0 10px 0 0;
-    }
-    #info-passenger .info-second .col-2 p.type-ticket{
-        width: 50%;
-        padding-top: 10px;
-    } */
+    /* #info-passenger .info-second .col-2{
+       width: 100%;
+   }
+   #info-passenger .info-second .col-2 p.person{
+       float: left;
+       margin: 0 10px 0 0;
+   }
+   #info-passenger .info-second .col-2 p.type-ticket{
+       width: 50%;
+       padding-top: 10px;
+   } */
 
 
     #info-passenger .info-customer .field {
