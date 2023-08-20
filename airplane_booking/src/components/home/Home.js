@@ -10,6 +10,9 @@ import Swal from "sweetalert2";
 import Popup from "./ChatPopup";
 import "../../css/search_ticket/style-popup.css";
 import UserChat from '../chat_messenger/UserChat';
+import banner1 from "../../img/CodeGym Airline.png"
+import banner2 from "../../img/CodeGym Airline-2.png"
+import banner3 from "../../img/CodeGym Airline 3.png"
 
 
 export default function Home() {
@@ -220,15 +223,15 @@ export default function Home() {
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src="https://www.vietnamairlines.com/~/media/B316FB8463454B8780F71E2E32C7359E.ashx"
+                        <img src={banner1}
                              className="d-block w-100" alt="..."/>
                     </div>
                     <div className="carousel-item">
-                        <img src="https://www.vietnamairlines.com/~/media/73798957242E4F2AA34B73B9DDB94896.ashx"
+                        <img src={banner3}
                              className="d-block w-100" alt="..."/>
                     </div>
                     <div className="carousel-item">
-                        <img src="https://www.vietnamairlines.com/~/media/91BAD72CDD9647179F9922F154E48C5D.ashx"
+                        <img src={banner2}
                              className="d-block w-100" alt="..."/>
                     </div>
                 </div>

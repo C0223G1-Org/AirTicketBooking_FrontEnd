@@ -15,24 +15,24 @@ export default function Header() {
     const [flag2, setFlag2] = useState(false)
     // const [flag3, setFlag3] = useState(false)
 
-    console.log(localStorage)
+    // console.log(localStorage)
     const loginUser = async () => {
         if (localStorage.getItem("username") != null) {
             setEmailUser(
                 localStorage.getItem("username")
             );
-            console.log({user: localStorage.getItem("username")})
+            // console.log({user: localStorage.getItem("username")})
             setRole(localStorage.getItem("role"));
         }
     }
 
-    console.log(emailUser)
+    // console.log(emailUser)
 
     const getUser = async () => {
         if (emailUser) {
             if (role == "ROLE_CUSTOMER") {
                 let data = await getCustomerByEmail(emailUser);
-                console.log(data)
+                // console.log(data)
                 setUser(data);
             } else if (role == "ROLE_EMPLOYEE") {
                 let data = await getEmployeeByEmail(emailUser);
@@ -40,8 +40,6 @@ export default function Header() {
             }
         }
     }
-
-    console.log("aaaaa")
     const handleLogout = () => {
         localStorage.setItem("token", null);
         localStorage.setItem("username", null);
@@ -66,10 +64,10 @@ export default function Header() {
         loginUser()
     }, [flag, user]);
     useEffect(() => {
-        console.log("asd")
+        // console.log("asd")
         getUser()
     }, [flag]);
-    console.log(flag1)
+    // console.log(flag1)
 
     // setTimeout(() => {
     //     if (emailUser !== null) {

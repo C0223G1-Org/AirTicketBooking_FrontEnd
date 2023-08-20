@@ -208,7 +208,7 @@ body {
         width: 33.3%;
     }
     #info-passenger .wrapper .wrap .info-fight p:nth-child(2){
-        width: 33,33%;
+        width: 33.33%;
         float: left ; 
         margin-right: 10px;
     }
@@ -267,8 +267,13 @@ body {
         width: 100px;
     }
 
+    #info-passenger .detail-ticket-btn button{
+        font-size: 15px;
+        padding: 2px  5px;
+    }
     #info-passenger .detail-ticket-btn button {
         margin-bottom: 10px;
+        width: 150px;
     }
 
     #info-passenger .detail-ticket-btn button:last-child {
@@ -281,7 +286,7 @@ body {
 
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1000px ) {
     #info-passenger .wrapper {
         padding: 20px;
     }
@@ -304,4 +309,10 @@ body {
     #info-passenger .info-customer .field select {
         width: 70%;
     }
+}
+@media (min-width: 1001px) {
+    #info-passenger .wrapper{
+        padding: 30px 50px;
+    }
+
 }

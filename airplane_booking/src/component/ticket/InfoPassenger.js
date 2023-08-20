@@ -111,7 +111,6 @@ export default function InfoPassenger() {
         formattedPriceTax1 = numeral(priceTax1).format('0,0 đ');
         formattedTotalPrice1 = numeral(totalPrice1).format('0,0 đ');
     }
-    // format tiền hành lý
 
     // lặp hành khách
     const arrPas = () => {
@@ -171,6 +170,7 @@ export default function InfoPassenger() {
     function handleSubmitCancelTwoWay(){
         navigate(`/list/${route.departure.nameDeparture},${route.destination.nameDestination},${route.dateDeparture},${routeDestination.dateArrival},${1},${arr[7]},${arr[8]}`);
     }
+
 
     return (
         <>
@@ -476,6 +476,7 @@ export default function InfoPassenger() {
                                                                                type="text"
                                                                                name={`tickets.${index}.namePassenger`}
                                                                                id={`tickets.${index}.namePassenger`}
+                                                                               required
                                                                         />
                                                                         <ErrorMessage
                                                                             name={`tickets.${index}.namePassenger`}
@@ -489,6 +490,7 @@ export default function InfoPassenger() {
                                                                         <Field as="select"
                                                                                name={`tickets.${index}.genderPassenger`}
                                                                                id={`tickets.${index}.genderPassenger`}
+                                                                               required
                                                                         >
                                                                             <option value={""}>Chọn giới
                                                                                 tính
@@ -526,7 +528,9 @@ export default function InfoPassenger() {
                                                                             lý kí gửi chiều đi :</label>
                                                                         <Field as="select"
                                                                                name={`tickets.${index}.luggage`}
-                                                                               id={`tickets.${index}.luggage`}>
+                                                                               id={`tickets.${index}.luggage`}
+                                                                               required
+                                                                        >
                                                                             {luggages.map((luggage) => {
                                                                                 const price = numeral(luggage.priceLuggage).format('0,0 đ');
                                                                                 return (
@@ -542,7 +546,9 @@ export default function InfoPassenger() {
                                                                             lý kí gửi chiều về :</label>
                                                                         <Field as="select"
                                                                                name={`tickets.${index}.luggage2`}
-                                                                               id={`tickets.${index}.luggage2`}>
+                                                                               id={`tickets.${index}.luggage2`}
+                                                                               required
+                                                                        >
                                                                             {luggages.map((luggage) => {
                                                                                 const price = numeral(luggage.priceLuggage).format('0,0 đ');
                                                                                 return (
@@ -562,6 +568,7 @@ export default function InfoPassenger() {
                                                                             type="text"
                                                                             name={`tickets.${index}.emailPassenger`}
                                                                             id={`tickets.${index}.emailPassenger`}
+
                                                                         />
                                                                         <ErrorMessage
                                                                             name={`tickets.${index}.emailPassenger`}
@@ -577,7 +584,7 @@ export default function InfoPassenger() {
                                                                             type="text"
                                                                             name={`tickets.${index}.idCardPassenger`}
                                                                             id={`tickets.${index}.idCardPassenger`}
-
+                                                                            required
                                                                         />
                                                                         <ErrorMessage
                                                                             name={`tickets.${index}.idCardPassenger`}
@@ -610,6 +617,7 @@ export default function InfoPassenger() {
                                                                             type="text"
                                                                             name={`tickets.${index + arr[7] * 1}.namePassenger`}
                                                                             id={`tickets.${index + arr[7] * 1}.namePassenger`}
+                                                                            required
                                                                         />
                                                                         <ErrorMessage
                                                                             name={`tickets.${index + arr[7] * 1}.namePassenger`}
@@ -624,6 +632,7 @@ export default function InfoPassenger() {
                                                                         <Field as="select"
                                                                                name={`tickets.${index + arr[7] * 1}.genderPassenger`}
                                                                                id={`tickets.${index + arr[7] * 1}.genderPassenger`}
+                                                                               required
                                                                         >
                                                                             <option value={""}>Chọn giới tính</option>
                                                                             <option value={false}>Nữ
@@ -644,7 +653,8 @@ export default function InfoPassenger() {
                                                                             lý kí gửi chiều đi :</label>
                                                                         <Field as="select"
                                                                                name={`tickets.${index + arr[7] * 1}.luggage`}
-                                                                               id={`tickets.${index + arr[7] * 1}.luggage`}>
+                                                                               id={`tickets.${index + arr[7] * 1}.luggage`}
+                                                                               required>
                                                                             {luggages.map((luggage) => {
                                                                                 const price = numeral(luggage.priceLuggage).format('0,0 đ');
                                                                                 return (
@@ -661,11 +671,12 @@ export default function InfoPassenger() {
                                                                             lý kí gửi chiều về :</label>
                                                                         <Field as="select"
                                                                                name={`tickets.${index + arr[7] * 1}.luggage2`}
-                                                                               id={`tickets.${index + arr[7] * 1}.luggage2`}>
+                                                                               id={`tickets.${index + arr[7] * 1}.luggage2`}
+                                                                               required
+                                                                        >
                                                                             {luggages.map((luggage) => {
                                                                                 const price = numeral(luggage.priceLuggage).format('0,0 đ');
                                                                                 return (
-
                                                                                     <option key={luggage.idLuggage}
                                                                                             value={luggage.idLuggage}>{luggage.nameLuggage} - {price} VND</option>
                                                                                 )
@@ -679,11 +690,7 @@ export default function InfoPassenger() {
                                                     })
                                                     }
                                                 </div>
-
                                             </div>
-
-                                            {/*chiều về*/}
-
                                             <div className="detail-ticket-btn">
                                                 <button onClick={()=>{
                                                     handleSubmitCancelTwoWay();
