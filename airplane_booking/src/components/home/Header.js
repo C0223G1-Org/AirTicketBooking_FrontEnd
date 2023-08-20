@@ -38,7 +38,7 @@ export default function Header() {
                 let data = await getEmployeeByEmail(rightEmail);
                 setUser(data);
             } else if (rightRole == "ROLE_ADMIN") {
-
+                setUser({user: localStorage.getItem("username")});
             }
         }
     }
