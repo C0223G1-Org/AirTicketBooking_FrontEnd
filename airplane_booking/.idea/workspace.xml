@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8d74d6a-ed3f-40c1-8fdf-a4da6fe9378b" name="Changes" comment="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 18/8 lan 1">
+    <list default="true" id="c8d74d6a-ed3f-40c1-8fdf-a4da6fe9378b" name="Changes" comment="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 20/8 lan 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/HistoryPaymentComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/HistoryPaymentComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/PaymentComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/PaymentComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/DetailHistoryPaymentComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/DetailHistoryPaymentComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/payment/Payment.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/payment/Payment.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/HistoryPaymentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/HistoryPaymentService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/PaymentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/PaymentService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +68,7 @@
       <workItem from="1692294861684" duration="934000" />
       <workItem from="1692296092279" duration="538000" />
       <workItem from="1692505812712" duration="1600000" />
+      <workItem from="1692511361777" duration="3928000" />
     </task>
     <task id="LOCAL-00001" summary="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 15/8 lan 2">
       <created>1692112983425</created>
@@ -101,7 +98,21 @@
       <option name="project" value="LOCAL" />
       <updated>1692294938980</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 20/8 lan 1">
+      <created>1692511440826</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692511440826</updated>
+    </task>
+    <task id="LOCAL-00006" summary="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 20/8 lan 1">
+      <created>1692511472685</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692511472685</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +134,7 @@
     <MESSAGE value="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 15/8 lan 2" />
     <MESSAGE value="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 17/8 lan 1" />
     <MESSAGE value="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 18/8 lan 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 18/8 lan 1" />
+    <MESSAGE value="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 20/8 lan 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="thanhvh commit frontend chuc nang thanh toan va chuc nang xem lich su thanh toan ngay 20/8 lan 1" />
   </component>
 </project>

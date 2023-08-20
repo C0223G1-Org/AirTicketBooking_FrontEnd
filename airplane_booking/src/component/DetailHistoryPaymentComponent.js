@@ -7,9 +7,11 @@ import { Link } from "react-router-dom";
 import '.././css/payment/DetailHistory.css';
 
 
+
 function DetailHistoryPaymentComponent() {
     const [wasPayments, setWasPayments] = useState([]);
     const param = useParams();
+
 
 
     const showListTicket = async () => {
@@ -101,7 +103,7 @@ function DetailHistoryPaymentComponent() {
                                     <p className="value" style={{ width: '200px' }}>  {changePrice(item.priceTicket)} VND</p>
                                 </div>
                             </div>
-                            <button classNamey="back-to-history" style={{
+                            <button className="back-to-history" style={{
                                 width: '95px',
                                 height: '40px',
                                 border: 'none',
