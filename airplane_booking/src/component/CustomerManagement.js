@@ -31,7 +31,7 @@ export default function CustomerManagement() {
         })
     }
 
-    const detailCustomer=async (customer)=>{
+    const detailCustomer = async (customer) => {
         setCustomer(customer)
     }
     const deleteCustomer = async (item) => {
@@ -161,74 +161,76 @@ export default function CustomerManagement() {
                         <div className="title">
                             <h1 style={{fontSize: '50px'}}>QUẢN LÍ KHÁCH HÀNG</h1>
                         </div>
-                        <div className="my-2 flex sm:flex-row flex-col">
-                            <div className="flex flex-row mb-1 sm:mb-0">
+                        <div className="my-2 d-flex sm:flex-row flex-col  ">
+                            <div className="flex flex-row mb-1 sm:mb-0 " >
                                 <div className="relative">
-                                    <select onKeyDown={
-                                        async (event) => {
-                                            if (event.keyCode == 13) {
-                                                await searchDataPageable()
-                                            }
-                                        }}
-                                            id="nationality" defaultValue={""}
-                                            className="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                        <option value={""}>Quốc tịch &darr;</option>
-                                        <option value={"Nhật Bản"}>Nhật Bản</option>
-                                        <option value={"Việt Nam"}>Việt Nam</option>
-                                        <option value={"Lào"}>Lào</option>
-                                    </select>
+                                    <Link to="/customers/add">
+                                        <button className="text-sm  font-semibold py-2 px-4 " style={{
+                                            background: 'rgb(223, 165, 18)',
+                                            color: '#ffffff',
+                                            marginLeft: '2px',
+                                            width: '250px'
+                                        }}>Thêm mới khách hàng
+                                        </button>
 
+                                    </Link>
                                 </div>
-                            </div>
-                            <div className="block relative">
-                                <input
-                                    onKeyDown={
-                                        async (event) => {
-                                            if (event.keyCode == 13) {
-                                                await searchDataPageable()
-                                            }
-                                        }}
-                                    placeholder="Tìm kiếm theo email" id="email" defaultValue={""}
-                                    className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"/>
-                            </div>
-                            <div className="block relative">
-                                <input
-                                    onKeyDown={
-                                        async (event) => {
-                                            if (event.keyCode == 13) {
-                                                await searchDataPageable()
-                                            }
-                                        }}
-                                    placeholder="Tìm kiếm theo tên" id="name" defaultValue={""}
-                                    className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"/>
-                            </div>
-                            <button
-                                onClick={async () => {
-                                    await searchDataPageable()
-                                }}
-                                className="text-sm  font-semibold py-2 px-4 "
-                                style={{background: 'rgb(223, 165, 18)', color: '#ffffff',}}>
-                                <i className="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                            <Link to="/customers/add">
-                                <button className="text-sm  font-semibold py-2 px-4 " style={{
-                                    background: 'rgb(223, 165, 18)',
-                                    color: '#ffffff',
-                                    marginLeft: '2px',
-                                    width: '250px'
-                                }}>Thêm mới khách hàng
+                                <div className="" >
+                                    <div className="relative">
+                                        <select onKeyDown={
+                                            async (event) => {
+                                                if (event.keyCode == 13) {
+                                                    await searchDataPageable()
+                                                }
+                                            }}
+                                                id="nationality" defaultValue={""}
+                                                className="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                            <option value={""}>Quốc tịch &darr;</option>
+                                            <option value={"Nhật Bản"}>Nhật Bản</option>
+                                            <option value={"Việt Nam"}>Việt Nam</option>
+                                            <option value={"Lào"}>Lào</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="block relative ">
+                                    <input
+                                        onKeyDown={
+                                            async (event) => {
+                                                if (event.keyCode == 13) {
+                                                    await searchDataPageable()
+                                                }
+                                            }}
+                                        placeholder="Tìm kiếm theo email" id="email" defaultValue={""}
+                                        className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"/>
+                                </div>
+                                <div className="block relative">
+                                    <input
+                                        onKeyDown={
+                                            async (event) => {
+                                                if (event.keyCode == 13) {
+                                                    await searchDataPageable()
+                                                }
+                                            }}
+                                        placeholder="Tìm kiếm theo tên" id="name" defaultValue={""}
+                                        className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"/>
+                                </div>
+                                <button
+                                    onClick={async () => {
+                                        await searchDataPageable()
+                                    }}
+                                    className="text-sm  font-semibold py-2 px-4 "
+                                    style={{background: 'rgb(223, 165, 18)', color: '#ffffff',}}>
+                                    <i className="fa-solid fa-magnifying-glass"></i>
                                 </button>
-
-                            </Link>
+                            </div>
                         </div>
-
 
                         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
                                 {
                                     <table className="min-w-full leading-normal myTable">
                                         <thead>
-                                        <tr  style={{background: 'rgb(6, 133, 170)', color: '#ffffff'}}>
+                                        <tr style={{background: 'rgb(6, 133, 170)', color: '#ffffff'}}>
                                             <th className=" col-md-1 py-3     text-x "
                                                 style={{textAlign: 'center'}}>
                                                 STT
@@ -259,9 +261,9 @@ export default function CustomerManagement() {
                                             <tbody>
                                             {customers.content.map((item, index) =>
                                                 (
-                                                    <tr  key={`ctm_${index}`}>
+                                                    <tr key={`ctm_${index}`}>
                                                         <td className="col-md-1  bg-white "
-                                                            style={{textAlign: 'center',weight:"10px"}}>
+                                                            style={{textAlign: 'center', weight: "10px"}}>
                                                             <p>{(page * 5) + (index + 1)}</p>
 
                                                         </td>
@@ -274,7 +276,7 @@ export default function CustomerManagement() {
                                                                 </div>
                                                                 <div>
                                                                     <p className=" whitespace-no-wrap">
-                                                                        {item.nameCustomer.split(" ")[item.nameCustomer.split(" ").length-1]}
+                                                                        {item.nameCustomer.split(" ")[item.nameCustomer.split(" ").length - 1]}
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -301,15 +303,15 @@ export default function CustomerManagement() {
                                                         <td className="col-md-2  py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">
                                                                 <span
-                                                                    onClick={async ()=>{
+                                                                    onClick={async () => {
                                                                         await detailCustomer(item)
                                                                     }}
                                                                     style={{
-                                                                    fontSize: '20px',
-                                                                    marginRight: '5px'
+                                                                        fontSize: '20px',
+                                                                        marginRight: '5px'
 
-                                                                }} data-bs-toggle="modal"
-                                                                      data-bs-target="#exampleModalDetail">
+                                                                    }} data-bs-toggle="modal"
+                                                                    data-bs-target="#exampleModalDetail">
                                                                 <i className="fa-solid fa-circle-info"></i> </span>
                                                                 <a
                                                                     onClick={async () => {
@@ -439,12 +441,14 @@ export default function CustomerManagement() {
                 </div>
             </div>
 
-            <div style={{marginTop:"150px"}}  className="modal fade" id="exampleModalDetail" tabIndex={-1} aria-labelledby="exampleModalLabel1"
+            <div style={{marginTop: "150px"}} className="modal fade" id="exampleModalDetail" tabIndex={-1}
+                 aria-labelledby="exampleModalLabel1"
                  aria-hidden="true">
-                <div  className="modal-dialog modal-fullscreen-md-down ">
-                    <div  style={{height:"300px"}} className="modal-content">
-                        <div  className="modal-header bg-info ">
-                            <h3 style={{fontSize:"20px"}} className="modal-title" id="exampleModalLabel1">Chi tiết khách hàng</h3>
+                <div className="modal-dialog modal-fullscreen-md-down ">
+                    <div style={{height: "300px"}} className="modal-content">
+                        <div className="modal-header bg-info ">
+                            <h3 style={{fontSize: "20px"}} className="modal-title" id="exampleModalLabel1">Chi tiết
+                                khách hàng</h3>
                             <button type="button" className="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                         </div>
@@ -458,7 +462,7 @@ export default function CustomerManagement() {
                                         <p>Giới tính: {customer.genderCustomer}</p>
                                         <p>Quốc gia: {customer.nationalityCustomer}</p>
                                         <p>Email: {customer.emailCustomer}</p>
-                                        <p>Số điện thoại:  {customer.telEmployee}</p>
+                                        <p>Số điện thoại: {customer.telEmployee}</p>
                                         <p>Địa chỉ: {customer.addressCustomer}</p>
                                         <p>CCCD/Passport: {customer.idCardCustomer}</p>
                                     </div>

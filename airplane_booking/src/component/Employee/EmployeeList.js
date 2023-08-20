@@ -219,7 +219,7 @@ function EmployeeList() {
                 {/*      crossOrigin="anonymous"/>*/}
                 <link rel="stylesheet"
                       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"/>
-                <div className="container mx-auto  sm:px-8">
+                <div className="container mx-auto  sm:px-8" >
                     <div style={{textAlign: 'center', marginTop: '20px', background: '#166987'}}>
                         <p style={{fontSize: '50px', color: 'white'}}>DANH SÁCH NHÂN VIÊN</p>
                     </div>
@@ -258,12 +258,12 @@ function EmployeeList() {
                             </div>
                         </div>
                     </div>
-                    <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 pt-1 overflow-x-auto">
+                    <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 pt-1 overflow-x-auto" >
                         <div className="inline-block min-w-full shadow rounded-lg " style={{minHeight: "536px"}}>
                             <div className="container"
                                  style={{display: "flex", flexDirection: "column", minHeight: "100%"}}>
                                 <div style={{flex: "1", minHeight: "490px"}}>
-                                    <table className="container">
+                                    <table className="container " style={{minWidth:"1000px"}}>
                                         <thead>
                                         <tr className="table_header_employee">
                                             <th className="col-1 px-5 border-b-2 text-left text-xs uppercase tracking-wider">
@@ -352,8 +352,9 @@ function EmployeeList() {
 
                                         <button
                                             key={currentPage}
-                                            className="text-sm font-semibold py-2 px-4 style_button_page  rounded"
-                                            style={{marginRight: '10px'}}
+                                            className="text-sm font-semibold py-2 px-4   rounded"
+                                            style={{marginRight: '10px',  background: "rgb(223, 165, 18)",
+                                                       color: "#ffffff"}}
                                             onClick={() => handlePageChange(currentPage)}
                                             title="Trang hiện tại"
                                         >
@@ -447,6 +448,13 @@ function EmployeeList() {
                                                 <td style={{paddingLeft: "10px"}}>
                                                     <p>{employeeDetail.emailEmployee}</p></td>
                                             </tr>
+                                            {/*<tr>*/}
+                                            {/*    <td><p>Chức vụ: </p></td>*/}
+                                            {/*    <td style={{paddingLeft: "10px"}}>*/}
+                                            {/*        {employeeDetail && employeeDetail.typeEmployee && (*/}
+                                            {/*            <p>{employeeDetail.typeEmployee.nameTypeEmployee}</p>*/}
+                                            {/*        )}</td>*/}
+                                            {/*</tr>*/}
                                             <tr>
                                                 <td><p>Ngày sinh: </p></td>
                                                 <td style={{paddingLeft: "10px"}}>
