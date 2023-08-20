@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getListHistoryByCustomerId, getListTicketByNameRoute } from "../services/HistoryPaymentService";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import moment from "moment";
 
@@ -12,14 +12,13 @@ function HistoryPaymentComponent() {
     const { id } = useParams();
     let [nameDeparture, setNameDeparture] = useState("")
     let [nameDestination, setNameDestination] = useState("")
-
     const showList = async (pageable, nameDeparture, nameDestination) => {
         try {
             const paymentData = await getListHistoryByCustomerId(id, pageable, nameDeparture, nameDestination);
             setPayments(paymentData);
 
         } catch (error) {
-            console.error('Error occurred while getting payment data:', error)
+            console.log("Không tìm thấy dữ liệu lịch sử" , error);
         }
     };
 
@@ -98,14 +97,10 @@ function HistoryPaymentComponent() {
     if (!payments) {
         return null;
     }
-
-
     return (
         <div className="background-customer">
             <div className="background-customer">
                 <meta charSet="UTF-8" />
-
-
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
                       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
                       crossOrigin="anonymous" />
@@ -146,7 +141,7 @@ function HistoryPaymentComponent() {
 
                         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                                {
+                                {payments &&
                                     <table className="min-w-full leading-normal myTable">
                                         <thead>
                                         <tr style={{ background: 'rgb(6, 133, 170)', color: '#ffffff' }}>
@@ -194,12 +189,12 @@ function HistoryPaymentComponent() {
                                                         </td>
                                                         <td className="  px-3 py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">
-                                                                {item.nameDeparture.split('-')[0]}
+                                                                {item.nameDeparture}
                                                             </p>
                                                         </td>
                                                         <td className="  px-3 py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">
-                                                                {item.nameDestination.split('-')[0]}
+                                                                {item.nameDestination}
                                                             </p>
                                                         </td>
 

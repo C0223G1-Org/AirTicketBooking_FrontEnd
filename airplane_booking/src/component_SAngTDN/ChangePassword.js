@@ -3,12 +3,14 @@ import {changePassword, getAccountByGmail} from "../services/AccountServices";
 import * as yup from "yup";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 
 function ChangePassword (){
 
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [user,setUser] = useState({});
+  const navigate = useNavigate();
 
   const toggleShowOldPassword = () => {
     setShowOldPassword(!showOldPassword);
@@ -49,7 +51,8 @@ setUser(data)
         <h1 className="w3ls" style={{color: 'rgb(6, 133, 170)'}}>ĐỔI MẬT KHẨU</h1>
         <div className="content-w3ls">
           <div className="content-agile1">
-            <h2 className="agileits1">VietNam Air</h2>
+            <h2 className="agileits1">CODEGYM AIRLINE </h2>
+          
           </div>
           <div className="content-agile2 bg-white">
             <Formik
@@ -98,6 +101,7 @@ setUser(data)
                     icon: "success",
                     button: "Aww yiss!",
                   });
+                  navigate("/home")
             }}
             >
                 <Form>
