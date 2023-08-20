@@ -3,10 +3,11 @@ body {
     font-family: sans-serif;
 }
 
+
 #customer .title {
     color: #fff;
     background-color: #016984;
-    padding: 10px 0px;
+    margin-top: 20px;
 }
 #customer .inlineCustom {
    text-align: center;
