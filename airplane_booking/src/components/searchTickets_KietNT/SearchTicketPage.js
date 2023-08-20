@@ -3,7 +3,7 @@ import { searchTicketByNameAndIdCardPassenger } from "../../services/TicketServi
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import img from "../../css/search_ticket/img/img_1.png";
+import img from "../../css/search_ticket/img/IMG_5176.jpg";
 import "../../css/search_ticket/style.css";
 import Swal from "sweetalert2";
 import { Formik, Form, Field, ErrorMessage } from "formik";

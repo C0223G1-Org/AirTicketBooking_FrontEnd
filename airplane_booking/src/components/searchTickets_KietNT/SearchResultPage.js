@@ -168,13 +168,14 @@ export default function SearchResultPage() {
                         </div>
                       </div>
                     </div>
+                    <div className="row">
                     <div
-                      className="inline-flex mt-2 xs:mt-0"
-                      style={{ position: "relative", left: "930px" }}
+                      className="inline-flex mt-2 xs:mt-0 pad"
+                    
                     >
                       <button
                         className="text-sm   py-2 px-3 rounded-l"
-                    
+
                         onClick={async () => {
                           await previousPage();
                         }}
@@ -204,6 +205,7 @@ export default function SearchResultPage() {
                       >
                         Sau
                       </button>
+                    </div>
                     </div>
                   </div>
                 );

@@ -13,7 +13,7 @@ export default function CustomerDetails() {
   const [customer, setCustomer] = useState({})
   const param = useParams()
   const [id,setId]=useState(0)
-
+const [flag,setFlag]=useState(false)
   const getCustomer = async (id) => {
     try {
       const data = await getCustomerById(id)
@@ -35,12 +35,14 @@ export default function CustomerDetails() {
 
   useEffect(() => {
     getCustomer(param.id)
-  }, [id])
+  }, [id,flag])
 
   useEffect(()=>{
     setId(param.id)
   },[])
-
+setTimeout(()=>{
+  setFlag(!flag)
+},500)
   return (
 <div className="hoalty">
     <div id="booking" className="section">
