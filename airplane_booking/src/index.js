@@ -47,7 +47,7 @@ root.render(
           <Route path="/header-admin" element={<HeaderAdmin />} />
           <Route path="/header-employee" element={<HeaderEmployee />} />
           <Route
-            path="/printTicket"
+            path="/printTicket/:id"
             element={<PrintTicket></PrintTicket>}
           ></Route>
           <Route

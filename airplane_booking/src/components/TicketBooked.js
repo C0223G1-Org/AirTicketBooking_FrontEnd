@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 import { deleteTicketDB, getListTickets, getListUnBookTicket, searchBookedTicket } from "../services/TicketService"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import ModalDeleteTicket from "./ModalDeleteTicket"
 import * as yup from "yup"
 import "../css/ticket/manage-ticket.css";
-
+import numeral from 'numeral';
 import Swal from "sweetalert2"
 import { Formik, Form, Field } from "formik"
 import { getAllDestination } from "../services/DestinationServices"
@@ -22,6 +22,7 @@ function TicketBooked() {
     const [destinations, setDestination] = useState([])
     const [departures, setDeparture] = useState([])
     const [ticketObj, setTicketObj] = useState({});
+    const navigate = useNavigate();
     // const []
 
     const showSearch = () => {
@@ -53,16 +54,17 @@ function TicketBooked() {
     const getTickets = () => {
         searchBookedTicket(page, ticketObj).then((data) => {
             console.log(ticketObj)
-            let numberPage
-            console.log(data.totalElements)
-            if (data.totalElements > 5) {
-                numberPage = data.totalElements % 5;
-                console.log(numberPage)
-            } else {
-                numberPage = 0;
-            }
-            if ((data.totalElements / 5 - data.totalElements % 5) > 0) {
-                numberPage += 1;
+            console.log(data.content);
+
+            let numberPage = Math.ceil(data.totalElements / 5);
+            if(!numberPage){
+                Swal.fire({
+                    icon: "error",
+                    title: 'Không tìm thấy!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                setTicketObj({})
             }
             setLoopCount(numberPage)
             setTickets(data.content)
@@ -100,6 +102,8 @@ function TicketBooked() {
                     timer: 1500
                 })
             }
+        }).catch(()=>{
+            navigate("/ticket/booked")
         })
     }
 
@@ -109,25 +113,26 @@ function TicketBooked() {
         setTicketObj(obj)
         console.log(ticketObj)
         searchBookedTicket(page, ticketObj).then((data) => {
-            if (!data.content) {
+            console.log(data.content)
+            if (!data.content || data.length === 0) {
                 Swal.fire({
                     icon: "error",
                     title: 'Không tìm thấy!',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 2500
                 })
-
+                setTicketObj({})
             } else {
-                let numberPage
-                console.log(data.totalElements)
-                if (data.totalElements > 5) {
-                    numberPage = data.totalElements % 5;
-                    console.log(numberPage)
-                } else {
-                    numberPage = 0;
-                }
-                if ((data.totalElements / 5 - data.totalElements % 5) > 0) {
-                    numberPage += 1;
+                setPage(0)
+                let numberPage = Math.ceil(data.totalElements / 5);
+                if(!numberPage){
+                    Swal.fire({
+                        icon: "error",
+                        title: 'Không tìm thấy!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    setTicketObj({})
                 }
                 setLoopCount(numberPage)
                 console.log(data.content)
@@ -136,15 +141,22 @@ function TicketBooked() {
 
             setIsSearch(false)
         }).catch(() => {
+            Swal.fire({
+                icon: "error",
+                title: 'Có Lỗi Hệ Thống!',
+                showConfirmButton: false,
+                timer: 2500
+            })
 
+        }).catch(()=>{
+            setStatusTicket({})
         })
     }
     const transferPage = (value) => {
-        if (value >= 0) {
-            setPage(value)
+        if (value >= 0 && value < loopCount) {
+            setPage(value);
         }
-
-    }
+    };
     return (
         <>
             <div>
@@ -188,7 +200,7 @@ function TicketBooked() {
                                     {/* <td>{ticket.dateBooking}</td> */}
                                     <td >{ticket.nameDeparture}-{ticket.nameDestination}</td>
                                     <td >{ticket.timeDeparture}</td>
-                                    <td >{ticket.priceTicket}</td>
+                                    <td>{numeral(ticket.priceTicket).format('0,0 đ')}VND</td>
                                     <td className="icon-ticket">
                                         <ul>
                                             <Link to={`/tickets/updateTicket/${ticket.id}`}>
@@ -244,7 +256,7 @@ function TicketBooked() {
                                     <div id="search-ticket">
                                         <Formik
                                             initialValues={{
-                                                typeTicket: 1,
+                                                typeTicket: "",
                                                 departure: "",
                                                 destination: "",
                                                 departureDate: "",
@@ -261,13 +273,16 @@ function TicketBooked() {
                                                 if (statusTicket) {
                                                     newValue = { ...value, typeTicket: 1 }
                                                 } else {
-                                                    alert("nhan")
                                                     newValue = { ...value, typeTicket: 2 }
                                                     console.log(newValue)
                                                 }
                                                 console.log(newValue)
                                                 dataSearch(newValue);
-                                            }}>
+                                            }}
+                                            validationSchema={yup.object({
+                                                departureDate:yup.string().required(),
+                                                destinationDate:yup.string().required()
+                                            })}>
                                             <Form>
                                                 <li className="show-search-ticket-body-sale-selection-item">
                                                     <button type="button" className={statusTicket ? 'active' : ''} style={statusTicket ? { background: 'rgb(223, 165, 18)' } : {}} onClick={() => changeStatusTicket(true)}>
@@ -332,17 +347,17 @@ function TicketBooked() {
                                                             {statusTicket &&
                                                                 <li className="show-search-ticket-body-input-passenger">
                                                                     <label>Ngày về</label>
-                                                                    <Field type="date" name="destinationDate" placeholder="Ngày Về"
+                                                                    <Field type="date" name="destinationDate" placeHolder="Ngày Về"
                                                                     />
                                                                 </li>
                                                             }
                                                         </ul>
 
                                                         <ul>
-                                                            <li style={{ marginLeft: '30px' }} className="show-search-ticket-body-input-passenger">
+                                                            <li style={{ marginLeft: '50px' }} className="show-search-ticket-body-input-passenger">
                                                                 <button onClick={showSearch} type="button">Đóng</button>
                                                             </li>
-                                                            <li className="show-search-ticket-body-input-passenger" style={{ marginLeft: '10px' }}>
+                                                            <li className="show-search-ticket-body-input-passenger" style={{ marginLeft: '20px' }}>
                                                                 <button type="submit">Tìm Kiếm</button>
                                                             </li>
                                                         </ul>
@@ -433,15 +448,72 @@ function TicketBooked() {
                 <div className="pagination-ticket">
                     <ul>
                         <li className="pagination-ticket-item">
-                            <button type="button" onClick={() => { transferPage(page - 1) }} style={{ borderTopLeftRadius: '5px', borderBottomLeftRadius: '5px' }}>Trước</button>
+                            <button style={{ borderTopLeftRadius: '5px', borderBottomLeftRadius: '5px', minWidth: '100px' }}>Trang {page}/{loopCount - 1}</button>
                         </li>
-                        {Array.from({ length: loopCount }, (_, index) => (
-                            <li className="pagination-ticket-item" key={index}>
-                                <button type="button" onClick={() => { transferPage(index) }}>{index}</button>
-                            </li>
-                        ))}
+                        {page !== 0 && (
+                            <>
+                                <li className="pagination-ticket-item">
+                                    <button
+                                        type="button"
+                                        onClick={() => transferPage(0)}
+
+                                        className={page <= 10 ? 'active' : ''}
+                                    >
+                                        <i class="fa-solid fa-angles-left"></i>
+                                    </button>
+                                </li>
+
+                                <li className="pagination-ticket-item">
+                                    <button
+                                        type="button"
+                                        onClick={() => transferPage(page - 1)}
+                                        disabled={page === 0}
+                                    >
+                                        <i class="fa-solid fa-angle-left"></i>
+                                    </button>
+                                </li>
+                            </>
+                        )}
+                        {Array.from({ length: loopCount }, (_, index) => {
+                            if (
+                                (index >= page - 2 && index <= page + 2) ||
+                                (index === 10 && loopCount > 10) ||
+                                (index === 20 && loopCount > 20) ||
+                                (index === 30 && loopCount > 30) ||
+                                (page === 25 && index === 10)
+                            ) {
+                                return (
+                                    <li className="pagination-ticket-item" key={index}>
+                                        <button
+                                            type="button"
+                                            onClick={() => transferPage(index)}
+                                            className={page === index ? 'active' : ''} style={page === index ? { background: 'rgb(122, 88, 3)' } : {}}
+                                        >
+                                            {index}
+                                        </button>
+                                    </li>
+                                );
+                            }
+                            return null;
+                        })}
                         <li className="pagination-ticket-item">
-                            <button type="button" onClick={() => { if (page < (loopCount - 1)) { transferPage(page + 1) } }} style={{ borderTopRightRadius: '5px', borderBottomRightRadius: '5px' }}>Sau</button>
+                            <button
+                                type="button"
+                                onClick={() => transferPage(page + 1)}
+                                disabled={page === loopCount - 1}
+                            >
+                                <i class="fa-solid fa-angle-left fa-rotate-180"></i>
+                            </button>
+                        </li>
+                        <li className="pagination-ticket-item">
+                            <button
+                                type="button"
+                                onClick={() => transferPage(loopCount - 1)}
+                                style={{ borderTopRightRadius: '5px', borderBottomRightRadius: '5px' }}
+                                className={page === loopCount - 1 ? 'active' : ''}
+                            >
+                                <i class="fa-solid fa-angles-left fa-rotate-180"></i>
+                            </button>
                         </li>
                     </ul>
                 </div>
