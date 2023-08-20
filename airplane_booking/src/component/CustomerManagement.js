@@ -140,7 +140,7 @@ export default function CustomerManagement() {
     return (
         <div className="background-customer">
 
-            <div className="background-customer">
+            <div className="background-customer" >
                 <meta charSet="UTF-8"/>
                 <title>Quản lí khách hàng</title>
 
@@ -153,7 +153,7 @@ export default function CustomerManagement() {
                       href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css"/>
 
                 <div className=" mx-auto px-4 sm:px-8" id="customer">
-                    <div style={{textAlign: 'center'}}>
+                    <div  className="inlineCustomer">
                         <div className="title">
                             <h1 style={{fontSize: '50px'}}>QUẢN LÍ KHÁCH HÀNG</h1>
                         </div>
@@ -169,6 +169,7 @@ export default function CustomerManagement() {
                                     </button>
 
                                 </Link>
+                              <div>
                                 <div className="relative">
                                     <select onKeyDown={
                                         async (event) => {
@@ -178,12 +179,35 @@ export default function CustomerManagement() {
                                         }}
                                             id="nationality" defaultValue={""}
                                             className="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                        <option value={""}>Quốc tịch &darr;</option>
-                                        <option value={"Nhật Bản"}>Nhật Bản</option>
-                                        <option value={"Việt Nam"}>Việt Nam</option>
-                                        <option value={"Lào"}>Lào</option>
-                                    </select>
+                                        <option value={""}>--Quốc tịch--</option>
+                                        <option value='Việt Nam'>Việt Nam</option>
+                                        <option value='Trung Quốc'>Trung Quốc</option>
+                                        <option value='Thái Lan'>Thái Lan</option>
+                                        <option value='Malaysia'>Malaysia</option>
+                                        <option value='Singapo'>Singapo</option>
+                                        <option value='Anh'>Anh</option>
+                                        <option value='Hàn Quốc'>Hàn Quốc</option>
+                                        <option value='Mỹ'>Mỹ</option>
+                                        <option value='Pháp'>Pháp</option>
+                                        <option value='Nhật Bản'>Nhật Bản</option>
+                                        <option value='Hong Kong'>Hong Kong</option>
+                                        <option value='Macau'>Macau</option>
+                                        <option value='Triều Tiên'>Triều Tiên</option>
+                                        <option value='Ấn Độ'>Ấn Độ</option>
+                                        <option value='Nga'>Nga</option>
+                                        <option value='Quatar'>Quatar</option>
+                                        <option value='Thổ Nhi Kỳ'>Thổ Nhi Kỳ</option>
+                                        <option value='Đan Mạch'>Đan Mạch</option>
+                                        <option value='Đức'>Đức</option>
+                                        <option value='Bỉ'>Bỉ</option>
+                                        <option value='Thụy Sĩ'>Thụy Sĩ</option>
+                                        <option value='Áo'>Áo</option>
+                                        <option value='Argentina'>Argentina</option>
+                                        <option value='Tây Ban Nha'>Tây Ban Nha</option>
+                                        <option value='Bồ Đào Nha'>Bồ Đào Nha</option>
+                                        <option value='Campuchia'>Campuchia</option>
 
+                                    </select>
                                 </div>
                             </div>
                             <div className="block relative">
@@ -216,14 +240,18 @@ export default function CustomerManagement() {
                                 style={{background: 'rgb(223, 165, 18)', color: '#ffffff',}}>
                                 <i className="fa-solid fa-magnifying-glass"></i>
                             </button>
-
+                            </div>
                         </div>
 
 
                         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                            <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                            <div className="inline-block min-w-full shadow rounded-lg ">
+                                <div className=""
+                                     style={{display: "flex", flexDirection: "column", minHeight: "100%"}}>
+                                    <div style={{flex: "1", minHeight: "416px"}}>
                                 {
-                                    <table className="min-w-full leading-normal myTable">
+
+                                    <table className="min-w-full leading-normal myTable" style={{minWeight:"1000px"}}>
                                         <thead>
                                         <tr style={{background: 'rgb(6, 133, 170)', color: '#ffffff'}}>
                                             <th className=" col-md-1 py-3     text-x "
@@ -341,6 +369,8 @@ export default function CustomerManagement() {
                                         }
                                     </table>
                                 }
+                                    </div>
+                                </div>
                                 {customers.length != 0 ?
                                     <div
                                         className="px-3 py-1 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">

@@ -6,12 +6,18 @@ body{
     color: #fff;
     background-color: #016984;
     padding:10px 0px;
-    margin-top: 10px;
 }
 #customer .relative {
     margin-right: 10px;
 }
-
+#customer .inlineCustomer{
+    text-align: center;
+    padding-top: 10px;
+}
+#customer .insideSearch{
+    float: right;
+    display: flex;
+}
 
 #customer .relative input{
     border-radius: 5px;
@@ -38,6 +44,7 @@ body{
 #details .modal-content {
     border-radius: 15px;
     max-height: 600px;
+    height: 800px;
 }
 #zhaopian{
     border-radius: 100%;
