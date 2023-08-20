@@ -95,14 +95,14 @@ function CreateEmployee() {
             <div>
                 <div id="bookingQuoc" className="sectionQuoc">
                     <div className="sectionQuoc-center">
-                        <div className="container">
-                            <div className="row">
+                        <div className="container" style={{marginRight:'50px'}}>
+                            <div className="row" >
                                 {/*<div className='col-md-2 col-lg-2'></div>*/}
-                                <div className="col-12 col-sm-12 col-md-6 col-lg-4">
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-4" style={{marginRight:'50px'}}>
                                     <div>
                                         {/*<img*/}
                                         {/*    alt="Preview Image" id="img-preview"/>*/}
-                                        <img style={{marginTop: '50px',marginLeft:'100px'}} name='image'
+                                        <img  name='image'
                                              id="img-preview"
                                              // src="https://cdn-icons-png.flaticon.com/256/9131/9131529.png"
                                              src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"
