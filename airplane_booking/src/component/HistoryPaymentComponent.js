@@ -19,7 +19,16 @@ function HistoryPaymentComponent() {
             setPayments(paymentData);
 
         } catch (error) {
-            console.error('Error occurred while getting payment data:', error)
+            await setDepartureFunction("")
+            .then(await setDestinationFunction(""))
+            .then(await setPageFunction(0))
+            .then(showList(0, "", ""));
+             Swal.fire({
+                icon: "error",
+                title: 'Không tìm thấy dữ liệu!',
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     };
 
@@ -73,17 +82,19 @@ function HistoryPaymentComponent() {
         }
     }
 
-    function handleButtonClick() {
-        performSearch();
-    }
 
     const performSearch = async () => {
-        const departureSearch = document.getElementById("departure").value;
-        const destinationSearch = document.getElementById("destination").value;
-        await setDepartureFunction(departureSearch)
+        try {
+            const departureSearch = document.getElementById("departure").value;
+            const destinationSearch = document.getElementById("destination").value;
+            await setDepartureFunction(departureSearch)
             .then(await setDestinationFunction(destinationSearch))
             .then(await setPageFunction(0))
             .then(showList(0, departureSearch, destinationSearch));
+        }catch(error) {
+            console.log(error);
+        }
+
     }
 
     useEffect(() => {
@@ -135,7 +146,9 @@ function HistoryPaymentComponent() {
                                     className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                             </div>
                             <button type="submit"
-                                    onClick={handleButtonClick}
+                                    onClick={async () => {
+                                        await performSearch();
+                                    }}
                                     className="text-sm  font-semibold py-2 px-4 "
                                     style={{ background: 'rgb(223, 165, 18)', color: '#ffffff', }}>
                                 <i className="fa-solid fa-magnifying-glass"></i>
@@ -215,14 +228,13 @@ function HistoryPaymentComponent() {
                                                             </p>
                                                         </td>
                                                         <td className=" py-3   bg-white ">
-                                                            <Link to={`/detail-history/${item.nameDeparture}/${item.nameDestination}/${item.dateBooking}`}>
+                                                            <Link to={`/detail-history/${id}/${item.nameDeparture}/${item.nameDestination}/${item.dateBooking}`}>
                                                                 <i className="fa-solid fa-circle-info" style={{ color: '#dfa512' }}></i>
                                                             </Link>
                                                         </td>
                                                     </tr>
                                                 )
                                             )}
-
                                             </tbody>
                                             :
                                             <tbody>

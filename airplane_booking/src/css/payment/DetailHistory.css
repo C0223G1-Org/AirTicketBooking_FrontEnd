@@ -1,16 +1,19 @@
-  
-  /*body {*/
-  /*  font-family: Diavlo, sans-seriff;*/
-  /*  background-image: url("../../img/background.jpg") ;*/
-  /*  background-size: cover;*/
-  /*  background-position: center;*/
-  /*}*/
 
+  .background-detail-history {
+    background-image: url("../../img/background.jpg");
+    background-size: cover;
+   background-position: center;
+   padding: 50px 0px;
+
+  }
+  #detail-history .value {
+    margin-top: -15px;
+    margin-left: 20px;
+  }
   
   .detail-history-ticket {
-    
     max-width: 75%;
-    margin: 50px auto;
+    margin-left: 14%;
     padding: 30px;
     background-color: white;
     border: 5px solid #0055a3;
@@ -64,15 +67,6 @@
     border-radius: 50%;
   }
   
-  #detail-history .value::before {
-    content: "";
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background-color: #888888;
-    margin-right: 10px;
-    border-radius: 50%;
-  }
 
   #detail-history .route {
     font-size: 25px;
@@ -81,4 +75,3 @@
     font-family: Diavlo, sans-seriff;
     font-weight: bold;
   }
- 

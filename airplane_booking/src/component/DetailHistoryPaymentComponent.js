@@ -40,6 +40,7 @@ function DetailHistoryPaymentComponent() {
 
 
     return (
+        <div className="background-detail-history">
         <div className="detail-history-ticket" id='detail-history'>
             <h1 className="title" style={{ marginLeft: '-5px' }}>CHI TIẾT VÉ</h1>
 
@@ -55,7 +56,7 @@ function DetailHistoryPaymentComponent() {
                                 <div className="col-3">
                                     <p className="label">Giới tính: </p>
                                     {item.genderCustomer == true ? <p className="value">Nam</p> : <p className="value">Nữ</p>}
-                                    {/* <p className="value">{item.genderPassenger}</p> */}
+                                  
                                 </div>
                                 <div className="col-3">
                                     <p className="label">CCCD/Passport:  </p>
@@ -77,17 +78,17 @@ function DetailHistoryPaymentComponent() {
                                     <p className="value">{item.seat.route.destination.nameDestination}</p>
                                 </div>
                                 <div className="col-3">
-                                    <p className="label">Ngày đi:</p>
-                                    <p className="value">{item.seat.route.dateDeparture}</p>
+                                    <p className="label">Hành lý:</p>
+                                    <p className="value">{item.luggage.nameLuggage}</p>
                                 </div>
                                 <div className="col-3">
-                                    <p className="label">Ngày đến:</p>
-                                    <p className="value">{item.seat.route.dateArrival}</p>
+                                    <p className="label">Loại ghế:</p>
+                                    <p className="value">{item.seat.typeSeat.nameTypeSeat}</p>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-3">
-                                    <p className="label">Chuyến bay: {item.seat.route.nameRoute}</p>
+                                    <p className="label">Máy bay: </p>
                                     <p className="value"> {item.seat.route.airCraft.nameAirCraft}</p>
                                 </div>
                                 <div className="col-3">
@@ -96,27 +97,30 @@ function DetailHistoryPaymentComponent() {
                                 </div>
                                 <div className="col-3">
                                     <p className="label">Giờ đến:</p>
-                                    <p className="value">{item.seat.route.timeArrival}</p>
+                                    <p className="value"> {item.seat.route.timeArrival}</p>
                                 </div>
                                 <div className="col-3">
                                     <p className="label">Tiền vé:</p>
-                                    <p className="value" style={{ width: '200px' }}>  {changePrice(item.priceTicket)} VND</p>
+                                    <p style={{ width: '200px' }} className="value">  {changePrice(item.priceTicket)} VND</p>
                                 </div>
                             </div>
-                            <button className="back-to-history" style={{
-                                width: '95px',
-                                height: '40px',
-                                border: 'none',
-                                borderRadius: '10px',
-                                backgroundColor: '#dfa512',
-                                outlineColor: 'blue',
-                                marginLeft: '47%'
-                            }}><Link to={`/history-payment/${item.customer.idCustomer}`} style={{textDecoration:'none', color: 'white'}}>Quay lại</Link>
-                            </button>
+                            <hr></hr>
+
                         </>
                     )
                 })}
+                <button className="back-to-history" style={{
+                    width: '95px',
+                    height: '40px',
+                    border: 'none',
+                    borderRadius: '10px',
+                    backgroundColor: '#dfa512',
+                    outlineColor: 'blue',
+                    marginLeft: '47%'
+                }}><Link to={`/history-payment/${param.id}`} style={{textDecoration:'none', color: 'white', backgroundColor:'#dfa512'}}>Quay lại</Link>
+                </button>
             </div>
+        </div>
         </div>
     )
 }

@@ -1,29 +1,29 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "../css/payment/Payment.css";
 import {
     getTicketByCustomerId,
     updateTicketByIdTicket,
 } from "../services/PaymentService";
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import {HttpStatusCode} from "axios";
-import {getCustomerByEmail} from "../services/CustomerServices";
-import { RingLoader } from 'react-spinners';    
+import { HttpStatusCode } from "axios";
+import { getCustomerByEmail } from "../services/CustomerServices";
+import { RingLoader } from 'react-spinners';
 
 const PaymentComponent = () => {
     const [payments, setPayment] = useState([]);
-    const {departure} = useParams();
-    const {num} = useParams();
+    const { departure } = useParams();
+    const { num } = useParams();
     const [loading, setLoading] = useState(true);
 
     const [flag, setFlag] = useState(false)
     // const [user, setUser] = useState({});
 
-    setTimeout(()=>{
-        if(flag === false){
+    setTimeout(() => {
+        if (flag === false) {
             setFlag(true)
         }
-    },500)
+    }, 500)
     const navigate = useNavigate();
 
 
@@ -63,12 +63,12 @@ const PaymentComponent = () => {
         window.scrollTo(0, 0);
         getTicketById();
         setTimeout(() => {
-            setLoading(false); 
-          }, 700);
+            setLoading(false);
+        }, 700);
     }, [loading]);
 
     useEffect(() => {
-      document.title = "Thanh toán";
+        document.title = "Thanh toán";
     });
     console.log(payments);
     let stateButton = 0;
@@ -191,168 +191,169 @@ const PaymentComponent = () => {
         return null;
     }
     return (
-    <>
-    {loading === false ? (
-       <div className="ticket" id="payment">
-       {/* <form onSubmit={sendEmail}> */}
-       <h1 className="title">CHI TIẾT CHUYẾN BAY</h1>
-       <div className="info">
-           <div className="row">
-               <div className="col-12">
-                   <p className="label">Danh sách người đi:</p>
-                   {arr1.map((item) => {
-                       return <p className="value"> {item.namePassenger}</p>;
-                   })}
-               </div>
-           </div>
-           <div className="row">
-               <p className="route">Khởi hành</p>
-           </div>
+        <>
+            {loading === false ? (
+                <div className="paymentBackground">
+                    <div className="payment-ticket" id="payment">
+                        <h1 className="title">CHI TIẾT CHUYẾN BAY</h1>
+                        <div className="info">
+                            <div className="row">
+                                <div className="col-12">
+                                    <p className="label">Danh sách người đi:</p>
+                                    {arr1.map((item) => {
+                                        return <p className="value"> {item.namePassenger}</p>;
+                                    })}
+                                </div>
+                            </div>
+                            <div className="row">
+                                <p className="route">Khởi hành</p>
+                            </div>
 
-           <div>
-               <div className="row">
-                   <div className="col-3">
-                       <p className="label">Nơi đi:</p>
-                       <p className="value">
-                           {arr1[0]?.seat?.route?.departure?.nameDeparture}
-                       </p>
-                   </div>
-                   <div className="col-3">
-                       <p className="label">Nơi đến:</p>
-                       <p className="value">
-                           {arr1[0]?.seat?.route?.destination?.nameDestination}
-                       </p>
-                   </div>
-                   <div className="col-3">
-                       <p className="label">Giờ bay:</p>
-                       <p className="value">{arr1[0]?.seat?.route?.timeDeparture}</p>
-                   </div>
-                   <div className="col-3">
-                       <p className="label">Giờ đến:</p>
-                       <p className="value">{arr1[0]?.seat?.route?.timeArrival}</p>
-                   </div>
-               </div>
-               <div className="row">
-                   <div className="col-3">
-                       <p className="label">{arr1[0]?.seat?.route?.nameRoute}</p>
-                       <p className="value">
-                           {arr1[0]?.seat?.route?.airCraft?.nameAirCraft}
-                       </p>
-                   </div>
-                   <div className="col-3">
-                       <p className="label">Ngày đi:</p>
-                       <p className="value">{arr1[0]?.seat?.route?.dateDeparture}</p>
-                   </div>
-                   <div className="col-3">
-                       <p className="label">Ngày đến:</p>
-                       <p className="value">{arr1[0]?.seat?.route?.dateArrival}</p>
-                   </div>
-                   <div className="col-3">
-                       <p className="label">Tiền vé:</p>
-                       <p className="value" style={{width: "140px"}}>
-                           {formattedPrice} VND
-                       </p>
-                   </div>
-               </div>
-           </div>
+                            <div>
+                                <div className="row">
+                                    <div className="col-3">
+                                        <p className="label">Nơi đi:</p>
+                                        <p className="value">
+                                            {arr1[0]?.seat?.route?.departure?.nameDeparture}
+                                        </p>
+                                    </div>
+                                    <div className="col-3">
+                                        <p className="label">Nơi đến:</p>
+                                        <p className="value">
+                                            {arr1[0]?.seat?.route?.destination?.nameDestination}
+                                        </p>
+                                    </div>
+                                    <div className="col-3">
+                                        <p className="label">Giờ bay:</p>
+                                        <p className="value">{arr1[0]?.seat?.route?.timeDeparture}</p>
+                                    </div>
+                                    <div className="col-3">
+                                        <p className="label">Giờ đến:</p>
+                                        <p className="value">{arr1[0]?.seat?.route?.timeArrival}</p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-3">
+                                        <p className="label">{arr1[0]?.seat?.route?.nameRoute}</p>
+                                        <p className="value">
+                                            {arr1[0]?.seat?.route?.airCraft?.nameAirCraft}
+                                        </p>
+                                    </div>
+                                    <div className="col-3">
+                                        <p className="label">Ngày đi:</p>
+                                        <p className="value">{arr1[0]?.seat?.route?.dateDeparture}</p>
+                                    </div>
+                                    <div className="col-3">
+                                        <p className="label">Ngày đến:</p>
+                                        <p className="value">{arr1[0]?.seat?.route?.dateArrival}</p>
+                                    </div>
+                                    <div className="col-3">
+                                        <p className="label">Tiền vé:</p>
+                                        <p className="value" style={{ width: "140px" }}>
+                                            {formattedPrice} VND
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-           {arr2.length > 0 && (
-               <div>
-                   <div className="row">
-                       <p className="route">Trở về</p>
-                   </div>
-                   <div className="row">
-                       <div className="col-3">
-                           <p className="label">Nơi đi:</p>
-                           <p className="value">
-                               {arr2[0]?.seat?.route?.departure?.nameDeparture}
-                           </p>
-                       </div>
-                       <div className="col-3">
-                           <p className="label">Nơi đến:</p>
-                           <p className="value">
-                               {arr2[0]?.seat?.route?.destination?.nameDestination}
-                           </p>
-                       </div>
-                       <div className="col-3">
-                           <p className="label">Giờ bay:</p>
-                           <p className="value">{arr2[0]?.seat?.route?.timeDeparture}</p>
-                       </div>
-                       <div className="col-3">
-                           <p className="label">Giờ đến:</p>
-                           <p className="value">{arr2[0]?.seat?.route?.timeArrival}</p>
-                       </div>
-                   </div>
-                   <div className="row">
-                       <div className="col-3">
-                           <p className="label">{arr2[0]?.seat?.route?.nameRoute}</p>
-                           <p className="value">
-                               {arr2[0]?.seat?.route?.airCraft?.nameAirCraft}
-                           </p>
-                       </div>
-                       <div className="col-3">
-                           <p className="label">Ngày đi:</p>
-                           <p className="value">{arr2[0]?.seat?.route?.dateDeparture}</p>
-                       </div>
-                       <div className="col-3">
-                           <p className="label">Ngày đến:</p>
-                           <p className="value">{arr2[0]?.seat?.route?.dateArrival}</p>
-                       </div>
-                       <div className="col-3">
-                           <p className="label">Tiền vé:</p>
-                           <p className="value" style={{width: "140px"}}>
-                               {formattedPrice2} VND
-                           </p>
-                       </div>
-                   </div>
-               </div>
-           )}
+                            {arr2.length > 0 && (
+                                <div>
+                                    <div className="row">
+                                        <p className="route">Trở về</p>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-3">
+                                            <p className="label">Nơi đi:</p>
+                                            <p className="value">
+                                                {arr2[0]?.seat?.route?.departure?.nameDeparture}
+                                            </p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p className="label">Nơi đến:</p>
+                                            <p className="value">
+                                                {arr2[0]?.seat?.route?.destination?.nameDestination}
+                                            </p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p className="label">Giờ bay:</p>
+                                            <p className="value">{arr2[0]?.seat?.route?.timeDeparture}</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p className="label">Giờ đến:</p>
+                                            <p className="value">{arr2[0]?.seat?.route?.timeArrival}</p>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-3">
+                                            <p className="label">{arr2[0]?.seat?.route?.nameRoute}</p>
+                                            <p className="value">
+                                                {arr2[0]?.seat?.route?.airCraft?.nameAirCraft}
+                                            </p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p className="label">Ngày đi:</p>
+                                            <p className="value">{arr2[0]?.seat?.route?.dateDeparture}</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p className="label">Ngày đến:</p>
+                                            <p className="value">{arr2[0]?.seat?.route?.dateArrival}</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p className="label">Tiền vé:</p>
+                                            <p className="value" style={{ width: "140px" }}>
+                                                {formattedPrice2} VND
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
 
-           <div className="row">
-               <div className="col-4">
-                   <p className="label">Tổng tiền:</p>
-                   <p className="value" id="totalAmount">
-                       {formattedPrice3} VND
-                   </p>
-               </div>
-           </div>
-           <div className="row">
-               <div className="col-7">
-                   <p className="label">Điều kiện giá vé:</p>
-                   <p className="value">Giá vé đã bao gồm thuế và phí</p>
-                   <p className="value">Hành lý xách tay: 10kg</p>
-                   <p className="value">Hành lý ki gui: 23kg</p>
-               </div>
-               <div className="col-5 payment">
-                   <p className="label">Thanh toán</p>
-                   <div id="paypal-button-container">
-                       <button
-                           onClick={() => handlePayment()}
-                           className="btn btn-primary"
-                       >
-                           Kiểm tra
-                       </button>
-                   </div>
-               </div>
-           </div>
-           <p className="thank-you">
-               Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!
-           </p>
-       </div>
-   </div>
-    ) : (
-        <div style={{
-            display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-        }}>
-          <RingLoader size={150} color={'#123abc'} loading={loading} />
-        </div>
-    )}
-    </>
+                            <div className="row">
+                                <div className="col-4">
+                                    <p className="label">Tổng tiền:</p>
+                                    <p className="value" id="totalAmount">
+                                        {formattedPrice3} VND
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-7">
+                                    <p className="label">Điều kiện giá vé:</p>
+                                    <p className="value">Giá vé đã bao gồm thuế và phí</p>
+                                    <p className="value">Hành lý xách tay: 10kg</p>
+                                    <p className="value">Hành lý ki gui: 23kg</p>
+                                </div>
+                                <div className="col-5 payment">
+                                    <p className="label">Thanh toán</p>
+                                    <div id="paypal-button-container">
+                                        <button
+                                            onClick={() => handlePayment()}
+                                            className="btn btn-primary"
+                                        >
+                                            Kiểm tra
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <p className="thank-you">
+                                Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                }}>
+                    <RingLoader size={150} color={'#123abc'} loading={loading} />
+                </div>
+            )}
+        </>
         //    <form onSubmit={sendEmail}>
-       
+
     );
 };
 export default PaymentComponent;
