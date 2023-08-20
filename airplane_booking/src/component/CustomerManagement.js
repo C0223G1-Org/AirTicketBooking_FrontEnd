@@ -121,7 +121,7 @@ export default function CustomerManagement() {
     const searchDataPageable = async () => {
         try {
             let nationalitySearch = document.getElementById("nationality").value;
-            let emailSearch = document.getElementById("emailCustomer").value;
+            let emailSearch = document.getElementById("email").value;
             let nameSearch = document.getElementById("name").value;
             await setEmailFunction(emailSearch).then(await setNameFunction(nameSearch)).then(await setNationalityFunction(nationalitySearch)).then(await setPageFunction(0))
             await getListCustomer(0, nameSearch, emailSearch, nationalitySearch)
@@ -141,24 +141,24 @@ export default function CustomerManagement() {
         <div className="background-customer">
 
             <div className="background-customer">
-                <meta charSet="UTF-8" />
+                <meta charSet="UTF-8"/>
                 <title>Quản lí khách hàng</title>
 
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-                    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-                    crossOrigin="anonymous" />
+                      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+                      crossOrigin="anonymous"/>
                 <link rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"/>
                 <link rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css" />
+                      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css"/>
 
                 <div className=" mx-auto px-4 sm:px-8" id="customer">
-                    <div className="inlineCustom">
+                    <div style={{textAlign: 'center'}}>
                         <div className="title">
-                            <h1 style={{ fontSize: '50px' }}>QUẢN LÍ KHÁCH HÀNG</h1>
+                            <h1 style={{fontSize: '50px'}}>QUẢN LÍ KHÁCH HÀNG</h1>
                         </div>
-                        <div className="row" style={{ textAlign: 'center' }}>
-                            <div className="my-2 flex sm:flex-row flex-col col-md-3">
+                        <div className="my-2 flex sm:flex-row flex-col">
+                            <div className="flex flex-row mb-1 sm:mb-0">
                                 <Link to="/customers/add">
                                     <button className="text-sm  font-semibold py-2 px-4 " style={{
                                         background: 'rgb(223, 165, 18)',
@@ -167,6 +167,7 @@ export default function CustomerManagement() {
                                         width: '250px'
                                     }}>Thêm mới khách hàng
                                     </button>
+
                                 </Link>
                             </div>
                             <div style={{ float: 'right', paddingLeft: '150px' }} className="my-2 flex sm:flex-row flex-col col-md-9">
@@ -250,9 +251,13 @@ export default function CustomerManagement() {
                         </div>
 
                         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                            <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                            <div className="inline-block min-w-full shadow rounded-lg ">
+                                <div className=""
+                                     style={{display: "flex", flexDirection: "column", minHeight: "100%"}}>
+                                    <div className="inlineTable" >
                                 {
-                                    <table className="min-w-full leading-normal myTable">
+
+                                    <table className="min-w-full leading-normal myTable" style={{minWeight:"1000px"}}>
                                         <thead>
                                             <tr style={{ background: 'rgb(6, 133, 170)', color: '#ffffff' }}>
                                                 <th className=" col-md-1 py-3     text-x "
@@ -370,6 +375,8 @@ export default function CustomerManagement() {
                                         }
                                     </table>
                                 }
+                                    </div>
+                                </div>
                                 {customers.length != 0 ?
                                     <div
                                         className="px-3 py-1 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
@@ -463,20 +470,20 @@ export default function CustomerManagement() {
 
             <div id="details">
                 <div className="modal fade" id="exampleModalDetail" tabIndex={-1} aria-labelledby="exampleModalLabel1"
-                    aria-hidden="true">
+                     aria-hidden="true">
                     <div className="modal-dialog modal-fullscreen-md-down ">
                         <div className="modal-content">
-                            <div className="modal-header " style={{ justifyContent: "center", alignItems: "center" }}>
-                                <h3 style={{ fontSize: "20px" }} className="modal-title" id="exampleModalLabel1">CHI TIẾT
+                            <div className="modal-header " style={{justifyContent: "center", alignItems: "center"}}>
+                                <h3 style={{fontSize: "20px"}} className="modal-title" id="exampleModalLabel1">CHI TIẾT
                                     KHÁCH HÀNG</h3>
                                 {/* <button type="button" className="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button> */}
                             </div>
-                            <div className="modal-body" style={{ padding: 0 }}>
+                            <div className="modal-body" style={{padding: 0}}>
                                 <div className="row container-fluid   ">
 
                                     <div className=" card_content ">
-                                        <div className="wai"><img id="zhaopian" src={customer.imgCustomer} /></div>
+                                        <div className="wai"><img id="zhaopian" src={customer.imgCustomer}/></div>
                                         <div className="tai">
                                             <p><span className="biaoqing"><i class="fa-solid fa-user"></i>   Họ và tên:</span> {customer.nameCustomer}
                                             </p>
@@ -485,7 +492,7 @@ export default function CustomerManagement() {
                                             <p><span className="biaoqing">{customer.genderCustomer ?
                                                 <i class="fa-solid fa-mars"></i> :
                                                 <i class="fa-solid fa-venus"></i>} Giới tính:</span> {customer.genderCustomer ?
-                                                    <span>Nam</span> : <span>Nữ</span>}</p>
+                                                <span>Nam</span> : <span>Nữ</span>}</p>
                                             <p><span className="biaoqing"><i class="fa-solid fa-earth-americas"></i>    Quốc gia:</span>
                                                 <span>{customer.nationalityCustomer}</span></p>
                                             <p><span className="biaoqing"><i

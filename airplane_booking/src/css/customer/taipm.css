@@ -123,3 +123,8 @@ body {
     }
     
 }
+#customer .inlineTable {
+    flex: 1;
+    min-height: 416px;
+    background: white;
+}
