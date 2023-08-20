@@ -115,14 +115,11 @@ export function SignUp() {
                     }}
                 >
                     {({isSubmitting}) => (
-                        <div>
-                            <div>
-
-                            </div>
+                        <div className="bgimagebody" style={{paddingBottom: "5%"}}>
                             <h1 className="w3ls" style={{color: "rgb(6, 133, 170)"}}>
                                 ĐĂNG KÝ
                             </h1>
-                            <div className="content-w3ls bgimagedk" style={{borderRadius: "7px", padding: "20px 0"}}>
+                            <div className="content-w3ls" style={{borderRadius: "7px", padding: "20px 0"}}>
                                 <div className="row"
                                      style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
                                     <div className="col-md-5" style={{
@@ -505,15 +502,32 @@ export function SignUp() {
                                                             // required=""
                                                         >
                                                             <option value={null}>-- Chọn quốc tịch --</option>
-                                                            <option value="Việt Nam">Việt Nam</option>
-                                                            <option value="Mỹ">Mỹ</option>
-                                                            <option value="Nhật Bản">Nhật Bản</option>
-                                                            <option value="Trung Quốc">Trung Quốc</option>
-                                                            <option value="Hàn Quốc">Hàn Quốc</option>
-                                                            <option value="Ấn Độ">Ấn Độ</option>
-                                                            <option value="Lào">Lào</option>
-                                                            <option value="Italia">Italia</option>
-                                                            <option value="Thái Lan">Thái Lan</option>
+                                                            <option value='Việt Nam'>Việt Nam</option>
+                                                            <option value='Trung Quốc'>Trung Quốc</option>
+                                                            <option value='Thái Lan'>Thái Lan</option>
+                                                            <option value='Malaysia'>Malaysia</option>
+                                                            <option value='Singapo'>Singapo</option>
+                                                            <option value='Anh'>Anh</option>
+                                                            <option value='Hàn Quốc'>Hàn Quốc</option>
+                                                            <option value='Mỹ'>Mỹ</option>
+                                                            <option value='Pháp'>Pháp</option>
+                                                            <option value='Nhật Bản'>Nhật Bản</option>
+                                                            <option value='Hong Kong'>Hong Kong</option>
+                                                            <option value='Macau'>Macau</option>
+                                                            <option value='Triều Tiên'>Triều Tiên</option>
+                                                            <option value='Ấn Độ'>Ấn Độ</option>
+                                                            <option value='Nga'>Nga</option>
+                                                            <option value='Quatar'>Quatar</option>
+                                                            <option value='Thổ Nhi Kỳ'>Thổ Nhi Kỳ</option>
+                                                            <option value='Đan Mạch'>Đan Mạch</option>
+                                                            <option value='Đức'>Đức</option>
+                                                            <option value='Bỉ'>Bỉ</option>
+                                                            <option value='Thụy Sĩ'>Thụy Sĩ</option>
+                                                            <option value='Áo'>Áo</option>
+                                                            <option value='Argentina'>Argentina</option>
+                                                            <option value='Tây Ban Nha'>Tây Ban Nha</option>
+                                                            <option value='Bồ Đào Nha'>Bồ Đào Nha</option>
+                                                            <option value='Campuchia'>Campuchia</option>
                                                         </Field>
                                                         <div className="row">
                                                             <div className="col-1"/>

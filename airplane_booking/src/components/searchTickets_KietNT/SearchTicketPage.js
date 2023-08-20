@@ -3,15 +3,14 @@ import { searchTicketByNameAndIdCardPassenger } from "../../services/TicketServi
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import img from "../../css/search_ticket/img/img_1.png";
 import "../../css/search_ticket/style.css";
 import Swal from "sweetalert2";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
-
 export default function SearchTicketPage() {
   const navigate = useNavigate();
   const { updateTickets } = useContext(TicketContext);
-
 
   const searchTicket = async (values) => {
     try {
@@ -27,14 +26,12 @@ export default function SearchTicketPage() {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Không tìm thấy thông tin!",
+        title: "Không tìm thấy chuyến bay của bạn!",
         showConfirmButton: false,
         timer: 1500,
       });
     }
   };
-
-
 
   return (
     <>
@@ -51,7 +48,7 @@ export default function SearchTicketPage() {
             .max(30, "Họ và tên tối thiểu 3 ký tự và tối đa 30 ký tự")
             .matches(
               /^[A-Z]{1}[a-z]*(\s[A-Z]{1}[a-z]*)*$/,
-              "Bạn phải viết hoa chữ cái đầu của từng từ và có khoảng trắng giữa các từ"
+              "Bạn phải viết hoa chữ cái đầu của từng từ và không được có kí tự đặc biệt hoặc số"
             ),
           idCardPassenger: yup
             .string()
@@ -60,17 +57,20 @@ export default function SearchTicketPage() {
             .max(12, "CCCD/Passport tối thiểu 6 ký tự và tối đa 12 ký tự")
             .matches(/^([A-Z]|[0-9])+$/, "Nhập vào chữ viết hoa và ký tự"),
         })}
-        onSubmit={(values)=>{searchTicket(values)}}
+        onSubmit={(values) => {
+          searchTicket(values);
+        }}
       >
         <div id="booking-search">
           <div className="section-center">
             <div className="section container">
               <div className="row">
-                <div className="col-md-5 col-sm-12" id="search_chuyenbay">
-                  <div
-                    className="booking-search-form"
-                    style={{ height: "100%" }}
-                  >
+                <div
+                  className="col-md-5 col-sm-12"
+                  id="search_chuyenbay"
+                  style={{ paddingTop: "20px" }}
+                >
+                  <div className="booking-search-form">
                     <div className="titleSearchPage" style={{ padding: "0px" }}>
                       <p
                         style={{
@@ -146,11 +146,7 @@ export default function SearchTicketPage() {
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
                       >
-                        <button
-                      
-                          type="submit"
-                          className="submit-btn"
-                        >
+                        <button type="submit" className="submit-btn">
                           Tìm kiếm
                         </button>
                       </div>
@@ -161,7 +157,7 @@ export default function SearchTicketPage() {
                   className="col-md-7 col-sm-12 col-md-offset-1"
                   id="search_chuyenbay1"
                 >
-                  <img style={{ width: "100%" }} alt="" id="img_2" />
+                  <img src={img} alt="" id="img_2" />
                 </div>
               </div>
             </div>
