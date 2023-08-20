@@ -116,6 +116,7 @@ export default function CustomerUpdate() {
     return (
         <>
             {customer.idCustomer &&
+                <div className="hoalty">
                 <div id="booking" className="section" >
                     <div className="section-center">
                         <Formik
@@ -276,8 +277,8 @@ export default function CustomerUpdate() {
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <div className="form-group">
-                                                            <span className="form-label" style={{ marginBottom: '20px' }}>Ảnh</span>
-                                                            <Field className="custom-file-input" style={{ paddingTop: '35px' }} accept="image/png, image/gif, image/jpeg" type="file" id="input-file" ref={inputFileRef} onChange={handleInputChange} name='imgCustomer' />
+                                                            <span className="form-label " style={{ marginBottom: '20px' }}>Ảnh</span>
+                                                            <Field className="form-control" style={{ paddingTop: '35px',color:"transparent"}} accept="image/png, image/gif, image/jpeg" type="file" id="input-file" ref={inputFileRef} onChange={handleInputChange} name='imgCustomer' />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
@@ -313,6 +314,7 @@ export default function CustomerUpdate() {
                                 </div>
                             </div></Formik>
                     </div>
+                </div>
                 </div>
             }
         </>

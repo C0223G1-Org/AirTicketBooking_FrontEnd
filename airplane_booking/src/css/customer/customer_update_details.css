@@ -258,3 +258,14 @@
 	background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 	
 }
+.hoalty{
+	background-image: url('../../img/background.jpg') ;
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+
+}
+
+.hoalty p{
+	text-transform: none!important;
+}

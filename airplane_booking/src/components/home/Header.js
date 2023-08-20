@@ -38,7 +38,7 @@ export default function Header() {
                 let data = await getEmployeeByEmail(rightEmail);
                 setUser(data);
             } else if (rightRole == "ROLE_ADMIN") {
-
+                setUser({user: localStorage.getItem("username")});
             }
         }
     }
@@ -128,10 +128,10 @@ export default function Header() {
                                         </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className="nav-link active" to={`/signup`}>
+                                        <a className="nav-link active" href="#">
                                             <i className="fa-solid fa-user-plus"/>
                                             Đăng ký
-                                        </Link>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -187,7 +187,7 @@ export default function Header() {
                                             </a>
                                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <li><Link to={`/customers/details/${user.idCustomer}`} className="dropdown-item" href="#">Xem thông tin tài khoản</Link></li>
-                                                <li><Link to={`/historyPayment`} className="dropdown-item">Lịch sử đặt
+                                                <li><Link to={`/history-payment/${user.idCustomer}`} className="dropdown-item">Lịch sử đặt
                                                     vé</Link>
                                                 </li>
                                                 <li><Link to={`/change-password`} className="dropdown-item">Đổi mật khẩu</Link>

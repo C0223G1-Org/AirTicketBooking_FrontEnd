@@ -105,11 +105,11 @@ export function Login() {
                 >
                     {({isSubmitting}) => (
                         <Form>
-                            {/*<div className="bgimagedk">*/}
+                            <div className="bgimagebody" style={{paddingBottom: "5%"}}>
                                 <h1 className="w3ls" style={{color: "rgb(6, 133, 170)"}}>
                                     ĐĂNG NHẬP
                                 </h1>
-                                <div className="content-w3ls bgimagedn"
+                                <div className="content-w3ls"
                                      style={{borderRadius: "7px", padding: "20px 0"}}>
                                     <div className="row ">
                                         <div className="col-3">
@@ -248,7 +248,7 @@ export function Login() {
                                         <div className="col-3"/>
                                     </div>
                                 </div>
-                            {/*</div>*/}
+                            </div>
                         </Form>
                     )}
                 </Formik>
