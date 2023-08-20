@@ -39,6 +39,8 @@ import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage
 import {TicketProvider} from "./components/searchTickets_KietNT/TicketContext";
 import AdminPage from "./components/chat_messenger/AdminChat";
 import CreateReport from "./component/report/CreateReport";
+import DetailHistoryPayment from './component/DetailHistoryPaymentComponent';
+import DetailHistoryPaymentComponent from './component/DetailHistoryPaymentComponent';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -113,6 +115,7 @@ root.render(
                 <Route path="/info-passenger/:data" element={<InfoPassenger/>} />
                 <Route path="payment/:id" element={<PaymentComponent/>} />
                 <Route path="/history-payment/:id" element={<HistoryPaymentComponent/>} />
+                <Route path='/detail-history/:departure/:destination/:dateBooking' element={<DetailHistoryPaymentComponent />}></Route>
                 {/*<Route path="/employee" element={<EmployeeList/>} />*/}
                 {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
                 <Route path='/listPost' element={<ListPost />} />

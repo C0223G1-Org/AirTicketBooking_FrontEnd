@@ -6,6 +6,6 @@ export async function getTicketByTicketId (id) {
 }
 export async function updateTicketByIdTicket (id, paymentStatus) {
 
-    const resolve = await axios.patch(`http://localhost:8080/payment/callback/1/${paymentStatus}`)
+    const resolve = await axios.patch(`http://localhost:8080/payment/callback/${id}/${paymentStatus}`)
     return resolve.data;
 }
