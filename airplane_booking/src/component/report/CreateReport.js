@@ -6,6 +6,7 @@ import {ChartComponent} from "./ChartComponent";
 import {Chart} from "chart.js/auto"
 import ExportExcel from "./ExprortExcel";
 import ExportExcelButton from "./ExprortExcel";
+import {Unauthorzied} from "../Unauthorized";
 
 
 export default function CreateReport() {
@@ -77,164 +78,171 @@ export default function CreateReport() {
         }
     }
 
+    const role = localStorage.getItem("role");
+    if (role === 'ROLE_ADMIN' || role === 'ROLE_EMPLOYEE') {
+        return (
+            <>
+                <div className="row" style={{backgroundColor: "white"}}>
+                    <div className="col-6">
+                        <div style={{marginTop: "-5vh", marginRight: "3vw"}} className="section">
+                            <div className="section-center">
+                                <div className="container">
+                                    <div className="booking-form">
+                                        <div className="" style={{padding: "0px"}}>
+                                            <p>Thống kê báo cáo</p>
+                                        </div>
+                                        <Formik initialValues={{
+                                            travelType: "one-way",
+                                            timeCurrent: "",
+                                            timePrevious: "",
+                                            startDate: "",
+                                            endDate: "",
+                                            starDate1: "",
+                                            endDate1: "",
+                                        }}
 
-    return (
-        <>
-            <div className="row" style={{backgroundColor: "white"}}>
-                <div className="col-6">
-                    <div style={{marginTop: "-5vh", marginRight: "3vw"}} className="section">
-                        <div className="section-center">
-                            <div className="container">
-                                <div className="booking-form">
-                                    <div className="" style={{padding: "0px"}}>
-                                        <p>Thống kê báo cáo</p>
-                                    </div>
-                                    <Formik initialValues={{
-                                        travelType: "one-way",
-                                        timeCurrent: "",
-                                        timePrevious: "",
-                                        startDate: "",
-                                        endDate: "",
-                                        starDate1: "",
-                                        endDate1: "",
-                                    }}
+                                                onSubmit={async (values) => {
+                                                    const fetchData = async () => {
 
-                                            onSubmit={async (values) => {
-                                                const fetchData = async () => {
+                                                        if (values.travelType === "one-way") {
+                                                            await getDataCurrent(values.timeCurrent);
+                                                            await getDataPrevious(values.timeCurrent);
 
-                                                    if (values.travelType === "one-way") {
-                                                        await getDataCurrent(values.timeCurrent);
-                                                        await getDataPrevious(values.timeCurrent);
-
-                                                    } else if (values.travelType === "multi-city") {
-                                                        await getDataAbout(values.startDate, values.endDate);
-                                                        await getDataAbout1(values.startDate1, values.endDate1);
-                                                    }
-                                                };
-                                                fetchData();
-                                            }}>
-                                        {({values, resetForm}) => (
-                                            <Form className="booking-form-padding">
-                                                <div>
+                                                        } else if (values.travelType === "multi-city") {
+                                                            await getDataAbout(values.startDate, values.endDate);
+                                                            await getDataAbout1(values.startDate1, values.endDate1);
+                                                        }
+                                                    };
+                                                    fetchData();
+                                                }}>
+                                            {({values, resetForm}) => (
+                                                <Form className="booking-form-padding">
                                                     <div>
-                                                        <label htmlFor="one-way" style={{width: "100%"}}>
-                                                            <Field type="radio" id="one-way" name="travelType"
-                                                                   value="one-way"
-                                                                   onClick={() => resetFieldName(resetForm)}/>
-                                                            <b style={{fontSize: "25px"}}> So sánh nhanh</b>
-                                                        </label>
-                                                        <div className="form-group">
+                                                        <div>
+                                                            <label htmlFor="one-way" style={{width: "100%"}}>
+                                                                <Field type="radio" id="one-way" name="travelType"
+                                                                       value="one-way"
+                                                                       onClick={() => resetFieldName(resetForm)}/>
+                                                                <b style={{fontSize: "25px"}}> So sánh nhanh</b>
+                                                            </label>
+                                                            <div className="form-group">
                                                     <span className="form-label">Thời gian <span
                                                         style={{color: "red"}}>*</span></span>
-                                                            <Field as="select" className="form-control"
-                                                                   name="timeCurrent"
-                                                                   disabled={values.travelType === "multi-city"}
-                                                            >
-                                                                <option value="">--Vui lòng chọn thời gian--</option>
-                                                                <option value="week">Tuần này - Tuần Trước</option>
-                                                                <option value="month">Tháng này - Tháng trước</option>
-                                                                <option value="quarter">Quý này - Quý trước</option>
-                                                                <option value="year">Năm này - Năm trước</option>
-                                                            </Field>
-                                                            <Field className="form-control" name="timePrevious" hidden/>
+                                                                <Field as="select" className="form-control"
+                                                                       name="timeCurrent"
+                                                                       disabled={values.travelType === "multi-city"}
+                                                                >
+                                                                    <option value="">--Vui lòng chọn thời gian--
+                                                                    </option>
+                                                                    <option value="week">Tuần này - Tuần Trước</option>
+                                                                    <option value="month">Tháng này - Tháng trước
+                                                                    </option>
+                                                                    <option value="quarter">Quý này - Quý trước</option>
+                                                                    <option value="year">Năm này - Năm trước</option>
+                                                                </Field>
+                                                                <Field className="form-control" name="timePrevious"
+                                                                       hidden/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div>
-                                                        <label htmlFor="multi-city">
-                                                            <Field type="radio" id="multi-city" name="travelType"
-                                                                   value="multi-city"
-                                                                   onClick={() => resetFieldName(resetForm)}/>
-                                                            <b style={{fontSize: "25px"}}> So sánh tùy chọn</b>
-                                                        </label>
-                                                        <div className="row">
-                                                            <div className="col-md-6">
-                                                                <div className="form-group">
+                                                        <div>
+                                                            <label htmlFor="multi-city">
+                                                                <Field type="radio" id="multi-city" name="travelType"
+                                                                       value="multi-city"
+                                                                       onClick={() => resetFieldName(resetForm)}/>
+                                                                <b style={{fontSize: "25px"}}> So sánh tùy chọn</b>
+                                                            </label>
+                                                            <div className="row">
+                                                                <div className="col-md-6">
+                                                                    <div className="form-group">
                                                         <span className="form-label">Từ <span
                                                             style={{color: "red"}}>*</span></span>
-                                                                    <Field className="form-control" type="date"
-                                                                           name="startDate"
-                                                                           disabled={values.travelType === "one-way"}
-                                                                           max={new Date().toISOString().split('T')[0]}
-                                                                    />
+                                                                        <Field className="form-control" type="date"
+                                                                               name="startDate"
+                                                                               disabled={values.travelType === "one-way"}
+                                                                               max={new Date().toISOString().split('T')[0]}
+                                                                        />
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div className="col-md-6">
-                                                                <div className="form-group">
+                                                                <div className="col-md-6">
+                                                                    <div className="form-group">
                                                         <span className="form-label">Đến <span
                                                             style={{color: "red"}}>*</span></span>
-                                                                    <Field className="form-control" type="date"
-                                                                           name="endDate"
-                                                                           disabled={values.travelType === "one-way"}
-                                                                           max={new Date().toISOString().split('T')[0]}
-                                                                    />
+                                                                        <Field className="form-control" type="date"
+                                                                               name="endDate"
+                                                                               disabled={values.travelType === "one-way"}
+                                                                               max={new Date().toISOString().split('T')[0]}
+                                                                        />
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <h4 style={{marginTop: "-1.5vh"}}>So sánh với:</h4>
-                                                <div className="row" style={{marginTop: "2vh"}}>
-                                                    <div className="col-md-6">
-                                                        <div className="form-group">
-                                                            <span className="form-label">Đến</span>
-                                                            <Field className="form-control" type="date"
-                                                                   name="startDate1"
-                                                                   disabled={values.travelType === "one-way"}
-                                                                   max={new Date().toISOString().split('T')[0]}/>
+                                                    <h4 style={{marginTop: "-1.5vh"}}>So sánh với:</h4>
+                                                    <div className="row" style={{marginTop: "2vh"}}>
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <span className="form-label">Đến</span>
+                                                                <Field className="form-control" type="date"
+                                                                       name="startDate1"
+                                                                       disabled={values.travelType === "one-way"}
+                                                                       max={new Date().toISOString().split('T')[0]}/>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <span className="form-label">Đến</span>
+                                                                <Field className="form-control" type="date"
+                                                                       name="endDate1"
+                                                                       disabled={values.travelType === "one-way"}
+                                                                       max={new Date().toISOString().split('T')[0]}/>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div className="col-md-6">
-                                                        <div className="form-group">
-                                                            <span className="form-label">Đến</span>
-                                                            <Field className="form-control" type="date" name="endDate1"
-                                                                   disabled={values.travelType === "one-way"}
-                                                                   max={new Date().toISOString().split('T')[0]}/>
-                                                        </div>
+                                                    <div style={{textAlign: "center"}}>
+                                                        <button className="btn" style={{
+                                                            background: "#daa32a", width: "85px",
+                                                            fontSize: "15px"
+                                                        }}>Xem
+                                                        </button>
                                                     </div>
-                                                </div>
-                                                <div style={{textAlign: "center"}}>
-                                                    <button className="btn" style={{
-                                                        background: "#daa32a", width: "85px",
-                                                        fontSize: "15px"
-                                                    }}>Xem
-                                                    </button>
-                                                </div>
-                                            </Form>
-                                        )}
-                                    </Formik>
+                                                </Form>
+                                            )}
+                                        </Formik>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-6">
+                        <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>
+                            <div style={{width: "70vw", height: "70vh"}}>
+                                {dataTimeCurrent && dataTimePrevious || dataTimeAbout && dataTimeAbout1 ?
+                                    <ChartComponent dataTimeCurrent={dataTimeCurrent}
+                                                    dataTimePrevious={dataTimePrevious}
+                                                    dataTimeAbout={dataTimeAbout}
+                                                    dataTimeAbout1={dataTimeAbout1}
+                                    /> :
+                                    <ChartComponent dataTimeCurrent={[]}
+                                                    dataTimePrevious={[]}
+                                                    dataTimeAbout={[]}
+                                                    dataTimeAbout1={[]}/>
+                                }
+                                <div style={{textAlign: "center"}}>
+                                    {dataTimeCurrent && dataTimePrevious || dataTimeAbout && dataTimeAbout1 ?
+                                        <ExportExcelButton dataTimeCurrent={dataTimeCurrent}
+                                                           dataTimePrevious={dataTimePrevious}
+                                                           dataTimeAbout={dataTimeAbout}
+                                                           dataTimeAbout1={dataTimeAbout1} fileName="Revenue"/>
+                                        :
+                                        ""
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-6">
-                    <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>
-                        <div style={{width: "70vw", height: "70vh"}}>
-                            {dataTimeCurrent && dataTimePrevious || dataTimeAbout && dataTimeAbout1 ?
-                                <ChartComponent dataTimeCurrent={dataTimeCurrent}
-                                                dataTimePrevious={dataTimePrevious}
-                                                dataTimeAbout={dataTimeAbout}
-                                                dataTimeAbout1={dataTimeAbout1}
-                                /> :
-                                <ChartComponent dataTimeCurrent={[]}
-                                                dataTimePrevious={[]}
-                                                dataTimeAbout={[]}
-                                                dataTimeAbout1={[]}/>
-                            }
-                            <div style={{textAlign: "center"}}>
-                                {dataTimeCurrent && dataTimePrevious || dataTimeAbout && dataTimeAbout1 ?
-                                    <ExportExcelButton dataTimeCurrent={dataTimeCurrent}
-                                                       dataTimePrevious={dataTimePrevious}
-                                                       dataTimeAbout={dataTimeAbout}
-                                                       dataTimeAbout1={dataTimeAbout1} fileName="Revenue"/>
-                                                       :
-                                    ""
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+            </>
+        )
+    }
+    return <Unauthorzied/>
 }

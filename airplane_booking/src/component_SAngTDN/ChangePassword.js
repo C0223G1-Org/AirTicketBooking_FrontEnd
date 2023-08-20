@@ -4,6 +4,7 @@ import * as yup from "yup";
 import Swal from "sweetalert2";
 import React, {useEffect, useState} from "react";
 import {Unauthorzied} from "../component/Unauthorized";
+import {useNavigate} from "react-router";
 
 
 function ChangePassword() {
@@ -31,6 +32,7 @@ function ChangePassword() {
     useEffect(() => {
         getUser();
     }, [])
+
 
     const [role, setRole] = useState(localStorage.getItem("role"));
     console.log("role " + role);
@@ -91,7 +93,7 @@ function ChangePassword() {
                                 try {
                                     await changePassword(account);
                                 } catch {
-                                    Swal.fire({
+                                    await Swal.fire({
                                         title: "Mật Khẩu hiện tại của bạn không đúng!",
                                         text: "",
                                         icon: "warning",
@@ -99,7 +101,7 @@ function ChangePassword() {
                                     });
                                     return
                                 }
-                                Swal.fire({
+                                await Swal.fire({
                                     title: "Thay đổi mật khẩu thành công",
                                     text: "",
                                     icon: "success",

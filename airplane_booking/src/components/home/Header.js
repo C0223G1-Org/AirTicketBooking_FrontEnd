@@ -30,21 +30,20 @@ export default function Header() {
         const rightEmail = email ?? emailUser;
         const rightRole = uRole ?? role;
         if (rightEmail) {
-            if (rightRole == "ROLE_CUSTOMER") {
+            if (rightRole === "ROLE_CUSTOMER") {
                 let data = await getCustomerByEmail(rightEmail);
                 console.log(data)
                 setUser(data);
-            } else if (rightRole == "ROLE_EMPLOYEE") {
+            } else if (rightRole === "ROLE_EMPLOYEE") {
                 let data = await getEmployeeByEmail(rightEmail);
                 setUser(data);
-            } else if (rightRole == "ROLE_ADMIN") {
-                let data = await getEmployeeByEmail(rightEmail);
-                setUser(data);
+            } else if (rightRole === "ROLE_ADMIN") {
+                setUser({
+                    name: 'ADMIN'
+                });
             }
         }
     }
-
-    console.log("aaaaa")
     const handleLogout = () => {
         localStorage.setItem("token", null);
         localStorage.setItem("username", null);
@@ -138,7 +137,7 @@ export default function Header() {
                             </div>
                         </nav>
                     </header>
-                    : role == "ROLE_CUSTOMER" ?
+                    : role === "ROLE_CUSTOMER" ?
                         <header className='header'>
                             <nav className="navbar navbar-expand-lg">
                                 <Link to={"/home"}><img className="navbar-brand" src={image} alt='CodeGym Airline'/></Link>
@@ -214,7 +213,7 @@ export default function Header() {
                                 </div>
                             </nav>
                         </header>
-                        : role == "ROLE_EMPLOYEE" ?
+                        : role === "ROLE_EMPLOYEE" ?
                             <header className='header'>
                                 <nav className="navbar navbar-expand-lg">
                                     <Link to={"/home"}><img className="navbar-brand" src={image}
@@ -278,7 +277,7 @@ export default function Header() {
                                                         vé</Link></li>
                                                     <li><Link to={`/change-password`} className="dropdown-item">Đổi mật khẩu</Link>
                                                     </li>
-                                                    <li><a className="dropdown-item" href="#">Báo cáo</a></li>
+                                                    <li><Link to={`/report`} className="dropdown-item" >Báo cáo</Link></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -364,8 +363,8 @@ export default function Header() {
                                                     </li>
                                                     <li><Link to={`/change-password`} className="dropdown-item">Đổi mật khẩu</Link>
                                                     </li>
-                                                    <li><a className="dropdown-item" href="#">Quản lý vé</a></li>
-                                                    <li><a className="dropdown-item" href="#">Báo cáo</a></li>
+                                                    <li><Link to={`/ticket/booked`} className="dropdown-item" href="#">Quản lý vé</Link></li>
+                                                    <li><Link to={`/report`} className="dropdown-item" >Báo cáo</Link></li>
                                                 </ul>
                                             </li>
                                         </ul>
