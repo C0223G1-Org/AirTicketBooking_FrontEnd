@@ -128,10 +128,10 @@ export default function Header() {
                                         </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className="nav-link active" to={`/signup`}>
+                                        <a className="nav-link active" href="#">
                                             <i className="fa-solid fa-user-plus"/>
                                             Đăng ký
-                                        </Link>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
