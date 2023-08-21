@@ -199,7 +199,7 @@ export default function Header() {
                                     </ul>
                                     <ul className="navbar-nav login">
                                         <li className="nav-item">
-                                            <a className="nav-link active" href="#">
+                                            <a className="nav-link active say-hello" href="#" style={{color: "#daa310", fontWeight: "bold"}}>
                                                 Xin chào - {user.nameCustomer}
                                             </a>
                                         </li>
@@ -285,7 +285,7 @@ export default function Header() {
                                         </ul>
                                         <ul className="navbar-nav login">
                                             <li className="nav-item">
-                                                <a className="nav-link active" href="#">
+                                                <a className="nav-link active say-hello" href="#" style={{color: "#daa310", fontWeight: "bold"}}>
                                                     Xin chào - {user.nameEmployee}
                                                 </a>
                                             </li>
@@ -373,7 +373,7 @@ export default function Header() {
                                         </ul>
                                         <ul className="navbar-nav login">
                                             <li className="nav-item">
-                                                <a className="nav-link active" href="#">
+                                                <a className="nav-link active" href="#" style={{color: "#daa310", fontWeight: "bold"}}>
                                                     Xin chào - ADMIN
                                                 </a>
                                             </li>
