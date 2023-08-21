@@ -64,7 +64,6 @@ export default function DetailTicket() {
         }
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            window.scrollTo(0, 0);
             getRouterDestination()
             getTypeSeatDeparture();
             getTypeSeatReturn();
@@ -76,7 +75,6 @@ export default function DetailTicket() {
         setLoading5(false)
     }
     useEffect(() => {
-        window.scrollTo(0, 0);
         getTypeTicket();
         getRouteDeparture();
         getTypeSeat();
@@ -132,8 +130,11 @@ export default function DetailTicket() {
         //1.loại vé, 2.id tuyến đi,3. idtuyến vế ,4. loại ghế đi, 5.loại ghế về , 6. giá đi. 7.giá về
     }
 
-    function handleSubmitCancel() {
-        navigate("/list");
+    function handleSubmitCancelOneWay() {
+        navigate(`/list/${route.departure.nameDeparture},${route.destination.nameDestination},${route.dateDeparture},,${0},${arr[4]},${arr[5]}`);
+    }
+    function handleSubmitCancelTwoWay(){
+        navigate(`/list/${route.departure.nameDeparture},${route.destination.nameDestination},${route.dateDeparture},${routeDestination.dateArrival},${1},${arr[7]},${arr[8]}`);
     }
 
     // if(route===null){
@@ -142,6 +143,7 @@ export default function DetailTicket() {
     // }
 
     console.log(route);
+
 
 
 
@@ -247,6 +249,7 @@ export default function DetailTicket() {
                                </div>
                                <div className="detail-ticket-btn">
                                    <button onClick={() => {
+                                    handleSubmitCancelOneWay();
 
                                    }
                                    }>Hủy
@@ -438,7 +441,7 @@ export default function DetailTicket() {
                                </div>
                                <div className="detail-ticket-btn">
                                    <button onClick={() => {
-                                       handleSubmitCancel()
+                                     handleSubmitCancelTwoWay()
 
                                    }
                                    }>Hủy

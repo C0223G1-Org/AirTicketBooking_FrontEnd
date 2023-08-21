@@ -85,7 +85,6 @@ export default function InfoPassenger() {
         }
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            window.scrollTo(0, 0);
             getRouterDestination()
             getTypeSeatDeparture();
             getTypeSeatReturn();
@@ -97,7 +96,6 @@ export default function InfoPassenger() {
             setTypeSeat(data);
         }
         useEffect(() => {
-            window.scrollTo(0, 0);
             getTypeTicket();
             getRouteDeparture();
             getListLuggage();
