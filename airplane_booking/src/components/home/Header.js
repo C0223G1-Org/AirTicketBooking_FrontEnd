@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import "../../css/home/Header.css";
 import {Link, NavLink, useLocation, useNavigate} from 'react-router-dom';
-import image from "../../logo_5.png";
+import image from "../../logo.png";
 import {getCustomerByEmail} from "../../services/CustomerServices";
 import {getEmployeeByEmail} from "../../services/EmployeeServices";
 
@@ -38,9 +38,7 @@ export default function Header() {
                 let data = await getEmployeeByEmail(rightEmail);
                 setUser(data);
             } else if (rightRole === "ROLE_ADMIN") {
-                setUser({
-                    name: 'ADMIN'
-                });
+                setUser({user: localStorage.getItem("username")});
             }
         }
     }
@@ -79,9 +77,11 @@ export default function Header() {
         <>
             {
                 user == null ?
-                    <header className="header">
+                    <header className="header sticky-top">
                         <nav className="navbar navbar-expand-lg">
-                            <Link to={"/home"}><img className="navbar-brand" src={image} alt='CodeGym Airline'/></Link>
+                            <Link to={"/home"}>
+                                <img className="navbar-brand" src={image} alt='CodeGym Airline'/>
+                            </Link>
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                     aria-expanded="false" aria-label="Toggle navigation">
@@ -138,7 +138,7 @@ export default function Header() {
                         </nav>
                     </header>
                     : role === "ROLE_CUSTOMER" ?
-                        <header className='header'>
+                        <header className='header sticky-top'>
                             <nav className="navbar navbar-expand-lg">
                                 <Link to={"/home"}><img className="navbar-brand" src={image} alt='CodeGym Airline'/></Link>
                                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -214,7 +214,7 @@ export default function Header() {
                             </nav>
                         </header>
                         : role === "ROLE_EMPLOYEE" ?
-                            <header className='header'>
+                            <header className='header sticky-top'>
                                 <nav className="navbar navbar-expand-lg">
                                     <Link to={"/home"}><img className="navbar-brand" src={image}
                                                             alt='CodeGym Airline'/></Link>
@@ -272,12 +272,12 @@ export default function Header() {
                                                     <li><Link to={`/customers`} className="dropdown-item">Quản lý khách
                                                         hàng</Link>
                                                     </li>
-                                                    <li><a className="dropdown-item" href="#">Quản lý kinh doanh</a></li>
+
                                                     <li><Link to={`/ticket/booked`} className="dropdown-item">Quản lý
                                                         vé</Link></li>
                                                     <li><Link to={`/change-password`} className="dropdown-item">Đổi mật khẩu</Link>
                                                     </li>
-                                                    <li><Link to={`/report`} className="dropdown-item" >Báo cáo</Link></li>
+                                                    <li><Link to={`/report`} className="dropdown-item">Thống kê doanh thu</Link></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -299,7 +299,7 @@ export default function Header() {
                                     </div>
                                 </nav>
                             </header>
-                        : <header className='header'>
+                            : <header className='header'>
                                 <nav className="navbar navbar-expand-lg">
                                     <Link to={"/home"}><img className="navbar-brand" src={image}
                                                             alt='CodeGym Airline'/></Link>
@@ -363,8 +363,9 @@ export default function Header() {
                                                     </li>
                                                     <li><Link to={`/change-password`} className="dropdown-item">Đổi mật khẩu</Link>
                                                     </li>
-                                                    <li><Link to={`/ticket/booked`} className="dropdown-item" href="#">Quản lý vé</Link></li>
-                                                    <li><Link to={`/report`} className="dropdown-item" >Báo cáo</Link></li>
+                                                    <li><Link to={`/ticket/booked`} className="dropdown-item">Quản lý
+                                                        vé</Link></li>
+                                                    <li><Link to={`/report`} className="dropdown-item">Thống kê doanh thu</Link></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -386,10 +387,6 @@ export default function Header() {
                             </header>
 
             }
-            {/*}*/}
-            {/*<HeaderEmployee/>*/}
-            {/*<HeaderAdmin/>*/}
-            {/*<HeaderCustomer/>*/}
         </>
     )
 }

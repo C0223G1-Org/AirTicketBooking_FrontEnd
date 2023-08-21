@@ -149,13 +149,10 @@ export default function CustomerManagement() {
     } else if (role === 'ROLE_EMPLOYEE' || role === 'ROLE_ADMIN') {
         return (
             <>
-                {/*{role === null ? <Unauthorzied/> :*/}
-                {/*(role !== 'ROLE_CUSTOMER' ?*/}
                 <div className="background-customer">
+
                     <div className="background-customer">
                         <meta charSet="UTF-8"/>
-                        <title>Quản lí khách hàng</title>
-
                         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
                               rel="stylesheet"
                               integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
@@ -181,171 +178,191 @@ export default function CustomerManagement() {
                                             }}>Thêm mới khách hàng
                                             </button>
 
-                                </Link>
-                            </div>
-                            <div style={{ float: 'right', paddingLeft: '150px' }} className="my-2 flex sm:flex-row flex-col col-md-9">
+                                        </Link>
+                                    </div>
+                                    <div style={{float: 'right', paddingLeft: '150px'}}
+                                         className="my-2 flex sm:flex-row flex-col col-md-9">
 
-                                <div className="row ">
-                                    <div className="   mb-1 sm:mb-0 col-md-2 ">
-                                        <select onKeyDown={
-                                            async (event) => {
-                                                if (event.keyCode == 13) {
+                                        <div className="row ">
+                                            <div className="   mb-1 sm:mb-0 col-md-2 ">
+                                                <select onKeyDown={
+                                                    async (event) => {
+                                                        if (event.keyCode == 13) {
+                                                            await searchDataPageable()
+                                                        }
+                                                    }}
+                                                        id="nationality" defaultValue={""}
+
+                                                        className="style-8 appearance-none h-full rounded border block appearance-none  bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                                    <option value={""}>--Quốc tịch--</option>
+                                                    <option value='Việt Nam'>Việt Nam</option>
+                                                    <option value='Trung Quốc'>Trung Quốc</option>
+                                                    <option value='Thái Lan'>Thái Lan</option>
+                                                    <option value='Malaysia'>Malaysia</option>
+                                                    <option value='Singapo'>Singapo</option>
+                                                    <option value='Anh'>Anh</option>
+                                                    <option value='Hàn Quốc'>Hàn Quốc</option>
+                                                    <option value='Mỹ'>Mỹ</option>
+                                                    <option value='Pháp'>Pháp</option>
+                                                    <option value='Nhật Bản'>Nhật Bản</option>
+                                                    <option value='Hong Kong'>Hong Kong</option>
+                                                    <option value='Macau'>Macau</option>
+                                                    <option value='Triều Tiên'>Triều Tiên</option>
+                                                    <option value='Ấn Độ'>Ấn Độ</option>
+                                                    <option value='Nga'>Nga</option>
+                                                    <option value='Quatar'>Quatar</option>
+                                                    <option value='Thổ Nhi Kỳ'>Thổ Nhi Kỳ</option>
+                                                    <option value='Đan Mạch'>Đan Mạch</option>
+                                                    <option value='Đức'>Đức</option>
+                                                    <option value='Bỉ'>Bỉ</option>
+                                                    <option value='Thụy Sĩ'>Thụy Sĩ</option>
+                                                    <option value='Áo'>Áo</option>
+                                                    <option value='Argentina'>Argentina</option>
+                                                    <option value='Tây Ban Nha'>Tây Ban Nha</option>
+                                                    <option value='Bồ Đào Nha'>Bồ Đào Nha</option>
+                                                    <option value='Campuchia'>Campuchia</option>
+                                                </select>
+
+                                            </div>
+
+                                            <div className="  col-md-4">
+                                                <input
+                                                    onKeyDown={
+                                                        async (event) => {
+                                                            if (event.keyCode == 13) {
+                                                                await searchDataPageable()
+                                                            }
+                                                        }}
+                                                    style={{marginLeft: '30px'}}
+                                                    placeholder="Tìm kiếm theo email" id="emailCustomer"
+                                                    defaultValue={""}
+                                                    className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"/>
+                                            </div>
+                                            <div className="  col-md-4" style={{marginLeft: '5px'}}>
+                                                <input
+                                                    onKeyDown={
+                                                        async (event) => {
+                                                            if (event.keyCode == 13) {
+                                                                await searchDataPageable()
+                                                            }
+                                                        }}
+                                                    style={{marginLeft: '15px'}}
+                                                    placeholder="Tìm kiếm theo tên" id="name" defaultValue={""}
+                                                    className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"/>
+                                            </div>
+                                            <button
+                                                onClick={async () => {
                                                     await searchDataPageable()
-                                                }
-                                            }}
-                                            id="nationality" defaultValue={""}
-
-                                            className="style-8 appearance-none h-full rounded border block appearance-none  bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                            <option value={""}>--Quốc tịch--</option>
-                                            <option value='Việt Nam'>Việt Nam</option>
-                                            <option value='Trung Quốc'>Trung Quốc</option>
-                                            <option value='Thái Lan'>Thái Lan</option>
-                                            <option value='Malaysia'>Malaysia</option>
-                                            <option value='Singapo'>Singapo</option>
-                                            <option value='Anh'>Anh</option>
-                                            <option value='Hàn Quốc'>Hàn Quốc</option>
-                                            <option value='Mỹ'>Mỹ</option>
-                                            <option value='Pháp'>Pháp</option>
-                                            <option value='Nhật Bản'>Nhật Bản</option>
-                                            <option value='Hong Kong'>Hong Kong</option>
-                                            <option value='Macau'>Macau</option>
-                                            <option value='Triều Tiên'>Triều Tiên</option>
-                                            <option value='Ấn Độ'>Ấn Độ</option>
-                                            <option value='Nga'>Nga</option>
-                                            <option value='Quatar'>Quatar</option>
-                                            <option value='Thổ Nhi Kỳ'>Thổ Nhi Kỳ</option>
-                                            <option value='Đan Mạch'>Đan Mạch</option>
-                                            <option value='Đức'>Đức</option>
-                                            <option value='Bỉ'>Bỉ</option>
-                                            <option value='Thụy Sĩ'>Thụy Sĩ</option>
-                                            <option value='Áo'>Áo</option>
-                                            <option value='Argentina'>Argentina</option>
-                                            <option value='Tây Ban Nha'>Tây Ban Nha</option>
-                                            <option value='Bồ Đào Nha'>Bồ Đào Nha</option>
-                                            <option value='Campuchia'>Campuchia</option>
-                                        </select>
-
-                                    </div>
-
-                                    <div className="  col-md-4">
-                                        <input
-                                            onKeyDown={
-                                                async (event) => {
-                                                    if (event.keyCode == 13) {
-                                                        await searchDataPageable()
-                                                    }
                                                 }}
-                                                style={{marginLeft:'30px'}}
-                                            placeholder="Tìm kiếm theo email" id="emailCustomer" defaultValue={""}
-                                            className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+                                                className="text-sm  font-semibold py-2 px-4 col-md-2"
+                                                style={{
+                                                    background: 'rgb(223, 165, 18)',
+                                                    color: '#ffffff',
+                                                    marginLeft: '15px'
+                                                }}>
+                                                <i className="fa-solid fa-magnifying-glass"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div className="  col-md-4" style={{ marginLeft: '5px' }}>
-                                        <input
-                                            onKeyDown={
-                                                async (event) => {
-                                                    if (event.keyCode == 13) {
-                                                        await searchDataPageable()
-                                                    }
-                                                }}
-                                                style={{marginLeft:'15px'}}
-                                            placeholder="Tìm kiếm theo tên" id="name" defaultValue={""}
-                                            className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
-                                    </div>
-                                    <button
-                                        onClick={async () => {
-                                            await searchDataPageable()
-                                        }}
-                                        className="text-sm  font-semibold py-2 px-4 col-md-2"
-                                        style={{ background: 'rgb(223, 165, 18)', color: '#ffffff',marginLeft:'15px' }}>
-                                        <i className="fa-solid fa-magnifying-glass"></i>
-                                    </button>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                            <div className="inline-block min-w-full shadow rounded-lg ">
-                                <div className=""
-                                     style={{display: "flex", flexDirection: "column", minHeight: "100%"}}>
-                                    <div style={{flex: "1", minHeight: "416px"}}>
-                                {
+                                <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                                    <div className="inline-block min-w-full shadow rounded-lg ">
+                                        <div className=""
+                                             style={{display: "flex", flexDirection: "column", minHeight: "100%"}}>
+                                            <div className="inlineTable">
+                                                {
 
-                                    <table className="min-w-full leading-normal myTable" style={{minWeight:"1000px"}}>
-                                        <thead>
-                                            <tr style={{ background: 'rgb(6, 133, 170)', color: '#ffffff' }}>
-                                                <th className=" col-md-1 py-3     text-x "
-                                                    style={{ textAlign: 'center' }}>
-                                                    STT
-                                                </th>
-                                                <th className=" col-md-2 py-3     text-x "
-                                                    style={{ textAlign: 'center', width: '5px' }}>
-                                                    Họ tên
-                                                </th>
-                                                <th className=" col-md-2 py-3     text-x  " style={{ textAlign: 'center' }}>
-                                                    Ngày sinh
-                                                </th>
-                                                <th className=" col-md-1 py-3     text-x " style={{ textAlign: 'center' }}>
-                                                    Giới tính
-                                                </th>
-                                                <th className="col-md-2 py-3     text-x " style={{ textAlign: 'center' }}>
-                                                    Quốc tịch
-                                                </th>
-                                                <th className="col-md-2 py-3     text-x  " style={{ textAlign: 'center' }}>
-                                                    Email
-                                                </th>
-                                                <th className="col-md-2 py-3     text-x  " style={{ textAlign: 'center' }}>
-                                                    Hành động
-                                                </th>
-                                            </tr>
+                                                    <table className="min-w-full leading-normal myTable"
+                                                           style={{minWeight: "1000px"}}>
+                                                        <thead>
+                                                        <tr style={{background: 'rgb(6, 133, 170)', color: '#ffffff'}}>
+                                                            <th className=" col-md-1 py-3     text-x "
+                                                                style={{textAlign: 'center'}}>
+                                                                STT
+                                                            </th>
+                                                            <th className=" col-md-2 py-3     text-x "
+                                                                style={{textAlign: 'center', width: '5px'}}>
+                                                                Họ tên
+                                                            </th>
+                                                            <th className=" col-md-2 py-3     text-x  "
+                                                                style={{textAlign: 'center'}}>
+                                                                Ngày sinh
+                                                            </th>
+                                                            <th className=" col-md-1 py-3     text-x "
+                                                                style={{textAlign: 'center'}}>
+                                                                Giới tính
+                                                            </th>
+                                                            <th className="col-md-2 py-3     text-x "
+                                                                style={{textAlign: 'center'}}>
+                                                                Quốc tịch
+                                                            </th>
+                                                            <th className="col-md-2 py-3     text-x  "
+                                                                style={{textAlign: 'center'}}>
+                                                                Email
+                                                            </th>
+                                                            <th className="col-md-2 py-3     text-x  "
+                                                                style={{textAlign: 'center'}}>
+                                                                Hành động
+                                                            </th>
+                                                        </tr>
 
-                                        </thead>
-                                        {customers.length != 0 ?
-                                            <tbody>
-                                                {customers.content.map((item, index) =>
-                                                (
-                                                    <tr key={`ctm_${index}`} style={{ maxWeight: "250px" }}>
-                                                        <td className="col-md-1  bg-white "
-                                                            style={{ textAlign: 'center', weight: "10px" }}>
-                                                            <p>{(page * 5) + (index + 1)}</p>
+                                                        </thead>
+                                                        {customers.length != 0 ?
+                                                            <tbody>
+                                                            {customers.content.map((item, index) =>
+                                                                (
+                                                                    <tr key={`ctm_${index}`}
+                                                                        style={{maxWeight: "250px"}}>
+                                                                        <td className="col-md-1  bg-white "
+                                                                            style={{
+                                                                                textAlign: 'center',
+                                                                                weight: "10px"
+                                                                            }}>
+                                                                            <p>{(page * 5) + (index + 1)}</p>
 
-                                                        </td>
-                                                        <td className=" col-md-2  py-3   bg-white"
-                                                            style={{ maxWeight: "250px" }}>
-                                                            <div className="flex items-center">
-                                                                <div className="flex-shrink-0 w-10 h-10">
-                                                                    <img className="w-full h-full rounded-full"
-                                                                        src={item.imgCustomer} alt="" />
+                                                                        </td>
+                                                                        <td className=" col-md-2  py-3   bg-white"
+                                                                            style={{maxWeight: "250px"}}>
+                                                                            <div className="flex items-center">
+                                                                                <div
+                                                                                    className="flex-shrink-0 w-10 h-10">
+                                                                                    <img
+                                                                                        className="w-full h-full rounded-full"
+                                                                                        src={item.imgCustomer} alt=""/>
 
-                                                                </div>
-                                                                <div className=" col-md-10  py-2   bg-white">
-                                                                    <p className=" whitespace-no-wrap">
-                                                                        {item.nameCustomer}
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td className="col-md-2 px-5 py-3   bg-white ">
-                                                            <p className="text-gray-900 whitespace-no-wrap">{moment(`${item.dateCustomer}`).format('DD-MM-YYYY')}</p>
-                                                        </td>
-                                                        <td className=" col-md-1 px-5 py-3   bg-white ">
-                                                            <p className="text-gray-900 whitespace-no-wrap">
-                                                                {item.genderCustomer == true ? <p>Nam</p> : <p>Nữ</p>}
-                                                            </p>
-                                                        </td>
-                                                        <td className="col-md-2 px-5 py-3   bg-white ">
-                                                            <p className="text-gray-900 whitespace-no-wrap">
-                                                                {item.nationalityCustomer}
-                                                            </p>
-                                                        </td>
-                                                        <td className="col-md-2  py-3   bg-white "
-                                                            style={{ maxWeight: "250px" }}>
-                                                            <p className="text-gray-900 whitespace-no-wrap">
-                                                                {item.emailCustomer}
+                                                                                </div>
+                                                                                <div
+                                                                                    className=" col-md-10  py-2   bg-white">
+                                                                                    <p className=" whitespace-no-wrap">
+                                                                                        {item.nameCustomer}
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td className="col-md-2 px-5 py-3   bg-white ">
+                                                                            <p className="text-gray-900 whitespace-no-wrap">{moment(`${item.dateCustomer}`).format('DD-MM-YYYY')}</p>
+                                                                        </td>
+                                                                        <td className=" col-md-1 px-5 py-3   bg-white ">
+                                                                            <p className="text-gray-900 whitespace-no-wrap">
+                                                                                {item.genderCustomer == true ?
+                                                                                    <p>Nam</p> : <p>Nữ</p>}
+                                                                            </p>
+                                                                        </td>
+                                                                        <td className="col-md-2 px-5 py-3   bg-white ">
+                                                                            <p className="text-gray-900 whitespace-no-wrap">
+                                                                                {item.nationalityCustomer}
+                                                                            </p>
+                                                                        </td>
+                                                                        <td className="col-md-2  py-3   bg-white "
+                                                                            style={{maxWeight: "250px"}}>
+                                                                            <p className="text-gray-900 whitespace-no-wrap">
+                                                                                {item.emailCustomer}
 
-                                                                    </p>
-                                                                </td>
-                                                                <td className="col-md-2  py-3   bg-white ">
-                                                                    <p className="text-gray-900 whitespace-no-wrap ">
+                                                                            </p>
+                                                                        </td>
+                                                                        <td className="col-md-2  py-3   bg-white ">
+                                                                            <p className="text-gray-900 whitespace-no-wrap ">
                                                                 <span
                                                                     onClick={async () => {
                                                                         await detailCustomer(item)
@@ -355,45 +372,47 @@ export default function CustomerManagement() {
                                                                     data-bs-target="#exampleModalDetail">
                                                                     <i className="fa-solid fa-circle-info"></i> </span>
 
-                                                                        <Link
-                                                                            to={`/customers/edit/${item.idCustomer}`}>
+                                                                                <Link
+                                                                                    to={`/customers/edit/${item.idCustomer}`}>
                                                                     <span
                                                                         className="icon_edit_employee"><i
-                                                                            className="fa-solid fa-pen-to-square" /></span>
-                                                                </Link>
-                                                                <a
-                                                                    onClick={async () => {
+                                                                        className="fa-solid fa-pen-to-square"/></span>
+                                                                                </Link>
+                                                                                <a
+                                                                                    onClick={async () => {
 
-                                                                                await deleteCustomer(item)
+                                                                                        await deleteCustomer(item)
 
-                                                                    }}
-                                                                    className="icon_delete_employee">
-                                                                    <span><i className="fa-solid fa-trash" /></span>
-                                                                </a>
+                                                                                    }}
+                                                                                    className="icon_delete_employee">
+                                                                                    <span><i
+                                                                                        className="fa-solid fa-trash"/></span>
+                                                                                </a>
 
-                                                            </p>
-                                                        </td>
-                                                    </tr>
-                                                )
-                                                )}
+                                                                            </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                )
+                                                            )}
 
-                                            </tbody>
-                                            :
-                                            <tbody>
-                                                <tr style={{ height: '150px' }}>
-                                                    <td style={{ color: "red", fontSize: '50px', }} colSpan="7">Không có dữ
-                                                        liệu
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        }
-                                    </table>
-                                }
-                                    </div>
-                                </div>
-                                {customers.length != 0 ?
-                                    <div
-                                        className="px-3 py-1 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
+                                                            </tbody>
+                                                            :
+                                                            <tbody>
+                                                            <tr style={{height: '150px'}}>
+                                                                <td style={{color: "red", fontSize: '50px',}}
+                                                                    colSpan="7">Không có dữ
+                                                                    liệu
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        }
+                                                    </table>
+                                                }
+                                            </div>
+                                        </div>
+                                        {customers.length != 0 ?
+                                            <div
+                                                className="px-3 py-1 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
 
                                                 <div className="inline-flex mt-2 xs:mt-0">
 
@@ -401,13 +420,13 @@ export default function CustomerManagement() {
                                                     {page != 0 ? <button
                                                         onClick={async () => {
 
-                                                    await previousPage()
-                                                }}
-                                                className="text-sm   py-2 px-3 rounded-l"
-                                                style={{ background: 'rgb(223, 165, 18)', color: '#ffffff' }}>
-                                                Trước
-                                            </button> : <button
-                                                onClick={async () => {
+                                                            await previousPage()
+                                                        }}
+                                                        className="text-sm   py-2 px-3 rounded-l"
+                                                        style={{background: 'rgb(223, 165, 18)', color: '#ffffff'}}>
+                                                        Trước
+                                                    </button> : <button
+                                                        onClick={async () => {
 
                                                             await previousPage()
                                                         }}
@@ -442,40 +461,44 @@ export default function CustomerManagement() {
                                                         </button>
                                                         : <button onClick={async () => {
 
-                                                    await nextPage();
-                                                }} className="text-sm   py-2 px-3 rounded-l" style={{
-                                                    background: 'rgb(223, 165, 18)',
-                                                    color: '#ffffff',
-                                                    marginLeft: '5px', opacity: '0,6', cursor: 'not-allowed'
-                                                }}>
-                                                    Sau
-                                                </button>}
-                                            <div className="   py-2 px-3 rounded-l" style={{
-                                                background: 'rgb(223, 165, 18)',
-                                                color: 'black',
-                                                marginLeft: '5px',
-                                                borderRadius: '5px'
-                                            }}>
-                                                <input id="numberPage" type="number"
-                                                    style={{ width: '50px', borderRadius: '5px' }}
-                                                    onKeyDown={async (event) => {
-                                                        if (event.keyCode == 13) {
-                                                            await searchPage()
-                                                        }
-                                                    }} />
-                                                <button className=""
-                                                    onClick={async () => {
-                                                        await searchPage()
-                                                    }}
-                                                    style={{ marginLeft: '10px', bodeRadius: '5px', color: 'white' }}>
-                                                    <i
-                                                        className="fa-solid fa-magnifying-glass"></i></button>
+                                                            await nextPage();
+                                                        }} className="text-sm   py-2 px-3 rounded-l" style={{
+                                                            background: 'rgb(223, 165, 18)',
+                                                            color: '#ffffff',
+                                                            marginLeft: '5px', opacity: '0,6', cursor: 'not-allowed'
+                                                        }}>
+                                                            Sau
+                                                        </button>}
+                                                    <div className="   py-2 px-3 rounded-l" style={{
+                                                        background: 'rgb(223, 165, 18)',
+                                                        color: 'black',
+                                                        marginLeft: '5px',
+                                                        borderRadius: '5px'
+                                                    }}>
+                                                        <input id="numberPage" type="number"
+                                                               style={{width: '50px', borderRadius: '5px'}}
+                                                               onKeyDown={async (event) => {
+                                                                   if (event.keyCode == 13) {
+                                                                       await searchPage()
+                                                                   }
+                                                               }}/>
+                                                        <button className=""
+                                                                onClick={async () => {
+                                                                    await searchPage()
+                                                                }}
+                                                                style={{
+                                                                    marginLeft: '10px',
+                                                                    bodeRadius: '5px',
+                                                                    color: 'white'
+                                                                }}>
+                                                            <i
+                                                                className="fa-solid fa-magnifying-glass"></i></button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                            : ""}
                                     </div>
-                                    : ""}
-                            </div>
-                        </div>
+                                </div>
 
                             </div>
                         </div>
@@ -542,9 +565,6 @@ export default function CustomerManagement() {
                         </div>
                     </div>
                 </div>
-                {/*            : <Unauthorzied/>*/}
-                {/*    )*/}
-                {/*}*/}
             </>
         );
     } else {

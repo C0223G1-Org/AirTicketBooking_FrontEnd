@@ -1,5 +1,5 @@
-import React, {useEffect, useState, useRef} from "react";
-import {database, ref, push, onValue, off, orderByChild} from "../../firebase-chat";
+import React, { useEffect, useState,useRef } from "react";
+import { database, ref, push, onValue, off, orderByChild,query } from "../../firebase-chat";
 import "../../css/search_ticket/style-popup.css";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as yup from "yup";
@@ -8,33 +8,47 @@ import Swal from "sweetalert2";
 import {Unauthorzied} from "../../component/Unauthorized";
 
 const AdminPage = () => {
-    const [chats, setChats] = useState([]);
-    const [selectedChatId, setSelectedChatId] = useState(null);
-    const [chatMessages, setChatMessages] = useState([]);
-    const [adminMessage, setAdminMessage] = useState("");
-    const [userName, setUserName] = useState("");
-    const bottomRef = useRef(null); // Tham chiếu tới phần tử cuối cùng
+  const [chats, setChats] = useState([]);
+  const [selectedChatId, setSelectedChatId] = useState(null);
+  const [chatMessages, setChatMessages] = useState([]);
+  const [adminMessage, setAdminMessage] = useState("");
+  const [userName, setUserName] = useState("");
+  const bottomRef = useRef(null); // Tham chiếu tới phần tử cuối cùng
+ const [flag,setFlag]=useState(false)
 
+  useEffect(() => {
+    // Lấy danh sách các cuộc trò chuyện
+    const chatsRef = ref(database, "users");
 
-    // const list= async () =>{
-    //     const ordersref = collection(database, "users");
-    //     const q = query(ordersref, orderBy("timezone", "desc"));
-    //     const querysnapshot = await q.get();
-    //     console.log(querysnapshot);
-    //   }
-    //   useEffect(()=>{
-    //     list()
-    //   },[])
+    onValue(chatsRef, (snapshot) => {
+      const data = snapshot.val();
+      // const chatList = data ? Object.keys(data) : [];
+      console.log(data);
 
+      let dataObj=Object.values(data);
+      let dataKey=Object.keys(data)
+      console.log(dataObj);
 
-    useEffect(() => {
-        // Lấy danh sách các cuộc trò chuyện
-        const chatsRef = ref(database, "users");
-        onValue(chatsRef, (snapshot) => {
-            const data = snapshot.val();
-            const chatList = data ? Object.keys(data) : [];
-            setChats(chatList);
-        });
+      for (let i = 0; i < dataObj.length; i++) {
+        for (let j = i; j < dataObj.length-1; j++) {
+          let bag;
+          let key;
+          if (dataObj[i].timestamp<dataObj[j+1].timestamp) {
+            key=dataKey[i]
+            bag=dataObj[i];
+
+            dataObj[i]=dataObj[j+1];
+            dataKey[i]=dataKey[j+1];
+
+            dataObj[j+1]=bag
+            dataKey[j+1]=key
+          }
+        }
+      }
+      setChats(dataKey);
+       console.log(dataKey);
+    });
+
 
         // Reset các tin nhắn khi không có cuộc trò chuyện được chọn
         if (!selectedChatId) {
@@ -96,17 +110,18 @@ const AdminPage = () => {
         console.log(chatId);
     };
 
-    const handleSendMessage = () => {
-        if (adminMessage.trim() === "") return;
-        const currentTime = new Date();
-        const newAdminMessage = {
-            sender: "admin",
-            content: adminMessage,
-            timestamp: currentTime.toLocaleTimeString("vi-VN", {
-                hour: "2-digit",
-                minute: "2-digit",
-            }),
-        };
+  const handleSendMessage = () => {
+    if (adminMessage.trim() === "") return;
+    const currentTime = new Date();
+    const newAdminMessage = {
+      sender: "admin",
+      content: adminMessage,
+      timestamp: currentTime.toLocaleTimeString("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit",
+
+      }),
+    };
 
         // Gửi tin nhắn từ admin tới cuộc trò chuyện được chọn
         push(ref(database, `chats/${selectedChatId}/messages`), newAdminMessage);

@@ -9,8 +9,9 @@ import {useNavigate} from "react-router";
 
 function ChangePassword() {
 
-    const [showOldPassword, setShowOldPassword] = useState(false);
-    const [user, setUser] = useState({});
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [user,setUser] = useState({});
+  const navigate = useNavigate();
 
     const toggleShowOldPassword = () => {
         setShowOldPassword(!showOldPassword);
@@ -33,91 +34,85 @@ function ChangePassword() {
         getUser();
     }, [])
 
-
     const [role, setRole] = useState(localStorage.getItem("role"));
     console.log("role " + role);
     useEffect(() => {
         setRole(localStorage.getItem("role"));
     }, []);
     if (role === 'ROLE_EMPLOYEE' || role === 'ROLE_ADMIN' || role === 'ROLE_CUSTOMER') {
-        return (
+    return(
+        <div>
+        <meta charSet="UTF-8" />
+        <title>Đăng nhập</title>
+        {/*    boostrap 5.1.3*/}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossOrigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+        {/* fonts */}
+        <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+        <link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet" />
+        {/* /fonts */}
+        <link rel="stylesheet" href="../css-SangTDN/assets/css/style1.css" />
+        {/* <link rel="stylesheet" href="../css-SangTDN/assets/css/font-awesome.min.css" /> */}
+        <h1 className="w3ls" style={{color: 'rgb(6, 133, 170)'}}>ĐỔI MẬT KHẨU</h1>
+        <div className="content-w3ls">
+          <div className="content-agile1">
+            <h2 className="agileits1">CODEGYM AIRLINE </h2>
+
+          </div>
+          <div className="content-agile2 bg-white">
+            <Formik
+            initialValues={{
+
+                id: 1,
+                oldPassword : "",
+                newPassword : "",
+                confirmPassword: ""
+            }}
+            validationSchema={yup.object({
+                oldPassword : yup
+                .string()
+                .required("Bạn chưa nhập mật khẩu hiện tại")
+                .matches(/^(?=.*[A-Z])(?=.*\d).{8,20}$/,"Mật khẩu phải từ 8 đến 20 ký tự bao gồm chữ in hoa và số"),
+                newPassword : yup
+                .string()
+                .required("Bạn chưa nhập mật khẩu mới")
+                .matches(/^(?=.*[A-Z])(?=.*\d).{8,20}$/,"Mật khẩu phải từ 8 đến 20 ký tự bao gồm chữ in hoa và số"),
+                confirmPassword: yup
+                .string()
+                .oneOf([yup.ref('newPassword'), null], 'Mật khẩu xác nhận không khớp')
+                .required('Mật khẩu xác nhận không được để trống'),
+            })}
+            onSubmit={async(value)=>{
+                const account ={
+                    id: user.idAccount,
+                    oldPassword : value.oldPassword,
+                    newPassword : value.newPassword
+                }
+                try{
+                    await changePassword(account);
+                }
+                catch{
+                    Swal.fire({
+                        title: "Mật Khẩu hiện tại của bạn không đúng!",
+                        text: "",
+                        icon: "warning",
+                        button: "Aww yiss!",
+                      });
+                      return
+                    }
+                  Swal.fire({
+                    title: "Thay đổi mật khẩu thành công",
+                    text: "",
+                    icon: "success",
+                    button: "Aww yiss!",
+                  });
+                  navigate("/home")
+            }}
+            >
+                <Form>
             <div>
-                <meta charSet="UTF-8"/>
-                <title>Đăng nhập</title>
-                {/*    boostrap 5.1.3*/}
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-                      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-                      crossOrigin="anonymous"/>
-                <link rel="stylesheet"
-                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"/>
-                {/* fonts */}
-                <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900"
-                      rel="stylesheet"/>
-                <link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet"/>
-                {/* /fonts */}
-                <link rel="stylesheet" href="../css-SangTDN/assets/css/style1.css"/>
-                {/* <link rel="stylesheet" href="../css-SangTDN/assets/css/font-awesome.min.css" /> */}
-                <h1 className="w3ls" style={{color: 'rgb(6, 133, 170)'}}>ĐỔI MẬT KHẨU</h1>
-                <div className="content-w3ls">
-                    <div className="content-agile1">
-                        <h2 className="agileits1">VietNam Air</h2>
-                    </div>
-                    <div className="content-agile2 bg-white">
-                        <Formik
-                            initialValues={{
-                                id: 1,
-                                oldPassword: "",
-                                newPassword: "",
-                                confirmPassword: ""
-                            }}
-                            validationSchema={yup.object({
-                                oldPassword: yup
-                                    .string()
-                                    .required("Bạn chưa nhập mật khẩu hiện tại")
-                                    .matches(/^(?=.*[A-Z])(?=.*\d).{8,20}$/, "Mật khẩu phải từ 8 đến 20 ký tự bao gồm chữ in hoa và số"),
-                                newPassword: yup
-                                    .string()
-                                    .required("Bạn chưa nhập mật khẩu mới")
-                                    .matches(/^(?=.*[A-Z])(?=.*\d).{8,20}$/, "Mật khẩu phải từ 8 đến 20 ký tự bao gồm chữ in hoa và số"),
-                                confirmPassword: yup
-                                    .string()
-                                    .oneOf([yup.ref('newPassword'), null], 'Mật khẩu xác nhận không khớp')
-                                    .required('Mật khẩu xác nhận không được để trống'),
-                            })}
-                            onSubmit={async (value) => {
-                                const account = {
-                                    id: user.idAccount,
-                                    oldPassword: value.oldPassword,
-                                    newPassword: value.newPassword
-                                }
-                                try {
-                                    await changePassword(account);
-                                } catch {
-                                    await Swal.fire({
-                                        title: "Mật Khẩu hiện tại của bạn không đúng!",
-                                        text: "",
-                                        icon: "warning",
-                                        button: "Aww yiss!",
-                                    });
-                                    return
-                                }
-                                await Swal.fire({
-                                    title: "Thay đổi mật khẩu thành công",
-                                    text: "",
-                                    icon: "success",
-                                    button: "Aww yiss!",
-                                });
-                            }}
-                        >
-                            <Form>
-                                <div>
-                                    <div className="row">
-                                        <div className="col-md-5" style={{
-                                            marginTop: '2%',
-                                            paddingLeft: '10%',
-                                            color: 'rgb(6, 133, 170)',
-                                            fontWeight: 'bold'
-                                        }}>
+              <div className="row">
+                <div className="col-md-5" style={{marginTop: '2%', paddingLeft: '10%', color: 'rgb(6, 133, 170)', fontWeight: 'bold'}}>
                   <span style={{fontSize: '20px'}}>Mật khẩu hiện tại
                   </span>
                                         </div>

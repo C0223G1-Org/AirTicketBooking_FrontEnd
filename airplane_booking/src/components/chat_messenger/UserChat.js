@@ -47,6 +47,7 @@ const UserChat = () => {
       timestamp: currentTime.toLocaleDateString("vi-VN", {
         hour: "2-digit",
         minute: "2-digit",
+        second:"2-digit"
       }),
     });
 
@@ -56,6 +57,7 @@ const UserChat = () => {
       timestamp: currentTime.toLocaleTimeString("vi-VN", {
         hour: "2-digit",
         minute: "2-digit",
+        
       }),
     };
     push(ref(database, `chats/${username}/messages`), startMessage);
@@ -76,6 +78,15 @@ const UserChat = () => {
         minute: "2-digit",
       }),
     };
+    const userRef = ref(database, `users/${username}`);
+    set(userRef, {
+      chatId: username,
+      timestamp: currentTime.toLocaleDateString("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second:"2-digit"  
+      }),
+    });
     // Gửi tin nhắn mới lên database
     push(ref(database, `chats/${chatId}/messages`), newMessage);
     if (isFirstMessage) {
