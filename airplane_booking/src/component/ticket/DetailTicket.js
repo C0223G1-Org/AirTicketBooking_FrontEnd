@@ -136,17 +136,6 @@ export default function DetailTicket() {
     function handleSubmitCancelTwoWay(){
         navigate(`/list/${route.departure.nameDeparture},${route.destination.nameDestination},${route.dateDeparture},${routeDestination.dateArrival},${1},${arr[7]},${arr[8]}`);
     }
-
-    // if(route===null){
-    //     console.log("detail");
-    //     return  null
-    // }
-
-    console.log(route);
-
-
-
-
     return (
         <>
           <div>

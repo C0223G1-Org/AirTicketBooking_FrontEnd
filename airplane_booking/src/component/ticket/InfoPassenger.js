@@ -218,10 +218,7 @@ console.log(route);
 
     return (
         <>
-         
-      {/* {(loading==false&&loading1==false&&(arr[0]==1?loading2==false&&loading3==false&&loading4==false&&loading5==false:true)) ? ( */}
   {(loading==false&&loading1==false&&loading2==false&&loading3==false&&(arr[0]==1?loading6==false&&loading4==false&&loading5==false:true)) ? (
-
         <div>
                <head>
                 <meta charSet="UTF-8"/>
@@ -229,7 +226,6 @@ console.log(route);
             </head>
 
             {route.idRoute &&
-
                 <div>
                     <div className="container" id="info-passenger">
                         <div className="title text-center">
@@ -264,12 +260,11 @@ console.log(route);
                                                     //hành lý chiều đi
                                                     try {
                                                         luggageDeparture = await findLuggageById(ticket.luggage);
+                                                        //hành lý chiều về
                                                         luggageReturn = await findLuggageById(ticket.luggage2);
                                                     } catch (error) {
                                                         console.log("chưa chọn hành lý")
                                                     }
-
-                                                    //hành lý chiều về
 
                                                     //loại khách
                                                     let typePassengerObj = {};
@@ -345,22 +340,17 @@ console.log(route);
                                                             dateBooking: "",
                                                         }
                                                     }
-
                                                     try {
                                                         await createNewTicket(objectDeparture);
                                                         await createNewTicket(objectReturn);
                                                     } catch (error) {
                                                         console.log("Lỗi rồi")
                                                     }
-
                                                 })
                                             }
                                             navigate(`/payment/${route.departure.nameDeparture}/${numCustomer}`)
-
                                     // })
-
                                 }
-
                                 }
                             >
                                 <Form className="wrapper" id="profileForm">

@@ -201,6 +201,9 @@ body {
         padding: 0;
         box-sizing: border-box;
     }
+    #info-passenger .container{
+        padding: 0;
+    }
 
     #info-passenger .title p {
         font-size: 20px;
@@ -277,7 +280,7 @@ body {
     }
 
     #info-passenger .info-customer .field {
-        margin-left: 5px;
+
         margin: 5px 0;
     }
 
@@ -316,7 +319,7 @@ body {
 
 @media (max-width: 1000px) {
     #info-passenger .wrapper {
-        padding: 20px;
+        padding: 10px;
     }
 
     #info-passenger .wrap .fist-line,

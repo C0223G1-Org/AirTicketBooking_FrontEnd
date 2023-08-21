@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a22c4e3d-69c9-4531-b057-73ef87a7ab83" name="Changes" comment="Nhan update  18/08 00.34">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TicketBooked.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBooked.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TicketUnBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketUnBook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/ticket/DetailTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ticket/DetailTicket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/ticket/InfoPassenger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ticket/InfoPassenger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/ticket/info-passenger.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/ticket/info-passenger.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +71,7 @@
       <workItem from="1692320845350" duration="732000" />
       <workItem from="1692321682900" duration="420000" />
       <workItem from="1692329894990" duration="12000" />
+      <workItem from="1692631683453" duration="345000" />
     </task>
     <task id="LOCAL-00001" summary="Nhan update  17/8 15:00">
       <created>1692259144780</created>
