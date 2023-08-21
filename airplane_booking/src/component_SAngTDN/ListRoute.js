@@ -176,7 +176,7 @@ function ListRouter() {
     }else{
       Swal.fire(
         "Bạn ơi!",
-        'Chuyến bay đã khởi hành',
+        'Chuyến bay đã hoặc chuẩn bị khởi hành',
         'warning'
     )
     }

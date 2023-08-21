@@ -233,7 +233,7 @@ function EmployeeList() {
                                     className="h5">Thêm mới nhân viên</span></Link>
                             </div>
                         </div>
-                        <div className=" col-ms col-8 ">
+                        <div className=" col-ms col-8 " style={{marginLeft:'35px'}}>
                             <div className="ml-10 col-md-4 inline-flex justify-end">
                                 <span className="search_gender_employee">Giới tính:</span>
                                 <select className=" h5" style={{border: '1px solid black', height: "2rem"}}
@@ -355,8 +355,8 @@ function EmployeeList() {
 
                                         <button
                                             key={currentPage}
-                                            className="text-sm font-semibold py-2 px-4 style_button_page  rounded"
-                                            style={{marginRight: '10px'}}
+                                            className="text-sm font-semibold py-2 px-4   rounded"
+                                            style={{marginRight: '10px', background:'rgb(223, 165, 18)', color:'white'}}
                                             onClick={() => handlePageChange(currentPage)}
                                             title="Trang hiện tại"
                                         >

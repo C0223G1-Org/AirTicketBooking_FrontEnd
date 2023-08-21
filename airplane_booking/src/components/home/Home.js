@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import Popup from "./ChatPopup";
 import "../../css/search_ticket/style-popup.css";
 import UserChat from '../chat_messenger/UserChat';
-import banner1 from "../../img/CodeGym Airline.png"
+import banner1 from "../../img/CodeGym Airline 1.png"
 import banner2 from "../../img/CodeGym Airline-2.png"
 import banner3 from "../../img/CodeGym Airline 3.png"
 
@@ -30,7 +30,6 @@ export default function Home() {
 
 
     const handleSearchTicket = () => {
-        console.log(ticketType)
         if (ticketType != null) {
             if (ticketType == 1) {
                 if (selectedDeparture != '') {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getListHistoryByCustomerId } from "../services/HistoryPaymentService";
+import { getListHistoryByCustomerId, getListTicketByNameRoute } from "../services/HistoryPaymentService";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import moment from "moment";
@@ -17,6 +17,7 @@ function HistoryPaymentComponent() {
         try {
             const paymentData = await getListHistoryByCustomerId(id, pageable, nameDeparture, nameDestination);
             setPayments(paymentData);
+
         } catch (error) {
             await setDepartureFunction("")
             .then(await setDestinationFunction(""))
@@ -158,7 +159,7 @@ function HistoryPaymentComponent() {
 
                         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                                {
+                                {payments &&
                                     <table className="min-w-full leading-normal myTable">
                                         <thead>
                                         <tr style={{ background: 'rgb(6, 133, 170)', color: '#ffffff' }}>
@@ -234,6 +235,7 @@ function HistoryPaymentComponent() {
                                                     </tr>
                                                 )
                                             )}
+
                                             </tbody>
                                             :
                                             <tbody>
