@@ -8,6 +8,7 @@ import ExportExcel from "./ExprortExcel";
 import ExportExcelButton from "./ExprortExcel";
 
 
+
 export default function CreateReport() {
     const [dataTimeCurrent, setDataTimeCurrent] = useState();
     const [dataTimePrevious, setDataTimePrevious] = useState();
@@ -129,6 +130,7 @@ export default function CreateReport() {
                                                             <Field as="select" className="form-control"
                                                                    name="timeCurrent"
                                                                    disabled={values.travelType === "multi-city"}
+                                                                   required={values.travelType === "one-way"}
                                                             >
                                                                 <option value="">--Vui lòng chọn thời gian--</option>
                                                                 <option value="week">Tuần này - Tuần Trước</option>
@@ -154,6 +156,7 @@ export default function CreateReport() {
                                                                     <Field className="form-control" type="date"
                                                                            name="startDate"
                                                                            disabled={values.travelType === "one-way"}
+                                                                           required={values.travelType === "multi-city"}
                                                                            max={new Date().toISOString().split('T')[0]}
                                                                     />
                                                                 </div>
@@ -165,6 +168,7 @@ export default function CreateReport() {
                                                                     <Field className="form-control" type="date"
                                                                            name="endDate"
                                                                            disabled={values.travelType === "one-way"}
+                                                                           required={values.travelType === "multi-city"}
                                                                            max={new Date().toISOString().split('T')[0]}
                                                                     />
                                                                 </div>
@@ -176,7 +180,7 @@ export default function CreateReport() {
                                                 <div className="row" style={{marginTop: "2vh"}}>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
-                                                            <span className="form-label">Đến</span>
+                                                            <span className="form-label">Từ</span>
                                                             <Field className="form-control" type="date"
                                                                    name="startDate1"
                                                                    disabled={values.travelType === "one-way"}
