@@ -237,7 +237,7 @@ input#firstname:focus, input#email:focus, input#password1:focus, input#password2
 }
 
 input::-webkit-input-placeholder {
-    color: rgb(6, 133, 170) !important;
+    color: rgba(0,0,0, 0.8) !important;
 }
 
 input:-moz-placeholder { /* Firefox 18- */
