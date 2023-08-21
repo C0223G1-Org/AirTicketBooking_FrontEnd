@@ -409,7 +409,7 @@ export default function Home() {
                 </div>
                 <div className="col-md-6 col-md-offset-2 bonus">
                     <h2 className="title">Khám phá những điểm đến thú vị</h2>
-                    <div className="row">
+                    <div className="row thaivv">
                         <div className="col-6 row-cols-md-1 g-4 first-card">
                             <div className="row">
                                 <div className="col-12">

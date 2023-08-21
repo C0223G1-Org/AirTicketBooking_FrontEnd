@@ -262,7 +262,24 @@ body {
 .form-search {
     padding: 30px 0;
 }
-
+@media (max-width: 480px) {
+    .booking-form-home {
+        padding: 0;
+    }
+    .thaivv{
+        margin-top: 60px;
+    }
+    .banner{
+        margin-top: 100px;
+    }
+    .banner .col-2:first-child, .col-2:last-child{
+        display: none;
+    }
+    .banner .col-2:nth-child(5),.col-2:nth-child(2),.col-2:nth-child(3),.col-2:nth-child(4){
+        width: 25%;
+        height: 60%;
+    }
+}
 
 
 
