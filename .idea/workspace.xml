@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="926a5953-2756-4ebd-a047-72cd1e75119d" name="Changes" comment="TaiMP FE của Customer ngay 17/8/2023">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/chat_messenger/UserChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/chat_messenger/UserChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/ticket/printTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/ticket/printTicket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/ticket/updateTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/ticket/updateTicket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airplane_booking/src/css/ticket/printTicket.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/css/ticket/printTicket.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airplane_booking/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/css/ticket/updateTicket.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/css/ticket/updateTicket.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +64,9 @@
       <workItem from="1692266408402" duration="1072000" />
       <workItem from="1692270841706" duration="219000" />
       <workItem from="1692271261794" duration="14318000" />
+      <workItem from="1692289289931" duration="1666000" />
+      <workItem from="1692320202824" duration="386000" />
+      <workItem from="1692320724097" duration="648000" />
     </task>
     <task id="LOCAL-00001" summary="TaiMP FE ngay 17/8/2023">
       <created>1692258690516</created>
@@ -93,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692281827498</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="TaiMP FE của Customer ngay 17/8/2023">
+      <created>1692289533006</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692289533006</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -154,10 +154,12 @@ function ListRouter() {
   const handleOnChangeBuyTicket = (e,price,timeDeparture, timeArrival,nameRoute,typeSeat,idRoute)=>{
     if(flag){
       const departureTimeCheck = updateTimes(departureDay,timeDeparture)
-      if((arrivalTime-departureTimeCheck<3 * 3600 * 1000)){
+      let currentTime = new Date();
+      if(departureTimeCheck-currentTime > 4 * 3600 * 1000) {
+      if((arrivalTime-departureTimeCheck < 4 * 3600 * 1000)){
         Swal.fire(
             "Bạn ơi!",
-            'Vui lòng chọn lại chuyến bay với Chuyến 2 có giờ khởi hành lớn hơn 3 giờ, so với giờ đến của Chuyến 1',
+            'Vui lòng chọn lại chuyến bay với chuyến đi có giờ khởi hành lớn hơn 3 giờ so với giờ đến của Chuyến về',
             'warning'
         )
       }else{
@@ -172,11 +174,18 @@ function ListRouter() {
         setIdRouteDeparture(idRoute)
       }
     }else{
+      Swal.fire(
+        "Bạn ơi!",
+        'Chuyến bay đã hoặc chuẩn bị khởi hành',
+        'warning'
+    )
+    }
+    }else{
       const arrivalTimeCheck = updateTimes(departureDay,timeDeparture)
-      if((arrivalTimeCheck-departureTime<3 * 3600 * 1000)){
+      if((arrivalTimeCheck-departureTime<4 * 3600 * 1000)){
         Swal.fire(
             "Bạn ơi!",
-            'Vui lòng chọn lại chuyến bay với Chuyến 2 có giờ khởi hành lớn hơn 3 giờ, so với giờ đến của Chuyến 1',
+            'Vui lòng chọn lại chuyến bay với chuyến đi có giờ khởi hành lớn hơn 3 giờ so với giờ đến của Chuyến về',
             'warning'
         )
       }else{
@@ -192,6 +201,8 @@ function ListRouter() {
       }
     }
   }
+
+
 
 
   const tabsTime = [date1, date2, date3, date4, date5];
@@ -332,7 +343,8 @@ function ListRouter() {
   }
 
   useEffect(() => {
-
+    // Sau khi chuyển trang, đặt vị trí scroll về đầu trang
+    window.scrollTo(0, 0);
   }, []);
 
   const handleSubmitOneWay= ()=>{
@@ -385,7 +397,7 @@ function ListRouter() {
                   <div className="brand-logo d-flex align-items-center justify-content-between">
                     <a href="/#" className="text-nowrap logo-img">
                       <img
-                          src="../css-SangTDN/assets/images/logos/vietnam-airline-logo.jpg"
+                          src="../css-SangTDN/assets/images/logos/image.png"
                           width={180}
                           alt=""
                       />
