@@ -104,12 +104,12 @@ function EditEmployee() {
                     <div className="sectionQuoc-center">
                         <div className="container">
                             <div className="row">
-                                <div className="col-12 col-sm-12 col-md-6 col-lg-4">
-                                    <div>
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-4" style={{marginLeft:'80px'}}>
+                                    <div style={{marginRight:'30px'}}>
                                         {/*<img*/}
                                         {/*    src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"*/}
                                         {/*    alt="Preview Image" id="img-preview"/>*/}
-                                        <img style={{marginTop: '10px', marginLeft: '100px'}} name='image'
+                                        <img  name='image'
                                              id="img-preview" src={employeeId.image} ref={imgPreviewRef}
                                              alt="Preview Image"/>
                                     </div>
@@ -272,7 +272,7 @@ function EditEmployee() {
                                                         lại
                                                     </Link>
                                                     <button type='submit' className="btn"
-                                                            style={{background: '#daa32a'}}>Xác nhận
+                                                            style={{background: '#daa32a', color:'white'}}>Xác nhận
                                                     </button>
                                                 </div>
                                             </Form>

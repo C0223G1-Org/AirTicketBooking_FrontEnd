@@ -5,8 +5,6 @@ import { useReactToPrint } from 'react-to-print';
 import { useParams } from 'react-router-dom';
 import { findTicketById } from '../../services/TicketService';
 import '../../css/ticket/printTicket.css';
-import logo from '../../../src/maybay_xanh.png'
-
 
 
 
@@ -24,28 +22,20 @@ export default function Print() {
     setTicket(data);
     console.log("Ticket data:", data);
   };
-
   const componentRef = useRef();
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: 'emp-data',
-
+    onAfterPrint: () => alert('In vé thành công')
   })
-
   return (
 
-    <div className="print-all ">
-      <div ref={componentRef} style={{ width: '100%', height: window.innerHeight }} >
-        <div className="print-ticket">
+    <div id="print">
+      <div ref={componentRef} style={{ width: '100%', height: window.innerHeight }}>
+        <div className="ticket">
           <div className="row col-12 print">
-            <div className="col-2">
-              <img src={logo} alt="Logo" />
-            </div>
-            <div className="col-9">
-              <h1 className="codeGym">VÉ MÁY BAY - CODEGYM AIRLINES</h1>
-            </div>
-            <div className="col-1"></div>
+            <h1 className="codeGym">VÉ MÁY BAY - CODEGYM AIRLINES</h1>
           </div>
           <div className="info">
             <div className="row">
@@ -58,7 +48,7 @@ export default function Print() {
                 <p className="value">{ticket?.dateBooking}</p>
               </div>
               <div className="col-3">
-                <p className="label">Tên người đi:</p>
+                <p className="label">Danh sách người đi:</p>
                 {ticket?.namePassenger.split(',').map((passenger, index) => (
                   <p className="value" key={index}>
                     {passenger}
@@ -66,14 +56,14 @@ export default function Print() {
                   </p>
                 ))}
               </div>
-
+              <div className="col-3"></div>
             </div>
             <div className="row">
-              <div className="col-4">
+              <div className="col-3">
                 <p className="label">Nơi đi:</p>
                 <p className="value">{ticket?.seat?.route?.departure?.nameDeparture}</p>
               </div>
-              <div className="col-4">
+              <div className="col-3">
                 <p className="label">Nơi đến:</p>
                 <p className="value">{ticket?.seat?.route?.destination?.nameDestination}</p>
               </div>
@@ -81,13 +71,12 @@ export default function Print() {
                 <p className="label">Ghế:</p>
                 <p className="value">{ticket?.seat?.positionSeat}</p>
               </div>
-
-            </div>
-            <div className="row">
               <div className="col-3">
                 <p className="label">Khoang hạng:</p>
                 <p className="value">{ticket?.seat?.typeSeat?.nameTypeSeat}</p>
               </div>
+            </div>
+            <div className="row">
               <div className="col-3">
                 <p className="label">Khởi hành:</p>
                 <p className="value">{ticket?.seat?.route?.timeDeparture}</p>
@@ -96,34 +85,34 @@ export default function Print() {
                 <p className="label">Đến:</p>
                 <p className="value">{ticket?.seat?.route?.timeArrival}</p>
               </div>
-
-
+              <div className="col-3">
+                <p className="label">Tổng tiền:</p>
+                <p className="value">{ticket?.priceTicket}</p>
+              </div>
+              <div className="col-3 seat"></div>
             </div>
-            <div className="vu">
-              <div className="row">
-                <div className="col-6">
-                  <p className="label">Điều kiện giá vé:</p>
-                  <p className="value">Giá vé đã bao gồm thuế và phí</p>
-                  <p className="value">Hành lý xách tay: 7kg</p>
-                </div>
-                <div className="col-6">
-                  <p> </p>
-                  <br />
-                  <p className="value">Hành lý ký gửi: không quá 20kg và phải trả phí</p>
-                  <p className="value">Không được hoàn vé, chỉ được đổi vé trước giờ khởi hành</p>
-                </div>
+            <div className="row">
+              <div className="col-6">
+                <p className="label">Điều kiện giá vé:</p>
+                <p className="value">Giá vé đã bao gồm thuế và phí</p>
+                <p className="value">Hành lý xách tay: 7kg</p>
+              </div>
+              <div className="col-6">
+                <p> </p>
+                <br />
+                <p className="value">Hành lý ký gửi: không quá 20kg và phải trả phí</p>
+                <p className="value">Không được hoàn vé, chỉ được đổi vé trước giờ khởi hành</p>
               </div>
             </div>
           </div>
-          <div className="row col-12 print-ve">
+          <div className="row col-12 print">
             <p className="thank-you">Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!</p>
           </div>
         </div>
       </div>
-      <div className="button-print">
+      <div className="button-area">
         <button onClick={handlePrint}>In vé</button>
       </div>
     </div>
   )
 }
-

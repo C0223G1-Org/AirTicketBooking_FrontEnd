@@ -327,7 +327,8 @@
     margin-right: 10px;
 }
 .style_button_page:hover{
-    background: #0685aa;
+    background: #ffffff;
+    color:black;
 
 }
 
@@ -337,8 +338,8 @@
     margin-right: 10px;
 }
 .style_button_page_next:hover{
-    background: #0685aa;
-    color: white;
+    background: #ffffff;
+    color:black;
 }
 
 .container_employee_page{
