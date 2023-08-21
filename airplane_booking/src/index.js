@@ -91,6 +91,7 @@ root.render(
                     <Route path="/payment/:id" element={<PaymentComponent/>}/>
                     <Route path="/change-password" element={<ChangePassword/>}/>
                 </Routes>
+
                 <Footer/>
             </TicketProvider>
         </BrowserRouter>
