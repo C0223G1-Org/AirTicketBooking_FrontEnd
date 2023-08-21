@@ -319,8 +319,8 @@ const PaymentComponent = () => {
 
               <div className="row">
                 <div className="col-4">
-                  <p className="label">Tổng tiền:</p>
-                  <p className="value" id="totalAmount">
+                  <p className="label" >TỔNG TIỀN:</p>
+                  <p className="value" id="totalAmount" style={{fontSize: '20px'}}>
                     {formattedPrice3} VND
                   </p>
                 </div>
