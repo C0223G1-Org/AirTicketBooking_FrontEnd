@@ -50,7 +50,7 @@ function TicketBooked() {
         takeDeparture()
         takeDestination()
         getTickets()
-    }, [page, ticketObj])
+    }, [page])
     const getTickets = () => {
         searchBookedTicket(page, ticketObj).then((data) => {
             console.log(ticketObj)
@@ -109,19 +109,17 @@ function TicketBooked() {
 
 
     const dataSearch = (obj) => {
-        console.log(obj)
-        setTicketObj(obj)
-        console.log(ticketObj)
-        searchBookedTicket(page, ticketObj).then((data) => {
+        searchBookedTicket(page, obj).then((data) => {
             console.log(data.content)
-            if (!data.content || data.length === 0) {
+            if (!data.content ) {
+                setTicketObj({})
                 Swal.fire({
                     icon: "error",
                     title: 'Không tìm thấy!',
                     showConfirmButton: false,
                     timer: 2500
                 })
-                setTicketObj({})
+               
             } else {
                 setPage(0)
                 let numberPage = Math.ceil(data.totalElements / 5);
@@ -133,9 +131,14 @@ function TicketBooked() {
                         timer: 1500
                     })
                     setTicketObj({})
+                    
+                }else{
+                    setTicketObj(obj)
+                    setTickets(data.content)
+                    setLoopCount(numberPage)
                 }
-                setLoopCount(numberPage)
-                setTickets(data.content)
+            
+             
             }
 
             setIsSearch(false)
@@ -148,7 +151,7 @@ function TicketBooked() {
             })
 
         }).catch(()=>{
-            setStatusTicket({})
+            // setStatusTicket({})
         })
     }
     const transferPage = (value) => {
