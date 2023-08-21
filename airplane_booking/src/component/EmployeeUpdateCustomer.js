@@ -275,11 +275,33 @@ function EmployeeUpdateCustomer() {
                                                                 </sup>)
                                                             </span>
                                                             <Field className="form-control" as="select" name="nationalityCustomer">
-                                                                <option value="">Chọn quốc tịch</option>
-
-                                                                <option value="Việt Nam">Việt Nam</option>
-                                                                <option value="Mỹ">Mỹ</option>
-                                                                <option value="Nhật Bản">Nhật Bản</option>
+                                                            <option value={""}>--Quốc tịch--</option>
+                                                                <option value='Việt Nam'>Việt Nam</option>
+                                                                <option value='Trung Quốc'>Trung Quốc</option>
+                                                                <option value='Thái Lan'>Thái Lan</option>
+                                                                <option value='Malaysia'>Malaysia</option>
+                                                                <option value='Singapo'>Singapo</option>
+                                                                <option value='Anh'>Anh</option>
+                                                                <option value='Hàn Quốc'>Hàn Quốc</option>
+                                                                <option value='Mỹ'>Mỹ</option>
+                                                                <option value='Pháp'>Pháp</option>
+                                                                <option value='Nhật Bản'>Nhật Bản</option>
+                                                                <option value='Hong Kong'>Hong Kong</option>
+                                                                <option value='Macau'>Macau</option>
+                                                                <option value='Triều Tiên'>Triều Tiên</option>
+                                                                <option value='Ấn Độ'>Ấn Độ</option>
+                                                                <option value='Nga'>Nga</option>
+                                                                <option value='Quatar'>Quatar</option>
+                                                                <option value='Thổ Nhi Kỳ'>Thổ Nhi Kỳ</option>
+                                                                <option value='Đan Mạch'>Đan Mạch</option>
+                                                                <option value='Đức'>Đức</option>
+                                                                <option value='Bỉ'>Bỉ</option>
+                                                                <option value='Thụy Sĩ'>Thụy Sĩ</option>
+                                                                <option value='Áo'>Áo</option>
+                                                                <option value='Argentina'>Argentina</option>
+                                                                <option value='Tây Ban Nha'>Tây Ban Nha</option>
+                                                                <option value='Bồ Đào Nha'>Bồ Đào Nha</option>
+                                                                <option value='Campuchia'>Campuchia</option>
                                                             </Field>
                                                             <ErrorMessage className='error' name='nationalityCustomer' component={"div"} />
                                                         </div>

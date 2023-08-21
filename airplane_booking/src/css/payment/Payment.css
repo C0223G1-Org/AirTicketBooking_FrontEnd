@@ -1,17 +1,19 @@
   
-  body {
-    font-family: Diavlo, sans-seriff;
-    /* background-color: #f2f2f2; */
+  .paymentBackground {
+    background-image: url("../../img/background.jpg");
+    background-size: cover;
+     background-position: center;
+     padding: 50px 0px;
   }
-  
   .payment-ticket {
     max-width: 75%;
-    margin: 50px auto;
+   margin-left: 180px;
     padding: 30px;
     background-color: white;
     border: 5px solid #0055a3;
     border-radius: 10px;
     box-shadow: 0px 0px 10px #888888;
+    
   }
   #payment .thanh-codegym-airline{
     color: #dfa512;
@@ -68,14 +70,9 @@
     border-radius: 50%;
   }
   
-  #payment .value::before {
-    content: "";
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background-color: #888888;
-    margin-right: 10px;
-    border-radius: 50%;
+  #payment .value {
+    margin-top: -15px;
+    margin-left: 20px;
   }
 
   #payment .route {
@@ -85,4 +82,18 @@
     font-family: Diavlo, sans-seriff;
     font-weight: bold;
   }
+  #payment .btn-thanh{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+    color:#dfa512 ;
+    font-size: 16px;
+    border: 1px solid #dfa512;
+  }
+  #payment .btn-thanh:hover{
+    background-color: #dfa512;
+    color:#fff ;
+  }
+
  

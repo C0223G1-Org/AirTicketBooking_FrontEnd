@@ -1,4 +1,22 @@
-
+.new-message-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .selected-user .new-message-badge {
+    display: none;
+  }
+  
+  .hide-notification .new-message-badge {
+    opacity: 0;
+  }
 .picker-container {
     /* position: relative; */
     /* width: 300px; */
@@ -83,24 +101,11 @@
 }
 .chat-history .m-b-0 .seft-message-user .message {
     float: left;
-    background-color:#ffffff ;
+    background-color:#f5f5f5 ;
     color: #1F698F;
     overflow-wrap: break-word;
-    max-width: 2    00px;
+    max-width: 200px;
 }
-/* .reply {
-    position: fixed;
-} */
-/* .plist{
-    overflow-y: scroll;
-} */
-/* .reply input {
-    width: 100%;
-} */
-
-/* .reply-main {
-    padding-right: 0;
-} */
 
 .reply-send button {
     background-color: transparent;
@@ -460,7 +465,7 @@ button#fpt_ai_livechat_button {
     background-image: url('../search_ticket/img/background.jpg');
     padding:  40px 0px 30px 30px;;
     font-family: "Diavlo", "sans-seriff";
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     background-size: cover;
     background-position: center;
 }

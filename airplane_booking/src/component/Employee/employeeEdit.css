@@ -327,18 +327,19 @@
     margin-right: 10px;
 }
 .style_button_page:hover{
-    background: #0685aa;
+    background: rgb(223, 165, 18);
+    color:black;
 
 }
 
 .style_button_page_next{
-    background: rgb(223, 165, 18);
+    background:  rgb(223, 165, 18);
     color: #ffffff;
     margin-right: 10px;
 }
 .style_button_page_next:hover{
-    background: #0685aa;
-    color: white;
+    background: #fff    ;
+    color:black;
 }
 
 .container_employee_page{

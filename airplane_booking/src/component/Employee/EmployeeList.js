@@ -233,7 +233,7 @@ function EmployeeList() {
                                     className="h5">Thêm mới nhân viên</span></Link>
                             </div>
                         </div>
-                        <div className=" col-ms col-8 ">
+                        <div className=" col-ms col-8 " style={{marginLeft:'35px'}}>
                             <div className="ml-10 col-md-4 inline-flex justify-end">
                                 <span className="search_gender_employee">Giới tính:</span>
                                 <select className=" h5" style={{border: '1px solid black', height: "2rem"}}
@@ -262,9 +262,9 @@ function EmployeeList() {
                         </div>
                     </div>
                     <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 pt-1 overflow-x-auto">
-                        <div className="inline-block min-w-full shadow rounded-lg " style={{minHeight: "536px"}}>
+                        <div className="inline-block min-w-full shadow rounded-lg " style={{minHeight: "536px",}}>
                             <div className="container"
-                                 style={{display: "flex", flexDirection: "column", minHeight: "100%"}}>
+                                 style={{display: "flex", flexDirection: "column", minHeight: "100%",minWidth:"1000px"}}>
                                 <div style={{flex: "1", minHeight: "490px"}}>
                                     <table className="container">
                                         <thead>
@@ -355,8 +355,8 @@ function EmployeeList() {
 
                                         <button
                                             key={currentPage}
-                                            className="text-sm font-semibold py-2 px-4 style_button_page  rounded"
-                                            style={{marginRight: '10px'}}
+                                            className="text-sm font-semibold py-2 px-4   rounded"
+                                            style={{marginRight: '10px', background:'rgb(223, 165, 18)', color:'white'}}
                                             onClick={() => handlePageChange(currentPage)}
                                             title="Trang hiện tại"
                                         >
