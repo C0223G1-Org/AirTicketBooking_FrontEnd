@@ -88,7 +88,7 @@ export function CheckCode() {
                                                             timer: 2000
                                                         })
                                                         resetForm();
-                                                        navigate(`/login`);
+                                                        navigate(`/login/ss`);
                                                     }
                                                 }
                                                 // navigate("/login/newPassword", {state: {data: response.data}})

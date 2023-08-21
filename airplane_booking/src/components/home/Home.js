@@ -192,16 +192,33 @@ export default function Home() {
         const data = event.target.value;
         await setTicketTypeFunction(data);
     }
-
     const getAllDepartureApi = async () => {
-        const data = await getAllDeparture();
-        setDepartures(data);
+        try {
+            const data = await getAllDeparture();
+            setDepartures(data);
+        } catch (Error) {
+            console.log("Không tìm thấy dữ liệu!!!!")
+        }
+    }
+    const getAllDestinationApi = async () => {
+        try {
+            const data = await getAllDestination();
+            setDestinations(data);
+        } catch (Error) {
+            console.log("Không tìm thấy dữ liệu!!!!")
+        }
     }
 
-    const getAllDestinationApi = async () => {
-        const data = await getAllDestination();
-        setDestinations(data);
-    }
+    // const getAllDepartureApi = async () => {
+    //     const data = await getAllDeparture();
+    //     setDepartures(data);
+    // }
+
+    // const getAllDestinationApi = async () => {
+    //     const data = await getAllDestination();
+    //     setDestinations(data);
+    // }
+
 
     console.log(selectedDestination)
     console.log(selectedDeparture)
@@ -409,7 +426,7 @@ export default function Home() {
                 </div>
                 <div className="col-md-6 col-md-offset-2 bonus">
                     <h2 className="title">Khám phá những điểm đến thú vị</h2>
-                    <div className="row">
+                    <div className="row thaivv">
                         <div className="col-6 row-cols-md-1 g-4 first-card">
                             <div className="row">
                                 <div className="col-12">

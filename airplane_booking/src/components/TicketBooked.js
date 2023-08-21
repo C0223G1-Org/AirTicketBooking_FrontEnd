@@ -68,6 +68,14 @@ function TicketBooked() {
             }
             setLoopCount(numberPage)
             setTickets(data.content)
+        }).catch(()=>{
+            Swal.fire({
+                icon: "error",
+                title: 'Yêu cầu nhập dữ liệu!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            setTicketObj({})
         })
     }
     const takeDestination = () => {
@@ -135,7 +143,6 @@ function TicketBooked() {
                     setTicketObj({})
                 }
                 setLoopCount(numberPage)
-                console.log(data.content)
                 setTickets(data.content)
             }
 
@@ -159,7 +166,7 @@ function TicketBooked() {
     };
     return (
         <>
-            <div>
+            <div className="backgroud-ticket">
                 <h1 className="h1-ticket">
                     Quản Lý Bán Vé
                 </h1>
@@ -182,7 +189,7 @@ function TicketBooked() {
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Tên Khác Hàng</th>
+                                <th>Tên Khách Hàng</th>
                                 <th>Mã Chuyến Bay</th>
                                 {/* <th>Ngày Đặt Vé</th> */}
                                 <th>Tuyến Bay</th>
@@ -194,13 +201,13 @@ function TicketBooked() {
                         <tbody>
                             {tickets && tickets.map((ticket, index) => (
                                 <tr key={index}>
-                                    <td >{index + (page * 5)}</td>
+                                    <td >{index+1 + (page * 5)}</td>
                                     <td style={{ textAlign: 'left' }}>{ticket.namePassenger}</td>
                                     <td >{ticket.nameRoute}</td>
                                     {/* <td>{ticket.dateBooking}</td> */}
                                     <td >{ticket.nameDeparture}-{ticket.nameDestination}</td>
-                                    <td >{ticket.timeDeparture}</td>
-                                    <td>{numeral(ticket.priceTicket).format('0,0 đ')}VND</td>
+                                    <td >{ticket.timeDeparture}-{ticket.departureDate}</td>
+                                    <td>{numeral(ticket.priceTicket).format('00,0 đ')}VND</td>
                                     <td className="icon-ticket">
                                         <ul>
                                             <Link to={`/tickets/updateTicket/${ticket.id}`}>
@@ -279,10 +286,7 @@ function TicketBooked() {
                                                 console.log(newValue)
                                                 dataSearch(newValue);
                                             }}
-                                            validationSchema={yup.object({
-                                                departureDate:yup.string().required(),
-                                                destinationDate:yup.string().required()
-                                            })}>
+                                          >
                                             <Form>
                                                 <li className="show-search-ticket-body-sale-selection-item">
                                                     <button type="button" className={statusTicket ? 'active' : ''} style={statusTicket ? { background: 'rgb(223, 165, 18)' } : {}} onClick={() => changeStatusTicket(true)}>
@@ -384,7 +388,7 @@ function TicketBooked() {
                                                     <div className="show-seat-ticket-body-input">
                                                         <ul>
                                                             <li className="show-seat-ticket-body-input-item">
-                                                                <Field type="text" name="seatCode" placeholder="Mã Đặt Chỗ" />
+                                                                <Field type="text" name="chairCode" placeholder="Mã Đặt Chỗ" />
                                                             </li>
                                                             <li className="show-seat-ticket-body-input-item">
                                                                 <Field type="text" name="passenger" placeholder="Tên Khách Hàng" />

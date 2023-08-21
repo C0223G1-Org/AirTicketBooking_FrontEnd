@@ -1,5 +1,7 @@
 import React from 'react';
 import { utils, writeFile, WorkBook } from 'xlsx';
+import Swal from "sweetalert2";
+
 
 const ExportExcelButton = ({ dataTimeCurrent, dataTimePrevious, dataTimeAbout, dataTimeAbout1, fileName }) => {
     const exportToExcel = () => {
@@ -48,6 +50,13 @@ const ExportExcelButton = ({ dataTimeCurrent, dataTimePrevious, dataTimeAbout, d
 
         // Ghi workbook vào file Excel với tên file là "${fileName}.xlsx"
         writeFile(workbook, `${fileName}.xlsx`);
+
+        Swal.fire({
+            icon: "success",
+            title: "In báo cáo thành công.",
+            showConfirmButton: false,
+            timer: 1500,
+        });
     };
 
     return (

@@ -327,18 +327,18 @@
     margin-right: 10px;
 }
 .style_button_page:hover{
-    background: #ffffff;
+    background: white;
     color:black;
 
 }
 
 .style_button_page_next{
-    background: rgb(223, 165, 18);
+    background:  rgb(223, 165, 18);
     color: #ffffff;
     margin-right: 10px;
 }
 .style_button_page_next:hover{
-    background: #ffffff;
+    background: #fff    ;
     color:black;
 }
 

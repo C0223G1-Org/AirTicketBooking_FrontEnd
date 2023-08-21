@@ -57,7 +57,7 @@ root.render(
                     <Route path="/header-customer" element={<HeaderCustomer/>}/>
                     <Route path="/header-admin" element={<HeaderAdmin/>}/>
                     <Route path="/header-employee" element={<HeaderEmployee/>}/>
-                    <Route path="/printTicket" element={<PrintTicket/>}/>
+                    <Route path="/printTicket/:id" element={<PrintTicket/>}/>
                     <Route path="/tickets/updateTicket/:id" element={<UpdateTicket/>}/>
                     <Route path="/ticket/booked" element={<TicketBooked/>}/>
                     <Route path="/ticket/unbooked" element={<TicketUnBook/>}/>
@@ -85,7 +85,7 @@ root.render(
                         element={<SearchResultPage/>}
                     />
                     <Route path="/admin/messages" element={<AdminPage/>}/>
-                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/login/:data" element={<Login/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
                     <Route path="/checkCode/:data" element={<CheckCode/>}/>
                     <Route path="/payment/:departure/:num" element={<PaymentComponent/>}/>
