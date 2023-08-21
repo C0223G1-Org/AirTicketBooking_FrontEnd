@@ -121,7 +121,7 @@ export default function CustomerManagement() {
     const searchDataPageable = async () => {
         try {
             let nationalitySearch = document.getElementById("nationality").value;
-            let emailSearch = document.getElementById("email").value;
+            let emailSearch = document.getElementById("emailCustomer").value;
             let nameSearch = document.getElementById("name").value;
             await setEmailFunction(emailSearch).then(await setNameFunction(nameSearch)).then(await setNationalityFunction(nationalitySearch)).then(await setPageFunction(0))
             await getListCustomer(0, nameSearch, emailSearch, nationalitySearch)

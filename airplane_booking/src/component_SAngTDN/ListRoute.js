@@ -27,10 +27,18 @@ function ListRouter() {
   const [arrivalTypeSeat, setArrivalTypeSeat] = useState("");
   const [selecTicketArrival, setSelecTicketArrival] = useState("");
   const [arrivalTime,setArrivalTime] = useState();
-  const [idRouteArrival,setIdRouteArrival] = useState(0)
+  const [idRouteArrival,setIdRouteArrival] = useState(0);
+  const [user ,setUser]= useState();
 
   const totalPrice = (departurePriceTicket*1+arrivalPriceTicket*1)*1.6
 
+  const userName = localStorage.getItem("username");
+
+  // if(user==null){
+  //   alert("null")
+  // }else{
+  //   alert("has")
+  // }
 
   const transferDatatoArr = () => {
     return data.split(",");
@@ -348,7 +356,9 @@ function ListRouter() {
   }, []);
 
   const handleSubmitOneWay= ()=>{
+   
     navigate(`/detail-ticket/${2},${idRouteDeparture},${departureTypeSeat},${departurePriceTicket},${array[5]},${array[6]}`);
+    
     //1.loại vé, 2.id tuyến bay,3. loại ghế ,4. giá 1 vé 5. người lớn 6.trẻ em
 
     // diemDi: arr[0],
@@ -361,8 +371,11 @@ function ListRouter() {
 
   }
   const handleSubmitTwoWay=()=>{
+   
     navigate(`/detail-ticket/${1},${idRouteDeparture},${idRouteArrival},${departureTypeSeat},${arrivalTypeSeat},${departurePriceTicket},${arrivalPriceTicket},${array[5]},${array[6]}`);
     //1.loại vé, 2.id tuyến đi,3. idtuyến vế ,4. loại ghế đi 5, loại ghế về , 6. giá đi. 7.giá về
+
+    
   }
 
   useEffect(()=>{

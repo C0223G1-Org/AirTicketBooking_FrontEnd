@@ -13,7 +13,6 @@ export async function   searchTicketByNameAndIdCardPassengerResult(name,idCard,p
 
 
 export async function updateListTicket(ticket){
-    console.log("nhan")
         await axios.patch(`http://localhost:8080/tickets/updateTicket/`+ticket.idTicket,ticket);
 }
 

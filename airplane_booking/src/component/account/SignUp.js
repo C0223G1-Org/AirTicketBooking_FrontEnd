@@ -26,6 +26,8 @@ export function SignUp() {
         // }
         setRole(localStorage.getItem("role"));
     }, []);
+
+    window.scrollTo(0, 0);
     return (
         <>
             {role !== "ROLE_CUSTOMER" ? (role !== "ROLE_ADMIN" ? (role !== "ROLE_EMPLOYEE" ?
@@ -590,7 +592,7 @@ export function SignUp() {
                                                         }
                                                     </div>
                                                     <div className="col-3" style={{marginTop: "2%"}}>
-                                                        <Link to='/login' style={{
+                                                        <Link to='/login/ss' style={{
                                                             textDecoration: "underline",
                                                             fontSize: "18px",
                                                             paddingRight: "2px"

@@ -16,7 +16,7 @@ import { findTicketById, updateListTicket } from "../../services/TicketService";
 
 const UpdateTicket = () => {
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         getTicket();
     }, [])
@@ -25,6 +25,7 @@ const UpdateTicket = () => {
     const param = useParams();
     const getTicket = async () => {
         const data = await findTicketById(param.id);
+      
         setTicket(data);
     }
     const handleEditTicket = async (values) => {

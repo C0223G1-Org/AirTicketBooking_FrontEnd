@@ -295,26 +295,26 @@ function EmployeeList() {
                                         <tbody>
                                         {employeeList.map((e, index) => (
                                             <tr key={e.idEmployee}>
-                                                <td className=" px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                                <td className=" px-5 py-3 border-b border-gray-200 bg-white ">
                                                     {(currentPage * 5) + index + 1}
                                                 </td>
-                                                <td className="col flex py-3 border-b border-gray-200 bg-white text-sm">
+                                                <td className="col flex py-3 border-b border-gray-200 bg-white ">
                                                     <img className="image_employee" src={e.image} alt=""/>
                                                     <span className="py-3">{e.nameEmployee}</span>
                                                 </td>
                                                 {/*<td className=" py-3 border-b border-gray-200 bg-white text-sm">*/}
                                                 {/*    {e.gender ? "Nam" : "Nữ"}*/}
                                                 {/*</td>*/}
-                                                <td className=" py-3 border-b border-gray-200 bg-white text-sm">
+                                                <td className=" py-3 border-b border-gray-200 bg-white ">
                                                     {e.emailEmployee}
                                                 </td>
                                                 {/*<td className="py-3 border-b border-gray-200 bg-white text-sm">*/}
                                                 {/*    {formatDate(e.dateEmployee)}*/}
                                                 {/*</td>*/}
-                                                <td className="py-3 border-b border-gray-200 bg-white text-sm">
+                                                <td className="py-3 border-b border-gray-200 bg-white ">
                                                     {formatPhoneNumber(e.telEmployee)}
                                                 </td>
-                                                <td className=" py-3 border-b border-gray-200 bg-white text-sm">
+                                                <td className=" py-3 border-b border-gray-200 bg-white ">
                                                     <a type="button" data-bs-toggle="modal"
                                                        style={{color: '#333', textDecoration: 'none'}}
                                                        data-bs-target="#exampleModal1"
@@ -345,7 +345,7 @@ function EmployeeList() {
                                     className="px-3 py-1 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
                                     <div className=" inline-flex mt-2 xs:mt-0 ">
                                         <button
-                                            className={`style_button_page_next text-sm font-semibold py-2 px-4 rounded-l ${currentPage === 0 ? 'hidden' : ''}`}
+                                            className={`style_button_page_next  font-semibold py-2 px-4 rounded-l ${currentPage === 0 ? 'hidden' : ''}`}
                                             disabled={currentPage === 0}
                                             title="Trang trước"
                                             onClick={() => handlePageChange(currentPage - 1)}
@@ -355,7 +355,7 @@ function EmployeeList() {
 
                                         <button
                                             key={currentPage}
-                                            className="text-sm font-semibold py-2 px-4   rounded"
+                                            className=" font-semibold py-2 px-4   rounded"
                                             style={{marginRight: '10px', background:'rgb(223, 165, 18)', color:'white'}}
                                             onClick={() => handlePageChange(currentPage)}
                                             title="Trang hiện tại"
@@ -366,7 +366,7 @@ function EmployeeList() {
 
                                         {currentPage !== totalPages - 1 && (
                                             <button
-                                                className='style_button_page_next text-sm font-semibold py-2 px-4 rounded-r'
+                                                className='style_button_page_next font-semibold py-2 px-4 rounded-r'
                                                 title="Trang sau"
                                                 disabled={currentPage === totalPages - 1}
                                                 onClick={() => handlePageChange(currentPage + 1)}
@@ -374,7 +374,7 @@ function EmployeeList() {
                                                 Sau
                                             </button>
                                         )}
-                                        <div className="style_button_page  text-sm font-semibold py-2 px-2 rounded">
+                                        <div className="style_button_page   font-semibold py-2 px-2 rounded">
                                             <input
                                                 className="style_button_search_page"
                                                 type="number"

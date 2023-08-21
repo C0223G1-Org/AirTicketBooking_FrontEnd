@@ -85,7 +85,7 @@ root.render(
                         element={<SearchResultPage/>}
                     />
                     <Route path="/admin/messages" element={<AdminPage/>}/>
-                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/login/:data" element={<Login/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
                     <Route path="/checkCode/:data" element={<CheckCode/>}/>
                     <Route path="/payment/:departure/:num" element={<PaymentComponent/>}/>
