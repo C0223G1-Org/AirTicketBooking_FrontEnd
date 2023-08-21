@@ -57,15 +57,7 @@ function TicketBooked() {
             console.log(data.content);
 
             let numberPage = Math.ceil(data.totalElements / 5);
-            if(!numberPage){
-                Swal.fire({
-                    icon: "error",
-                    title: 'Không tìm thấy!',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                setTicketObj({})
-            }
+        
             setLoopCount(numberPage)
             setTickets(data.content)
         }).catch(()=>{
@@ -164,6 +156,7 @@ function TicketBooked() {
             setPage(value);
         }
     };
+
     return (
         <>
             <div className="backgroud-ticket">

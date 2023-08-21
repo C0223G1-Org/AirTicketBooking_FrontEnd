@@ -63,6 +63,7 @@ export const deleteTicketDB=async(id)=>{
 }
 export const searchBookedTicket=async(page,ticketSearch)=>{
     const ticket = qs.stringify(ticketSearch);
+    
     console.log(ticket)
     const response=await axios.get(`http://localhost:8080/tickets/search/${page}?${ticket}`)
     return response.data
