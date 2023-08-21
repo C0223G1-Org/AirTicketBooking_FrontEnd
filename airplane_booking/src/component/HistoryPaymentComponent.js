@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getListHistoryByCustomerId, getListTicketByNameRoute } from "../services/HistoryPaymentService";
+import { getListHistoryByCustomerId } from "../services/HistoryPaymentService";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import moment from "moment";
