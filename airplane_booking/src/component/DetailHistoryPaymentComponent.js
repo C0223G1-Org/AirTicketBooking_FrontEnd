@@ -21,9 +21,6 @@ function DetailHistoryPaymentComponent() {
     useEffect(() => {
         showListTicket();
     }, []);
-    useEffect(() => {
-        document.title = 'Lịch sử chi tiết';
-    })
     if (!wasPayments) {
         return null;
     }

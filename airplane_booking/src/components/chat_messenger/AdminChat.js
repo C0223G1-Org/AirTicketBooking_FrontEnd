@@ -22,7 +22,7 @@ const AdminPage = () => {
 
       let dataObj=Object.values(data);
       let dataKey=Object.keys(data)
-      console.log(dataObj);
+      
 
       for (let i = 0; i < dataObj.length; i++) {
         for (let j = i; j < dataObj.length-1; j++) {
@@ -41,6 +41,7 @@ const AdminPage = () => {
         }
       }
       setChats(dataKey);
+      console.log(dataObj);
        console.log(dataKey);
     });
     

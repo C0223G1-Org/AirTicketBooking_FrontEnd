@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { getListHistoryByCustomerId, getListTicketByNameRoute } from "../services/HistoryPaymentService";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { getListHistoryByCustomerId } from "../services/HistoryPaymentService";
+import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import moment from "moment";
-
-
 function HistoryPaymentComponent() {
     const [payments, setPayments] = useState([]);
-
     let [page, setPage] = useState(0)
     const { id } = useParams();
     let [nameDeparture, setNameDeparture] = useState("")
@@ -16,12 +13,19 @@ function HistoryPaymentComponent() {
         try {
             const paymentData = await getListHistoryByCustomerId(id, pageable, nameDeparture, nameDestination);
             setPayments(paymentData);
-
         } catch (error) {
-            console.log("Không tìm thấy dữ liệu lịch sử" , error);
+            await setDepartureFunction("")
+            .then(await setDestinationFunction(""))
+            .then(await setPageFunction(0))
+            .then(showList(0, "", ""));
+             Swal.fire({
+                icon: "error",
+                title: 'Không tìm thấy dữ liệu!',
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     };
-
     useEffect(() => {
         showList(page, nameDeparture, nameDestination)
     }, []);
@@ -62,7 +66,6 @@ function HistoryPaymentComponent() {
             page = numberPage
         } else {
             await setPageFunction(0).then(await showList(0, nameDeparture, nameDestination))
-
             Swal.fire({
                 icon: "error",
                 title: 'Không tìm thấy trang!',
@@ -71,29 +74,21 @@ function HistoryPaymentComponent() {
             })
         }
     }
-
-    function handleButtonClick() {
-        performSearch();
-    }
-
     const performSearch = async () => {
-        const departureSearch = document.getElementById("departure").value;
-        const destinationSearch = document.getElementById("destination").value;
-        await setDepartureFunction(departureSearch)
+        try {
+            const departureSearch = document.getElementById("departure").value;
+            const destinationSearch = document.getElementById("destination").value;
+            await setDepartureFunction(departureSearch)
             .then(await setDestinationFunction(destinationSearch))
             .then(await setPageFunction(0))
             .then(showList(0, departureSearch, destinationSearch));
+        }catch(error) {
+            console.log(error);
+        }
     }
-
-    useEffect(() => {
-        document.title = 'Lịch sử thanh toán'
-    })
-
     const changePrice = (price) => {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
-
-
     if (!payments) {
         return null;
     }
@@ -108,7 +103,6 @@ function HistoryPaymentComponent() {
                       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
                 <link rel="stylesheet"
                       href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css" />
-
                 <div className="container mx-auto px-4 sm:px-8 background-customer" id="customer"
                 >
                     <div className="py-8" style={{ textAlign: 'center' }}>
@@ -116,7 +110,6 @@ function HistoryPaymentComponent() {
                             <h1 style={{ fontSize: '50px' }}>LỊCH SỬ GIAO DỊCH</h1>
                         </div>
                         <div className="my-2 flex sm:flex-row flex-col">
-
                             <div className="block relative">
                                 <input
                                     onKeyPress={handleKeyPress}
@@ -130,18 +123,17 @@ function HistoryPaymentComponent() {
                                     className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                             </div>
                             <button type="submit"
-                                    onClick={handleButtonClick}
+                                    onClick={async () => {
+                                        await performSearch();
+                                    }}
                                     className="text-sm  font-semibold py-2 px-4 "
                                     style={{ background: 'rgb(223, 165, 18)', color: '#ffffff', }}>
                                 <i className="fa-solid fa-magnifying-glass"></i>
                             </button>
-
                         </div>
-
-
                         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                                {payments &&
+                                {
                                     <table className="min-w-full leading-normal myTable">
                                         <thead>
                                         <tr style={{ background: 'rgb(6, 133, 170)', color: '#ffffff' }}>
@@ -149,7 +141,6 @@ function HistoryPaymentComponent() {
                                                 style={{ textAlign: 'center' }}>
                                                 STT
                                             </th>
-
                                             <th className="text-x  " style={{ textAlign: 'center' }}>
                                                 Tên chuyến bay
                                             </th>
@@ -159,7 +150,6 @@ function HistoryPaymentComponent() {
                                             <th className="text-x " style={{ textAlign: 'center' }}>
                                                 Nơi đến
                                             </th>
-
                                             <th className="text-x  " style={{ textAlign: 'center' }}>
                                                 Ngày đặt vé
                                             </th>
@@ -170,7 +160,6 @@ function HistoryPaymentComponent() {
                                                 Chi Tiết
                                             </th>
                                         </tr>
-
                                         </thead>
                                         {payments.length !== 0 ?
                                             <tbody>
@@ -181,7 +170,6 @@ function HistoryPaymentComponent() {
                                                             style={{ textAlign: 'center', weight: "10px" }}>
                                                             <p>{(page * 4) + (index + 1)}</p>
                                                         </td>
-
                                                         <td className=" px-3 py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">
                                                                 {item.nameRoute}
@@ -189,16 +177,14 @@ function HistoryPaymentComponent() {
                                                         </td>
                                                         <td className="  px-3 py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">
-                                                                {item.nameDeparture}
+                                                                {item.nameDeparture.split('-')[0]}
                                                             </p>
                                                         </td>
                                                         <td className="  px-3 py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">
-                                                                {item.nameDestination}
+                                                                {item.nameDestination.split('-')[0]}
                                                             </p>
                                                         </td>
-
-
                                                         <td className=" py-3   bg-white ">
                                                             <p className="text-gray-900 whitespace-no-wrap">
                                                                 {moment(`${item.dateBooking}`).format('DD-MM-YYYY')}
@@ -217,7 +203,6 @@ function HistoryPaymentComponent() {
                                                     </tr>
                                                 )
                                             )}
-
                                             </tbody>
                                             :
                                             <tbody>
@@ -233,13 +218,9 @@ function HistoryPaymentComponent() {
                                 {payments.length !== 0 ?
                                     <div
                                         className="px-3 py-1 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
-
                                         <div className="inline-flex mt-2 xs:mt-0">
-
-
                                             {page !== 0 ? <button
                                                 onClick={async () => {
-
                                                     await previousPage()
                                                 }}
                                                 className="text-sm   py-2 px-3 rounded-l"
@@ -247,7 +228,6 @@ function HistoryPaymentComponent() {
                                                 Trước
                                             </button> : <button
                                                 onClick={async () => {
-
                                                     await previousPage()
                                                 }}
                                                 className="text-sm   py-2 px-3 rounded-l"
@@ -259,7 +239,6 @@ function HistoryPaymentComponent() {
                                                 }}>
                                                 Trước
                                             </button>}
-
                                             <button className="text-sm   py-2 px-3 rounded-l" style={{
                                                 background: 'rgb(223, 165, 18)',
                                                 color: '#ffffff',
@@ -267,10 +246,8 @@ function HistoryPaymentComponent() {
                                             }}>
                                                 {page + 1}/{payments.totalPages}
                                             </button>
-
                                             {page !== payments.totalPages - 1 ?
                                                 <button onClick={async () => {
-
                                                     await nextPage();
                                                 }} className="text-sm   py-2 px-3 rounded-l" style={{
                                                     background: 'rgb(223, 165, 18)',
@@ -280,7 +257,6 @@ function HistoryPaymentComponent() {
                                                     Sau
                                                 </button>
                                                 : <button onClick={async () => {
-
                                                     await nextPage();
                                                 }} className="text-sm   py-2 px-3 rounded-l" style={{
                                                     background: 'rgb(223, 165, 18)',
@@ -315,12 +291,10 @@ function HistoryPaymentComponent() {
                                     : ""}
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
     )
 }
 export default HistoryPaymentComponent;
