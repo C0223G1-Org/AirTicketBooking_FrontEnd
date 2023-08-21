@@ -293,7 +293,7 @@ function TicketUnBook() {
                                                     <td>{unTicket.departureDate}</td>
                                                     <td style={{ textAlign: 'center' }}>{unTicket.timeDeparture}</td>
                                                     <td style={{ textAlign: 'center' }}>{unTicket.nameRoute}</td>
-                                                    <td style={{ textAlign: 'center' }}>{unTicket.priceTicket}</td>
+                                                    <td style={{ textAlign: 'center' }}>{numeral(unTicket.priceTicket).format('0,0 đ')}VND</td>
                                                 </tr>
                                             </tbody>
                                         </table>

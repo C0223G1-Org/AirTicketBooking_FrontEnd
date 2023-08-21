@@ -189,7 +189,7 @@ function TicketBooked() {
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Tên Khác Hàng</th>
+                                <th>Tên Khách Hàng</th>
                                 <th>Mã Chuyến Bay</th>
                                 {/* <th>Ngày Đặt Vé</th> */}
                                 <th>Tuyến Bay</th>
@@ -207,7 +207,7 @@ function TicketBooked() {
                                     {/* <td>{ticket.dateBooking}</td> */}
                                     <td >{ticket.nameDeparture}-{ticket.nameDestination}</td>
                                     <td >{ticket.timeDeparture}-{ticket.departureDate}</td>
-                                    <td>{numeral(ticket.priceTicket).format('0,0 đ')}VND</td>
+                                    <td>{numeral(ticket.priceTicket).format('0,00 đ')}VND</td>
                                     <td className="icon-ticket">
                                         <ul>
                                             <Link to={`/tickets/updateTicket/${ticket.id}`}>

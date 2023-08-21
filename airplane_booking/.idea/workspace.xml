@@ -24,6 +24,20 @@
   <component name="ChangeListManager">
     <list default="true" id="9940190e-4050-4e32-b542-a40edc64470e" name="Changes" comment="SangTDN commit truoc khi merge len nhanh dev 21/8/2023">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/CustomerManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/CustomerManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Employee/employeeEdit.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/employeeEdit.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/HistoryPaymentComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/HistoryPaymentComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/report/ExprortExcel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/report/ExprortExcel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketBooked.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBooked.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TicketUnBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketUnBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/chat_messenger/UserChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat_messenger/UserChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/searchTickets_KietNT/SearchResultPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/searchTickets_KietNT/SearchResultPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ticket/printTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket/printTicket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ticket/updateTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ticket/updateTicket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/ticket/printTicket.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/ticket/printTicket.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/HistoryPaymentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/HistoryPaymentService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +125,7 @@
       <workItem from="1692297490304" duration="1640000" />
       <workItem from="1692320209137" duration="18223000" />
       <workItem from="1692501430899" duration="11461000" />
+      <workItem from="1692583152418" duration="4446000" />
     </task>
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
@@ -268,7 +283,21 @@
       <option name="project" value="LOCAL" />
       <updated>1692551826711</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="SangTDN commit truoc khi merge len nhanh dev 21/8/2023">
+      <created>1692583194166</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1692583194166</updated>
+    </task>
+    <task id="LOCAL-00024" summary="SangTDN commit truoc khi merge len nhanh dev 21/8/2023">
+      <created>1692583239369</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1692583239369</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

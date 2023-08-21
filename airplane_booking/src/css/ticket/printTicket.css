@@ -1,66 +1,68 @@
-#print .app-content {
+.app-content {
   box-sizing: border-box;
 }
-
-#print .ticket {
-  width: 80%;
-  margin: 20px auto;
-  background-color: white;
-  border: 5px solid rgb(6, 133, 170);
-  border-radius: 20px;
+  .print-ticket{
+    border: 7px solid rgb(6, 133, 170);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #888888;
+    margin-top: 20px;
+  }
+ .print-ticket .print {
+  width: 100%;
+  background-color: rgb(6, 133, 170);
+  border: 10px solid rgb(6, 133, 170);
+  border-radius: 10px;
   box-shadow: 0px 0px 10px #888888;
+  margin-left:0px;
+  margin-bottom: 2px;
 }
-
-#print .info {
+ .info {
   padding: 30px;
 }
-
-#print .codeGym {
+ .codeGym {
   text-align: center;
   color: white;
 }
-
-#print .print {
+ .print-ve {
   font-size: medium;
-  color: #0055a3;
   background-color: rgb(6, 133, 170);
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px #888888;
   padding-left: 10px;
   margin-left: 0px;
 }
-
-#print .label {
-  font-weight: bold;
-  color: #0055a3;
+ .print img{
+  height: 50px;
 }
-
-#print .date {
+ .label {
+  font-weight: bold;
+}
+ .date {
   padding-right: 30px;
 }
-
-#print .condition-list {
+.condition-list {
   list-style: none;
   margin-left: 20px;
 }
-
-#print .thank-you {
+.print-ve .thank-you {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px;
   color: white;
 }
-
-#print .row {
+.print-ve{
+  margin-top: -20px;
+}
+ .print-ticket .row {
   display: flex;
   justify-content: space-between;
 }
-
-#print .col-6 {
+ .col-6 {
   width: 50%;
 }
-
-#print .label::before,
-#print .value::before,
-#print .passenger-list li::before,
-#print .condition-list li::before {
+.label::before,
+ .value::before,
+ .passenger-list li::before,
+ .condition-list li::before {
   content: "";
   display: inline-block;
   width: 10px;
@@ -68,25 +70,30 @@
   margin-right: 10px;
   border-radius: 50%;
 }
-
-#print .label::before {
-  background-color: #0055a3;
+ .label::before {
+  background-color: #0055A3;
 }
-
-#print .value::before,
+ .label {
+ color: rgb(6, 133, 170);
+}
+.print-container {
+  width: 100%;
+  max-width: 500vh;
+  height: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+/* #print .value::before,
 #print .condition-list li::before {
-  background-color: #888888;
-}
-
-#print .button-area {
+ font-weight: bold;
+} */
+ .button-print {
   display: flex;
   justify-content: center;
   border-radius: 10px;
-  height: 50px;
-  margin-top: -400px;
+  padding-bottom: 20px;
 }
-
-#print .button-area button {
+ .button-print button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
@@ -95,41 +102,39 @@
   border: 3px solid rgb(6, 133, 170);
   border-radius: 10px;
   box-shadow: 0px 0px 10px #888888;
+  margin-top: 20px;
 }
-
-#print .button-area button[primary="true"] {
+ .button-print button[primary="true"] {
   background-color: rgb(223, 165, 18);
   color: #fff;
 }
-
-#print .button-area button:hover {
+ .button-print button:hover {
   background-color: rgb(228, 214, 177);
 }
-#print .imgPrint{
-  background-image: url("/src/logo_5.png");
-}
 @media (max-width: 768px) {
-  #print .ticket {
+   .ticket {
     max-width: 90%;
     margin: 50px auto;
     padding: 20px;
   }
-
-  #print .title {
+  .print-container {
+    padding: 10px;
+  }
+   .title {
     font-size: 20px;
   }
-
-  #print .row {
+  .vu .row {
     flex-direction: column;
   }
-
-  #print .col-6 {
+  .col-1{
+    height: 100%;
     width: 100%;
   }
-
-  #print .button-area button {
+  .vu .col-6 {
+    width: 100%;
+  }
+   .button-print button {
     padding: 8px 16px;
     font-size: 14px;
-
   }
 }

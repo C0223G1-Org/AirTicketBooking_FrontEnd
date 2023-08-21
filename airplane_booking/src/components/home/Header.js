@@ -31,12 +31,21 @@ export default function Header() {
         const rightRole = uRole ?? role;
         if (rightEmail) {
             if (rightRole == "ROLE_CUSTOMER") {
-                let data = await getCustomerByEmail(rightEmail);
-                console.log(data)
-                setUser(data);
+                try {
+                    let data = await getCustomerByEmail(rightEmail);
+                    console.log(data)
+                    setUser(data);
+                } catch (Error) {
+                    console.log("KHông có");
+                }
             } else if (rightRole == "ROLE_EMPLOYEE") {
-                let data = await getEmployeeByEmail(rightEmail);
-                setUser(data);
+                try {
+                    let data = await getEmployeeByEmail(rightEmail);
+                    setUser(data);
+                } catch (Error){
+                    console.log("KHông có");
+                }
+
             } else if (rightRole == "ROLE_ADMIN") {
                 setUser({user: localStorage.getItem("username")});
             }

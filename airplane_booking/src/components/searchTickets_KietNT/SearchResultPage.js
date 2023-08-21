@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { TicketContext } from "./TicketContext";
 import { searchTicketByNameAndIdCardPassengerResult } from "../../services/TicketService";
 import "../../css/search_ticket/search-result.css";
+import CurrencyFormat from "../format-currency/CurrencyFormat";
 
 export default function SearchResultPage() {
   const { tickets, setTickets } = useContext(TicketContext);
@@ -152,7 +153,7 @@ export default function SearchResultPage() {
                         </div>
                         <div className="col-3">
                           <p>Giá Vé</p>
-                          <p className="money">{ticket.priceTicket}</p>
+                          <p className="money"><CurrencyFormat value={ticket.priceTicket}/> VNĐ</p>
                         </div>
                       </div>
                       <div className=" row info-third">
