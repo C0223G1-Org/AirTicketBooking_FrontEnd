@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a22c4e3d-69c9-4531-b057-73ef87a7ab83" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/EmployeeList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Employee/employeeEdit.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Employee/employeeEdit.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +86,8 @@
       <workItem from="1692320845350" duration="732000" />
       <workItem from="1692321682900" duration="420000" />
       <workItem from="1692329894990" duration="12000" />
+      <workItem from="1692579723997" duration="3397000" />
+      <workItem from="1692604961289" duration="1144000" />
     </task>
     <task id="LOCAL-00001" summary="Nhan update  17/8 15:00">
       <created>1692259144780</created>
@@ -134,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692541104053</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Huy commit  20/08">
+      <created>1692579739419</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1692579739419</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
