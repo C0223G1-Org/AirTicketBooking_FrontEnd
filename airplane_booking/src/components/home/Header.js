@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import "../../css/home/Header.css";
 import {Link, NavLink} from 'react-router-dom';
-import image from "../../logo_5.png";
+import image from "../../logo.png";
 import {getCustomerByEmail} from "../../services/CustomerServices";
 import {getEmployeeByEmail} from "../../services/EmployeeServices";
 
@@ -86,7 +86,7 @@ export default function Header() {
         <>
             {
                 user == null ?
-                    <header className="header">
+                    <header className="header sticky-top">
                         <nav className="navbar navbar-expand-lg">
                             <img className="navbar-brand" src={image} alt='CodeGym Airline'/>
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse"

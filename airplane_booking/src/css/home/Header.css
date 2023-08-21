@@ -1,7 +1,6 @@
 #header {
     font-family: "Diavlo", "sans-seriff";
 }
-
 .header #navbarSupportedContent a{
     color: white;
 }
@@ -64,7 +63,7 @@ nav i {
     color: white;
 }
 .navbar img {
-    width: 150px;
-    height: 70px;
+    width: 90px;
+    height: 62px;
 }
 
