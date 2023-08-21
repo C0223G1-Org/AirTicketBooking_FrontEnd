@@ -1,6 +1,10 @@
 #header {
     font-family: "Diavlo", "sans-seriff";
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
 .header #navbarSupportedContent a{
     color: white;
 }
@@ -33,6 +37,7 @@ header {
 
 }
 nav i {
+    margin-right: 5px;
     color: white;
 }
 
@@ -63,7 +68,7 @@ nav i {
     color: white;
 }
 .navbar img {
-    width: 90px;
+    width: 87px;
     height: 62px;
 }
 

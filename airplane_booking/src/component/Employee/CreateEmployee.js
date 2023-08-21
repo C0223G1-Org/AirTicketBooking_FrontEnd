@@ -13,7 +13,11 @@ import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {storage} from "../../firebase-chat";
 
 
-
+/**
+ * Create by: QuocNHA
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function CreateEmployee() {
     const navigate = useNavigate();
     // const [roleList, setRoleList] = useState([])
@@ -24,10 +28,12 @@ function CreateEmployee() {
     //     }
     //     listRole()
     // }, [])
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const imgPreviewRef = useRef(null)
     const inputFileRef = useRef(null);
     const [imageUpload, setImageUpload] = useState(null);
-    const savePost = (async (post) => {
+
+    const savePost = (async (employee) => {
         const fileName = `images/${imageUpload.name + v4()}`
         const imageRef = ref(storage, fileName);
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
@@ -35,7 +41,7 @@ function CreateEmployee() {
                 console.log(url)
 
                 await createEmployee({
-                    ...post,
+                    ...employee,
                     image: url
                 }).then(
                     navigate("/employee")
@@ -92,14 +98,16 @@ function CreateEmployee() {
                         <div className="container">
                             <div className="row">
                                 {/*<div className='col-md-2 col-lg-2'></div>*/}
-                                <div className="col-12 col-sm-12 col-md-6 col-lg-4">
-                                    <div>
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-4" style={{marginLeft:'80px'}}>
+                                    <div style={{marginRight:'30px'}}>
                                         {/*<img*/}
-                                        {/*    src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"*/}
                                         {/*    alt="Preview Image" id="img-preview"/>*/}
-                                        <img style={{marginTop: '50px',marginLeft:'100px'}} name='image'
+                                        <img  name='image'
+
                                              id="img-preview"
-                                             src="https://cdn-icons-png.flaticon.com/256/9131/9131529.png"
+                                             // src="https://cdn-icons-png.flaticon.com/256/9131/9131529.png"
+                                             src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"
+                                             // src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"
                                              ref={imgPreviewRef} alt="Preview Image"/>
                                     </div>
                                 </div>
@@ -167,9 +175,15 @@ function CreateEmployee() {
                                                         ),
 
                                                     passwordEmployee: Yup.string()
-                                                        .required("Vui lòng nhập mật .")
-                                                        .min(5, "Mật khẩu quá ngắn,phải từ 5 kí tự.")
-                                                        .max(50, "Mật khẩu quá dài."),
+                                                        .required("Vui lòng nhập mật khẩu.")
+                                                        .min(5, "Mật khẩu quá ngắn, phải từ 5 kí tự.")
+                                                        .max(50, "Mật khẩu quá dài.")
+                                                        .test('has-uppercase', 'Mật khẩu phải có ít nhất một ký tự in hoa.', (value) => {
+                                                            return /[A-Z]/.test(value);
+                                                        })
+                                                        .test('has-lowercase', 'Mật khẩu phải có ít nhất một ký tự thường.', (value) => {
+                                                            return /[a-z]/.test(value);
+                                                        }),
                                                     confirmPasswordEmployee: Yup.string()
                                                         .required("Vui lòng nhập mật khẩu xác nhận.")
                                                         .oneOf([Yup.ref('passwordEmployee'), null], 'Mật khẩu xác nhận không khớp.')
@@ -178,8 +192,9 @@ function CreateEmployee() {
                                                 onSubmit={(values) => {
                                                     console.log(values)
 
-                                                    savePost(values)
-
+                                                    setIsSubmitting(true); // Đánh dấu form đang xử lý
+                                                    savePost(values);
+                                                    setIsSubmitting(false); // Hoàn thành xử lý form
 
                                                 }}
                                         >
@@ -293,7 +308,8 @@ function CreateEmployee() {
                                                             lại
                                                         </Link>
                                                         <button type='submit' className="btn"
-                                                                style={{background: '#daa32a'}}>Thêm mới
+                                                                style={{background: '#daa32a', color:'white'}} disabled={isSubmitting}>
+                                                            {isSubmitting ? 'Đang xử lý...' : 'Thêm mới'}
                                                         </button>
                                                     </div>
                                                 </div>

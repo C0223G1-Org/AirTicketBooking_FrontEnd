@@ -82,7 +82,7 @@ export default function Home() {
                             } else {
                                 Swal.fire({
                                     icon: 'warning',
-                                    title: 'Vui lòng chọn ngày đến!!!!',
+                                    title: 'Vui lòng chọn ngày về!!!!',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
