@@ -1,11 +1,19 @@
 import axios from "axios";
 
-export async function getListHistoryByCustomerId(page,nameDeparture,nameDestination) {
-    const resolve = await axios.get(`http://localhost:8080/payment/history/1?page=${page}&&departure=${nameDeparture}&&destination=${nameDestination}`)
-    return resolve.data
+export async function getListHistoryByCustomerId(id,page,nameDeparture,nameDestination) {
+    try {
+        const resolve = await axios.get(`http://localhost:8080/payment/history/${id}?page=${page}&&departure=${nameDeparture}&&destination=${nameDestination}`)
+        return resolve.data
+    }catch(error) {
+        console.log("Không tìm thấy dữ liệu");
+    }
+ 
 }
-
-// export async function getCustomerById(id) {
-//     const resolve = await axios.get(`http://localhost:8080/payment/history/1`)
-//     return resolve.data;
-// }
+export async function getListTicketByNameRoute(nameDeparture, nameDestination,dateBooking) {
+   try{
+    const resolve = await axios.get(`http://localhost:8080/payment/detail-history/${nameDeparture}/${nameDestination}/${dateBooking}`)
+    return resolve.data;
+   }catch (error) {
+       console.log("Không tìm thấy dữ liệu")
+   }
+}

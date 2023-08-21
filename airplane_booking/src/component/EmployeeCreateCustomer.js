@@ -36,8 +36,8 @@ function EmployeeCreateCustomer() {
 
   const navigave = useNavigate()
   return (
-    <>
-    
+    <div className='hunglv'>
+
       <Formik
         initialValues={{
           nameCustomer: "",
@@ -97,8 +97,8 @@ function EmployeeCreateCustomer() {
           let customer = {}
           if (fileUpload != null) {
             const urlImage = await getUrl(fileUpload)
-            console.log(urlImage);          
-             customer = {
+            console.log(urlImage);
+            customer = {
               nameCustomer: values.nameCustomer,
               genderCustomer: values.genderCustomer,
               emailCustomer: values.emailCustomer,
@@ -111,8 +111,8 @@ function EmployeeCreateCustomer() {
               flagCustomer: false,
               account: account
             }
-          }else{
-             customer = {
+          } else {
+            customer = {
               nameCustomer: values.nameCustomer,
               genderCustomer: values.genderCustomer,
               emailCustomer: values.emailCustomer,
@@ -150,8 +150,8 @@ function EmployeeCreateCustomer() {
               <div className="row">
                 <div className="col-12 col-sm-12 col-md-4 col-lg-4">
                   <div>
-                    <img src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg" 
-                    ref={imgPreviewRef} alt="Preview Image" id="img-preview" />
+                    <img src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"
+                      ref={imgPreviewRef} alt="Preview Image" id="img-preview" />
                   </div>
                 </div>
                 <div className="col-12 col-sm-12 col-md-8 col-lg-8">
@@ -281,11 +281,33 @@ function EmployeeCreateCustomer() {
                               </sup>)
                             </span>
                             <Field className="form-control" as="select" name="nationalityCustomer">
-                              <option value="">Chọn quốc tịch</option>
-
-                              <option value="Việt Nam">Việt Nam</option>
-                              <option value="Mỹ">Mỹ</option>
-                              <option value="Nhật Bản">Nhật Bản</option>
+                              <option value={""}>--Quốc tịch--</option>
+                              <option value='Việt Nam'>Việt Nam</option>
+                              <option value='Trung Quốc'>Trung Quốc</option>
+                              <option value='Thái Lan'>Thái Lan</option>
+                              <option value='Malaysia'>Malaysia</option>
+                              <option value='Singapo'>Singapo</option>
+                              <option value='Anh'>Anh</option>
+                              <option value='Hàn Quốc'>Hàn Quốc</option>
+                              <option value='Mỹ'>Mỹ</option>
+                              <option value='Pháp'>Pháp</option>
+                              <option value='Nhật Bản'>Nhật Bản</option>
+                              <option value='Hong Kong'>Hong Kong</option>
+                              <option value='Macau'>Macau</option>
+                              <option value='Triều Tiên'>Triều Tiên</option>
+                              <option value='Ấn Độ'>Ấn Độ</option>
+                              <option value='Nga'>Nga</option>
+                              <option value='Quatar'>Quatar</option>
+                              <option value='Thổ Nhi Kỳ'>Thổ Nhi Kỳ</option>
+                              <option value='Đan Mạch'>Đan Mạch</option>
+                              <option value='Đức'>Đức</option>
+                              <option value='Bỉ'>Bỉ</option>
+                              <option value='Thụy Sĩ'>Thụy Sĩ</option>
+                              <option value='Áo'>Áo</option>
+                              <option value='Argentina'>Argentina</option>
+                              <option value='Tây Ban Nha'>Tây Ban Nha</option>
+                              <option value='Bồ Đào Nha'>Bồ Đào Nha</option>
+                              <option value='Campuchia'>Campuchia</option>
                             </Field>
                             <ErrorMessage className='error' name='nationalityCustomer' component={"div"} />
                           </div>
@@ -309,9 +331,9 @@ function EmployeeCreateCustomer() {
                         <div className="col-md-6">
                           <div className="form-group">
                             <span className="form-label" style={{ marginBottom: '20px' }}>Ảnh</span>
-                            <Field className="form-control"  onChange={(event) => onChange(event.target.files[0])} accept="img/*"
-                             name="imgCustomer" type="file" style={{ paddingTop: '35px',color:"transparent"}} id="field-file" ref={fileUpload}
-                              />
+                            <Field className="form-control" onChange={(event) => onChange(event.target.files[0])} accept="img/*"
+                              name="imgCustomer" type="file" style={{ paddingTop: '35px', color: "transparent" }} id="field-file" ref={fileUpload}
+                            />
                           </div>
                         </div>
                       </div>
@@ -328,7 +350,7 @@ function EmployeeCreateCustomer() {
           </div>
         </div>
       </Formik>
-    </>
+    </div>
   );
 }
 
