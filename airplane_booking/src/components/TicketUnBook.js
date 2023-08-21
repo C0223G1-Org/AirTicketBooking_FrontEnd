@@ -113,7 +113,7 @@ function TicketUnBook() {
     }
     
     return (
-        <div>
+        <div className="backgroud-ticket">
             <h1 className="h1-ticket">
                 Quản Lý Bán Vé
             </h1>

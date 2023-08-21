@@ -58,7 +58,7 @@ export default function Header() {
         localStorage.setItem("username", null);
         localStorage.setItem("role", null);
         setUser(null);
-        navigate("/login");
+        navigate("/login/ss");
     }
 
     useEffect(() => {
@@ -133,7 +133,7 @@ export default function Header() {
                                 </ul>
                                 <ul className="navbar-nav login">
                                     <li className="nav-item">
-                                        <Link to={`/login`} className="nav-link active">
+                                        <Link to={`/login/ss`} className="nav-link active">
                                             <i className="fa-solid fa-circle-user"/>
                                             Đăng nhập
                                         </Link>

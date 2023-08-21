@@ -219,6 +219,7 @@ export default function Home() {
     //     setDestinations(data);
     // }
 
+
     console.log(selectedDestination)
     console.log(selectedDeparture)
     useEffect(() => {

@@ -166,7 +166,7 @@ function TicketBooked() {
     };
     return (
         <>
-            <div>
+            <div className="backgroud-ticket">
                 <h1 className="h1-ticket">
                     Quản Lý Bán Vé
                 </h1>
@@ -201,13 +201,13 @@ function TicketBooked() {
                         <tbody>
                             {tickets && tickets.map((ticket, index) => (
                                 <tr key={index}>
-                                    <td >{index + (page * 5)}</td>
+                                    <td >{index+1 + (page * 5)}</td>
                                     <td style={{ textAlign: 'left' }}>{ticket.namePassenger}</td>
                                     <td >{ticket.nameRoute}</td>
                                     {/* <td>{ticket.dateBooking}</td> */}
                                     <td >{ticket.nameDeparture}-{ticket.nameDestination}</td>
                                     <td >{ticket.timeDeparture}-{ticket.departureDate}</td>
-                                    <td>{numeral(ticket.priceTicket).format('0,00 đ')}VND</td>
+                                    <td>{numeral(ticket.priceTicket).format('00,0 đ')}VND</td>
                                     <td className="icon-ticket">
                                         <ul>
                                             <Link to={`/tickets/updateTicket/${ticket.id}`}>
