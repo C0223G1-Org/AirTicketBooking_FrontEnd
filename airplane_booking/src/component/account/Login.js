@@ -1,4 +1,4 @@
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import "../../css/account/login_signup.css"
 import {ErrorMessage, Field, Form, Formik} from "formik";
@@ -15,6 +15,7 @@ export function Login() {
     const navigate = useNavigate();
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const {data} = useParams();
     const setPwUs = async (u, p) => {
         setUserName(u);
         setPassword(p);
@@ -29,6 +30,9 @@ export function Login() {
     useEffect(() => {
         setRole(localStorage.getItem("role"));
     }, []);
+
+    window.scrollTo(0, 0);
+    
     return (
         <>
             {role !== "ROLE_CUSTOMER" ? (role !== "ROLE_ADMIN" ? (role !== "ROLE_EMPLOYEE" ?
@@ -88,7 +92,11 @@ export function Login() {
                             }
                             // await handleSubmit(values);
                             resetForm();
+                            if(data!="ss"){
+                                await navigate(`/list/${data}`); 
+                            }else{
                             await navigate("/home");
+                        }
                         } catch (e) {
                             // Xử lý lỗi đăng nhập
                             // toast.error(e.response.data);

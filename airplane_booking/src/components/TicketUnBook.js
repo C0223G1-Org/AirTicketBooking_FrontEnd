@@ -113,7 +113,7 @@ function TicketUnBook() {
     }
     
     return (
-        <div>
+        <div className="backgroud-ticket">
             <h1 className="h1-ticket">
                 Quản Lý Bán Vé
             </h1>
@@ -293,7 +293,7 @@ function TicketUnBook() {
                                                     <td>{unTicket.departureDate}</td>
                                                     <td style={{ textAlign: 'center' }}>{unTicket.timeDeparture}</td>
                                                     <td style={{ textAlign: 'center' }}>{unTicket.nameRoute}</td>
-                                                    <td style={{ textAlign: 'center' }}>{unTicket.priceTicket}</td>
+                                                    <td style={{ textAlign: 'center' }}>{numeral(unTicket.priceTicket).format('0,0 đ')}VND</td>
                                                 </tr>
                                             </tbody>
                                         </table>

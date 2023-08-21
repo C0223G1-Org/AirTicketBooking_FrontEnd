@@ -57,15 +57,7 @@ function TicketBooked() {
             console.log(data.content);
 
             let numberPage = Math.ceil(data.totalElements / 5);
-            if(!numberPage){
-                Swal.fire({
-                    icon: "error",
-                    title: 'Không tìm thấy!',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                setTicketObj({})
-            }
+        
             setLoopCount(numberPage)
             setTickets(data.content)
         }).catch(()=>{
@@ -164,9 +156,10 @@ function TicketBooked() {
             setPage(value);
         }
     };
+
     return (
         <>
-            <div>
+            <div className="backgroud-ticket">
                 <h1 className="h1-ticket">
                     Quản Lý Bán Vé
                 </h1>
@@ -189,7 +182,7 @@ function TicketBooked() {
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Tên Khác Hàng</th>
+                                <th>Tên Khách Hàng</th>
                                 <th>Mã Chuyến Bay</th>
                                 {/* <th>Ngày Đặt Vé</th> */}
                                 <th>Tuyến Bay</th>
@@ -201,13 +194,13 @@ function TicketBooked() {
                         <tbody>
                             {tickets && tickets.map((ticket, index) => (
                                 <tr key={index}>
-                                    <td >{index + (page * 5)}</td>
+                                    <td >{index+1 + (page * 5)}</td>
                                     <td style={{ textAlign: 'left' }}>{ticket.namePassenger}</td>
                                     <td >{ticket.nameRoute}</td>
                                     {/* <td>{ticket.dateBooking}</td> */}
                                     <td >{ticket.nameDeparture}-{ticket.nameDestination}</td>
                                     <td >{ticket.timeDeparture}-{ticket.departureDate}</td>
-                                    <td>{numeral(ticket.priceTicket).format('0,0 đ')}VND</td>
+                                    <td>{numeral(ticket.priceTicket).format('00,0 đ')}VND</td>
                                     <td className="icon-ticket">
                                         <ul>
                                             <Link to={`/tickets/updateTicket/${ticket.id}`}>

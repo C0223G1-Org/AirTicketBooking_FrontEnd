@@ -176,7 +176,7 @@ export default function CreateReport() {
                                                 <div className="row" style={{marginTop: "2vh"}}>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
-                                                            <span className="form-label">Đến</span>
+                                                            <span className="form-label">Từ</span>
                                                             <Field className="form-control" type="date"
                                                                    name="startDate1"
                                                                    disabled={values.travelType === "one-way"}

@@ -3,12 +3,15 @@
   --buttonAirLine--: rgb(223, 165, 18);
 }
 
+.backgroud-ticket{
+  background-image: url("../../img/background.jpg");
 
+}
 
 .h1-ticket {
   color: var(--airLine--);
   text-align: center;
-  margin-top: 5%;
+
   font-family: 'Lato', sans-serif;
 }
 
@@ -90,7 +93,7 @@
   display: flex;
   justify-content: flex-end;
   margin: 10px 5%;
-  margin-bottom: 5%;
+
 }
 
 .pagination-ticket .pagination-ticket-item {

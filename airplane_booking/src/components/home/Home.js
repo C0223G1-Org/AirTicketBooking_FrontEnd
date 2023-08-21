@@ -192,16 +192,33 @@ export default function Home() {
         const data = event.target.value;
         await setTicketTypeFunction(data);
     }
-
     const getAllDepartureApi = async () => {
-        const data = await getAllDeparture();
-        setDepartures(data);
+        try {
+            const data = await getAllDeparture();
+            setDepartures(data);
+        } catch (Error) {
+            console.log("Không tìm thấy dữ liệu!!!!")
+        }
+    }
+    const getAllDestinationApi = async () => {
+        try {
+            const data = await getAllDestination();
+            setDestinations(data);
+        } catch (Error) {
+            console.log("Không tìm thấy dữ liệu!!!!")
+        }
     }
 
-    const getAllDestinationApi = async () => {
-        const data = await getAllDestination();
-        setDestinations(data);
-    }
+    // const getAllDepartureApi = async () => {
+    //     const data = await getAllDeparture();
+    //     setDepartures(data);
+    // }
+
+    // const getAllDestinationApi = async () => {
+    //     const data = await getAllDestination();
+    //     setDestinations(data);
+    // }
+
 
     console.log(selectedDestination)
     console.log(selectedDeparture)
