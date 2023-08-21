@@ -5,6 +5,7 @@ import {searchAbout1API, searchAboutAPI, searchCurrentAPI, searchPreviousAPI} fr
 import {ChartComponent} from "./ChartComponent";
 import {Chart} from "chart.js/auto"
 import ExportExcel from "./ExprortExcel";
+import ExportExcelButton from "./ExprortExcel";
 
 
 export default function CreateReport() {
@@ -136,8 +137,6 @@ export default function CreateReport() {
                                                                 <option value="year">Năm này - Năm trước</option>
                                                             </Field>
                                                             <Field className="form-control" name="timePrevious" hidden/>
-                                                            <ErrorMessage name="timeCurrent" component="span"
-                                                                          style={{color: "red"}}/>
                                                         </div>
                                                     </div>
                                                     <div>
@@ -157,8 +156,6 @@ export default function CreateReport() {
                                                                            disabled={values.travelType === "one-way"}
                                                                            max={new Date().toISOString().split('T')[0]}
                                                                     />
-                                                                    <ErrorMessage name="timeCurrent" component="span"
-                                                                                  style={{color: "red"}}/>
                                                                 </div>
                                                             </div>
                                                             <div className="col-md-6">
@@ -170,14 +167,12 @@ export default function CreateReport() {
                                                                            disabled={values.travelType === "one-way"}
                                                                            max={new Date().toISOString().split('T')[0]}
                                                                     />
-                                                                    <ErrorMessage name="timeCurrent" component="span"
-                                                                                  style={{color: "red"}}/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h4 style={{marginTop:"-1.5vh"}}>So sánh với:</h4>
+                                                <h4 style={{marginTop: "-1.5vh"}}>So sánh với:</h4>
                                                 <div className="row" style={{marginTop: "2vh"}}>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
@@ -226,14 +221,16 @@ export default function CreateReport() {
                                                 dataTimeAbout={[]}
                                                 dataTimeAbout1={[]}/>
                             }
-                            {/*<div style={{textAlign: "center"}}>*/}
-                            {/*    <button className="btn" style={{*/}
-                            {/*        background: "#daa32a", width: "85px",height:"35px",*/}
-                            {/*        fontSize: "15px", marginLeft: "3.5vw", marginTop: "1vh"*/}
-                            {/*    }}*/}
-                            {/*            onClick={() => handleOnclickExport()}>In báo cáo*/}
-                            {/*    </button>*/}
-                            {/*</div>*/}
+                            <div style={{textAlign: "center"}}>
+                                {dataTimeCurrent && dataTimePrevious || dataTimeAbout && dataTimeAbout1 ?
+                                    <ExportExcelButton dataTimeCurrent={dataTimeCurrent}
+                                                       dataTimePrevious={dataTimePrevious}
+                                                       dataTimeAbout={dataTimeAbout}
+                                                       dataTimeAbout1={dataTimeAbout1} fileName="Revenue"/>
+                                                       :
+                                    ""
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>

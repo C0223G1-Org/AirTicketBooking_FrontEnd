@@ -212,6 +212,23 @@
         scroll-behavior: smooth
     }
 }
+.brand-logo {
+margin-bottom: 5px;
+}
+.brand-logo a{
+    text-decoration: none;
+}
+.brand-logo img{
+    margin-left: 35px;
+
+}
+.codegym-airline {
+    text-decoration: none;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #daa310;
+    font-weight: bold;
+}
 /*===========*/
 table p {
     margin-top: 0;
@@ -2489,6 +2506,7 @@ progress {
         --bs-gutter-y: 20px
     }
 }
+
 
 .table {
     --bs-table-color: var(--bs-body-color);

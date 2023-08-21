@@ -1,51 +1,66 @@
   
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+  .paymentBackground {
+    background-image: url("../../img/background.jpg");
+    background-size: cover;
+     background-position: center;
+     padding: 50px 0px;
   }
-  
-  .ticket {
-    max-width: 600px;
-    margin: 50px auto;
+  .payment-ticket {
+    max-width: 75%;
+   margin-left: 180px;
     padding: 30px;
     background-color: white;
     border: 5px solid #0055a3;
     border-radius: 10px;
     box-shadow: 0px 0px 10px #888888;
+    
   }
+  #payment .thanh-codegym-airline{
+    color: #dfa512;
+    font-size: 23px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  #payment .thanh-logo img{
+    margin-left: 25px;
+    
+  }
+  #payment .thanh-logo
   
-  .title {
+  #payment .title {
     text-align: center;
-    font-size: 24px;
+    font-size: 40px;
     margin-bottom: 20px;
     color: #0055a3;
+    font-weight: bold;
   }
   
-  .label {
+  #payment  .label {
     font-weight: bold;
+    font-size: 20px;
   }
   /* .payment .hidden{
     display: ;
   } */
 
   
-  .thank-you {
+  #payment .thank-you {
     text-align: center;
     margin-top: 20px;
     color: gray;
   }
   
-  .row {
+  #payment .row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
   }
   
-  .col-6 {
+  #payment .col-6 {
     width: 50%;
   }
   
-  .label::before {
+  #payment .label::before {
     content: "";
     display: inline-block;
     width: 10px;
@@ -55,20 +70,30 @@
     border-radius: 50%;
   }
   
-  .value::before {
-    content: "";
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background-color: #888888;
-    margin-right: 10px;
-    border-radius: 50%;
+  #payment .value {
+    margin-top: -15px;
+    margin-left: 20px;
   }
 
-  .route {
+  #payment .route {
+    font-size: 25px;
     border: none;
-    background: #fcfae9;
-    color: #76a8a8;
-    font-family: Arial, sans-serif;
+    color: #dfa512;
+    font-family: Diavlo, sans-seriff;
     font-weight: bold;
   }
+  #payment .btn-thanh{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+    color:#dfa512 ;
+    font-size: 16px;
+    border: 1px solid #dfa512;
+  }
+  #payment .btn-thanh:hover{
+    background-color: #dfa512;
+    color:#fff ;
+  }
+
+ 

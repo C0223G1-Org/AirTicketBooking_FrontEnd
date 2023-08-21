@@ -27,7 +27,7 @@ import EmployeeList from "./component/Employee/EmployeeList";
 import CreateEmployee from "./component/Employee/CreateEmployee";
 import ListPost from "./component/post/ListPost";
 import {UpdatePost} from "./component/post/UpdatePost";
-import {CreatePost} from "./component/post/CreatePost";
+import CreatePost from "./component/post/CreatePost";
 // import SearchTicketPage from "./components/searchTickets_KietNT/SearchTicketPage";
 // import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage";
 // import { TicketProvider } from "./components/searchTickets_KietNT/TicketContext";
@@ -36,12 +36,14 @@ import SearchResultPage from "./components/searchTickets_KietNT/SearchResultPage
 import {TicketProvider} from "./components/searchTickets_KietNT/TicketContext";
 import AdminPage from "./components/chat_messenger/AdminChat";
 import CreateReport from "./component/report/CreateReport";
-import EditEmployee from "./component/Employee/EditEmployee";
 import {Login} from "./component/account/Login";
 import {SignUp} from "./component/account/SignUp";
 import {CheckCode} from "./component/account/CheckCode";
 import PaymentComponent from "./component/PaymentComponent";
 import ChangePassword from "./component_SAngTDN/ChangePassword";
+import EditEmployee from "./component/Employee/EditEmployee";
+import HistoryPaymentComponent from "./component/HistoryPaymentComponent";
+import DetailHistoryPaymentComponent from "./component/DetailHistoryPaymentComponent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -71,8 +73,6 @@ root.render(
                     <Route path="/list/:data" element={<ListRouter/>}/>
                     <Route path="/detail-ticket/:data" element={<DetailTicket/>}/>
                     <Route path="/info-passenger/:data" element={<InfoPassenger/>}/>
-                    {/*<Route path="/employee" element={<EmployeeList/>} />*/}
-                    {/*<Route path='/employee/create' element={<CreateEmployee />} />*/}
                     <Route path="/employee" element={<EmployeeList/>} />
                     <Route path='/employee/create' element={<CreateEmployee />} />
                     <Route path='/employee/update/:id' element={<EditEmployee />} />
@@ -88,8 +88,12 @@ root.render(
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
                     <Route path="/checkCode/:data" element={<CheckCode/>}/>
-                    <Route path="/payment/:id" element={<PaymentComponent/>}/>
+                    <Route path="/payment/:departure/:num" element={<PaymentComponent/>}/>
                     <Route path="/change-password" element={<ChangePassword/>}/>
+
+                    <Route path="/history-payment/:id" element={<HistoryPaymentComponent/>}/>
+                    <Route path="/detail-history/:id/:departure/:destination/:dateBooking" element={<DetailHistoryPaymentComponent/>}/>
+
                 </Routes>
 
                 <Footer/>
