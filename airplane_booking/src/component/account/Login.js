@@ -13,8 +13,8 @@ import {Logined} from "./Logined";
 
 export function Login() {
     const navigate = useNavigate();
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
+    const [userName, setUserName] = useState(localStorage.getItem("user_name"));
+    const [password, setPassword] = useState( localStorage.getItem("password"));
     const setPwUs = async (u, p) => {
         setUserName(u);
         setPassword(p);
@@ -23,9 +23,8 @@ export function Login() {
     useEffect(() => {
         setPwUs(localStorage.getItem("user_name"), localStorage.getItem("password"))
             .then(r => null);
-    }, [localStorage.getItem("user_name"), localStorage.getItem("password")])
+    },[localStorage.getItem("user_name"), localStorage.getItem("password")] )
     const [role, setRole] = useState(localStorage.getItem("role"));
-    console.log("role " + role);
     useEffect(() => {
         setRole(localStorage.getItem("role"));
     }, []);
@@ -57,8 +56,8 @@ export function Login() {
                             localStorage.setItem("password", values.password);
 
                         } else {
-                            localStorage.setItem("user_name", null);
-                            localStorage.setItem("password", null);
+                            localStorage.setItem("user_name", '');
+                            localStorage.setItem("password", '');
                         }
                         values = {
                             username: values.username,
