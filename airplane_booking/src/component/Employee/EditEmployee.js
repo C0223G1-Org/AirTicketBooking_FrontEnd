@@ -109,8 +109,8 @@ function EditEmployee() {
                                         {/*<img*/}
                                         {/*    src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"*/}
                                         {/*    alt="Preview Image" id="img-preview"/>*/}
-                                        <img  name='image'
-                                             id="img-preview" src={employeeId.image} ref={imgPreviewRef}
+                                        <img  name='image'style={{height: '410px'}}
+                                             id="img-previewQuoc" src={employeeId.image} ref={imgPreviewRef}
                                              alt="Preview Image"/>
                                     </div>
                                 </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import './index.css';
+import './index.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import Header from "./components/home/Header";
@@ -23,7 +23,6 @@ import CustomerUpdate from "./component/CustomerUpdate";
 import CustomerDetails from "./component/CustomerDetails";
 import DetailTicket from "./component/ticket/DetailTicket";
 import InfoPassenger from "./component/ticket/InfoPassenger";
-import EmployeeList from "./component/Employee/EmployeeList";
 import CreateEmployee from "./component/Employee/CreateEmployee";
 import ListPost from "./component/post/ListPost";
 import {UpdatePost} from "./component/post/UpdatePost";
@@ -44,6 +43,7 @@ import ChangePassword from "./component_SAngTDN/ChangePassword";
 import EditEmployee from "./component/Employee/EditEmployee";
 import HistoryPaymentComponent from "./component/HistoryPaymentComponent";
 import DetailHistoryPaymentComponent from "./component/DetailHistoryPaymentComponent";
+import EmployeeList from "./component/Employee/EmployeeList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

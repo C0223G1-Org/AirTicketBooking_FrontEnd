@@ -3,6 +3,11 @@
     height: 100vh;
 }
 
+#img-previewQuoc {
+    width: 100%;
+    height: 30rem;
+    border-radius: 100px
+}
 .booking-formQuoc .pQuoc{
     color: #fff;
     background-color: #4fa3e3;
@@ -242,6 +247,8 @@
     }
 }
 
+
+
 .form_button_employee {
     background: #dfa512;
     color: white;
@@ -313,7 +320,7 @@
 }
 
 .style_button_search_page{
-    width: 30px;
+    width: 3rem;
     height: 20px;
     padding-left: 5px;
     border: 1px solid black;
@@ -321,24 +328,24 @@
     color: black;
     text-align: center;
 }
-.style_button_page{
+/*.style_button_page_emmployee{*/
+/*    background: rgb(223, 165, 18);*/
+/*    color: white;*/
+/*    margin-right: 10px;*/
+/*}*/
+/*.style_button_page_emmployee:hover{*/
+/*    background: wheat;*/
+/*    color:black;*/
+/*}*/
+
+.style_button_page_next_employee{
     background: rgb(223, 165, 18);
     color: #ffffff;
     margin-right: 10px;
+    border: 1px solid rgb(223, 165, 18) ;
 }
-.style_button_page:hover{
-    background: #ffffff;
-    color:black;
-
-}
-
-.style_button_page_next{
-    background: rgb(223, 165, 18);
-    color: #ffffff;
-    margin-right: 10px;
-}
-.style_button_page_next:hover{
-    background: #ffffff;
+.style_button_page_next_employee:hover{
+    background: white;
     color:black;
 }
 

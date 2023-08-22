@@ -70,7 +70,7 @@ function CreateEmployee() {
             })
             return;
         }
-        if (!file){
+        if (!file) {
             Swal.fire({
                 icon: 'error',
                 title: 'vui long chon anh',
@@ -79,7 +79,7 @@ function CreateEmployee() {
             })
             return;
         }
-            setImageUpload(file)
+        setImageUpload(file)
         const reader = new FileReader();
         reader.addEventListener("load", function () {
             imgPreviewRef.current.src = reader.result;
@@ -98,22 +98,24 @@ function CreateEmployee() {
                         <div className="container">
                             <div className="row">
                                 {/*<div className='col-md-2 col-lg-2'></div>*/}
-                                <div className="col-12 col-sm-12 col-md-6 col-lg-4" style={{marginLeft:'80px'}}>
-                                    <div style={{marginRight:'30px'}}>
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-4" style={{marginLeft: '80px'}}>
+                                    <div style={{marginRight: '30px'}}>
                                         {/*<img*/}
                                         {/*    alt="Preview Image" id="img-preview"/>*/}
-                                        <img  name='image'
+                                        {/*<img name='image'*/}
 
-                                             id="img-preview"
-                                             // src="https://cdn-icons-png.flaticon.com/256/9131/9131529.png"
-                                             src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"
-                                             // src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"
-                                             ref={imgPreviewRef} alt="Preview Image"/>
+                                        {/*     id="img-preview"*/}
+                                        {/*// src="https://cdn-icons-png.flaticon.com/256/9131/9131529.png"*/}
+                                        {/*src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"*/}
+                                        {/*// src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"*/}
+                                        {/*ref={imgPreviewRef} alt="Preview Image"/>*/}
+                                        <img src="https://i.pinimg.com/564x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg"
+                                             ref={imgPreviewRef} alt="Preview Image" id="img-previewQuoc" />
                                     </div>
                                 </div>
-                                <div className="col-12 col-sm-12 col-md-6 col-lg-6" style={{padding:"0"}}>
+                                <div className="col-12 col-sm-12 col-md-6 col-lg-6" style={{padding: "0"}}>
                                     <div className="booking-formQuoc">
-                                        <div style={{width:'100%'}}>
+                                        <div style={{width: '100%'}}>
                                             <p className='pQuoc'>Thêm mới nhân viên</p>
                                         </div>
                                         <Formik initialValues={{
@@ -121,7 +123,7 @@ function CreateEmployee() {
                                             dateEmployee: "",
                                             telEmployee: "",
                                             image: "",
-                                            gender: true,
+                                            gender: null,
                                             emailEmployee: "",
                                             passwordEmployee: "",
                                             confirmPasswordEmployee: "",
@@ -206,7 +208,7 @@ function CreateEmployee() {
                                                         <div className="form-group">
                                         <span className="form-label">Họ và tên (<span
                                             style={{color: 'red'}}>*</span>)</span>
-                                                            <Field name='nameEmployee' className="form-control"
+                                                            <Field name='nameEmployee' className="form-control" placeholder="Tên đầy đủ"
                                                                    type="text"/>
                                                             <ErrorMessage name='nameEmployee' component='div'
                                                                           className='error_red_employee'/>
@@ -228,7 +230,7 @@ function CreateEmployee() {
                                                         <div className="form-group">
                                         <span className="form-label">Email (<span
                                             style={{color: 'red'}}>*</span>)</span>
-                                                            <Field name='emailEmployee' className="form-control"
+                                                            <Field name='emailEmployee' className="form-control" placeholder="Email"
                                                                    type="text"/>
                                                             <ErrorMessage name='emailEmployee' component='div'
                                                                           className='error_red_employee'/>
@@ -240,6 +242,7 @@ function CreateEmployee() {
                                                                  style={{color: 'red'}}>*</span>)</span>
                                                             <Field name='gender' className="form-control"
                                                                    as="select">
+                                                                <option >Giới tính</option>
                                                                 <option value={true}>Nam</option>
                                                                 <option value={false}>Nữ</option>
                                                             </Field>
@@ -251,7 +254,7 @@ function CreateEmployee() {
                                                         <div className="form-group">
                                            <span className="form-label">Mật khẩu (<span
                                                style={{color: 'red'}}>*</span>)</span>
-                                                            <Field name='passwordEmployee' className="form-control"
+                                                            <Field name='passwordEmployee' className="form-control" placeholder="Tạo mật khẩu "
                                                                    type="password"/>
                                                             <ErrorMessage name='passwordEmployee' component='div'
                                                                           className='error_red_employee'/>
@@ -261,7 +264,7 @@ function CreateEmployee() {
                                                         <div className="form-group">
                                                 <span className="form-label">Nhập lại mật khẩu (<span
                                                     style={{color: 'red'}}>*</span>)</span>
-                                                            <Field className="form-control" type="password"
+                                                            <Field className="form-control" type="password" placeholder="Nhập lại mật khẩu"
                                                                    name='confirmPasswordEmployee'/>
                                                             <ErrorMessage name='confirmPasswordEmployee' component='div'
                                                                           className='error_red_employee'/>
@@ -274,7 +277,7 @@ function CreateEmployee() {
                                                         <div className="form-group">
                                             <span className="form-label">Số điện thoại (<span
                                                 style={{color: 'red'}}>*</span>)</span>
-                                                            <Field className="form-control" type="text"
+                                                            <Field className="form-control" type="text" placeholder="Số điện thoại"
                                                                    name='telEmployee'/>
                                                             <ErrorMessage name='telEmployee' component='div'
                                                                           className='error_red_employee'/>
@@ -308,7 +311,8 @@ function CreateEmployee() {
                                                             lại
                                                         </Link>
                                                         <button type='submit' className="btn"
-                                                                style={{background: '#daa32a', color:'white'}} disabled={isSubmitting}>
+                                                                style={{background: '#daa32a', color: 'white'}}
+                                                                disabled={isSubmitting}>
                                                             {isSubmitting ? 'Đang xử lý...' : 'Thêm mới'}
                                                         </button>
                                                     </div>
