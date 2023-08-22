@@ -579,7 +579,12 @@ export function SignUp() {
                                                     <div className="col-3"/>
                                                     <div className="col-6 text-center">
                                                         {
-                                                            isSubmitting ? <ThreeDots/> :
+                                                            isSubmitting ?
+                                                                <div style={{marginLeft:"5vw"}} >
+                                                                    <div>
+                                                                        <ThreeDots/>
+                                                                    </div>
+                                                                </div> :
                                                                 <button type="submit" className="btn"
                                                                         style={{
                                                                             marginTop: "10%",

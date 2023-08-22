@@ -228,7 +228,12 @@ export function Login() {
                                                 <div className="text-center" style={{marginBottom: "10px"}}>
                                                     {
                                                         isSubmitting ?
-                                                            <ThreeDots/> :
+                                                            <div style={{marginLeft:"17vw"}} >
+                                                                <div>
+                                                                    <ThreeDots/>
+                                                                </div>
+                                                            </div>
+                                                            :
                                                             <button type="submit" className="btn"
                                                                     style={{
                                                                         marginTop: "2%",

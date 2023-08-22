@@ -47,7 +47,9 @@ export function CheckCode() {
                                 }}>
                                     <h1 style={{color: "rgb(6, 133, 170)", parddingTop: "5%"}}>Xác nhận đăng ký</h1>
                                     <p style={{margin: "0 9%"}}>Chúng tôi đã gửi mã xác nhận đến Email đăng ký của bạn.
-                                        Nhập mã xác nhận để kích hoạt tài khoản.</p>
+                                        Nhập mã xác nhận để kích hoạt tài khoản.
+                                    </p>
+                                    {/*(**Lưu ý: Mã xác nhận chỉ được nhập tối đa 3 lần. Lần thứ 3 nhập sai, mã xác nhận và tài khoản sẽ bị hủy)*/}
                                     <Formik
                                         initialValues={{
                                             verificationCode: ''
@@ -94,17 +96,17 @@ export function CheckCode() {
                                                 // toast.error(error.response.data.error);
                                                 if (count >= 3) {
                                                     await Swal.fire({
-                                                        title: "Đã nhập sai quá 3 lần, mã sẽ bị hủy",
+                                                        title: "Đã nhập sai 3 lần, mã xác nhận và tài khoản sẽ bị hủy",
                                                         icon: "warning",
-                                                        timer: 2000
+                                                        timer: 4000
                                                     });
                                                     navigate('/signup');
                                                 } else {
                                                     await Swal.fire({
                                                         title: 'Sai mã xác nhận lần ' + count + '.',
-                                                        text: '(Lưu ý: sai quá 3 lần mã xác nhận và tài khoản sẽ bị hủy)',
+                                                        text: '(Lưu ý: sai 3 lần mã xác nhận và tài khoản sẽ bị hủy)',
                                                         icon: "warning",
-                                                        timer: 2000
+                                                        timer: 5000
                                                     });
                                                 }
                                                 console.log("count3: " + count);
@@ -146,7 +148,11 @@ export function CheckCode() {
                                                 <div className="text-center" style={{marginBottom: "10px"}}>
                                                     {
                                                         isSubmitting ?
-                                                            <ThreeDots/>
+                                                            <div style={{marginLeft:"13vw"}} >
+                                                                <div>
+                                                                    <ThreeDots/>
+                                                                </div>
+                                                            </div>
                                                             :
                                                             <button type="submit" className="btn"
                                                                     style={{
