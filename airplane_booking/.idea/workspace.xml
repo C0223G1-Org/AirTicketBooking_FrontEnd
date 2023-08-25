@@ -22,18 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9940190e-4050-4e32-b542-a40edc64470e" name="Changes" comment="SangTDN commit truoc khi merge len nhanh dev 21/8/2023">
+    <list default="true" id="9940190e-4050-4e32-b542-a40edc64470e" name="Changes" comment="SangTDN commit  25/8/2023">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/account/CheckCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/account/CheckCode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/account/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/account/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/account/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/account/SignUp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component_SAngTDN/ListRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component_SAngTDN/ListRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TicketBooked.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketBooked.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TicketUnBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TicketUnBook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/ticket/manage-ticket.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/ticket/manage-ticket.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/ticket/printTicket.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/ticket/printTicket.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +63,7 @@
   <component name="PropertiesComponent">
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -123,7 +115,10 @@
       <workItem from="1692297490304" duration="1640000" />
       <workItem from="1692320209137" duration="18223000" />
       <workItem from="1692501430899" duration="11461000" />
-      <workItem from="1692583152418" duration="8755000" />
+      <workItem from="1692583152418" duration="9673000" />
+      <workItem from="1692610234500" duration="1940000" />
+      <workItem from="1692864848879" duration="70000" />
+      <workItem from="1692926458218" duration="310000" />
     </task>
     <task id="LOCAL-00001" summary="thaivv commit code tuong doi cho cac ban merge">
       <option name="closed" value="true" />
@@ -302,7 +297,35 @@
       <option name="project" value="LOCAL" />
       <updated>1692591629569</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="SangTDN commit 21/8/2023">
+      <created>1692605280339</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1692605280339</updated>
+    </task>
+    <task id="LOCAL-00027" summary="SangTDN commit 21/8/2023">
+      <created>1692605515627</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1692605515627</updated>
+    </task>
+    <task id="LOCAL-00028" summary="SangTDN commit  21/8/2023 16:30">
+      <created>1692610280138</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1692610280138</updated>
+    </task>
+    <task id="LOCAL-00029" summary="SangTDN commit  25/8/2023">
+      <created>1692926494518</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1692926494518</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,8 +355,10 @@
     <MESSAGE value="SangTDN commit 19/8/2023" />
     <MESSAGE value="SangTDN commit 12/8/2023" />
     <MESSAGE value="SangTDN commit 20/8/2023" />
-    <MESSAGE value="SangTDN commit 21/8/2023" />
     <MESSAGE value="SangTDN commit truoc khi merge len nhanh dev 21/8/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="SangTDN commit truoc khi merge len nhanh dev 21/8/2023" />
+    <MESSAGE value="SangTDN commit 21/8/2023" />
+    <MESSAGE value="SangTDN commit  21/8/2023 16:30" />
+    <MESSAGE value="SangTDN commit  25/8/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="SangTDN commit  25/8/2023" />
   </component>
 </project>

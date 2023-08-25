@@ -8,9 +8,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import Footer from "./components/home/Footer";
 import Home from "./components/home/Home";
 import GetTop10Cheapest from "./components/home/Top10";
-import HeaderCustomer from "./components/home/HeaderCustomer.";
-import HeaderAdmin from "./components/home/HeaderAdmin";
-import HeaderEmployee from "./components/home/HeaderEmployee";
 import UpdateTicket from "./components/ticket/updateTicket";
 import PrintTicket from "./components/ticket/printTicket";
 import TicketBooked from "./components/TicketBooked";
@@ -54,9 +51,6 @@ root.render(
                 <Routes>
                     <Route path="/home" element={<Home/>}/>
                     <Route path="/top10" element={<GetTop10Cheapest/>}/>
-                    <Route path="/header-customer" element={<HeaderCustomer/>}/>
-                    <Route path="/header-admin" element={<HeaderAdmin/>}/>
-                    <Route path="/header-employee" element={<HeaderEmployee/>}/>
                     <Route path="/printTicket/:id" element={<PrintTicket/>}/>
                     <Route path="/tickets/updateTicket/:id" element={<UpdateTicket/>}/>
                     <Route path="/ticket/booked" element={<TicketBooked/>}/>
