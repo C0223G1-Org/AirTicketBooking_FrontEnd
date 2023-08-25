@@ -231,8 +231,13 @@ function ListRouter() {
   };
 
   const showListRoute = async () => {
-    const data = await getListRouter(array[0], array[1], array[2]);
+    try {
+      const data = await getListRouter(array[0], array[1], array[2]);
     setFlights(data);
+    } catch (error) {
+      setFlights([])
+    }
+    
   };
 
   useEffect(() => {
@@ -266,14 +271,24 @@ function ListRouter() {
     if(flag){
       setDepartureDay(dateIndex);
       const formattedDate = formatDateToDDMMYYYYSearch(dateIndex);
-      const data = await getListRouter(array[0], array[1], formattedDate);
+      try {
+        const data = await getListRouter(array[0], array[1], formattedDate);
       setFlights(data);
+      } catch (error) {
+        setFlights([]);
+      }
+      
     }
     if(flag==false){
       setDepartureDay(dateIndex);
       const formattedDate = formatDateToDDMMYYYYSearch(dateIndex);
-      const data = await getListRouter(array[1], array[0],formattedDate);
+      try {
+        const data = await getListRouter(array[1], array[0],formattedDate);
       setFlights(data);
+      } catch (error) {
+        setFlights([]);
+      }
+      
     }
   };
 
@@ -378,9 +393,6 @@ function ListRouter() {
     
   }
 
-  useEffect(()=>{
-    document.title = 'danh sách chuyến bay'
-  },{})
   return (
       <>
         <div style={{background :"white", minHeight : "50rem"}}>

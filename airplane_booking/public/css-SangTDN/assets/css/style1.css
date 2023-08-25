@@ -15,6 +15,19 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     vertical-align: baseline;
 }
 
+.sang .row  {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    /* margin-left: calc(-.5 * var(--bs-gutter-x)); */
+    margin-left: 16%;
+    width: 100%;
+}
+
+
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
     display: block;
 }
@@ -185,6 +198,7 @@ p.agileits2 {
     /*background-color: #dadada;*/
     /*background-image: url("../img/anh-may-bay-dep-cho-iphone.jpeg");*/
     border-radius: 10px;
+    margin-left: 25%;
 }
 
 input#firstname, input#email, input#password1, input#password2, select#email{
@@ -194,12 +208,12 @@ input#firstname, input#email, input#password1, input#password2, select#email{
     color: rgb(6, 133, 170);
     font-size: 17px;
     font-weight: 200;
-    background-color: transparent;
+    /* background-color: transparent; */
     /*-- w3layouts --*/
-    border-bottom: 5px solid #fff;
-    border-top-color: transparent;
+    border-bottom: 1px solid #333;
+    /* border-top-color: transparent;
     border-left-color: transparent;
-    border-right-color: transparent;
+    border-right-color: transparent; */
     font-family: 'Raleway', sans-serif;
     margin: 0 auto 20px;
     display: block;
@@ -253,7 +267,7 @@ input.register {
     font-weight: bold;
     color: #fff;
     background-color: #3970b0;
-    border-color: transparent;
+    /* border-color: transparent; */
     font-family: 'Raleway', sans-serif;
     /*-- w3ls --*/
     transition: all 0.5s ease-in-out;
@@ -266,7 +280,7 @@ input.register {
 }
 
 input.register:hover {
-    color: rgb(6, 133, 170);
+    color: rgb(223, 165, 18);
     background-color: #3970b0;
 }
 

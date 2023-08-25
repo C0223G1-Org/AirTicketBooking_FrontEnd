@@ -50,10 +50,10 @@ setUser(data)
         {/* <link rel="stylesheet" href="../css-SangTDN/assets/css/font-awesome.min.css" /> */}
         <h1 className="w3ls" style={{color: 'rgb(6, 133, 170)'}}>ĐỔI MẬT KHẨU</h1>
         <div className="content-w3ls">
-          <div className="content-agile1">
+          {/* <div className="content-agile1">
             <h2 className="agileits1">CODEGYM AIRLINE </h2>
           
-          </div>
+          </div> */}
           <div className="content-agile2 bg-white">
             <Formik
             initialValues={{
@@ -105,7 +105,7 @@ setUser(data)
             }}
             >
                 <Form>
-            <div>
+            <div className="sang">
               <div className="row">
                 <div className="col-md-5" style={{marginTop: '2%', paddingLeft: '10%', color: 'rgb(6, 133, 170)', fontWeight: 'bold'}}>
                   <span style={{fontSize: '20px'}}>Mật khẩu hiện tại
