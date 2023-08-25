@@ -10,9 +10,10 @@ import Swal from "sweetalert2";
 import Popup from "./ChatPopup";
 import "../../css/search_ticket/style-popup.css";
 import UserChat from '../chat_messenger/UserChat';
-import banner1 from "../../img/CodeGym Airline 1.png"
-import banner2 from "../../img/CodeGym Airline-2.png"
-import banner3 from "../../img/CodeGym Airline 3.png"
+import banner1 from "../../img/CodeGym Airline 1.png";
+import banner2 from "../../img/CodeGym Airline-2.png";
+import banner3 from "../../img/CodeGym Airline 3.png";
+import Select from 'react-select';
 
 
 export default function Home() {
@@ -26,8 +27,6 @@ export default function Home() {
     const navigate = useNavigate();
     const [selectedDeparture, setSelectedDeparture] = useState('');
     const [selectedDestination, setSelectedDestination] = useState('');
-
-
 
     const handleSearchTicket = () => {
         if (ticketType != null) {
@@ -184,6 +183,8 @@ export default function Home() {
             })
         }
     }
+
+
     const setTicketTypeFunction = async (data) => {
         setTicketType(data);
     }
@@ -192,32 +193,42 @@ export default function Home() {
         const data = event.target.value;
         await setTicketTypeFunction(data);
     }
+
     const getAllDepartureApi = async () => {
         try {
-            const data = await getAllDeparture();
-            setDepartures(data);
+            const data = await getAllDeparture()
+            const dpData = data.map((dp) => ({
+                value: dp.idDeparture,
+                label: dp.nameDeparture
+            }));
+            setDepartures(dpData);
+
         } catch (Error) {
             console.log("Không tìm thấy dữ liệu!!!!")
         }
+
     }
+
     const getAllDestinationApi = async () => {
         try {
             const data = await getAllDestination();
-            setDestinations(data);
+            const dsData = data.map((dp) => ({
+                value: dp.idDestination,
+                label: dp.nameDestination
+            }));
+            setDestinations(dsData);
         } catch (Error) {
             console.log("Không tìm thấy dữ liệu!!!!")
         }
+
     }
+    const filteredDeparture = departures.filter(dp => {
+        return dp.label !== selectedDestination
+    })
 
-    // const getAllDepartureApi = async () => {
-    //     const data = await getAllDeparture();
-    //     setDepartures(data);
-    // }
-
-    // const getAllDestinationApi = async () => {
-    //     const data = await getAllDestination();
-    //     setDestinations(data);
-    // }
+    const filteredDestinations = destinations.filter(ds => {
+        return ds.label !== selectedDeparture
+    })
 
 
     console.log(selectedDestination)
@@ -294,50 +305,60 @@ export default function Home() {
                         </div>
                         <div className="row">
                             <div className="col-md-6">
-                                <div className="form-group">
-                                    <span className="form-label">Điểm khởi hành</span>
-                                    <select className='form-control'
-                                            onChange={(e) => {
-                                                setSelectedDeparture(e.target.value)
-                                            }}
-                                            required
-                                    >
-                                        <option value=''>Sân bay, Thành phố</option>
-                                        {
-                                            departures.map((dp) => {
-                                                if (dp.nameDeparture !== selectedDestination)
-                                                    return (
-                                                        <option key={dp.idDeparture} value={dp.nameDeparture}>
-                                                            {dp.nameDeparture}
-                                                        </option>
-                                                    )
-                                            })
-                                        }
-                                    </select>
+                                <div className="form-group start-pointor">
+                                    <div className="start-pointor__title">Điểm khởi hành</div>
+                                    <Select className='custom-select'
+                                            placeholder="Sân bay, Thành phố"
+                                            options={filteredDeparture}
+                                            onChange={value =>  setSelectedDeparture(value.label)}>
+                                    </Select>
+                                    {/*<select className='form-control'*/}
+                                    {/*        onChange={(e) => {*/}
+                                    {/*            setSelectedDeparture(e.target.value)*/}
+                                    {/*        }}*/}
+                                    {/*>*/}
+                                    {/*    <option value=''>Sân bay, Thành phố</option>*/}
+                                    {/*    {*/}
+                                    {/*        departures.map((dp) => {*/}
+                                    {/*            if (dp.nameDeparture !== selectedDestination)*/}
+                                    {/*                return (*/}
+                                    {/*                    <option key={dp.idDeparture} value={dp.nameDeparture}>*/}
+                                    {/*                        {dp.nameDeparture}*/}
+                                    {/*                    </option>*/}
+                                    {/*                )*/}
+                                    {/*        })*/}
+                                    {/*    }*/}
+                                    {/*</select>*/}
+
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                <div className="form-group">
-                                    <span className="form-label">Điểm đến</span>
-                                    <select className='form-control'
-                                            onChange={(e) => {
-                                                setSelectedDestination(e.target.value)
-                                            }}
-                                            required
-                                    >
-                                        <option value=''>Sân bay, Thành phố</option>
-                                        {
-                                            destinations.map((ds) => {
-                                                if (ds.nameDestination !== selectedDeparture)
-                                                    return (
-                                                        <option key={ds.idDestination}
-                                                                value={ds.nameDestination}>
-                                                            {ds.nameDestination}
-                                                        </option>
-                                                    )
-                                            })
-                                        }
-                                    </select>
+                                <div className="form-group start-pointor">
+                                    <div className="start-pointor__title">Điểm đến</div>
+                                    <Select className='custom-select'
+                                            placeholder="Sân bay, Thành phố"
+                                            options={filteredDestinations}
+                                            onChange={value =>  setSelectedDestination(value.label)}>
+                                    </Select>
+                                    {/*<select className='form-control'*/}
+                                    {/*        onChange={(e) => {*/}
+                                    {/*            setSelectedDestination(e.target.value)*/}
+                                    {/*        }}*/}
+                                    {/*        required*/}
+                                    {/*>*/}
+                                    {/*    <option value=''>Sân bay, Thành phố</option>*/}
+                                    {/*    {*/}
+                                    {/*        destinations.map((ds) => {*/}
+                                    {/*            if (ds.nameDestination !== selectedDeparture)*/}
+                                    {/*                return (*/}
+                                    {/*                    <option key={ds.idDestination}*/}
+                                    {/*                            value={ds.nameDestination}>*/}
+                                    {/*                        {ds.nameDestination}*/}
+                                    {/*                    </option>*/}
+                                    {/*                )*/}
+                                    {/*        })*/}
+                                    {/*    }*/}
+                                    {/*</select>*/}
                                 </div>
                             </div>
                         </div>
@@ -511,10 +532,9 @@ export default function Home() {
                 <div className="col-2"/>
             </div>
             <div>
-            <UserChat />
+                <UserChat/>
             </div>
             <GetTop10Cheapest/>
-
         </div>
     )
 }

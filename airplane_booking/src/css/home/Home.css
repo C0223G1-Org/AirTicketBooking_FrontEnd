@@ -47,6 +47,28 @@ body {
     transition: 0.2s all;
 }
 
+
+.start-pointor {
+    border: 2px solid #dfe5e9;
+    border-radius: 4px;
+    padding: 10px;
+}
+.start-pointor__title {
+    padding-left: 10px;
+    padding-bottom: 6px;
+    color: #166987;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+}
+.custom-select {
+    font-weight: bold;
+}
+/*.start-pointor Select {*/
+/*    !*display: flex;*!*/
+/*    !*position: relative;*!*/
+/*}*/
+
 .booking-form-home .form-control::-webkit-input-placeholder {
     color: #dfe5e9;
 }
@@ -279,7 +301,9 @@ body {
         width: 25%;
         height: 60%;
     }
+
 }
+
 
 
 
