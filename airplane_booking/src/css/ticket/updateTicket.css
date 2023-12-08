@@ -1,0 +1,141 @@
+#update-ticket .background-image {
+  width: 70%;
+  margin-left: 15%;
+  justify-items: center;
+  font-family: 'Times New Roman', Times, serif;
+  border: 5px solid rgb(6, 133, 170);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #888888;
+  box-sizing: border-box;
+  margin-top: 20px ;
+  margin-bottom: 20px;
+}
+
+#update-ticket .passenger {
+  padding-left: 30px;
+}
+
+#update-ticket .class {
+  padding-left: 30px;
+}
+
+#update-ticket .title {
+  text-align: center;
+  margin-left: 90px;
+}
+
+#update-ticket .table-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+
+#update-ticket .col-sm-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+#update-ticket h2 {
+  font-size: 24px;
+  color: white;
+}
+
+#update-ticket .form-group {
+  margin-bottom: 20px;
+}
+
+#update-ticket .form-label {
+  font-weight: bold;
+  display: block;
+}
+#update-ticket .star{
+  color:red;
+}
+
+
+
+#update-ticket .form-control {
+
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#update-ticket .form-controler {
+
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: beige;
+}
+
+#update-ticket .form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+#update-ticket .btn {
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#update-ticket .btn-primary {
+  background-color: rgb(223, 165, 18);
+  color: #fff;
+  border: 3px solid rgb(6, 133, 170);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #888888;
+}
+
+#update-ticket .btn-secondary {
+  background-color: rgb(223, 165, 18);
+  color: white;
+  margin-left: 10px;
+  border: 3px solid rgb(6, 133, 170);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #888888;
+  text-decoration-line: none;
+}
+
+#update-ticket .btn:hover {
+  opacity: 0.8;
+}
+
+#update-ticket .update {
+  background-color: rgb(6, 133, 170);
+  margin-left: -90px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  color: white;
+}
+
+#update-ticket b {
+  color: #0055a3;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  #update-ticket .background-image {
+    width: 80%;
+    margin-left: 10%;
+  }
+
+  #update-ticket .row {
+    margin-left: 0;
+  }
+
+  #update-ticket .col-sm-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  #update-ticket .background-image {
+    width: 90%;
+    margin-left: 5%;
+  }
+}

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a3cf5f5-26d0-4968-a70a-7cff29ce35ba" name="Changes" comment="" />
+    <list default="true" id="926a5953-2756-4ebd-a047-72cd1e75119d" name="Changes" comment="TaiMP FE của Customer ngay 17/8/2023">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/ticket/printTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/ticket/printTicket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/components/ticket/updateTicket.js" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/components/ticket/updateTicket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/css/ticket/printTicket.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/css/ticket/printTicket.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airplane_booking/src/css/ticket/updateTicket.css" beforeDir="false" afterPath="$PROJECT_DIR$/airplane_booking/src/css/ticket/updateTicket.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,37 +19,111 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2U3Tpa599vcOxTUxWB6X1d6ENWR" />
+  <component name="ProjectId" id="2U1b1NBtC3wSZXrIDLIxGTg91Zu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/case_study/study_module6/AirTicketBooking_FrontEnd/airplane_booking",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/airplane_booking" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8a3cf5f5-26d0-4968-a70a-7cff29ce35ba" name="Changes" comment="" />
-      <created>1692167449182</created>
+      <changelist id="926a5953-2756-4ebd-a047-72cd1e75119d" name="Changes" comment="" />
+      <created>1692109823811</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1692167449182</updated>
-      <workItem from="1692167452951" duration="46000" />
+      <updated>1692109823811</updated>
+      <workItem from="1692109827781" duration="251000" />
+      <workItem from="1692256597415" duration="2424000" />
+      <workItem from="1692259161452" duration="4646000" />
+      <workItem from="1692266408402" duration="1072000" />
+      <workItem from="1692270841706" duration="219000" />
+      <workItem from="1692271261794" duration="14318000" />
+      <workItem from="1692289289931" duration="1666000" />
+      <workItem from="1692320202824" duration="386000" />
+      <workItem from="1692320724097" duration="648000" />
     </task>
+    <task id="LOCAL-00001" summary="TaiMP FE ngay 17/8/2023">
+      <created>1692258690516</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1692258690516</updated>
+    </task>
+    <task id="LOCAL-00002" summary="TaiMP FE ngay 17/8/2023">
+      <created>1692260202413</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1692260202413</updated>
+    </task>
+    <task id="LOCAL-00003" summary="TaiMP FE ngay 17/8/2023">
+      <created>1692277503121</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692277503121</updated>
+    </task>
+    <task id="LOCAL-00004" summary="TaiMP FE của Customer ngay 17/8/2023">
+      <created>1692281827498</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692281827498</updated>
+    </task>
+    <task id="LOCAL-00005" summary="TaiMP FE của Customer ngay 17/8/2023">
+      <created>1692289533006</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692289533006</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="TaiMP FE ngay 17/8/2023" />
+    <MESSAGE value="TaiMP FE của Customer ngay 17/8/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="TaiMP FE của Customer ngay 17/8/2023" />
   </component>
 </project>

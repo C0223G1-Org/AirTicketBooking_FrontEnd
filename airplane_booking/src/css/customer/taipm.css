@@ -1,0 +1,131 @@
+body {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+
+#customer .title {
+    color: #fff;
+    background-color: #016984;
+    margin-top: 20px;
+}
+#customer .inlineCustom {
+   text-align: center;
+   padding-top: 10px;
+}
+
+#customer .relative {
+    margin-right: 10px;
+}
+
+
+#customer .relative input {
+    border-radius: 5px;
+    height: 40px;
+}
+
+#customer .my-2 button {
+    width: auto;
+    border-radius: 5px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.background-customer {
+    background-image: url("../../img/background.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+#details .modal-header {
+    background: #016984;
+    color: white;
+    border-radius: 15px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#details .modal-content {
+    border-radius: 15px;
+    height: 600px;
+}
+
+#zhaopian {
+    border-radius: 100%;
+    height: 150px;
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+.wai {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.biaoqing {
+    padding-left: 10px;
+    padding-right: 5px;
+    font-weight: bold;
+    /*padding: 30px;*/
+}
+
+.tai {
+    padding-left: 60px;
+}
+
+.tai p {
+    margin: 15px 0;
+}
+
+#customer .icon_detail_employee {
+    font-size: 25px;
+    margin-right: 10px;
+    color: #0653aa;
+}
+
+#customer .icon_edit_employee {
+    font-size: 25px;
+    margin-right: 15px;
+    color: #0685aa
+}
+
+#customer .icon_delete_employee {
+    font-size: 25px;
+    color: #8f1f34;
+}
+
+.style-8::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.style-8::-webkit-scrollbar {
+    width: 0;
+    background-color: #f5f5f5;
+}
+
+.style-8::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear,
+            left bottom,
+            left top,
+            color-stop(0.86, rgb(6, 133, 170)));
+}
+
+.taipm{
+    padding-left: 30px;
+}
+
+@media screen and (max-width: 500px) {
+    div {
+        display: block;
+    }
+    
+}
+#customer .inlineTable {
+    flex: 1;
+    min-height: 416px;
+    background: white;
+}

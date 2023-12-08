@@ -1,0 +1,172 @@
+
+#search-result {
+    box-sizing: border-box;
+    background-image: url('../search_ticket/img/background.jpg');
+  
+    font-family: "Diavlo", "sans-seriff";
+    text-transform: capitalize;
+}
+
+.search-result #table-detail-ticket-search{
+    margin: 40px 0px 30px 30px;
+}
+#search-result .wrapper {
+    align-items: center;
+    background: #fff;
+    padding: 30px 100px;
+
+}
+#search-result .d-flex{
+    position: relative;
+    left: 950px;
+}
+.inline-flex .text-sm  {
+    color: rgb(223, 165, 18);
+    background-color: #fff;
+    border: 1px solid rgb(223, 165, 18);
+}
+.text-sm:hover{
+    background-color:rgb(223, 165, 18) ;
+    color: #fff;
+}
+#search-result .title-search {
+    background-color: #016984;
+    color: #fff;
+    padding: 25px 0;
+    text-transform: uppercase;
+}
+
+#search-result .vietnam-airline {
+    color: #016984;
+}
+
+#search-result #detail-ticket-search .wrap {
+    margin-top: 40px;
+    padding-left: 20px;
+}
+
+#search-result .wrap i {
+    color: #78adb1;
+    font-size: 24px;
+    padding: 5px;
+}
+
+
+#search-result .wrap .location span {
+    font-weight: bold;
+}
+
+#search-result .wrap .money {
+    color: #016984;
+    font-weight: bold;
+
+}
+
+#search-result .wrap .outstanding {
+    color: #daa310;
+    font-weight: bold;
+}
+
+#search-result .wrap p {
+    font-weight: bold;
+}
+
+#search-result .info-second {
+    margin-top: 20px;
+
+}
+
+#search-result .info-third {
+    margin-top: 20px;
+}
+
+#search-result .logo-image {
+    display: flex;
+}
+
+#search-result .logo-image img {
+    padding: 0 5px;
+    height: 26px
+}
+
+#search-result .btn {
+    margin: 20px 0;
+}
+#search-result .btn .btn-success{
+background-color: #016984;
+color: #016984;
+}
+#search-result .btn button {
+    border: none;
+    background-color: #daa310;
+    box-shadow: inset;
+    color: #fff;
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+}
+
+#search-result .btn button:first-child {
+    margin-right: 40px;
+}
+
+#search-result .info-customer {
+    border: 1px solid black;
+    padding: 20px 0px;
+    width: 80%;
+}
+
+#search-result .info-customer .check-children {
+    display: flex;
+}
+
+#search-result .info-customer .field {
+    padding: 5px 0;
+}
+
+#search-result .info-customer .field label {
+   width: 30%;
+}
+
+#search-result .info-customer .field input,
+#search-result .info-customer .field select {
+    height: 24px;
+    width: 40%;
+
+}
+
+#search-result .check-children input {
+    margin: 0 5px 12px 5px;
+}
+
+@media (max-width: 768px) {
+    #search-result #detail-ticket-search {
+        font-size: 10px;
+    }
+
+    #search-result .title-search p {
+        font-size: 20px;
+    }
+
+    #search-result .wrapper {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    #search-result .wrap .infor-fight {
+        display: block;
+    }
+
+    #search-result .logo-image img {
+        display: none;
+    }
+
+    #search-result .btn button {
+        margin-bottom: 10px;
+    }
+
+}
+
+.pad{
+    padding-left: 700px;
+}
